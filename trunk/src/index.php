@@ -20,6 +20,24 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+/**
+ * Path to the root picon directory without a trailing slash
+ * This is the directory containing PiconApplication
+ */
+define("PICON_DIRECTORY", __DIR__.'\\picon');
+
+/**
+ * Path to the assets directory in which the user
+ * created classes reside
+ */
+define("ASSETS_DIRECTORY", __DIR__.'\\assets');
+
+/**
+ * Path to the config directory in which the xml config files
+ * reside
+ */
+define("CONFIG_FILE", __DIR__.'\\config\\picon.xml');
+
 require_once("picon/PiconApplication.php");
 
 //Begin output buffering

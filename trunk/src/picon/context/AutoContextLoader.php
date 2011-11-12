@@ -27,14 +27,10 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class AutoContextLoader  implements ContextLoader
+class AutoContextLoader extends AbstractContextLoader
 {
-    private $resources = array();
-    
-    public function classPathScan()
+    public function loadResources($classes)
     {
-       $classes = ContextLoaderHelper::getClasses();
-       
        foreach($classes as $class)
        {
              $reflection = new \ReflectionAnnotatedClass($class);
@@ -42,32 +38,17 @@ class AutoContextLoader  implements ContextLoader
              if($reflection->hasAnnotation("Service"))
              {
                  $annotation = $reflection->getAnnotation('Service');
-                 $name = $annotation->value["name"];
-                 if($name=="")
-                 {
-                     $name = $class;
-                 }
-                 $this->pushToResourceMap($name, $reflection->newInstanceArgs());
+                 $this->pushToResourceMap($this->getResourceName($annotation, $class), $reflection->newInstanceArgs());
              }
              if($reflection->hasAnnotation("Repository"))
              {
                  $annotation = $reflection->getAnnotation('Repository');
-                 $name = $annotation->value["name"];
-                 if($name=="")
-                 {
-                     $name = $class;
-                 }
-                 $this->pushToResourceMap($name, $reflection->newInstanceArgs());
+                 $this->pushToResourceMap($this->getResourceName($annotation, $class), $reflection->newInstanceArgs());
              }
         }
-        //@todo testing only, resources are to be stored elsewhere
-        return $this->resources;
     }
     
-    private function pushToResourceMap($resourceName, $resource)
-    {
-        $this->resources[$resourceName] = $resource;
-    }
+
 }
 
 ?>

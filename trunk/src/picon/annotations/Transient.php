@@ -21,13 +21,14 @@
  * */
 
 /**
- * Description of Repository
+ * Annotation to declare a class property not be serialised and bet
+ * set back to its default value after deserialisation
  * 
  * @author Martin Cassidy
  */
-class Repository extends Transient 
+class Transient extends Annotation
 {
-    private $name = "";
+    
 }
 
 ?>

@@ -21,13 +21,13 @@
  * */
 
 /**
- * Description of Repository
+ * 
  * 
  * @author Martin Cassidy
  */
-class Repository extends Transient 
+class UndefinedResourceException extends RuntimeException
 {
-    private $name = "";
+    
 }
 
 ?>

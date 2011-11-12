@@ -20,14 +20,20 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-/**
- * Description of InjectorHolder
- * 
- * @author Martin Cassidy
- */
-class InjectorHolder
+require_once('ResourceProvider.php');
+
+class ConfigTest extends PHPUnit_Framework_TestCase
 {
+    /*public function testConfigLoad()
+    {
+        ResourceProvider::get();
+    }
     
+    public function testBadConfig()
+    {
+        ResourceProvider::get();
+        \picon\ConfigLoader::load('config/badxml.xml');
+    }*/
 }
 
 ?>

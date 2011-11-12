@@ -23,13 +23,13 @@
 namespace picon;
 
 /**
- * Description of ManualContextLoader
+ * TODO manual loading
  * 
  * @author Martin Cassidy
  */
-class ManualContextLoader implements ContextLoader
+class ManualContextLoader extends AbstractContextLoader
 {
-    public function classPathScan()
+    public function loadResources($classes)
     {
        
     }

@@ -23,28 +23,36 @@
 namespace picon;
 
 /**
- * Description of ConfigParser
-
+ * A helper class for loading config xml
  * @author Martin Cassidy
  */
-class ConfigParser
+class ConfigLoader
 {
     const ROOT_ELEMENT = "piconApplication";
-    
-    private $config;
-    private $rawConfig;
-    
+    const EXTERNAL_INCLUDE = "include";
     private static $CORE_CONFIG = array("homePage", "mode");
     
-    public function __construct(&$rawConfig, &$config)
+    private function __construct()
     {
-        $this->config = &$config;
-        $this->rawConfig = &$rawConfig;
     }
     
-    public function parse()
+    public static function load($file, &$config = null)
     {
-        foreach($this->rawConfig as $tag)
+        if($config==null)
+        {
+            $config = new Config();
+        }
+        $xmlParser = new XMLParser();
+        $rawConfig = $xmlParser->parse($file);
+        
+        ConfigLoader::parse($rawConfig, $config);
+        
+        return $config;
+    }
+    
+    private static function parse($rawConfig, &$config)
+    {
+        foreach($rawConfig as $tag)
         {
             if($tag->getName()!=self::ROOT_ELEMENT)
             {
@@ -54,15 +62,15 @@ class ConfigParser
             {
                 if(in_array($childTag->getName(), self::$CORE_CONFIG))
                 {
-                    $this->dealCore($childTag->getName(), $childTag->getCharacterData());
+                    $config->__set($childTag->getName(), $childTag->getCharacterData());
+                }
+                
+                if($childTag->getName()==self::EXTERNAL_INCLUDE)
+                {
+                    ConfigLoader::load($childTag->getCharacterData(), $config);
                 }
             }
         }
-    }
-    
-    public function dealCore($name, $value)
-    {
-        $this->config->__set($name, $value);
     }
 }
 

@@ -23,20 +23,37 @@
 namespace picon;
 
 /**
- * Description of ContextLoaderHelper
- * 
+ * Holds any and all resources instantiated by the application initialiser
  * @author Martin Cassidy
  */
-class ContextLoaderHelper
+class ApplicationContext
 {
-    private function __construct()
+    private $resources = array();
+    
+    public function __construct($resources)
     {
-        
+        if(!is_array($resources))
+        {
+            throw new \InvalidArgumentException("Expected an array");
+        }
+        $this->resources = $resources;
     }
     
-    public static function getClasses()
+    public function getResources()
     {
-        return get_declared_classes();
+        return $this->resources;
+    }
+    
+    public function getResource($name)
+    {
+        if(array_key_exists($name, $this->resources))
+        {
+            return $this->resources[$name];
+        }
+        else
+        {
+            throw new \UndefinedResourceException(sprintf("The requested resource %s could not be found or the initialisation process is not complete", $name));
+        }
     }
 }
 

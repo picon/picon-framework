@@ -19,15 +19,4 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
-
-/**
- * Description of Repository
- * 
- * @author Martin Cassidy
- */
-class Repository extends Transient 
-{
-    private $name = "";
-}
-
 ?>
