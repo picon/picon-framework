@@ -25,7 +25,7 @@
  * 
  * @author Martin Cassidy
  */
-class Service extends Annotation 
+class Service extends Transient 
 {
     private $name = "";
 }

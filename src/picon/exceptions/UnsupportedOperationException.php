@@ -21,13 +21,12 @@
  * */
 
 /**
- * Description of Repository
  * 
+ *
  * @author Martin Cassidy
  */
-class Repository extends Transient 
+class UnsupportedOperationException extends Exception
 {
-    private $name = "";
+    
 }
-
 ?>

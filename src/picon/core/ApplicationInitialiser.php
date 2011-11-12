@@ -61,21 +61,24 @@ class ApplicationInitialiser
     /**
      * Initialise the application
      */
-    public function initialise()
+    public function initialise(PiconApplication $application)
     {
-        $config = ConfigHolder::getConfig();
+        $config = ConfigLoader::load(CONFIG_FILE);
+        $application->setConfig($config);
         
         /*
          * @todo this is testing only, remove it
          */
         print_r(PageMapHolder::getPageMap());
         
-        $loader = new AutoContextLoader();
+        $loader = ContextLoaderFactory::getLoader($config);
+        $context = $loader->load();
+        $injector = new Injector($context);
         
-         /*
-         * @todo this is testing only, remove it
-         */
-        print_r($loader->classPathScan());
+        foreach($context->getResources() as $resource)
+        {
+            $injector->inject($resource);
+        }
     }
 
     /**

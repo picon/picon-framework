@@ -28,29 +28,15 @@ require_once("addendum/annotations.php");
 require_once("addendum/doc_comment.php");
 
 /**
- * Path to the root picon directory without a trailing slash
- */
-define("BASE_DIRECTORY", __DIR__."\\..");
-
-/**
- * Path to the root picon directory without a trailing slash
- * This is the directory containing PiconApplication
- */
-define("PICON_DIRECTORY", __DIR__);
-
-/**
- * Path to the assets directory in which the user
- * created classes reside
- */
-define("ASSETS_DIRECTORY", BASE_DIRECTORY.'\\assets');
-
-/**
- * This is the main driver class for the entire application
+ * This is the main class for the entire application.
  *
  * @author Martin Cassidy
  */
 class PiconApplication 
 {
+    private $applicatoinContext;
+    private $config;
+    
     /**
      * Fires off the application initialiser to load an instantiat all resources
      */
@@ -61,12 +47,40 @@ class PiconApplication
         $initialiser->addScannedDirectory(PICON_DIRECTORY."\\annotations");
         $initialiser->addScannedDirectory(PICON_DIRECTORY."\\exceptions");
         $initialiser->addScannedDirectory(ASSETS_DIRECTORY);
-        $initialiser->initialise();
+        $initialiser->initialise($this);
     }
     
     public function run()
     {
         
+    }
+    
+    public function getConfig()
+    {
+        return $this->config;
+    }
+    
+    public function setConfig(Config $config)
+    {
+        if(isset($this->config))
+        {
+            throw new \UnsupportedOperationException("Config has already been set");
+        }
+        $this->config = $config;
+    }
+    
+    public function getApplicationContext()
+    {
+        return $this->applicatoinContext;
+    }
+    
+    public function setApplicationContext(ApplicationContext $context)
+    {
+        if(isset($this->$context))
+        {
+            throw new \UnsupportedOperationException("Context has already been set");
+        }
+        $this->$context = $context;
     }
 }
 

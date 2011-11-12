@@ -25,7 +25,7 @@
  * 
  * @author Martin Cassidy
  */
-class Resource extends Annotation 
+class Resource extends Transient 
 {
     
 }
