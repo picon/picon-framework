@@ -25,6 +25,7 @@ namespace picon;
 /**
  * Holds any and all resources instantiated by the application initialiser
  * @author Martin Cassidy
+ * @package context
  */
 class ApplicationContext
 {

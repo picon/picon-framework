@@ -20,19 +20,26 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of AnotherService
+ * 
+ * Factory class containing a method to retrieve the appropriate context
+ * loader bassed upon the configuration
  * 
  * @author Martin Cassidy
- * @Service
+ * @package context
  */
-class AnotherService
+class ContextLoaderFactory
 {
-    /**
-     *
-     * @Resource
-     */
-    private $testService;
+    public static function getLoader($config)
+    {
+        /*
+        * TODO Currently only auto is available, add option to config 
+         * to permit manual and create class to do it
+        */
+        return new AutoContextLoader();
+    }
 }
 
 ?>

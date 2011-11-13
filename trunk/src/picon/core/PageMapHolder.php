@@ -27,6 +27,7 @@ namespace picon;
  * That is all pages which are sub classes of picon\WebPage
  * 
  * @author Martin Cassidy
+ * @package core
  */
 class PageMapHolder
 {
@@ -40,7 +41,6 @@ class PageMapHolder
      */
     private function __construct()
     {
-        $this->loadAssets(ASSETS_DIRECTORY);
         $classes = get_declared_classes();
         
         foreach($classes as $class)
@@ -66,28 +66,6 @@ class PageMapHolder
             self::$self = new self();
         }
         return self::$self->map;
-    }
-    
-    /**
-     * Runs a require_once() on all the php files in the given directory
-     * and invokes itself on any sub directories
-     * @param String $directory the working directory
-     */
-    private function loadAssets($directory)
-    {
-        $d = dir($directory);
-        while (false !== ($entry = $d->read()))
-        {
-            if(preg_match("/\s*.php{1}/", $entry))
-            {
-                require_once($directory."\\".$entry);
-            }
-            if(is_dir($directory."\\".$entry) && !preg_match("/^.{1}.?$/", $entry))
-            {
-               $this->loadAssets($directory."\\".$entry);
-            }
-        }
-        $d->close();
     }
 }
 

@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of AbstractContextLoader
+ * Context loader super class
  * 
  * @author Martin Cassidy
+ * @package context
  */
 abstract class AbstractContextLoader
 {

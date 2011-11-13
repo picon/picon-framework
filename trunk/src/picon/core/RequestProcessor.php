@@ -23,9 +23,12 @@
 namespace picon;
 
 /**
- * Description of RequestProcessor
+ * Front controller for incoming requests.
+ * This is fired when the initialiser is completed. The request is 
+ * analysed and appropriate action taken
  * 
  * @author Martin Cassidy
+ * @package core
  */
 class RequestProcessor
 {

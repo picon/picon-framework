@@ -27,6 +27,7 @@ namespace picon;
  * Although any object can be manually injected at any time.
  * 
  * @author Martin Cassidy
+ * @package context
  */
 class Injector
 {

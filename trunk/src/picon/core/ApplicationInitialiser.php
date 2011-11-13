@@ -21,6 +21,7 @@
  * */
 
 namespace picon;
+require_once("AutoLoader.php");
 
 /**
  * ApplicationInitialiser works like a bootstrap. This is the first step
@@ -32,14 +33,15 @@ namespace picon;
  * <li>Instantiates and injects resources</li></ul>
  * 
  * @author Martin Cassidy
+ * @package core
  */
 class ApplicationInitialiser
 {
-    private $scannedDirectories = array();
+    private $autoLoader;
     
     public function __construct()
     {
-        spl_autoload_register("self::autoLoad");
+        $this->autoLoader = new AutoLoader();
         //@todo register error handlers
     }
     
@@ -51,11 +53,7 @@ class ApplicationInitialiser
      */
     public function addScannedDirectory($directory, $namespace = 'default')
     {
-        if(!array_key_exists($namespace, $this->scannedDirectories))
-        {
-            $this->scannedDirectories[$namespace] = array();
-        }
-        array_push($this->scannedDirectories[$namespace], $directory);
+        $this->autoLoader->addScannedDirectory($directory, $namespace);
     }
     
     /**
@@ -65,6 +63,8 @@ class ApplicationInitialiser
     {
         $config = ConfigLoader::load(CONFIG_FILE);
         $application->setConfig($config);
+        
+        $this->loadAssets(ASSETS_DIRECTORY);
         
         /*
          * @todo this is testing only, remove it
@@ -80,75 +80,29 @@ class ApplicationInitialiser
             $injector->inject($resource);
         }
     }
-
-    /**
-     * Internal method for loading classes, used by spl_autoload_register 
-     * 
-     * This method will trigger php error on failure instead of throwing exceptions
-     * as exceptions are caught internally by the php auto loader
-     * 
-     * @param String $className the name of the class to load, including the
-     * namespace e.g. picon\RequestProcessor
-     */
-    private function autoLoad($className)
-    {
-        $success = false;
-        $path = explode("\\", $className);
-        
-        $class = $path[count($path)-1];
-        unset($path[count($path)-1]);
-        $namespace = implode("\\", $path);
-        
-        if(empty($namespace))
-        {
-            $namespace = "default";
-        }
-        
-        if(!array_key_exists($namespace, $this->scannedDirectories))
-        {
-            trigger_error(sprintf("Unable to load class %s from namespace %s. No directories for the namespace have been added", $class, $namespace),E_USER_ERROR);
-        }
-        
-        foreach($this->scannedDirectories[$namespace] as $dir)
-        {
-            $success = $this->loadClass($dir, $class);
-            if($success)
-            {
-                break;
-            }
-        }
-        if(!$success)
-        {
-            trigger_error(sprintf("Unable to load class %s in namespace %s, please check that the name of file matches tha name of the class and that the file is in a directory that is used by the class scanner", $class, $namespace),E_USER_ERROR);
-        }
-    }
     
     /**
-     * Load a class from a directory, this is recursive and will also search
-     * sub directories. 
-     * @param String $directory The root directory for the class
-     * @param String $className The name of the class
-     * @return Boolean true if the class file was found, false if not 
+     * Runs a require_once() on all the php files in the given directory
+     * and invokes itself on any sub directories
+     * @param String $directory the working directory
      */
-    private function loadClass($directory, $className)
+    private function loadAssets($directory)
     {
         $d = dir($directory);
-        $success = false;
-        while ((false !== ($entry = $d->read()))&&!$success)
+        while (false !== ($entry = $d->read()))
         {
-            if($entry==$className.'.php')
-            { 
+            if(preg_match("/\s*.php{1}/", $entry))
+            {
                 require_once($directory."\\".$entry);
-                $success = true;
             }
             if(is_dir($directory."\\".$entry) && !preg_match("/^.{1}.?$/", $entry))
             {
-                $success = $this->loadClass($directory."\\".$entry,$className);
+               $this->loadAssets($directory."\\".$entry);
             }
         }
         $d->close();
-        return $success;
     }
+
 }
 
 ?>

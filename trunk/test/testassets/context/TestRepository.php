@@ -21,14 +21,22 @@
  * */
 
 /**
- * Description of TestService
+ * Description of TestRepository
  * 
  * @author Martin Cassidy
- * @Service
+ * @Repository
  */
-class TestService
+class TestRepository
 {
+    /**
+     * @Resource
+     */
+    private $testService;
     
+    public function getTestService()
+    {
+        return $this->testService;
+    }
 }
 
 ?>
