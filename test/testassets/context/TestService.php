@@ -21,13 +21,23 @@
  * */
 
 /**
- * Description of APageTest
+ * 
  * 
  * @author Martin Cassidy
+ * @Service
  */
-class APageTest extends \picon\WebPage
+class TestService
 {
+    /**
+     *
+     * @Resource
+     */
+    private $testRepository;
     
+    public function getTestRepository()
+    {
+        return $this->testRepository;
+    }
 }
 
 ?>

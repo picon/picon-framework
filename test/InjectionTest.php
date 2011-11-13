@@ -19,4 +19,21 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
+
+class InjectionTest extends AbstractPiconTest
+{
+    public function testInjector()
+    {
+        $context = $this->getContext();
+        $injector = new \picon\Injector($context);
+        
+        foreach($context->getResources() as $resource)
+        {
+            $injector->inject($resource);
+        }
+        
+        $this->assertInstanceOf('TestService', $context->getResource("testRepository")->getTestService());
+        $this->assertInstanceOf('TestRepository', $context->getResource("testService")->getTestRepository());
+    }
+}
 ?>

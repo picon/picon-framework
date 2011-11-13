@@ -20,20 +20,23 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-require_once('ResourceProvider.php');
-
-class ConfigTest extends PHPUnit_Framework_TestCase
+class ConfigTest extends AbstractPiconTest
 {
-    /*public function testConfigLoad()
+    public function testConfigLoad()
     {
-        ResourceProvider::get();
+        $config = \picon\ConfigLoader::load('config/picon.xml');
+        
+        $this->assertSame('HomePage', $config->getHomePage());
+        $this->assertSame('development', $config->getMode());
     }
     
+    /**
+    * @expectedException XMLException
+    */
     public function testBadConfig()
     {
-        ResourceProvider::get();
         \picon\ConfigLoader::load('config/badxml.xml');
-    }*/
+    }
 }
 
 ?>

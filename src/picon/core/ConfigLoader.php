@@ -25,6 +25,7 @@ namespace picon;
 /**
  * A helper class for loading config xml
  * @author Martin Cassidy
+ * @package core
  */
 class ConfigLoader
 {

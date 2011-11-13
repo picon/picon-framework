@@ -19,15 +19,37 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
-namespace something;
+
+require_once(PICON_DIRECTORY."\\core\\AutoLoader.php");
+
 /**
- * Description of NamespaceTest
+ * Extension of autoloader specialised for testings
  * 
  * @author Martin Cassidy
  */
-class NamespaceTest extends \picon\WebPage
+class TestAutoLoader extends \picon\AutoLoader
 {
+    public function __construct()
+    {
+        parent::__construct();
+        
+        $this->addScannedDirectory(PICON_DIRECTORY, 'picon');
+        $this->addScannedDirectory(PICON_DIRECTORY."\\annotations");
+        $this->addScannedDirectory(PICON_DIRECTORY."\\exceptions");
+        $this->addScannedDirectory(ASSETS_DIRECTORY);
+    }
     
+    /**
+     * Ignores PHPUnit classes which will also pass through this auto loader
+     * @param String $className Name of the class to load
+     */
+    protected function autoLoad($className)
+    {
+        if(!preg_match("/^PHPUnit+.*$/", $className))
+        {
+            parent::autoLoad($className);
+        }
+    }
 }
 
 ?>

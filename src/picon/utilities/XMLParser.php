@@ -67,7 +67,7 @@ class XMLParser
         {
             if (!xml_parse($this->parser, $data, feof($fp)))
             {
-                throw new XMLException(sprintf("XML error: %s at line %d", xml_error_string(xml_get_error_code($parser)), xml_get_current_line_number($parser)));
+                throw new \XMLException(sprintf("XML error: %s at line %d", xml_error_string(xml_get_error_code($this->parser)), xml_get_current_line_number($this->parser)));
             }
         }
         xml_parser_free($this->parser);

@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of AutoContextLoader
+ * Automatic loader for context resources
+ * Loads resources bassed on pre defined annotations (Service, Repository)
  * 
  * @author Martin Cassidy
+ * @package context
  */
 class AutoContextLoader extends AbstractContextLoader
 {

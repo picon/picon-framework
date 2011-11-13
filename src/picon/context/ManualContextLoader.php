@@ -26,6 +26,7 @@ namespace picon;
  * TODO manual loading
  * 
  * @author Martin Cassidy
+ * @package context
  */
 class ManualContextLoader extends AbstractContextLoader
 {
