@@ -26,6 +26,7 @@ namespace picon;
  * Configuration domain object
  *
  * @author Martin Cassidy
+ * @package domain/config
  */
 class Config extends ComonDomainBase
 {

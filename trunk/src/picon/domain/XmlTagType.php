@@ -20,15 +20,19 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of Service
+ * Enum for the 3 type of tag state: open, close, openclose
  * 
  * @author Martin Cassidy
- * @package annotations
+ * @package domain
  */
-class Service extends Annotation 
+class XmlTagType extends Enum
 {
-    private $name = "";
+    const OPEN = 'open';
+    const CLOSED = 'closed';
+    const OPENCLOSE = 'openclose';
 }
 
 ?>

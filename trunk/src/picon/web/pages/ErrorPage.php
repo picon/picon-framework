@@ -21,14 +21,13 @@
  * */
 
 /**
- * Description of Service
+ * Description of ErrorPage
  * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class ErrorPage
 {
-    private $name = "";
+    
 }
 
 ?>

@@ -21,14 +21,26 @@
  * */
 
 /**
- * Description of Service
+ * Description of PiconSerializerTest
  * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class PiconSerializerTest extends AbstractPiconTest
 {
-    private $name = "";
+    public function testComplexSerialization()
+    {
+        $complexObject = new ComplexSerialize();
+        $serialized = serialize($complexObject);
+        $deSerialized = unserialize($serialized);
+        
+        $this->assertSame("defaultValue", $deSerialized->getTransient());
+        $this->assertSame("defaultValue", $deSerialized->getService());
+        
+        $closure = $deSerialized->getClosure();
+        $this->assertTrue(is_callable($closure));
+        $output = $closure();
+        $this->assertSame("executing 12", $output);
+    }
 }
 
 ?>

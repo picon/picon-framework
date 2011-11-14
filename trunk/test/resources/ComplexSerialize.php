@@ -21,14 +21,52 @@
  * */
 
 /**
- * Description of Service
+ * Description of ComplexSerialize
  * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class ComplexSerialize extends \picon\PiconSerializer
 {
-    private $name = "";
+    private $closure;
+    
+    /**
+     *
+     * @Transient
+     */
+    private $transient = "defaultValue";
+    
+    /**
+     *
+     * @Service
+     */
+    private $service = "defaultValue";
+    
+    public function __construct()
+    {
+        $value1 = "1";
+        $value2 = "2";
+        $this->closure = function() use($value1, $value2)
+        {
+            return "executing ".$value1.$value2;
+        };
+        $this->transient = "newValue";
+        $closure = $this->closure;
+    }
+    
+    public function getClosure()
+    {
+        return $this->closure;
+    }
+    
+    public function getTransient()
+    {
+        return $this->transient;
+    }
+    
+    public function getService()
+    {
+        return $this->service;
+    }
 }
 
 ?>

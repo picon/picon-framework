@@ -40,11 +40,17 @@ define("CONFIG_FILE", __DIR__.'\\config\\picon.xml');
 
 require_once("picon/PiconApplication.php");
 
+/**
+ * @todo remove this hard coded value
+ */
+date_default_timezone_set("Europe/London");
+
 //Begin output buffering
 ob_start();
 
 //Create the application
-new picon\PiconApplication();
+$application = new picon\PiconApplication();
+$application->run();
 
 //Flush the output
 ob_end_flush();

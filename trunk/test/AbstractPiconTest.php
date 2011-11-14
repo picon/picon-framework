@@ -55,7 +55,7 @@ class AbstractPiconTest extends PHPUnit_Framework_TestCase
         $d = dir($directory);
         while (false !== ($entry = $d->read()))
         {
-            if(preg_match("/\s*.php{1}/", $entry))
+            if(preg_match("/\s*.php{1}$/", $entry))
             {
                 require_once($directory."\\".$entry);
             }

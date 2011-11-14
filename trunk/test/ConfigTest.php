@@ -29,14 +29,6 @@ class ConfigTest extends AbstractPiconTest
         $this->assertSame('HomePage', $config->getHomePage());
         $this->assertSame('development', $config->getMode());
     }
-    
-    /**
-    * @expectedException XMLException
-    */
-    public function testBadConfig()
-    {
-        \picon\ConfigLoader::load('config/badxml.xml');
-    }
 }
 
 ?>

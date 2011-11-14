@@ -26,6 +26,10 @@ namespace picon;
  * A helper class for loading config xml
  * @author Martin Cassidy
  * @package core
+ * @todo Update so that every element found is validated
+ * @todo add support for including other xml files allowing larger configs to be split up
+ * @todo finish off the parser to process data sources
+ * @todo create a schema for the config xml
  */
 class ConfigLoader
 {

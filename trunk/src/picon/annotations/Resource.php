@@ -24,6 +24,7 @@
  * Description of Resource
  * 
  * @author Martin Cassidy
+ * @package annotations
  */
 class Resource extends Transient 
 {

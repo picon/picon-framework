@@ -26,10 +26,19 @@ namespace picon;
  * Description of WebPage
  * 
  * @author Martin Cassidy
+ * @package web
  */
-class WebPage extends WebMarkupContainerWithMarkup
+class WebPage extends MarkupContainer
 {
+    public function __construct()
+    {
+        parent::__construct(null);
+    }
     
+    protected function onRender()
+    {
+        parent::renderAll();
+    }
 }
 
 ?>

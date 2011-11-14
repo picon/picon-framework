@@ -36,6 +36,7 @@ class TestAutoLoader extends \picon\AutoLoader
         $this->addScannedDirectory(PICON_DIRECTORY, 'picon');
         $this->addScannedDirectory(PICON_DIRECTORY."\\annotations");
         $this->addScannedDirectory(PICON_DIRECTORY."\\exceptions");
+        $this->addScannedDirectory(__DIR__."\\resources");
         $this->addScannedDirectory(ASSETS_DIRECTORY);
     }
     

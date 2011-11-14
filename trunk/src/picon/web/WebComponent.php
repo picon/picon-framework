@@ -26,6 +26,7 @@ namespace picon;
  * Description of WebComponent
  * 
  * @author Martin Cassidy
+ * @package web
  */
 class WebComponent extends Component
 {

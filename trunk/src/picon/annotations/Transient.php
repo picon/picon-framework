@@ -22,9 +22,11 @@
 
 /**
  * Annotation to declare a class property not be serialised and bet
- * set back to its default value after deserialisation
+ * set back to its default value after deserialisation. This will only
+ * work for classes which are sub classes of PiconSerializer
  * 
  * @author Martin Cassidy
+ * @package annotations
  */
 class Transient extends Annotation
 {

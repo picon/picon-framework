@@ -19,16 +19,44 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
+namespace picon;
 
 /**
- * Description of Service
- * 
+ * Convience class for accessing information about a requests
+ * This also provideds convience methods for analysing the request to 
+ * determin what kind of request it is
+ * @package web
+ * @todo lots more to add in here
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class Request
 {
-    private $name = "";
+    
+    public function getQueryString()
+    {
+        return $_SERVER['QUERY_STRING'];
+    }
+    
+    public function getPath()
+    {
+        return $_SERVER['REQUEST_URI'];
+    }
+    
+    public function isAjax()
+    {
+        return isset($_GET['ajax']);
+    }
+    
+    public function isResourceRequest()
+    {
+        return isset($_GET['resource']);
+    }
+    
+    public function isHomePageRequest()
+    {
+        $root = preg_replace("/\/{1}\w*\.php$/", "", $_SERVER['PHP_SELF']);
+        return preg_match("/^".str_replace('/', '\\/', $root)."\/?$/", $this->getPath());
+    }
 }
 
 ?>

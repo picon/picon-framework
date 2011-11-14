@@ -26,11 +26,13 @@ namespace picon;
  * Class representing an XML tag
  *
  * @author Martin Cassidy
+ * @package domain
  */
 class XMLTag extends ComonDomainBase
 {
     private $name;
-    private $attributes;
+    private $tagType;
+    private $attributes = array();
     private $children = array();
     private $characterData;
     
@@ -43,6 +45,9 @@ class XMLTag extends ComonDomainBase
     {
         $this->name = $name;
         $this->attributes = $attributes;
+        
+        //Openclose by default, this is because of the way the xml parser works
+        $this->tagType = new XmlTagType(XmlTagType::OPENCLOSE);
     }
     
     /**
@@ -54,18 +59,34 @@ class XMLTag extends ComonDomainBase
         array_push($this->children, $child);
     }
     
+    /**
+     * Set the internal character data
+     * @param String the data to add
+     */
     public function setCharacterData($characterData)
     {
         $this->characterData = $characterData;
     }
     
+    /**
+     * Set the name of this tag
+     * @param String the name
+     */
     public function setName($name)
     {
         $this->name = $name;
     }
     
+    /**
+     * Sets the attributes
+     * @param Array the attributes of this tag
+     */
     public function setAttributes($attributes)
     {
+        if(!is_array($attributes))
+        {
+            throw new \InvalidArgumentException(sprintf("Expected array, %s given.", gettype($attributes)));
+        }
         $this->attributes = $attributes;
     }
     
@@ -87,6 +108,39 @@ class XMLTag extends ComonDomainBase
     public function getChildren()
     {
         return $this->children;
+    }
+    
+    /**
+     * Does this tag have any children
+     * @return boolean true if there are children 
+     */
+    public function hasChildren()
+    {
+        return count($this->children)>0;
+    }
+    
+    /**
+     * Set the type of tag this is: open, close, openclose
+     * @param XmlTagType The type
+     */
+    public function setTagType(XmlTagType $type)
+    {
+        $this->tagType = $type;
+    }
+    
+    public function isOpen()
+    {
+        return $this->tagType->equals(new XmlTagType(XmlTagType::OPEN));
+    }
+    
+    public function isClose()
+    {
+        return $this->tagType->equals(new XmlTagType(XmlTagType::CLOSED));
+    }
+    
+    public function isOpenClose()
+    {
+        return $this->tagType->equals(new XmlTagType(XmlTagType::OPENCLOSE));
     }
 }
 

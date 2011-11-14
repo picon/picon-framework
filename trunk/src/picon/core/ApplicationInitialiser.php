@@ -66,11 +66,6 @@ class ApplicationInitialiser
         
         $this->loadAssets(ASSETS_DIRECTORY);
         
-        /*
-         * @todo this is testing only, remove it
-         */
-        print_r(PageMapHolder::getPageMap());
-        
         $loader = ContextLoaderFactory::getLoader($config);
         $context = $loader->load();
         $injector = new Injector($context);
@@ -79,6 +74,7 @@ class ApplicationInitialiser
         {
             $injector->inject($resource);
         }
+        $application->setApplicationContext($context);
     }
     
     /**
@@ -91,7 +87,7 @@ class ApplicationInitialiser
         $d = dir($directory);
         while (false !== ($entry = $d->read()))
         {
-            if(preg_match("/\s*.php{1}/", $entry))
+            if(preg_match("/\s*.php{1}$/", $entry))
             {
                 require_once($directory."\\".$entry);
             }

@@ -21,14 +21,12 @@
  * */
 
 /**
- * Description of Service
- * 
+ *
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+interface Behaviour
 {
-    private $name = "";
+    //put your code here
 }
 
 ?>

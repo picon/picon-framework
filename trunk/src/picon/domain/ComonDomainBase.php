@@ -25,6 +25,7 @@ namespace picon;
  * Super class for any and all domains
  *
  * @author Martin Cassidy
+ * @package domain
  */
 class ComonDomainBase
 {

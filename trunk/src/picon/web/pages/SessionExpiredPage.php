@@ -21,14 +21,13 @@
  * */
 
 /**
- * Description of Service
+ * Description of SessionExpiredPage
  * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class SessionExpiredPage
 {
-    private $name = "";
+    
 }
 
 ?>

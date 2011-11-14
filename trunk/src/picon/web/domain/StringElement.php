@@ -20,15 +20,19 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of Service
+ * Description of StringElement
  * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class StringElement extends MarkupElement
 {
-    private $name = "";
+    public function __construct($data)
+    {
+        $this->setCharacterData($data);
+    }
 }
 
 ?>

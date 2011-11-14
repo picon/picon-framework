@@ -21,14 +21,13 @@
  * */
 
 /**
- * Description of Service
+ * Description of PageNotFoundPage
  * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class PageNotFoundPage
 {
-    private $name = "";
+    
 }
 
 ?>
