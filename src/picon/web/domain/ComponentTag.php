@@ -20,15 +20,20 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of Service
+ * Description of ComponentTag
  * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class ComponentTag extends MarkupElement
 {
-    private $name = "";
+    public function getComponentTagId()
+    {
+        $attributes = $this->getAttributes();
+        return $attributes['picon:id'];
+    }
 }
 
 ?>

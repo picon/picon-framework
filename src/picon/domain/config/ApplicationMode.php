@@ -26,6 +26,7 @@ namespace picon;
  * Enum for the modes in which the picon framework can run
  * 
  * @author Martin Cassidy
+ * @package domain/config
  */
 class ApplicationMode extends Enum
 {

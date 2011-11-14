@@ -21,14 +21,29 @@
  * */
 
 /**
- * Description of Service
+ * Tests for the Xml Parser
  * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class XmlParserTest extends AbstractPiconTest
 {
-    private $name = "";
+    public function testValidXML()
+    {
+        $parser = new \picon\XMLParser();
+        $output = $parser->parse('resources/validxml.xml');
+        
+        $this->assertTrue(count($output)==1);
+        $this->assertSame("validXml", $output[0]->getName());
+    }
+    
+   /**
+    * @expectedException XMLException
+    */
+    public function testBadXml()
+    {
+        $parser = new \picon\XMLParser();
+        $parser->parse('resources/badxml.xml');
+    }
 }
 
 ?>

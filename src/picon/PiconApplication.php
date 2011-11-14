@@ -36,6 +36,7 @@ class PiconApplication
 {
     private $applicatoinContext;
     private $config;
+    private $requestProcessor;
     
     /**
      * Fires off the application initialiser to load an instantiat all resources
@@ -48,19 +49,21 @@ class PiconApplication
         $initialiser->addScannedDirectory(PICON_DIRECTORY."\\exceptions");
         $initialiser->addScannedDirectory(ASSETS_DIRECTORY);
         $initialiser->initialise($this);
+        $GLOBALS['application'] = $this;
     }
     
-    public function run()
+    public final function run()
     {
-        
+        $this->requestProcessor = new RequestCycle();
+        $this->requestProcessor->process();
     }
     
-    public function getConfig()
+    public final function getConfig()
     {
         return $this->config;
     }
     
-    public function setConfig(Config $config)
+    public final function setConfig(Config $config)
     {
         if(isset($this->config))
         {
@@ -69,18 +72,28 @@ class PiconApplication
         $this->config = $config;
     }
     
-    public function getApplicationContext()
+    public final function getApplicationContext()
     {
         return $this->applicatoinContext;
     }
     
-    public function setApplicationContext(ApplicationContext $context)
+    public final function setApplicationContext(ApplicationContext $context)
     {
-        if(isset($this->$context))
+        if(isset($this->applicatoinContext))
         {
             throw new \UnsupportedOperationException("Context has already been set");
         }
-        $this->$context = $context;
+        $this->applicatoinContext = $context;
+    }
+    
+    public static function get()
+    {
+        return $GLOBALS['application'];
+    }
+    
+    public function getHomePage()
+    {
+        return $this->getConfig()->getHomePage();
     }
 }
 

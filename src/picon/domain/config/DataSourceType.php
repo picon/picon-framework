@@ -25,6 +25,7 @@ namespace picon;
 /**
  * Enum for Types of data source
  * @author Martin Cassidy
+ * @package domain/config
  */
 class DataSourceType extends Enum 
 {

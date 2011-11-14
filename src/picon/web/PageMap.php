@@ -27,9 +27,9 @@ namespace picon;
  * That is all pages which are sub classes of picon\WebPage
  * 
  * @author Martin Cassidy
- * @package core
+ * @package web
  */
-class PageMapHolder
+class PageMap
 {
     private $map = array();
     private static $self;
@@ -45,10 +45,15 @@ class PageMapHolder
         
         foreach($classes as $class)
         {
-             $reflection = new \ReflectionClass($class);
+             $reflection = new \ReflectionAnnotatedClass($class);
              if($reflection->isSubclassOf("\picon\WebPage"))
              {
                  array_push($this->map, $class);
+             }
+             
+             if($reflection->hasAnnotation("Path"))
+             {
+                 array_push($reflection->getAnnotation("Path")->value["name"], $class);
              }
         }
     }

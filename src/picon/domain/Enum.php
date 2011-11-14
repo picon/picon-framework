@@ -50,6 +50,7 @@ namespace picon;
  * 2
  * 
  * @author Martin Cassidy
+ * @package domain
  */
 abstract class Enum
 {
@@ -137,6 +138,20 @@ abstract class Enum
     public function __toString()
     {
         return "".$this->value;
+    }
+    
+    /**
+     * Tests if two enums are equal
+     * @param Enum The enum to test against
+     * @return Boolean true if the enum's match, false otherwise. False if the passed object is not a valid enum
+     */
+    public function equals($enum)
+    {
+        if($enum instanceof Enum)
+        {
+            return $enum->value==$this->value;
+        }
+        return false;
     }
 }
 

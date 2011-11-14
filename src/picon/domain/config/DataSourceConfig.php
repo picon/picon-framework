@@ -26,6 +26,7 @@ namespace picon;
  * Description of DataSourceConfig
  *
  * @author Martin Cassidy
+ * @package domain/config
  */
 class DataSourceConfig extends ComonDomainBase
 {

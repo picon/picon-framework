@@ -23,16 +23,17 @@
 namespace picon;
 
 /**
- * Front controller for incoming requests.
- * This is fired when the initialiser is completed. The request is 
- * analysed and appropriate action taken
+ * Description of ResourceRequestTarget
  * 
  * @author Martin Cassidy
- * @package core
+ * @package web
  */
-class RequestProcessor
+class ResourceRequestTarget implements RequestTarget
 {
-    
+    public function respond()
+    {
+        echo 'resource place holder';
+    }
 }
 
 ?>

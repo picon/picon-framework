@@ -20,15 +20,22 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of Service
+ * Description of HomePageRequestTarget
  * 
  * @author Martin Cassidy
- * @package annotations
+ * @package web
  */
-class Service extends Annotation 
+class HomePageRequestTarget implements RequestTarget
 {
-    private $name = "";
+    public function respond()
+    {
+        $homePage = PiconApplication::get()->getHomePage();
+        $page = new $homePage();
+        $page->render();
+    }
 }
 
 ?>

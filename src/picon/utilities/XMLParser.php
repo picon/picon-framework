@@ -26,7 +26,7 @@ namespace picon;
  * An xml file parser
  * @see http://php.net/manual/en/book.xml.php
  *
- * Parses an XML into an array of XMLTag
+ * Parses an XML into an array of XMLTag's
  * 
  * @author Martin Cassidy
  */
@@ -60,14 +60,14 @@ class XMLParser
     {
         if (!($fp = fopen($xmlFile, "r")))
         {
-            throw new FileException("Could not open XML input");
+            throw new \FileException("Could not open XML input");
         }
         
         while ($data = fread($fp, 4096))
         {
             if (!xml_parse($this->parser, $data, feof($fp)))
             {
-                throw new \XMLException(sprintf("XML error: %s at line %d", xml_error_string(xml_get_error_code($this->parser)), xml_get_current_line_number($this->parser)));
+                $this->onXmlError(xml_error_string(xml_get_error_code($this->parser)), xml_get_current_line_number($this->parser));
             }
         }
         xml_parser_free($this->parser);
@@ -82,7 +82,7 @@ class XMLParser
      */
     private function startElement($parser, $name, $attributes) 
     {
-        $tag = new XMLTag($name, $attributes);
+        $tag = $this->newElement($name, $attributes);
         $this->stack[$this->depth] = $tag;
         
         if($this->depth==0)
@@ -98,6 +98,16 @@ class XMLParser
         $this->depth++;
     }
 
+    protected function newElement($name, $attributes)
+    {
+        return new XMLTag($name, $attributes);
+    }
+    
+    protected function onXmlError($errorCode, $errorMessage)
+    {
+        throw new \XMLException(sprintf("XML error: %s at line %d", $errorCode,$errorMessage));
+    }
+    
     /**
      * Callback for the xml parser when an element ends
      * @param resource $parser The xml parser
@@ -105,6 +115,7 @@ class XMLParser
      */
     private function endElement($parser, $name) 
     {
+        $this->stack[$this->depth-1]->setTagType(new XmlTagType(XmlTagType::OPEN));
         $this->depth--;
     }
     
@@ -116,8 +127,14 @@ class XMLParser
      */
     private function characterData($parser, $data) 
     {
-        $this->stack[$this->depth-1]->setCharacterData($data);
+        $this->onCharacterData($data, $this->stack[$this->depth-1]);
     }
+    
+    protected function onCharacterData($data, $element)
+    {
+        $element->setCharacterData($data);
+    }
+    
 }
 
 ?>

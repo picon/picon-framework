@@ -21,14 +21,13 @@
  * */
 
 /**
- * Description of Service
+ * Description of InvalidMarkupException
  * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class InvalidMarkupException extends RuntimeException
 {
-    private $name = "";
+    
 }
 
 ?>

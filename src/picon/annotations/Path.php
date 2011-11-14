@@ -21,14 +21,14 @@
  * */
 
 /**
- * Description of Service
+ * Annotation to specify an alternative url path for a page
  * 
  * @author Martin Cassidy
  * @package annotations
  */
-class Service extends Annotation 
+class Path extends Annotation
 {
-    private $name = "";
+    private $path = "";
 }
 
 ?>

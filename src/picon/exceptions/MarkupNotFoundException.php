@@ -20,14 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
-
 /**
- * Description of WebMarkupContainerWithMarkup
+ * Thrown when markup for a component cannot be found
  * 
  * @author Martin Cassidy
  */
-class WebMarkupContainerWithMarkup extends MarkupContainer
+class MarkupNotFoundException extends RuntimeException
 {
     
 }

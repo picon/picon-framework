@@ -20,15 +20,32 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of Service
+ * Helper class for resolving a request to a request target
  * 
  * @author Martin Cassidy
- * @package annotations
+ * @package web
  */
-class Service extends Annotation 
+class RequestResolver
 {
-    private $name = "";
+    public function resolve(Request $request)
+    {
+        if($request->isHomePageRequest())
+        {
+            return new HomePageRequestTarget();
+        }
+        if($request->isResourceRequest())
+        {
+            return $this->resolveResourceTarget($request);
+        }
+    }
+    
+    public function resolveResourceTarget(Request $request)
+    {
+        return new ResourceRequestTarget;
+    }
 }
 
 ?>

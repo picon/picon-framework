@@ -20,15 +20,21 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of Service
+ * Request target used if the requested page cannot be located
  * 
  * @author Martin Cassidy
- * @package annotations
+ * @package web
+ * @todo Update to use and render the actual page not found page
  */
-class Service extends Annotation 
+class PageNotFoundRequestTarget implements RequestTarget
 {
-    private $name = "";
+    public function respond()
+    {
+        echo 'Page not found placeholder';
+    }
 }
 
 ?>

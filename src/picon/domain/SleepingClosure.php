@@ -20,15 +20,34 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of Service
+ * Description of SleepingClosure
  * 
  * @author Martin Cassidy
- * @package annotations
+ * @package domain
  */
-class Service extends Annotation 
+class SleepingClosure
 {
-    private $name = "";
+    private $code;
+    private $usedVars;
+    
+    public function __construct($code, $usedVars)
+    {
+        $this->code = $code;
+        $this->usedVars = $usedVars;
+    }
+    
+    public function getCode()
+    {
+        return $this->code;
+    }
+    
+    public function getUsedVars()
+    {
+        return $this->usedVars;
+    }
 }
 
 ?>

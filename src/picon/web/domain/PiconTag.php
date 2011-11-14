@@ -20,15 +20,16 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of Service
+ * Description of PiconTag
  * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class PiconTag extends ComponentTag
 {
-    private $name = "";
+    
 }
 
 ?>

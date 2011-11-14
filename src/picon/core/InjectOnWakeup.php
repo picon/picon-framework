@@ -20,15 +20,17 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of Service
- * 
+ * Tagging interface for sub classes of PiconSerializer which need to 
+ * be re-injected during deserialization. 
  * @author Martin Cassidy
- * @package annotations
+ * @package core
  */
-class Service extends Annotation 
+interface InjectOnWakeup
 {
-    private $name = "";
+    //tagging interface
 }
 
 ?>
