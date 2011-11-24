@@ -21,33 +21,13 @@
  * */
 
 /**
- * Path to the root picon directory without a trailing slash
- * This is the directory containing PiconApplication
+ * Description of AbstractLink
+ * 
+ * @author Martin Cassidy
  */
-define("PICON_DIRECTORY", __DIR__.'\\picon');
-
-/**
- * Path to the assets directory in which the user
- * created classes reside
- */
-define("ASSETS_DIRECTORY", __DIR__.'\\assets');
-
-/**
- * Path to the config directory in which the xml config files
- * reside
- */
-define("CONFIG_FILE", __DIR__.'\\config\\picon.xml');
-
-require_once("picon/PiconApplication.php");
-
-//Begin output buffering
-ob_start();
-
-//Create the application
-$application = new picon\PiconApplication();
-$application->run();
-
-//Flush the output
-ob_end_flush();
+class AbstractLink
+{
+    
+}
 
 ?>

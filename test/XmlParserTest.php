@@ -34,6 +34,20 @@ class XmlParserTest extends AbstractPiconTest
         
         $this->assertTrue(count($output)==1);
         $this->assertSame("validXml", $output[0]->getName());
+        
+        $this->assertTrue(count($output[0]->getChildren())==1);
+        
+        $children = $output[0]->getChildren();
+        
+        $this->assertSame("someElement", $children[0]->getName());
+        $this->assertSame("somedata", $children[0]->getCharacterData());
+        
+        $attributes = $children[0]->getAttributes();
+        $this->assertTrue(count($attributes)==2);
+        $this->assertArrayHasKey("attribute1", $attributes);
+        $this->assertArrayHasKey("attribute1", $attributes);
+        $this->assertSame("value1", $attributes['attribute1']);
+        $this->assertSame("value2", $attributes['attribute2']);
     }
     
    /**
@@ -43,6 +57,15 @@ class XmlParserTest extends AbstractPiconTest
     {
         $parser = new \picon\XMLParser();
         $parser->parse('resources/badxml.xml');
+    }
+    
+   /**
+    * @expectedException FileException
+    */
+    public function testNoFile()
+    {
+        $parser = new \picon\XMLParser();
+        $parser->parse('doesnotexist.xml');
     }
 }
 

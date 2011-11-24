@@ -20,32 +20,16 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
-
 /**
- * Helper class for resolving a request to a request target
+ * Description of TestEnum
  * 
  * @author Martin Cassidy
- * @package web
  */
-class RequestResolver
+class TestEnum extends \picon\Enum
 {
-    public function resolve(Request $request)
-    {
-        if($request->isHomePageRequest())
-        {
-            return new HomePageRequestTarget();
-        }
-        if($request->isResourceRequest())
-        {
-            return $this->resolveResourceTarget($request);
-        }
-    }
-    
-    public function resolveResourceTarget(Request $request)
-    {
-        return new ResourceRequestTarget;
-    }
+    const ONE = 'one';
+    const TWO = 'two';
+    const THREE = 'three';
 }
 
 ?>

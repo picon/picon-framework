@@ -29,6 +29,7 @@ namespace picon;
  * Parses an XML into an array of XMLTag's
  * 
  * @author Martin Cassidy
+ * @package utilities
  */
 class XMLParser
 {
@@ -58,7 +59,7 @@ class XMLParser
      */
     public function parse($xmlFile)
     {
-        if (!($fp = fopen($xmlFile, "r")))
+        if (!($fp = @fopen($xmlFile, "r")))
         {
             throw new \FileException("Could not open XML input");
         }

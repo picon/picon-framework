@@ -41,6 +41,8 @@ class PiconSerializerTest extends AbstractPiconTest
         $output = $closure();
         $this->assertSame("executing 12", $output);
     }
+    
+    //@todo create a test and a process for testing serialization of injected resources
 }
 
 ?>

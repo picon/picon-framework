@@ -37,6 +37,7 @@ namespace picon;
 class RequestCycle
 {
     private $request;
+    private $response;
     private $targetStack = array();
     private $maxStackSize = 10; //@todo put this somewhere else
     
@@ -44,12 +45,19 @@ class RequestCycle
     {
         $GLOBALS['requestCycle'] = $this;
         $this->request = new Request();
+        $this->response = new Response();
     }
     
     public function process()
     {
-        $resolver = new RequestResolver();
-        $this->addTarget($resolver->resolve($this->request));
+        $resolver = new DefaultRequestResolverContainer();
+        
+        $target = $resolver->resolve($this->request);
+        
+        if($target!=null)
+        {
+            $this->addTarget($target);
+        }
         
         if(count($this->targetStack)==0)
         {
@@ -63,7 +71,7 @@ class RequestCycle
                 $requestTarget->respond();
             }
         }
-        catch(Exception $ex)
+        catch(\Exception $ex)
         {
             //@todo setup error page request target and processing
             echo 'direct to error page';
@@ -82,7 +90,7 @@ class RequestCycle
         }
         if(count($this->targetStack)==$this->maxStackSize)
         {
-            throw new OverflowException(sprintf("The request target stack cannot contain more than %d elements per request", $maxStackSize));
+            throw new \OverflowException(sprintf("The request target stack cannot contain more than %d elements per request", $maxStackSize));
         }
         array_push($this->targetStack, $target);
     }

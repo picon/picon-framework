@@ -96,12 +96,12 @@ abstract class Enum
      */
     public static function valueOf($obj)
     {
-        $enumClass = new \ReflectionClass (new static());
+        $enumClass = new \ReflectionClass (get_called_class());
         foreach($enumClass->getConstants() as $enumName => $enumValue)
         {
-            if(strtolower($enumName)==  strtolower($obj))
+            if(strtolower($enumValue)==strtolower($obj))
             {
-                return new static($enumValue);
+                return new static($obj);
             }
         }
         return null;
@@ -115,7 +115,7 @@ abstract class Enum
      */
     public static function values($includeDefault = false)
     {
-        $enumClass = new \ReflectionClass (new static());
+        $enumClass = new \ReflectionClass (get_called_class());
         $values = $enumClass->getConstants();
         $processed = array();
         
@@ -153,6 +153,7 @@ abstract class Enum
         }
         return false;
     }
+
 }
 
 ?>
