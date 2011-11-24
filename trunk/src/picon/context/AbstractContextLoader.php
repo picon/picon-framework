@@ -40,8 +40,17 @@ abstract class AbstractContextLoader
     
     protected abstract function loadResources($classes);
     
+    /**
+     * Adds the given resource to the map of resources
+     * @param String $resourceName The name of the resource
+     * @param Object $resource The research
+     */
     protected function pushToResourceMap($resourceName, $resource)
     {
+        if(array_key_exists($resourceName, $this->resources))
+        {
+            throw new \DuplicateResourceException(sprintf("The resource %s already exists.", $resourceName));
+        }
         $this->resources[$resourceName] = $resource;
     }
     
@@ -50,8 +59,8 @@ abstract class AbstractContextLoader
      * name (with a lowercase first letter e.g. class MyResource is named
      * myResource) If name has been specified in the annotation then
      * the name is extracted from there instead.
-     * @param type $annotation
-     * @param type $className
+     * @param Annotation $annotation
+     * @param String $className
      * @return type 
      */
     protected function getResourceName(\Annotation $annotation, $className)

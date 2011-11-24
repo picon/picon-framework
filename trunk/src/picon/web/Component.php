@@ -54,16 +54,19 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
     private $parent;
     
     /**
-     *
      * @var Array The behaviours that have been added to this component
      */
     private $behaviours = array();
     
     /**
-     *
      * @var mixed MarkupElement or array of MarkupElements. The markup associated with this component
      */
     private $markup;
+    
+    /**
+     * @var boolean true if this component has been rendered
+     */
+    private $rendered = false;
     
     /**
      * Create a new component. Any overrides of the constructor must call the super.
@@ -133,11 +136,14 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
         
         if($componentTag==null)
         {
-            throw new \RuntimeException(sprintf("Markup element for component id %s not found. This means you have referenced the component in your code but not your markup.", $child->id));
+            throw new \RuntimeException(sprintf("Markup for component %s could not be found", $child->id));
         }
         return $componentTag;
     }
     
+    /**
+     * @todo change this to a callback
+     */
     public function beforeRender()
     {
         /*
@@ -166,17 +172,30 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
      */
     private function internalAfterRender()
     {
+        $this->rendered = true;
         $this->afterRender();
         
         if($this instanceof MarkupContainer)
         {
             foreach($this->getChildren() as $child)
             {
-                $child->internalAfterRender();
+                /**
+                 * If the child component has not been rendered it must
+                 * not have been present in the markup
+                 * @todo move this into another non component parent calling method
+                 * so that all children may have internalAfterRender
+                 */
+                if(!$child->rendered)
+                {
+                    throw new \RuntimeException(sprintf("Component %s was not rendered because corrisponding picon:id in the markup.", $child->id));
+                }
             }
         }
     }
     
+    /**
+     * @todo change this to a callback
+     */
     public function afterRender()
     {
         /*
@@ -226,8 +245,8 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
         $this->onRender();
     }
     
-    /**Renders this component
-     * 
+    /**
+     * Renders this component
      */
     protected final function internalRenderComponent()
     {
@@ -244,7 +263,9 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
         }
         
         $this->onComponentTag($markup);
-        $this->renderElement($markup);
+        $this->renderElementStart($markup);
+        $this->onComponentTagBody($markup);
+        $this->renderElementEnd($markup);
     }
     
     /**
@@ -369,7 +390,40 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
     
     protected function onComponentTagBody(ComponentTag $tag)
     {
+        if($element->hasChildren())
+        {
+            $this->renderAll($element->getChildren());
+        }
+    }
+    
+    /**
+     * Checks that a component tag is a tag of the required name
+     * @param ComponentTag $tag The tag to check
+     * @param String $tagName The tag name that should match
+     * @return Boolean whether or not the tag matches
+     */
+    protected function checkComponentTag(ComponentTag $tag, $tagName)
+    {
+        return $tag->getName()==$tagname;
+    }
+    
+    /**
+     * Checks that a component tag as an attribute and that the attribute has the required value
+     * @param ComponentTag $tag The tag to check
+     * @param String $attribute The attribute to find
+     * @param String $value The value the attribute will have
+     * @return Boolean True if the tag has the attribute with required value, false otherwise
+     */
+    protected function checkComponentTagAttribute(ComponentTag $tag, $attribute, $value)
+    {
+        $attributes = $tag->getAttributes();
         
+        if(!array_key_exists($attribute, $attributes))
+        {
+            return false;
+        }
+        
+        return $attributes[$attribute] == $value;
     }
     
     protected function setParent($parent)

@@ -20,34 +20,25 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-/**
- * Path to the root picon directory without a trailing slash
- * This is the directory containing PiconApplication
- */
-define("PICON_DIRECTORY", __DIR__.'\\picon');
+namespace picon;
 
 /**
- * Path to the assets directory in which the user
- * created classes reside
+ * Resolver for a request
+ * @author Martin Cassidy
  */
-define("ASSETS_DIRECTORY", __DIR__.'\\assets');
-
-/**
- * Path to the config directory in which the xml config files
- * reside
- */
-define("CONFIG_FILE", __DIR__.'\\config\\picon.xml');
-
-require_once("picon/PiconApplication.php");
-
-//Begin output buffering
-ob_start();
-
-//Create the application
-$application = new picon\PiconApplication();
-$application->run();
-
-//Flush the output
-ob_end_flush();
+interface RequestResolver
+{
+    /**
+     * Resolves a request to a RequestTarget
+     * @return RequestTarget the request target for the request
+     */
+    function resolve(Request $request);
+    
+    /**
+     * 
+     * @return Boolean true if this request resolver can be used for the request
+     */
+    function matches(Request $request);
+}
 
 ?>

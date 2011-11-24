@@ -23,34 +23,44 @@
 namespace picon;
 
 /**
- * Description of WebPage
+ * Description of DefaultRequestResolverContainer
  * 
  * @author Martin Cassidy
- * @package web
  */
-class WebPage extends MarkupContainer
+class DefaultRequestResolverContainer implements RequestResolverContainer
 {
+    private $resolvers = array();
+    
     public function __construct()
     {
-        parent::__construct(null);
+        $this->add(new PathRequestResolver());
+        $this->add(new PageRequestResolver());
+        $this->add(new PageInstanceRequestResolver());
+        $this->add(new ListenerRequestResolver());
+        $this->add(new ResourceRequestResolver);
     }
     
-    protected function onRender()
+    public function add(RequestResolver $resolver)
     {
-        parent::renderAll();
+        array_push($this->resolvers, $resolver);
     }
     
     /**
-     * Convient and refactoring proof way of extracting the name for a page of this class
-     * rather than hard coding a string, when using setPage() for example.
-     * 
-     * This uses late static binding to locate the name of the actual class
-     * 
-     * @return String the class name for this page
+     *
+     * @param Request $request
+     * @return RequestTarget the target that matches the request, null if none did 
      */
-    public static function getPageName()
+    public function resolve(Request $request)
     {
-        return get_called_class();
+        foreach($this->resolvers as $resolver)
+        {
+            if($resolver->matches($request))
+            {
+                return $resolver->resolve($request);
+            }
+        }
+        
+        return null;
     }
 }
 
