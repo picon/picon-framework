@@ -28,7 +28,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package web
  */
-class WebPage extends MarkupContainer
+class WebPage extends MarkupContainer implements RequestablePage
 {
     public function __construct()
     {
@@ -40,17 +40,15 @@ class WebPage extends MarkupContainer
         parent::renderAll();
     }
     
-    /**
-     * Convient and refactoring proof way of extracting the name for a page of this class
-     * rather than hard coding a string, when using setPage() for example.
-     * 
-     * This uses late static binding to locate the name of the actual class
-     * 
-     * @return String the class name for this page
-     */
+
     public static function getPageName()
     {
         return get_called_class();
+    }
+
+    public function renderPage()
+    {
+        $this->render();
     }
 }
 

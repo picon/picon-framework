@@ -21,14 +21,24 @@
  * */
 
 /**
- * Description of Service
- * 
  * @author Martin Cassidy
- * @package annotations
+ * @Repository(name = 'repo')
  */
-class Service extends Annotation 
+class TestRepositoryName extends AbstractContext
 {
-    public $name = "";
+    /** @Resource */
+    protected $testService;
+
+    /** @Resource */
+    protected $testRepository;
+
+    /** @Resource */
+    protected $serv;
+    
+    public function getTestRepo()
+    {
+        return $this;
+    }
 }
 
 ?>

@@ -21,14 +21,41 @@
  * */
 
 /**
- * Description of Service
- * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class EmptyInjectableName extends AbstractContext
 {
-    public $name = "";
+    /** @Resource(name = 'testService') */
+    protected $testServiceHere;
+
+    /** @Resource(name = 'repo') */
+    protected $repoHere;
+
+    /** @Resource(name = 'serv') */
+    protected $servHere;
+    
+    /** @Resource(name = 'testRepository') */
+    protected $testRepositoryHere;
+    
+    public function getTestService()
+    {
+        return $this->testServiceHere;
+    }
+    
+    public function getTestServ()
+    {
+        return $this->servHere;
+    }
+    
+    public function getTestRepo()
+    {
+        return $this->repoHere;
+    }
+    
+    public function getTestRepository()
+    {
+        return $this->testRepositoryHere;
+    }
 }
 
 ?>

@@ -23,17 +23,27 @@
 namespace picon;
 
 /**
- * Holder for the map to all web pages found in the assets directory.
- * That is all pages which are sub classes of picon\WebPage
+ * Holder for the map to all statfull and statless web pages
+ *
+ * A singleton which will persist from one request to another via the session
+ * For this reason it is important that all stored objects are serializable
+ *
+ * The page map stores a map of all stateless pages by both their direct path
+ * (the name of the class, including its namespace) and also all specified
+ * paths (pages which have been given @Path) Pagges are expected to extend 
+ * WebPage @see WebPage
  * 
+ * Additionally, actual instances of pages which have deemed statfull are stored
+ * against an associated page id.
+ *
  * @author Martin Cassidy
  * @package web
  */
 class PageMap
 {
-    private $map = array();
+    private $pages;
     private static $self;
-    
+
     /**
      * Private constructor, this is a singleton
      * Loads in ALL .php files from the assets directory
@@ -41,23 +51,54 @@ class PageMap
      */
     private function __construct()
     {
-        $classes = get_declared_classes();
-        
-        foreach($classes as $class)
+        //singleton
+    }
+
+    public function initialise()
+    {
+        if(isset($this->pages))
         {
-             $reflection = new \ReflectionAnnotatedClass($class);
-             if($reflection->isSubclassOf("\picon\WebPage"))
-             {
-                 array_push($this->map, $class);
-             }
-             
-             if($reflection->hasAnnotation("Path"))
-             {
-                 array_push($reflection->getAnnotation("Path")->value["name"], $class);
-             }
+            return;
+        }
+        $this->scanPages();
+    }
+
+    private function scanPages()
+    {
+        $this->pages = array();
+        $scanner = new ClassScanner(array(new SubClassRule('\picon\WebPage')));
+
+        $pages = $scanner->scanForName();
+        foreach($pages as $pageName)
+        {
+            $this->addToPath($pageName, $pageName);
+        }
+
+        $pathScanner = new ClassScanner(array(new AnnotationRule('Path')));
+
+        foreach($pathScanner->scanForReflection($pages) as $reflection)
+        {
+            $pathAnnoation = $reflection->getAnnotation('Path');
+            $path = $pathAnnoation->path;
+
+            if(empty($path))
+            {
+                throw new \UnexpectedValueException(sprintf("Expecting path annoation to have a path value for class %s", $reflection->getName()));
+            }
+
+            $this->addToPath($path, $reflection->getNamespaceName().'\\'.$reflection->getName());
         }
     }
-    
+
+    private function addToPath($path, $pageName)
+    {
+        if(array_key_exists($path, $this->pages))
+        {
+            throw new \DuplicatePageDefinitionException(sprintf("A page with path %s already exists and cannot be used again.", $path));
+        }
+        $this->pages[$path] = $pageName;
+    }
+
     /**
      * Gets the array containing the page map
      * If this is the first invoke for this method, the page map will
@@ -66,11 +107,23 @@ class PageMap
      */
     public static function getPageMap()
     {
-        if(!isset($self))
+        return self::get()->pages;
+    }
+
+    public static function get()
+    {
+        if (!isset(self::$self))
         {
-            self::$self = new self();
+            if (isset($_SESSION['page_map']))
+            {
+                self::$self = $_SESSION['page_map'];
+            }
+            else
+            {
+                self::$self = new self();
+            }
         }
-        return self::$self->map;
+        return self::$self;
     }
 }
 

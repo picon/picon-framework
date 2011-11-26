@@ -20,24 +20,15 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
-
 /**
- * Description of PathRequestResolver
- * 
+ * Annotation to specify an alternative url path for a page
+ *
  * @author Martin Cassidy
+ * @package annotations
  */
-class PathRequestResolver implements RequestResolver
+class Path extends Annotation
 {
-    public function matches(Request $request)
-    {
-        
-    }
-    
-    public function resolve(Request $request)
-    {
-        
-    }
+    public $path = "";
 }
 
 ?>

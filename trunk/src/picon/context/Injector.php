@@ -49,8 +49,16 @@ class Injector
         {
             if($property->hasAnnotation("Resource"))
             {
+                $annotation = $property->getAnnotation("Resource");
+                $resource = $property->getName();
+                
+                if(!empty($annotation->name))
+                {
+                    $resource = $annotation->name;
+                }
+                
                 $property->setAccessible(true);
-                $property->setValue($object, $this->context->getResource($property->getName()));
+                $property->setValue($object, $this->context->getResource($resource));
             }
         }
     }

@@ -52,10 +52,10 @@ class Request
         return isset($_GET['resource']);
     }
     
-    public function isHomePageRequest()
+    public function getRootPath()
     {
         $root = preg_replace("/\/{1}\w*\.php$/", "", $_SERVER['PHP_SELF']);
-        return preg_match("/^".str_replace('/', '\\/', $root)."\/?$/", $this->getPath());
+        return str_replace('/', '\\/', $root);
     }
 }
 

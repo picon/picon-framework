@@ -23,13 +23,29 @@
 namespace picon;
 
 /**
- * Description of AnnotationRule
- * 
+ * Class scanner rule to match classes with a given annotation
  * @author Martin Cassidy
  */
 class AnnotationRule implements ClassScannerRule
 {
-    
+    private $annotation;
+
+    /**
+     *
+     * @param String $annotation The name of the annotation the matching classes must have
+     */
+    public function __construct($annotation)
+    {
+        $this->annotation = $annotation;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function matches($className, \ReflectionAnnotatedClass $reflection)
+    {
+        return $reflection->hasAnnotation($this->annotation);
+    }
 }
 
 ?>

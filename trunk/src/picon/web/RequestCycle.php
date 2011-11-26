@@ -74,7 +74,7 @@ class RequestCycle
         catch(\Exception $ex)
         {
             //@todo setup error page request target and processing
-            echo 'direct to error page';
+            echo $ex;
         }
     }
     

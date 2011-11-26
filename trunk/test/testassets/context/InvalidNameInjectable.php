@@ -21,14 +21,12 @@
  * */
 
 /**
- * Description of Service
- * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class InvalidNameInjectable
 {
-    public $name = "";
+    /** @Resource(name = 'notexists') */
+    private $testService;
 }
 
 ?>

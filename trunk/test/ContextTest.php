@@ -20,6 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+/**
+ * @todo test namae alternates
+ */
 class ContextTest extends AbstractPiconTest
 {    
     public function testAutoLoadContext()
@@ -27,8 +30,10 @@ class ContextTest extends AbstractPiconTest
         $context = $this->getContext();
         $this->assertArrayHasKey('testRepository', $context->getResources());
         $this->assertArrayHasKey('testService', $context->getResources());
+        $this->assertArrayHasKey('repo', $context->getResources());
+        $this->assertArrayHasKey('serv', $context->getResources());
         
-        $this->assertEquals(2, count($context->getResources()));
+        $this->assertEquals(4, count($context->getResources()));
     }
     
     public function testAutoLoadContextGetByName()
@@ -36,6 +41,17 @@ class ContextTest extends AbstractPiconTest
         $context = $this->getContext();
         $this->assertInstanceOf('TestRepository', $context->getResource("testRepository"));
         $this->assertInstanceOf('TestService', $context->getResource("testService"));
+        $this->assertInstanceOf('TestRepositoryName', $context->getResource("repo"));
+        $this->assertInstanceOf('TestServiceName', $context->getResource("serv"));
+    }
+    
+   /**
+    * @expectedException UndefinedResourceException
+    */
+    public function testInvalidResource()
+    {
+        $context = $this->getContext();
+        $context->getResource("notExist");
     }
 }
 ?>

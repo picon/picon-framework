@@ -31,13 +31,38 @@ class PageRequestResolver implements RequestResolver
 {
     public function resolve(Request $request)
     {
-        return new HomePageRequestTarget();
+        if($this->isHomePage($request))
+        {
+            return new PageRequestTarget(PiconApplication::get()->getHomePage());
+        }
+        else
+        {
+            return new PageRequestTarget($this->getPageClassForPath($request));
+        }
     }
     
     public function matches(Request $request)
     {
-        //@todo this is for testing only
-        return true;
+        return $this->isHomePage($request) || $this->getPageClassForPath($request)!=false;
+    }
+
+    private function isHomePage(Request $request)
+    {
+        return preg_match("/^".$request->getRootPath()."\/?$/", $request->getPath());
+    }
+
+    private function getPageClassForPath(Request $request)
+    {
+        $mapEntry = PageMap::getPageMap();
+        
+        foreach($mapEntry as $path => $pageClass)
+        {
+            if(preg_match("/^".$request->getRootPath()."\/".$path."{1}\/?$/", $request->getPath()))
+            {
+                return $pageClass;
+            }
+        }
+        return false;
     }
 }
 

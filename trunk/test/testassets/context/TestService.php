@@ -21,22 +21,23 @@
  * */
 
 /**
- * 
- * 
  * @author Martin Cassidy
  * @Service
  */
-class TestService
+class TestService extends AbstractContext
 {
-    /**
-     *
-     * @Resource
-     */
-    private $testRepository;
+    /** @Resource */
+    protected $testRepository;
+
+    /** @Resource */
+    protected $repo;
     
-    public function getTestRepository()
+    /** @Resource */
+    protected $serv;
+    
+    public function getTestService()
     {
-        return $this->testRepository;
+        return $this;
     }
 }
 
