@@ -21,14 +21,29 @@
  * */
 
 /**
- * Description of Service
- * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+abstract class AbstractContext
 {
-    public $name = "";
+    public function getTestService()
+    {
+        return $this->testService;
+    }
+    
+    public function getTestServ()
+    {
+        return $this->serv;
+    }
+    
+    public function getTestRepo()
+    {
+        return $this->repo;
+    }
+    
+    public function getTestRepository()
+    {
+        return $this->testRepository;
+    }
 }
 
 ?>

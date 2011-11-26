@@ -23,13 +23,23 @@
 namespace picon;
 
 /**
- * Description of MethodRule
- * 
+ * Description of PageRequestTarget
+ *
  * @author Martin Cassidy
  */
-class MethodRule implements ClassScannerRule
+class PageRequestTarget implements RequestTarget
 {
-    
-}
+    private $pageClass;
 
+    public function __construct($pageClass)
+    {
+        $this->pageClass = $pageClass;
+    }
+
+    public function respond()
+    {
+        $page = new $this->pageClass();
+        $page->renderPage();
+    }
+}
 ?>

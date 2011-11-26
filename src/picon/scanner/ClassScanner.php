@@ -42,9 +42,9 @@ class ClassScanner
         {
             foreach($rules as $rule)
             {
-                if(!($rule instanceof ClassNameRule))
+                if(!($rule instanceof ClassScannerRule))
                 {
-                    throw new \InvalidArgumentException(sprintf("Expected an array of ClassScannerRulle. %s is not a ClassScannerRulle"), get_class($rule));
+                    throw new \InvalidArgumentException(sprintf("Expected an array of ClassScannerRule. %s is not a ClassScannerRulle", get_class($rule)));
                 }
             }
             $this->rules = $rules;
@@ -69,31 +69,54 @@ class ClassScanner
     }
     
     /**
-     * Scan all declared classes for those matching the rules that have been added
-     * 
+     * Scan classes for those matching the rules that have been added
+     *
+     * @param Array $classesToScan A list of classes to scan, optional if not specified
+     * all declared classess will be scanned.
+     * @return Array An array of the class reflections which matched (ReflectionAnnotatedClass)
+     */
+    public function scanForReflection($classesToScan = null)
+    {
+        return array_values($this->scan($classesToScan));
+    }
+
+    /**
+     * Scan classes for those matching the rules that have been added
+     *
+     * @param Array $classesToScan A list of classes to scan, optional if not specified
+     * all declared classess will be scanned.
      * @return Array An array of the class names which matched
      */
-    public function scan()
+    public function scanForName($classesToScan = null)
+    {
+        return array_keys($this->scan($classesToScan));
+    }
+
+    private function scan($classesToScan = null)
     {
         $matchedClasses = array();
-        $declaredClasses = get_declared_classes();
-        
-        foreach($declaredClasses as $className)
+
+        if($classesToScan==null)
+        {
+            $classesToScan = get_declared_classes();
+        }
+
+        foreach($classesToScan as $className)
         {
             $match = false;
+            $reflection = new \ReflectionAnnotatedClass($className);
             foreach($this->rules as $rule)
             {
-                //@todo Create instance of class
-                $match = $rule->matches($object);
-                
+                $match = $rule->matches($className, $reflection);
+
                 if($match)
                 {
-                    array_push($matchedClasses, $className);
+                    $matchedClasses[$className] = $reflection;
                     break;
                 }
             }
         }
-        
+
         return $matchedClasses;
     }
 }

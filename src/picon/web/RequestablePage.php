@@ -20,15 +20,23 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-/**
- * Description of Service
- * 
- * @author Martin Cassidy
- * @package annotations
- */
-class Service extends Annotation 
-{
-    public $name = "";
-}
+namespace picon;
 
+/**
+ *
+ * @author Martin Cassidy
+ */
+interface RequestablePage
+{
+
+    /**
+     * @return String the class name for this page
+     */
+    static function getPageName();
+
+    /**
+     * Render the page to the response
+     */
+    function renderPage();
+}
 ?>

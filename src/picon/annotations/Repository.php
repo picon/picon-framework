@@ -28,7 +28,7 @@
  */
 class Repository extends Annotation 
 {
-    private $name = "";
+    public $name = "";
 }
 
 ?>

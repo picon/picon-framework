@@ -19,7 +19,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
-
 class InjectionTest extends AbstractPiconTest
 {
     public function testInjector()
@@ -33,7 +32,69 @@ class InjectionTest extends AbstractPiconTest
         }
         
         $this->assertInstanceOf('TestService', $context->getResource("testRepository")->getTestService());
+        $this->assertInstanceOf('TestRepositoryName', $context->getResource("testRepository")->getTestRepo());
+        $this->assertInstanceOf('TestServiceName', $context->getResource("testRepository")->getTestServ());
+        
+        
         $this->assertInstanceOf('TestRepository', $context->getResource("testService")->getTestRepository());
+        $this->assertInstanceOf('TestRepositoryName', $context->getResource("testService")->getTestRepo());
+        $this->assertInstanceOf('TestServiceName', $context->getResource("testService")->getTestServ());
+        
+        $this->assertInstanceOf('TestRepository', $context->getResource("repo")->getTestRepository());
+        $this->assertInstanceOf('TestService', $context->getResource("repo")->getTestService());
+        $this->assertInstanceOf('TestServiceName', $context->getResource("repo")->getTestServ());
+        
+        $this->assertInstanceOf('TestRepository', $context->getResource("serv")->getTestRepository());
+        $this->assertInstanceOf('TestService', $context->getResource("serv")->getTestService());
+        $this->assertInstanceOf('TestRepositoryName', $context->getResource("serv")->getTestRepo());
+    }
+    
+    public function testSeperateInjector()
+    {
+        $empty = new EmptyInjectable();
+        $injector = new \picon\Injector($this->getContext());
+        
+        $injector->inject($empty);
+        
+        $this->assertInstanceOf('TestService', $empty->getTestService());
+        $this->assertInstanceOf('TestRepository', $empty->getTestRepository());
+        $this->assertInstanceOf('TestRepositoryName', $empty->getTestRepo());
+        $this->assertInstanceOf('TestServiceName', $empty->getTestServ());
+    }
+    
+    public function testSeperateInjectorAlias()
+    {
+        $empty = new EmptyInjectableName();
+        $injector = new \picon\Injector($this->getContext());
+        
+        $injector->inject($empty);
+        
+        $this->assertInstanceOf('TestService', $empty->getTestService());
+        $this->assertInstanceOf('TestRepository', $empty->getTestRepository());
+        $this->assertInstanceOf('TestRepositoryName', $empty->getTestRepo());
+        $this->assertInstanceOf('TestServiceName', $empty->getTestServ());
+    }
+    
+   /**
+    * @expectedException UndefinedResourceException
+    */
+    public function testInvalidResource()
+    {
+        $toInject = new InvalidInjectable();
+        $injector = new \picon\Injector($this->getContext());
+        
+        $injector->inject($toInject);
+    }
+    
+   /**
+    * @expectedException UndefinedResourceException
+    */
+    public function testInvalidResourceAlias()
+    {
+        $toInject = new InvalidNameInjectable();
+        $injector = new \picon\Injector($this->getContext());
+        
+        $injector->inject($toInject);
     }
 }
 ?>

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Picon Framework
  * http://code.google.com/p/picon-framework/
@@ -20,15 +19,29 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-/**
- * Description of Service
- * 
- * @author Martin Cassidy
- * @package annotations
- */
-class Service extends Annotation 
-{
-    public $name = "";
-}
+namespace picon;
 
+/**
+ * Class scanner rule in which a class must be declared in the given namespace
+ *
+ * @author Martin Cassidy
+ */
+class ClassNamespaceRule implements ClassScannerRule
+{
+    private $namespace;
+
+    /**
+     *
+     * @param String $namespace The name of the namespace
+     */
+    public function __construct($namespace)
+    {
+        $this->namespace = $namespace;
+    }
+
+    public function matches($className, \ReflectionAnnotatedClass $reflection)
+    {
+        return $reflection->getNamespaceName()==$this->namespace;
+    }
+}
 ?>

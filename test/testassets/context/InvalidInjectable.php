@@ -20,22 +20,17 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
-
 /**
- * Description of HomePageRequestTarget
- * 
  * @author Martin Cassidy
- * @package web
  */
-class HomePageRequestTarget implements RequestTarget
+class InvalidInjectable
 {
-    public function respond()
-    {
-        $homePage = PiconApplication::get()->getHomePage();
-        $page = new $homePage();
-        $page->render();
-    }
+    /** @Resource */
+    private $doesntexist;
+
+
+    /** @Resource */
+    private $serv;
 }
 
 ?>

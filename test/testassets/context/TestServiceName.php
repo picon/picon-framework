@@ -21,13 +21,24 @@
  * */
 
 /**
- * Description of PropertyRule
- * 
  * @author Martin Cassidy
+ * @Service(name = 'serv')
  */
-class PropertyRule implements ClassScannerRule
+class TestServiceName extends AbstractContext
 {
+    /** @Resource */
+    protected $testRepository;
+
+    /** @Resource */
+    protected $repo;
+
+    /** @Resource */
+    protected $testService;
     
+    public function getTestServ()
+    {
+        return $this;
+    }
 }
 
 ?>

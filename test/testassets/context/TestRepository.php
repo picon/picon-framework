@@ -21,21 +21,23 @@
  * */
 
 /**
- * Description of TestRepository
- * 
  * @author Martin Cassidy
  * @Repository
  */
-class TestRepository
+class TestRepository extends AbstractContext
 {
-    /**
-     * @Resource
-     */
-    private $testService;
+    /** @Resource */
+    protected $testService;
+
+    /** @Resource */
+    protected $repo;
+
+    /** @Resource */
+    protected $serv;
     
-    public function getTestService()
+    public function getTestRepository()
     {
-        return $this->testService;
+        return $this;
     }
 }
 

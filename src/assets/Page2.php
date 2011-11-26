@@ -4,9 +4,9 @@
  * Sample Homepage
  *
  * @author Martin Cassidy
- * @Path(path = 'home')
+ * @Path(path = 'home1')
  */
-class HomePage extends picon\WebPage
+class Page2 extends picon\WebPage
 {
     public function __construct()
     {

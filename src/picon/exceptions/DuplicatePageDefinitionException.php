@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Picon Framework
  * http://code.google.com/p/picon-framework/
@@ -21,14 +20,12 @@
  * */
 
 /**
- * Description of Service
- * 
- * @author Martin Cassidy
- * @package annotations
+ * Description of DuplicatePageDefinitionException
+ *
+ * @author Martin
  */
-class Service extends Annotation 
+class DuplicatePageDefinitionException
 {
-    public $name = "";
+    //put your code here
 }
-
 ?>

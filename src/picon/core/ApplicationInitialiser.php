@@ -75,6 +75,8 @@ class ApplicationInitialiser
             $injector->inject($resource);
         }
         $application->setApplicationContext($context);
+
+        PageMap::get()->initialise();
     }
     
     /**

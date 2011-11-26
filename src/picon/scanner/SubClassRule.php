@@ -20,15 +20,34 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of Service
+ * Rule for the class scanner in which the class must be a sub class of the
+ * specified class name
  * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Service extends Annotation 
+class SubClassRule implements ClassScannerRule
 {
-    public $name = "";
+    private $superClass;
+
+    /**
+     *
+     * @param String $superClass The name of the super class to test against
+     */
+    public function __construct($superClass)
+    {
+        $this->superClass = $superClass;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function matches($className, \ReflectionAnnotatedClass $reflection)
+    {
+        return $reflection->isSubclassOf($this->superClass);
+    }
 }
 
 ?>

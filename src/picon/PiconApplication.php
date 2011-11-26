@@ -46,6 +46,7 @@ class PiconApplication
         $initialiser = new ApplicationInitialiser();
         $initialiser->addScannedDirectory(PICON_DIRECTORY, 'picon');
         $initialiser->addScannedDirectory(PICON_DIRECTORY."\\annotations");
+        $initialiser->addScannedDirectory(PICON_DIRECTORY."\\web\\annotations");
         $initialiser->addScannedDirectory(PICON_DIRECTORY."\\exceptions");
         $initialiser->addScannedDirectory(ASSETS_DIRECTORY);
         $initialiser->initialise($this);

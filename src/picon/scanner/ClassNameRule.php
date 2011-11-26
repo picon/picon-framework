@@ -23,13 +23,31 @@
 namespace picon;
 
 /**
- * Description of ClassNameRule
+ * Class scanner rule for which matching classes will have a name which matches
+ * the given expression
  * 
  * @author Martin Cassidy
  */
 class ClassNameRule implements ClassScannerRule
 {
-    
+    private $expression;
+
+    /**
+     *
+     * @param String $expression The class name epxression
+     */
+    public function __construct($expression)
+    {
+        $this->expression = $expression;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function matches($className, \ReflectionAnnotatedClass $reflection)
+    {
+        return preg_match('/'.$this->expression.'/', $reflection->getName());
+    }
 }
 
 ?>

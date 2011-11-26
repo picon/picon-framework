@@ -65,7 +65,7 @@ abstract class AbstractContextLoader
      */
     protected function getResourceName(\Annotation $annotation, $className)
     {
-        $name = $annotation->value["name"];
+        $name = $annotation->name;
         
         if($name=="")
         {

@@ -28,7 +28,7 @@
  */
 class Resource extends Transient 
 {
-    
+    public $name = "";
 }
 
 ?>

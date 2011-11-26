@@ -21,14 +21,21 @@
  * */
 
 /**
- * Annotation to specify an alternative url path for a page
- * 
  * @author Martin Cassidy
- * @package annotations
  */
-class Path extends Annotation
+class EmptyInjectable extends AbstractContext
 {
-    private $path = "";
+    /** @Resource */
+    protected $testService;
+
+    /** @Resource */
+    protected $repo;
+
+    /** @Resource */
+    protected $serv;
+    
+    /** @Resource */
+    protected $testRepository;
 }
 
 ?>
