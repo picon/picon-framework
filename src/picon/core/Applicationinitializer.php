@@ -35,7 +35,7 @@ require_once("AutoLoader.php");
  * @author Martin Cassidy
  * @package core
  */
-class ApplicationInitialiser
+class Applicationinitializer
 {
     private $autoLoader;
     
@@ -59,10 +59,10 @@ class ApplicationInitialiser
     /**
      * Initialise the application
      */
-    public function initialise(PiconApplication $application)
+    public function initialise()
     {
         $config = ConfigLoader::load(CONFIG_FILE);
-        $application->setConfig($config);
+        PiconApplication::get()->getConfigLoadListener()->onConfigLoaded($config);
         
         $this->loadAssets(ASSETS_DIRECTORY);
         
@@ -74,7 +74,7 @@ class ApplicationInitialiser
         {
             $injector->inject($resource);
         }
-        $application->setApplicationContext($context);
+        PiconApplication::get()->getContextLoadListener()->onContextLoaded($context);
 
         PageMap::get()->initialise();
     }

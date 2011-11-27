@@ -33,26 +33,28 @@ namespace picon;
  * 
  * @author Martin Cassidy
  * @package web
+ * @todo create request listeners
  */
 class RequestCycle
 {
     private $request;
     private $response;
-    private $targetStack = array();
+    private $resolver;
+    private $targetStack;
     private $maxStackSize = 10; //@todo put this somewhere else
     
     public function __construct()
     {
         $GLOBALS['requestCycle'] = $this;
+        $this->targetStack = new \ArrayObject();
+        $this->resolver = new RequestResolverCollection();
         $this->request = new Request();
         $this->response = new Response();
     }
     
     public function process()
     {
-        $resolver = new DefaultRequestResolverContainer();
-        
-        $target = $resolver->resolve($this->request);
+        $target = $this->resolver->resolve($this->request);
         
         if($target!=null)
         {
@@ -64,21 +66,26 @@ class RequestCycle
             $this->addTarget(new PageNotFoundRequestTarget());
         }
         
-        try
+
+        $iterator = $this->targetStack->getIterator();
+
+        while($iterator->valid()) 
         {
-            foreach($this->targetStack as $requestTarget)
+            try
             {
-                $requestTarget->respond();
+                $iterator->current()->respond();
+                
             }
+            catch(\Exception $ex)
+            {
+                $this->addTarget(new ExceptionPageRequestTarget($ex));
+            }
+            $iterator->next();
         }
-        catch(\Exception $ex)
-        {
-            //@todo setup error page request target and processing
-            echo $ex;
-        }
+        
     }
     
-    private function addTarget($target)
+    public function addTarget($target)
     {
         if($target==null)
         {
@@ -88,11 +95,16 @@ class RequestCycle
         {
             throw new \InvalidArgumentException("addTarget() expects a paramater that is an instance of RequestTarget");
         }
-        if(count($this->targetStack)==$this->maxStackSize)
+        if($this->targetStack->count()==$this->maxStackSize)
         {
-            throw new \OverflowException(sprintf("The request target stack cannot contain more than %d elements per request", $maxStackSize));
+            throw new \OverflowException(sprintf("The request target stack cannot contain more than %d elements per request", $this->maxStackSize));
         }
-        array_push($this->targetStack, $target);
+        $this->targetStack->append($target);
+    }
+    
+    public function generateUrl(RequestTarget $target)
+    {
+        return $this->resolver->generateUrl($target);
     }
     
     public function getResponse()

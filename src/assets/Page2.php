@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Sample Homepage
+ * Sample page
  *
  * @author Martin Cassidy
  * @Path(path = 'home1')

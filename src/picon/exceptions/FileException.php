@@ -25,7 +25,7 @@
  *
  * @author Martin Cassidy
  */
-class FileException extends Exception
+class FileException extends RuntimeException
 {
     
 }

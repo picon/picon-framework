@@ -31,12 +31,22 @@ class ListenerRequestResolver implements RequestResolver
 {
     public function matches(Request $request)
     {
-        
+        return false;
     }
     
     public function resolve(Request $request)
     {
-        
+        throw new \NotImplementedException();
+    }
+    
+    public function generateUrl(RequestTarget $target)
+    {
+        throw new \NotImplementedException();
+    }
+    
+    public function handles(RequestTarget $target)
+    {
+        return false;
     }
 }
 

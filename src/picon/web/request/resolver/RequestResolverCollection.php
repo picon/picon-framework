@@ -27,13 +27,12 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class DefaultRequestResolverContainer implements RequestResolverContainer
+class RequestResolverCollection implements RequestResolver
 {
     private $resolvers = array();
     
     public function __construct()
     {
-        $this->add(new PathRequestResolver());
         $this->add(new PageRequestResolver());
         $this->add(new PageInstanceRequestResolver());
         $this->add(new ListenerRequestResolver());
@@ -43,6 +42,19 @@ class DefaultRequestResolverContainer implements RequestResolverContainer
     public function add(RequestResolver $resolver)
     {
         array_push($this->resolvers, $resolver);
+    }
+    
+    public function matches(Request $request)
+    {
+        foreach($this->resolvers as $resolver)
+        {
+            if($resolver->matches($request))
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     /**
@@ -61,6 +73,35 @@ class DefaultRequestResolverContainer implements RequestResolverContainer
         }
         
         return null;
+    }
+    
+    public function generateUrl(RequestTarget $target)
+    {
+        foreach($this->resolvers as $resolver)
+        {
+            if($resolver->handles($target))
+            {
+                $url = $resolver->generateUrl($target);
+                if(!empty($url))
+                {
+                    return $url;
+                }
+            }
+        }
+        
+        return null;
+    }
+    
+    public function handles(RequestTarget $target)
+    {
+        foreach($this->resolvers as $resolver)
+        {
+            if($resolver->handles($target))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

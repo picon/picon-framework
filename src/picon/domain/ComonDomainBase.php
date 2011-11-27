@@ -57,7 +57,7 @@ class ComonDomainBase
         {
             $property->setAccessible(true);
         }
-        return $property->getValue();
+        return $property->getValue($this);
     }
     
     /**

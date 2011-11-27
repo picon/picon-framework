@@ -52,7 +52,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package domain
  */
-abstract class Enum
+abstract class Enum implements Identifiable
 {
     private $value;
     const DEFAULT_NAME = "_DEFAULT";
@@ -152,6 +152,11 @@ abstract class Enum
             return $enum->value==$this->value;
         }
         return false;
+    }
+    
+    public static function getIdentifier()
+    {
+        return Identifier::forName(get_called_class());
     }
 
 }

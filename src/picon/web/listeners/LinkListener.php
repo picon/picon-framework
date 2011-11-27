@@ -24,19 +24,11 @@ namespace picon;
 
 /**
  *
- * @author Martin Cassidy
+ * @author Martin
  */
-interface RequestablePage
+interface LinkListener extends Listener
 {
-
-    /**
-     * @return String the class name for this page
-     */
-    static function getPageName();
-
-    /**
-     * Render the page to the response
-     */
-    function renderPage();
+    
 }
+
 ?>
