@@ -20,14 +20,34 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
  * Description of Link
  * 
  * @author Martin Cassidy
  */
-class Link
+class Link extends AbstractLink
 {
+    private $callback;
     
+    public function __construct($id, $callback)
+    {
+        parent::__construct($id);
+        $this->callback = $callback;
+    }
+    
+    protected function onComponentTag(ComponentTag $tag)
+    {
+        parent::onComponentTag($tag);
+        $tag->put('href', $this->generateUrlFor());
+    }
+    
+    protected function onLinkClicked()
+    {
+        $callback = new \ReflectionFunction($this->callback);
+        $callback->invoke();
+    }
 }
 
 ?>

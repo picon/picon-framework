@@ -20,14 +20,21 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
  * Description of AbstractLink
  * 
  * @author Martin Cassidy
  */
-class AbstractLink
+abstract class AbstractLink extends MarkupContainer implements LinkListener
 {
+    public function onEvent()
+    {
+        $this->onLinkClicked();
+    }
     
+    protected abstract function onLinkClicked();
 }
 
 ?>

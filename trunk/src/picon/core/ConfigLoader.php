@@ -67,7 +67,8 @@ class ConfigLoader
             {
                 if(in_array($childTag->getName(), self::$CORE_CONFIG))
                 {
-                    $config->__set($childTag->getName(), $childTag->getCharacterData());
+                    $name = $childTag->getName();
+                    $config->$name = $childTag->getCharacterData();
                 }
                 
                 if($childTag->getName()==self::EXTERNAL_INCLUDE)

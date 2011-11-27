@@ -40,15 +40,25 @@ class WebPage extends MarkupContainer implements RequestablePage
         parent::renderAll();
     }
     
-
-    public static function getPageName()
-    {
-        return get_called_class();
-    }
-
     public function renderPage()
     {
         $this->render();
+    }
+    
+    public function isPageStateless()
+    {
+        $stateless = true;
+        $callback = function($component) use (&$stateless)
+        {
+            if(!$component->isStateless())
+            {
+                $stateless = false;
+                return new VisitorResponse(VisitorResponse::STOP_TRAVERSAL);
+            }
+            return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+        };
+        $this->visitChildren(Component::getIdentifier(), $callback);
+        return $stateless;
     }
 }
 

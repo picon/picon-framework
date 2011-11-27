@@ -33,11 +33,12 @@ class PageRequestResolver implements RequestResolver
     {
         if($this->isHomePage($request))
         {
-            return new PageRequestTarget(PiconApplication::get()->getHomePage());
+            $homepage = PiconApplication::get()->getHomePage();
+            return $this->checkListeners($homepage::getIdentifier());
         }
         else
         {
-            return new PageRequestTarget($this->getPageClassForPath($request));
+            return $this->checkListeners($this->getPageClassForPath($request));
         }
     }
     
@@ -46,23 +47,70 @@ class PageRequestResolver implements RequestResolver
         return $this->isHomePage($request) || $this->getPageClassForPath($request)!=false;
     }
 
+    private function checkListeners($page)
+    {
+        if(isset($_GET['listener']))
+        {
+            return new PageRequestWithListenerTarget($page, $_GET['listener']);
+        }
+        else
+        {
+            return new PageRequestTarget($page);
+        }
+    }
+    
+    /**
+     *
+     * @param Request $request
+     * @todo alter expression to handle page params
+     * @return type 
+     */
     private function isHomePage(Request $request)
     {
-        return preg_match("/^".$request->getRootPath()."\/?$/", $request->getPath());
+        return preg_match("/^".$request->getRootPath()."\/{1}([?|&]{1}\\S+={1}\\S+)*$/", $request->getPath());
     }
 
+    /**
+     * @param Request $request
+     * @todo alter expression to handle page params
+     * @return type 
+     */
     private function getPageClassForPath(Request $request)
     {
         $mapEntry = PageMap::getPageMap();
         
         foreach($mapEntry as $path => $pageClass)
         {
-            if(preg_match("/^".$request->getRootPath()."\/".$path."{1}\/?$/", $request->getPath()))
+            if(preg_match("/^".$request->getRootPath()."\/".$path."{1}([?|&]{1}\\S+={1}\\S+)*$/", $request->getPath()))
             {
-                return $pageClass;
+                return $pageClass::getIdentifier();
             }
         }
         return false;
+    }
+    
+    /**
+     *
+     * @param RequestTarget $target
+     * @todo Create a url builder helper
+     * @return string the URL for the request target
+     */
+    public function generateUrl(RequestTarget $target)
+    {
+        if($target instanceof PageRequestWithListenerTarget)
+        {
+            return str_replace("\\", "/", $target->getPageClass()->namespace).$target->getPageClass()->className.'?listener='.$target->getComponentPath();
+        }
+        else
+        {
+            //@todo turn this into an absolute url
+            return $target->getPageClass();
+        }
+    }
+    
+    public function handles(RequestTarget $target)
+    {
+        return $target instanceof PageRequestTarget;
     }
 }
 

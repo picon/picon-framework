@@ -36,9 +36,20 @@ interface RequestResolver
     
     /**
      * 
-     * @return Boolean true if this request resolver can be used for the request
+     * @return boolean true if this request resolver can be used for the request
      */
     function matches(Request $request);
+    
+    /**
+     * Generate a URL for requests of this type
+     * @return string the URL for the given target
+     */
+    function generateUrl(RequestTarget $target);
+    
+    /**
+     * @return boolean true if this resolver can handle the given target
+     */
+    function handles(RequestTarget $target);
 }
 
 ?>

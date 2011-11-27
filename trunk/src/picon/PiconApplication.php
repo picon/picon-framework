@@ -21,7 +21,7 @@
  * */
 
 namespace picon;
-require_once("core/ApplicationInitialiser.php");
+require_once("core/ApplicationInitializer.php");
 
 require_once("addendum/annotation_parser.php");
 require_once("addendum/annotations.php");
@@ -37,20 +37,72 @@ class PiconApplication
     private $applicatoinContext;
     private $config;
     private $requestProcessor;
+    private $initialiser;
+    
+    //Application Initializer Listeners
+    private $configLoadListeners;
+    private $contextLoadListeners;
+    
+    //Component listeners
+    private $componentInstantiationListeners;
+    private $componentInitializationListeners;
+    private $componentBeforeRenderListeners;
+    private $componentAfterRenderListeners;
     
     /**
+     * Create a new Picon Application
      * Fires off the application initialiser to load an instantiat all resources
+     * Despite not being private, like a normal singleton, it is not
+     * expected for a Picon Application to be instantiated more than once
      */
     public function __construct()
     {
-        $initialiser = new ApplicationInitialiser();
-        $initialiser->addScannedDirectory(PICON_DIRECTORY, 'picon');
-        $initialiser->addScannedDirectory(PICON_DIRECTORY."\\annotations");
-        $initialiser->addScannedDirectory(PICON_DIRECTORY."\\web\\annotations");
-        $initialiser->addScannedDirectory(PICON_DIRECTORY."\\exceptions");
-        $initialiser->addScannedDirectory(ASSETS_DIRECTORY);
-        $initialiser->initialise($this);
+        if(isset($GLOBALS['application']))
+        {
+            throw new \IllegalStateException("An instance of picon application already exists");
+        }
         $GLOBALS['application'] = $this;
+        
+        $this->initialiser = new ApplicationInitializer();
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY, 'picon');
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\annotations");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\web\\annotations");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\exceptions");
+        $this->initialiser->addScannedDirectory(ASSETS_DIRECTORY);
+        
+        $this->init();
+        
+        $this->initialiser->initialise();
+    }
+    
+    /**
+     * Called once the application has created but not run the application initializer
+     * This method creates listener collections.
+     * If override you MUST call parent::init()
+     */
+    public function init()
+    {
+        $this->configLoadListeners = new ApplicationInitializerConfigLoadListenerCollection();
+        $this->contextLoadListeners = new ApplicationInitializerContextLoadListenerCollection();
+        
+        $config = &$this->config;
+        $context = &$this->applicatoinContext;
+        
+        $this->addConfigLoaderListener(new ApplicationConfigLoadListener(function($loadedConfig) use (&$config)  
+        {
+            $config = $loadedConfig;
+        }));
+        $this->addContextLoaderListener(new ApplicationContextLoadListener(function($createdContext) use (&$context)  
+        {
+            $context = $createdContext;
+        }));
+        
+        $this->componentInstantiationListeners = new ComponentInstantiationListenerCollection();
+        $this->addComponentInstantiationListener(new ComponentInjector());
+        
+        $this->componentInitializationListeners = new ComponentInitializationListenerCollection();
+        $this->componentBeforeRenderListeners = new ComponentBeforeRenderListenerCollection();
+        $this->componentAfterRenderListeners = new ComponentAfterRenderListenerCollection();
     }
     
     public final function run()
@@ -64,12 +116,8 @@ class PiconApplication
         return $this->config;
     }
     
-    public final function setConfig(Config $config)
+    private function onConfigLoaded(Config $config)
     {
-        if(isset($this->config))
-        {
-            throw new \UnsupportedOperationException("Config has already been set");
-        }
         $this->config = $config;
     }
     
@@ -78,12 +126,8 @@ class PiconApplication
         return $this->applicatoinContext;
     }
     
-    public final function setApplicationContext(ApplicationContext $context)
+    private function onContextLoaded(ApplicationContext $context)
     {
-        if(isset($this->applicatoinContext))
-        {
-            throw new \UnsupportedOperationException("Context has already been set");
-        }
         $this->applicatoinContext = $context;
     }
     
@@ -95,6 +139,66 @@ class PiconApplication
     public function getHomePage()
     {
         return $this->getConfig()->getHomePage();
+    }
+    
+    public function getConfigLoadListener()
+    {
+        return $this->configLoadListeners;
+    }
+    
+    public function getContextLoadListener()
+    {
+        return $this->contextLoadListeners;
+    }
+    
+    public function getComponentInstantiationListener()
+    {
+        return $this->componentInstantiationListeners;
+    }
+    
+    public function getComponentInitializationListener()
+    {
+        return $this->componentInitializationListeners;
+    }
+    
+    public function getComponentBeforeRenderListener()
+    {
+        return $this->componentBeforeRenderListeners;
+    }
+    
+    public function getComponentAfterRenderListenersr()
+    {
+        return $this->componentAfterRenderListeners;
+    }
+    
+    public function addConfigLoaderListener(ApplicationInitializerConfigLoadListener $listener)
+    {
+        $this->configLoadListeners->add($listener);
+    }
+    
+    public function addContextLoaderListener(ApplicationInitializerContextLoadListener $listener)
+    {
+        $this->contextLoadListeners->add($listener);
+    }
+    
+    public function addComponentInstantiationListener(ComponentInstantiationListener $listener)
+    {
+        $this->componentInstantiationListeners->add($listener);
+    }
+    
+    public function addComponentInitializationListener(ComponentInitializationListener $listener)
+    {
+        return $this->componentInitializationListener->add($listener);
+    }
+    
+    public function addComponentBeforeRenderListener(ComponentBeforeRenderListener $listener)
+    {
+        return $this->componentBeforeRenderListeners->add($listener);
+    }
+    
+    public function addComponentAfterRenderListenersr(ComponentAfterRenderListener $listener)
+    {
+        return $this->componentAfterRenderListeners->add($listener);
     }
 }
 

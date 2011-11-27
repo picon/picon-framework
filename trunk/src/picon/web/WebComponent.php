@@ -30,7 +30,10 @@ namespace picon;
  */
 class WebComponent extends Component
 {
-    
+    protected function onRender()
+    {
+        parent::internalRenderComponent();
+    }
 }
 
 ?>

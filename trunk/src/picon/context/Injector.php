@@ -40,7 +40,7 @@ class Injector
         Injector::$injector = $this;
     }
     
-    public function inject($object)
+    public function inject(&$object)
     {
         $reflection = new \ReflectionAnnotatedClass($object);
         $properties = $reflection->getProperties();

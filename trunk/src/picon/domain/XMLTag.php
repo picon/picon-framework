@@ -142,6 +142,11 @@ class XMLTag extends ComonDomainBase
     {
         return $this->tagType->equals(new XmlTagType(XmlTagType::OPENCLOSE));
     }
+    
+    public function put($name, $value)
+    {
+        $this->attributes[$name] = $value;
+    }
 }
 
 ?>

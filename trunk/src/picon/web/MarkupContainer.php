@@ -32,6 +32,11 @@ class MarkupContainer extends Component
 {
     private $children = array();
     
+    /**
+     * @var boolean true if this component is in the hierarchy
+     */
+    private $added = false;
+    
     public function add(&$object)
     {
         if($object instanceof Component)
@@ -54,8 +59,34 @@ class MarkupContainer extends Component
         {
             throw new \RuntimeException(sprintf("Component %s already has a child with id %s", $this->getId(), $component->getId()));
         }
+        
+        if($component->added)
+        {
+            throw new \RuntimeException(sprintf("Component %s has already been added to another",$component->getId()));
+        }
+        
+        if($component==$this)
+        {
+            throw new \RuntimeException(sprintf("Component %s cannot be added to itself.",$component->getId()));
+        }
+        
         $this->children[$component->getId()] = $component;
+        
         $component->setParent($this);
+        $this->onComponentAdded($component);
+    }
+    
+    protected function onComponentAdded(&$component)
+    {
+        $page = $this->getPage();
+        
+        if($page!=null)
+        {
+            if(!$page->isInitialized())
+            {
+                $page->internalInitialize();
+            }
+        }
     }
     
     public function getChildren()
@@ -65,9 +96,21 @@ class MarkupContainer extends Component
     
     public function get($id)
     {
-        if($this->childExists($id))
+        if(empty($id))
         {
-            return $this->children[$id];
+            return $this;
+        }
+        if(substr($id, strlen($id)-1, strlen($id))!=".")
+        {
+            $id = $id.'.';
+        }
+        $nodes = explode('.', $id);
+        $child = $nodes[0];
+        
+        if($this->childExists($child))
+        {
+            $childComponent = $this->children[$child];
+            return $childComponent->get(str_replace($child.'.', '', $id));
         }
         return null;
     }
@@ -83,6 +126,39 @@ class MarkupContainer extends Component
     }
     
     /**
+     * Recursivly visit all child components matching the Identifier and execute
+     * a callback on each
+     * @param Identifier $identifier
+     * @param closure $callback 
+     */
+    public function visitChildren(Identifier $identifier, $callback)
+    {
+        Args::callBackArgs($callback, 1);
+        $this->internalVisitChildren($identifier, $this->getChildren(), $callback);
+    }
+    
+    private function internalVisitChildren(Identifier $identifier, $components, $callback)
+    {
+        foreach($components as $component)
+        {
+            $response = new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+            if($component::getIdentifier()->of($identifier))
+            {
+                $response = $callback($component);
+                Args::checkInstanceNotNull($response, VisitorResponse::getIdentifier());
+            }
+            if($response->equals(new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL)) && $component instanceof MarkupContainer)
+            {
+                $this->internalVisitChildren($identifier, $component->getChildren(), $callback);
+            }
+            else if($response->equals(new VisitorResponse(VisitorResponse::STOP_TRAVERSAL)))
+            {
+                break;
+            }
+        }
+    }
+    
+    /**
      * Loads the markup accosiated with this markup container
      * @todo the functionality of this method should be extracted into
      * a helper class as it needs extending to load from parent folders
@@ -92,7 +168,7 @@ class MarkupContainer extends Component
         $reflection = new \ReflectionClass($this);
         $fileInfo = new \SplFileInfo($reflection->getFileName());
         $parser = new MarkupParser();
-        return $parser->parse($fileInfo->getPath()."\\".get_class($this).'.html');
+        return $parser->parse($fileInfo->getPath()."\\".$reflection->getShortName().'.html');
     }
     
     protected function onRender()

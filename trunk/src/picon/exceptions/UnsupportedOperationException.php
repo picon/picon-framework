@@ -25,7 +25,7 @@
  *
  * @author Martin Cassidy
  */
-class UnsupportedOperationException extends Exception
+class UnsupportedOperationException extends RuntimeException
 {
     
 }

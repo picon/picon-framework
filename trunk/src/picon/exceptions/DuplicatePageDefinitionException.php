@@ -24,7 +24,7 @@
  *
  * @author Martin
  */
-class DuplicatePageDefinitionException
+class DuplicatePageDefinitionException extends RuntimeException
 {
     //put your code here
 }

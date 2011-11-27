@@ -40,8 +40,10 @@ namespace picon;
  * @author Martin Cassidy
  * @package web
  * @todo Get rid of all the echo's in here
+ * @todo finish adding state flags so that checks can be run to ensure overriden methods are calling
+ * the parent implementation
  */
-abstract class Component extends PiconSerializer implements InjectOnWakeup
+abstract class Component extends PiconSerializer implements InjectOnWakeup, Identifiable
 {
     /**
      * @var String the ID of this component
@@ -68,16 +70,62 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
      */
     private $rendered = false;
     
+    private $initialized = false;
+    private $flagInitializeParentCall = false;
+    
+    private $model;
+    
     /**
      * Create a new component. Any overrides of the constructor must call the super.
      * @param String the ID of this component
      */
-    public function __construct($id)
+    public function __construct($id, Model $model = null)
     {
         $this->id = $id;
-        Injector::get()->inject($this);
+        $this->model = $model;
+        PiconApplication::get()->getComponentInstantiationListener()->onInstantiate($this);
     }
 
+    /**
+     * Called when the component hierarchy above this compoent is complete
+     * If overriding this method you MUST call parent::onInitialize()
+     */
+    protected function onInitialize()
+    {
+        $this->flagInitializeParentCall = true;
+        PiconApplication::get()->getComponentInitializationListener()->onInitialize($this);
+    }
+    
+    protected final function fireInitialize()
+    {
+        if($this->isInitialized())
+        {
+            return;
+        }
+        $this->initialized = true;
+        $this->flagInitializeParentCall = false;
+        $this->onInitialize();
+        if(!$this->flagInitializeParentCall)
+        {
+            throw new \IllegalStateException(sprintf("Parent implementation of onInitialize for component %s was not called", $this->id));
+        }
+    }
+    
+    public function internalInitialize()
+    {
+        $this->fireInitialize();
+        
+        if($this instanceof MarkupContainer)
+        {
+            $callback = function(&$component)
+            {
+                $component->internalInitialize();
+                return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+            };
+            $this->visitChildren(self::getIdentifier(), $callback);
+        }
+    }
+    
     public function add(&$object)
     {
         if($object instanceof Behaviour)
@@ -132,6 +180,7 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
     private function getMarkupForChild(Component $child)
     {
         $markup = $this->getMarkup();
+        
         $componentTag = MarkupUtils::findComponentTag($markup, $child->id);
         
         if($componentTag==null)
@@ -156,15 +205,17 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
      */
     private function internalBeforeRender()
     {
-        $this->beforeRender();
-        
-        if($this instanceof MarkupContainer)
+        if(!$this->isInitialized())
         {
-            foreach($this->getChildren() as $child)
-            {
-                $child->internalBeforeRender();
-            }
+            $this->internalInitialize();
         }
+        PiconApplication::get()->getComponentBeforeRenderListener()->onBeforeRender($this);
+        $this->beforeRender();
+    }
+    
+    public function isInitialized()
+    {
+        return $this->initialized;
     }
     
     /**
@@ -173,6 +224,7 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
     private function internalAfterRender()
     {
         $this->rendered = true;
+        PiconApplication::get()->getComponentAfterRenderListenersr()->onAfterRender($this);
         $this->afterRender();
         
         if($this instanceof MarkupContainer)
@@ -332,7 +384,7 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
                 throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
             }
         }
-
+        
         foreach($markup as $element)
         {
             if($element instanceof ComponentTag)
@@ -388,11 +440,16 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
         //@todo call onComponentTag for behaviours
     }
     
+    /**
+     *
+     * @param ComponentTag $tag 
+     */
     protected function onComponentTagBody(ComponentTag $tag)
     {
-        if($element->hasChildren())
+        //@todo move this into markup container
+        if($tag->hasChildren())
         {
-            $this->renderAll($element->getChildren());
+            $this->renderAll($tag->getChildren());
         }
     }
     
@@ -426,6 +483,48 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
         return $attributes[$attribute] == $value;
     }
     
+    /**
+     * Visit all the parent components of this components and execute
+     * a callback on each
+     * @param Identifier $identifier The identifier of the parent to look for
+     * @param closure $callback The callback to run
+     */
+    public function visitParents(Identifier $identifier, $callback)
+    {
+        Args::callBackArgs($callback, 1);
+        $this->internalVisitParents($identifier, $this->parent, $callback);
+    }
+    
+    private function internalVisitParents(Identifier $identifier, $component, $callback)
+    {
+        Args::checkInstance($component, Component::getIdentifier());
+        if($component!=null)
+        {
+            $response = new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+            if($component::getIdentifier()->of($identifier))
+            {
+                $response = $callback($component);
+                Args::checkInstanceNotNull($response, VisitorResponse::getIdentifier());
+            }
+            if($response->equals(new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL)))
+            {
+                $this->internalVisitParents($identifier, $component->parent, $callback);
+            }
+        }
+    }
+    
+    public function getPage()
+    {
+        $page = null;
+        $callback = function($component) use (&$page)
+        {
+            $page = $component;
+            return new VisitorResponse(VisitorResponse::STOP_TRAVERSAL);
+        };
+        $this->visitParents(WebPage::getIdentifier(), $callback);
+        return $page;
+    }
+    
     protected function setParent($parent)
     {
         $this->parent = $parent;
@@ -454,6 +553,112 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup
     public function getId()
     {
         return $this->id;
+    }
+    
+    public static function getIdentifier()
+    {
+        return Identifier::forName(get_called_class());
+    }
+    
+    /**
+     * Gets whether or not this component is stateless
+     * @return boolean
+     */
+    public function isStateless()
+    {
+        return true;
+    }
+    
+    public function get($id)
+    {
+        if(empty($id))
+        {
+            return $this;
+        }
+       
+        throw new \InvalidArgumentException("This component is not a container and does not have any children.");
+    }
+    
+    /**
+     * @todo take in a paramter to actually process listener requests
+     * This method is very bespoke without it.
+     */
+    public function generateUrlFor()
+    {
+        $target;
+        $page = $this->getPage();
+        if($page->isPageStateless())
+        {
+            $target = new PageRequestWithListenerTarget($page::getIdentifier(), $this->getComponentPath());
+        }
+        else
+        {
+            $target = new ListenerRequestTarget();
+        }
+        return $this->getRequestCycle()->generateUrl($target);
+    }
+    
+    public function getComponentPath()
+    {
+        $page = $this->getPage();
+        if($page==null)
+        {
+            throw new \IllegalStateException(sprintf("Unable to generate a path for component %s as it has an incomplete hierarchy.", $this->id));
+        }
+        
+        $path = $this->getId();
+        
+        $callback = function($component) use (&$path)
+        {
+            if(!($component instanceof WebPage))
+            {
+                $path = $component->getId().'.'.$path;
+                return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+            }
+            return new VisitorResponse(VisitorResponse::STOP_TRAVERSAL);
+        };
+        $this->visitParents(Component::getIdentifier(), $callback);
+        return str_replace('..', '', $path.'.');
+    }
+    
+    /**
+     * Set the current page
+     * @param mixed $page An instance of web page or an Identifier for a web page
+     * @todo add page params
+     * @todo add support for statefull pages
+     * @todo some requests should redirect not rerender to keep urls looking nice
+     */
+    public function setPage($page)
+    {
+        if($page instanceof Identifier)
+        {
+            if($page->of(WebPage::getIdentifier()))
+            {
+                $target = new PageRequestTarget($page);
+                $this->getRequestCycle()->addTarget($target);
+            }
+            else
+            {
+                throw new \InvalidArgumentException("Expected identifier to be for a web page");
+            }
+        }
+        else if($page instanceof WebPage)
+        {
+            throw new \NotImplementedException();
+        }
+        else
+        {
+            throw new \InvalidArgumentException("setPage expects an identifier for a web page or an instance of a web page");
+        }
+    }
+    
+    /**
+     * @todo add support for model inheritence (compound models)
+     * @return Model The model for this component
+     */
+    public function getModel()
+    {
+        return $this->model;
     }
 }
 

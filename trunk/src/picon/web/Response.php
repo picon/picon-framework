@@ -23,9 +23,16 @@
 namespace picon;
 
 /**
- * Description of Response
+ * Represents the response for a request
+ * 
+ * Although a request will have only one response, their may be multiple
+ * request targets that all write to the response, consiquently it is posible
+ * that a page might be rendered twice. It is therefore expected that a page
+ * request target will clean the response before it starts to write to it
  * 
  * @author Martin Cassidy
+ * @todo Have components use this when rendering
+ * @todo create helper methods for writing HTTP headers
  */
 class Response
 {

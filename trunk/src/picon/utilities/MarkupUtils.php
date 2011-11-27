@@ -52,7 +52,7 @@ class MarkupUtils
         }
         else
         {
-            self::validateElement($element);
+            self::validateElement($markup);
             return self::internalFindComponentTag($markup, $componentTagId);
         }
     }

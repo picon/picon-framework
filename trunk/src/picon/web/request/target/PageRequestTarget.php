@@ -31,15 +31,26 @@ class PageRequestTarget implements RequestTarget
 {
     private $pageClass;
 
-    public function __construct($pageClass)
+    public function __construct(Identifier $pageClass)
     {
         $this->pageClass = $pageClass;
     }
 
     public function respond()
     {
-        $page = new $this->pageClass();
+        ob_clean();
+        $fullClassName = $this->pageClass->getFullyQualifiedName();
+        $page = new $fullClassName();
         $page->renderPage();
+    }
+    
+    /**
+     *
+     * @return Identifier 
+     */
+    public function getPageClass()
+    {
+        return $this->pageClass;
     }
 }
 ?>

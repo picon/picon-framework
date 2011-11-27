@@ -26,7 +26,7 @@
  *
  * @author Martin Cassidy
  */
-class XMLException extends Exception
+class XMLException extends RuntimeException
 {
 }
 
