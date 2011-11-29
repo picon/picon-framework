@@ -21,13 +21,17 @@
  * */
 
 /**
- * Description of MarkupUtilsTest
+ * Description of PageMapTest
  * 
  * @author Martin Cassidy
  */
-class MarkupUtilsTest
+class PageMapTest extends AbstractPiconTest
 {
-    
+    public function testMap()
+    {
+        \picon\PageMap::get()->initialise();
+        $this->assertEquals(array('TestPageOne' => 'TestPageOne', 'TestPageTwo' => 'TestPageTwo', 'somepath' => '\TestPageOne'), \picon\PageMap::getPageMap());
+    }
 }
 
 ?>

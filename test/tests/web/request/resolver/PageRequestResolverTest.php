@@ -19,44 +19,22 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
-namespace picon;
 
 /**
- * Convience class for accessing information about a requests
- * This also provideds convience methods for analysing the request to 
- * determin what kind of request it is
- * @package web
- * @todo lots more to add in here
- * @todo this should be WebRequest - Request should be an interface
+ * Description of PageRequestResolverTest
+ * 
  * @author Martin Cassidy
  */
-class Request
+class PageRequestResolverTest extends AbstractRequestResolverTest
 {
-    
-    public function getQueryString()
+    protected function newResolver()
     {
-        return $_SERVER['QUERY_STRING'];
+        return new \picon\PageRequestResolver();
     }
     
-    public function getPath()
+    protected function matchesHomePage()
     {
-        return $_SERVER['REQUEST_URI'];
-    }
-    
-    public function isAjax()
-    {
-        return isset($_GET['ajax']);
-    }
-    
-    public function isResourceRequest()
-    {
-        return isset($_GET['resource']);
-    }
-    
-    public function getRootPath()
-    {
-        $root = preg_replace("/\/{1}\w*\.php$/", "", $_SERVER['PHP_SELF']);
-        return str_replace('/', '\\/', $root);
+        return true;
     }
 }
 

@@ -21,28 +21,13 @@
  * */
 
 /**
- * Description of PiconSerializerTest
+ * Description of ComponentTest
  * 
  * @author Martin Cassidy
  */
-class PiconSerializerTest extends AbstractPiconTest
+class ComponentTest
 {
-    public function testComplexSerialization()
-    {
-        $complexObject = new ComplexSerialize();
-        $serialized = serialize($complexObject);
-        $deSerialized = unserialize($serialized);
-        
-        $this->assertSame("defaultValue", $deSerialized->getTransient());
-        $this->assertSame("defaultValue", $deSerialized->getService());
-        
-        $closure = $deSerialized->getClosure();
-        $this->assertTrue(is_callable($closure));
-        $output = $closure();
-        $this->assertSame("executing 12", $output);
-    }
     
-    //@todo create a test and a process for testing serialization of injected resources
 }
 
 ?>
