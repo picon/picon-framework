@@ -21,13 +21,46 @@
  * */
 
 /**
- * Description of ScannerTest
- * 
+ * Description of AbstractRequestResolverTest
+ * @todo finish this off with a test request class
  * @author Martin Cassidy
  */
-class ScannerTest
+abstract class AbstractRequestResolverTest extends AbstractPiconTest
 {
+    private $resolver;
     
+    protected function setUp()
+    {
+        $this->resolver = $this->newResolver();
+    }
+    
+    public function testResolves()
+    {
+        
+    }
+    
+    public function testMatches()
+    {
+        $testRequest = new TestRequest();
+        $this->assertEquals($this->matchesHomePage(), $this->resolver->matches($testRequest));
+    }
+    
+    public function testGenerateUrl()
+    {
+        
+    }
+    
+    public function testHandles()
+    {
+        
+    }
+    
+    protected abstract function newResolver();
+    
+    protected function matchesHomePage()
+    {
+        return false;
+    }
 }
 
 ?>

@@ -49,6 +49,7 @@ class PageRequestResolver implements RequestResolver
 
     private function checkListeners($page)
     {
+        //@todo get params from request
         if(isset($_GET['listener']))
         {
             return new PageRequestWithListenerTarget($page, $_GET['listener']);
