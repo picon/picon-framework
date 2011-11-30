@@ -88,6 +88,53 @@ class MarkupUtils
             return null;
         }
     }
+    
+    public static function findPiconTag($type, $markup)
+    {
+        if(is_array($markup))
+        {
+            $piconTag = null;
+            foreach($markup as $element)
+            {
+                self::validateElement($element);
+                $piconTag = self::internalFindPiconTag($element, $type);
+                if($piconTag!=null)
+                {
+                    break;
+                }
+            }
+            return $piconTag;
+        }
+        else
+        {
+            self::validateElement($markup);
+            return self::internalFindPiconTag($markup, $type);
+        }
+    }
+    
+    private static function internalFindPiconTag(MarkupElement $markup, $type)
+    {
+        if($markup instanceof PiconTag && $markup->getName()=='picon:'.$type)
+        {
+            return $markup;
+        }
+        else
+        {
+            if($markup->hasChildren())
+            {
+                $piconTag = null;
+                foreach($markup->getChildren() as $element)
+                {
+                    $piconTag = self::internalFindPiconTag($element, $type);
+                    if($piconTag!=null)
+                    {
+                        return $piconTag;
+                    }
+                }
+            }
+            return null;
+        }
+    }
 }
 
 ?>

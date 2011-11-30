@@ -20,27 +20,17 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
-
 /**
- * Generic page for showing an exception
- * @todo use list view for the trace (create list view!)
+ * Description of ExamplePanel
+ * 
  * @author Martin Cassidy
  */
-class ErrorPage extends WebPage
+class ExamplePanel extends AbstractExamplePanel
 {
-    public function __construct(\Exception $ex)
+    public function __construct($id)
     {
-        $this->add(new Label('title', new BasicModel(get_class($ex))));
-        $this->add(new Label('message', new BasicModel($ex->getMessage())));
-        
-        $out = '';
-        foreach($ex->getTrace() as $entry)
-        {
-            $out .= "at $entry[class] $entry[function]() $entry[file] on line $entry[line] <br />";
-        }
-        
-        $this->add(new Label('stack', new BasicModel($out)));
+        parent::__construct($id);
+        $this->add(new \picon\Label('text', new \picon\BasicModel('Some text')));
     }
 }
 

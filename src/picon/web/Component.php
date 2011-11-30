@@ -76,6 +76,15 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
     private $model;
     
     /**
+     * @var boolean true if this component is in the hierarchy
+     */
+    protected $added = false;
+    
+    private $markupSource = null;
+    
+    const PATH_SEPERATOR = ':';
+    
+    /**
      * Create a new component. Any overrides of the constructor must call the super.
      * @param String the ID of this component
      */
@@ -114,16 +123,6 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
     public function internalInitialize()
     {
         $this->fireInitialize();
-        
-        if($this instanceof MarkupContainer)
-        {
-            $callback = function(&$component)
-            {
-                $component->internalInitialize();
-                return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
-            };
-            $this->visitChildren(self::getIdentifier(), $callback);
-        }
     }
     
     public function add(&$object)
@@ -146,7 +145,7 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
     /**
      * Gets the markup for this component
      */
-    private function getMarkup()
+    public function getMarkup()
     {
         if($this->markup!=null)
         {
@@ -171,23 +170,6 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
                 return $this->parent->getMarkupForChild($this);
             }
         }
-    }
-    
-    /**
-     * Locates the ComponentTag for a particular Component
-     * @param Component The child component to find the ComponentTag for
-     */
-    private function getMarkupForChild(Component $child)
-    {
-        $markup = $this->getMarkup();
-        
-        $componentTag = MarkupUtils::findComponentTag($markup, $child->id);
-        
-        if($componentTag==null)
-        {
-            throw new \RuntimeException(sprintf("Markup for component %s could not be found", $child->id));
-        }
-        return $componentTag;
     }
     
     /**
@@ -239,7 +221,7 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
                  */
                 if(!$child->rendered)
                 {
-                    throw new \RuntimeException(sprintf("Component %s was not rendered because corrisponding picon:id in the markup.", $child->id));
+                    throw new \RuntimeException(sprintf("Component %s was not rendered because there was no corrisponding picon:id in the markup.", $child->id));
                 }
             }
         }
@@ -408,7 +390,7 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
             }
             elseif($element instanceof PiconTag)
             {
-                //@todo
+                $this->renderElement($element);
             }
             elseif($element instanceof StringElement)
             {
@@ -433,6 +415,7 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
      */
     protected function onComponentTag(ComponentTag $tag)
     {
+        $this->getMarkUpSource()->onComponentTag($this, $tag);
         if($this instanceof MarkupContainer && $this->hasChildren())
         {
             $tag->setTagType(new XmlTagType(XmlTagType::OPEN));
@@ -441,16 +424,12 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
     }
     
     /**
-     *
+     * Render the body of the component
      * @param ComponentTag $tag 
      */
     protected function onComponentTagBody(ComponentTag $tag)
     {
-        //@todo move this into markup container
-        if($tag->hasChildren())
-        {
-            $this->renderAll($tag->getChildren());
-        }
+        $this->getMarkUpSource()->onComponentTagBody($this, $tag);
     }
     
     /**
@@ -612,13 +591,18 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
         {
             if(!($component instanceof WebPage))
             {
-                $path = $component->getId().'.'.$path;
+                $path = $component->getId().Component::PATH_SEPERATOR.$path;
                 return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
             }
             return new VisitorResponse(VisitorResponse::STOP_TRAVERSAL);
         };
         $this->visitParents(Component::getIdentifier(), $callback);
-        return str_replace('..', '', $path.'.');
+        return str_replace(self::PATH_SEPERATOR.self::PATH_SEPERATOR, '', $path.self::PATH_SEPERATOR);
+    }
+    
+    protected function newMarkupSource()
+    {
+        return new DefaultMarkupSource();
     }
     
     /**
@@ -659,6 +643,20 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
     public function getModel()
     {
         return $this->model;
+    }
+    
+    protected function getMarkUpSource()
+    {
+        if($this->markupSource==null)
+        {
+            $this->markupSource = $this->newMarkupSource();
+        }
+        return $this->markupSource;
+    }
+    
+    public function getParent()
+    {
+        return $this->parent;
     }
 }
 

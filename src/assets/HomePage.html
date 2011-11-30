@@ -5,7 +5,8 @@
         <title>Sample Page</title>
     </head>
     <body>
-        <h1>Picon Framework</h1>
+        <picon:extend>
+        <h2>Sample Page</h2>
         <h3>Welcome to the Picon Framework test page.</h3>
         <p>The HTML that is rendered in your browser has been deconstructed by Picon
             and put back together again allowing markup to be manipulated programmatically
@@ -16,5 +17,10 @@
                 <a picon:id="link">Go to page 2</a>
             </div>
         </div>
+        
+        <div picon:id="samplePanel">
+            The content here is replace with the panel
+        </div>
+        </picon:extend>
     </body>
 </html>

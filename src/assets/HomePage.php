@@ -6,7 +6,7 @@
  * @author Martin Cassidy
  * @Path(path = 'home')
  */
-class HomePage extends picon\WebPage
+class HomePage extends AbstractPage
 {
     public function __construct()
     {
@@ -19,6 +19,8 @@ class HomePage extends picon\WebPage
         {
             $me->setPage(Page2::getIdentifier());
         }));
+        
+        $this->add(new ExamplePanel('samplePanel'));
     }
 }
 

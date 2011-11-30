@@ -23,24 +23,26 @@
 namespace picon;
 
 /**
- * Generic page for showing an exception
- * @todo use list view for the trace (create list view!)
+ * Description of MarkupLoader
+ * 
  * @author Martin Cassidy
  */
-class ErrorPage extends WebPage
+class DefaultMarkupSource extends AbstractMarkupSource
 {
-    public function __construct(\Exception $ex)
+    public function getMarkup(MarkupContainer $container, Component $child)
     {
-        $this->add(new Label('title', new BasicModel(get_class($ex))));
-        $this->add(new Label('message', new BasicModel($ex->getMessage())));
+        $markup = $container->getMarkup();
         
-        $out = '';
-        foreach($ex->getTrace() as $entry)
+        if($markup==null)
         {
-            $out .= "at $entry[class] $entry[function]() $entry[file] on line $entry[line] <br />";
+            throw new \MarkupNotFoundException(sprintf("Markup for %s could not be found.", $child->getId()));
         }
         
-        $this->add(new Label('stack', new BasicModel($out)));
+        if($child==null)
+        {
+            return $markup;
+        }
+        return MarkupUtils::findComponentTag($markup, $child->getId());
     }
 }
 
