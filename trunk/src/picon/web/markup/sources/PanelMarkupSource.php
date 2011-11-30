@@ -23,24 +23,23 @@
 namespace picon;
 
 /**
- * Generic page for showing an exception
- * @todo use list view for the trace (create list view!)
+ * Description of PanelMarkupSource
+ * 
  * @author Martin Cassidy
  */
-class ErrorPage extends WebPage
+class PanelMarkupSource extends AbstractAssociatedMarkupSource
 {
-    public function __construct(\Exception $ex)
+    public function onComponentTagBody(Component $component, ComponentTag &$tag)
     {
-        $this->add(new Label('title', new BasicModel(get_class($ex))));
-        $this->add(new Label('message', new BasicModel($ex->getMessage())));
+        $panelMarkup = $component->loadAssociatedMarkup();
+        $panel = MarkupUtils::findPiconTag('panel', $panelMarkup);
         
-        $out = '';
-        foreach($ex->getTrace() as $entry)
+        if($panel==null)
         {
-            $out .= "at $entry[class] $entry[function]() $entry[file] on line $entry[line] <br />";
+            throw new \MarkupNotFoundException(sprintf("Found markup for panel %s however there is no picon:panel tag.", $component->getId(0)));
         }
         
-        $this->add(new Label('stack', new BasicModel($out)));
+        $tag->setChildren(array($panel));
     }
 }
 

@@ -147,6 +147,12 @@ class XMLTag extends ComonDomainBase
     {
         $this->attributes[$name] = $value;
     }
+    
+    public function setChildren($children)
+    {
+        Args::isArray($children);
+        $this->children = $children;
+    }
 }
 
 ?>

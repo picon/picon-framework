@@ -29,7 +29,6 @@ namespace picon;
  */
 class MarkupElement extends XMLTag
 {
-    
 }
 
 ?>

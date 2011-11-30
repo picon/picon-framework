@@ -23,25 +23,18 @@
 namespace picon;
 
 /**
- * Generic page for showing an exception
- * @todo use list view for the trace (create list view!)
+ * Description of AbstractLink
+ * 
  * @author Martin Cassidy
  */
-class ErrorPage extends WebPage
+abstract class AbstractLink extends MarkupContainer implements LinkListener
 {
-    public function __construct(\Exception $ex)
+    public function onEvent()
     {
-        $this->add(new Label('title', new BasicModel(get_class($ex))));
-        $this->add(new Label('message', new BasicModel($ex->getMessage())));
-        
-        $out = '';
-        foreach($ex->getTrace() as $entry)
-        {
-            $out .= "at $entry[class] $entry[function]() $entry[file] on line $entry[line] <br />";
-        }
-        
-        $this->add(new Label('stack', new BasicModel($out)));
+        $this->onLinkClicked();
     }
+    
+    protected abstract function onLinkClicked();
 }
 
 ?>

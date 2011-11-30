@@ -6,11 +6,8 @@
  * @author Martin Cassidy
  * @Path(path = 'home1')
  */
-class Page2 extends picon\WebPage
+class Page2 extends AbstractPage
 {
-    public function __construct()
-    {
-    }
 }
 
 ?>

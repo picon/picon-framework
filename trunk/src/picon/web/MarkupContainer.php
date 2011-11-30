@@ -32,11 +32,6 @@ class MarkupContainer extends Component
 {
     private $children = array();
     
-    /**
-     * @var boolean true if this component is in the hierarchy
-     */
-    private $added = false;
-    
     public function add(&$object)
     {
         if($object instanceof Component)
@@ -76,6 +71,17 @@ class MarkupContainer extends Component
         $this->onComponentAdded($component);
     }
     
+    public function internalInitialize()
+    {
+        parent::internalInitialize();
+        $callback = function(&$component)
+        {
+            $component->internalInitialize();
+            return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+        };
+        $this->visitChildren(self::getIdentifier(), $callback);
+    }
+    
     protected function onComponentAdded(&$component)
     {
         $page = $this->getPage();
@@ -94,23 +100,36 @@ class MarkupContainer extends Component
         return $this->children;
     }
     
+    /**
+     *
+     * @param ComponentTag $tag 
+     */
+    protected function onComponentTagBody(ComponentTag $tag)
+    {
+        parent::onComponentTagBody($tag);
+        if($tag->hasChildren())
+        {
+            $this->renderAll($tag->getChildren());
+        }
+    }
+    
     public function get($id)
     {
         if(empty($id))
         {
             return $this;
         }
-        if(substr($id, strlen($id)-1, strlen($id))!=".")
+        if(substr($id, strlen($id)-1, strlen($id))!=self::PATH_SEPERATOR)
         {
-            $id = $id.'.';
+            $id = $id.self::PATH_SEPERATOR;
         }
-        $nodes = explode('.', $id);
+        $nodes = explode(self::PATH_SEPERATOR, $id);
         $child = $nodes[0];
         
         if($this->childExists($child))
         {
             $childComponent = $this->children[$child];
-            return $childComponent->get(str_replace($child.'.', '', $id));
+            return $childComponent->get(str_replace($child.self::PATH_SEPERATOR, '', $id));
         }
         return null;
     }
@@ -163,17 +182,23 @@ class MarkupContainer extends Component
      * @todo the functionality of this method should be extracted into
      * a helper class as it needs extending to load from parent folders
      */
-    protected function loadAssociatedMarkup()
+    public function loadAssociatedMarkup()
     {
-        $reflection = new \ReflectionClass($this);
-        $fileInfo = new \SplFileInfo($reflection->getFileName());
-        $parser = new MarkupParser();
-        return $parser->parse($fileInfo->getPath()."\\".$reflection->getShortName().'.html');
+        return MarkupLoader::get()->loadMarkup($this);
     }
     
     protected function onRender()
     {
         $this->internalRenderComponent();
+    }
+    
+    /**
+     * Locates the ComponentTag for a particular Component
+     * @param Component The child component to find the ComponentTag for
+     */
+    protected function getMarkupForChild(Component $child)
+    {
+        return $this->getMarkUpSource()->getMarkup($this, $child);
     }
 }
 

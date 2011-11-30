@@ -23,24 +23,17 @@
 namespace picon;
 
 /**
- * Generic page for showing an exception
- * @todo use list view for the trace (create list view!)
+ * Description of AbstractAssociatedMarkupSource
+ * 
  * @author Martin Cassidy
  */
-class ErrorPage extends WebPage
+abstract class AbstractAssociatedMarkupSource extends AbstractMarkupSource
 {
-    public function __construct(\Exception $ex)
+    public function getMarkup(MarkupContainer $container, Component $child)
     {
-        $this->add(new Label('title', new BasicModel(get_class($ex))));
-        $this->add(new Label('message', new BasicModel($ex->getMessage())));
+        $markup = $container->loadAssociatedMarkup();
         
-        $out = '';
-        foreach($ex->getTrace() as $entry)
-        {
-            $out .= "at $entry[class] $entry[function]() $entry[file] on line $entry[line] <br />";
-        }
-        
-        $this->add(new Label('stack', new BasicModel($out)));
+        return MarkupUtils::findComponentTag($markup, $child->getId());
     }
 }
 

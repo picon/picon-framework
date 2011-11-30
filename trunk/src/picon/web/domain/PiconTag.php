@@ -27,7 +27,7 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class PiconTag extends ComponentTag
+class PiconTag extends MarkupElement
 {
     
 }

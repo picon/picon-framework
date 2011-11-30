@@ -103,6 +103,14 @@ class Args
             self::checkInstance($object, $expected);
         }
     }
+    
+    public static function isArray($object)
+    {
+        if(!is_array($object))
+        {
+            throw new \InvalidArgumentException("Expected array");
+        }
+    }
 }
 
 ?>
