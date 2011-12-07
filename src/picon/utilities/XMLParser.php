@@ -37,6 +37,7 @@ class XMLParser
     private $stack = array();
     private $depth = 0;
     private $tags = array();
+    protected $xmlFile;
     
     /**
      * Create a new XMLParser
@@ -59,6 +60,7 @@ class XMLParser
      */
     public function parse($xmlFile)
     {
+        $this->xmlFile = $xmlFile;
         if (!($fp = @fopen($xmlFile, "r")))
         {
             throw new \FileException("Could not open XML input");
@@ -106,7 +108,7 @@ class XMLParser
     
     protected function onXmlError($errorCode, $errorMessage)
     {
-        throw new \XMLException(sprintf("XML error: %s at line %d", $errorCode,$errorMessage));
+        throw new \XMLException(sprintf("XML error: %s at line %d of file %s", $errorCode,$errorMessage, $this->xmlFile));
     }
     
     /**

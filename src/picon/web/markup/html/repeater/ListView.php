@@ -23,24 +23,30 @@
 namespace picon;
 
 /**
- * Generic page for showing an exception
+ * Description of ListView
+ * 
  * @author Martin Cassidy
  */
-class ErrorPage extends WebPage
+class ListView extends AbstractRepeater
 {
-    public function __construct(\Exception $ex)
+    private $callback;
+    
+    public function __construct($id, ArrayModel $model, $callback)
     {
-        $this->add(new Label('title', new BasicModel(get_class($ex))));
-        $this->add(new Label('message', new BasicModel($ex->getMessage())));
-        
-        $this->add(new ListView('stack', new ArrayModel($ex->getTrace()), function(MarkupContainer $entry)
+        parent::__construct($id, $model);
+        Args::callBack($callback);
+        $reflection = new \ReflectionFunction($callback);
+        if($reflection->getNumberOfParameters()!=1)
         {
-            $object = $entry->getModel()->getModelObject();
-            $entry->add(new Label('class', new BasicModel($object['class'])));
-            $entry->add(new Label('function', new BasicModel($object['function'])));
-            $entry->add(new Label('file', new BasicModel($object['file'])));
-            $entry->add(new Label('line', new BasicModel($object['line'])));
-        }));
+            throw new \InvalidArgumentException("Callback must have 1 argument");
+        }
+        $this->callback = $callback;
+    }
+    
+    public function renderIteration($entry)
+    {
+        $reflection = new \ReflectionFunction($this->callback);
+        $reflection->invoke($entry);
     }
 }
 
