@@ -20,12 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+use \picon\WebPage;
+
 /**
  * Description of AbstractPage
  * 
  * @author Martin Cassidy
  */
-class AbstractPage extends \picon\WebPage
+class AbstractPage extends WebPage
 {
     
 }

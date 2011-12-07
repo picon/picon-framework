@@ -58,7 +58,7 @@ class MarkupParser extends XMLParser
     
     protected function onXmlError($errorCode, $errorMessage)
     {
-        throw new \InvalidMarkupException(sprintf("XML error: %s at line %d", $errorCode,$errorMessage));
+        throw new \InvalidMarkupException(sprintf("XML error: %s at line %d of file %s", $errorCode,$errorMessage, $this->xmlFile));
     }
     
     protected function onCharacterData($data, $element)

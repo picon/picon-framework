@@ -291,11 +291,6 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
             throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
         }
         
-        if(!($markup instanceof ComponentTag) || $markup->getComponentTagId()!=$this->id)
-        {
-            throw new \MarkupNotFoundException(sprintf("The correct markup for component %s was not found.", $this->id));
-        }
-        
         $this->onComponentTag($markup);
         $this->renderElementStart($markup);
         $this->onComponentTagBody($markup);
@@ -657,6 +652,15 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
     public function getParent()
     {
         return $this->parent;
+    }
+    
+    public function getModelObject()
+    {
+        if($this->model!=null)
+        {
+            return $this->model->getModelObject();
+        }
+        return null;
     }
 }
 

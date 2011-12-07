@@ -20,6 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+use \picon\Label, \picon\BasicModel;
+
 /**
  * Description of ExamplePanel
  * 
@@ -30,7 +32,7 @@ class ExamplePanel extends AbstractExamplePanel
     public function __construct($id)
     {
         parent::__construct($id);
-        $this->add(new \picon\Label('text', new \picon\BasicModel('Some text')));
+        $this->add(new Label('text', new BasicModel('Some text')));
     }
 }
 

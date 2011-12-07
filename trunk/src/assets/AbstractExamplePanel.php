@@ -20,12 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+use \picon\Panel;
+
 /**
  * Description of AbstractExamplePanel
  * 
  * @author Martin Cassidy
  */
-class AbstractExamplePanel extends \picon\Panel
+class AbstractExamplePanel extends Panel
 {
     
 }

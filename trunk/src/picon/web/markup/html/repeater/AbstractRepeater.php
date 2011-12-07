@@ -23,24 +23,34 @@
 namespace picon;
 
 /**
- * Generic page for showing an exception
+ * Description of AbstractRepeater
+ * 
  * @author Martin Cassidy
  */
-class ErrorPage extends WebPage
+abstract class AbstractRepeater extends MarkupContainer
 {
-    public function __construct(\Exception $ex)
+    public function __construct($id, ArrayModel $model)
     {
-        $this->add(new Label('title', new BasicModel(get_class($ex))));
-        $this->add(new Label('message', new BasicModel($ex->getMessage())));
-        
-        $this->add(new ListView('stack', new ArrayModel($ex->getTrace()), function(MarkupContainer $entry)
+        parent::__construct($id, $model);
+    }
+    
+    protected function onRender()
+    {
+        foreach($this->getModel()->getModelObject() as $index => $object)
         {
-            $object = $entry->getModel()->getModelObject();
-            $entry->add(new Label('class', new BasicModel($object['class'])));
-            $entry->add(new Label('function', new BasicModel($object['function'])));
-            $entry->add(new Label('file', new BasicModel($object['file'])));
-            $entry->add(new Label('line', new BasicModel($object['line'])));
-        }));
+            $model = $this->getModel()->getModelObject();
+            $entry = new ListItem($this->getId().$index, new BasicModel($model[$index]));
+            $this->add($entry);
+            $this->renderIteration($entry);
+            $entry->render();
+        }
+    }
+    
+    abstract function renderIteration($entry);
+    
+    protected function getMarkupForChild(Component $child)
+    {
+        return $this->getMarkup();
     }
 }
 

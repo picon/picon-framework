@@ -23,24 +23,23 @@
 namespace picon;
 
 /**
- * Generic page for showing an exception
+ * Description of ArrayModel
+ * 
  * @author Martin Cassidy
  */
-class ErrorPage extends WebPage
+class ArrayModel implements Model
 {
-    public function __construct(\Exception $ex)
+    private $object;
+    
+    public function __construct($object)
     {
-        $this->add(new Label('title', new BasicModel(get_class($ex))));
-        $this->add(new Label('message', new BasicModel($ex->getMessage())));
-        
-        $this->add(new ListView('stack', new ArrayModel($ex->getTrace()), function(MarkupContainer $entry)
-        {
-            $object = $entry->getModel()->getModelObject();
-            $entry->add(new Label('class', new BasicModel($object['class'])));
-            $entry->add(new Label('function', new BasicModel($object['function'])));
-            $entry->add(new Label('file', new BasicModel($object['file'])));
-            $entry->add(new Label('line', new BasicModel($object['line'])));
-        }));
+        Args::isArray($object);
+        $this->object = $object;
+    }
+    
+    public function getModelObject()
+    {
+        return $this->object;
     }
 }
 
