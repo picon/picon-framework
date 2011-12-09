@@ -23,7 +23,7 @@
 namespace picon;
 
 /**
- * Description of ListenerRequestResolver
+ * Request target that matches requests that need to invoke a listener
  * 
  * @author Martin Cassidy
  */
@@ -31,12 +31,44 @@ class ListenerRequestResolver implements RequestResolver
 {
     public function matches(Request $request)
     {
-        return false;
+        return array_key_exists('listener', $_GET);
     }
     
     public function resolve(Request $request)
     {
-        throw new \NotImplementedException();
+        if(array_key_exists('pageid', $_GET))
+        {
+            $page = PageMap::getPageById($_GET['pageid']);
+            if($page!=null)
+            {
+                return new ListenerRequestTarget($page, $_GET['listener']);
+            }
+        }
+        else
+        {
+            return new ListenerRequestTarget($this->getPageClassForPath($request), $_GET['listener']);
+        }
+        
+    }
+    
+    /**
+     * @param Request $request
+     * @todo alter expression to handle page params
+     * @todo this is duplicated from PageRequestTarget, needs refactoring
+     * @return type 
+     */
+    private function getPageClassForPath(Request $request)
+    {
+        $mapEntry = PageMap::getPageMap();
+        
+        foreach($mapEntry as $path => $pageClass)
+        {
+            if(preg_match("/^".$this->prepare($request->getRootPath())."\/".$path."{1}([?|&]{1}\\S+={1}\\S+)*$/", $request->getPath()))
+            {
+                return $pageClass::getIdentifier();
+            }
+        }
+        return false;
     }
     
     public function generateUrl(RequestTarget $target)
@@ -47,6 +79,11 @@ class ListenerRequestResolver implements RequestResolver
     public function handles(RequestTarget $target)
     {
         return false;
+    }
+    
+    private function prepare($value)
+    {
+        return str_replace('/', "\\/", $value);
     }
 }
 

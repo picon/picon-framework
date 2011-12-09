@@ -20,21 +20,34 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of TestRequest
+ * Description of TabCollection
  * 
  * @author Martin Cassidy
  */
-class TestRequest extends \picon\Request
+class TabCollection extends ComonDomainBase
 {
-    public function getRootPath()
+    private $tabs = array();
+    
+    public function __construct($tabs = array())
     {
-        return "/picon";
+        $this->tabs = $tabs;
     }
     
-    public function getPath()
+    public function addTab($tab, $newMethod = null)
     {
-        return "/picon/";
+        if($tab instanceof Tab)
+        {
+            array_push($this->tabs, $tab);
+        }
+        else
+        {
+            Args::isString($tab);
+            Args::callBack($newMethod);
+            array_push($this->tabs, new Tab($tab, $newMethod));
+        }
     }
 }
 

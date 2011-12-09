@@ -95,6 +95,7 @@ class PiconApplication
         $this->addContextLoaderListener(new ApplicationContextLoadListener(function($createdContext) use (&$context)  
         {
             $context = $createdContext;
+            session_start();
         }));
         
         $this->componentInstantiationListeners = new ComponentInstantiationListenerCollection();

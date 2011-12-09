@@ -42,6 +42,8 @@ namespace picon;
 class PageMap
 {
     private $pages;
+    private $pageId = 1;
+    private $pageInstances;
     private static $self;
 
     /**
@@ -109,6 +111,20 @@ class PageMap
     {
         return self::get()->pages;
     }
+    
+    public static function getNextPageId()
+    {
+        self::get()->pageId++;
+        return self::get()->pageId;
+    }
+    
+    /**
+     * @todo validate id
+     */
+    public static function getPageById($id)
+    {
+        return self::get()->pageInstances[$id];
+    }
 
     public static function get()
     {
@@ -116,7 +132,7 @@ class PageMap
         {
             if (isset($_SESSION['page_map']))
             {
-                self::$self = $_SESSION['page_map'];
+                self::$self = unserialize($_SESSION['page_map']); 
             }
             else
             {
@@ -124,6 +140,17 @@ class PageMap
             }
         }
         return self::$self;
+    }
+    
+    public function addOrUpdate(WebPage &$page)
+    {
+        $instances = &$this->pageInstances;
+        $instances[$page->getId()] = $page;
+    }
+    
+    public function __destruct()
+    {
+        $_SESSION['page_map'] = serialize($this);
     }
 }
 

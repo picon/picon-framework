@@ -29,7 +29,50 @@ namespace picon;
  */
 class ListenerRequestTarget implements RequestTarget
 {
-    //put your code here
+    private $componentPath;
+    private $page;
+    
+    /**
+     *
+     * @param string $page The name of the page 
+     * @param type $componentPath The path to the listener component
+     */
+    public function __construct($page, $componentPath)
+    {
+        $this->page = $page;
+        $this->componentPath = $componentPath;
+    }
+    
+    public function respond()
+    {
+        if($this->page instanceof Identifier)
+        {
+            $fullClassName = $this->page->getFullyQualifiedName();
+            $page = new $fullClassName();
+            $page->internalInitialize();
+        }
+        else
+        {
+            $page = $this->page;
+        }
+        $listener = $page->get($this->componentPath);
+        if($listener==null)
+        {
+            throw new \RuntimeException(sprintf("Listener component %s was not found", $this->componentPath));
+        }
+        $GLOBALS['requestCycle']->addTarget(new PageInstanceRequestTarget($page));
+        $listener->onEvent();
+    }
+    
+    public function getComponentPath()
+    {
+        return $this->componentPath;
+    }
+
+    public function getPage()
+    {
+        return $this->page;
+    }
 }
 
 ?>

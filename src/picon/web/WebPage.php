@@ -32,7 +32,7 @@ class WebPage extends MarkupContainer implements RequestablePage
 {
     public function __construct()
     {
-        parent::__construct(null);
+        parent::__construct(PageMap::getNextPageId());
     }
     
     protected function onRender()
@@ -47,7 +47,27 @@ class WebPage extends MarkupContainer implements RequestablePage
     
     public function isPageStateless()
     {
-        $stateless = true;
+        $stateless = $this->isStateless();
+        
+        if(!$stateless)
+        {
+            return $stateless;
+        }
+        
+        $reflection = new \ReflectionClass($this);
+        $constructor = $reflection->getConstructor();
+        $params = $constructor->getParameters();
+        
+        //@todo also add page params to this when in place
+        if(count($params)==0)
+        {
+            $stateless = true;
+        }
+        if(!$stateless)
+        {
+            return $stateless;
+        }
+        
         $callback = function($component) use (&$stateless)
         {
             if(!$component->isStateless())
@@ -59,6 +79,16 @@ class WebPage extends MarkupContainer implements RequestablePage
         };
         $this->visitChildren(Component::getIdentifier(), $callback);
         return $stateless;
+    }
+    
+    public function afterRender()
+    {
+        parent::afterRender();
+        
+        if(!$this->isPageStateless())
+        {
+            PageMap::get()->addOrUpdate($this);
+        }
     }
 }
 

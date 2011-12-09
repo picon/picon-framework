@@ -20,21 +20,28 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of TestRequest
+ * Description of Form
  * 
  * @author Martin Cassidy
  */
-class TestRequest extends \picon\Request
+class Form extends MarkupContainer implements Listener
 {
-    public function getRootPath()
+    protected function onComponentTag(ComponentTag $tag)
     {
-        return "/picon";
+        parent::onComponentTag($tag);
+        $tag->put('action', $this->urlForListener($this));
     }
     
-    public function getPath()
+    /**
+     * @todo get this to find the submitting component and invoke its
+     * onEvent too
+     */
+    public function onEvent()
     {
-        return "/picon/";
+        echo 'form has been submited';
     }
 }
 

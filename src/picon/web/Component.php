@@ -108,7 +108,7 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
     protected final function fireInitialize()
     {
         if($this->isInitialized())
-        {
+        { 
             return;
         }
         $this->initialized = true;
@@ -435,7 +435,7 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
      */
     protected function checkComponentTag(ComponentTag $tag, $tagName)
     {
-        return $tag->getName()==$tagname;
+        return $tag->getName()==$tagName;
     }
     
     /**
@@ -554,10 +554,60 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
     }
     
     /**
-     * @todo take in a paramter to actually process listener requests
-     * This method is very bespoke without it.
+     * Generate a URL for a particular action:
+     * 
+     * WebPage Identifier - Generates a URL for the web page
+     * WebPage Instance - Generate a URL for the page instance
+     * 
+     * @param mixed $for
+     * @return type 
      */
-    public function generateUrlFor()
+    public function generateUrlFor($for)
+    {
+        if($for instanceof Listener)
+        {
+            return $this->urlForListener($for);
+        }
+        else if($for instanceof Identifier)
+        {
+            return $this->urlForPage($page);
+        }
+        else if($for instanceof WebPage)
+        {
+            return $this->urlForPageInstance($for);
+        }
+        else
+        {
+            throw new \InvalidArgumentException(sprintf("generateUrlFor expected argment of type Identifier or Listener or WebPage, actual %s", get_class($for)));
+        }
+    }
+    
+    /**
+     * @todo this should use a request target
+     * @param Identifier $page
+     * @return type 
+     */
+    public function urlForPage(Identifier $page)
+    {
+        if(is_subclass_of($page->getFullyQualifiedName(), WebPage::getIdentifier()->getFullyQualifiedName()))
+        {
+            return $this->getRequest()->getRootPath().$page->getFullyQualifiedName();
+        }
+        throw new \InvalidArgumentException(sprintf("Expected identifier of a web page, actual %s", $page->getFullyQualifiedName()));
+    }
+    
+    
+    public function urlForPageInstance(WebPage $pageInstance)
+    {
+        
+    }
+    
+    /**
+     * @todo this should use a request target
+     * @param Identifier $page
+     * @return type 
+     */
+    public function urlForListener(Listener $listener)
     {
         $target;
         $page = $this->getPage();
@@ -567,7 +617,7 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
         }
         else
         {
-            $target = new ListenerRequestTarget();
+            $target = new ListenerRequestTarget($this->getPage(), $this->getComponentPath());
         }
         return $this->getRequestCycle()->generateUrl($target);
     }
@@ -661,6 +711,18 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
             return $this->model->getModelObject();
         }
         return null;
+    }
+    
+    public function __sleep()
+    {
+        $props = $this->getProperties();
+        $key = array_search('parent', $props);
+        if($key!=false)
+        {
+            unset($props[$key]);
+        }
+        
+        return $props;
     }
 }
 

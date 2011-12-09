@@ -20,21 +20,27 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of TestRequest
+ * Description of PageInstanceRequestTarget
  * 
  * @author Martin Cassidy
  */
-class TestRequest extends \picon\Request
+class PageInstanceRequestTarget implements RequestTarget
 {
-    public function getRootPath()
+    private $page;
+    
+    public function __construct(WebPage $page)
     {
-        return "/picon";
+        $this->page = $page;
     }
     
-    public function getPath()
+    
+    public function respond()
     {
-        return "/picon/";
+        ob_clean();
+        $this->page->renderPage();
     }
 }
 

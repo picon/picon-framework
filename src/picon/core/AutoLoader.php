@@ -118,7 +118,7 @@ class AutoLoader
         while ((false !== ($entry = $d->read()))&&!$success)
         {
             if($entry==$className.'.php')
-            { 
+            {
                 require_once($directory."\\".$entry);
                 $success = true;
             }

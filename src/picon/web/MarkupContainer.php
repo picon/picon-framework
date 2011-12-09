@@ -48,6 +48,24 @@ class MarkupContainer extends Component
         }
     }
     
+    public function addOrReplace(Component &$component)
+    {
+        if($component->added)
+        {
+            throw new \RuntimeException(sprintf("Component %s has been added already.", $component->getId()));
+        }
+        if($this->childExists($component->getId()))
+        {
+            $old = &$this->children;
+            $old[$component->getId()] = $component;
+            $this->onComponentAdded($component);
+        }
+        else
+        {
+            $this->addComponent($component);
+        }
+    }
+    
     protected final function addComponent(Component &$component)
     {
         if($this->childExists($component->getId()))
@@ -67,7 +85,6 @@ class MarkupContainer extends Component
         
         $this->children[$component->getId()] = $component;
         
-        $component->setParent($this);
         $this->onComponentAdded($component);
     }
     
@@ -79,11 +96,12 @@ class MarkupContainer extends Component
             $component->internalInitialize();
             return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
         };
-        $this->visitChildren(self::getIdentifier(), $callback);
+        $this->visitChildren(Component::getIdentifier(), $callback);
     }
     
     protected function onComponentAdded(&$component)
     {
+        $component->setParent($this);
         $page = $this->getPage();
         
         if($page!=null)
@@ -199,6 +217,14 @@ class MarkupContainer extends Component
     protected function getMarkupForChild(Component $child)
     {
         return $this->getMarkUpSource()->getMarkup($this, $child);
+    }
+    
+    public function __wakeup()
+    {
+        foreach($this->children as $child)
+        {
+            $child->setParent($this);
+        }
     }
 }
 

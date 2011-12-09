@@ -111,6 +111,14 @@ class Args
             throw new \InvalidArgumentException("Expected array");
         }
     }
+    
+    public static function isString($object)
+    {
+        if(!is_string($object))
+        {
+            throw new \InvalidArgumentException("Expected string");
+        }
+    }
 }
 
 ?>
