@@ -23,30 +23,44 @@
 namespace picon;
 
 /**
- * Description of Link
+ * Description of Button
  * 
  * @author Martin Cassidy
  */
-class Link extends AbstractLink
+class Button extends MarkupContainer implements Listener
 {
     private $callback;
     
     public function __construct($id, $callback)
     {
         parent::__construct($id);
-        $this->callback = $callback;
+        Args::callBack($callback);
+        //$this->callback = $callback;
+    }
+    
+    public function isStateless()
+    {
+        return false;
+    }
+    
+    public function onEvent()
+    {
+        $reflection = new \ReflectionFunction($this->callback);
+        $reflection->invoke();
     }
     
     protected function onComponentTag(ComponentTag $tag)
     {
+        if((!$this->checkComponentTag($tag, 'input') ||
+            (!$this->checkComponentTagAttribute($tag, 'type', 'button') &&
+            !$this->checkComponentTagAttribute($tag, 'type', 'submit') &&
+            !$this->checkComponentTagAttribute($tag, 'type', 'reset'))) &&
+            !$this->checkComponentTag($tag, 'button')
+            )
+        {
+            throw new \RuntimeException('A button can only be added to a input type = button | submit | reset or button');
+        }
         parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
-    }
-    
-    protected function onLinkClicked()
-    {
-        $callback = new \ReflectionFunction($this->callback);
-        $callback->invoke();
     }
 }
 

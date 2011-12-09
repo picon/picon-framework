@@ -20,22 +20,16 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of TestRequest
+ * Description of FormComponent
  * 
  * @author Martin Cassidy
  */
-class TestRequest extends \picon\Request
+class FormComponent
 {
-    public function getRootPath()
-    {
-        return "/picon";
-    }
     
-    public function getPath()
-    {
-        return "/picon/";
-    }
 }
 
 ?>

@@ -56,7 +56,7 @@ class Request
     public function getRootPath()
     {
         $root = preg_replace("/\/{1}\w*\.php$/", "", $_SERVER['PHP_SELF']);
-        return str_replace('/', '\\/', $root);
+        return $root;
     }
 }
 

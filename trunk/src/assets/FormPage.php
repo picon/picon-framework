@@ -20,21 +20,32 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+use picon\WebPage;
+use picon\Form;
+use picon\Button;
+
 /**
- * Description of TestRequest
+ * Description of FormPage
  * 
  * @author Martin Cassidy
  */
-class TestRequest extends \picon\Request
+class FormPage extends WebPage
 {
-    public function getRootPath()
+    public function __construct()
     {
-        return "/picon";
+        parent::__construct();
+        $form = new Form('form');
+        $this->add($form);
+        
+        $form->add(new Button('button', function()
+        {
+            echo 'button callback on a statefull page!!!!';
+        }));
     }
     
-    public function getPath()
+    public function isPageStateless()
     {
-        return "/picon/";
+        return false;
     }
 }
 

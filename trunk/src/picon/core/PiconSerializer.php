@@ -24,7 +24,8 @@ namespace picon;
 
 /**
  * Extends the standard PHP serialization functionality by permiting
- * serialisazation of closures and adds support for transient properties
+ * serialisazation of closures, adds support for transient properties and
+ * allows __sleep to return private properties from parent classes
  * 
  * Any class which requires complex serialization should extend this
  * 
@@ -35,50 +36,95 @@ namespace picon;
  * to ensure injected resources are not null as all injected resources
  * are transient.
  * 
+ * @todo Add support for recursion in objects. Currenrtly this will fall over
+ * as it does not properly support object references. Presently the sub class
+ * is required to implement __sleep and ensure any properties which will recur are not
+ * returned and and __wakeup to restore the value
+ * 
  * @author Martin Cassidy
  * @package core
  */
-class PiconSerializer
+class PiconSerializer implements \Serializable
 {
+    public function serialize()
+    {
+        $properties = array();
+        if(method_exists($this, '__sleep'))
+        {
+            $properties = $this->__sleep();
+        }
+        else
+        {
+            $properties = $this->getProperties();
+        }
+        Args::isArray($properties);
+        $reflection = new \ReflectionAnnotatedClass($this);
+        return serialize($this->gather($reflection, $properties));
+    }
+    
+    public function unserialize($serialized)
+    {
+        $properties = unserialize($serialized);
+        $reflection = new \ReflectionAnnotatedClass($this);
+        $this->distribute($reflection, $properties);
+        if($this instanceof InjectOnWakeup)
+        {
+            Injector::get()->inject($this);
+        }
+        
+        if(method_exists($this, '__wakeup'))
+        {
+            $properties = $this->__wakeup();
+        }
+    }
+    
     /**
      * Uses reflection to analyse the properties of the object and prevents
      * transient properties from being added to the array and deconstructs
      * closures into a SleepingClosure object which can be serialized
-     * @return array the names of the properties of this object to serialize
+     * @return array the properties to serialize, the name of the propety as the key with the value as the value
      */
-    public function __sleep()
+    private function gather(\ReflectionAnnotatedClass $reflection, $properties)
     {
         $serializable = array();
-        $reflection = new \ReflectionAnnotatedClass($this);
-        
         foreach($reflection->getProperties() as $property)
+        { 
+            if(in_array($property->getName(), $properties))
+            {
+                $property->setAccessible(true);
+                if($this->isTransient($property))
+                {
+                    //do nothing
+                }
+                elseif(is_callable($property->getValue($this)))
+                {
+                    $serializable[$property->getName()] = ClosureSerializationHelper::getSleepingClosure($property->getValue($this));
+                    $property->setValue($this, '');
+                }
+                else
+                {
+                    $serializable[$property->getName()] = $property->getValue($this);
+                }
+            }
+        }
+        
+        $parent = $reflection->getParentClass();
+        if($parent->getShortName()!='PiconSerializer')
         {
-            $property->setAccessible(true);
-            if($this->isTransient($property))
+            $parentValues = $this->gather($parent, $properties);
+            foreach($parentValues as $name => $value)
             {
-                //do nothing
-            }
-            elseif(is_callable($property->getValue($this)))
-            {
-                $property->setValue($this, ClosureSerializationHelper::getSleepingClosure($property->getValue($this)));
-                array_push($serializable, $property->getName());
-            }
-            else
-            {
-                array_push($serializable, $property->getName());
+                if(!array_key_exists($name, $serializable))
+                {
+                    $serializable[$name] = $value;
+                }
             }
         }
         return $serializable;
     }
     
-    /**
-     * Restores any transient properties to thier default value
-     * Reconstructs closures to their origional selves
-     * Re injects if needed (if implements InjectOnWakeup)
-     */
-    public function __wakeup()
+    private function distribute(\ReflectionAnnotatedClass $reflection, $properties)
     {
-        $reflection = new \ReflectionAnnotatedClass($this);
         $defaults = $reflection->getDefaultProperties();
         foreach($reflection->getProperties() as $property)
         {
@@ -87,21 +133,27 @@ class PiconSerializer
             {
                 $property->setValue($this, $defaults[$property->getName()]);
             }
-            elseif($property->getValue($this) instanceof SleepingClosure)
+            if(array_key_exists($property->getName(), $properties))
             {
-                $sleeping = $property->getValue($this);
-                extract($sleeping->getUsedVars());
-                eval(ClosureSerializationHelper::getReconstruction($sleeping));
-                $property->setValue($this, $closure);
-            }
-            else
-            {
-                //do nothing
+                $propertyValue = $properties[$property->getName()];
+
+                if($propertyValue instanceof SleepingClosure)
+                {
+                    extract($propertyValue->getUsedVars());
+                    eval(ClosureSerializationHelper::getReconstruction($propertyValue));
+                    $property->setValue($this, $closure);
+                }
+                else
+                {
+                    $property->setValue($this, $propertyValue);
+                }
             }
         }
-        if($this instanceof InjectOnWakeup)
+        
+        $parent = $reflection->getParentClass();
+        if($parent->getShortName()!='PiconSerializer')
         {
-            Injector::get()->inject($this);
+            $this->distribute($parent, $properties);
         }
     }
     
@@ -115,6 +167,27 @@ class PiconSerializer
             }
         }
         return false;
+    }
+    
+    protected function getProperties(\ReflectionAnnotatedClass $reflection = null)
+    {
+        if($reflection==null)
+        {
+            $reflection = new \ReflectionAnnotatedClass($this);
+        }
+        $properties = array();
+        foreach($reflection->getProperties() as $property)
+        {
+            array_push($properties, $property->getName());
+        }
+        
+        $parent = $reflection->getParentClass();
+        if($parent->getShortName()!='PiconSerializer')
+        {
+            $parentProperties = $this->getProperties($parent);
+            $properties = array_merge($parentProperties, array_diff($properties, $parentProperties));
+        }
+        return $properties;
     }
 }
 

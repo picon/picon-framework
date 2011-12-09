@@ -12,6 +12,7 @@ class HomePage extends AbstractPage
 {
     public function __construct()
     {
+        parent::__construct();
         $one = new MarkupContainer("one");
         $two = new MarkupContainer("two");
         $one->add($two);
@@ -21,6 +22,11 @@ class HomePage extends AbstractPage
         {
             $me->setPage(Page2::getIdentifier());
         }));
+        $two->add(new Link('formLink', function() use($me)
+        {
+            $me->setPage(FormPage::getIdentifier());
+        }));
+        
         
         $fruit = array('apples', 'pears', 'bananas', 'oranges');
         

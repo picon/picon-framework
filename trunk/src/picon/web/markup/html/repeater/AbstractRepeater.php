@@ -34,14 +34,23 @@ abstract class AbstractRepeater extends MarkupContainer
         parent::__construct($id, $model);
     }
     
+    protected function onInitialize()
+    {
+        parent::onInitialize();
+        foreach($this->getModel()->getModelObject() as $index => $object)
+        {
+            $model = $this->getModel()->getModelObject();
+            $entry = new ListItem($this->getId().$index, new BasicModel($model[$index]), $index);
+            $this->renderIteration($entry);
+            $this->addOrReplace($entry);
+        }
+    }
+    
     protected function onRender()
     {
         foreach($this->getModel()->getModelObject() as $index => $object)
         {
-            $model = $this->getModel()->getModelObject();
-            $entry = new ListItem($this->getId().$index, new BasicModel($model[$index]));
-            $this->add($entry);
-            $this->renderIteration($entry);
+            $entry = $this->get($this->getId().$index);
             $entry->render();
         }
     }

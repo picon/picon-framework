@@ -20,22 +20,16 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+use picon\Panel;
+
 /**
- * Description of TestRequest
+ * Description of SamplePanel2
  * 
  * @author Martin Cassidy
  */
-class TestRequest extends \picon\Request
+class SamplePanel2 extends Panel
 {
-    public function getRootPath()
-    {
-        return "/picon";
-    }
     
-    public function getPath()
-    {
-        return "/picon/";
-    }
 }
 
 ?>
