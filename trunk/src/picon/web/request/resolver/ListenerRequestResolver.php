@@ -38,7 +38,7 @@ class ListenerRequestResolver implements RequestResolver
     {
         if(array_key_exists('pageid', $_GET))
         {
-            $page = PageMap::getPageById($_GET['pageid']);
+            $page = PageMap::get()->getPageById($_GET['pageid']);
             if($page!=null)
             {
                 return new ListenerRequestTarget($page, $_GET['listener']);

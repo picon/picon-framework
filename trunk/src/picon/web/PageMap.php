@@ -44,6 +44,7 @@ class PageMap
     private $pages;
     private $pageId = 1;
     private $pageInstances;
+    private $deserialize = array();
     private static $self;
 
     /**
@@ -121,9 +122,15 @@ class PageMap
     /**
      * @todo validate id
      */
-    public static function getPageById($id)
+    public function getPageById($id)
     {
-        return self::get()->pageInstances[$id];
+        $page = &$this->pageInstances[$id];
+        if(!in_array($id, $this->deserialize))
+        {
+            array_push($this->deserialize, $id);
+            PiconSerializer::unserialize($page);
+        }
+        return $page;
     }
 
     public static function get()
@@ -132,7 +139,7 @@ class PageMap
         {
             if (isset($_SESSION['page_map']))
             {
-                self::$self = PiconSerializer::unserialize($_SESSION['page_map']); 
+                self::$self = $_SESSION['page_map']; 
             }
             else
             {
@@ -144,13 +151,26 @@ class PageMap
     
     public function addOrUpdate(WebPage &$page)
     {
+        if(!in_array($page->getId(), $this->deserialize))
+        {
+            array_push($this->deserialize, $page->getId());
+        }
         $instances = &$this->pageInstances;
         $instances[$page->getId()] = $page;
     }
     
     public function __destruct()
     {
-        $_SESSION['page_map'] = PiconSerializer::serialize($this);
+        foreach($this->deserialize as $pageid)
+        {
+             PiconSerializer::serialize($this->pageInstances[$pageid]);
+        }
+        $_SESSION['page_map'] = $this;
+    }
+    
+    public function __wakeup()
+    {
+        $this->deserialize = array();
     }
 }
 
