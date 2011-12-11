@@ -34,7 +34,7 @@ class MarkupUtils
         
     }
     
-    public static function findComponentTag($markup, $componentTagId)
+    public static function findComponentTag($markup, $componentTagId, Component $component)
     {
         if(is_array($markup))
         {
@@ -42,7 +42,7 @@ class MarkupUtils
             foreach($markup as $element)
             {
                 self::validateElement($element);
-                $componentTag = self::internalFindComponentTag($element, $componentTagId);
+                $componentTag = self::internalFindComponentTag($element, $componentTagId, $component);
                 if($componentTag!=null)
                 {
                     break;
@@ -53,19 +53,19 @@ class MarkupUtils
         else
         {
             self::validateElement($markup);
-            return self::internalFindComponentTag($markup, $componentTagId);
+            return self::findComponentTag($markup->getChildren(), $componentTagId, $component);
         }
     }
     
     private static function validateElement($element)
     {
-        if(!($element instanceof MarkupElement))
+        if(!($element instanceof XmlElement))
         {
-            throw new \InvalidArgumentException(sprintf("Expected MarkupElement %s given.", gettype($element)));
+            throw new \InvalidArgumentException(sprintf("Expected XmlElement %s given.", gettype($element)));
         }
     }
     
-    private static function internalFindComponentTag(MarkupElement $markup, $componentTagId)
+    private static function internalFindComponentTag(XmlElement $markup, $componentTagId, Component $component)
     {
         if($markup instanceof ComponentTag && $markup->getComponentTagId()==$componentTagId)
         {
@@ -73,15 +73,18 @@ class MarkupUtils
         }
         else
         {
-            if($markup->hasChildren())
+            if(($markup instanceof MarkupElement) && $markup->hasChildren() && (!($markup instanceof ComponentTag) || $component->getId()==$markup->getComponentTagId()))
             {
                 $componentTag = null;
                 foreach($markup->getChildren() as $element)
                 {
-                    $componentTag = self::internalFindComponentTag($element, $componentTagId);
-                    if($componentTag!=null)
+                    if($element instanceof MarkupElement)
                     {
-                        return $componentTag;
+                        $componentTag = self::internalFindComponentTag($element, $componentTagId, $component);
+                        if($componentTag!=null)
+                        {
+                            return $componentTag;
+                        }
                     }
                 }
             }
@@ -125,10 +128,13 @@ class MarkupUtils
                 $piconTag = null;
                 foreach($markup->getChildren() as $element)
                 {
-                    $piconTag = self::internalFindPiconTag($element, $type);
-                    if($piconTag!=null)
+                    if($element instanceof MarkupElement)
                     {
-                        return $piconTag;
+                        $piconTag = self::internalFindPiconTag($element, $type);
+                        if($piconTag!=null)
+                        {
+                            return $piconTag;
+                        }
                     }
                 }
             }

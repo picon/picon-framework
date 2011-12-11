@@ -22,6 +22,7 @@
 
 namespace picon;
 require_once("AutoLoader.php");
+require_once('ErrorHandler.php');
 
 /**
  * ApplicationInitialiser works like a bootstrap. This is the first step
@@ -38,11 +39,12 @@ require_once("AutoLoader.php");
 class ApplicationInitializer
 {
     private $autoLoader;
+    private $errorHandler;
     
     public function __construct()
     {
         $this->autoLoader = new AutoLoader();
-        //@todo register error handlers
+        $this->errorHandler = new ErrorHandler;
     }
     
     /**

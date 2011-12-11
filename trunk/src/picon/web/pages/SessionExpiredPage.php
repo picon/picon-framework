@@ -20,16 +20,26 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+use picon\WebPage;
+use picon\Link;
+use picon\Identifier;
 
 /**
  * Description of SessionExpiredPage
  * 
  * @author Martin Cassidy
  */
-class SessionExpiredPage
+class SessionExpiredPage extends WebPage
 {
-    
+    public function __construct()
+    {
+        parent::__construct();
+        $me = $this;
+        $this->add(new Link('home', function() use($me)
+        {
+            $this->setPage(Identifier::forName($me->getApplication()->getHomePage()));
+        }));
+    }
 }
 
 ?>

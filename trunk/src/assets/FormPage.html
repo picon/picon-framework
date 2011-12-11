@@ -1,13 +1,101 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-        <html>
-            <head>
-                <title></title>
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-            </head>
-            <body>
-                <form picon:id="form" method="post">
-                    
-                    <input type="submit" picon:id="button" />
-                </form>
-            </body>
-        </html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:picon="http://picon.webquub.com/dtds/picon-xhtml.dtd"  
+      xml:lang="en"  
+      lang="en"> 
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style>
+            th { text-align:left;}
+            th, td {border-style: solid; border-width: 0 0 1px 0;}
+        </style>
+    </head>
+    <body>
+        <form picon:id="form">
+            <table>
+                <tr>
+                    <th style="width:250px;">
+                        A text field
+                    </th>
+                    <td>
+                        <input type="text" picon:id="textBox" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        A text area
+                    </th>
+                    <td>
+                        <textarea picon:id="textArea" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        A drop down, the options are set as an array
+                    </th>
+                    <td>
+                        <select picon:id="select"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        A radio group, radios are added to the group manually
+                    </th>
+                    <td>
+                        <div picon:id="rgroup">
+                            <input type="radio" picon:id="gradio1" />Option 1
+                            <input type="radio" picon:id="gradio2" />Option 2
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                     An independent check box, the model object must be a boolean
+                    </th>
+                    <td>
+                        <input type="checkbox" picon:id="icheck" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                           A check box group, check boxes are added manually
+                    </th>
+                    <td>
+
+                <div picon:id="cgroup">
+                    <input type="checkbox" picon:id="check1" />
+                    <input type="checkbox" picon:id="check2" />
+                </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>A check choice, the check boxes and labels are created automatically from an array</th>
+                    <td>
+                        <div picon:id="cchoice" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>A radio choice, the radios and labels are added automatically from an array</th>
+                    <td><div picon:id="rchoice" /></td>
+                </tr>
+            </table>
+            <p>
+                <input type="submit" picon:id="button" value="Submit"/><br />
+            </p>
+        </form>
+        <div>
+            <h3>The following represents the current state of the model</h3>
+            The model is updated automatically when a form is processed and the form
+            components within it are validated successfully.<br />
+            Text Box: <span picon:id="textBox"></span><br />
+            Text Area: <span picon:id="textArea"></span><br />
+            Drop Down: <span picon:id="select"></span><br />
+            Radio: <span picon:id="rgroup"></span><br />
+            Individual check box: <span picon:id="icheck"></span><br />
+            Check Group: <ul><li picon:id="cgroup"><span picon:id="value"></span></li></ul>
+            Radio Choice: <span picon:id="rchoice"></span><br />
+            Check Choice: <ul><li picon:id="cchoice"><span picon:id="value"></span></li></ul>
+        </div>
+    </body>
+</html>

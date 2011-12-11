@@ -40,6 +40,11 @@ class BasicModel implements Model
     {
         return $this->object;
     }
+    
+    public function setModelObject(&$object)
+    {
+        $this->object = $object;
+    }
 }
 
 ?>

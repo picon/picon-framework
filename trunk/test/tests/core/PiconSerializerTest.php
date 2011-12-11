@@ -20,6 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+use \picon\PiconSerializer;
+
 /**
  * Description of PiconSerializerTest
  * @todo test inject on wakeup
@@ -30,8 +32,8 @@ class PiconSerializerTest extends AbstractPiconTest
     public function testComplexSerialization()
     {
         $complexObject = new ComplexSerialize();
-        $serialized = serialize($complexObject);
-        $deSerialized = unserialize($serialized);
+        $serialized = PiconSerializer::serialize($complexObject);
+        $deSerialized = PiconSerializer::unserialize($serialized);
         
         $this->assertSame("defaultValue", $deSerialized->getTransient());
         $this->assertSame("defaultValue", $deSerialized->getService());

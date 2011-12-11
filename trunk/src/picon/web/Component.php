@@ -43,7 +43,7 @@ namespace picon;
  * @todo finish adding state flags so that checks can be run to ensure overriden methods are calling
  * the parent implementation
  */
-abstract class Component extends PiconSerializer implements InjectOnWakeup, Identifiable
+abstract class Component implements InjectOnWakeup, Identifiable
 {
     /**
      * @var String the ID of this component
@@ -81,6 +81,12 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
     protected $added = false;
     
     private $markupSource = null;
+    
+    private $markupId;
+    
+    private $outputMarkupId = false;
+    
+    private static $nextId = 0;
     
     const PATH_SEPERATOR = ':';
     
@@ -133,7 +139,7 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
         }
         else
         {
-            throw new \InvalidArgumentException(sprintf("Expected paramater 1 to be a Behaviour %s given", gettype($object)));
+            throw new \InvalidArgumentException(sprintf("Argument %s was not a valid type for this method", gettype($object)));
         }
     }
     
@@ -185,7 +191,7 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
     /**
      * @todo call before render for behaviours
      */
-    private function internalBeforeRender()
+    public function internalBeforeRender()
     {
         if(!$this->isInitialized())
         {
@@ -387,9 +393,9 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
             {
                 $this->renderElement($element);
             }
-            elseif($element instanceof StringElement)
+            elseif($element instanceof TextElement)
             {
-                echo $element->getCharacterData();
+                echo $element->getContent();
             }
             else
             {
@@ -415,7 +421,36 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
         {
             $tag->setTagType(new XmlTagType(XmlTagType::OPEN));
         }
+        
+        if($this->outputMarkupId)
+        {
+            $tag->put('id', $this->getMarkupId());
+        }
+        
         //@todo call onComponentTag for behaviours
+    }
+    
+    /**
+     * Generates and returns a markup id for this component
+     * @param type $generate 
+     */
+    public function getMarkupId()
+    {
+        if(!isset($this->markupId))
+        {
+            $this->markupId = $this->id.$this->getNextComponentId();
+        }
+        return $this->markupId;
+    }
+    
+    /**
+     *
+     * @param boolean $output 
+     */
+    public function setOutputMarkupId($output)
+    {
+        //@todo validate boolean
+        $this->outputMarkupId = $output;
     }
     
     /**
@@ -429,32 +464,33 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
     
     /**
      * Checks that a component tag is a tag of the required name
+     * Throws an IllegalStateException if it is not
      * @param ComponentTag $tag The tag to check
      * @param String $tagName The tag name that should match
-     * @return Boolean whether or not the tag matches
      */
     protected function checkComponentTag(ComponentTag $tag, $tagName)
     {
-        return $tag->getName()==$tagName;
+        if($tag->getName()!=$tagName)
+        {
+            throw new \IllegalStateException(sprintf("An %s component can only be added to the HTML element %s", get_called_class(), $tagName));
+        }
     }
     
     /**
      * Checks that a component tag as an attribute and that the attribute has the required value
+     * Throws an IllegalStateException if it is not
      * @param ComponentTag $tag The tag to check
      * @param String $attribute The attribute to find
      * @param String $value The value the attribute will have
-     * @return Boolean True if the tag has the attribute with required value, false otherwise
      */
     protected function checkComponentTagAttribute(ComponentTag $tag, $attribute, $value)
     {
         $attributes = $tag->getAttributes();
         
-        if(!array_key_exists($attribute, $attributes))
+        if(!array_key_exists($attribute, $attributes) || $attributes[$attribute] != $value)
         {
-            return false;
+            throw new \IllegalStateException(sprintf("An %s component can only be added to the HTML element %s", get_called_class(), $tagName));
         }
-        
-        return $attributes[$attribute] == $value;
     }
     
     /**
@@ -687,7 +723,37 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
      */
     public function getModel()
     {
+        if($this->model==null)
+        {
+            $model = null;
+            $current = $this->getParent();
+            while($current!=null)
+            {
+                if($current->model!=null && $current->model instanceof ComponentInheritedModel)
+                {
+                    $model = $current->model;
+                    break;
+                }
+                $current = $current->getParent();
+            }
+            
+            if($model!=null)
+            {
+                $model = $model->onInherit($this);
+                
+                if($model!=null)
+                {
+                    $this->model = $model;
+                    $this->model->bind($this);
+                }
+            }
+        }
         return $this->model;
+    }
+    
+    public function setModel(Model &$model)
+    {
+        $this->model = $model;
     }
     
     protected function getMarkUpSource()
@@ -704,25 +770,65 @@ abstract class Component extends PiconSerializer implements InjectOnWakeup, Iden
         return $this->parent;
     }
     
+    public function setModelObject(&$object)
+    {
+        if($this->getModel()!=null)
+        {
+            $this->getModel()->setModelObject($object);
+        }
+    }
+    
     public function getModelObject()
     {
-        if($this->model!=null)
+        if($this->getModel()!=null)
         {
-            return $this->model->getModelObject();
+            return $this->getModel()->getModelObject();
         }
         return null;
     }
     
-    public function __sleep()
+    private static function getNextComponentId()
     {
-        $props = $this->getProperties();
-        $key = array_search('parent', $props);
-        if($key!=false)
+        self::$nextId++;
+        return dechex(self::$nextId);
+    }
+    
+    /**
+     * @todo should really create converters for primatives
+     * @return string a representation of the model object as a string
+     */
+    public function getModelObjectAsString()
+    {
+        $object = $this->getModelObject();
+        if(is_object($object))
         {
-            unset($props[$key]);
+            $converter = $this->getApplication()->getConverter(get_class($object));
+            
+            if($converter==null)
+            {
+                throw new \RuntimeException(sprintf("Unable to find converter for type %s", get_class($object)));
+            }
+            $string = $converter->convertToString($object);
+            
+            if(!is_string($string))
+            {
+                throw new \RuntimeException("Convert did not correctly convert to string");
+            }
+            return $string;
         }
-        
-        return $props;
+        else if(is_array($object))
+        {
+            throw new \RuntimeException("getModelObjectAsString() does not support array");
+        }
+        else if(is_bool($object))
+        {
+            return $object ? 'true':'false';
+        }
+        else
+        {
+            settype($object, 'string');
+            return $object;
+        }
     }
 }
 

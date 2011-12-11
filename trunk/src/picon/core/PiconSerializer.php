@@ -24,10 +24,12 @@ namespace picon;
 
 /**
  * Extends the standard PHP serialization functionality by permiting
- * serialisazation of closures, adds support for transient properties and
- * allows __sleep to return private properties from parent classes
+ * serialisazation of closures, adds support for transient properties
  * 
- * Any class which requires complex serialization should extend this
+ * Use PiconSerializer::serialize() and unserialize::serialize() instead of
+ * normal PHP serialize() and unserialize(). __sleep() and __wakeup will
+ * be called in the normal way BUT should not rely on Transient properties being present
+ * or closures being callable
  * 
  * Transient propertie can be used by adding @Transient to the property's 
  * doc block
@@ -36,46 +38,41 @@ namespace picon;
  * to ensure injected resources are not null as all injected resources
  * are transient.
  * 
- * @todo Add support for recursion in objects. Currenrtly this will fall over
- * as it does not properly support object references. Presently the sub class
- * is required to implement __sleep and ensure any properties which will recur are not
- * returned and and __wakeup to restore the value
+ * 
  * 
  * @author Martin Cassidy
  * @package core
  */
-class PiconSerializer implements \Serializable
+class PiconSerializer
 {
-    public function serialize()
+    private static $prepared = array();
+    
+    public static function serialize($object)
     {
-        $properties = array();
-        if(method_exists($this, '__sleep'))
-        {
-            $properties = $this->__sleep();
-        }
-        else
-        {
-            $properties = $this->getProperties();
-        }
-        Args::isArray($properties);
-        $reflection = new \ReflectionAnnotatedClass($this);
-        return serialize($this->gather($reflection, $properties));
+        $reflection = new \ReflectionAnnotatedClass($object);
+        self::$prepared = array();
+        self::preparForSerialize($reflection, $object);
+        self::$prepared = array();
+        return serialize($object);
     }
     
-    public function unserialize($serialized)
+    public static function unserialize($serialized)
     {
-        $properties = unserialize($serialized);
-        $reflection = new \ReflectionAnnotatedClass($this);
-        $this->distribute($reflection, $properties);
-        if($this instanceof InjectOnWakeup)
+        $target = $serialized;
+        if(is_string($serialized))
         {
-            Injector::get()->inject($this);
+            $target = unserialize($serialized);
         }
-        
-        if(method_exists($this, '__wakeup'))
+
+        $reflection = new \ReflectionAnnotatedClass($target);
+        self::$prepared = array();
+        self::reformOnUnserialize($reflection, $target);
+        self::$prepared = array();
+        if($target instanceof InjectOnWakeup)
         {
-            $properties = $this->__wakeup();
+            Injector::get()->inject($target);
         }
+        return $target;
     }
     
     /**
@@ -84,80 +81,120 @@ class PiconSerializer implements \Serializable
      * closures into a SleepingClosure object which can be serialized
      * @return array the properties to serialize, the name of the propety as the key with the value as the value
      */
-    private function gather(\ReflectionAnnotatedClass $reflection, $properties)
+    private static function preparForSerialize(\ReflectionAnnotatedClass $reflection, &$target, $parent = false)
     {
-        $serializable = array();
+        $hash = spl_object_hash($target);
+        
+        if(in_array($hash, self::$prepared) && $parent==false)
+        {
+            return;
+        }
+        array_push(self::$prepared, $hash);
         foreach($reflection->getProperties() as $property)
-        { 
-            if(in_array($property->getName(), $properties))
+        {
+            $property->setAccessible(true);
+            $value = $property->getValue($target);
+
+            if(self::isTransient($property))
             {
-                $property->setAccessible(true);
-                if($this->isTransient($property))
-                {
-                    //do nothing
-                }
-                elseif(is_callable($property->getValue($this)))
-                {
-                    $serializable[$property->getName()] = ClosureSerializationHelper::getSleepingClosure($property->getValue($this));
-                    $property->setValue($this, '');
-                }
-                else
-                {
-                    $serializable[$property->getName()] = $property->getValue($this);
-                }
+                $property->setValue($target, null);
+            }
+            elseif(is_object($value) && is_callable($value) && !($value instanceof SerializableClosure))
+            {
+                $property->setValue($target, new SerializableClosure($value));
+            }
+            elseif(is_object($value) && spl_object_hash($value)!=$hash)
+            {
+                $objectReflection = new \ReflectionAnnotatedClass($value);
+                self::preparForSerialize($objectReflection, $value);
+            }
+            elseif(is_array($value))
+            {
+                self::prepareArrayForSerialize($value);
             }
         }
         
         $parent = $reflection->getParentClass();
-        if($parent->getShortName()!='PiconSerializer')
+        
+        if($parent!=null)
         {
-            $parentValues = $this->gather($parent, $properties);
-            foreach($parentValues as $name => $value)
-            {
-                if(!array_key_exists($name, $serializable))
-                {
-                    $serializable[$name] = $value;
-                }
-            }
+            $parentValues = self::preparForSerialize($parent, $target, true);
         }
-        return $serializable;
     }
     
-    private function distribute(\ReflectionAnnotatedClass $reflection, $properties)
+    private static function prepareArrayForSerialize(&$entry)
     {
+        foreach($entry as $value)
+        {
+            if(is_array($value))
+            {
+                self::prepareArrayForSerialize($value);
+            }
+            else if(is_object($value))
+            {
+                $objectReflection = new \ReflectionAnnotatedClass($value);
+                self::preparForSerialize($objectReflection, $value);
+            }
+        }
+    }
+    
+    private static function reformOnUnserialize(\ReflectionAnnotatedClass $reflection, &$target, $parent = false)
+    {
+        $hash = spl_object_hash($target);
+        
+        if(in_array($hash, self::$prepared) && $parent==false)
+        {
+            return;
+        }
+        array_push(self::$prepared, $hash);
         $defaults = $reflection->getDefaultProperties();
         foreach($reflection->getProperties() as $property)
         {
             $property->setAccessible(true);
-            if($this->isTransient($property))
+            $value = $property->getValue($target);
+            if(self::isTransient($property))
             {
-                $property->setValue($this, $defaults[$property->getName()]);
+                $property->setValue($target, $defaults[$property->getName()]);
             }
-            if(array_key_exists($property->getName(), $properties))
+            else if($value instanceof SerializableClosure)
             {
-                $propertyValue = $properties[$property->getName()];
-
-                if($propertyValue instanceof SleepingClosure)
-                {
-                    extract($propertyValue->getUsedVars());
-                    eval(ClosureSerializationHelper::getReconstruction($propertyValue));
-                    $property->setValue($this, $closure);
-                }
-                else
-                {
-                    $property->setValue($this, $propertyValue);
-                }
+                $value->bind($target);
+            }
+            else if(is_object($value))
+            {
+                $objectReflection = new \ReflectionAnnotatedClass($value);
+                self::reformOnUnserialize($objectReflection, $value);
+            }
+            else if(is_array($value))
+            {
+                self::reformArray($value);
             }
         }
-        
+
         $parent = $reflection->getParentClass();
-        if($parent->getShortName()!='PiconSerializer')
+        if($parent!=null)
         {
-            $this->distribute($parent, $properties);
+            self::reformOnUnserialize($parent, $target, true);
         }
     }
     
-    private function isTransient(\ReflectionAnnotatedProperty $property)
+    private static function reformArray(&$entry)
+    {
+        foreach($entry as $value)
+        {
+            if(is_array($value))
+            {
+                self::reformArray($value);
+            }
+            else if(is_object($value))
+            {
+                $objectReflection = new \ReflectionAnnotatedClass($value);
+                self::reformOnUnserialize($objectReflection, $value);
+            }
+        }
+    }
+    
+    private static function isTransient(\ReflectionAnnotatedProperty $property)
     {
         foreach($property->getAllAnnotations() as $annotation)
         {
@@ -167,27 +204,6 @@ class PiconSerializer implements \Serializable
             }
         }
         return false;
-    }
-    
-    protected function getProperties(\ReflectionAnnotatedClass $reflection = null)
-    {
-        if($reflection==null)
-        {
-            $reflection = new \ReflectionAnnotatedClass($this);
-        }
-        $properties = array();
-        foreach($reflection->getProperties() as $property)
-        {
-            array_push($properties, $property->getName());
-        }
-        
-        $parent = $reflection->getParentClass();
-        if($parent->getShortName()!='PiconSerializer')
-        {
-            $parentProperties = $this->getProperties($parent);
-            $properties = array_merge($parentProperties, array_diff($properties, $parentProperties));
-        }
-        return $properties;
     }
 }
 

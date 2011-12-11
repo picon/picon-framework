@@ -41,6 +41,11 @@ class ArrayModel implements Model
     {
         return $this->object;
     }
+    
+    public function setModelObject(&$object)
+    {
+        $this->object = $object;
+    }
 }
 
 ?>

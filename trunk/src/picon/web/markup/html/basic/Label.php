@@ -29,14 +29,14 @@ namespace picon;
  */
 class Label extends WebComponent
 {
-    public function __construct($id, Model $model)
+    public function __construct($id, Model $model = null)
     {
         parent::__construct($id,$model);
     }
     
     protected function onComponentTagBody(ComponentTag $tag)
     {
-        echo $this->getModel()->getModelObject();
+        echo $this->getModelObjectAsString();
     }
 }
 

@@ -27,7 +27,7 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class Button extends MarkupContainer implements Listener
+class Button extends MarkupContainer implements FormSubmitListener
 {
     private $callback;
     
@@ -35,7 +35,7 @@ class Button extends MarkupContainer implements Listener
     {
         parent::__construct($id);
         Args::callBack($callback);
-        //$this->callback = $callback;
+        $this->callback = $callback;
     }
     
     public function isStateless()
@@ -45,21 +45,13 @@ class Button extends MarkupContainer implements Listener
     
     public function onEvent()
     {
-        $reflection = new \ReflectionFunction($this->callback);
-        $reflection->invoke();
+        $callable = $this->callback;
+        $callable();
     }
     
     protected function onComponentTag(ComponentTag $tag)
     {
-        if((!$this->checkComponentTag($tag, 'input') ||
-            (!$this->checkComponentTagAttribute($tag, 'type', 'button') &&
-            !$this->checkComponentTagAttribute($tag, 'type', 'submit') &&
-            !$this->checkComponentTagAttribute($tag, 'type', 'reset'))) &&
-            !$this->checkComponentTag($tag, 'button')
-            )
-        {
-            throw new \RuntimeException('A button can only be added to a input type = button | submit | reset or button');
-        }
+        $this->checkComponentTag($tag, 'input');
         parent::onComponentTag($tag);
     }
 }

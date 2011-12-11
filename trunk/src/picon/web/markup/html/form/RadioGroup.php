@@ -23,16 +23,33 @@
 namespace picon;
 
 /**
- * Description of StringElement
+ * Description of RadioGroup
  * 
  * @author Martin Cassidy
  */
-class StringElement extends MarkupElement
+class RadioGroup extends FormComponent
 {
-    public function __construct($data)
+    public function processInput()
     {
-        $this->setCharacterData($data);
+        $input = $this->getRawInput();
+        $value = null;
+        $callback = function(Radio &$radio) use(&$value, $input)
+        {
+            if($radio->getValue()==$input)
+            {
+                $value = $radio->getModelObject();
+                return new VisitorResponse(VisitorResponse::STOP_TRAVERSAL);
+            }
+            return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+        };
+        $this->visitChildren(Radio::getIdentifier(), $callback);
+        
+        if($value!=null)
+        {
+            $this->updateModel($value);
+        }
     }
+
 }
 
 ?>

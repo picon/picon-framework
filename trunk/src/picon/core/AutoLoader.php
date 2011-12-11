@@ -77,7 +77,7 @@ class AutoLoader
         
         if(!array_key_exists($namespace, $this->scannedDirectories))
         {
-            trigger_error(sprintf("Unable to load class %s from namespace %s. No directories for the namespace have been added", $class, $namespace),E_USER_ERROR);
+            $this->onFail($namespace, $class);
         }
         
         foreach($this->scannedDirectories[$namespace] as $dir)

@@ -36,7 +36,7 @@ class XMLParser
     private $parser;
     private $stack = array();
     private $depth = 0;
-    private $tags = array();
+    private $root;
     protected $xmlFile;
     
     /**
@@ -49,8 +49,12 @@ class XMLParser
         xml_parser_set_option($this->parser, XML_OPTION_TARGET_ENCODING, 'UTF-8');
         xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, 0);
         xml_parser_set_option($this->parser, XML_OPTION_SKIP_WHITE, 1);
-        xml_set_element_handler($this->parser, "self::startElement", "self::endElement");
-        xml_set_character_data_handler($this->parser, "self::characterData");
+        
+        xml_set_object($this->parser, $this);
+        xml_set_element_handler($this->parser, "startElement", "endElement");
+        xml_set_character_data_handler($this->parser, "characterData");
+        xml_set_start_namespace_decl_handler($this->parser, "nameSpaceDeclared");
+        xml_set_external_entity_ref_handler($this->parser, "entityRef");
     }
     
     /**
@@ -74,7 +78,7 @@ class XMLParser
             }
         }
         xml_parser_free($this->parser);
-        return $this->tags;
+        return $this->root;
     }
     
     /**
@@ -90,8 +94,8 @@ class XMLParser
         
         if($this->depth==0)
         {
-            //A root tag
-            array_push($this->tags, $tag);
+            //The root tag
+            $this->root = $tag;
         }
         else
         {
@@ -133,9 +137,13 @@ class XMLParser
         $this->onCharacterData($data, $this->stack[$this->depth-1]);
     }
     
-    protected function onCharacterData($data, $element)
+    protected function onCharacterData($data, XMLTag $element)
     {
-        $element->setCharacterData($data);
+        $element->addChild(new TextElement($data));
+    }
+    
+    private function nameSpaceDeclared($parser, $prefix, $uri)
+    {
     }
     
 }

@@ -30,7 +30,7 @@ namespace picon;
  * ComponentTag - An HTML element with a picon:id that will have a corrisponding
  * component in the hierachy
  * PiconTag - A special picon tag such as picon:child or picon:panel
- * StringElement - Holds the character data as a child of the xml tag
+ * TextElement - Holds the character data as a child of the xml tag
  * 
  * @author Martin Cassidy
  * @package utilities
@@ -59,11 +59,6 @@ class MarkupParser extends XMLParser
     protected function onXmlError($errorCode, $errorMessage)
     {
         throw new \InvalidMarkupException(sprintf("XML error: %s at line %d of file %s", $errorCode,$errorMessage, $this->xmlFile));
-    }
-    
-    protected function onCharacterData($data, $element)
-    {
-        $element->addChild(new StringElement($data));
     }
 }
 

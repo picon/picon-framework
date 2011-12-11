@@ -27,21 +27,63 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class Form extends MarkupContainer implements Listener
+class Form extends MarkupContainer implements FormSubmitListener
 {
     protected function onComponentTag(ComponentTag $tag)
     {
         parent::onComponentTag($tag);
         $tag->put('action', $this->urlForListener($this));
+        $tag->put('method', 'post');
     }
     
     /**
+     * Called when the form is submited
      * @todo get this to find the submitting component and invoke its
      * onEvent too
      */
     public function onEvent()
     {
-        echo 'form has been submited';
+        if($this->getRequest()->isPost())
+        {
+            $components = array();
+            $form = $this;
+            $callback = function(&$component) use (&$components, $form)
+            {
+                if($component->getForm()!=$form)
+                {
+                    return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL_NO_DEEPER);
+                }
+                array_push($components, $component);
+                return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+            };
+            $this->visitChildren(FormComponent::getIdentifier(), $callback);
+            
+            $formValid = true;
+            foreach($components as $formComponent)
+            {
+                $formComponentValid = $formComponent->validate();
+                if($formComponentValid==false)
+                {
+                    $formValid = false;
+                }
+            }
+            
+            if($formValid)
+            {
+                foreach($components as $formComponent)
+                {
+                    $formComponent->processInput();
+                }
+            }
+            
+            //hardcoded!
+            $callback = function(&$component)
+            {
+                   $component->onEvent();
+                   return new VisitorResponse(VisitorResponse::STOP_TRAVERSAL);
+            };
+            $this->visitChildren(Button::getIdentifier(), $callback);
+        }
     }
 }
 

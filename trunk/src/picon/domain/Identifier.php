@@ -102,9 +102,8 @@ class Identifier extends ComonDomainBase
         {
             return false;
         }
-        $reflection = new \ReflectionClass($this->getFullyQualifiedName());
         
-        return $reflection->isSubclassOf($object->getFullyQualifiedName());
+        return is_subclass_of($this->getFullyQualifiedName(), $object->getFullyQualifiedName()) || $object->getFullyQualifiedName()==$this->getFullyQualifiedName();
     }
 }
 

@@ -45,8 +45,8 @@ class Link extends AbstractLink
     
     protected function onLinkClicked()
     {
-        $callback = new \ReflectionFunction($this->callback);
-        $callback->invoke();
+        $callable = $this->callback;
+        $callable();
     }
 }
 

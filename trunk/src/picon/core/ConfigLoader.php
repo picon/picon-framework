@@ -49,33 +49,29 @@ class ConfigLoader
         }
         $xmlParser = new XMLParser();
         $rawConfig = $xmlParser->parse($file);
-        
         ConfigLoader::parse($rawConfig, $config);
-        
         return $config;
     }
     
     private static function parse($rawConfig, &$config)
     {
-        foreach($rawConfig as $tag)
+        if($rawConfig->getName()!=self::ROOT_ELEMENT)
         {
-            if($tag->getName()!=self::ROOT_ELEMENT)
+            throw new ConfigException("Unexpected root element ".$tag->getName());
+        } 
+        foreach($rawConfig->getChildren() as $childTag)
+        {
+            if($childTag instanceof XMLTag && in_array($childTag->getName(), self::$CORE_CONFIG))
             {
-                throw new ConfigException("Unexpected root element ".$tag->getName());
-            } 
-            foreach($tag->getChildren() as $childTag)
-            {
-                if(in_array($childTag->getName(), self::$CORE_CONFIG))
-                {
-                    $name = $childTag->getName();
-                    $config->$name = $childTag->getCharacterData();
-                }
-                
-                if($childTag->getName()==self::EXTERNAL_INCLUDE)
-                {
-                    ConfigLoader::load($childTag->getCharacterData(), $config);
-                }
+                $name = $childTag->getName();
+                $config->$name = $childTag->getCharacterData();
             }
+
+            /*Not tested
+             * if($childTag->getName()==self::EXTERNAL_INCLUDE)
+            {
+                ConfigLoader::load($childTag->getCharacterData(), $config);
+            }*/
         }
     }
 }

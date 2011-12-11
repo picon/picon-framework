@@ -31,7 +31,7 @@ class ListView extends AbstractRepeater
 {
     private $callback;
     
-    public function __construct($id, ArrayModel $model, $callback)
+    public function __construct($id, $model = null, $callback)
     {
         parent::__construct($id, $model);
         Args::callBack($callback);
@@ -45,8 +45,19 @@ class ListView extends AbstractRepeater
     
     public function renderIteration($entry)
     {
-        $reflection = new \ReflectionFunction($this->callback);
-        $reflection->invoke($entry);
+        $callable = $this->callback;
+        $callable($entry);
+    }
+    
+    protected function populate()
+    {
+        foreach($this->getModel()->getModelObject() as $index => $object)
+        {
+            $model = $this->getModel()->getModelObject();
+            $entry = new ListItem($this->getId().$index, new BasicModel($model[$index]), $index);
+            $this->renderIteration($entry);
+            $this->addOrReplace($entry);
+        }
     }
 }
 

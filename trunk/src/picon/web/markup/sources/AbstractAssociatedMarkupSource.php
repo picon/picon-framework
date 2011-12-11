@@ -33,7 +33,7 @@ abstract class AbstractAssociatedMarkupSource extends AbstractMarkupSource
     {
         $markup = $container->loadAssociatedMarkup();
         
-        return MarkupUtils::findComponentTag($markup, $child->getId());
+        return MarkupUtils::findComponentTag($markup, $child->getId(), $container);
     }
 }
 

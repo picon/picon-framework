@@ -38,7 +38,8 @@ class ExceptionPageRequestTarget implements RequestTarget
     
     public function respond()
     {
-        $page = new ErrorPage($this->exception);
+        ob_clean();
+        $page = new \ErrorPage($this->exception);
         $page->renderPage();
     }
 }
