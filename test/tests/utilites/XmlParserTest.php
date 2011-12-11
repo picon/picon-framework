@@ -33,11 +33,11 @@ class XmlParserTest extends AbstractPiconTest
         $output = $parser->parse('resources/validxml.xml');
         
         $this->assertTrue(count($output)==1);
-        $this->assertSame("validXml", $output[0]->getName());
+        $this->assertSame("validXml", $output->getName());
         
-        $this->assertTrue(count($output[0]->getChildren())==1);
+        $this->assertEquals(1, count($output->getChildren()));
         
-        $children = $output[0]->getChildren();
+        $children = $output->getChildren();
         
         $this->assertSame("someElement", $children[0]->getName());
         $this->assertSame("somedata", $children[0]->getCharacterData());

@@ -134,7 +134,11 @@ class XMLParser
      */
     private function characterData($parser, $data) 
     {
-        $this->onCharacterData($data, $this->stack[$this->depth-1]);
+        $data = trim($data);
+        if(!empty($data))
+        {
+            $this->onCharacterData($data, $this->stack[$this->depth-1]);
+        }
     }
     
     protected function onCharacterData($data, XMLTag $element)
