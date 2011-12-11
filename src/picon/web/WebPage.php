@@ -37,7 +37,8 @@ class WebPage extends MarkupContainer implements RequestablePage
     
     protected function onRender()
     {
-        parent::renderAll();
+        $pageMarkup = $this->getMarkup();
+        parent::renderAll(array($pageMarkup));
     }
     
     public function renderPage()

@@ -88,16 +88,31 @@ class PageRequestResolver implements RequestResolver
     {
         if($target instanceof PageRequestWithListenerTarget)
         {
-            return $target->getPageClass()->namespace.$target->getPageClass()->className.'?listener='.$target->getComponentPath();
+            $trail = "";
+            if($target->getPageClass()->namespace!=null)
+            {
+                $trail = '/';
+            }
+            return $target->getPageClass()->namespace.$trail.$target->getPageClass()->className.'?listener='.$target->getComponentPath();
         }
         else if($target instanceof ListenerRequestTarget)
         {
             $ident = $target->getPage()->getIdentifier();
-            return $ident->namespace.$ident->className.'?pageid='.$target->getPage()->getId().'&listener='.$target->getComponentPath();
+            $trail = "";
+            if($ident->namespace!=null)
+            {
+                $trail = '/';
+            }
+            return $ident->namespace.$trail.$ident->className.'?pageid='.$target->getPage()->getId().'&listener='.$target->getComponentPath();
         }
         else
         {
-            return $target->getPageClass()->namespace.$target->getPageClass()->className;
+            $trail = "";
+            if($target->getPageClass()->namespace!=null)
+            {
+                $trail = '/';
+            }
+            return $target->getPageClass()->namespace.$trail.$target->getPageClass()->className;
         }
     }
     

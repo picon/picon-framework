@@ -49,6 +49,9 @@ class PiconApplication
     private $componentBeforeRenderListeners;
     private $componentAfterRenderListeners;
     
+    //Converter
+    private $converters = array();
+    
     /**
      * Create a new Picon Application
      * Fires off the application initialiser to load an instantiat all resources
@@ -68,6 +71,7 @@ class PiconApplication
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\annotations");
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\web\\annotations");
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\exceptions");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\web\\pages");
         $this->initialiser->addScannedDirectory(ASSETS_DIRECTORY);
         
         $this->init();
@@ -200,6 +204,15 @@ class PiconApplication
     public function addComponentAfterRenderListenersr(ComponentAfterRenderListener $listener)
     {
         return $this->componentAfterRenderListeners->add($listener);
+    }
+    
+    public function getConverter($className)
+    {
+        if(array_key_exists($className, $this->converters))
+        {
+            return $this->converters[$className];
+        }
+        return null;
     }
 }
 

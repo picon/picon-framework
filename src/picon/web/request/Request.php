@@ -32,6 +32,14 @@ namespace picon;
  */
 class Request
 {
+    private $post;
+    private $get;
+    
+    public function __construct()
+    {
+        $this->post = isset($_POST)?$_POST:false;
+        $this->get = isset($_GET)?$_GET:false;
+    }
     
     public function getQueryString()
     {
@@ -57,6 +65,52 @@ class Request
     {
         $root = preg_replace("/\/{1}\w*\.php$/", "", $_SERVER['PHP_SELF']);
         return $root;
+    }
+    
+    public function isPost()
+    {
+        return $this->post!=false;
+    }
+    
+    public function isGet()
+    {
+        return $this->get!=false;
+    }
+    
+    /**
+     * Get a POST parameter
+     * @param type $name
+     * @return type 
+     */
+    public function getPostedParameter($name)
+    { 
+        if($this->post==false)
+        {
+            return null;
+        }
+        if(array_key_exists($name, $this->post))
+        {
+            return $this->post[$name];
+        }
+        return null;
+    }
+    
+    /**
+     * Get a GET paramater
+     * @param type $name
+     * @return type 
+     */
+    public function getParameter($name)
+    {
+        if($this->get==false)
+        {
+            return null;
+        }
+        if(array_key_exists($name, $this->get))
+        {
+            return $this->get[$name];
+        }
+        return null;
     }
 }
 

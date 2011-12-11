@@ -43,6 +43,7 @@ class ListenerRequestResolver implements RequestResolver
             {
                 return new ListenerRequestTarget($page, $_GET['listener']);
             }
+            return new PageRequestTarget(\SessionExpiredPage::getIdentifier());
         }
         else
         {

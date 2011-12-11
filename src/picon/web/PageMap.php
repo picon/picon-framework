@@ -132,7 +132,7 @@ class PageMap
         {
             if (isset($_SESSION['page_map']))
             {
-                self::$self = unserialize($_SESSION['page_map']); 
+                self::$self = PiconSerializer::unserialize($_SESSION['page_map']); 
             }
             else
             {
@@ -150,7 +150,7 @@ class PageMap
     
     public function __destruct()
     {
-        $_SESSION['page_map'] = serialize($this);
+        $_SESSION['page_map'] = PiconSerializer::serialize($this);
     }
 }
 

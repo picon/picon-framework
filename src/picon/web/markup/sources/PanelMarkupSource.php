@@ -32,7 +32,7 @@ class PanelMarkupSource extends AbstractAssociatedMarkupSource
     public function onComponentTagBody(Component $component, ComponentTag &$tag)
     {
         $panelMarkup = $component->loadAssociatedMarkup();
-        $panel = MarkupUtils::findPiconTag('panel', $panelMarkup);
+        $panel = MarkupUtils::findPiconTag('panel', $panelMarkup, $component);
         
         if($panel==null)
         {

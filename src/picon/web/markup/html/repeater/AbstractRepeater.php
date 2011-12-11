@@ -29,20 +29,19 @@ namespace picon;
  */
 abstract class AbstractRepeater extends MarkupContainer
 {
-    public function __construct($id, ArrayModel $model)
+    public function __construct($id, $model = null)
     {
-        parent::__construct($id, $model);
-    }
-    
-    protected function onInitialize()
-    {
-        parent::onInitialize();
-        foreach($this->getModel()->getModelObject() as $index => $object)
+        if($model!=null && !($model instanceof ArrayModel))
         {
-            $model = $this->getModel()->getModelObject();
-            $entry = new ListItem($this->getId().$index, new BasicModel($model[$index]), $index);
-            $this->renderIteration($entry);
-            $this->addOrReplace($entry);
+            throw new \InvalidArgumentException('List View must have an Array Model');
+        }
+        if($model==null)
+        {
+            parent::__construct($id);
+        }
+        else
+        {
+            parent::__construct($id, $model);
         }
     }
     
@@ -61,6 +60,14 @@ abstract class AbstractRepeater extends MarkupContainer
     {
         return $this->getMarkup();
     }
+    
+    public function beforeRender()
+    {
+        parent::beforeRender();
+        $this->populate();
+    }
+    
+    protected abstract function populate();
 }
 
 ?>

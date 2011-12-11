@@ -74,7 +74,6 @@ class RequestCycle
             try
             {
                 $iterator->current()->respond();
-                
             }
             catch(\Exception $ex)
             {

@@ -50,11 +50,14 @@ class ListenerRequestTarget implements RequestTarget
             $fullClassName = $this->page->getFullyQualifiedName();
             $page = new $fullClassName();
             $page->internalInitialize();
+            
         }
         else
         {
             $page = $this->page;
+
         }
+        $page->internalBeforeRender();
         $listener = $page->get($this->componentPath);
         if($listener==null)
         {

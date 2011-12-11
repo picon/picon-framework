@@ -23,6 +23,20 @@
 use picon\WebPage;
 use picon\Form;
 use picon\Button;
+use picon\TextField;
+use picon\CompoundPropertyModel;
+use picon\Label;
+use picon\TextArea;
+use picon\DropDown;
+use picon\Radio;
+use picon\RadioGroup;
+use picon\CheckBox;
+use picon\CheckBoxGroup;
+use picon\CheckChoice;
+use picon\RadioChoice;
+use picon\BasicModel;
+use picon\ListView;
+use picon\ListItem;
 
 /**
  * Description of FormPage
@@ -31,21 +45,74 @@ use picon\Button;
  */
 class FormPage extends WebPage
 {
+    private $domain;
+    
     public function __construct()
     {
         parent::__construct();
+        $this->domain = new ExampleDomain();
+        $this->setModel(new CompoundPropertyModel($this, 'domain'));
         $form = new Form('form');
         $this->add($form);
-        
         $form->add(new Button('button', function()
         {
-            echo 'button callback on a statefull page!!!!';
+            
+        }));
+        
+        $choices = array('default', 'option', 'other option', 'something else');
+        
+        $form->add(new TextField('textBox'));
+        $form->add(new TextArea('textArea'));
+        $form->add(new DropDown('select', $choices));
+        
+        $group = new RadioGroup('rgroup');
+        $form->add($group);
+        
+        $group->add(new Radio('gradio1', new BasicModel('option1')));
+        $group->add(new Radio('gradio2', new BasicModel('option2')));
+        
+        $form->add(new CheckBox('icheck'));
+        
+        $checkGroup = new CheckBoxGroup('cgroup');
+        $form->add($checkGroup);
+        $checkGroup->add(new CheckBox('check1', new BasicModel('option1')));
+        $checkGroup->add(new CheckBox('check2', new BasicModel('option2')));
+        
+        $form->add(new RadioChoice('rchoice', $choices));
+        $form->add(new CheckChoice('cchoice', $choices));
+        
+        $this->add(new Label('textBox'));
+        $this->add(new Label('textArea'));
+        $this->add(new Label('select'));
+        $this->add(new Label('rgroup'));
+        $this->add(new Label('icheck'));
+        
+        $this->add(new ListView('cgroup', null, function(&$item)
+        {
+            $item->add(new \picon\Label('value', $item->getModel()));
+        }));
+        
+        $this->add(new Label('rchoice'));
+        
+        $this->add(new ListView('cchoice', null, function(&$item)
+        {
+            $item->add(new \picon\Label('value', $item->getModel()));
         }));
     }
     
     public function isPageStateless()
     {
         return false;
+    }
+    
+    public function __get($name)
+    {
+        return $this->$name;
+    }
+    
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
     }
 }
 

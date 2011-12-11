@@ -29,6 +29,8 @@ namespace picon;
 interface Model
 {
     function getModelObject();
+    
+    function setModelObject(&$object);
 }
 
 ?>

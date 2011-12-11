@@ -42,7 +42,14 @@ class DefaultMarkupSource extends AbstractMarkupSource
         {
             return $markup;
         }
-        return MarkupUtils::findComponentTag($markup, $child->getId());
+        $m = MarkupUtils::findComponentTag($markup, $child->getId(), $container);
+        
+        if($m==null)
+        {
+            print_r($markup);
+        }
+        
+        return $m;
     }
 }
 

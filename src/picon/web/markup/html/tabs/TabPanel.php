@@ -44,7 +44,8 @@ class TabPanel extends Panel
     {
         parent::onInitialize();
         $me = $this;
-        $this->add(new ListView("tab", new ArrayModel($this->collection->tabs), function(ListItem $item) use ($me)
+        //@todo add the type hint b/ack into the closure when the serializer can handle them
+        $this->add(new ListView("tab", new ArrayModel($this->collection->tabs), function($item) use ($me)
         {
             $tab = $item->getModelObject();
             $link = new Link('link', function() use ($me, $item)

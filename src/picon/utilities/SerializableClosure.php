@@ -25,28 +25,26 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class ClosureSerializationHelper
+class SerializableClosure
 {
-    private function __construct()
+    private $closure;
+    private $code;
+    private $arguments;
+    private $source;
+    private $reflection;
+    
+    public function __construct($closure)
     {
-        
+        $this->validateClosure($closure);
+        $this->reflection = new \ReflectionFunction($closure);
     }
     
-    public static function getSleepingClosure($closure)
-    {
-        self::validateClosure($closure);
-        $reflection = new \ReflectionFunction($closure);
-        $code = self::fetchCode($reflection);
-        return new SleepingClosure($code, self::fetchUsedVariables($reflection, $code));
-    }
-
-
     /**
      * Extract the code from the callback as a string
      * @param ReflectionFunction The reflected function of the closure
      * @return String The code the closure runs 
      */
-    private static function fetchCode($reflection)
+    private function fetchCode(\ReflectionFunction $reflection)
     {
         $file = new \SplFileObject($reflection->getFileName());
         $file->seek($reflection->getStartLine() - 1);
@@ -58,10 +56,15 @@ class ClosureSerializationHelper
             $file->next();
         }
 
+        //@todo this assumes the function will be the only one on that line
         $begin = strpos($code, 'function');
+        //@todo this assumes the } will be the only one on that line
         $end = strrpos($code, '}');
         $code = substr($code, $begin, $end - $begin + 1);
-
+        
+        //@todo replace type hints with fq names
+        
+        //function{1}\s*\({1}(\w*\s*&?\${1}\w+)*\){1}
         return $code;
     }
     
@@ -71,7 +74,7 @@ class ClosureSerializationHelper
      * @param String The string of code the closure runs
      * @return Array The variable within the use() 
      */
-    private static function fetchUsedVariables($reflection, $code)
+    private function fetchUsedVariables(\ReflectionFunction $reflection, $code)
     {
         $use_index = stripos($code, 'use');
         if (!$use_index)
@@ -100,7 +103,7 @@ class ClosureSerializationHelper
      * @param Closure The closure to validate
      * @todo Figure out why instanceof Clousre fails
      */
-    private static function validateClosure($closure)
+    private function validateClosure($closure)
     {
         if (!isset($closure) || get_class($closure)!="Closure" || !is_callable($closure))
         {
@@ -108,10 +111,43 @@ class ClosureSerializationHelper
         }
     }
 
-
-    public static function getReconstruction(SleepingClosure $sleepingClosure)
+    public function __sleep()
     {
-        return '$closure = '.$sleepingClosure->getCode().";";
+        if(!isset($this->code))
+        {
+            $this->code = $this->fetchCode($this->reflection);
+            $this->arguments = $this->fetchUsedVariables($this->reflection, $this->code);
+        }
+        $this->closure = null;
+        $this->source = null;
+        return(array('code', 'arguments'));
+    }
+    
+    public function __wakeup()
+    {
+        extract($this->arguments);
+        eval('$closure = '.$this->code.";");
+        $this->closure = $closure;
+        $this->reflection = new \ReflectionFunction($this->closure);
+    }
+    
+    public function bind(&$object)
+    {
+        if(method_exists('Closure', 'bind'))
+        {
+            $this->source = $object;
+            $this->closure = Closure::bind($this->closure, $this->source, get_class($this->source));
+        }
+    }
+    
+    public function __invoke()
+    {
+        if(method_exists('Closure', 'bind') && $this->source==null)
+        {
+            throw new \IllegalStateException("A serialized closure cannot be invoked after deserialization until it has been bound");
+        }
+        $args = func_get_args();
+        return $this->reflection->invokeArgs($args);
     }
 }
 

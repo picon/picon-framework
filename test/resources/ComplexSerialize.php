@@ -25,7 +25,7 @@
  * 
  * @author Martin Cassidy
  */
-class ComplexSerialize extends \picon\PiconSerializer
+class ComplexSerialize
 {
     private $closure;
     

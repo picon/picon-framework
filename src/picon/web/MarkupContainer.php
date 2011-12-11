@@ -37,15 +37,9 @@ class MarkupContainer extends Component
         if($object instanceof Component)
         {
             $this->addComponent($object);
+            return;
         }
-        elseif($object instanceof Behaviour)
-        {
-            $this->addBehaviour($object);
-        }
-        else
-        {
-            throw new \InvalidArgumentException(sprintf("Expected paramater 1 to be a Behaviour or a Component, %s given", gettype($object)));
-        }
+        parent::add($object);
     }
     
     public function addOrReplace(Component &$component)
@@ -97,6 +91,15 @@ class MarkupContainer extends Component
             return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
         };
         $this->visitChildren(Component::getIdentifier(), $callback);
+    }
+    
+    public function internalBeforeRender()
+    {
+        parent::internalBeforeRender();
+        foreach($this->children as $child)
+        {
+            $child->internalBeforeRender();
+        }
     }
     
     protected function onComponentAdded(&$component)
@@ -217,14 +220,6 @@ class MarkupContainer extends Component
     protected function getMarkupForChild(Component $child)
     {
         return $this->getMarkUpSource()->getMarkup($this, $child);
-    }
-    
-    public function __wakeup()
-    {
-        foreach($this->children as $child)
-        {
-            $child->setParent($this);
-        }
     }
 }
 

@@ -28,13 +28,12 @@ namespace picon;
  * @author Martin Cassidy
  * @package domain
  */
-class XMLTag extends ComonDomainBase
+class XMLTag extends ComonDomainBase implements XmlElement
 {
     private $name;
     private $tagType;
     private $attributes = array();
     private $children = array();
-    private $characterData;
     
     /**
      * Construct a new xml tag
@@ -54,18 +53,9 @@ class XMLTag extends ComonDomainBase
      * Add a new XMLTag child
      * @param XMLTag $child the child to add
      */
-    public function addChild(XMLTag $child)
+    public function addChild(XmlElement $child)
     {
         array_push($this->children, $child);
-    }
-    
-    /**
-     * Set the internal character data
-     * @param String the data to add
-     */
-    public function setCharacterData($characterData)
-    {
-        $this->characterData = $characterData;
     }
     
     /**
@@ -93,11 +83,6 @@ class XMLTag extends ComonDomainBase
     public function getName()
     {
         return $this->name;
-    }
-    
-    public function getCharacterData()
-    {
-        return $this->characterData;
     }
     
     public function getAttributes()
@@ -152,6 +137,19 @@ class XMLTag extends ComonDomainBase
     {
         Args::isArray($children);
         $this->children = $children;
+    }
+    
+    public function getCharacterData()
+    {
+        $data = "";
+        foreach($this->children as $child)
+        {
+            if($child instanceof TextElement)
+            {
+                $data .= $child->getContent();
+            }
+        }
+        return $data;
     }
 }
 
