@@ -31,15 +31,16 @@ class ListView extends AbstractRepeater
 {
     private $callback;
     
-    public function __construct($id, $model = null, $callback)
+    /**
+     *
+     * @param String $id
+     * @param closure $callback
+     * @param Model $model optional
+     */
+    public function __construct($id, $callback, $model = null)
     {
         parent::__construct($id, $model);
-        Args::callBack($callback);
-        $reflection = new \ReflectionFunction($callback);
-        if($reflection->getNumberOfParameters()!=1)
-        {
-            throw new \InvalidArgumentException("Callback must have 1 argument");
-        }
+        Args::callBackArgs($callback, 1, 'callback');
         $this->callback = $callback;
     }
     

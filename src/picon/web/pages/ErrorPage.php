@@ -38,14 +38,14 @@ class ErrorPage extends WebPage
         $this->add(new Label('title', new BasicModel(get_class($ex))));
         $this->add(new Label('message', new BasicModel($ex->getMessage())));
         
-        $this->add(new ListView('stack', new ArrayModel($ex->getTrace()), function(MarkupContainer $entry)
+        $this->add(new ListView('stack', function(MarkupContainer $entry)
         {
             $object = $entry->getModel()->getModelObject();
             $entry->add(new Label('class', new BasicModel($object['class'])));
             $entry->add(new Label('function', new BasicModel($object['function'])));
             $entry->add(new Label('file', new BasicModel($object['file'])));
             $entry->add(new Label('line', new BasicModel($object['line'])));
-        }));
+        }, new ArrayModel($ex->getTrace())));
     }
 }
 

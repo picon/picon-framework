@@ -23,32 +23,52 @@
 namespace picon;
 
 /**
- * Description of ArrayModel
+ * Description of FeedbackModel
  * 
  * @author Martin Cassidy
  */
-class ArrayModel implements Model
+class FeedbackModel extends ArrayModel
 {
-    private $object;
-    
-    /**
-     *
-     * @param array $object 
-     */
-    public function __construct($object)
+    public function __construct()
     {
-        Args::isArray($object, 'object');
-        $this->object = $object;
+        parent::__construct(array());
     }
     
-    public function getModelObject()
+    /**
+     * @todo sort of referencing here to avoid getting then setting
+     * @param FeedbackMessage $message 
+     */
+    public function addMessage(FeedbackMessage $message)
     {
-        return $this->object;
+        $messages = $this->getModelObject();
+        array_push($messages, $message);
+        $this->setModelObject($messages);
+    }
+    
+    /**
+     * Cleanup old messages
+     */
+    public function __wakeup()
+    {
+        $array = array();
+        $this->setModelObject($array);
     }
     
     public function setModelObject(&$object)
     {
-        $this->object = $object;
+        parent::setModelObject($object);
+    }
+    
+    public function hasMessages(Component $reporter, $level = null)
+    {
+        foreach($this->getModelObject() as $message)
+        {
+            if($message->reporter==$reporter && ($level==null || $message->level==$level))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

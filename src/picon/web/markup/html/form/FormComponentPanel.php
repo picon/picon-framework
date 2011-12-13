@@ -34,6 +34,11 @@ abstract class FormComponentPanel extends FormComponent
     {
         return new PanelMarkupSource();
     }
+    
+    protected function checkRequired()
+    {
+        return true;
+    }
 }
 
 ?>

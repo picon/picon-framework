@@ -32,38 +32,43 @@ class ChoiceRenderer
     private $valueCallable;
     private $displayCallable;
     
+    /**
+     *
+     * @param closure $valueCallable
+     * @param closure $displayCallable 
+     */
     public function __construct($valueCallable = null, $displayCallable = null)
     {
         if($valueCallable!=null)
         {
-            Args::callBackArgs($valueCallable, 1);
+            Args::callBackArgs($valueCallable, 2, 'valueCallable');
         }
         if($displayCallable!=null)
         {
-            Args::callBackArgs($displayCallable, 1);
+            Args::callBackArgs($displayCallable, 2, 'displayCallable');
         }
         $this->displayCallable = $displayCallable;
         $this->valueCallable = $valueCallable;
     }
     
-    public function getValue($choice)
+    public function getValue($choice, $index)
     {
         if($this->valueCallable==null)
         {
             return $choice;
         }
         $callable = $this->valueCallable;
-        return $callable($choice);
+        return $callable($choice, $index);
     }
     
-    public function getDisplay($choice)
+    public function getDisplay($choice, $index)
     {
         if($this->displayCallable==null)
         {
             return $choice;
         }
         $callable = $this->displayCallable;
-        return $callable($choice);
+        return $callable($choice, $index);
     }
 }
 

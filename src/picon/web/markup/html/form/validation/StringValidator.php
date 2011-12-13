@@ -23,12 +23,19 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * Generic validator for strings
+ * 
  * @author Martin Cassidy
  */
-interface Validator
+class StringValidator extends AbstractValidator
 {
-    function validate(Validatable $validateable);
+    public function validateValue(Validatable $validateable)
+    {
+        if(!is_string($validateable->getValue()))
+        {
+            $validateable->error('Must be a string');
+        }
+    }
 }
 
 ?>

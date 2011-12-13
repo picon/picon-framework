@@ -36,6 +36,11 @@ class TabCollection extends ComonDomainBase
         $this->tabs = $tabs;
     }
     
+    /**
+     *
+     * @param Tab $tab
+     * @param closure $newMethod 
+     */
     public function addTab($tab, $newMethod = null)
     {
         if($tab instanceof Tab)
@@ -44,8 +49,8 @@ class TabCollection extends ComonDomainBase
         }
         else
         {
-            Args::isString($tab);
-            Args::callBack($newMethod);
+            Args::isString($tab, 'tab');
+            Args::callBackArgs($newMethod, 1, 'newMethod');
             array_push($this->tabs, new Tab($tab, $newMethod));
         }
     }

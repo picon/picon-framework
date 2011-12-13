@@ -23,12 +23,32 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * Validates a number is not greater than a max value
+ * 
  * @author Martin Cassidy
  */
-interface Validator
+class MaximumValidator extends AbstractValidator
 {
-    function validate(Validatable $validateable);
+    private $maximum;
+    
+    /**
+     *
+     * @param number $maximum 
+     */
+    public function __construct($maximum)
+    {
+        Args::isNumeric($maximum, 'maximum');
+        $this->maximum = $maximum;
+    }
+    
+    public function validateValue(Validatable $validateable)
+    {
+        parent::validateValue($validateable);
+        if($validateable->getValue()>$this->maximum)
+        {
+            $validateable->error('Must be a less than'. $this->maximum);
+        }
+    }
 }
 
 ?>

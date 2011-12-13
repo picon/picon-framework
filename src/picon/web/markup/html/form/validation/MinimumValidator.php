@@ -23,12 +23,32 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * Validates that a number is not less than a minimum value
+ * 
  * @author Martin Cassidy
  */
-interface Validator
+class MinimumValidator extends NumericValidator
 {
-    function validate(Validatable $validateable);
+    private $minimum;
+    
+    /**
+     *
+     * @param number $minimum 
+     */
+    public function __construct($minimum)
+    {
+        Args::isNumeric($minimum, 'minimum');
+        $this->minimum = $minimum;
+    }
+    
+    public function validateValue(Validatable $validateable)
+    {
+        parent::validateValue($validateable);
+        if($validateable->getValue()<$this->minimum)
+        {
+            $validateable->error('Must be a greater than'. $this->minimum);
+        }
+    }
 }
 
 ?>

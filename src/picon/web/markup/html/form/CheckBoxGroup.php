@@ -29,23 +29,6 @@ namespace picon;
  */
 class CheckBoxGroup extends FormComponent
 {
-    private $currentValue = array();
-    
-    protected function onInitialize()
-    {
-        parent::onInitialize();
-        $this->validateModel();
-    }
-    
-    private function validateModel()
-    {
-        $object = $this->getModelObject();
-        if($object!=null && !is_array($object))
-        {
-            throw new \IllegalStateException('Check box group must have an array model');
-        }
-    }
-    
     public function getRawInputArray()
     {
         $input = $this->getRawInput();
@@ -60,31 +43,83 @@ class CheckBoxGroup extends FormComponent
         return $input;
     }
     
-    public function processInput()
+    protected function onInitialize()
+    {
+        parent::onInitialize();
+        $this->validateModel();
+    }
+    
+    protected function validateModel()
+    {
+         $object = $this->getModelObject();
+        if($object!=null && !is_array($object))
+        {
+            throw new \IllegalStateException('Check box group must have an array model');
+        }
+    }
+    
+    public function getChoiceGroup()
+    {
+        $choice = null;
+        $callback = function(&$component) use (&$choice)
+        {
+             $choice = $component;
+             return Component::VISITOR_STOP_TRAVERSAL;
+        };
+        $this->visitParents(Identifier::forName('picon\ChoiceGroup'), $callback);
+        return $choice;
+    }
+    
+    public function getName()
+    {
+        $choice = $this->getChoiceGroup();
+        if($choice==null)
+        {
+            return $this->getMarkupId();
+        }
+        else
+        {
+            return $choice->getMarkupId();
+        }
+    }
+    
+    protected function convertInput()
     { 
         $checks = array();
         $callback = function(&$component) use(&$checks)
         {
             array_push($checks, $component);
-            return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+            return Component::VISITOR_CONTINUE_TRAVERSAL;
         };
-        $this->visitChildren(CheckBox::getIdentifier(), $callback);
+        $this->visitChildren(Check::getIdentifier(), $callback);
         $values = array();
         
         foreach($checks as $check)
-        { 
+        {
             if(in_array($check->getValue(), $this->getRawInputArray()))
             { 
                 array_push($values, $check->getModelObject());
             }
         }
-        $this->currentValue = $values;
-        $this->updateModel($values);
+        $this->setConvertedInput($values);
     }
     
-    public function getCurrentValue()
+    protected function getType()
     {
-        return $this->currentValue;
+        return self::TYPE_BOOL;
+    }
+    
+    public function isRequired()
+    {
+        $choice = $this->getChoiceGroup();
+        if($choice==null)
+        {
+            return parent::isRequired();
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 

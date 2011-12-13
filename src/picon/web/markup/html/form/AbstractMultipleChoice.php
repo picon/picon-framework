@@ -23,12 +23,25 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * This isn't doing anything yet....
+ * 
  * @author Martin Cassidy
  */
-interface Validator
+abstract class AbstractMultipleChoice extends AbstractChoice
 {
-    function validate(Validatable $validateable);
+    public function getRawInputArray()
+    {
+        $input = $this->getRawInput();
+        if($input==null)
+        {
+            return array();
+        }
+        if(!is_array($input))
+        {
+            throw new \InvalidArgumentException('CheckBoxGroup expected raw input to be an array');
+        }
+        return $input;
+    }
 }
 
 ?>

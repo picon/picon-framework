@@ -31,10 +31,15 @@ class Button extends MarkupContainer implements FormSubmitListener
 {
     private $callback;
     
+    /**
+     *
+     * @param string $id
+     * @param closure $callback 
+     */
     public function __construct($id, $callback)
     {
         parent::__construct($id);
-        Args::callBack($callback);
+        Args::callBack($callback, 'callback');
         $this->callback = $callback;
     }
     

@@ -23,12 +23,28 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * Description of FeedbackMessage
+ * 
  * @author Martin Cassidy
  */
-interface Validator
+class FeedbackMessage extends ComonDomainBase
 {
-    function validate(Validatable $validateable);
+    const FEEDBACK_MEESAGE_FATEL = '1';
+    const FEEDBACK_MEESAGE_ERROR = '2';
+    const FEEDBACK_MEESAGE_WARNING = '3';
+    const FEEDBACK_MEESAGE_INFO = '4';
+    const FEEDBACK_MEESAGE_SUCCESS = '5';
+    
+    private $level;
+    private $message;
+    private $reporter;
+    
+    public function __construct($level, $message, Component &$reporter)
+    {
+        $this->level = $level;
+        $this->message = $message;
+        $this->reporter = $reporter;
+    }
 }
 
 ?>

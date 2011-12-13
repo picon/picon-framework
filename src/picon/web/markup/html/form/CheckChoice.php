@@ -27,7 +27,7 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class CheckChoice extends AbstractChoice
+class CheckChoice extends AbstractMultipleChoice implements ChoiceGroup
 {
     private $group;
     private $selection;
@@ -41,26 +41,21 @@ class CheckChoice extends AbstractChoice
     {
         parent::onInitialize();
         $this->selection = $this->getModelObject();
-        $this->group = new CheckBoxGroup('choice', new PropertyModel($this, 'selection'));
+        $this->group = new CheckBoxGroup('choice', $this->getModel());
         $this->add($this->group);
         
         //@todo add the type hint b/ack into the closure when the serializer can handle them
-        $this->group->add(new ListView('choices', new ArrayModel($this->getChoices()), function(&$item)
+        $this->group->add(new ListView('choices', function(&$item)
         {
-            $check = new \picon\CheckBox('checkbox', $item->getModel());
+            $check = new \picon\Check('checkbox', $item->getModel());
             $item->add($check);
             $item->add(new \picon\FormComponentLabel('label', $check));
-        }));
+        }, new ArrayModel($this->getChoices())));
     }
     
     protected function newMarkupSource()
     {
         return new PanelMarkupSource();
-    }
-    
-    protected function isSelected($choice)
-    {
-        
     }
     
     public function __get($name)
@@ -72,12 +67,21 @@ class CheckChoice extends AbstractChoice
     {
         $this->$name = $value;
     }
-    
-    public function processInput()
+
+    protected function convertInput()
     {
-        $this->group->processFormComponent();
-        $newValue = $this->group->getModelObject();
-        $this->updateModel($newValue);
+        $this->group->processInput();
+        $this->setConvertedInput($this->group->getConvertedInput());
+    }
+    
+    protected function getType()
+    {
+        return self::TYPE_BOOL;
+    }
+    
+    public function isSelected($choice, $index)
+    {
+        
     }
 }
 

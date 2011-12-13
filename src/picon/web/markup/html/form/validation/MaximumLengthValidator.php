@@ -23,12 +23,31 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * Validates a string is not longer than a max length
+ * 
  * @author Martin Cassidy
  */
-interface Validator
+class MaximumLengthValidator extends StringValidator
 {
-    function validate(Validatable $validateable);
+    private $maximum;
+    
+    /**
+     * @param number $maximum 
+     */
+    public function __construct($maximum)
+    {
+        Args::isNumeric($maximum, 'maximum');
+        $this->maximum = $maximum;
+    }
+    
+    public function validateValue(Validatable $validateable)
+    {
+        parent::validateValue($validateable);
+        if(strlen($validateable->getValue())>$this->maximum)
+        {
+            $validateable->error(sprintf('Must be a less than %d long', $this->maximum));
+        }
+    }
 }
 
 ?>

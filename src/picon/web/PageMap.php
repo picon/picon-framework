@@ -116,7 +116,7 @@ class PageMap
     public static function getNextPageId()
     {
         self::get()->pageId++;
-        return self::get()->pageId;
+        return 'page'.self::get()->pageId;
     }
     
     /**

@@ -23,12 +23,19 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * Generic validator for numeric values
+ * 
  * @author Martin Cassidy
  */
-interface Validator
+class NumericValidator extends AbstractValidator
 {
-    function validate(Validatable $validateable);
+    public function validateValue(Validatable $validateable)
+    {
+        if(!is_numeric($validateable->getValue()))
+        {
+            $validateable->error('Must be a number');
+        }
+    }
 }
 
 ?>

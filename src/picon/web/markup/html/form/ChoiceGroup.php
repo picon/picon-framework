@@ -23,14 +23,12 @@
 namespace picon;
 
 /**
- * 
+ * Tagging interface
  * @author Martin Cassidy
- * @package web
  */
-class VisitorResponse extends Enum
+interface ChoiceGroup
 {
-    const CONTINUE_TRAVERSAL = 1;
-    const STOP_TRAVERSAL = 2;
-    const CONTINUE_TRAVERSAL_NO_DEEPER = 3;
+    
 }
+
 ?>

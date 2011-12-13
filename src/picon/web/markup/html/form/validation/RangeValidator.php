@@ -23,12 +23,36 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * Validates that a number is between minimum and maximum values
+ * 
  * @author Martin Cassidy
  */
-interface Validator
+class RangeValidator extends AbstractValidator
 {
-    function validate(Validatable $validateable);
+    private $minimum;
+    private $maximum;
+    
+    /**
+     *
+     * @param number $minimum
+     * @param number $maximum 
+     */
+    public function __construct($minimum, $maximum)
+    {
+        Args::isNumeric($maximum, 'maximum');
+        Args::isNumeric($minimum, 'minimum');
+        $this->minimum = $minimum;
+        $this->maximum = $maximum;
+    }
+    
+    public function validateValue(Validatable $validateable)
+    {
+        parent::validateValue($validateable);
+        if($validateable->getValue()<$this->minimum || $validateable->getValue()>$this->maximum)
+        {
+            $validateable->error(sprintf('Must be a between %d and %d', $this->minimum, $this->maximum));
+        }
+    }
 }
 
 ?>

@@ -27,7 +27,7 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class RadioChoice extends AbstractChoice
+class RadioChoice extends AbstractSingleChoice implements ChoiceGroup
 {
     private $selection;
     
@@ -43,12 +43,12 @@ class RadioChoice extends AbstractChoice
         $this->group = new RadioGroup('choice', new PropertyModel($this, 'selection'));
         $this->add($this->group);
         //@todo add the type hint b/ack into the closure when the serializer can handle them
-        $this->group->add(new ListView('choices', new ArrayModel($this->getChoices()), function(&$item)
+        $this->group->add(new ListView('choices', function(&$item)
         {
             $radio = new \picon\Radio('radio', $item->getModel());
             $item->add($radio);
             $item->add(new \picon\FormComponentLabel('label', $radio));
-        }));
+        }, new ArrayModel($this->getChoices())));
     }
     
     protected function newMarkupSource()
@@ -56,7 +56,7 @@ class RadioChoice extends AbstractChoice
         return new PanelMarkupSource();
     }
     
-    protected function isSelected($choice)
+    public function isSelected($choice, $index)
     {
         
     }
@@ -71,10 +71,16 @@ class RadioChoice extends AbstractChoice
         $this->$name = $value;
     }
     
-    public function processInput()
+
+    protected function convertInput()
     {
-        $this->group->processFormComponent();
-        $this->updateModel($this->group->getModelObject());
+        $this->group->processInput();
+        $this->setConvertedInput($this->group->getConvertedInput());
+    }
+    
+    protected function getType()
+    {
+        return self::TYPE_BOOL;
     }
 }
 

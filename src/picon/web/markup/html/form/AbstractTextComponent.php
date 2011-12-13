@@ -30,71 +30,16 @@ namespace picon;
 abstract class AbstractTextComponent extends FormComponent
 {
     /**
-     * Converts the input into the type it is meant to be
-     */
-    public function convertInput()
-    {
-        $string = $this->getRawInput();
-        $supported = array("boolean", "integer", "double", "float", "string", );
-        $required = $this->getType();
-        if(in_array($required, $supported))
-        {
-            $converted = $string;
-            settype($converted, $required);
-            return $converted;
-        }
-        else if(class_exists($required))
-        {
-            $converter = $this->getApplication()->getConverter(get_class($required));
-            
-            if($converter==null)
-            {
-                throw new \RuntimeException(sprintf("Unable to find converter for type %s", $required));
-            }
-            $object = $converter->convertToObject($string);
-            if(get_class($object)!=$required)
-            {
-                throw new \RuntimeException("Converter did not correctly convert to an object");
-            }
-            return $converted;
-        }
-        else
-        {
-            throw new \InvalidArgumentException('Input could not be converted');
-        }
-    }
-    
-    /**
      * Get the data type for this text component
      */
-    protected abstract function getType();
-    
-    /**
-     * Get the value for the form component. This may come from the model
-     * or, if an input is set, from the input
-     * @return string the value for this component
-     */
-    public function getValue()
+    protected function getType()
     {
-        $input = $this->getRawInput();
-        if(empty($input))
-        {
-            $input = $this->getModelObjectAsString();
-        }
-        return htmlentities($input);
+        return self::TYPE_STRING;
     }
     
-    public function processInput()
+    protected function validateModel()
     {
-        try
-        {
-            $converted = $this->convertInput();
-            $this->updateModel($converted);
-        }
-        catch(ConversionException $ex)
-        {
-            //@todo show error message
-        }
+        //@todo
     }
 }
 

@@ -60,6 +60,14 @@ class MarkupContainer extends Component
         }
     }
     
+    protected final function remove(Component &$component)
+    {
+        if($this->childExists($component->getId()))
+        {
+            unset($this->children[$component->getId()]);
+        }
+    }
+    
     protected final function addComponent(Component &$component)
     {
         if($this->childExists($component->getId()))
@@ -88,7 +96,7 @@ class MarkupContainer extends Component
         $callback = function(&$component)
         {
             $component->internalInitialize();
-            return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+            return Component::VISITOR_CONTINUE_TRAVERSAL;
         };
         $this->visitChildren(Component::getIdentifier(), $callback);
     }
@@ -173,7 +181,7 @@ class MarkupContainer extends Component
      */
     public function visitChildren(Identifier $identifier, $callback)
     {
-        Args::callBackArgs($callback, 1);
+        Args::callBackArgs($callback, 1, 'callback');
         $this->internalVisitChildren($identifier, $this->getChildren(), $callback);
     }
     
@@ -181,17 +189,16 @@ class MarkupContainer extends Component
     {
         foreach($components as $component)
         {
-            $response = new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+            $response = self::VISITOR_CONTINUE_TRAVERSAL;
             if($component::getIdentifier()->of($identifier))
             {
                 $response = $callback($component);
-                Args::checkInstanceNotNull($response, VisitorResponse::getIdentifier());
             }
-            if($response->equals(new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL)) && $component instanceof MarkupContainer)
+            if($response==self::VISITOR_CONTINUE_TRAVERSAL && $component instanceof MarkupContainer)
             {
                 $this->internalVisitChildren($identifier, $component->getChildren(), $callback);
             }
-            else if($response->equals(new VisitorResponse(VisitorResponse::STOP_TRAVERSAL)))
+            else if($response==self::VISITOR_STOP_TRAVERSAL)
             {
                 break;
             }

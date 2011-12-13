@@ -24,7 +24,6 @@ namespace picon;
 
 /**
  * Generic helper class for validating method arguments
- * @todo use stack to create a less generic message
  *
  * @author Martin Cassidy
  */
@@ -34,11 +33,11 @@ class Args
      * Throws and excpetion if not a callback
      * @param mixed $object The object to test
      */
-    public static function callBack($object)
+    public static function callBack($object, $argName)
     {
         if(!is_callable($object))
         {
-            throw new \InvalidArgumentException("Expecting callable");
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be callable", self::getCallingMethod(), $argName));
         }
     }
     
@@ -48,14 +47,19 @@ class Args
      * @param Closure $callback The callback to test
      * @param int $amount The number of arguments the callback should have
      */
-    public static function callBackArgs($callback, $amount)
+    public static function callBackArgs($callback, $amount, $argName)
     {
-        self::callBack($callback);
-        self::isNumeric($amount);
+        self::isNumeric($amount, 'amount');
+        
+        if(!is_callable($callback))
+        {
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be callable", self::getCallingMethod(), $argName));
+        }
+        
         $reflection = new \ReflectionFunction($callback);
         if(count($reflection->getParameters())!=$amount)
         {
-            throw new \InvalidArgumentException(sprintf("Callback should accept 1 argument. Actual %d", count($reflection->getParameters())));
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be callable and take %d argument(s)", self::getCallingMethod(), $argName, $amount));
         }
     }
     
@@ -63,61 +67,42 @@ class Args
      * Throws an exception if not numeric
      * @param type $number 
      */
-    public static function isNumeric($number)
+    public static function isNumeric($number, $argName)
     {
         if(!is_numeric($number))
         {
-            throw new \InvalidArgumentException("Expected number");
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be numeric", self::getCallingMethod(), $argName));
         }
     }
     
-    /**
-     * Throws an expection if not of the given instance.
-     * If object is null, no excpetion will be thrown
-     * @param Object $object
-     * @param Identifier $expected
-     */
-    public static function checkInstance($object, Identifier $expected)
-    {
-        $fqName = $expected->getFullyQualifiedName();
-        if($object!=null && !(is_a($object, $fqName)))
-        {
-            throw new \InvalidArgumentException(sprintf("Expected type %s, actual %s", $fqName, get_class($object)));
-        }
-    }
-    
-    /**
-     * Throws an expection if not of the given instance.
-     * If object is null, an excpetion will also be thrown
-     * @param Object $object
-     * @param Identifier $expected
-     */
-    public static function checkInstanceNotNull($object, Identifier $expected)
-    {
-        if($object==null)
-        {
-            throw new \InvalidArgumentException("Expected non null");
-        }
-        else
-        {
-            self::checkInstance($object, $expected);
-        }
-    }
-    
-    public static function isArray($object)
+    public static function isArray($object, $argName)
     {
         if(!is_array($object))
         {
-            throw new \InvalidArgumentException("Expected array");
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be an array", self::getCallingMethod(), $argName));
         }
     }
     
-    public static function isString($object)
+    public static function isString($object, $argName)
     {
         if(!is_string($object))
         {
-            throw new \InvalidArgumentException("Expected string");
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be a string", self::getCallingMethod(), $argName));
         }
+    }
+    
+    public static function isBoolean($object, $argName)
+    {
+        if(!is_bool($object))
+        {
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be a boolean", self::getCallingMethod(), $argName));
+        }
+    }
+    
+    private static function getCallingMethod()
+    {
+        $trace = debug_backtrace();
+        return $trace[2]['class'].$trace[2]['type'].$trace[2]['function'].'()';
     }
 }
 

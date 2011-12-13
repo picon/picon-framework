@@ -23,41 +23,43 @@
 namespace picon;
 
 /**
- * Description of DropDown
+ * Description of AbstractSingleChoice
  * 
  * @author Martin Cassidy
  */
-class DropDown extends AbstractSingleChoice
+abstract class AbstractSingleChoice extends AbstractChoice
 {
-    private $choiceReferences;
-    private $outputPair;
-    
-    private $defaultValue = 'Choose One';
-    
-    public function __construct($id, $choices, ChoiceRenderer $choiceRenderer = null, Model $model = null)
+    public function isSelected($choice, $index)
     {
-        parent::__construct($id, $choices, $choiceRenderer, $model);
-    }
-    
-    protected function onComponentTag(ComponentTag $tag)
-    {
-        $this->checkComponentTag($tag, 'select');
-        parent::onComponentTag($tag);
-    }
-    
-    protected function onComponentTagBody(ComponentTag $tag)
-    {
-        if($this->getValue()==null || !$this->isRequired())
+        if($this->isEmptyInput())
         {
-            $this->renderOption($this->defaultValue, null, false);
+            return false;
         }
-        
-        $this->renderOptions();
+        else
+        {
+            $raw = $this->getRawInput();
+            if(!empty($raw))
+            {
+                return $this->getRawInput()==$this->getChoiceRenderer()->getValue($choice, $index);
+            }
+            else
+            {
+                return $this->getModelObjectAsString()==$this->getChoiceRenderer()->getValue($choice, $index);
+            }
+        }
     }
     
-    protected function getType()
+    protected function convertInput()
     {
-        throw new \UnsupportedOperationException();
+        $value = $this->getRawInput();
+        foreach($this->getChoices() as $index => $choice)
+        {
+            if($this->valueForChoice($choice, $value, $index))
+            {
+                $this->setConvertedInput($choice);
+                return;
+            }
+        }
     }
 }
 

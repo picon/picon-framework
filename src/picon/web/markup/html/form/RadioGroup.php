@@ -29,7 +29,32 @@ namespace picon;
  */
 class RadioGroup extends FormComponent
 {
-    public function processInput()
+    public function getChoiceGroup()
+    {
+        $choice = null;
+        $callback = function(&$component) use (&$choice)
+        {
+             $choice = $component;
+             return Component::VISITOR_STOP_TRAVERSAL;
+        };
+        $this->visitParents(Identifier::forName('picon\ChoiceGroup'), $callback);
+        return $choice;
+    }
+    
+    public function getName()
+    {
+        $choice = $this->getChoiceGroup();
+        if($choice==null)
+        {
+            return $this->getMarkupId();
+        }
+        else
+        {
+            return $choice->getMarkupId();
+        }
+    }
+    
+    protected function convertInput()
     {
         $input = $this->getRawInput();
         $value = null;
@@ -38,18 +63,40 @@ class RadioGroup extends FormComponent
             if($radio->getValue()==$input)
             {
                 $value = $radio->getModelObject();
-                return new VisitorResponse(VisitorResponse::STOP_TRAVERSAL);
+                return Component::VISITOR_STOP_TRAVERSAL;
             }
-            return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+            return Component::VISITOR_CONTINUE_TRAVERSAL;
         };
         $this->visitChildren(Radio::getIdentifier(), $callback);
         
         if($value!=null)
         {
-            $this->updateModel($value);
+            $this->setConvertedInput($value);
         }
     }
-
+    
+    protected function getType()
+    {
+        return self::TYPE_BOOL;
+    }
+    
+    public function isRequired()
+    {
+        $choice = $this->getChoiceGroup();
+        if($choice==null)
+        {
+            return parent::isRequired();
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    protected function validateModel()
+    {
+        //@todo
+    }
 }
 
 ?>

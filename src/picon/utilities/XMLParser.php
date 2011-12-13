@@ -72,13 +72,18 @@ class XMLParser
         
         while ($data = fread($fp, 4096))
         {
-            if (!xml_parse($this->parser, $data, feof($fp)))
+            if (!xml_parse($this->parser, $this->prepare($data), feof($fp)))
             {
                 $this->onXmlError(xml_error_string(xml_get_error_code($this->parser)), xml_get_current_line_number($this->parser));
             }
         }
         xml_parser_free($this->parser);
         return $this->root;
+    }
+    
+    protected function prepare($data)
+    {
+        return $data;
     }
     
     /**

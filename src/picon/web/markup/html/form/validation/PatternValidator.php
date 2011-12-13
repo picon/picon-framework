@@ -23,12 +23,32 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * Validats that a string matches a given regular expression
+ * 
  * @author Martin Cassidy
  */
-interface Validator
+class PatternValidator extends StringValidator
 {
-    function validate(Validatable $validateable);
+    private $pattern;
+    
+    /**
+     *
+     * @param string $pattern The regular expression
+     */
+    public function __construct($pattern)
+    {
+        Args::isString($pattern, 'pattern');
+        $this->pattern = $pattern;
+    }
+    
+    public function validateValue(Validatable $validateable)
+    {
+        parent::validateValue($validateable);
+        if(preg_match("/".$this->pattern."/", $validateable->getValue())!=1)
+        {
+            $validateable->error('Must match the given pattern');
+        }
+    }
 }
 
 ?>

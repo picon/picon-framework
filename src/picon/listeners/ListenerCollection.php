@@ -19,7 +19,9 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
+
 namespace picon;
+
 /**
  * Represents a collection of listeners
  *
@@ -54,9 +56,13 @@ abstract class ListenerCollection
         }
     }
     
+    /**
+     *
+     * @param closure $callback 
+     */
     public function notify($callback)
     {
-        Args::callBackArgs($callback, 1);
+        Args::callBackArgs($callback, 1, 'callback');
         
         foreach($this->listeners as $listener)
         {

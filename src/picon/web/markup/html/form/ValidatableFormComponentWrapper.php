@@ -23,12 +23,38 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * Description of ValidatableFormComponentWrapper
  * @author Martin Cassidy
  */
-interface Validator
+class ValidatableFormComponentWrapper implements Validatable
 {
-    function validate(Validatable $validateable);
+    private $wrappedComponet;
+    
+    public function __construct(FormComponent &$component)
+    {
+        $this->wrappedComponet = $component;
+    }
+    
+    /**
+     * @todo should take in a validation message not a string, 
+     * message will store a locator to get the message from a file
+     * @param type $message 
+     */
+    public function error($message)
+    {
+        $this->wrappedComponet->error($this->wrappedComponet->getId().' '.$message);
+        $this->wrappedComponet->invalid();
+    }
+    
+    public function getValue()
+    {
+        return $this->wrappedComponet->getConvertedInput();
+    }
+    
+    public function isValid()
+    {
+        return $this->wrappedComponet->isValid();
+    }
 }
 
 ?>

@@ -45,6 +45,10 @@ namespace picon;
  */
 abstract class Component implements InjectOnWakeup, Identifiable
 {
+    const VISITOR_CONTINUE_TRAVERSAL = 1;
+    const VISITOR_STOP_TRAVERSAL = 2;
+    const VISITOR_CONTINUE_TRAVERSAL_NO_DEEPER = 3;
+    
     /**
      * @var String the ID of this component
      */
@@ -88,14 +92,21 @@ abstract class Component implements InjectOnWakeup, Identifiable
     
     private static $nextId = 0;
     
+    /**
+     * @todo find a better place to put this...
+     * @var FeedbackModel 
+     */
+    private static $feedbackModel;
+    
     const PATH_SEPERATOR = ':';
     
     /**
      * Create a new component. Any overrides of the constructor must call the super.
-     * @param String the ID of this component
+     * @param string $id the ID of this component
      */
     public function __construct($id, Model $model = null)
     {
+        Args::isString($id, 'id');
         $this->id = $id;
         $this->model = $model;
         PiconApplication::get()->getComponentInstantiationListener()->onInstantiate($this);
@@ -501,22 +512,20 @@ abstract class Component implements InjectOnWakeup, Identifiable
      */
     public function visitParents(Identifier $identifier, $callback)
     {
-        Args::callBackArgs($callback, 1);
+        Args::callBackArgs($callback, 1, 'callback');
         $this->internalVisitParents($identifier, $this->parent, $callback);
     }
     
     private function internalVisitParents(Identifier $identifier, $component, $callback)
     {
-        Args::checkInstance($component, Component::getIdentifier());
         if($component!=null)
         {
-            $response = new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+            $response = self::VISITOR_CONTINUE_TRAVERSAL;
             if($component::getIdentifier()->of($identifier))
             {
                 $response = $callback($component);
-                Args::checkInstanceNotNull($response, VisitorResponse::getIdentifier());
             }
-            if($response->equals(new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL)))
+            if($response==self::VISITOR_CONTINUE_TRAVERSAL)
             {
                 $this->internalVisitParents($identifier, $component->parent, $callback);
             }
@@ -529,7 +538,7 @@ abstract class Component implements InjectOnWakeup, Identifiable
         $callback = function($component) use (&$page)
         {
             $page = $component;
-            return new VisitorResponse(VisitorResponse::STOP_TRAVERSAL);
+            return Component::VISITOR_STOP_TRAVERSAL;
         };
         $this->visitParents(WebPage::getIdentifier(), $callback);
         return $page;
@@ -673,9 +682,9 @@ abstract class Component implements InjectOnWakeup, Identifiable
             if(!($component instanceof WebPage))
             {
                 $path = $component->getId().Component::PATH_SEPERATOR.$path;
-                return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+                return Component::VISITOR_CONTINUE_TRAVERSAL;
             }
-            return new VisitorResponse(VisitorResponse::STOP_TRAVERSAL);
+            return Component::VISITOR_STOP_TRAVERSAL;
         };
         $this->visitParents(Component::getIdentifier(), $callback);
         return str_replace(self::PATH_SEPERATOR.self::PATH_SEPERATOR, '', $path.self::PATH_SEPERATOR);
@@ -829,6 +838,50 @@ abstract class Component implements InjectOnWakeup, Identifiable
             settype($object, 'string');
             return $object;
         }
+    }
+    
+    public static function getFeedbackModel()
+    {
+        if(!isset(self::$feedbackModel))
+        {
+            self::$feedbackModel = new FeedbackModel();
+        }
+        return self::$feedbackModel;
+    }
+    
+    public function fatel($message)
+    {
+        self::getFeedbackModel()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_FATEL, $message, $this));
+    }
+    
+    public function error($message)
+    {
+        self::getFeedbackModel()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_ERROR, $message, $this));
+    }
+    
+    public function warning($message)
+    {
+        self::getFeedbackModel()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_WARNING, $message, $this));
+    }
+    
+    public function info($message)
+    {
+        self::getFeedbackModel()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_INFO, $message, $this));
+    }
+    
+    public function success($message)
+    {
+        self::getFeedbackModel()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_SUCCESS, $message, $this));
+    }
+    
+    public function hasMessage($level = null)
+    {
+        return self::getFeedbackModel()->hasMessages($this, $level);
+    }
+    
+    public function hasErrorMessage()
+    {
+        return self::getFeedbackModel()->hasMessages($this, FeedbackMessage::FEEDBACK_MEESAGE_ERROR);
     }
 }
 
