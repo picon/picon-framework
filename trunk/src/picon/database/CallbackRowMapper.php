@@ -23,45 +23,24 @@
 namespace picon;
 
 /**
- * Configuration domain object
- *
+ * Description of CallbackRowMapper
+ * 
  * @author Martin Cassidy
- * @package domain/config
  */
-class Config extends ComonDomainBase
+class CallbackRowMapper implements RowMapper
 {
-    private $homePage;
-    private $mode;
-    private $dataSources = array();
+    private $callback;
     
-    public function setMode(ApplicationMode $mode)
+    public function __construct($callback)
     {
-        $this->mode = $mode;
+        Args::callBackArgs($callback, 1, 'callback');
+        $this->callback = $callback;
     }
     
-    public function getMode()
+    public function mapRow($row)
     {
-        return $this->mode;
-    }
-    
-    public function setHomePage($homePage)
-    {
-        $this->homePage = $homePage;
-    }
-    
-    public function getHomePage()
-    {
-        return $this->homePage;
-    }
-    
-    public function addDataSource(DataSourceConfig $source)
-    {
-        array_push($this->dataSources, $source);
-    }
-    
-    public function getDataSources()
-    {
-        return $this->dataSources;
+        $callable = $this->callback;
+        return $callable($row);
     }
 }
 

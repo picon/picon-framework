@@ -20,48 +20,25 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
-
 /**
- * Configuration domain object
- *
+ * Simple test page for database queries
+ * 
  * @author Martin Cassidy
- * @package domain/config
  */
-class Config extends ComonDomainBase
+class DatabaseTestPage extends AbstractPage
 {
-    private $homePage;
-    private $mode;
-    private $dataSources = array();
+    /**
+     * @Resource
+     */
+    private $sampleDao;
     
-    public function setMode(ApplicationMode $mode)
+    public function __construct()
     {
-        $this->mode = $mode;
-    }
-    
-    public function getMode()
-    {
-        return $this->mode;
-    }
-    
-    public function setHomePage($homePage)
-    {
-        $this->homePage = $homePage;
-    }
-    
-    public function getHomePage()
-    {
-        return $this->homePage;
-    }
-    
-    public function addDataSource(DataSourceConfig $source)
-    {
-        array_push($this->dataSources, $source);
-    }
-    
-    public function getDataSources()
-    {
-        return $this->dataSources;
+        parent::__construct();
+        $testData = $this->sampleDao->getTestData();
+        
+        //testing only, use a data table and a data provider when the classes exist
+        print_r($testData);
     }
 }
 

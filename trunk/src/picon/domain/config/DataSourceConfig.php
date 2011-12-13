@@ -30,6 +30,7 @@ namespace picon;
  */
 class DataSourceConfig extends ComonDomainBase
 {
+    private $name;
     private $type;
     private $host;
     private $port;
@@ -46,8 +47,9 @@ class DataSourceConfig extends ComonDomainBase
      * @param String $password
      * @param String $database 
      */
-    public function __construct(DataSourceType $type, $host, $port, $username, $password, $database)
+    public function __construct(DataSourceType $type, $name, $host, $port, $username, $password, $database)
     {
+        $this->name = $name;
         $this->host = $host;
         $this->type = $type;
         $this->port = $port;

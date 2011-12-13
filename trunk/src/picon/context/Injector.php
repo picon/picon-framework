@@ -40,13 +40,17 @@ class Injector
         Injector::$injector = $this;
     }
     
+    /**
+     * @todo add support for parent private properties
+     * @param type $object 
+     */
     public function inject(&$object)
     {
         $reflection = new \ReflectionAnnotatedClass($object);
         $properties = $reflection->getProperties();
                 
         foreach($properties as $property)
-        {
+        { 
             if($property->hasAnnotation("Resource"))
             {
                 $annotation = $property->getAnnotation("Resource");

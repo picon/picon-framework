@@ -26,6 +26,10 @@ class HomePage extends AbstractPage
         {
             $me->setPage(FormPage::getIdentifier());
         }));
+        $two->add(new Link('dbLink', function() use($me)
+        {
+            $me->setPage(DatabaseTestPage::getIdentifier());
+        }));
         
         
         $fruit = array('apples', 'pears', 'bananas', 'oranges');

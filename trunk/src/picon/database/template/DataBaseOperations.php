@@ -23,46 +23,31 @@
 namespace picon;
 
 /**
- * Configuration domain object
  *
  * @author Martin Cassidy
- * @package domain/config
  */
-class Config extends ComonDomainBase
+interface DataBaseOperations
 {
-    private $homePage;
-    private $mode;
-    private $dataSources = array();
+    /**
+     * Run a query of given SQL.
+     * Invoke the row mapper for each result found
+     * Replace values in the query with the passed arguments. Query
+     * values should be a type specifier
+     */
+    function query($sql, RowMapper $mapper, $arguments = null);
     
-    public function setMode(ApplicationMode $mode)
-    {
-        $this->mode = $mode;
-    }
+    /**
+     * Run a query of given SQL.
+     * Replace values in the query with the passed arguments. Query
+     * values should be a type specifier
+     * @return the number of affected records
+     */
+    function update($sql, $arguments = null);
     
-    public function getMode()
-    {
-        return $this->mode;
-    }
-    
-    public function setHomePage($homePage)
-    {
-        $this->homePage = $homePage;
-    }
-    
-    public function getHomePage()
-    {
-        return $this->homePage;
-    }
-    
-    public function addDataSource(DataSourceConfig $source)
-    {
-        array_push($this->dataSources, $source);
-    }
-    
-    public function getDataSources()
-    {
-        return $this->dataSources;
-    }
+    /**
+     * Run the given SQL
+     */
+    function execute($sql);
 }
 
 ?>

@@ -78,7 +78,7 @@ abstract class Enum implements Identifiable
         }
         
         foreach($enum->getConstants() as $name => $enumValue)
-        { 
+        {
             if($enumValue==$value)
             {
                 $this->value = $value;
@@ -101,7 +101,7 @@ abstract class Enum implements Identifiable
         {
             if(strtolower($enumValue)==strtolower($obj))
             {
-                return new static($obj);
+                return new static($enumValue);
             }
         }
         return null;

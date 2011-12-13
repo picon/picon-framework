@@ -29,9 +29,8 @@ namespace picon;
  */
 class DataSourceType extends Enum 
 {
-    const MYSQL = "mysql";
-    const MYSQLI = "mysqli";
-    const MSSQL = "mssql";
+    const MYSQL = "MySql";
+    const MYSQLI = "MySqli";
 }
 
 ?>

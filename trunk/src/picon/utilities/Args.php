@@ -104,6 +104,14 @@ class Args
         $trace = debug_backtrace();
         return $trace[2]['class'].$trace[2]['type'].$trace[2]['function'].'()';
     }
+    
+    public static function notNull($object, $argName)
+    {
+        if($object==null)
+        {
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be non null", self::getCallingMethod(), $argName));
+        }
+    }
 }
 
 ?>

@@ -23,46 +23,12 @@
 namespace picon;
 
 /**
- * Configuration domain object
  *
  * @author Martin Cassidy
- * @package domain/config
  */
-class Config extends ComonDomainBase
+interface RowMapper
 {
-    private $homePage;
-    private $mode;
-    private $dataSources = array();
-    
-    public function setMode(ApplicationMode $mode)
-    {
-        $this->mode = $mode;
-    }
-    
-    public function getMode()
-    {
-        return $this->mode;
-    }
-    
-    public function setHomePage($homePage)
-    {
-        $this->homePage = $homePage;
-    }
-    
-    public function getHomePage()
-    {
-        return $this->homePage;
-    }
-    
-    public function addDataSource(DataSourceConfig $source)
-    {
-        array_push($this->dataSources, $source);
-    }
-    
-    public function getDataSources()
-    {
-        return $this->dataSources;
-    }
+    function mapRow($row);
 }
 
 ?>

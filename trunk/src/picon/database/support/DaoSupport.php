@@ -23,46 +23,50 @@
 namespace picon;
 
 /**
- * Configuration domain object
- *
+ * Description of DaoSupport
+ * 
  * @author Martin Cassidy
- * @package domain/config
  */
-class Config extends ComonDomainBase
+abstract class DaoSupport implements InitializingBean
 {
-    private $homePage;
-    private $mode;
-    private $dataSources = array();
+    private $template;
     
-    public function setMode(ApplicationMode $mode)
+    public function setTemplate(DataBaseTemplate $template)
     {
-        $this->mode = $mode;
+        $this->template = $template;
     }
     
-    public function getMode()
+    public function getTemplate()
     {
-        return $this->mode;
+        return $this->template;
     }
     
-    public function setHomePage($homePage)
+    public function setDataSource(DataSource $source)
     {
-        $this->homePage = $homePage;
+        $this->template = new DataBaseTemplate($source);
     }
     
-    public function getHomePage()
+    public function getDataSource()
     {
-        return $this->homePage;
+        return $this->template->getDataSource();
     }
     
-    public function addDataSource(DataSourceConfig $source)
+    public final function afterPropertiesSet()
     {
-        array_push($this->dataSources, $source);
+        $this->init();
+        
+        if($this->template==null)
+        {
+            throw new IllegalStateException('The database template was null after init()');
+        }
     }
     
-    public function getDataSources()
-    {
-        return $this->dataSources;
-    }
+    /**
+     * Called when the Dao is ready to be initialized
+     * Sub classes will need to ensure that the implementation of this method will set the
+     * data source or the template
+     */
+    protected abstract function init();
 }
 
 ?>
