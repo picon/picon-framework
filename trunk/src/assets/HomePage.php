@@ -30,10 +30,10 @@ class HomePage extends AbstractPage
         
         $fruit = array('apples', 'pears', 'bananas', 'oranges');
         
-        $this->add(new ListView('fruit', new ArrayModel($fruit), function($entry)
+        $this->add(new ListView('fruit', function($entry)
         {
             $entry->add(new Label('name', new BasicModel($entry->getModelObject())));
-        }));
+        }, new ArrayModel($fruit)));
         
         $this->add(new ExamplePanel('samplePanel'));
     }

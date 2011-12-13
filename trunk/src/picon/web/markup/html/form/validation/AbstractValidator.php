@@ -23,12 +23,22 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * Super class for all validators
+ * @todo validators should not use string based messages but
+ * should instead use a resource key to locate a message from a file
  * @author Martin Cassidy
  */
-interface Validator
+abstract class AbstractValidator implements Validator
 {
-    function validate(Validatable $validateable);
+    public function validate(Validatable $validateable)
+    {
+        if($validateable->isValid())
+        {
+            $this->validateValue($validateable);
+        }
+    }
+    
+    public abstract function validateValue(Validatable $validateable);
 }
 
 ?>

@@ -23,12 +23,16 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * Validator to check that the string is a valid email address
+ * 
  * @author Martin Cassidy
  */
-interface Validator
+class EmailAddressValidator extends PatternValidator
 {
-    function validate(Validatable $validateable);
+    public function __construct()
+    {
+        parent::__construct("^([0-9a-zA-Z]+([_.-]?[0-9a-zA-Z]+)*@[0-9a-zA-Z]+[0-9,a-z,A-Z,.,-]*(.){1}[a-zA-Z]{2,4})+$");
+    }
 }
 
 ?>

@@ -32,10 +32,15 @@ class Tab extends ComonDomainBase
     private $name;
     private $newMethod;
     
+    /**
+     *
+     * @param string $name
+     * @param closure $newMethod 
+     */
     public function __construct($name, $newMethod)
     {
-        Args::callBack($newMethod);
-        Args::callBackArgs($newMethod, 1);
+        Args::isString($name, 'name');
+        Args::callBackArgs($newMethod, 1, 'newMethod');
         $this->name = $name;
         $this->newMethod = $newMethod;
     }

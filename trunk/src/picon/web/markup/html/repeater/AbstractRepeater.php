@@ -64,6 +64,10 @@ abstract class AbstractRepeater extends MarkupContainer
     public function beforeRender()
     {
         parent::beforeRender();
+        foreach($this->getChildren() as $child)
+        {
+            $this->remove($child);
+        }
         $this->populate();
     }
     

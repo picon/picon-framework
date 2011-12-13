@@ -69,7 +69,7 @@ class Identifier extends ComonDomainBase
      */
     public static function forName($name)
     {
-        if(!class_exists($name))
+        if(!class_exists($name) && !interface_exists($name))
         {
             throw new \InvalidArgumentException(sprintf("The class %s is not declared.", $name));
         }
@@ -103,7 +103,7 @@ class Identifier extends ComonDomainBase
             return false;
         }
         
-        return is_subclass_of($this->getFullyQualifiedName(), $object->getFullyQualifiedName()) || $object->getFullyQualifiedName()==$this->getFullyQualifiedName();
+        return in_array($this->getFullyQualifiedName(), class_implements($object->getFullyQualifiedName())) || is_subclass_of($this->getFullyQualifiedName(), $object->getFullyQualifiedName()) || $object->getFullyQualifiedName()==$this->getFullyQualifiedName();
     }
 }
 

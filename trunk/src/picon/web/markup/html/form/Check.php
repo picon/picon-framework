@@ -23,18 +23,43 @@
 namespace picon;
 
 /**
- * Description of CheckBox
+ * A checkbox for use inside a check group
  * 
  * @author Martin Cassidy
  */
-class CheckBox extends FormComponent
+class Check extends LabeledMarkupContainer
 {
-    protected function validateModel()
+    private $group;
+    
+    public function getLabel()
     {
-        if($this->getModel()!=null && !($this->getModel() instanceof BooleanModel) && $this->getModelObject()!=null && !is_bool($this->getModelObject()))
+        return $this->getModelObjectAsString();
+    }
+    
+    private function getGroup()
+    {
+        if($this->group!=null)
         {
-            throw new \IllegalStateException(sprintf("A check box must have a bollean model, actual %s", gettype($this->getModelObject())));
+            return $this->group;
         }
+        
+        $group = null;
+        
+        $callback = function(Component &$component) use (&$group)
+        {
+            $group = $component;
+            return Component::VISITOR_STOP_TRAVERSAL;
+        };
+        $this->visitParents(CheckBoxGroup::getIdentifier(), $callback);
+        
+        $this->group = $group;
+        
+        if($group==null)
+        {
+            throw new \RuntimeException('A check must be a child of CheckBoxGroup');
+        }
+        
+        return $group;
     }
     
     public function getValue()
@@ -42,22 +67,29 @@ class CheckBox extends FormComponent
         return $this->getComponentPath();
     }
     
+    public function getName()
+    {
+        $group = $this->getGroup();
+        return $group->getName().'[]';
+    }
+    
     protected function isSelected($value)
     {
-        if($this->isEmptyInput())
+        $group = $this->getGroup();
+        if(count($group->getRawInputArray())==0)
         {
-            return false;
-        }
-        else
-        {
-            if($this->getRawInput()==null)
+            if($group->isEmptyInput())
             {
-                return $this->getModelObject();
+                return false;
             }
             else
             {
-                return $value==$this->getRawInput();
+                return in_array($this->getModelObject(), $group->getModelObject());
             }
+        }
+        else
+        {
+            return in_array($value, $group->getRawInputArray());
         }
     }
     
@@ -67,28 +99,12 @@ class CheckBox extends FormComponent
         $this->checkComponentTag($tag, 'input');
         $this->checkComponentTagAttribute($tag, 'type', 'checkbox');
         $tag->put('value', $this->getValue());
+        $tag->put('name', $this->getName());
         
         if($this->isSelected($this->getValue()))
         {
             $tag->put('checked', 'checked');
         }
     }
-
-    protected function convertInput()
-    {
-        $value = ($this->getRawInput()==$this->getValue())==true;
-        $this->setConvertedInput($value);
-    }
-    
-    public function getLabel()
-    {
-        return $this->getModelObjectAsString();
-    }
-    
-    protected function getType()
-    {
-        return self::TYPE_BOOL;
-    }
 }
-
 ?>

@@ -43,7 +43,7 @@ class Radio extends LabeledMarkupContainer
         $callback = function(Component &$component) use (&$group)
         {
             $group = $component;
-            return new VisitorResponse(VisitorResponse::STOP_TRAVERSAL);
+            return Component::VISITOR_STOP_TRAVERSAL;
         };
         $this->visitParents(RadioGroup::getIdentifier(), $callback);
         
@@ -55,11 +55,6 @@ class Radio extends LabeledMarkupContainer
         }
         
         return $group;
-    }
-    
-    public function getName()
-    {
-        return $this->getGroup()->getMarkupId();
     }
 
     public function getValue()
@@ -85,10 +80,11 @@ class Radio extends LabeledMarkupContainer
     protected function onComponentTag(ComponentTag $tag)
     {
         parent::onComponentTag($tag);
+        $group = $this->getGroup();
         $this->checkComponentTag($tag, 'input');
         $this->checkComponentTagAttribute($tag, 'type', 'radio');
         
-        $tag->put('name', $this->getName());
+        $tag->put('name', $group->getName());
         $tag->put('value', $this->getValue());
 
         if($this->isChecked())

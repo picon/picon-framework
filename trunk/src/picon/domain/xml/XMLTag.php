@@ -133,9 +133,25 @@ class XMLTag extends ComonDomainBase implements XmlElement
         $this->attributes[$name] = $value;
     }
     
+    /**
+     * Remove an attribute
+     * @param type $name 
+     */
+    public function remove($name)
+    {
+        if(array_key_exists($name, $this->attributes))
+        {
+            unset($this->attributes[$name]);
+        }
+    }
+    
+    /**
+     *
+     * @param array $children 
+     */
     public function setChildren($children)
     {
-        Args::isArray($children);
+        Args::isArray($children, 'children');
         $this->children = $children;
     }
     

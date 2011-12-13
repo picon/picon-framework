@@ -38,6 +38,8 @@ class Form extends MarkupContainer implements FormSubmitListener
     
     /**
      * Called when the form is submited
+     * @todo get all form components to check for parent form, ensuring that
+     * nested forms are ignored
      * @todo get this to find the submitting component and invoke its
      * onEvent too
      */
@@ -51,18 +53,23 @@ class Form extends MarkupContainer implements FormSubmitListener
             {
                 if($component->getForm()!=$form)
                 {
-                    return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL_NO_DEEPER);
+                    return Component::VISITOR_CONTINUE_TRAVERSAL_NO_DEEPER;
                 }
                 array_push($components, $component);
-                return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+                return Component::VISITOR_CONTINUE_TRAVERSAL;
             };
             $this->visitChildren(FormComponent::getIdentifier(), $callback);
+            
+            foreach($components as $formComponent)
+            {
+                $formComponent->inputChanged();
+            }
             
             $formValid = true;
             foreach($components as $formComponent)
             {
-                $formComponentValid = $formComponent->validate();
-                if($formComponentValid==false)
+                $formComponent->validate();
+                if(!$formComponent->isValid())
                 {
                     $formValid = false;
                 }
@@ -72,7 +79,7 @@ class Form extends MarkupContainer implements FormSubmitListener
             {
                 foreach($components as $formComponent)
                 {
-                    $formComponent->processInput();
+                    $formComponent->updateModel();
                 }
             }
             
@@ -80,7 +87,7 @@ class Form extends MarkupContainer implements FormSubmitListener
             $callback = function(&$component)
             {
                    $component->onEvent();
-                   return new VisitorResponse(VisitorResponse::STOP_TRAVERSAL);
+                   return Component::VISITOR_STOP_TRAVERSAL;
             };
             $this->visitChildren(Button::getIdentifier(), $callback);
         }

@@ -23,12 +23,31 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * This isn't doing anything yet....
+ * 
  * @author Martin Cassidy
  */
-interface Validator
+class ListMultiple extends AbstractMultipleChoice
 {
-    function validate(Validatable $validateable);
+    protected function isSelected($choice, $index)
+    {
+        if($this->isEmptyInput())
+        {
+            return false;
+        }
+        else
+        {
+            $raw = $this->getRawInput();
+            if(!empty($raw))
+            {
+                return $this->getRawInput()==$this->getChoiceRenderer()->getValue($choice, $index);
+            }
+            else
+            {
+                return $this->getModelObjectAsString()==$this->getChoiceRenderer()->getValue($choice, $index);
+            }
+        }
+    }
 }
 
 ?>

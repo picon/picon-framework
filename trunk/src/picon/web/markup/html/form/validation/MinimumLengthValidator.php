@@ -23,12 +23,32 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * Validates a string is not shorter than a minium value
+ * 
  * @author Martin Cassidy
  */
-interface Validator
+class MinimumLengthValidator extends StringValidator
 {
-    function validate(Validatable $validateable);
+    private $minimum;
+    
+    /**
+     *
+     * @param number $minimum 
+     */
+    public function __construct($minimum)
+    {
+        Args::isNumeric($minimum, 'minimum');
+        $this->minimum = $minimum;
+    }
+    
+    public function validateValue(Validatable $validateable)
+    {
+        parent::validateValue($validateable);
+        if(strlen($validateable->getValue())>$this->minimum)
+        {
+            $validateable->error(sprintf('Must be more than %d long', $this->minimum));
+        }
+    }
 }
 
 ?>

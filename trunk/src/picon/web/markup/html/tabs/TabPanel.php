@@ -45,7 +45,7 @@ class TabPanel extends Panel
         parent::onInitialize();
         $me = $this;
         //@todo add the type hint b/ack into the closure when the serializer can handle them
-        $this->add(new ListView("tab", new ArrayModel($this->collection->tabs), function($item) use ($me)
+        $this->add(new ListView("tab", function($item) use ($me)
         {
             $tab = $item->getModelObject();
             $link = new Link('link', function() use ($me, $item)
@@ -54,7 +54,7 @@ class TabPanel extends Panel
             });
             $item->add($link);
             $link->add(new Label('name', new BasicModel($tab->name)));
-        }));
+        }, new ArrayModel($this->collection->tabs)));
     }
     
     private function getPanelForSelected()

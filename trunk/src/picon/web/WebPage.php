@@ -74,9 +74,9 @@ class WebPage extends MarkupContainer implements RequestablePage
             if(!$component->isStateless())
             {
                 $stateless = false;
-                return new VisitorResponse(VisitorResponse::STOP_TRAVERSAL);
+                return Component::VISITOR_STOP_TRAVERSAL;
             }
-            return new VisitorResponse(VisitorResponse::CONTINUE_TRAVERSAL);
+            return Component::VISITOR_CONTINUE_TRAVERSAL;
         };
         $this->visitChildren(Component::getIdentifier(), $callback);
         return $stateless;

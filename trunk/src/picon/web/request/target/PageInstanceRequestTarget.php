@@ -39,7 +39,7 @@ class PageInstanceRequestTarget implements RequestTarget
     
     public function respond()
     {
-        ob_clean();
+        //ob_clean();
         $this->page->renderPage();
     }
 }

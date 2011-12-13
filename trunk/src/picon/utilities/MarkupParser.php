@@ -38,15 +38,16 @@ namespace picon;
  */
 class MarkupParser extends XMLParser
 {
+
     private static $PICON_ELEMENTS = array('child', 'extend', 'panel');
-    
+
     protected function newElement($name, $attributes)
     {
-        if(array_key_exists('picon:id', $attributes))
+        if (array_key_exists('picon:id', $attributes))
         {
             return new ComponentTag($name, $attributes);
         }
-        elseif(in_array(str_replace('picon:', '', $name), MarkupParser::$PICON_ELEMENTS))
+        elseif (in_array(str_replace('picon:', '', $name), MarkupParser::$PICON_ELEMENTS))
         {
             return new PiconTag($name, $attributes);
         }
@@ -55,11 +56,27 @@ class MarkupParser extends XMLParser
             return new MarkupElement($name, $attributes);
         }
     }
-    
+
     protected function onXmlError($errorCode, $errorMessage)
     {
-        throw new \InvalidMarkupException(sprintf("XML error: %s at line %d of file %s", $errorCode,$errorMessage, $this->xmlFile));
+        throw new \InvalidMarkupException(sprintf("XML error: %s at line %d of file %s", $errorCode, $errorMessage, $this->xmlFile));
     }
+
+    protected function prepare($data)
+    {
+        return $this->numeric_entities($data);
+    }
+    
+    private function numeric_entities($string)
+    {
+        $mapping = array();
+        foreach (get_html_translation_table(HTML_ENTITIES, ENT_QUOTES) as $char => $entity)
+        {
+            $mapping[$entity] = '&#' . ord($char) . ';';
+        }
+        return str_replace(array_keys($mapping), $mapping, $string);
+    }
+
 }
 
 ?>

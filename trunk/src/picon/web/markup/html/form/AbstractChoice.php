@@ -29,13 +29,32 @@ namespace picon;
  */
 abstract class AbstractChoice extends FormComponent
 {
+    private $choiceRenderer;
+    
     private $choices;
     
-    public function __construct($id, $choices, Model $model = null)
+    /**
+     *
+     * @param string $id
+     * @param array $choices
+     * @param Model $model 
+     */
+    public function __construct($id, $choices, ChoiceRenderer $choiceRenderer = null, Model $model = null)
     {
         parent::__construct($id, $model);
-        Args::isArray($choices);
+        Args::isArray($choices, 'choices');
         $this->choices = $choices;
+        
+        if($choiceRenderer==null)
+        {
+            $choiceRenderer = new ChoiceRenderer();
+        }
+        $this->choiceRenderer = $choiceRenderer;
+    }
+    
+    protected function getChoiceRenderer()
+    {
+        return $this->choiceRenderer;
     }
     
     protected function getChoices()
@@ -43,7 +62,45 @@ abstract class AbstractChoice extends FormComponent
         return $this->choices;
     }
     
-    protected abstract function isSelected($choice);   
+    public abstract function isSelected($choice, $index);   
+    
+    
+    /**
+     * Render an <option> element
+     * @param type $choice 
+     */
+    protected function renderOption($name, $value, $selected)
+    {
+        echo '<option';
+        if($selected)
+        {
+            echo ' selected="selected"';
+        }
+        echo ' value="'.$value.'"';
+
+        echo '>';
+        echo $name;;
+        echo '</option>';
+    }
+    
+    protected function renderOptions()
+    {
+        foreach($this->choices as $index => $choice)
+        {
+            $selected = $this->isSelected($choice, $index);
+            $this->renderOption($this->choiceRenderer->getDisplay($choice, $index), $this->choiceRenderer->getValue($choice, $index), $selected);
+        }
+    }
+    
+    protected final function valueForChoice($choice, $value, $index)
+    {
+        return $this->choiceRenderer->getValue($choice, $index)==$value;
+    }
+    
+    protected function validateModel()
+    {
+        //@todo
+    }
 }
 
 ?>

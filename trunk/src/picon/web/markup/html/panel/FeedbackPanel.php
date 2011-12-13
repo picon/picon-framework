@@ -23,12 +23,34 @@
 namespace picon;
 
 /**
- * Interface for validators
+ * Panel to display feedback messages
+ * 
+ * @todo add message level as a css class attribute
+ * @todo add support for feedback message filtering
  * @author Martin Cassidy
  */
-interface Validator
+class FeedbackPanel extends Panel
 {
-    function validate(Validatable $validateable);
+    private $messages;
+    
+    public function __construct($id)
+    {
+        parent::__construct($id);
+        //@todo update to no fq names when serializer update is done
+        $this->messages = new ListView('messages', function($item)
+        {
+            $item->add(new \picon\Label('message', new \picon\BasicModel($item->getModelObject()->message)));
+        }, self::getFeedbackModel());
+        
+        
+        $this->add($this->messages);
+    }
+    
+    public function beforeRender()
+    {
+        $this->messages->setModel($this->getFeedbackModel());
+        parent::beforeRender();
+    }
 }
 
 ?>

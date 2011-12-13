@@ -29,6 +29,12 @@ namespace picon;
  */
 abstract class FormComponent extends LabeledMarkupContainer implements Validatable
 {
+    const TYPE_STRING = 'string';
+    const TYPE_FLOAT = 'float';
+    const TYPE_BOOL = 'boolean';
+    const TYPE_DOUBLE = 'double';
+    const TYPE_INT = 'int';
+    
     /**
      * An array of Validator
      * 
@@ -36,11 +42,24 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
      */
     private $validators = array();
     
+    private $emptyInput = false;
+    
     /**
-     * @var mixed 
-     * @Transient
+     * @var mixed The raw input from the request 
      */
     private $rawInput;
+    
+    /**
+     *
+     * @var mixed the processed and converted input for the form component
+     * @Transient
+     */
+    private $convertedInput;
+    
+    /**
+     * @var boolean is this form component manditory 
+     */
+    private $required = false;
     
     /**
      * Add a new validator, child component or behavior to the component
@@ -51,7 +70,7 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
     {
         if($object instanceof Validator)
         {
-            $this->add($object);
+            $this->addValidator($object);
             return;
         }
         parent::add($object);
@@ -78,7 +97,7 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
     protected function onComponentTag(ComponentTag $tag)
     {
         parent::onComponentTag($tag);
-        $tag->put('name', $this->getMarkupId());
+        $tag->put('name', $this->getName());
     }
     
     /**
@@ -91,7 +110,7 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
         $callback = function($component) use (&$form)
         {
             $form = $component;
-            return new VisitorResponse(VisitorResponse::STOP_TRAVERSAL);
+            return Component::VISITOR_STOP_TRAVERSAL;
         };
         $this->visitParents(Form::getIdentifier(), $callback);
         return $form;
@@ -102,10 +121,6 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
      */
     public function getRawInput()
     {
-        if(!isset($this->rawInput))
-        {
-            $this->rawInput = $this->getRequest()->getPostedParameter($this->getMarkupId());
-        }
         return $this->rawInput;
     }
     
@@ -115,17 +130,25 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
      */
     public function validate()
     {
-        $input = $this->getRawInput();
-        $valid = true;
-        foreach($this->validators as $validator)
+        if($this->isValid())
         {
-            $validatorValid = $validator->validate($input);
-            if($validatorValid==false)
+            $this->validateRequired();
+        }
+
+        if($this->isValid())
+        {
+            $this->convertInput();
+        }
+            
+            
+        if($this->isValid() && !$this->isEmptyInput())
+        {
+            $validatable = new ValidatableFormComponentWrapper($this);
+            foreach($this->validators as $validator)
             {
-                $valid = false;
+                $validator->validate($validatable);
             }
         }
-        return $valid;
     }
     
     /**
@@ -134,28 +157,182 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
      * 
      * This should only be called after the conponent has been validated.
      * Do not call this method unless you know what you are doing!
-     * @param mixed $newValue The new object value
      */
-    public function updateModel($newValue)
+    public function updateModel()
     {
-        $this->setModelObject($newValue);
+        $this->setModelObject($this->convertedInput);
     }
     
     /**
      * Complete a full form component process: validate,
      * if valid update the model
      */
-    public final function processFormComponent()
+    public final function processInput()
     {
+        $this->inputChanged();
         $valid = $this->validate();
         
         if($valid)
         {
             $this->processInput();
+            $this->updateModel();
         }
     }
     
-    public abstract function processInput();
+    /**
+     * Convert the input from its raw format the that which is expected
+     * Sub classes which need to handle this themselves should override this method
+     * and have getType() throw UnsupportedOperationException
+     */
+    protected function convertInput()
+    {
+        $primatives = array(self::TYPE_BOOL, self::TYPE_DOUBLE, self::TYPE_FLOAT, self::TYPE_INT);
+        $type = $this->getType();
+        
+        if($type==self::TYPE_STRING)
+        {
+            $this->convertedInput = $this->rawInput;
+        }
+        else if(in_array($type, $primatives))
+        {
+            $convertedInput = $this->rawInput;
+            settype($convertedInput, $type);
+            $this->convertedInput = $convertedInput;
+        }
+        else
+        {
+            try
+            {
+                $converter = $this->getApplication()->getConverter($type);
+                if($converter==null)
+                {
+                    throw new ConversionException(sprintf("A converter for type %s could not be located.", $type));
+                }
+                else
+                {
+                    $this->convertedInput = $converter->convertToObject($string);
+                }
+            }
+            catch(ConversionException $ex)
+            {
+                $this->invalid();
+                //@todo dont hardcode error, temp message for now
+                $this->error('conversion error');
+            }
+        }
+    }
+    
+    public function isValid()
+    {
+        return !$this->hasErrorMessage();
+    }
+    
+    /**
+     *
+     * @param boolean $required 
+     */
+    public function setRequired($required)
+    {
+        Args::isBoolean($required, 'required');
+        $this->required = $required;
+    }
+    
+    public function isRequired()
+    {
+        return $this->required;
+    }
+    
+    public function validateRequired()
+    {
+        $required = $this->isRequired()?'true':'false';
+        //echo $this->getId().' has a value of '.$this->getRawInput().' and required is '.$required.'<br />';
+        if($this->isRequired() && ($this->rawInput==null || empty($this->rawInput) || (is_array($this->rawInput) && count($this->rawInput)<1)))
+        {
+            $this->error(sprintf('Form component %s is required', $this->getId()));
+            $this->invalid();
+        }
+    }
+    
+    public function getConvertedInput()
+    {
+        return $this->convertedInput;
+    }
+    
+    protected function setConvertedInput($convertedInput)
+    {
+        $this->convertedInput = $convertedInput;
+    }
+    
+    public function getName()
+    {
+        return $this->getMarkupId();
+    }
+    
+    /**
+     * Called by Form when the form input has changed
+     */
+    public function inputChanged()
+    {
+        $this->emptyInput = false;
+        
+        $raw = $this->getRequest()->getPostedParameter($this->getName());
+        
+        if($raw!=null && !empty($raw))
+        {
+            $this->rawInput = $raw;
+        }
+        else
+        {
+            $this->emptyInput = true;
+            $this->rawInput = null;
+        }
+    }
+    
+    public function getValue()
+    {
+        $input = null;
+        if($this->rawInput==null)
+        {
+            if($this->emptyInput==true)
+            {
+                return null;
+            }
+            else
+            {
+                $input = $this->getModelObjectAsString();
+            }
+        }
+        else
+        {
+            $input = $this->rawInput;
+        }
+        return htmlentities($input);
+    }
+    
+    protected abstract function getType();
+    
+    public function invalid()
+    {
+        
+    }
+    
+    public function valid()
+    {
+        
+    }
+    
+    public function isEmptyInput()
+    {
+        return $this->emptyInput;
+    }
+    
+    protected abstract function validateModel();
+    
+    public function beforeRender()
+    {
+        parent::beforeRender();
+        $this->validateModel();
+    }
 }
 
 ?>

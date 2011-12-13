@@ -31,12 +31,15 @@ use picon\DropDown;
 use picon\Radio;
 use picon\RadioGroup;
 use picon\CheckBox;
+use picon\Check;
 use picon\CheckBoxGroup;
 use picon\CheckChoice;
 use picon\RadioChoice;
 use picon\BasicModel;
 use picon\ListView;
 use picon\ListItem;
+use picon\FeedbackPanel;
+use picon\EmailAddressValidator;
 
 /**
  * Description of FormPage
@@ -52,6 +55,11 @@ class FormPage extends WebPage
         parent::__construct();
         $this->domain = new ExampleDomain();
         $this->setModel(new CompoundPropertyModel($this, 'domain'));
+        
+        $this->add(new FeedbackPanel('feedback'));
+        
+        $this->info('Sample feedback message. These do not persist from request to request');
+        
         $form = new Form('form');
         $this->add($form);
         $form->add(new Button('button', function()
@@ -60,8 +68,10 @@ class FormPage extends WebPage
         }));
         
         $choices = array('default', 'option', 'other option', 'something else');
-        
-        $form->add(new TextField('textBox'));
+        $text = new TextField('textBox');
+        $text->setRequired(true);
+        $text->add(new EmailAddressValidator());
+        $form->add($text);
         $form->add(new TextArea('textArea'));
         $form->add(new DropDown('select', $choices));
         
@@ -75,8 +85,8 @@ class FormPage extends WebPage
         
         $checkGroup = new CheckBoxGroup('cgroup');
         $form->add($checkGroup);
-        $checkGroup->add(new CheckBox('check1', new BasicModel('option1')));
-        $checkGroup->add(new CheckBox('check2', new BasicModel('option2')));
+        $checkGroup->add(new Check('check1', new BasicModel('option1')));
+        $checkGroup->add(new Check('check2', new BasicModel('option2')));
         
         $form->add(new RadioChoice('rchoice', $choices));
         $form->add(new CheckChoice('cchoice', $choices));
@@ -87,14 +97,14 @@ class FormPage extends WebPage
         $this->add(new Label('rgroup'));
         $this->add(new Label('icheck'));
         
-        $this->add(new ListView('cgroup', null, function(&$item)
+        $this->add(new ListView('cgroup', function(&$item)
         {
             $item->add(new \picon\Label('value', $item->getModel()));
         }));
         
         $this->add(new Label('rchoice'));
         
-        $this->add(new ListView('cchoice', null, function(&$item)
+        $this->add(new ListView('cchoice', function(&$item)
         {
             $item->add(new \picon\Label('value', $item->getModel()));
         }));
