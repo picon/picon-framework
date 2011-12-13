@@ -23,7 +23,7 @@
 namespace picon;
 
 /**
- * This isn't doing anything yet....
+ * A form component with pre-defined choices of which more than 1
  * 
  * @author Martin Cassidy
  */
@@ -32,7 +32,7 @@ abstract class AbstractMultipleChoice extends AbstractChoice
     public function getRawInputArray()
     {
         $input = $this->getRawInput();
-        if($input==null)
+        if($this->isEmptyInput() || $input==null)
         {
             return array();
         }
@@ -41,6 +41,31 @@ abstract class AbstractMultipleChoice extends AbstractChoice
             throw new \InvalidArgumentException('CheckBoxGroup expected raw input to be an array');
         }
         return $input;
+    }
+    
+    public function getName()
+    {
+        return parent::getName().'[]';
+    }
+    
+    public function isSelected($choice, $index)
+    {
+        if($this->isEmptyInput())
+        {
+            return false;
+        }
+        else
+        {
+            $raw = $this->getRawInputArray();
+            if(count($raw)!=0)
+            {
+                return in_array($this->getChoiceRenderer()->getValue($choice, $index), $raw);
+            }
+            else
+            {
+                return in_array($choice, $this->getModelObject());
+            }
+        }
     }
 }
 

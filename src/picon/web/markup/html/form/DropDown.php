@@ -29,9 +29,9 @@ namespace picon;
  */
 class DropDown extends AbstractSingleChoice
 {
-    private $choiceReferences;
-    private $outputPair;
-    
+    /**
+     * @todo this should be obtained from a localized string
+     */
     private $defaultValue = 'Choose One';
     
     public function __construct($id, $choices, ChoiceRenderer $choiceRenderer = null, Model $model = null)
@@ -53,11 +53,6 @@ class DropDown extends AbstractSingleChoice
         }
         
         $this->renderOptions();
-    }
-    
-    protected function getType()
-    {
-        throw new \UnsupportedOperationException();
     }
 }
 

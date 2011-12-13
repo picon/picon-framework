@@ -45,6 +45,13 @@ namespace picon;
  */
 abstract class Component implements InjectOnWakeup, Identifiable
 {
+    const TYPE_STRING = 'string';
+    const TYPE_FLOAT = 'float';
+    const TYPE_BOOL = 'boolean';
+    const TYPE_DOUBLE = 'double';
+    const TYPE_INT = 'int';
+    
+    
     const VISITOR_CONTINUE_TRAVERSAL = 1;
     const VISITOR_STOP_TRAVERSAL = 2;
     const VISITOR_CONTINUE_TRAVERSAL_NO_DEEPER = 3;

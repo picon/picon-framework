@@ -28,13 +28,7 @@ namespace picon;
  * @author Martin Cassidy
  */
 abstract class FormComponent extends LabeledMarkupContainer implements Validatable
-{
-    const TYPE_STRING = 'string';
-    const TYPE_FLOAT = 'float';
-    const TYPE_BOOL = 'boolean';
-    const TYPE_DOUBLE = 'double';
-    const TYPE_INT = 'int';
-    
+{    
     /**
      * An array of Validator
      * 
@@ -125,6 +119,24 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
     }
     
     /**
+     * 
+     * @return array
+     */
+    public function getRawInputArray()
+    {
+        $input = $this->getRawInput();
+        if($input==null)
+        {
+            return array();
+        }
+        if(!is_array($input))
+        {
+            throw new \InvalidArgumentException('CheckBoxGroup expected raw input to be an array');
+        }
+        return $input;
+    }
+    
+    /**
      * {@inheritdoc}
      * @return boolean 
      */
@@ -140,7 +152,6 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
             $this->convertInput();
         }
             
-            
         if($this->isValid() && !$this->isEmptyInput())
         {
             $validatable = new ValidatableFormComponentWrapper($this);
@@ -148,6 +159,11 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
             {
                 $validator->validate($validatable);
             }
+        }
+        
+        if($this->isValid())
+        {
+            $this->valid();
         }
     }
     
@@ -184,43 +200,7 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
      * Sub classes which need to handle this themselves should override this method
      * and have getType() throw UnsupportedOperationException
      */
-    protected function convertInput()
-    {
-        $primatives = array(self::TYPE_BOOL, self::TYPE_DOUBLE, self::TYPE_FLOAT, self::TYPE_INT);
-        $type = $this->getType();
-        
-        if($type==self::TYPE_STRING)
-        {
-            $this->convertedInput = $this->rawInput;
-        }
-        else if(in_array($type, $primatives))
-        {
-            $convertedInput = $this->rawInput;
-            settype($convertedInput, $type);
-            $this->convertedInput = $convertedInput;
-        }
-        else
-        {
-            try
-            {
-                $converter = $this->getApplication()->getConverter($type);
-                if($converter==null)
-                {
-                    throw new ConversionException(sprintf("A converter for type %s could not be located.", $type));
-                }
-                else
-                {
-                    $this->convertedInput = $converter->convertToObject($string);
-                }
-            }
-            catch(ConversionException $ex)
-            {
-                $this->invalid();
-                //@todo dont hardcode error, temp message for now
-                $this->error('conversion error');
-            }
-        }
-    }
+    protected abstract function convertInput();
     
     public function isValid()
     {
@@ -245,7 +225,6 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
     public function validateRequired()
     {
         $required = $this->isRequired()?'true':'false';
-        //echo $this->getId().' has a value of '.$this->getRawInput().' and required is '.$required.'<br />';
         if($this->isRequired() && ($this->rawInput==null || empty($this->rawInput) || (is_array($this->rawInput) && count($this->rawInput)<1)))
         {
             $this->error(sprintf('Form component %s is required', $this->getId()));
@@ -275,9 +254,9 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
     {
         $this->emptyInput = false;
         
-        $raw = $this->getRequest()->getPostedParameter($this->getName());
+        $raw = $this->getRequest()->getPostedParameter(str_replace('[]', '', $this->getName()));
         
-        if($raw!=null && !empty($raw))
+        if($raw!=null && !empty($raw) || is_array($raw) && count($raw)>0)
         {
             $this->rawInput = $raw;
         }
@@ -308,8 +287,6 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
         }
         return htmlentities($input);
     }
-    
-    protected abstract function getType();
     
     public function invalid()
     {

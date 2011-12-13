@@ -23,30 +23,54 @@
 namespace picon;
 
 /**
- * This isn't doing anything yet....
  * 
  * @author Martin Cassidy
  */
 class ListMultiple extends AbstractMultipleChoice
 {
-    protected function isSelected($choice, $index)
+    private $rows;
+    public function __construct($id, $choices, $rows = 5, ChoiceRenderer $choiceRenderer = null, Model $model = null)
     {
-        if($this->isEmptyInput())
+        parent::__construct($id, $choices, $choiceRenderer, $model);
+        $this->rows = $rows;
+    }
+    
+    protected function validateModel()
+    {
+        $object = $this->getModelObject();
+        if($object!=null && !is_array($object))
         {
-            return false;
+            throw new \IllegalStateException('ListMultiple must have an array model');
         }
-        else
+    }
+    
+    protected function onComponentTag(ComponentTag $tag)
+    {
+        $this->checkComponentTag($tag, 'select');
+        $this->checkComponentTagAttribute($tag, "multiple", "multiple");
+        $tag->put('size', $this->rows);
+        parent::onComponentTag($tag);
+    }
+    
+    protected function onComponentTagBody(ComponentTag $tag)
+    {
+        $this->renderOptions();
+    }
+    
+    protected function convertInput()
+    {
+        $selection = array();
+        foreach($this->getChoices() as $index => $choice)
         {
-            $raw = $this->getRawInput();
-            if(!empty($raw))
+            foreach($this->getRawInputArray() as $value)
             {
-                return $this->getRawInput()==$this->getChoiceRenderer()->getValue($choice, $index);
-            }
-            else
-            {
-                return $this->getModelObjectAsString()==$this->getChoiceRenderer()->getValue($choice, $index);
+                if($this->valueForChoice($choice, $value, $index))
+                {
+                    array_push($selection, $choice);
+                }
             }
         }
+        $this->setConvertedInput($selection);
     }
 }
 

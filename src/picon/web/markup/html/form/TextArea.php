@@ -39,6 +39,14 @@ class TextArea extends AbstractTextComponent
         $this->checkComponentTag($tag, 'textarea');
         parent::onComponentTag($tag);
     }
+    
+    /**
+     * Get the data type for this text component
+     */
+    protected function getType()
+    {
+        return self::TYPE_STRING;
+    }
 }
 
 ?>

@@ -28,21 +28,7 @@ namespace picon;
  * @author Martin Cassidy
  */
 class CheckBoxGroup extends FormComponent
-{
-    public function getRawInputArray()
-    {
-        $input = $this->getRawInput();
-        if($input==null)
-        {
-            return array();
-        }
-        if(!is_array($input))
-        {
-            throw new \InvalidArgumentException('CheckBoxGroup expected raw input to be an array');
-        }
-        return $input;
-    }
-    
+{    
     protected function onInitialize()
     {
         parent::onInitialize();
@@ -51,7 +37,7 @@ class CheckBoxGroup extends FormComponent
     
     protected function validateModel()
     {
-         $object = $this->getModelObject();
+        $object = $this->getModelObject();
         if($object!=null && !is_array($object))
         {
             throw new \IllegalStateException('Check box group must have an array model');
@@ -104,22 +90,10 @@ class CheckBoxGroup extends FormComponent
         $this->setConvertedInput($values);
     }
     
-    protected function getType()
-    {
-        return self::TYPE_BOOL;
-    }
-    
     public function isRequired()
     {
         $choice = $this->getChoiceGroup();
-        if($choice==null)
-        {
-            return parent::isRequired();
-        }
-        else
-        {
-            return false;
-        }
+        return $choice==null && parent::isRequired();
     }
 }
 
