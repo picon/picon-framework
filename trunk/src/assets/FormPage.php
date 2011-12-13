@@ -63,9 +63,23 @@ class FormPage extends WebPage
         
         $form = new Form('form');
         $this->add($form);
-        $form->add(new Button('button', function()
+        $self = $this;
+        $form->add(new Button('button', function() use($self)
         {
-            
+            $self->info('First button pressed, valid form');
+        },
+        function() use($self)
+        {
+            $self->info('First button pressed, invalid form');
+        }));
+        
+        $form->add(new Button('button2', function() use($self)
+        {
+            $self->info('Second button pressed, valid form');
+        },
+        function() use($self)
+        {
+            $self->info('Second button pressed, invalid form');
         }));
         
         $choices = array('default', 'option', 'other option', 'something else');

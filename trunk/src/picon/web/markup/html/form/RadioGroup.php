@@ -50,7 +50,7 @@ class RadioGroup extends FormComponent
         }
         else
         {
-            return $choice->getMarkupId();
+            return $choice->getComponentPath();
         }
     }
     

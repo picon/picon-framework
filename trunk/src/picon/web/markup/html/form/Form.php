@@ -45,6 +45,24 @@ class Form extends MarkupContainer implements FormSubmitListener
      */
     public function onEvent()
     {
+        $this->process();
+        $button = $this->getSubmitingButton();
+        
+        if($button!=null)
+        {
+            if($this->isFormValid())
+            {
+                $button->onSubmit();
+            }
+            else
+            {
+                $button->onError();
+            }
+        }
+    }
+    
+    public function process()
+    {
         if($this->getRequest()->isPost())
         {
             $components = array();
@@ -82,15 +100,41 @@ class Form extends MarkupContainer implements FormSubmitListener
                     $formComponent->updateModel();
                 }
             }
-            
-            //hardcoded!
-            $callback = function(&$component)
-            {
-                   $component->onEvent();
-                   return Component::VISITOR_STOP_TRAVERSAL;
-            };
-            $this->visitChildren(Button::getIdentifier(), $callback);
         }
+    }
+    
+    public function isFormValid()
+    {
+        $valid = true;
+        $callback = function(FormComponent &$component) use (&$valid)
+        {
+            if(!$component->isValid())
+            {
+                $valid = false;
+                return Component::VISITOR_STOP_TRAVERSAL;
+            }
+            return Component::VISITOR_CONTINUE_TRAVERSAL;
+        };
+        $this->visitChildren(FormComponent::getIdentifier(), $callback);
+        return $valid;
+    }
+    
+    public function getSubmitingButton()
+    {
+        $button = null;
+        $request = $this->getRequest();
+        $callback = function(Button &$component) use (&$button, $request)
+        {
+            $value = $request->getPostedParameter($component->getName());
+            if($value!=null)
+            {
+                $button = $component;
+                return Component::VISITOR_STOP_TRAVERSAL;
+            }
+            return Component::VISITOR_CONTINUE_TRAVERSAL;
+        };
+        $this->visitChildren(Button::getIdentifier(), $callback);
+        return $button;
     }
 }
 
