@@ -20,48 +20,39 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+use picon\DaoSupport;
+use picon\CallbackRowMapper;
 
 /**
- * Configuration domain object
- *
+ * Description of SampleDao
+ * 
  * @author Martin Cassidy
- * @package domain/config
+ * @Repository
  */
-class Config extends ComonDomainBase
+class SampleDao extends DaoSupport
 {
-    private $homePage;
-    private $mode;
-    private $dataSources = array();
+    /**
+     * @Resource(name = 'demo')
+     */
+    private $dataSource;
     
-    public function setMode(ApplicationMode $mode)
+    protected function init()
     {
-        $this->mode = $mode;
+        $this->setDataSource($this->dataSource);
     }
     
-    public function getMode()
+    public function getTestData()
     {
-        return $this->mode;
-    }
-    
-    public function setHomePage($homePage)
-    {
-        $this->homePage = $homePage;
-    }
-    
-    public function getHomePage()
-    {
-        return $this->homePage;
-    }
-    
-    public function addDataSource(DataSourceConfig $source)
-    {
-        array_push($this->dataSources, $source);
-    }
-    
-    public function getDataSources()
-    {
-        return $this->dataSources;
+        $maper = new CallbackRowMapper(function($row)
+        {
+            $data = new TestItem();
+            $data->id = $row->id;
+            $data->text = $row->sometest;
+            $data->timestamp = $row->timestamp;
+            return $data;
+        });
+        $results = $this->getTemplate()->query('SELECT * FROM testtable', $maper);
+        print_r($results);
     }
 }
 

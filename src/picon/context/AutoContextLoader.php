@@ -50,7 +50,14 @@ class AutoContextLoader extends AbstractContextLoader
         }
     }
     
-
+    protected function loadDataSources($sourceConfig)
+    {
+        foreach($sourceConfig as $config)
+        {
+            $source = DataSourceFactory::getDataSource($config);
+            $this->pushToResourceMap($config->name, $source);
+        }
+    }
 }
 
 ?>

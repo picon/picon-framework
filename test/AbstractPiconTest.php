@@ -67,10 +67,15 @@ class AbstractPiconTest extends PHPUnit_Framework_TestCase
         $d->close();
     }
     
+    protected function getConfig()
+    {
+        return \picon\ConfigLoader::load('config/picon.xml');
+    }
+    
     protected function getContext()
     {
         $loader = new \picon\AutoContextLoader();
-        return $loader->load();
+        return $loader->load($this->getConfig());
     }
 }
 

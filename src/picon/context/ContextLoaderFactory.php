@@ -35,7 +35,7 @@ class ContextLoaderFactory
     public static function getLoader($config)
     {
         /*
-        * TODO Currently only auto is available, add option to config 
+         * TODO Currently only auto is available, add option to config 
          * to permit manual and create class to do it
         */
         return new AutoContextLoader();

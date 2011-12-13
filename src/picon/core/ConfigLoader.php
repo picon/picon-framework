@@ -34,7 +34,9 @@ namespace picon;
 class ConfigLoader
 {
     const ROOT_ELEMENT = "piconApplication";
+    const DATA_SOURCE_ELEMENT = "dataSource";
     const EXTERNAL_INCLUDE = "include";
+    
     private static $CORE_CONFIG = array("homePage", "mode");
     
     private function __construct()
@@ -66,6 +68,12 @@ class ConfigLoader
                 $name = $childTag->getName();
                 $config->$name = $childTag->getCharacterData();
             }
+            
+            if($childTag->getName()==self::DATA_SOURCE_ELEMENT)
+            {
+                $source = self::createDataSource($childTag);
+                $config->addDataSource($source);
+            }
 
             /*Not tested
              * if($childTag->getName()==self::EXTERNAL_INCLUDE)
@@ -73,6 +81,25 @@ class ConfigLoader
                 ConfigLoader::load($childTag->getCharacterData(), $config);
             }*/
         }
+    }
+    
+    private static function createDataSource(XMLTag $tag)
+    {
+        $attributes = $tag->getAttributes();
+        $type = DataSourceType::valueOf($tag->getChildByName('type')->getCharacterData());
+        $host = $tag->getChildByName('host')->getCharacterData();
+        $port = null;
+        $portChild = $tag->getChildByName('port');
+        if($portChild!=null)
+        {
+            $port = $portChild->getCharacterData();
+        }
+        $username = $tag->getChildByName('username')->getCharacterData();
+        $password = $tag->getChildByName('password')->getCharacterData();
+        $database = $tag->getChildByName('database')->getCharacterData();
+        
+        $dataSource = new DataSourceConfig($type, $attributes['name'], $host, $port, $username, $password, $database);
+        return $dataSource;
     }
 }
 

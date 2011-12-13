@@ -30,6 +30,7 @@ namespace picon;
 class ApplicationContext
 {
     private $resources = array();
+    private $dataSources = array();
     
     public function __construct($resources)
     {

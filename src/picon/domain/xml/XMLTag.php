@@ -167,6 +167,18 @@ class XMLTag extends ComonDomainBase implements XmlElement
         }
         return $data;
     }
+    
+    public function getChildByName($name)
+    {
+        foreach($this->children as $child)
+        {
+            if($child->getName()==$name)
+            {
+                return $child;
+            }
+        }
+        return null;
+    }
 }
 
 ?>

@@ -23,45 +23,45 @@
 namespace picon;
 
 /**
- * Configuration domain object
- *
+ * Database driver for mysqli
+ * 
  * @author Martin Cassidy
- * @package domain/config
  */
-class Config extends ComonDomainBase
+class MySqliDriver extends AbstractDatabaseDriver
 {
-    private $homePage;
-    private $mode;
-    private $dataSources = array();
-    
-    public function setMode(ApplicationMode $mode)
+    public function connect($host, $username, $password, $database, $port = null)
     {
-        $this->mode = $mode;
+        $connection = new mysqli($host, $username, $password, $database, $port);
+        
+        if ($connection->connect_error) 
+        {
+            throw new SQLException($mysqli->connect_error,$mysqli->connect_errno);
+        }
+        return $connection;
     }
     
-    public function getMode()
+    public function dissconnect($connection)
     {
-        return $this->mode;
+        $connection->close();
     }
     
-    public function setHomePage($homePage)
+    public function getAffectedRows($connection)
     {
-        $this->homePage = $homePage;
+        return $connection->affected_rows;
     }
     
-    public function getHomePage()
+    public function query($sql, $connection)
     {
-        return $this->homePage;
+        return $connection->query($sql);
     }
     
-    public function addDataSource(DataSourceConfig $source)
+    public function resultSetObject($resultResource, $className = null)
     {
-        array_push($this->dataSources, $source);
-    }
-    
-    public function getDataSources()
-    {
-        return $this->dataSources;
+        if($className==null)
+        {
+            return $resultResource->fetch_object();
+        }
+        return $resultResource->fetch_object($className);
     }
 }
 

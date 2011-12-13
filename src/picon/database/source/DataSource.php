@@ -23,45 +23,31 @@
 namespace picon;
 
 /**
- * Configuration domain object
- *
+ * Description of DataSource
+ * 
  * @author Martin Cassidy
- * @package domain/config
  */
-class Config extends ComonDomainBase
+class DataSource
 {
-    private $homePage;
-    private $mode;
-    private $dataSources = array();
+    private $config;
+    private $connection;
+    private $driver;
     
-    public function setMode(ApplicationMode $mode)
+    public function __construct(DataSourceConfig $config, $connection, DatabaseDriver $driver)
     {
-        $this->mode = $mode;
+        $this->config = $config;
+        $this->connection = $connection;
+        $this->driver = $driver;
     }
     
-    public function getMode()
+    public function getConnection()
     {
-        return $this->mode;
+        return $this->connection;
     }
     
-    public function setHomePage($homePage)
+    public function getDriver()
     {
-        $this->homePage = $homePage;
-    }
-    
-    public function getHomePage()
-    {
-        return $this->homePage;
-    }
-    
-    public function addDataSource(DataSourceConfig $source)
-    {
-        array_push($this->dataSources, $source);
-    }
-    
-    public function getDataSources()
-    {
-        return $this->dataSources;
+        return $this->driver;
     }
 }
 

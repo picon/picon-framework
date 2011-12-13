@@ -69,13 +69,21 @@ class ApplicationInitializer
         $this->loadAssets(ASSETS_DIRECTORY);
         
         $loader = ContextLoaderFactory::getLoader($config);
-        $context = $loader->load();
+        $context = $loader->load($config);
         $injector = new Injector($context);
         
         foreach($context->getResources() as $resource)
         {
             $injector->inject($resource);
         }
+        foreach($context->getResources() as $resource)
+        {
+            if($resource instanceof InitializingBean)
+            {
+                $resource->afterPropertiesSet();
+            }
+        }
+        
         PiconApplication::get()->getContextLoadListener()->onContextLoaded($context);
 
         PageMap::get()->initialise();

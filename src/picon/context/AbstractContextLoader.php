@@ -32,13 +32,16 @@ abstract class AbstractContextLoader
 {
     private $resources = array();
     
-    public function load()
+    public function load(Config $config)
     {
         $this->loadResources($this->getClasses());
+        $this->loadDataSources($config->getDataSources());
         return new ApplicationContext($this->resources);
     }
     
     protected abstract function loadResources($classes);
+    
+    protected abstract function loadDataSources($sourceConfig);
     
     /**
      * Adds the given resource to the map of resources
@@ -80,6 +83,11 @@ abstract class AbstractContextLoader
     public static function getClasses()
     {
         return get_declared_classes();
+    }
+    
+    public function createDataSources()
+    {
+        
     }
 }
 
