@@ -44,7 +44,7 @@ class CheckChoice extends AbstractMultipleChoice implements ChoiceGroup
         $this->group = new CheckBoxGroup('choice', $this->getModel());
         $this->add($this->group);
         
-        //@todo add the type hint b/ack into the closure when the serializer can handle them
+        //@todo add the type hint back into the closure when the serializer can handle them
         $this->group->add(new ListView('choices', function(&$item)
         {
             $check = new \picon\Check('checkbox', $item->getModel());
@@ -72,16 +72,6 @@ class CheckChoice extends AbstractMultipleChoice implements ChoiceGroup
     {
         $this->group->processInput();
         $this->setConvertedInput($this->group->getConvertedInput());
-    }
-    
-    protected function getType()
-    {
-        return self::TYPE_BOOL;
-    }
-    
-    public function isSelected($choice, $index)
-    {
-        
     }
 }
 

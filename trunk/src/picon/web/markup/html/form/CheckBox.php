@@ -79,16 +79,6 @@ class CheckBox extends FormComponent
         $value = ($this->getRawInput()==$this->getValue())==true;
         $this->setConvertedInput($value);
     }
-    
-    public function getLabel()
-    {
-        return $this->getModelObjectAsString();
-    }
-    
-    protected function getType()
-    {
-        return self::TYPE_BOOL;
-    }
 }
 
 ?>

@@ -29,17 +29,62 @@ namespace picon;
  */
 abstract class AbstractTextComponent extends FormComponent
 {
-    /**
-     * Get the data type for this text component
-     */
-    protected function getType()
+    protected function convertInput()
     {
-        return self::TYPE_STRING;
+        $primatives = array(self::TYPE_BOOL, self::TYPE_DOUBLE, self::TYPE_FLOAT, self::TYPE_INT);
+        $type = $this->getType();
+        
+        if($type==self::TYPE_STRING)
+        {
+            $this->setConvertedInput($this->getRawInput());
+        }
+        else if(in_array($type, $primatives))
+        {
+            $convertedInput = $this->getRawInput();
+            settype($convertedInput, $type);
+            $this->setConvertedInput($convertedInput);
+        }
+        else
+        {
+            try
+            {
+                $converter = $this->getApplication()->getConverter($type);
+                if($converter==null)
+                {
+                    throw new ConversionException(sprintf("A converter for type %s could not be located.", $type));
+                }
+                else
+                {
+                    $converted = $converter->convertToObject($string);
+                    $this->setConvertedInput($converted);
+                }
+            }
+            catch(ConversionException $ex)
+            {
+                $this->invalid();
+                //@todo dont hardcode error, temp message for now
+                $this->error('conversion error');
+            }
+        }
     }
+    
+    protected abstract function getType();
     
     protected function validateModel()
     {
-        //@todo
+        $modelObject = $this->getModelObject();
+        
+        if($modelObject!=null)
+        {
+            if(is_object($modelObject) && get_class($modelObject)!=$this->getType())
+            {
+                throw new \IllegalStateException(sprintf("A check box must have a bollean model, actual %s", gettype($this->getModelObject())));
+            }
+            else if(!is_object($modelObject) && gettype($modelObject)!=$this->getType())
+            {
+                throw new \IllegalStateException(sprintf("A check box must have a bollean model, actual %s", gettype($this->getModelObject())));
+            }
+        }
     }
 }
 

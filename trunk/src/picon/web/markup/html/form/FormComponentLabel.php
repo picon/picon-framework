@@ -33,7 +33,7 @@ class FormComponentLabel extends Label
     
     public function __construct($id, LabeledMarkupContainer $source)
     {
-        parent::__construct($id, null);
+        parent::__construct($id);
         $this->source = $source;
         $this->source->setOutputMarkupId(true);
     }

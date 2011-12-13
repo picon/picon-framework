@@ -46,7 +46,7 @@ class RadioGroup extends FormComponent
         $choice = $this->getChoiceGroup();
         if($choice==null)
         {
-            return $this->getMarkupId();
+            return parent::getName();
         }
         else
         {
@@ -75,27 +75,21 @@ class RadioGroup extends FormComponent
         }
     }
     
-    protected function getType()
-    {
-        return self::TYPE_BOOL;
-    }
-    
     public function isRequired()
     {
         $choice = $this->getChoiceGroup();
-        if($choice==null)
-        {
-            return parent::isRequired();
-        }
-        else
-        {
-            return false;
-        }
+        return $choice==null && parent::isRequired();
     }
     
     protected function validateModel()
     {
         //@todo
+    }
+    
+    protected function onComponentTag(ComponentTag $tag)
+    {
+        parent::onComponentTag($tag);
+        $tag->remove('name');
     }
 }
 

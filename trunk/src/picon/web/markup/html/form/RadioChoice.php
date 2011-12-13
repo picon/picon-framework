@@ -56,11 +56,6 @@ class RadioChoice extends AbstractSingleChoice implements ChoiceGroup
         return new PanelMarkupSource();
     }
     
-    public function isSelected($choice, $index)
-    {
-        
-    }
-    
     public function __get($name)
     {
         return $this->$name;
@@ -76,11 +71,6 @@ class RadioChoice extends AbstractSingleChoice implements ChoiceGroup
     {
         $this->group->processInput();
         $this->setConvertedInput($this->group->getConvertedInput());
-    }
-    
-    protected function getType()
-    {
-        return self::TYPE_BOOL;
     }
 }
 

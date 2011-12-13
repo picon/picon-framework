@@ -37,6 +37,7 @@ class ExampleDomain extends ComonDomainBase
     private $cgroup = array('option1');
     private $rchoice = 'option';
     private $cchoice = array('default', 'something else');
+    private $mchoice = array('option');
 }
 
 ?>

@@ -23,7 +23,8 @@
 namespace picon;
 
 /**
- * Description of AbstractChoice
+ * A form component which contains a pre-defined list of
+ * posible choices
  * 
  * @author Martin Cassidy
  */
@@ -43,6 +44,7 @@ abstract class AbstractChoice extends FormComponent
     {
         parent::__construct($id, $model);
         Args::isArray($choices, 'choices');
+        
         $this->choices = $choices;
         
         if($choiceRenderer==null)
@@ -99,7 +101,30 @@ abstract class AbstractChoice extends FormComponent
     
     protected function validateModel()
     {
-        //@todo
+        if(count($this->choices)>0)
+        {
+            $firstType = null;
+            if(is_object($this->choices[0]))
+            {
+                $firstType = get_class($this->choices[0]);
+            }
+            else
+            {
+                $firstType = gettype($this->choices[0]);
+            }
+
+            foreach($this->choices as $choice)
+            {
+                if(is_array($choice))
+                {
+                    throw new \InvalidArgumentException('Choices array may not contain nested arrays');
+                }
+                else if(is_object($choice) && !get_class($choice)==$firstType || gettype($choice)==$firstType)
+                {
+                    throw new \InvalidArgumentException('Choice array does not contain the same values');
+                }       
+            }
+        }
     }
 }
 

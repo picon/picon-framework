@@ -40,6 +40,7 @@ use picon\ListView;
 use picon\ListItem;
 use picon\FeedbackPanel;
 use picon\EmailAddressValidator;
+use picon\ListMultiple;
 
 /**
  * Description of FormPage
@@ -91,6 +92,8 @@ class FormPage extends WebPage
         $form->add(new RadioChoice('rchoice', $choices));
         $form->add(new CheckChoice('cchoice', $choices));
         
+        $form->add(new ListMultiple('mchoice', $choices));
+        
         $this->add(new Label('textBox'));
         $this->add(new Label('textArea'));
         $this->add(new Label('select'));
@@ -105,6 +108,11 @@ class FormPage extends WebPage
         $this->add(new Label('rchoice'));
         
         $this->add(new ListView('cchoice', function(&$item)
+        {
+            $item->add(new \picon\Label('value', $item->getModel()));
+        }));
+        
+        $this->add(new ListView('mchoice', function(&$item)
         {
             $item->add(new \picon\Label('value', $item->getModel()));
         }));

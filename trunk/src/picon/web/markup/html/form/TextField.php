@@ -35,6 +35,14 @@ class TextField extends AbstractTextComponent
         parent::onComponentTag($tag);
         $tag->put('value', $this->getValue());
     }
+    
+    /**
+     * Get the data type for this text component
+     */
+    protected function getType()
+    {
+        return self::TYPE_STRING;
+    }
 }
 
 ?>
