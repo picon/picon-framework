@@ -61,11 +61,11 @@ class CheckBoxGroup extends FormComponent
         $choice = $this->getChoiceGroup();
         if($choice==null)
         {
-            return $this->getMarkupId();
+            return parent::getName();
         }
         else
         {
-            return $choice->getMarkupId();
+            return $choice->getComponentPath();
         }
     }
     

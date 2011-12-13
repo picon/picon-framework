@@ -244,7 +244,7 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
     
     public function getName()
     {
-        return $this->getMarkupId();
+        return $this->getComponentPath();
     }
     
     /**

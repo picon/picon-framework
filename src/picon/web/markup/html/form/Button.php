@@ -27,20 +27,23 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class Button extends MarkupContainer implements FormSubmitListener
+class Button extends FormComponent implements FormSubmitListener
 {
-    private $callback;
+    private $onSubmit;
+    private $onError;
     
     /**
      *
      * @param string $id
-     * @param closure $callback 
+     * @param closure $onSubmit
      */
-    public function __construct($id, $callback)
+    public function __construct($id, $onSubmit, $onError)
     {
         parent::__construct($id);
-        Args::callBack($callback, 'callback');
-        $this->callback = $callback;
+        Args::callBack($onSubmit, 'onSubmit');
+        Args::callBack($onError, 'onError');
+        $this->onSubmit = $onSubmit;
+        $this->onError = $onError;
     }
     
     public function isStateless()
@@ -48,16 +51,46 @@ class Button extends MarkupContainer implements FormSubmitListener
         return false;
     }
     
-    public function onEvent()
+    public function onSubmit()
     {
-        $callable = $this->callback;
+        $callable = $this->onSubmit;
         $callable();
     }
     
-    protected function onComponentTag(ComponentTag $tag)
+    public function onError()
     {
-        $this->checkComponentTag($tag, 'input');
-        parent::onComponentTag($tag);
+        $callable = $this->onError;
+        $callable();
+    }
+    
+    public function onEvent()
+    {
+        $form = $this->getForm();
+        $form->process();
+        
+        if($form->isFormValid())
+        {
+            $this->onSubmit();
+        }
+        else
+        {
+            $this->onError();
+        }
+    }
+    
+    protected function convertInput()
+    {
+        //Do nothing
+    }
+    
+    public function updateModel()
+    {
+        //Do nothing
+    }
+    
+    protected function validateModel()
+    {
+        //Do nothing
     }
 }
 
