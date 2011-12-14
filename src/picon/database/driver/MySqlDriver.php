@@ -74,6 +74,21 @@ class MySqlDriver extends AbstractDatabaseDriver
         }
         return mysql_fetch_object($resultResource, $className);
     }
+    
+    public function resultSetArray($resultResource)
+    {
+        return mysql_fetch_array($resultResource);
+    }
+    
+    public function countRows($resultResource)
+    {
+        return mysql_num_rows($resultResource);
+    }
+    
+    public function countColumns($resultResource)
+    {
+        return mysql_num_fields($resultResource);
+    }
 }
 
 ?>

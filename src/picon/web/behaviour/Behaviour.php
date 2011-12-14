@@ -28,7 +28,11 @@ namespace picon;
  */
 interface Behaviour
 {
-    //put your code here
+    function beforeRender(Component &$component);
+    
+    function afterRender(Component &$component);
+    
+    function onComponentTag(Component &$component, ComponentTag &$tag);
 }
 
 ?>

@@ -23,24 +23,24 @@
 namespace picon;
 
 /**
- * Description of AbstractLink
+ * Description of GridItem
  * 
  * @author Martin Cassidy
  */
-abstract class AbstractLink extends MarkupContainer implements LinkListener
+class GridItem extends ListItem
 {
-    protected function onComponentTag(ComponentTag $tag)
+    private $columnIndex;
+    
+    public function __construct($id, Model $model, $index, $columnIndex)
     {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
+        parent::__construct($id, $model, $index);
+        $this->columnIndex = $columnIndex;
     }
     
-    public function onEvent()
+    public function getColumnIndex()
     {
-        $this->onLinkClicked();
+        return $this->columnIndex;
     }
-    
-    protected abstract function onLinkClicked();
 }
 
 ?>

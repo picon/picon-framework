@@ -82,13 +82,21 @@ class WebPage extends MarkupContainer implements RequestablePage
         return $stateless;
     }
     
-    public function afterRender()
+    public function afterPageRender()
     {
-        parent::afterRender();
-        
+        parent::afterPageRender();
         if(!$this->isPageStateless())
         {
             PageMap::get()->addOrUpdate($this);
+        }
+    }
+    
+    public function beforePageRender()
+    {
+        parent::beforePageRender();
+        if(!$this->isInitialized())
+        {
+            $this->internalInitialize();
         }
     }
 }

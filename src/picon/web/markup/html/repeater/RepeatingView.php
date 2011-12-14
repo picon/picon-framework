@@ -23,24 +23,30 @@
 namespace picon;
 
 /**
- * Description of AbstractLink
+ * Description of RepeatingView
  * 
  * @author Martin Cassidy
  */
-abstract class AbstractLink extends MarkupContainer implements LinkListener
+class RepeatingView extends AbstractRepeater
 {
-    protected function onComponentTag(ComponentTag $tag)
+    private $nextId = 0;
+    
+    protected function getRenderArray()
     {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
+        return $this->getChildren();
     }
     
-    public function onEvent()
+    protected function populate()
     {
-        $this->onLinkClicked();
+        //Implementing classes will do this
     }
     
-    protected abstract function onLinkClicked();
+    public function getNextChildId()
+    {
+        $id = $this->getId().$this->nextId;
+        $this->nextId++;
+        return $id;
+    }
 }
 
 ?>

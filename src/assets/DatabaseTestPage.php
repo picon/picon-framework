@@ -20,6 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+use picon\DefaultDataTable;
+use picon\PropertyColumn;
+use picon\BasicModel;
+use picon\Label;
+
 /**
  * Simple test page for database queries
  * 
@@ -27,18 +32,17 @@
  */
 class DatabaseTestPage extends AbstractPage
 {
-    /**
-     * @Resource
-     */
-    private $sampleDao;
-    
     public function __construct()
     {
         parent::__construct();
-        $testData = $this->sampleDao->getTestData();
         
-        //testing only, use a data table and a data provider when the classes exist
-        print_r($testData);
+        $columns = array();
+        
+        $columns[] = new PropertyColumn('Id', 'id');
+        $columns[] = new PropertyColumn('Some Text', 'text');
+        $columns[] = new PropertyColumn('Time', 'timestamp');
+        
+        $this->add(new DefaultDataTable('table', new TestDataProvider(), $columns));
     }
 }
 

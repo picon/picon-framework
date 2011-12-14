@@ -57,7 +57,7 @@ class ListenerRequestTarget implements RequestTarget
             $page = $this->page;
 
         }
-        $page->internalBeforeRender();
+        $page->beforePageRender();
         $listener = $page->get($this->componentPath);
         if($listener==null)
         {

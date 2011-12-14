@@ -45,29 +45,35 @@ abstract class AbstractRepeater extends MarkupContainer
         }
     }
     
+    /**
+     * Sub classes should implement this method to return
+     * an array of all of the child to be rendered
+     */
+    protected abstract function getRenderArray();
+    
     protected function onRender()
     {
-        foreach($this->getModel()->getModelObject() as $index => $object)
+        $components = $this->getRenderArray();
+        Args::isArray($components, 'getRenderArray return value');
+        foreach($components as $index => $component)
         {
-            $entry = $this->get($this->getId().$index);
-            $entry->render();
+            $this->renderChild($component);
         }
     }
     
-    abstract function renderIteration($entry);
+    protected function renderChild(Component $child)
+    {
+        $child->render();
+    }
     
     protected function getMarkupForChild(Component $child)
     {
         return $this->getMarkup();
     }
     
-    public function beforeRender()
+    public function beforeComponentRender()
     {
-        parent::beforeRender();
-        foreach($this->getChildren() as $child)
-        {
-            $this->remove($child);
-        }
+        parent::beforeComponentRender();
         $this->populate();
     }
     

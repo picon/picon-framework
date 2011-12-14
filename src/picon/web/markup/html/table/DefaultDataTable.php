@@ -23,24 +23,18 @@
 namespace picon;
 
 /**
- * Description of AbstractLink
+ * Description of DefaultDataTable
  * 
  * @author Martin Cassidy
  */
-abstract class AbstractLink extends MarkupContainer implements LinkListener
+class DefaultDataTable extends DataTable
 {
-    protected function onComponentTag(ComponentTag $tag)
+    public function __construct($id, DataProvider $provider, $columns, $rowsPerPage = 10)
     {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
+        parent::__construct($id, $provider, $columns, $rowsPerPage);
+        $this->addBottomToolbar(new NavigationToolbar($this));
+        $this->addTopToolbar(new HeaderToolbar($this));
     }
-    
-    public function onEvent()
-    {
-        $this->onLinkClicked();
-    }
-    
-    protected abstract function onLinkClicked();
 }
 
 ?>

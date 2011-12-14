@@ -30,6 +30,7 @@ namespace picon;
 class ListView extends AbstractRepeater
 {
     private $callback;
+    private $items = array();
     
     /**
      *
@@ -44,7 +45,12 @@ class ListView extends AbstractRepeater
         $this->callback = $callback;
     }
     
-    public function renderIteration($entry)
+    protected function getRenderArray()
+    {
+        return $this->items;
+    }
+    
+    public function populateItem($entry)
     {
         $callable = $this->callback;
         $callable($entry);
@@ -52,12 +58,18 @@ class ListView extends AbstractRepeater
     
     protected function populate()
     {
+        $this->items = array();
+        foreach($this->getChildren() as $child)
+        {
+            $this->remove($child);
+        }
         foreach($this->getModel()->getModelObject() as $index => $object)
         {
             $model = $this->getModel()->getModelObject();
             $entry = new ListItem($this->getId().$index, new BasicModel($model[$index]), $index);
-            $this->renderIteration($entry);
+            $this->populateItem($entry);
             $this->addOrReplace($entry);
+            array_push($this->items, $entry);
         }
     }
 }

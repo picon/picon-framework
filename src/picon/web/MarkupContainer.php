@@ -101,26 +101,40 @@ class MarkupContainer extends Component
         $this->visitChildren(Component::getIdentifier(), $callback);
     }
     
-    public function internalBeforeRender()
+    public function beforePageRender()
     {
-        parent::internalBeforeRender();
+        parent::beforePageRender();
         foreach($this->children as $child)
         {
-            $child->internalBeforeRender();
+            $child->beforePageRender();
         }
     }
     
-    protected function onComponentAdded(&$component)
+    public function afterPageRender()
+    {
+        parent::afterPageRender();
+        foreach($this->children as $child)
+        {
+            $child->afterPageRender();
+        }
+    }
+    
+    protected function onComponentAdded(Component &$component)
     {
         $component->setParent($this);
         $page = $this->getPage();
         
         if($page!=null)
         {
-            if(!$page->isInitialized())
+            if($page->isInitialized())
             {
-                $page->internalInitialize();
+                $component->internalInitialize();
             }
+        }
+        
+        if($this->isBeforePageRender())
+        {
+            $component->beforePageRender();
         }
     }
     

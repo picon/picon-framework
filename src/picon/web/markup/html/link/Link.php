@@ -37,12 +37,6 @@ class Link extends AbstractLink
         $this->callback = $callback;
     }
     
-    protected function onComponentTag(ComponentTag $tag)
-    {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
-    }
-    
     protected function onLinkClicked()
     {
         $callable = $this->callback;

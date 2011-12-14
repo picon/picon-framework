@@ -23,24 +23,31 @@
 namespace picon;
 
 /**
- * Description of AbstractLink
+ * Description of CallbackColumn
  * 
  * @author Martin Cassidy
  */
-abstract class AbstractLink extends MarkupContainer implements LinkListener
+class CallbackColumn extends AbstractColumn
 {
-    protected function onComponentTag(ComponentTag $tag)
+    private $callback;
+    
+    public function __construct($heading, $callback)
     {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
+        Args::callBackArgs($callback, 2, 'callback');
+        $this->callback = $callback;
     }
     
-    public function onEvent()
+    public function populateCell(GridItem $item, $componentId, Model $model)
     {
-        $this->onLinkClicked();
+        $callable = $this->callback;
+        $component = $callable($componentId, $model);
+        if($component==null || !($component instanceof Component) || $component->getId()!=$componentId)
+        {
+            throw new \IllegalStateException('Callback for CallbackColumn is expected to return a componet with the given id');
+        }
+        $item->add($component);
     }
-    
-    protected abstract function onLinkClicked();
+   
 }
 
 ?>

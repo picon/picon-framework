@@ -23,24 +23,31 @@
 namespace picon;
 
 /**
- * Description of AbstractLink
+ * Description of Navigator
  * 
  * @author Martin Cassidy
  */
-abstract class AbstractLink extends MarkupContainer implements LinkListener
+class Navigator extends Panel
 {
-    protected function onComponentTag(ComponentTag $tag)
-    {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
-    }
+    private $pageable;
     
-    public function onEvent()
+    public function __construct($id, Pageable $pageable)
     {
-        $this->onLinkClicked();
+        parent::__construct($id);
+        $this->pageable = $pageable;
+        
+        $pageLinks = new RepeatingView('page');
+        $this->add($pageLinks);
+        
+        for($i = 0; $i < $this->pageable->getPageCount(); $i++)
+        {
+            $linkBlock = new MarkupContainer($pageLinks->getNextChildId());
+            $link = new NavigationLink('pageLink', $pageable, $i+1);
+            $linkBlock->add($link);
+            $link->add(new Label('pageNumber', new BasicModel($i+1)));
+            $pageLinks->add($linkBlock);
+        }
     }
-    
-    protected abstract function onLinkClicked();
 }
 
 ?>

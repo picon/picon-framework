@@ -23,24 +23,14 @@
 namespace picon;
 
 /**
- * Description of AbstractLink
- * 
+ *
  * @author Martin Cassidy
  */
-abstract class AbstractLink extends MarkupContainer implements LinkListener
+interface Column
 {
-    protected function onComponentTag(ComponentTag $tag)
-    {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
-    }
+    function getHeading();
     
-    public function onEvent()
-    {
-        $this->onLinkClicked();
-    }
-    
-    protected abstract function onLinkClicked();
+    function populateCell(GridItem $item, $componentId, Model $model);
 }
 
 ?>
