@@ -23,24 +23,16 @@
 namespace picon;
 
 /**
- * Description of AbstractLink
- * 
+ * Interface for components which support pagination
  * @author Martin Cassidy
  */
-abstract class AbstractLink extends MarkupContainer implements LinkListener
+interface Pageable
 {
-    protected function onComponentTag(ComponentTag $tag)
-    {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
-    }
+    function getPageCount();
     
-    public function onEvent()
-    {
-        $this->onLinkClicked();
-    }
+    function getCurrentPage();
     
-    protected abstract function onLinkClicked();
+    function setCurrentPage($page);
 }
 
 ?>

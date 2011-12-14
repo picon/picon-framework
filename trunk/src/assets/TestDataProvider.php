@@ -20,27 +20,34 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
-
+use picon\AbstractInjectedDataProvider;
+use picon\BasicModel;
 /**
- * Description of AbstractLink
+ * Description of TestDataProvider
  * 
  * @author Martin Cassidy
  */
-abstract class AbstractLink extends MarkupContainer implements LinkListener
+class TestDataProvider extends AbstractInjectedDataProvider
 {
-    protected function onComponentTag(ComponentTag $tag)
+    /**
+     * @Resource
+     */
+    private $sampleDao;
+    
+    public function getRecords($start, $count)
     {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
+        return $this->sampleDao->getTestData($start, $count);
     }
     
-    public function onEvent()
+    public function getSize()
     {
-        $this->onLinkClicked();
+        return $this->sampleDao->getRows();
     }
     
-    protected abstract function onLinkClicked();
+    public function getModel($object)
+    {
+        return new BasicModel($object);
+    }
 }
 
 ?>

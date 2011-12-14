@@ -23,24 +23,32 @@
 namespace picon;
 
 /**
- * Description of AbstractLink
+ * Description of PropertyColumn
  * 
  * @author Martin Cassidy
  */
-abstract class AbstractLink extends MarkupContainer implements LinkListener
+class PropertyColumn extends AbstractColumn
 {
-    protected function onComponentTag(ComponentTag $tag)
+    private $propertyName;
+    
+    public function __construct($header, $propertyName)
     {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
+        parent::__construct($header);
+        $this->propertyName = $propertyName;
     }
     
-    public function onEvent()
+    /**
+     * @todo this should get the property via a resolver helper
+     * @param GridItem $item
+     * @param type $componentId
+     * @param Model $model 
+     */
+    public function populateCell(GridItem $item, $componentId, Model $model)
     {
-        $this->onLinkClicked();
+        $property = $this->propertyName;
+        $value = $model->getModelObject()->$property;
+        $item->add(new Label($componentId, new BasicModel($value)));
     }
-    
-    protected abstract function onLinkClicked();
 }
 
 ?>

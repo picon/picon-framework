@@ -23,24 +23,25 @@
 namespace picon;
 
 /**
- * Description of AbstractLink
+ * Description of HeaderToolbar
  * 
  * @author Martin Cassidy
  */
-abstract class AbstractLink extends MarkupContainer implements LinkListener
+class HeaderToolbar extends AbstractToolbar
 {
-    protected function onComponentTag(ComponentTag $tag)
+    public function __construct(DataTable $dataTable)
     {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
+        parent::__construct($dataTable);
+        $headings = new RepeatingView('head');
+        
+        foreach($dataTable->getColumns() as $column)
+        {
+            $header = new MarkupContainer($headings->getNextChildId());
+            $headings->add($header);
+            $header->add(new Label('heading', new BasicModel($column->getHeading())));
+        }
+        $this->add($headings);
     }
-    
-    public function onEvent()
-    {
-        $this->onLinkClicked();
-    }
-    
-    protected abstract function onLinkClicked();
 }
 
 ?>

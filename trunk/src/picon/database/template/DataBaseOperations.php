@@ -48,6 +48,13 @@ interface DataBaseOperations
      * Run the given SQL
      */
     function execute($sql);
+    
+    /**
+     * Run the given SQL, with arguments
+     * A single record with a single column is expected. This will be returned
+     * as an integer
+     */
+    function queryForInt($sql, $arguments = null);
 }
 
 ?>

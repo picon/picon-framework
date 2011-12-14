@@ -68,10 +68,6 @@ class PiconSerializer
         self::$prepared = array();
         self::reformOnUnserialize($reflection, $target);
         self::$prepared = array();
-        if($target instanceof InjectOnWakeup)
-        {
-            Injector::get()->inject($target);
-        }
         return $target;
     }
     
@@ -147,6 +143,12 @@ class PiconSerializer
             return;
         }
         array_push(self::$prepared, $hash);
+        
+        if($target instanceof InjectOnWakeup)
+        {
+            Injector::get()->inject($target);
+        }
+        
         $defaults = $reflection->getDefaultProperties();
         foreach($reflection->getProperties() as $property)
         {

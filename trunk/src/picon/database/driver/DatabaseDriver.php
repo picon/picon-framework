@@ -59,6 +59,15 @@ interface DatabaseDriver
      * Get the number of rows affected by the last query
      */
     function getAffectedRows($connection);
+    
+    /**
+     * Get a result set iterator containing an array for the result reference
+     */
+    function resultSetArray($resultResource);
+    
+    function countRows($resultResource);
+    
+    function countColumns($resultResource);
 }
 
 ?>

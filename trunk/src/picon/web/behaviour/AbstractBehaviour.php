@@ -23,24 +23,26 @@
 namespace picon;
 
 /**
- * Description of AbstractLink
+ * Description of AbstractBehaviour
  * 
  * @author Martin Cassidy
  */
-abstract class AbstractLink extends MarkupContainer implements LinkListener
+abstract class AbstractBehaviour implements Behaviour
 {
-    protected function onComponentTag(ComponentTag $tag)
+    public function afterRender(Component &$component)
     {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
+        
     }
     
-    public function onEvent()
+    public function beforeRender(Component &$component)
     {
-        $this->onLinkClicked();
+        
     }
     
-    protected abstract function onLinkClicked();
+    public function onComponentTag(Component &$component, ComponentTag &$tag)
+    {
+        
+    }
 }
 
 ?>

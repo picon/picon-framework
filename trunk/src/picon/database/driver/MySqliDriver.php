@@ -63,6 +63,21 @@ class MySqliDriver extends AbstractDatabaseDriver
         }
         return $resultResource->fetch_object($className);
     }
+    
+    public function resultSetArray($resultResource)
+    {
+        return $resultResource->fetch_array();
+    }
+    
+    public function countRows($resultResource)
+    {
+        return $resultResource->num_rows();
+    }
+    
+    public function countColumns($resultResource)
+    {
+        return count($resultResource->fetch_fields());
+    }
 }
 
 ?>

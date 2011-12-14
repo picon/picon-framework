@@ -24,8 +24,9 @@ namespace picon;
 
 /**
  * 
- * @todo this expects get and set magic methods, should also use reflection
- * to find normal getter and setter methods or non encapsulated properties
+ * @todo this should use a property resolver helper to extract properties from object
+ * @todo this should be able to support a model as the target
+ * @todo this should be able to handle property name recursion e.g. person.name.first
  * @author Martin Cassidy
  */
 class PropertyModel implements Model

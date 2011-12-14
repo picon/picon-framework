@@ -41,7 +41,7 @@ class SampleDao extends DaoSupport
         $this->setDataSource($this->dataSource);
     }
     
-    public function getTestData()
+    public function getTestData($start, $count)
     {
         $maper = new CallbackRowMapper(function($row)
         {
@@ -51,8 +51,13 @@ class SampleDao extends DaoSupport
             $data->timestamp = $row->timestamp;
             return $data;
         });
-        $results = $this->getTemplate()->query('SELECT * FROM testtable', $maper);
-        print_r($results);
+        $results = $this->getTemplate()->query('SELECT * FROM testtable LIMIT %d, %d', $maper, array($start, $count));
+        return $results;
+    }
+    
+    public function getRows()
+    {
+        return $this->getTemplate()->queryForInt('SELECT count(*) FROM testtable');
     }
 }
 

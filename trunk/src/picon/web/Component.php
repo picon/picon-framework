@@ -84,6 +84,8 @@ abstract class Component implements InjectOnWakeup, Identifiable
     private $initialized = false;
     private $flagInitializeParentCall = false;
     
+    private $beforePageRendered = false;
+    
     private $model;
     
     /**
@@ -197,26 +199,27 @@ abstract class Component implements InjectOnWakeup, Identifiable
     }
     
     /**
-     * @todo change this to a callback
+     * Called just before the page is rendered for all of its components
      */
-    public function beforeRender()
+    public function beforePageRender()
     {
-        /*
-         * This does nothing by default and is for sub classes to customize if needed
-         */
+        $this->beforePageRendered = true;
     }
     
     /**
-     * @todo call before render for behaviours
+     * Called just after a page is rendered
      */
-    public function internalBeforeRender()
+    public function afterPageRender()
     {
-        if(!$this->isInitialized())
-        {
-            $this->internalInitialize();
-        }
+    }
+    
+    /**
+     * Called just before a component is rendered
+     */
+    public function beforeComponentRender()
+    {
         PiconApplication::get()->getComponentBeforeRenderListener()->onBeforeRender($this);
-        $this->beforeRender();
+        $this->notifyBehavioursBeforeRender();
     }
     
     public function isInitialized()
@@ -224,14 +227,19 @@ abstract class Component implements InjectOnWakeup, Identifiable
         return $this->initialized;
     }
     
+    public function isBeforePageRender()
+    {
+        return $this->beforePageRendered;
+    }
+    
     /**
-     * @todo call after render for behaviours
+     * Called just after the component is rendered
      */
-    private function internalAfterRender()
+    public function afterComponentRender()
     {
         $this->rendered = true;
         PiconApplication::get()->getComponentAfterRenderListenersr()->onAfterRender($this);
-        $this->afterRender();
+        $this->notifyBehavioursAfterRender();
         
         if($this instanceof MarkupContainer)
         {
@@ -251,23 +259,17 @@ abstract class Component implements InjectOnWakeup, Identifiable
         }
     }
     
-    /**
-     * @todo change this to a callback
-     */
-    public function afterRender()
-    {
-        /*
-         * This does nothing by default and is for sub classes to customize if needed
-         */
-    }
-    
     public function render()
     {
         $exception = null;
         
         try
         {
-            $this->internalBeforeRender();
+            if($this->getParent()==null)
+            {
+                $this->beforePageRender();
+            }
+            $this->beforeComponentRender();
             $this->internalRender();
         }
         catch(Exception $ex)
@@ -276,7 +278,11 @@ abstract class Component implements InjectOnWakeup, Identifiable
         }
         try
         {
-            $this->internalAfterRender();
+            $this->afterComponentRender();
+            if($this->getParent()==null)
+            {
+                $this->afterPageRender();
+            }
         }
         catch(Exception $ex)
         {
@@ -444,8 +450,7 @@ abstract class Component implements InjectOnWakeup, Identifiable
         {
             $tag->put('id', $this->getMarkupId());
         }
-        
-        //@todo call onComponentTag for behaviours
+        $this->notifyBehavioursComponentTag($tag);
     }
     
     /**
@@ -889,6 +894,30 @@ abstract class Component implements InjectOnWakeup, Identifiable
     public function hasErrorMessage()
     {
         return self::getFeedbackModel()->hasMessages($this, FeedbackMessage::FEEDBACK_MEESAGE_ERROR);
+    }
+    
+    private function notifyBehavioursBeforeRender()
+    {
+        foreach($this->behaviours as $behaviour)
+        {
+            $behaviour->beforeRender($this);
+        }
+    }
+    
+    private function notifyBehavioursAfterRender()
+    {
+        foreach($this->behaviours as $behaviour)
+        {
+            $behaviour->afterRender($this);
+        }
+    }
+    
+    private function notifyBehavioursComponentTag(ComponentTag $tag)
+    {
+        foreach($this->behaviours as $behaviour)
+        {
+            $behaviour->onComponentTag($this, $tag);
+        }
     }
 }
 

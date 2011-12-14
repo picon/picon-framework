@@ -23,24 +23,26 @@
 namespace picon;
 
 /**
- * Description of AbstractLink
+ * Description of AttributeModifier
  * 
  * @author Martin Cassidy
  */
-abstract class AbstractLink extends MarkupContainer implements LinkListener
+class AttributeModifier extends AbstractBehaviour
 {
-    protected function onComponentTag(ComponentTag $tag)
+    private $attributeName;
+    private $value;
+    
+    public function __construct($attributeName, Model $value)
     {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
+        $this->attributeName = $attributeName;
+        $this->value = $value;
     }
     
-    public function onEvent()
+    public function onComponentTag(Component &$component, ComponentTag &$tag)
     {
-        $this->onLinkClicked();
+        parent::onComponentTag($component, $tag);
+        $tag->put($this->attributeName, $this->value->getModelObject());
     }
-    
-    protected abstract function onLinkClicked();
 }
 
 ?>

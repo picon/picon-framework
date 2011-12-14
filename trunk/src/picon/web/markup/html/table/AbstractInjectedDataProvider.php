@@ -23,24 +23,16 @@
 namespace picon;
 
 /**
- * Description of AbstractLink
+ * Description of InjectedDataProvider
  * 
  * @author Martin Cassidy
  */
-abstract class AbstractLink extends MarkupContainer implements LinkListener
+abstract class AbstractInjectedDataProvider implements DataProvider, InjectOnWakeup
 {
-    protected function onComponentTag(ComponentTag $tag)
+    public function __construct()
     {
-        parent::onComponentTag($tag);
-        $tag->put('href', $this->urlForListener($this));
+        Injector::get()->inject($this);
     }
-    
-    public function onEvent()
-    {
-        $this->onLinkClicked();
-    }
-    
-    protected abstract function onLinkClicked();
 }
 
 ?>

@@ -84,9 +84,27 @@ class DataBaseTemplate implements DataBaseOperations
     {
         if($arguments!=null)
         {
-            eval("\$sql = sprintf(\$sql, ". implode(',', $arguments).")");
+            eval("\$sql = sprintf(\$sql, ". implode(',', $arguments).");");
         }
         return $sql;
+    }
+    
+    public function queryForInt($sql, $arguments = null)
+    {
+        $sql = $this->prepareArgs($sql, $arguments);
+        $int = null;
+        $results = $this->driver->query($sql, $this->getConnection());
+        
+        if($this->driver->countRows($results)!=1 || $this->driver->countColumns($results)!=1)
+        {
+            throw new SQLException('Expected only 1 result with only 1 column');
+        }
+        while($row = $this->driver->resultSetArray($results))
+        {
+            $int = $row[0];
+        }
+        settype($int, Component::TYPE_INT);
+        return $int;
     }
 }
 

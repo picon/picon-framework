@@ -305,9 +305,9 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
     
     protected abstract function validateModel();
     
-    public function beforeRender()
+    public function beforeComponentRender()
     {
-        parent::beforeRender();
+        parent::beforeComponentRender();
         $this->validateModel();
     }
 }
