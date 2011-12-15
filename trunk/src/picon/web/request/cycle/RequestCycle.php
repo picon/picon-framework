@@ -75,6 +75,12 @@ class RequestCycle
             {
                 $iterator->current()->respond();
             }
+            catch(RestartRequestOnPageException $restartEx)
+            {
+                $iterator->rewind();
+                $this->targetStack->exchangeArray(array());
+                $this->addTarget(new PageRequestTarget($restartEx->getPageIdentifier()));
+            }
             catch(\Exception $ex)
             {
                 $this->addTarget(new ExceptionPageRequestTarget($ex));

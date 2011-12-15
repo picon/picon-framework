@@ -95,7 +95,12 @@ class Identifier extends ComonDomainBase
         return false;
     }
     
-    
+    /**
+     * Checks whether this identifier is the same or is a child of the given 
+     * identifier. Checks for equality, sub class or interface implementation
+     * @param Identifier $object The identifier to check against
+     * @return boolean  
+     */
     public function of($object)
     {
         if(!($object instanceof Identifier))
