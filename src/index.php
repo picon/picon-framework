@@ -40,14 +40,21 @@ define("CONFIG_FILE", __DIR__.'\\config\\picon.xml');
 
 require_once("picon/PiconApplication.php");
 
-//Begin output buffering
-ob_start();
+use picon\PiconApplication;
+use picon\PageClassAuthorisationStrategy;
+
+class SampleApplication extends PiconApplication
+{
+    public function init()
+    {
+        $this->getSecuritySettings()->setAuthorisationStrategy(new SamplePageClassAuthorisationStrategy(AbstractAuthorisedPage::getIdentifier(), LoginPage::getIdentifier()));
+    }
+}
 
 //Create the application
-$application = new picon\PiconApplication();
+$application = new SampleApplication();
 $application->run();
 
-//Flush the output
-ob_end_flush();
+
 
 ?>

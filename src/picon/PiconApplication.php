@@ -29,10 +29,9 @@ require_once("addendum/doc_comment.php");
 
 /**
  * This is the main class for the entire application.
- *
  * @author Martin Cassidy
  */
-class PiconApplication 
+abstract class PiconApplication 
 {
     private $applicatoinContext;
     private $config;
@@ -52,6 +51,8 @@ class PiconApplication
     //Converter
     private $converters = array();
     
+    private $securitySettings;
+    
     /**
      * Create a new Picon Application
      * Fires off the application initialiser to load an instantiat all resources
@@ -60,6 +61,7 @@ class PiconApplication
      */
     public function __construct()
     {
+        ob_start();
         if(isset($GLOBALS['application']))
         {
             throw new \IllegalStateException("An instance of picon application already exists");
@@ -74,18 +76,15 @@ class PiconApplication
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\web\\pages");
         $this->initialiser->addScannedDirectory(ASSETS_DIRECTORY);
         
-        $this->init();
+        $this->internalInit();
         
         $this->initialiser->initialise();
     }
     
-    /**
-     * Called once the application has created but not run the application initializer
-     * This method creates listener collections.
-     * If override you MUST call parent::init()
-     */
-    public function init()
+    private function internalInit()
     {
+        $this->securitySettings = new WebApplicationSecuritySettings();
+        
         $this->configLoadListeners = new ApplicationInitializerConfigLoadListenerCollection();
         $this->contextLoadListeners = new ApplicationInitializerContextLoadListenerCollection();
         
@@ -104,10 +103,22 @@ class PiconApplication
         
         $this->componentInstantiationListeners = new ComponentInstantiationListenerCollection();
         $this->addComponentInstantiationListener(new ComponentInjector());
+        $this->addComponentInstantiationListener(new ComponentAuthorisationListener());
         
         $this->componentInitializationListeners = new ComponentInitializationListenerCollection();
         $this->componentBeforeRenderListeners = new ComponentBeforeRenderListenerCollection();
         $this->componentAfterRenderListeners = new ComponentAfterRenderListenerCollection();
+        
+        $this->init();
+    }
+    
+    /**
+     * Called once the application has been created but not run the application initializer
+     * This method creates listener collections.
+     */
+    public function init()
+    {
+
     }
     
     public final function run()
@@ -121,19 +132,9 @@ class PiconApplication
         return $this->config;
     }
     
-    private function onConfigLoaded(Config $config)
-    {
-        $this->config = $config;
-    }
-    
     public final function getApplicationContext()
     {
         return $this->applicatoinContext;
-    }
-    
-    private function onContextLoaded(ApplicationContext $context)
-    {
-        $this->applicatoinContext = $context;
     }
     
     public static function get()
@@ -213,6 +214,16 @@ class PiconApplication
             return $this->converters[$className];
         }
         return null;
+    }
+    
+    public function __destruct()
+    {
+        ob_end_flush();
+    }
+    
+    public function getSecuritySettings()
+    {
+        return $this->securitySettings;
     }
 }
 

@@ -112,6 +112,14 @@ class Args
             throw new \InvalidArgumentException(sprintf("%s expected argument %s to be non null", self::getCallingMethod(), $argName));
         }
     }
+    
+    public static function identifierOf(Identifier $object, Identifier $expected, $argName)
+    {
+        if(!$object->of($expected))
+        {
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be an identifier of %s, actual %s", self::getCallingMethod(), $argName, $expected->getFullyQualifiedName(), $object->getFullyQualifiedName()));
+        }
+    }
 }
 
 ?>
