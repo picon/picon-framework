@@ -20,24 +20,24 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use \picon\PageRequestResolver;
+use picon\ListenerRequestResolver;
 use picon\Request;
 
 /**
- * Description of PageRequestResolverTest
- * 
- * @author Martin Cassidy
+ * Description of ListenerRequestResolverTest
+ *
+ * @author Martin
  */
-class PageRequestResolverTest extends AbstractRequestResolverTest
+class ListenerRequestResolverTest extends AbstractRequestResolverTest
 {
-    protected function newResolver()
-    {
-        return new PageRequestResolver();
-    }
-    
     protected function matchesHomePage(Request $request)
     {
-        return $request->getParameter('listener')==null;
+        return $request->getParameter('listener')!=null;
+    }
+    
+    protected function newResolver()
+    {
+        return new ListenerRequestResolver();
     }
 }
 

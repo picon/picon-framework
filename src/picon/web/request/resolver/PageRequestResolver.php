@@ -44,7 +44,7 @@ class PageRequestResolver implements RequestResolver
     
     public function matches(Request $request)
     {
-        return ($this->isHomePage($request) || $this->getPageClassForPath($request)!=false) && !array_key_exists('listener', $_GET) && !array_key_exists('pageid', $_GET);
+        return ($this->isHomePage($request) || $this->getPageClassForPath($request)!=false) && $request->getParameter('listener')==null && $request->getParameter('pageid')==null;
     }
     
     /**

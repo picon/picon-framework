@@ -48,7 +48,7 @@ class RequestCycle
         $GLOBALS['requestCycle'] = $this;
         $this->targetStack = new \ArrayObject();
         $this->resolver = new RequestResolverCollection();
-        $this->request = new Request();
+        $this->request = new WebRequest();
         $this->response = new Response();
     }
     
