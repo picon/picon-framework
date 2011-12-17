@@ -49,7 +49,7 @@ class RequestCycle
         $this->targetStack = new \ArrayObject();
         $this->resolver = new RequestResolverCollection();
         $this->request = new WebRequest();
-        $this->response = new Response();
+        $this->response = new WebResponse();
     }
     
     public function process()
