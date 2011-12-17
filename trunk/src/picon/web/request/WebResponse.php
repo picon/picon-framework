@@ -20,25 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use \picon\PageRequestResolver;
-use picon\Request;
-
 /**
- * Description of PageRequestResolverTest
- * 
+ * Description of WebResponse
+ *
  * @author Martin Cassidy
  */
-class PageRequestResolverTest extends AbstractRequestResolverTest
+class WebResponse implements Response
 {
-    protected function newResolver()
-    {
-        return new PageRequestResolver();
-    }
-    
-    protected function matchesHomePage(Request $request)
-    {
-        return $request->getParameter('listener')==null;
-    }
+    //put your code here
 }
 
 ?>

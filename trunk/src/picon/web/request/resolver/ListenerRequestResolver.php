@@ -23,7 +23,7 @@
 namespace picon;
 
 /**
- * Request target that matches requests that need to invoke a listener
+ * Resolves requests for listener callbacks
  * 
  * @author Martin Cassidy
  */
@@ -31,23 +31,23 @@ class ListenerRequestResolver implements RequestResolver
 {
     public function matches(Request $request)
     {
-        return array_key_exists('listener', $_GET);
+        return array_key_exists('listener', $request->getParameters());
     }
     
     public function resolve(Request $request)
     {
-        if(array_key_exists('pageid', $_GET))
+        if(array_key_exists('pageid', $request->getParameters()))
         {
-            $page = PageMap::get()->getPageById($_GET['pageid']);
+            $page = PageMap::get()->getPageById($request->getParameter('pageid'));
             if($page!=null)
             {
-                return new ListenerRequestTarget($page, $_GET['listener']);
+                return new ListenerRequestTarget($page, $request->getParameter('listener'));
             }
             return new PageRequestTarget(\SessionExpiredPage::getIdentifier());
         }
         else
         {
-            return new ListenerRequestTarget($this->getPageClassForPath($request), $_GET['listener']);
+            return new ListenerRequestTarget($this->getPageClassForPath($request), $request->getParameter('listener'));
         }
         
     }

@@ -34,7 +34,7 @@ namespace picon;
  * @todo Have components use this when rendering
  * @todo create helper methods for writing HTTP headers
  */
-class Response
+interface Response
 {
     
 }

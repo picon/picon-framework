@@ -30,88 +30,39 @@ namespace picon;
  * @todo this should be WebRequest - Request should be an interface
  * @author Martin Cassidy
  */
-class Request
-{
-    private $post;
-    private $get;
+interface Request
+{    
+    public function getQueryString();
     
-    public function __construct()
-    {
-        $this->post = isset($_POST)?$_POST:false;
-        $this->get = isset($_GET)?$_GET:false;
-    }
+    public function getPath();
     
-    public function getQueryString()
-    {
-        return $_SERVER['QUERY_STRING'];
-    }
+    public function isAjax();
     
-    public function getPath()
-    {
-        return $_SERVER['REQUEST_URI'];
-    }
+    public function isResourceRequest();
     
-    public function isAjax()
-    {
-        return isset($_GET['ajax']);
-    }
+    public function getRootPath();
     
-    public function isResourceRequest()
-    {
-        return isset($_GET['resource']);
-    }
+    public function isPost();
     
-    public function getRootPath()
-    {
-        $root = preg_replace("/\/{1}\w*\.php$/", "", $_SERVER['PHP_SELF']);
-        return $root;
-    }
-    
-    public function isPost()
-    {
-        return $this->post!=false;
-    }
-    
-    public function isGet()
-    {
-        return $this->get!=false;
-    }
+    public function isGet();
     
     /**
      * Get a POST parameter
      * @param type $name
      * @return type 
      */
-    public function getPostedParameter($name)
-    { 
-        if($this->post==false)
-        {
-            return null;
-        }
-        if(array_key_exists($name, $this->post))
-        {
-            return $this->post[$name];
-        }
-        return null;
-    }
+    public function getPostedParameter($name);
     
     /**
      * Get a GET paramater
      * @param type $name
      * @return type 
      */
-    public function getParameter($name)
-    {
-        if($this->get==false)
-        {
-            return null;
-        }
-        if(array_key_exists($name, $this->get))
-        {
-            return $this->get[$name];
-        }
-        return null;
-    }
+    public function getParameter($name);
+    
+    public function getParameters();
+    
+    public function getPostParameters();
 }
 
 ?>
