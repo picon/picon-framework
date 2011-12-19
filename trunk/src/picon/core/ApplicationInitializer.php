@@ -38,6 +38,8 @@ require_once('ErrorHandler.php');
  */
 class ApplicationInitializer
 {
+    const CONFIG_RESOURCE_NAME = 'picon_config';
+    
     private $autoLoader;
     private $errorHandler;
     
@@ -65,7 +67,16 @@ class ApplicationInitializer
      */
     public function initialise()
     {
-        $config = ConfigLoader::load(CONFIG_FILE);
+        $config = null;
+        if(CacheManager::resourceExists(CONFIG_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE))
+        {
+            $config = CacheManager::loadResource(self::CONFIG_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE);
+        }
+        else
+        {
+            $config = ConfigLoader::load(CONFIG_FILE);
+            CacheManager::saveResource(self::CONFIG_RESOURCE_NAME, $config, CacheManager::APPLICATION_SCOPE);
+        }
         PiconApplication::get()->getConfigLoadListener()->onConfigLoaded($config);
         
         $loader = ContextLoaderFactory::getLoader($config);
