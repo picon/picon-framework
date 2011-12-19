@@ -26,6 +26,7 @@
 define("PICON_DIRECTORY", __DIR__.'\\..\\src\\picon');
 define("ASSETS_DIRECTORY", __DIR__.'\\testassets');
 define("CONFIG_FILE", __DIR__.'\\config\\picon.xml');
+define("CACHE_DIRECTORY", __DIR__.'\\cache');
 
 require_once(PICON_DIRECTORY."\\addendum\\annotation_parser.php");
 require_once(PICON_DIRECTORY."\\addendum\\annotations.php");

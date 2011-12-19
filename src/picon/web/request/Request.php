@@ -27,7 +27,6 @@ namespace picon;
  * determin what kind of request it is
  * @package web
  * @todo lots more to add in here
- * @todo this should be WebRequest - Request should be an interface
  * @author Martin Cassidy
  */
 interface Request

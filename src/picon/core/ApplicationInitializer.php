@@ -41,6 +41,8 @@ class ApplicationInitializer
     private $autoLoader;
     private $errorHandler;
     
+    private static $dirs = array();
+    
     public function __construct()
     {
         $this->autoLoader = new AutoLoader();
@@ -65,8 +67,6 @@ class ApplicationInitializer
     {
         $config = ConfigLoader::load(CONFIG_FILE);
         PiconApplication::get()->getConfigLoadListener()->onConfigLoaded($config);
-        
-        $this->loadAssets(ASSETS_DIRECTORY);
         
         $loader = ContextLoaderFactory::getLoader($config);
         $context = $loader->load($config);
@@ -94,8 +94,12 @@ class ApplicationInitializer
      * and invokes itself on any sub directories
      * @param String $directory the working directory
      */
-    private function loadAssets($directory)
+    public static function loadAssets($directory)
     {
+        if(in_array($directory, self::$dirs))
+        {
+            return;
+        }
         $d = dir($directory);
         while (false !== ($entry = $d->read()))
         {
@@ -105,10 +109,11 @@ class ApplicationInitializer
             }
             if(is_dir($directory."\\".$entry) && !preg_match("/^.{1}.?$/", $entry))
             {
-               $this->loadAssets($directory."\\".$entry);
+               self::loadAssets($directory."\\".$entry);
             }
         }
         $d->close();
+        array_push(self::$dirs, $directory);
     }
 
 }

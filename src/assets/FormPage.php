@@ -116,19 +116,19 @@ class FormPage extends WebPage
         
         $this->add(new ListView('cgroup', function(&$item)
         {
-            $item->add(new \picon\Label('value', $item->getModel()));
+            $item->add(new picon\Label('value', $item->getModel()));
         }));
         
         $this->add(new Label('rchoice'));
         
         $this->add(new ListView('cchoice', function(&$item)
         {
-            $item->add(new \picon\Label('value', $item->getModel()));
+            $item->add(new picon\Label('value', $item->getModel()));
         }));
         
         $this->add(new ListView('mchoice', function(&$item)
         {
-            $item->add(new \picon\Label('value', $item->getModel()));
+            $item->add(new picon\Label('value', $item->getModel()));
         }));
     }
     

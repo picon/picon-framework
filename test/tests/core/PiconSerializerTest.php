@@ -32,8 +32,9 @@ class PiconSerializerTest extends AbstractPiconTest
     public function testComplexSerialization()
     {
         $complexObject = new ComplexSerialize();
-        $serialized = PiconSerializer::serialize($complexObject);
-        $deSerialized = PiconSerializer::unserialize($serialized);
+        $complexObject->preparForSerialize();
+        $serialized = serialize($complexObject);
+        $deSerialized = unserialize($serialized);
         
         $this->assertSame("defaultValue", $deSerialized->getTransient());
         $this->assertSame("defaultValue", $deSerialized->getService());

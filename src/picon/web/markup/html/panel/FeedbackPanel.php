@@ -36,7 +36,7 @@ class FeedbackPanel extends Panel
     public function __construct($id)
     {
         parent::__construct($id);
-        //@todo update to no fq names when serializer update is done
+        
         $this->messages = new ListView('messages', function($item)
         {
             $item->add(new \picon\Label('message', new \picon\BasicModel($item->getModelObject()->message)));

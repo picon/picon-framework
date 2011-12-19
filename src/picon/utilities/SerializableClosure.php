@@ -131,6 +131,10 @@ class SerializableClosure
         $this->reflection = new \ReflectionFunction($this->closure);
     }
     
+    /**
+     * @todo test in 5.4
+     * @param type $object 
+     */
     public function bind(&$object)
     {
         if(method_exists('Closure', 'bind'))

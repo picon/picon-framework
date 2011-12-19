@@ -30,18 +30,39 @@ namespace picon;
  */
 abstract class AbstractContextLoader
 {
+    const CONTEXT_RESOURCE_NAME = 'application_context';
+    
+    private $resourceMap;
     private $resources = array();
     
     public function load(Config $config)
     {
-        $this->loadResources($this->getClasses());
+        $this->resourceMap = CacheManager::loadResource(self::CONTEXT_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE);
+        
+        if($this->resourceMap==null)
+        {
+            ApplicationInitializer::loadAssets(ASSETS_DIRECTORY);
+            $this->resourceMap = $this->loadResourceMap($this->getClasses());
+            CacheManager::saveResource(self::CONTEXT_RESOURCE_NAME, $this->resourceMap, CacheManager::APPLICATION_SCOPE);
+        }
+
+        $this->createResources();
+        
         $this->loadDataSources($config->getDataSources());
         return new ApplicationContext($this->resources);
     }
     
-    protected abstract function loadResources($classes);
+    protected abstract function loadResourceMap($classes);
     
     protected abstract function loadDataSources($sourceConfig);
+    
+    private function createResources()
+    {
+        foreach($this->resourceMap as $name => $class)
+        {
+            $this->pushToResourceMap($name, new $class());
+        }
+    }
     
     /**
      * Adds the given resource to the map of resources
