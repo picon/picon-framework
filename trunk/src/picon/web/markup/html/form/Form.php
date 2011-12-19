@@ -40,8 +40,6 @@ class Form extends MarkupContainer implements FormSubmitListener
      * Called when the form is submited
      * @todo get all form components to check for parent form, ensuring that
      * nested forms are ignored
-     * @todo get this to find the submitting component and invoke its
-     * onEvent too
      */
     public function onEvent()
     {

@@ -43,7 +43,7 @@ namespace picon;
  * @todo finish adding state flags so that checks can be run to ensure overriden methods are calling
  * the parent implementation
  */
-abstract class Component implements InjectOnWakeup, Identifiable
+abstract class Component extends PiconSerializable implements InjectOnWakeup, Identifiable
 {
     const TYPE_STRING = 'string';
     const TYPE_FLOAT = 'float';
@@ -472,7 +472,7 @@ abstract class Component implements InjectOnWakeup, Identifiable
      */
     public function setOutputMarkupId($output)
     {
-        //@todo validate boolean
+        Args::isBoolean($output, 'output');
         $this->outputMarkupId = $output;
     }
     

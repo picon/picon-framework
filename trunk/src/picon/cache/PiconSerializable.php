@@ -41,35 +41,11 @@ namespace picon;
  * 
  * 
  * @author Martin Cassidy
- * @package core
+ * @package cache
  */
-class PiconSerializer
+class PiconSerializable
 {
     private static $prepared = array();
-    
-    public static function serialize($object)
-    {
-        $reflection = new \ReflectionAnnotatedClass($object);
-        self::$prepared = array();
-        self::preparForSerialize($reflection, $object);
-        self::$prepared = array();
-        return serialize($object);
-    }
-    
-    public static function unserialize($serialized)
-    {
-        $target = $serialized;
-        if(is_string($serialized))
-        {
-            $target = unserialize($serialized);
-        }
-
-        $reflection = new \ReflectionAnnotatedClass($target);
-        self::$prepared = array();
-        self::reformOnUnserialize($reflection, $target);
-        self::$prepared = array();
-        return $target;
-    }
     
     /**
      * Uses reflection to analyse the properties of the object and prevents
@@ -77,9 +53,17 @@ class PiconSerializer
      * closures into a SleepingClosure object which can be serialized
      * @return array the properties to serialize, the name of the propety as the key with the value as the value
      */
-    private static function preparForSerialize(\ReflectionAnnotatedClass $reflection, &$target, $parent = false)
+    public function preparForSerialize()
     {
-        $hash = spl_object_hash($target);
+        $reflection = new \ReflectionAnnotatedClass($this);
+        self::$prepared = array();
+        $this->internalPrepareForSerialize($reflection);
+        self::$prepared = array();
+    }
+    
+    private function internalPrepareForSerialize(\ReflectionAnnotatedClass $reflection, $parent = false)
+    {
+        $hash = spl_object_hash($this);
         
         if(in_array($hash, self::$prepared) && $parent==false)
         {
@@ -89,24 +73,24 @@ class PiconSerializer
         foreach($reflection->getProperties() as $property)
         {
             $property->setAccessible(true);
-            $value = $property->getValue($target);
+            $value = $property->getValue($this);
 
-            if(self::isTransient($property))
+            if($this->isTransient($property))
             {
-                $property->setValue($target, null);
+                $property->setValue($this, null);
             }
             elseif(is_object($value) && is_callable($value) && !($value instanceof SerializableClosure))
             {
-                $property->setValue($target, new SerializableClosure($value));
+                $property->setValue($this, new SerializableClosure($value));
             }
-            elseif(is_object($value) && spl_object_hash($value)!=$hash)
+            elseif(is_object($value) && spl_object_hash($value)!=$hash && $value instanceof PiconSerializable)
             {
-                $objectReflection = new \ReflectionAnnotatedClass($value);
-                self::preparForSerialize($objectReflection, $value);
+                $valueReflection = new \ReflectionAnnotatedClass($value);
+                $value->internalPrepareForSerialize($valueReflection);
             }
             elseif(is_array($value))
             {
-                self::prepareArrayForSerialize($value);
+                $this->prepareArrayForSerialize($value);
             }
         }
         
@@ -114,29 +98,37 @@ class PiconSerializer
         
         if($parent!=null)
         {
-            $parentValues = self::preparForSerialize($parent, $target, true);
+            $parentValues = $this->internalPrepareForSerialize($parent, $this, true);
         }
     }
     
-    private static function prepareArrayForSerialize(&$entry)
+    private function prepareArrayForSerialize(&$entry)
     {
         foreach($entry as $value)
         {
             if(is_array($value))
             {
-                self::prepareArrayForSerialize($value);
+                $this->prepareArrayForSerialize($value);
             }
-            else if(is_object($value))
+            else if(is_object($value) && $value instanceof PiconSerializable)
             {
-                $objectReflection = new \ReflectionAnnotatedClass($value);
-                self::preparForSerialize($objectReflection, $value);
+                $valueReflection = new \ReflectionAnnotatedClass($value);
+                $value->internalPrepareForSerialize($valueReflection);
             }
         }
     }
     
-    private static function reformOnUnserialize(\ReflectionAnnotatedClass $reflection, &$target, $parent = false)
+    public function __wakeup()
     {
-        $hash = spl_object_hash($target);
+        $reflection = new \ReflectionAnnotatedClass($this);
+        self::$prepared = array();
+        self::reformOnUnserialize($reflection);
+        self::$prepared = array();
+    }
+    
+    private function reformOnUnserialize(\ReflectionAnnotatedClass $reflection, $parent = false)
+    {
+        $hash = spl_object_hash($this);
         
         if(in_array($hash, self::$prepared) && $parent==false)
         {
@@ -144,59 +136,59 @@ class PiconSerializer
         }
         array_push(self::$prepared, $hash);
         
-        if($target instanceof InjectOnWakeup)
+        if($this instanceof InjectOnWakeup)
         {
-            Injector::get()->inject($target);
+            Injector::get()->inject($this);
         }
         
         $defaults = $reflection->getDefaultProperties();
         foreach($reflection->getProperties() as $property)
         {
             $property->setAccessible(true);
-            $value = $property->getValue($target);
+            $value = $property->getValue($this);
             if(self::isTransient($property))
             {
-                $property->setValue($target, $defaults[$property->getName()]);
+                $property->setValue($this, $defaults[$property->getName()]);
             }
             else if($value instanceof SerializableClosure)
             {
-                $value->bind($target);
+                $value->bind($this);
             }
             else if(is_object($value))
             {
                 $objectReflection = new \ReflectionAnnotatedClass($value);
-                self::reformOnUnserialize($objectReflection, $value);
+                $this->reformOnUnserialize($objectReflection);
             }
             else if(is_array($value))
             {
-                self::reformArray($value);
+                $this->reformArray($value);
             }
         }
 
         $parent = $reflection->getParentClass();
         if($parent!=null)
         {
-            self::reformOnUnserialize($parent, $target, true);
+            $this->reformOnUnserialize($parent, true);
         }
     }
     
-    private static function reformArray(&$entry)
+    private function reformArray(&$entry)
     {
         foreach($entry as $value)
         {
             if(is_array($value))
             {
-                self::reformArray($value);
+                $this->reformArray($value);
             }
             else if(is_object($value))
             {
                 $objectReflection = new \ReflectionAnnotatedClass($value);
-                self::reformOnUnserialize($objectReflection, $value);
+                $this->reformOnUnserialize($objectReflection);
             }
         }
     }
     
-    private static function isTransient(\ReflectionAnnotatedProperty $property)
+    private function isTransient(\ReflectionAnnotatedProperty $property)
     {
         foreach($property->getAllAnnotations() as $annotation)
         {

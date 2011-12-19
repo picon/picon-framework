@@ -31,8 +31,9 @@ namespace picon;
  */
 class AutoContextLoader extends AbstractContextLoader
 {
-    public function loadResources($classes)
+    public function loadResourceMap($classes)
     {
+       $resources = array();
        foreach($classes as $class)
        {
              $reflection = new \ReflectionAnnotatedClass($class);
@@ -40,14 +41,15 @@ class AutoContextLoader extends AbstractContextLoader
              if($reflection->hasAnnotation("Service"))
              {
                  $annotation = $reflection->getAnnotation('Service');
-                 $this->pushToResourceMap($this->getResourceName($annotation, $class), $reflection->newInstanceArgs());
+                 $resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
              }
              if($reflection->hasAnnotation("Repository"))
              {
                  $annotation = $reflection->getAnnotation('Repository');
-                 $this->pushToResourceMap($this->getResourceName($annotation, $class), $reflection->newInstanceArgs());
+                 $resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
              }
         }
+        return $resources;
     }
     
     protected function loadDataSources($sourceConfig)

@@ -41,10 +41,11 @@ namespace picon;
  */
 class PageMap
 {
+    const PAGE_MAP_RESOURCE_NAME = 'pagemap';
+    
     private $pages;
     private $pageId = 1;
-    private $pageInstances;
-    private $deserialize = array();
+    private $pageInstances = array();
     private static $self;
 
     /**
@@ -59,15 +60,17 @@ class PageMap
 
     public function initialise()
     {
-        if(isset($this->pages))
+        if(isset($this->pages) && $this->pages!=null)
         {
             return;
         }
         $this->scanPages();
+        CacheManager::saveResource(self::PAGE_MAP_RESOURCE_NAME, $this->pages, CacheManager::APPLICATION_SCOPE);
     }
 
     private function scanPages()
     {
+        ApplicationInitializer::loadAssets(ASSETS_DIRECTORY);
         $this->pages = array();
         $scanner = new ClassScanner(array(new SubClassRule('\picon\WebPage')));
 
@@ -120,17 +123,26 @@ class PageMap
     }
     
     /**
-     * @todo validate id
+     * 
      */
     public function getPageById($id)
     {
-        $page = &$this->pageInstances[$id];
-        if(!in_array($id, $this->deserialize))
+        if(array_key_exists($id, $this->pageInstances))
         {
-            array_push($this->deserialize, $id);
-            PiconSerializer::unserialize($page);
+            return $this->pageInstances[$id];
         }
-        return $page;
+
+        $page = CacheManager::loadResource($id, CacheManager::SESSION_SCOPE);
+        
+        if($page!=null)
+        {
+            $this->addOrUpdate($page);
+            return $page;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public static function get()
@@ -151,26 +163,27 @@ class PageMap
     
     public function addOrUpdate(WebPage &$page)
     {
-        if(!in_array($page->getId(), $this->deserialize))
-        {
-            array_push($this->deserialize, $page->getId());
-        }
         $instances = &$this->pageInstances;
         $instances[$page->getId()] = $page;
     }
     
-    public function __destruct()
+    public function __sleep()
     {
-        foreach($this->deserialize as $pageid)
-        {
-             PiconSerializer::serialize($this->pageInstances[$pageid]);
-        }
-        $_SESSION['page_map'] = $this;
+        return array('pageId');
     }
     
     public function __wakeup()
     {
-        $this->deserialize = array();
+        $this->pages = CacheManager::loadResource(self::PAGE_MAP_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE);
+    }
+    
+    public function __destruct()
+    {
+        foreach($this->pageInstances as $pageid => $page)
+        {
+            CacheManager::saveResource($pageid, $page, CacheManager::SESSION_SCOPE);
+        }
+        $_SESSION['page_map'] = $this;
     }
 }
 

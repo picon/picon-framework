@@ -61,7 +61,6 @@ abstract class PiconApplication
      */
     public function __construct()
     {
-        ob_start();
         if(isset($GLOBALS['application']))
         {
             throw new \IllegalStateException("An instance of picon application already exists");
@@ -75,6 +74,9 @@ abstract class PiconApplication
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\exceptions");
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\web\\pages");
         $this->initialiser->addScannedDirectory(ASSETS_DIRECTORY);
+        
+        session_start();
+        ob_start();
         
         $this->internalInit();
         
@@ -98,7 +100,6 @@ abstract class PiconApplication
         $this->addContextLoaderListener(new ApplicationContextLoadListener(function($createdContext) use (&$context)  
         {
             $context = $createdContext;
-            session_start();
         }));
         
         $this->componentInstantiationListeners = new ComponentInstantiationListenerCollection();
