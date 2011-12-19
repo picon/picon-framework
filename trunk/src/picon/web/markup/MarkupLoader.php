@@ -51,13 +51,13 @@ class MarkupLoader
     public function loadMarkup(Component $component)
     {
         $name = get_class($component);
-        
-        if(CacheManager::resourceExists($name, CacheManager::APPLICATION_SCOPE))
+        $fileSafeName = str_replace('\\', '_', $name);
+        if(CacheManager::resourceExists(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, CacheManager::APPLICATION_SCOPE))
         {
-            return CacheManager::loadResource(self::MARKUP_RESOURCE_PREFIX.$name, CacheManager::APPLICATION_SCOPE);
+            return CacheManager::loadResource(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, CacheManager::APPLICATION_SCOPE);
         }
         $markup = $this->internalLoadMarkup($name);
-        CacheManager::saveResource(self::MARKUP_RESOURCE_PREFIX.$name, $markup, CacheManager::APPLICATION_SCOPE);
+        CacheManager::saveResource(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, $markup, CacheManager::APPLICATION_SCOPE);
         return $markup;
     }
     
