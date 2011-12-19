@@ -30,10 +30,20 @@ namespace picon;
  */
 class AutoLoader
 {
+    const AUTO_LOAD_RESOURCE_NAME = 'auto_loader';
+    
     private $scannedDirectories = array();
+    private $cachedPaths = null;
     
     public function __construct()
     {
+        $this->cachedPaths = CacheManager::loadResource(self::AUTO_LOAD_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE);
+        
+        if($this->cachedPaths==null)
+        {
+            $this->cachedPaths = array();
+        }
+        
         spl_autoload_register(array($this, "autoLoad"));
     }
     
@@ -63,6 +73,12 @@ class AutoLoader
      */
     protected function autoLoad($className)
     {
+        if(array_key_exists($className, $this->cachedPaths))
+        {
+            require_once($this->cachedPaths[$className]);
+            return;
+        }
+        
         $success = false;
         $path = explode("\\", $className);
         
@@ -82,7 +98,7 @@ class AutoLoader
         
         foreach($this->scannedDirectories[$namespace] as $dir)
         {
-            $success = $this->loadClass($dir, $class);
+            $success = $this->loadClass($dir, $class, $className);
             if($success)
             {
                 break;
@@ -101,17 +117,18 @@ class AutoLoader
      */
     protected function onFail($namespace, $class)
     {
-        //trigger_error(sprintf("Unable to load class %s in namespace %s, please check that the name of file matches tha name of the class and that the file is in a directory that is used by the class scanner", $class, $namespace),E_USER_ERROR);
+        trigger_error(sprintf("Unable to load class %s in namespace %s, please check that the name of file matches tha name of the class and that the file is in a directory that is used by the class scanner", $class, $namespace),E_USER_ERROR);
     }
     
     /**
      * Load a class from a directory, this is recursive and will also search
      * sub directories. 
-     * @param String $directory The root directory for the class
-     * @param String $className The name of the class
-     * @return Boolean true if the class file was found, false if not 
+     * @param string $directory The root directory for the class
+     * @param string $className The simple name of the class
+     * @param string $fullName The fully qualified name of the class
+     * @return boolean true if the class file was found, false if not 
      */
-    private function loadClass($directory, $className)
+    private function loadClass($directory, $className, $fullName)
     {
         $d = dir($directory);
         $success = false;
@@ -120,15 +137,21 @@ class AutoLoader
             if($entry==$className.'.php')
             {
                 require_once($directory."\\".$entry);
+                $this->cachedPaths[$fullName] = $directory."\\".$entry;
                 $success = true;
             }
             if(is_dir($directory."\\".$entry) && !preg_match("/^.{1}.?$/", $entry))
             {
-                $success = $this->loadClass($directory."\\".$entry,$className);
+                $success = $this->loadClass($directory."\\".$entry,$className, $fullName);
             }
         }
         $d->close();
         return $success;
+    }
+    
+    public function __destruct()
+    {
+        CacheManager::saveResource(self::AUTO_LOAD_RESOURCE_NAME, $this->cachedPaths, CacheManager::APPLICATION_SCOPE);
     }
 }
 

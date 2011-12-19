@@ -29,6 +29,8 @@ namespace picon;
  */
 class MarkupLoader
 {
+    const MARKUP_RESOURCE_PREFIX = 'markup_';
+    
     private static $instance;
     private static $extensions = array('html', 'htm');
     
@@ -48,8 +50,15 @@ class MarkupLoader
     
     public function loadMarkup(Component $component)
     {
-        $reflection = new \ReflectionClass($component);
-        return $this->internalLoadMarkup($reflection->getName());
+        $name = get_class($component);
+        
+        if(CacheManager::resourceExists($name, CacheManager::APPLICATION_SCOPE))
+        {
+            return CacheManager::loadResource(self::MARKUP_RESOURCE_PREFIX.$name, CacheManager::APPLICATION_SCOPE);
+        }
+        $markup = $this->internalLoadMarkup($name);
+        CacheManager::saveResource(self::MARKUP_RESOURCE_PREFIX.$name, $markup, CacheManager::APPLICATION_SCOPE);
+        return $markup;
     }
     
     private function internalLoadMarkup($className)

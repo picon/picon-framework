@@ -23,10 +23,12 @@
 namespace picon;
 
 /**
- * Description of CacheManager
+ * Helper class for saving and loading resources from the cache.
+ * 
+ * This can work for both the application and session scope allowing resources
+ * to be shared accross sessions
  *
  * @author Martin Cassidy
- * @todo error handling
  */
 class CacheManager
 {
@@ -61,6 +63,13 @@ class CacheManager
         $instance->internalSaveResource($dir, $name, $resource);
     }
     
+    /**
+     * Load a previously saved resource. If the resource was not
+     * found this will return null
+     * @param type $name
+     * @param type $scope
+     * @return type 
+     */
     public static function loadResource($name, $scope)
     {
         $instance = self::get();
@@ -105,9 +114,14 @@ class CacheManager
         return CACHE_DIRECTORY.'\\'.self::APPLICATION_PATH.'\\';
     }
     
+    private function getFileName($directory, $name)
+    {
+        return $directory.$name.self::EXTENSION;
+    }
+    
     private function internalSaveResource($directory, $name, $resource)
     {
-        $fileName = $directory.$name.self::EXTENSION;
+        $fileName = $this->getFileName($directory, $name);
         
         if(is_object($resource) && $resource instanceof PiconSerializable)
         {
@@ -124,7 +138,7 @@ class CacheManager
     
     private function internalLoadResource($directory, $name)
     {
-        $fileName = $directory.$name.self::EXTENSION;
+        $fileName = $this->getFileName($directory, $name);
         
         if(file_exists($fileName))
         {
@@ -135,6 +149,20 @@ class CacheManager
         {
             return null;
         }
+    }
+    
+    /**
+     * Determins whether a resource with that name exists
+     * @param type $name
+     * @param type $scope
+     * @return type 
+     */
+    public static function resourceExists($name, $scope)
+    {
+        $dir = self::get()->getDirectoryForScope($scope);
+        $fileName = self::get()->getFileName($dir, $name);
+        
+        return file_exists($fileName);
     }
 }
 

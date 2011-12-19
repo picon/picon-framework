@@ -27,6 +27,8 @@ require_once("addendum/annotation_parser.php");
 require_once("addendum/annotations.php");
 require_once("addendum/doc_comment.php");
 
+require_once("cache/CacheManager.php");
+
 /**
  * This is the main class for the entire application.
  * @author Martin Cassidy
