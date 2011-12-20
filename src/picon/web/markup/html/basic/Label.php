@@ -36,7 +36,7 @@ class Label extends WebComponent
     
     protected function onComponentTagBody(ComponentTag $tag)
     {
-        echo $this->getModelObjectAsString();
+        $this->getResponse()->write($this->getModelObjectAsString());
     }
 }
 

@@ -34,6 +34,11 @@ class ComponentTag extends MarkupElement
         $attributes = $this->getAttributes();
         return $attributes['picon:id'];
     }
+    
+    public function setComponentTagId($id)
+    {
+        $this->put('picon:id', $id);
+    }
 }
 
 ?>

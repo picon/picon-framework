@@ -46,7 +46,18 @@ class DefaultMarkupSource extends AbstractMarkupSource
         
         if($m==null)
         {
-            print_r($markup);
+            foreach($container->getChildren() as $ch)
+            {
+                if($ch!=$child && $ch instanceof MarkupContainer && $ch instanceof ComponentResolver)
+                {
+                    $m = $ch->getMarkupForChild($child);
+                    
+                    if($m!=null)
+                    {
+                        return $m;
+                    }
+                }
+            }
         }
         
         return $m;

@@ -238,7 +238,7 @@ class MarkupContainer extends Component
      * Locates the ComponentTag for a particular Component
      * @param Component The child component to find the ComponentTag for
      */
-    protected function getMarkupForChild(Component $child)
+    public function getMarkupForChild(Component $child)
     {
         return $this->getMarkUpSource()->getMarkup($this, $child);
     }

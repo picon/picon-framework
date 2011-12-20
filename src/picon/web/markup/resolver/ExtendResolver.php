@@ -19,15 +19,24 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
+
 namespace picon;
+
 /**
+ * Description of ExtendResolver
  *
- * @author Martin Cassidy
- * @package web
+ * @author Martin
  */
-interface RequestTarget
+class ExtendResolver implements ComponentResolver
 {
-    function respond(Response $response);
+    public function resolve(MarkupContainer $container, ComponentTag &$tag)
+    {
+        if($tag instanceof PiconTag && ($tag->getName()=='picon:extend' || $tag->getName()=='picon:child'))
+        {
+            return new TransparentMarkupContainer($tag->getName().$container->getPage()->getAutoIndex());
+        }
+        return null;
+    }
 }
 
 ?>

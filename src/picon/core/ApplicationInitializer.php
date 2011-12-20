@@ -68,7 +68,7 @@ class ApplicationInitializer
     public function initialise()
     {
         $config = null;
-        if(CacheManager::resourceExists(CONFIG_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE))
+        if(CacheManager::resourceExists(self::CONFIG_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE))
         {
             $config = CacheManager::loadResource(self::CONFIG_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE);
         }

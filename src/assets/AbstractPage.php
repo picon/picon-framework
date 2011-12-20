@@ -21,6 +21,7 @@
  * */
 
 use \picon\WebPage;
+use picon\HeaderResponse;
 
 /**
  * Description of AbstractPage
@@ -29,7 +30,10 @@ use \picon\WebPage;
  */
 class AbstractPage extends WebPage
 {
-    
+    public function renderHead(HeaderResponse $headerResponse)
+    {
+        $headerResponse->renderCSS('css/sample.css');
+    }
 }
 
 ?>

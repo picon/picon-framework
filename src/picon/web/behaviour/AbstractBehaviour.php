@@ -43,6 +43,11 @@ abstract class AbstractBehaviour implements Behaviour
     {
         
     }
+    
+    public function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
+    {
+        
+    }
 }
 
 ?>

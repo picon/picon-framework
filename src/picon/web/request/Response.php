@@ -31,12 +31,18 @@ namespace picon;
  * request target will clean the response before it starts to write to it
  * 
  * @author Martin Cassidy
- * @todo Have components use this when rendering
  * @todo create helper methods for writing HTTP headers
  */
 interface Response
 {
+    /**
+     * @param string $value the value to write to the response
+     */
+    function write($value);
     
+    function flush();
+    
+    function clean();
 }
 
 ?>

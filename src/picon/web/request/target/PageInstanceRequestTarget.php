@@ -37,10 +37,12 @@ class PageInstanceRequestTarget implements RequestTarget
     }
     
     
-    public function respond()
+    public function respond(Response $response)
     {
         ob_clean();
+        $response->clean();
         $this->page->renderPage();
+        $response->flush();
     }
 }
 

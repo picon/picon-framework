@@ -73,7 +73,7 @@ class RequestCycle
         {
             try
             {
-                $iterator->current()->respond();
+                $iterator->current()->respond($this->response);
             }
             catch(RestartRequestOnPageException $restartEx)
             {

@@ -31,7 +31,7 @@ namespace picon;
  */
 class PageNotFoundRequestTarget implements RequestTarget
 {
-    public function respond()
+    public function respond(Response $response)
     {
         echo 'Page not found placeholder';
     }

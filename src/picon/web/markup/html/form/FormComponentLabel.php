@@ -40,7 +40,7 @@ class FormComponentLabel extends Label
     
     protected function onComponentTagBody(ComponentTag $tag)
     {
-        echo $this->source->getLabel();
+        $this->getResponse()->write($this->source->getLabel());
     }
     
     protected function onComponentTag(ComponentTag $tag)

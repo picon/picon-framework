@@ -24,7 +24,8 @@ namespace picon;
 
 /**
  * Description of MarkupLoader
- * 
+ * @todo the head processing and markup inheritnce is a bit of message and will
+ * fall over if the mark is not written properly. Need to add some sanity checks
  * @author Martin Cassidy
  */
 class MarkupLoader
@@ -57,7 +58,9 @@ class MarkupLoader
             return CacheManager::loadResource(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, CacheManager::APPLICATION_SCOPE);
         }
         $markup = $this->internalLoadMarkup($name);
+        
         CacheManager::saveResource(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, $markup, CacheManager::APPLICATION_SCOPE);
+        
         return $markup;
     }
     
@@ -84,6 +87,17 @@ class MarkupLoader
     
     private function completeMarkup($markup, $className)
     {
+        //Auto add a head tag if not present
+        $head = $markup->getChildByName('head');
+        
+        if($head==null)
+        {
+            $html = $markup->getChildByName('html');
+            $body = $markup->getChildByName('body');
+            $head = new PiconTag('head');
+            $html->setChildren(array($head, $body));
+        }
+        
         $extension = MarkupUtils::findPiconTag('extend', $markup);
         if($extension!=null)
         {
@@ -92,16 +106,47 @@ class MarkupLoader
             {
                 throw new \MarkupNotFoundException(sprintf("Found picon:extend in markup for %s but there is no parent markup", $className));
             }
+            
             $child = MarkupUtils::findPiconTag('child', $parentMarkup);
             if($child==null)
             {
                 throw new \MarkupNotFoundException(sprintf("Component %s has inherited markup from %s but the inherited markup does not contain a picon:child tag", $className, get_parent_class($className)));
             }
-            $child->addChild($extension);      
+
+            $childHead = $markup->getChildByName('picon:head');
+            
+            if($childHead!=null)
+            {
+                $head = $parentMarkup->getChildByName('head');
+                $head->addChild($childHead);
+            }
+            
+            $child->addChild($extension);
             return $parentMarkup;
         }
+        
         return $markup;
     }
+    
+    /* Recursively find all picon:head tags
+     * I think there only ever needs to be 1 of them though
+     * @todo finalise
+     * private function locateHead($markup)
+    {
+        $heads = array();
+        foreach($markup as $element)
+        {
+            if($element instanceof PiconTag && $element->isHeaderTag())
+            {
+                array_push($heads, $element);
+            }
+            if($element instanceof MarkupElement && $element->hasChildren())
+            {
+                $heads = array_merge($heads, $this->locateHead($element->getChildren()));
+            }
+        }
+        return $heads;
+    }*/
 }
 
 ?>

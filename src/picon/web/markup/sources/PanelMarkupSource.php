@@ -40,6 +40,7 @@ class PanelMarkupSource extends AbstractAssociatedMarkupSource
         }
         
         $tag->setChildren(array($panel));
+       
     }
 }
 

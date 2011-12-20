@@ -73,16 +73,16 @@ abstract class AbstractChoice extends FormComponent
      */
     protected function renderOption($name, $value, $selected)
     {
-        echo '<option';
+        $this->getResponse()->write('<option');
         if($selected)
         {
-            echo ' selected="selected"';
+             $this->getResponse()->write(' selected="selected"');
         }
-        echo ' value="'.$value.'"';
+        $this->getResponse()->write(' value="'.$value.'"');
 
-        echo '>';
-        echo $name;;
-        echo '</option>';
+        $this->getResponse()->write('>');
+        $this->getResponse()->write($name);
+        $this->getResponse()->write('</option>');
     }
     
     protected function renderOptions()

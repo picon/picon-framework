@@ -35,19 +35,24 @@ namespace picon;
  * @author Martin Cassidy
  * @package utilities
  * @todo add support for extracting the doctype
+ * @todo this needs refactoring to handle different tags in a better way
  */
 class MarkupParser extends XMLParser
 {
+    private static $PICON_ELEMENTS = array('child', 'extend', 'panel', 'head');
 
-    private static $PICON_ELEMENTS = array('child', 'extend', 'panel');
-
+    protected function onCharacterData($data, XMLTag $element)
+    {
+        $element->addChild(new TextElement(htmlentities($data, ENT_COMPAT | ENT_HTML401, 'UTF-8')));
+    }
+    
     protected function newElement($name, $attributes)
     {
         if (array_key_exists('picon:id', $attributes))
         {
             return new ComponentTag($name, $attributes);
         }
-        elseif (in_array(str_replace('picon:', '', $name), MarkupParser::$PICON_ELEMENTS))
+        elseif (in_array(str_replace('picon:', '', $name), MarkupParser::$PICON_ELEMENTS) || $name=='head')
         {
             return new PiconTag($name, $attributes);
         }
@@ -74,9 +79,9 @@ class MarkupParser extends XMLParser
         {
             $mapping[$entity] = '&#' . ord($char) . ';';
         }
+        
         return str_replace(array_keys($mapping), $mapping, $string);
     }
-
 }
 
 ?>
