@@ -30,9 +30,21 @@ namespace picon;
  */
 class ResourceRequestTarget implements RequestTarget
 {
+    private $resource;
+    
+    public function __construct(ResourceReference $resource)
+    {
+        $this->resource = $resource;
+    }
+    
     public function respond(Response $response)
     {
-        echo 'resource place holder';
+        print($this->resource->loadResource());
+    }
+    
+    public function getResource()
+    {
+        return $this->resource;
     }
 }
 

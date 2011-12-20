@@ -55,7 +55,7 @@ class WebRequest implements Request
     
     public function isResourceRequest()
     {
-        return isset($_GET['resource']);
+        return isset($_GET['picon-resource']);
     }
     
     public function getRootPath()

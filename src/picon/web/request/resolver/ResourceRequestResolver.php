@@ -29,6 +29,12 @@ namespace picon;
  */
 class ResourceRequestResolver implements RequestResolver
 {
+    /**
+     * @todo validate the content of the param with a reg ex, return false if
+     * it doesn't match
+     * @param Request $request
+     * @return type 
+     */
     public function matches(Request $request)
     {
         return $request->isResourceRequest();
@@ -36,17 +42,26 @@ class ResourceRequestResolver implements RequestResolver
     
     public function resolve(Request $request)
     {
-        throw new \NotImplementedException();
+        $resourceString = $request->getParameter('picon-resource');
+        $resourceArray = explode(':', $resourceString);
+        $identifier = Identifier::forName('\\'.str_replace('.', '\\', $resourceArray[0]));
+        $file = $resourceArray[1];
+        $resource = new ResourceReference($file, $identifier);
+        return new ResourceRequestTarget($resource);
     }
     
     public function generateUrl(RequestTarget $target)
     {
-        throw new \NotImplementedException();
+        $file = $target->getResource()->getFile();
+        $identifier = $target->getResource()->getIdentifier();
+        $fqName = $identifier->getFullyQualifiedName();
+        $fqName = str_replace('..', '', '.'.str_replace('\\', '.', $fqName));
+        return '?picon-resource='.$fqName.':'.$file;
     }
     
     public function handles(RequestTarget $target)
     {
-        return false;
+        return $target instanceof ResourceRequestTarget;
     }
 }
 
