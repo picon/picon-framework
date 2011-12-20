@@ -19,15 +19,20 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
+
 namespace picon;
+
 /**
+ * Description of TransparentMarkupContainer
  *
- * @author Martin Cassidy
- * @package web
+ * @author Martin
  */
-interface RequestTarget
+class TransparentMarkupContainer extends MarkupContainer implements ComponentResolver
 {
-    function respond(Response $response);
+    public function resolve(MarkupContainer $container, ComponentTag &$tag)
+    {
+        return $this->getParent()->get($tag->getComponentTagId());
+    }
 }
 
 ?>

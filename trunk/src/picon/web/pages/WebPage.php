@@ -30,6 +30,8 @@ namespace picon;
  */
 class WebPage extends MarkupContainer implements RequestablePage
 {
+    private $autoIndex = 0;
+    
     public function __construct()
     {
         parent::__construct(PageMap::getNextPageId());
@@ -37,8 +39,8 @@ class WebPage extends MarkupContainer implements RequestablePage
     
     protected function onRender()
     {
-        $pageMarkup = $this->getMarkup();
-        parent::renderAll(array($pageMarkup));
+        $pageMarkup = $this->getMarkup(); 
+        parent::renderAll(array(&$pageMarkup));
     }
     
     public function renderPage()
@@ -98,6 +100,12 @@ class WebPage extends MarkupContainer implements RequestablePage
         {
             $this->internalInitialize();
         }
+    }
+    
+    public function getAutoIndex()
+    {
+        $this->autoIndex++;
+        return $this->autoIndex;
     }
 }
 

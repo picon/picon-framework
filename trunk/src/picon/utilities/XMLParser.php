@@ -45,7 +45,7 @@ class XMLParser
      */
     public function __construct()
     {
-        $this->parser = xml_parser_create('');
+        $this->parser = xml_parser_create('UTF-8');
         xml_parser_set_option($this->parser, XML_OPTION_TARGET_ENCODING, 'UTF-8');
         xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, 0);
         xml_parser_set_option($this->parser, XML_OPTION_SKIP_WHITE, 1);
@@ -53,8 +53,6 @@ class XMLParser
         xml_set_object($this->parser, $this);
         xml_set_element_handler($this->parser, "startElement", "endElement");
         xml_set_character_data_handler($this->parser, "characterData");
-        xml_set_start_namespace_decl_handler($this->parser, "nameSpaceDeclared");
-        xml_set_external_entity_ref_handler($this->parser, "entityRef");
     }
     
     /**
@@ -69,7 +67,6 @@ class XMLParser
         {
             throw new \FileException("Could not open XML input");
         }
-        
         while ($data = fread($fp, 4096))
         {
             if (!xml_parse($this->parser, $this->prepare($data), feof($fp)))
@@ -77,7 +74,6 @@ class XMLParser
                 $this->onXmlError(xml_error_string(xml_get_error_code($this->parser)), xml_get_current_line_number($this->parser));
             }
         }
-        xml_parser_free($this->parser);
         return $this->root;
     }
     
@@ -139,22 +135,17 @@ class XMLParser
      */
     private function characterData($parser, $data) 
     {
-        $data = trim($data);
-        if(!empty($data))
-        {
-            $this->onCharacterData($data, $this->stack[$this->depth-1]);
-        }
+        $this->onCharacterData($data, $this->stack[$this->depth-1]);
     }
     
     protected function onCharacterData($data, XMLTag $element)
     {
-        $element->addChild(new TextElement($data));
+        $data = trim($data);
+        if(!empty($data))
+        {
+            $element->addChild(new TextElement($data));
+        }
     }
-    
-    private function nameSpaceDeclared($parser, $prefix, $uri)
-    {
-    }
-    
 }
 
 ?>

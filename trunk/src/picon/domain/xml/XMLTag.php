@@ -172,9 +172,20 @@ class XMLTag extends ComonDomainBase implements XmlElement
     {
         foreach($this->children as $child)
         {
-            if($child->getName()==$name)
+            if($child instanceof XMLTag)
             {
-                return $child;
+                if($child->getName()==$name)
+                {
+                    return $child;
+                }
+                if($child->hasChildren())
+                {
+                    $found = $child->getChildByName($name);
+                    if($found!=null)
+                    {
+                        return $found;
+                    }
+                }
             }
         }
         return null;

@@ -66,7 +66,7 @@ abstract class AbstractRepeater extends MarkupContainer
         $child->render();
     }
     
-    protected function getMarkupForChild(Component $child)
+    public function getMarkupForChild(Component $child)
     {
         return $this->getMarkup();
     }

@@ -1,6 +1,11 @@
 <?php
 
-use \picon\MarkupContainer,\picon\Link,\picon\ListView,\picon\ArrayModel,\picon\BasicModel,\picon\Label;
+use \picon\MarkupContainer;
+use \picon\Link;
+use \picon\ListView;
+use \picon\ArrayModel;
+use \picon\BasicModel;
+use \picon\Label;
 
 /**
  * Sample Homepage

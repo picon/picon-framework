@@ -31,7 +31,7 @@ class TextArea extends AbstractTextComponent
 {
     protected function onComponentTagBody(ComponentTag $tag)
     {
-        echo $this->getValue();
+        $this->getResponse()->write($this->getValue());
     }
     
     protected function onComponentTag(ComponentTag $tag)

@@ -29,7 +29,22 @@ namespace picon;
  */
 class WebResponse implements Response
 {
-    //put your code here
+    private $body;
+    
+    public function write($value)
+    {
+        $this->body .= $value;
+    }
+    
+    public function flush()
+    {
+        print($this->body);
+    }
+    
+    public function clean()
+    {
+        $this->body = "";
+    }
 }
 
 ?>

@@ -43,7 +43,7 @@ class ListenerRequestTarget implements RequestTarget
         $this->componentPath = $componentPath;
     }
     
-    public function respond()
+    public function respond(Response $response)
     {
         if($this->page instanceof Identifier)
         {

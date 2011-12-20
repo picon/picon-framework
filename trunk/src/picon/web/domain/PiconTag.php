@@ -27,9 +27,18 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class PiconTag extends MarkupElement
+class PiconTag extends ComponentTag
 {
+    public function __construct($name, $attributes = array())
+    {
+        parent::__construct($name, $attributes);
+        $this->put('picon:id', $name);
+    }
     
+    function isHeaderTag()
+    {
+        return $this->getName()=='picon:head';
+    }
 }
 
 ?>

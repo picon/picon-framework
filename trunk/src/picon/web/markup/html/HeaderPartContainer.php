@@ -19,15 +19,28 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
+
 namespace picon;
+
 /**
+ * Description of HeaderPartContainer
  *
  * @author Martin Cassidy
- * @package web
  */
-interface RequestTarget
+class HeaderPartContainer extends MarkupContainer implements ComponentResolver
 {
-    function respond(Response $response);
+    public function __construct($id, MarkupElement $markup)
+    {
+        parent::__construct($id);
+        $this->setMarkup($markup);
+        $this->setRenderBodyOnly(true);
+    }
+    
+    
+    public function resolve(MarkupContainer $container, ComponentTag &$tag)
+    {
+        return $this->getParent()->get($tag->getComponentTagId());
+    }
 }
 
 ?>

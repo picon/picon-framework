@@ -31,12 +31,17 @@ abstract class AbstractMarkupSource implements MarkupSource
 {
     public function onComponentTag(Component $component, ComponentTag &$tag)
     {
-        
+        //none
     }
     
     public function onComponentTagBody(Component $component, ComponentTag &$tag)
     {
-        
+        //none
+    }
+    
+    public function renderHead(Component $component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
+    {
+        //none
     }
 }
 

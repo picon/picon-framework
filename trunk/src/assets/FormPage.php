@@ -47,7 +47,7 @@ use picon\ListMultiple;
  * 
  * @author Martin Cassidy
  */
-class FormPage extends WebPage
+class FormPage extends AbstractPage
 {
     private $domain;
     

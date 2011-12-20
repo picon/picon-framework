@@ -39,7 +39,6 @@ namespace picon;
  * 
  * @author Martin Cassidy
  * @package web
- * @todo Get rid of all the echo's in here
  * @todo finish adding state flags so that checks can be run to ensure overriden methods are calling
  * the parent implementation
  */
@@ -81,12 +80,26 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
      */
     private $rendered = false;
     
+    /**
+     * @var boolean true if this component has been rendered
+     */
     private $initialized = false;
+    
+    /**
+     * @var boolean true if the parent::onInitialize was called by all overriding
+     * implementations 
+     */
     private $flagInitializeParentCall = false;
+    
     
     private $beforePageRendered = false;
     
     private $model;
+
+    /**
+     * @var boolean whether only the body of this component is to be rendered
+     */
+    private $renderBodyOnly;
     
     /**
      * @var boolean true if this component is in the hierarchy
@@ -183,7 +196,8 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
             {
                 if($this instanceof MarkupContainer)
                 {
-                    return $this->loadAssociatedMarkup();
+                    $this->markup = $this->loadAssociatedMarkup();
+                    return $this->markup;
                 }
                 else
                 {
@@ -193,7 +207,8 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
             }
             else
             {
-                return $this->parent->getMarkupForChild($this);
+                $this->markup = $this->parent->getMarkupForChild($this);
+                return $this->markup;
             }
         }
     }
@@ -321,10 +336,17 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
             throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
         }
         
-        $this->onComponentTag($markup);
-        $this->renderElementStart($markup);
-        $this->onComponentTagBody($markup);
-        $this->renderElementEnd($markup);
+        if($this->renderBodyOnly)
+        {
+            $this->onComponentTagBody($markup);
+        }
+        else
+        {
+            $this->onComponentTag($markup);
+            $this->renderElementStart($markup);
+            $this->onComponentTagBody($markup);
+            $this->renderElementEnd($markup);
+        }
     }
     
     /**
@@ -333,13 +355,13 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
      */
     private final function renderElementStart(MarkupElement $element)
     {
-        echo '<'.$element->getName();
-        echo $this->renderAttributes($element->getAttributes());
+        $this->getResponse()->write('<'.$element->getName());
+        $this->renderAttributes($element->getAttributes());
         if($element->isOpenClose())
         {
-            echo ' /';
+            $this->getResponse()->write(' /');
         }
-        echo '>';
+        $this->getResponse()->write('>');
     }
     
     /**
@@ -350,7 +372,7 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     {        
         if($element->isOpen())
         {
-            echo '</'.$element->getName().'>';
+            $this->getResponse()->write('</'.$element->getName().'>');
         }
     }
     
@@ -362,11 +384,11 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     {
         foreach($attributes as $name => $value)
         {
-            echo ' '.$name.'="'.$value.'"';
+            $this->getResponse()->write(' '.$name.'="'.$value.'"');
         }
     }
     
-    private function renderElement(MarkupElement $element)
+    public function renderElement(MarkupElement $element)
     {
         $this->renderElementStart($element);
         if($element->hasChildren())
@@ -392,34 +414,46 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
             }
         }
         
-        foreach($markup as $element)
+        foreach($markup as &$element)
         {
             if($element instanceof ComponentTag)
             {
                 if($this instanceof MarkupContainer)
                 {
                     $child = $this->get($element->getComponentTagId());
-                    if($child!=null)
+                    
+                    if($child==null)
                     {
+                        $child = ComponentResolverHelper::resolve($this, $element);
+                        
+                        if($child!=null && $child->getParent()==null)
+                        {
+                            $this->addComponent($child);
+                        }
+                        if($child!=null)
+                        {
+                            $child->setMarkup($element);
+                        }
+                    }
+                    
+                    if($child!=null)
+                    { 
                         $child->render();
                     }
                     else
                     {
                         throw new \RuntimeException(sprintf("A component was not found for element with picon:id %s. This may be because you have forgotten to create it in your code or the hierarchy is wrong", $element->getComponentTagId()));
                     }
+                    
                 }
                 else
                 {
                     throw new \InvalidMarkupException(sprintf("Markup element %s may not contain a child with a picon:id as the component %s cannot not have any child components", $element->getName(), $this->id));
                 }
             }
-            elseif($element instanceof PiconTag)
-            {
-                $this->renderElement($element);
-            }
             elseif($element instanceof TextElement)
             {
-                echo $element->getContent();
+                $this->getResponse()->write($element->getContent());
             }
             else
             {
@@ -546,14 +580,16 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     
     public function getPage()
     {
-        $page = null;
-        $callback = function($component) use (&$page)
+        $current = $this;
+        while($current!=null)
         {
-            $page = $component;
-            return Component::VISITOR_STOP_TRAVERSAL;
-        };
-        $this->visitParents(WebPage::getIdentifier(), $callback);
-        return $page;
+            if($current instanceof WebPage)
+            {
+                return $current;
+            }
+            $current = $current->getParent();
+        }
+        return null;
     }
     
     protected function setParent($parent)
@@ -699,6 +735,7 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
             return Component::VISITOR_STOP_TRAVERSAL;
         };
         $this->visitParents(Component::getIdentifier(), $callback);
+
         return str_replace(self::PATH_SEPERATOR.self::PATH_SEPERATOR, '', $path.self::PATH_SEPERATOR);
     }
     
@@ -770,6 +807,11 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
             }
         }
         return $this->model;
+    }
+    
+    public function setMarkup(MarkupElement $markup)
+    {
+        $this->markup = $markup;
     }
     
     public function setModel(Model &$model)
@@ -918,6 +960,42 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
         {
             $behaviour->onComponentTag($this, $tag);
         }
+    }
+
+    /**
+     * Called by the header container when the HTML <head> is rendering
+     * @param HeaderContainer $container
+     * @param HeaderResponse $headerResponse 
+     */
+    public final function renderHeadContainer(HeaderContainer $container, HeaderResponse $headerResponse)
+    {
+        $this->getMarkUpSource()->renderHead($this, $container, $headerResponse);
+        $this->renderHead($headerResponse);
+        
+        foreach($this->behaviours as $behaviour)
+        {
+            $behaviour->renderHead($this, $container, $headerResponse);
+        }
+    }
+    
+    /**
+     * Called for each component when the HTML <head> is rendering.
+     * @param HeaderResponse $headerResponse The response to write to
+     */
+    public function renderHead(HeaderResponse $headerResponse)
+    {
+        
+    }
+    
+    /**
+     * Sets whether this component will render its open and close
+     * tags
+     * @param boolean $renderBodyOnly 
+     */
+    public function setRenderBodyOnly($renderBodyOnly)
+    {
+        Args::isBoolean($renderBodyOnly, 'renderBodyOnly');
+        $this->renderBodyOnly = $renderBodyOnly;
     }
 }
 

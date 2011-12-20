@@ -33,6 +33,8 @@ interface Behaviour
     function afterRender(Component &$component);
     
     function onComponentTag(Component &$component, ComponentTag &$tag);
+    
+    function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse);
 }
 
 ?>

@@ -30,7 +30,7 @@ namespace picon;
  */
 class ResourceRequestTarget implements RequestTarget
 {
-    public function respond()
+    public function respond(Response $response)
     {
         echo 'resource place holder';
     }

@@ -42,8 +42,10 @@ class PageRequestWithListenerTarget extends PageRequestTarget
         $this->componentPath = $componentPath;
     }
     
-    public function respond()
+    public function respond(Response $response)
     {
+        ob_clean();
+        $response->clean();
         $fullClassName = $this->getPageClass()->getFullyQualifiedName();
         $page = new $fullClassName();
         $page->internalInitialize();
@@ -56,6 +58,7 @@ class PageRequestWithListenerTarget extends PageRequestTarget
         
         $listener->onEvent();
         $page->renderPage();
+        $response->flush();
     }
     
     public function getComponentPath()

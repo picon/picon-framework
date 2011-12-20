@@ -34,6 +34,8 @@ interface MarkupSource
     function onComponentTag(Component $component, ComponentTag &$tag);
     
     function onComponentTagBody(Component $component, ComponentTag &$tag);
+    
+    function renderHead(Component $component, HeaderContainer $headerContainer, HeaderResponse $headerResponse);
 }
 
 ?>
