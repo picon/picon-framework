@@ -43,6 +43,10 @@ class HeaderResponse
         {
             $this->renderCSSFile($css);
         }
+        else if($css instanceof ResourceReference)
+        {
+            $this->renderCSSResourceReference($css);
+        }
         else
         {
             throw new \InvalidArgumentException('renderCSS() expects a string');
@@ -60,9 +64,13 @@ class HeaderResponse
     
     public function renderJavaScript($javaScript)
     {
-        if(is_string($css))
+        if(is_string($javaScript))
         {
-            $this->renderJavaScriptFile($css);
+            $this->renderJavaScriptFile($javaScript);
+        }
+        else if($javaScript instanceof ResourceReference)
+        {
+            $this->renderJavaScriptResourceReference($javaScript);
         }
         else
         {
@@ -82,6 +90,20 @@ class HeaderResponse
     private function checkRenderedFile($file)
     {
         return in_array($file, $this->rendered);
+    }
+    
+    public function renderCSSResourceReference(ResourceReference $reference)
+    {
+        $target = new ResourceRequestTarget($reference);
+        $url = $GLOBALS['requestCycle']->generateUrl($target);
+        $this->renderCSSFile($url);
+    }
+    
+    public function renderJavaScriptResourceReference(ResourceReference $reference)
+    {
+        $target = new ResourceRequestTarget($reference);
+        $url = $GLOBALS['requestCycle']->generateUrl($target);
+        $this->renderJavaScriptFile($url);
     }
 }
 

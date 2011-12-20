@@ -44,7 +44,7 @@ class PageRequestResolver implements RequestResolver
     
     public function matches(Request $request)
     {
-        return ($this->isHomePage($request) || $this->getPageClassForPath($request)!=false) && $request->getParameter('listener')==null && $request->getParameter('pageid')==null;
+        return ($this->isHomePage($request) || $this->getPageClassForPath($request)!=false) && $request->getParameter('picon-resource')==null && $request->getParameter('listener')==null && $request->getParameter('pageid')==null;
     }
     
     /**

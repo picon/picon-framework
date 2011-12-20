@@ -6,6 +6,8 @@ use \picon\ListView;
 use \picon\ArrayModel;
 use \picon\BasicModel;
 use \picon\Label;
+use \picon\ResourceReference;
+use \picon\HeaderResponse;
 
 /**
  * Sample Homepage
@@ -50,6 +52,11 @@ class HomePage extends AbstractPage
         }, new ArrayModel($fruit)));
         
         $this->add(new ExamplePanel('samplePanel'));
+    }
+    
+    public function renderHead(HeaderResponse $headerResponse)
+    {
+        $headerResponse->renderCSS(new ResourceReference('test.css', static::getIdentifier()));
     }
 }
 
