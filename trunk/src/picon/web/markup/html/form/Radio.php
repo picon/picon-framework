@@ -87,6 +87,7 @@ class Radio extends LabeledMarkupContainer
         $tag->put('name', $group->getName());
         $tag->put('value', $this->getValue());
 
+        $tag->remove('checked');
         if($this->isChecked())
         {
             $tag->put('checked', 'checked');

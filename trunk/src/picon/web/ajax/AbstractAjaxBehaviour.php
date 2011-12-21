@@ -66,7 +66,7 @@ abstract class AbstractAjaxBehaviour extends AbstractJQueryBehaviour implements 
         $successScript = sprintf('function() {%s}', $successScript);
         $failScript = sprintf('function() {%s}', $failScript);
         
-        $url = $this->getComponent()->urlForListener($this);
+        $url = $this->getComponent()->urlForListener($this).'&ajax=ajax';
         $script = $this->generateCallScript($url);
         $script = sprintf('%s'.$script.', %s, %s);', $callScript, $successScript, $failScript);
         
@@ -80,7 +80,7 @@ abstract class AbstractAjaxBehaviour extends AbstractJQueryBehaviour implements 
      */
     protected function generateCallScript($url)
     {
-        return sprintf('piconAjaxGet(\'%s&ajax=ajax\'', $url);
+        return sprintf('piconAjaxGet(\'%s\'', $url);
     }
     
     public function onEvent()

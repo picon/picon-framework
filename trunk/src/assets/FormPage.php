@@ -41,6 +41,8 @@ use picon\ListItem;
 use picon\FeedbackPanel;
 use picon\EmailAddressValidator;
 use picon\ListMultiple;
+use picon\AjaxButton;
+use picon\MarkupContainer;
 
 /**
  * Description of FormPage
@@ -56,8 +58,9 @@ class FormPage extends AbstractPage
         parent::__construct();
         $this->domain = new ExampleDomain();
         $this->setModel(new CompoundPropertyModel($this, 'domain'));
-        
-        $this->add(new FeedbackPanel('feedback'));
+        $feedback = new FeedbackPanel('feedback');
+        $this->add($feedback);
+        $feedback->setOutputMarkupId(true);
         
         $this->info('Sample feedback message. These do not persist from request to request');
         
@@ -80,6 +83,20 @@ class FormPage extends AbstractPage
         function() use($self)
         {
             $self->info('Second button pressed, invalid form');
+        }));
+        
+        $submitedInfo = new MarkupContainer('submitedInfo');
+        $submitedInfo->setOutputMarkupId(true);
+        $this->add($submitedInfo);
+        $form->add(new AjaxButton('ajaxButton', function($target) use ($feedback, $submitedInfo)
+        {
+            $feedback->success('Ajax submit, input ok');
+            $target->add($feedback);
+            $target->add($submitedInfo);
+        }, function($target) use ($feedback)
+        {
+            $feedback->error('Ajax submit, invalid form');
+            $target->add($feedback);
         }));
         
         $choices = array('default', 'option', 'other option', 'something else');
@@ -108,25 +125,27 @@ class FormPage extends AbstractPage
         
         $form->add(new ListMultiple('mchoice', $choices));
         
-        $this->add(new Label('textBox'));
-        $this->add(new Label('textArea'));
-        $this->add(new Label('select'));
-        $this->add(new Label('rgroup'));
-        $this->add(new Label('icheck'));
         
-        $this->add(new ListView('cgroup', function(&$item)
+        
+        $submitedInfo->add(new Label('textBox'));
+        $submitedInfo->add(new Label('textArea'));
+        $submitedInfo->add(new Label('select'));
+        $submitedInfo->add(new Label('rgroup'));
+        $submitedInfo->add(new Label('icheck'));
+        
+        $submitedInfo->add(new ListView('cgroup', function(&$item)
         {
             $item->add(new picon\Label('value', $item->getModel()));
         }));
         
-        $this->add(new Label('rchoice'));
+        $submitedInfo->add(new Label('rchoice'));
         
-        $this->add(new ListView('cchoice', function(&$item)
+        $submitedInfo->add(new ListView('cchoice', function(&$item)
         {
             $item->add(new picon\Label('value', $item->getModel()));
         }));
         
-        $this->add(new ListView('mchoice', function(&$item)
+        $submitedInfo->add(new ListView('mchoice', function(&$item)
         {
             $item->add(new picon\Label('value', $item->getModel()));
         }));

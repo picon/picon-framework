@@ -27,7 +27,7 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class Button extends FormComponent implements FormSubmitListener
+class Button extends FormComponent implements FormSubmitListener, FormSubmitter
 {
     private $onSubmit;
     private $onError;
@@ -37,11 +37,19 @@ class Button extends FormComponent implements FormSubmitListener
      * @param string $id
      * @param closure $onSubmit
      */
-    public function __construct($id, $onSubmit, $onError)
+    public function __construct($id, $onSubmit = null, $onError = null)
     {
         parent::__construct($id);
-        Args::callBack($onSubmit, 'onSubmit');
-        Args::callBack($onError, 'onError');
+        
+        if($onSubmit!=null)
+        {
+            Args::callBack($onSubmit, 'onSubmit');
+        }
+        if($onError!=null)
+        {
+            Args::callBack($onError, 'onError');
+        }
+        
         $this->onSubmit = $onSubmit;
         $this->onError = $onError;
     }
@@ -54,28 +62,25 @@ class Button extends FormComponent implements FormSubmitListener
     public function onSubmit()
     {
         $callable = $this->onSubmit;
-        $callable();
+        if($callable!=null)
+        {
+            $callable();
+        }
     }
     
     public function onError()
     {
         $callable = $this->onError;
-        $callable();
+        if($callable!=null)
+        {
+            $callable();
+        }
     }
     
     public function onEvent()
     {
         $form = $this->getForm();
-        $form->process();
-        
-        if($form->isFormValid())
-        {
-            $this->onSubmit();
-        }
-        else
-        {
-            $this->onError();
-        }
+        $form->process($this);
     }
     
     protected function convertInput()

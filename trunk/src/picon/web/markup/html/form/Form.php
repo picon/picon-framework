@@ -38,28 +38,22 @@ class Form extends MarkupContainer implements FormSubmitListener
     
     /**
      * Called when the form is submited
-     * @todo get all form components to check for parent form, ensuring that
-     * nested forms are ignored
+     * @todo sort out code for nested forms
      */
     public function onEvent()
     {
-        $this->process();
-        $button = $this->getSubmitingButton();
+        $formToProcess = $this;
+     
+        $submitter = $this->getSubmitingButton();
         
-        if($button!=null)
+        if($submitter!=null)
         {
-            if($this->isFormValid())
-            {
-                $button->onSubmit();
-            }
-            else
-            {
-                $button->onError();
-            }
+            $formToProcess = $submitter->getForm();
         }
+        $formToProcess->process($submitter);
     }
     
-    public function process()
+    public function process(FormSubmitter $submitter)
     {
         if($this->getRequest()->isPost())
         {
@@ -97,6 +91,11 @@ class Form extends MarkupContainer implements FormSubmitListener
                 {
                     $formComponent->updateModel();
                 }
+                $this->callSubmit($submitter);
+            }
+            else
+            {
+                $this->callOnError($submitter);
             }
         }
     }
@@ -133,6 +132,34 @@ class Form extends MarkupContainer implements FormSubmitListener
         };
         $this->visitChildren(Button::getIdentifier(), $callback);
         return $button;
+    }
+    
+    private function callOnError($submiter)
+    {
+        $this->onError();
+        if($submiter!=null && $submiter instanceof FormSubmitter)
+        {
+            $submiter->onError();
+        }
+    }
+    
+    private function callSubmit($submiter)
+    {
+        $this->onSubmit();
+        if($submiter!=null && $submiter instanceof FormSubmitter)
+        {
+            $submiter->onSubmit();
+        }
+    }
+    
+    public function onError()
+    {
+        
+    }
+    
+    public function onSubmit()
+    {
+        
     }
 }
 
