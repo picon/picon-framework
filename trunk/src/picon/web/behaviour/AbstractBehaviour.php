@@ -27,8 +27,15 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-abstract class AbstractBehaviour implements Behaviour
+abstract class AbstractBehaviour extends PiconSerializable implements Behaviour, Identifiable
 {
+    private $component;
+    
+    public function bind(Component &$component)
+    {
+        $this->component = $component;
+    }
+    
     public function afterRender(Component &$component)
     {
         
@@ -47,6 +54,36 @@ abstract class AbstractBehaviour implements Behaviour
     public function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
     {
         
+    }
+    
+    public static function getIdentifier()
+    {
+        return Identifier::forName(get_called_class());
+    }
+    
+    public function isStateless()
+    {
+        return true;
+    }
+    
+    /**
+     * Gets the id of the behaviour within its component
+     */
+    public function getBehaviourId()
+    {
+        foreach($this->component->getBehaviours() as $index => $behaviour)
+        {
+            if($behaviour==$this)
+            {
+                return $index;
+            }
+        }
+        throw new \IllegalStateException('This behaviour was not found in the component it was bound to.');
+    }
+    
+    public function getComponent()
+    {
+        return $this->component;
     }
 }
 

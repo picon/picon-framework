@@ -44,7 +44,7 @@ class ResourceRequestResolver implements RequestResolver
     {
         $resourceString = $request->getParameter('picon-resource');
         $resourceArray = explode(':', $resourceString);
-        $identifier = Identifier::forName('\\'.str_replace('.', '\\', $resourceArray[0]));
+        $identifier = Identifier::forName(str_replace('.', '\\', $resourceArray[0]));
         $file = $resourceArray[1];
         $resource = new ResourceReference($file, $identifier);
         return new ResourceRequestTarget($resource);
@@ -55,7 +55,7 @@ class ResourceRequestResolver implements RequestResolver
         $file = $target->getResource()->getFile();
         $identifier = $target->getResource()->getIdentifier();
         $fqName = $identifier->getFullyQualifiedName();
-        $fqName = str_replace('..', '', '.'.str_replace('\\', '.', $fqName));
+        $fqName = str_replace('\\', '.', $fqName);
         return '?picon-resource='.$fqName.':'.$file;
     }
     

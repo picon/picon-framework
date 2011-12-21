@@ -42,7 +42,7 @@ namespace picon;
  * @todo finish adding state flags so that checks can be run to ensure overriden methods are calling
  * the parent implementation
  */
-abstract class Component extends PiconSerializable implements InjectOnWakeup, Identifiable
+abstract class Component extends PiconSerializable implements InjectOnWakeup, Identifiable, Detachable
 {
     const TYPE_STRING = 'string';
     const TYPE_FLOAT = 'float';
@@ -115,6 +115,11 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     private static $nextId = 0;
     
     /**
+     * @var boolean whether the component was added automatically
+     */
+    private $auto = false;
+    
+    /**
      * @todo find a better place to put this...
      * @var FeedbackModel 
      */
@@ -141,6 +146,12 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     protected function onInitialize()
     {
         $this->flagInitializeParentCall = true;
+        
+        foreach($this->behaviours as $behaviour)
+        {
+            $behaviour->bind($this);
+        }
+        
         PiconApplication::get()->getComponentInitializationListener()->onInitialize($this);
     }
     
@@ -178,7 +189,11 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     
     protected final function addBehaviour(Behaviour &$behaviour)
     {
-        array_push($this->behaviours, $behaviour);
+        $this->behaviours['behaviour_'.$this->getNextComponentId()] = $behaviour;
+        if($this->isInitialized())
+        {
+            $behaviour->bind($this);
+        }
     }
     
     /**
@@ -428,6 +443,7 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
                         
                         if($child!=null && $child->getParent()==null)
                         {
+                            $child->setAuto();
                             $this->addComponent($child);
                         }
                         if($child!=null)
@@ -597,22 +613,22 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
         $this->parent = $parent;
     }
     
-    protected final function getApplication()
+    public final function getApplication()
     {
         return $GLOBALS['application'];
     }
     
-    protected final function getRequestCycle()
+    public final function getRequestCycle()
     {
         return $GLOBALS['requestCycle'];
     }
     
-    protected final function getRequest()
+    public final function getRequest()
     {
         return $this->getRequestCycle()->getRequest();
     }
     
-    protected final function getResponse()
+    public final function getResponse()
     {
         return $this->getRequestCycle()->getResponse();
     }
@@ -633,6 +649,13 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
      */
     public function isStateless()
     {
+        foreach($this->behaviours as $behaviour)
+        {
+            if(!$behaviour->isStateless())
+            {
+                return false;
+            }
+        }
         return true;
     }
     
@@ -704,13 +727,21 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     {
         $target;
         $page = $this->getPage();
+        
+        $behaviour = null;
+        
+        if($listener instanceof Behaviour)
+        {
+            $behaviour = $listener->getBehaviourId();
+        }
+        
         if($page->isPageStateless())
         {
-            $target = new PageRequestWithListenerTarget($page::getIdentifier(), $this->getComponentPath());
+            $target = new PageRequestWithListenerTarget($page::getIdentifier(), $this->getComponentPath(), $behaviour);
         }
         else
         {
-            $target = new ListenerRequestTarget($this->getPage(), $this->getComponentPath());
+            $target = new ListenerRequestTarget($this->getPage(), $this->getComponentPath(), $behaviour);
         }
         return $this->getRequestCycle()->generateUrl($target);
     }
@@ -996,6 +1027,36 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     {
         Args::isBoolean($renderBodyOnly, 'renderBodyOnly');
         $this->renderBodyOnly = $renderBodyOnly;
+    }
+    
+    public function getBehaviours()
+    {
+        return $this->behaviours;
+    }
+    
+    public function getBehaviourById($id)
+    {
+        if(array_key_exists($id, $this->behaviours))
+        {
+            return $this->behaviours[$id];
+        }
+        return null;
+    }
+    
+    private function setAuto()
+    {
+        $this->auto = true;
+    }
+
+
+    public function isAuto()
+    {
+        return $this->auto;
+    }
+    
+    public function detach()
+    {
+        
     }
 }
 

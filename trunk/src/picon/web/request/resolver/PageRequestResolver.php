@@ -93,7 +93,13 @@ class PageRequestResolver implements RequestResolver
             {
                 $trail = '/';
             }
-            return $target->getPageClass()->namespace.$trail.$target->getPageClass()->className.'?listener='.$target->getComponentPath();
+            $behaviourApped = null;
+            if($target->getBehaviour()!=null)
+            {
+                $behaviourApped = '&behaviour='.$target->getBehaviour();
+            }
+            
+            return $target->getPageClass()->namespace.$trail.$target->getPageClass()->className.'?listener='.$target->getComponentPath().$behaviourApped;
         }
         else if($target instanceof ListenerRequestTarget)
         {
@@ -103,7 +109,14 @@ class PageRequestResolver implements RequestResolver
             {
                 $trail = '/';
             }
-            return $ident->namespace.$trail.$ident->className.'?pageid='.$target->getPage()->getId().'&listener='.$target->getComponentPath();
+            
+            $behaviourApped = null;
+            if($target->getBehaviour()!=null)
+            {
+                $behaviourApped = '&behaviour='.$target->getBehaviour();
+            }
+            
+            return $ident->namespace.$trail.$ident->className.'?pageid='.$target->getPage()->getId().'&listener='.$target->getComponentPath().$behaviourApped;
         }
         else
         {

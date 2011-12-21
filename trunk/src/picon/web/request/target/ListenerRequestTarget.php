@@ -25,22 +25,24 @@ namespace picon;
 /**
  * Description of ListenerRequestTarget
  *
- * @author Martin
+ * @author Martin Cassidy
  */
 class ListenerRequestTarget implements RequestTarget
 {
     private $componentPath;
     private $page;
+    private $behaviour;
     
     /**
      *
      * @param string $page The name of the page 
      * @param type $componentPath The path to the listener component
      */
-    public function __construct($page, $componentPath)
+    public function __construct($page, $componentPath, $behaviour = null)
     {
         $this->page = $page;
         $this->componentPath = $componentPath;
+        $this->behaviour = $behaviour;
     }
     
     public function respond(Response $response)
@@ -50,20 +52,45 @@ class ListenerRequestTarget implements RequestTarget
             $fullClassName = $this->page->getFullyQualifiedName();
             $page = new $fullClassName();
             $page->internalInitialize();
-            
         }
         else
         {
             $page = $this->page;
 
         }
+        
+        if($page==null)
+        {
+            $GLOBALS['requestCycle']->addTarget(new PageNotFoundRequestTarget());
+            return;
+        }
+        
         $page->beforePageRender();
-        $listener = $page->get($this->componentPath);
-        if($listener==null)
+        
+        $listener = null;
+        
+        if($this->behaviour==null)
+        {
+            $listener = $page->get($this->componentPath);
+        }
+        else
+        {
+            $component = $page->get($this->componentPath);
+            if($component!=null && $component instanceof Component)
+            {
+                $listener = $component->getBehaviourById($this->behaviour);
+            }
+        }
+        
+        if($listener==null || !($listener instanceof Listener))
         {
             throw new \RuntimeException(sprintf("Listener component %s was not found", $this->componentPath));
         }
-        $GLOBALS['requestCycle']->addTarget(new PageInstanceRequestTarget($page));
+        
+        if($GLOBALS['requestCycle']->getRequest()->isAjax()==false)
+        {
+            $GLOBALS['requestCycle']->addTarget(new PageInstanceRequestTarget($page));
+        }
         $listener->onEvent();
     }
     
@@ -75,6 +102,11 @@ class ListenerRequestTarget implements RequestTarget
     public function getPage()
     {
         return $this->page;
+    }
+    
+    public function getBehaviour()
+    {
+        return $this->behaviour;
     }
 }
 

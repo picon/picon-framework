@@ -82,7 +82,7 @@ class HeaderResponse
     {
         if(!$this->checkRenderedFile($file))
         {
-            $this->actualResponse->write(sprintf("<script type=\"text/javascript\" src=\"%s\">", $file));
+            $this->actualResponse->write(sprintf("<script type=\"text/javascript\" src=\"%s\"></script>", $file));
             array_push($this->rendered, $file);
         }
     }

@@ -36,18 +36,25 @@ class ListenerRequestResolver implements RequestResolver
     
     public function resolve(Request $request)
     {
+        $behaviour = null;
+        
+        if(array_key_exists('behaviour', $request->getParameters()))
+        {
+            $behaviour = $request->getParameter('behaviour');
+        }
+        
         if(array_key_exists('pageid', $request->getParameters()))
         {
             $page = PageMap::get()->getPageById($request->getParameter('pageid'));
             if($page!=null)
             {
-                return new ListenerRequestTarget($page, $request->getParameter('listener'));
+                return new ListenerRequestTarget($page, $request->getParameter('listener'), $behaviour);
             }
             return new PageRequestTarget(\SessionExpiredPage::getIdentifier());
         }
         else
         {
-            return new ListenerRequestTarget($this->getPageClassForPath($request), $request->getParameter('listener'));
+            return new ListenerRequestTarget($this->getPageClassForPath($request), $request->getParameter('listener'), $behaviour);
         }
         
     }
