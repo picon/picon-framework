@@ -100,6 +100,11 @@ class PiconSerializable
         {
             $parentValues = $this->internalPrepareForSerialize($parent, $this, true);
         }
+        
+        if($this instanceof Detachable)
+        {
+            $this->detach();
+        }
     }
     
     private function prepareArrayForSerialize(&$entry)

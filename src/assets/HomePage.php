@@ -42,6 +42,11 @@ class HomePage extends AbstractPage
         {
             $me->setPage(SampleAuthorisedPage::getIdentifier());
         }));
+        $two->add(new Link('ajaxPage', function() use($me)
+        {
+            $me->setPage(AjaxPage::getIdentifier());
+        }));
+        
         
         
         $fruit = array('apples', 'pears', 'bananas', 'oranges');

@@ -23,32 +23,39 @@
 namespace picon;
 
 /**
- * Description of WebResponse
+ * Description of AjaxLink
  *
  * @author Martin Cassidy
  */
-class WebResponse implements Response
+class AjaxLink extends AbstractLink implements CallDecoratorWrapper
 {
-    private $body;
+    private $callback;
+    private $eventBehaviour;
     
-    public function write($value)
+    public function __construct($id, $callback, $callDecorator = null)
     {
-        $this->body .= $value;
+        parent::__construct($id);
+        Args::callBackArgs($callback, 1, 'callback');
+        $this->eventBehaviour = new AjaxEventBehaviour('onclick', $callback);
+        $this->add($this->eventBehaviour);
+        $this->callback = $callback;
     }
     
-    public function flush()
+    protected function onComponentTag(ComponentTag $tag)
     {
-        print($this->body);
+        parent::onComponentTag($tag);
+        $tag->put('href', 'javascript:;');
     }
     
-    public function clean()
+    //@todo not good that this is here and does nothing, refactor a bit to get rid of it
+    protected function onLinkClicked()
     {
-        $this->body = "";
+        
     }
     
-    public function getBody()
+    public function setAjaxCallDecorator(AjaxCallDecorator &$decorator)
     {
-        return $this->body;
+        $this->eventBehaviour->setAjaxCallDecorator($decorator);
     }
 }
 

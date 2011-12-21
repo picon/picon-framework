@@ -43,6 +43,8 @@ interface Response
     function flush();
     
     function clean();
+    
+    function getBody();
 }
 
 ?>

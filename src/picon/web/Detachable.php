@@ -23,22 +23,14 @@
 namespace picon;
 
 /**
- *
+ * This is similar to __destruct however, the destructor is not called
+ * before serialising and sleep cannot be used in all cases as it cannot return
+ * parent private properties. The picon serializer will call detach() before serializing.
  * @author Martin Cassidy
  */
-interface Behaviour
+interface Detachable
 {
-    function beforeRender(Component &$component);
-    
-    function afterRender(Component &$component);
-    
-    function onComponentTag(Component &$component, ComponentTag &$tag);
-    
-    function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse);
-    
-    function isStateless();
-    
-    function getBehaviourId();
+    function detach();
 }
 
 ?>

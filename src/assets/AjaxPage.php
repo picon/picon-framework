@@ -20,25 +20,48 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+use picon\AjaxLink;
+use picon\MarkupContainer;
+use picon\PropertyModel;
+use picon\Label;
+use picon\CallbackAjaxCallDecorator;
 
 /**
+ * Description of AjaxPage
  *
  * @author Martin Cassidy
  */
-interface Behaviour
+class AjaxPage extends AbstractPage
 {
-    function beforeRender(Component &$component);
+    private $value = 'starting value';
     
-    function afterRender(Component &$component);
+    public function __construct()
+    {
+        parent::__construct();
+        
+        $update = new Label('toUpdate', new PropertyModel($this, 'value'));
+        $update->setOutputMarkupId(true);
+        $this->add($update);
+        $self = $this;
+        
+        $link = new AjaxLink('ajaxLink', function($target) use ($self, $update)
+        {
+            $self->value = 'ajax value';
+            $target->add($update);
+        });
+        
+        $this->add($link);
+    }
     
-    function onComponentTag(Component &$component, ComponentTag &$tag);
+    public function __get($name)
+    {
+        return $this->$name;
+    }
     
-    function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse);
-    
-    function isStateless();
-    
-    function getBehaviourId();
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
+    }
 }
 
 ?>

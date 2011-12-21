@@ -26,19 +26,13 @@ namespace picon;
  *
  * @author Martin Cassidy
  */
-interface Behaviour
+interface AjaxCallDecorator
 {
-    function beforeRender(Component &$component);
+    function decorateScript($script);
     
-    function afterRender(Component &$component);
+    function decorateSuccessScript($script);
     
-    function onComponentTag(Component &$component, ComponentTag &$tag);
-    
-    function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse);
-    
-    function isStateless();
-    
-    function getBehaviourId();
+    function decorateFailScript($script);
 }
 
 ?>

@@ -26,19 +26,9 @@ namespace picon;
  *
  * @author Martin Cassidy
  */
-interface Behaviour
+interface BehaviourListener extends Listener
 {
-    function beforeRender(Component &$component);
     
-    function afterRender(Component &$component);
-    
-    function onComponentTag(Component &$component, ComponentTag &$tag);
-    
-    function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse);
-    
-    function isStateless();
-    
-    function getBehaviourId();
 }
 
 ?>

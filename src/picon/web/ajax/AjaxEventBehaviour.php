@@ -23,32 +23,48 @@
 namespace picon;
 
 /**
- * Description of WebResponse
+ * Description of AjaxEventBehaviour
  *
  * @author Martin Cassidy
  */
-class WebResponse implements Response
+class AjaxEventBehaviour extends AbstractAjaxBehaviour
 {
-    private $body;
+    private $event;
+    private $callback;
     
-    public function write($value)
+    public function __construct($event, $callback)
     {
-        $this->body .= $value;
+        Args::isString($event, 'event');
+        Args::callBackArgs($callback, 1, 'callback');
+        $this->event = $event;
+        $this->callback = $callback;
     }
     
-    public function flush()
+    public function onComponentTag(Component &$component, ComponentTag &$tag)
     {
-        print($this->body);
+        parent::onComponentTag($component, $tag);
+        $tag->put($this->event, $this->generateCallbackScript());
     }
     
-    public function clean()
+    public function onEventCallback(AjaxRequestTarget $target)
     {
-        $this->body = "";
+        $callable = $this->callback;
+        $callable($target);
     }
     
-    public function getBody()
+    protected function callScript()
     {
-        return $this->body;
+        return "";
+    }
+    
+    protected function successScript()
+    {
+        return "";
+    }
+    
+    protected function failScript()
+    {
+        return "";
     }
 }
 

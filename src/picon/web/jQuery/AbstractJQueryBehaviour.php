@@ -23,22 +23,17 @@
 namespace picon;
 
 /**
+ * Description of AbstractJQueryBehaviour
  *
  * @author Martin Cassidy
  */
-interface Behaviour
+abstract class AbstractJQueryBehaviour extends AbstractBehaviour
 {
-    function beforeRender(Component &$component);
-    
-    function afterRender(Component &$component);
-    
-    function onComponentTag(Component &$component, ComponentTag &$tag);
-    
-    function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse);
-    
-    function isStateless();
-    
-    function getBehaviourId();
+    public function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
+    {
+        parent::renderHead($component, $headerContainer, $headerResponse);
+        $headerResponse->renderJavaScriptResourceReference(new ResourceReference('jquery.js', self::getIdentifier()));
+    }
 }
 
 ?>

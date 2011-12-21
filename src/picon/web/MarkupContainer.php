@@ -242,6 +242,17 @@ class MarkupContainer extends Component
     {
         return $this->getMarkUpSource()->getMarkup($this, $child);
     }
+    
+    public function detach()
+    {
+        foreach($this->getChildren() as $child)
+        {
+            if($child->isAuto())
+            {
+                $this->remove($child);
+            }
+        }
+    }
 }
 
 ?>
