@@ -40,13 +40,13 @@ class HeaderContainer extends TransparentMarkupContainer
         $this->getResponse()->write('<head>');
         parent::onComponentTagBody($tag);
         $page = $this->getPage();
-        
         $headerResponse = new HeaderResponse($this->getResponse());
         $page->renderHead($headerResponse);
         $self = $this;
         $callback = function(Component &$component) use($headerResponse, $self)
         {
             $component->renderHeadContainer($self, $headerResponse);
+            return Component::VISITOR_CONTINUE_TRAVERSAL;
         };
         
         $page->visitChildren(Component::getIdentifier(), $callback);

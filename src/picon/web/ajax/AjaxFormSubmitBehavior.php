@@ -1,0 +1,122 @@
+<?php
+
+/**
+ * Picon Framework
+ * http://code.google.com/p/picon-framework/
+ *
+ * Copyright (C) 2011-2012 Martin Cassidy <martin.cassidy@webquub.com>
+
+ * Picon Framework is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * Picon Framework is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
+ * */
+
+namespace picon;
+
+/**
+ * Description of AjaxFormSubmitBehavior
+ *
+ * @author Martin Cassidy
+ */
+class AjaxFormSubmitBehavior extends AjaxEventBehaviour implements FormSubmitter
+{
+    private $form;
+    private $onSubmit;
+    private $onError;
+    private $target;
+    
+    public function __construct($event, $onSubmit = null, $onError = null, $form = null)
+    {
+        $self = $this;
+        parent::__construct($event, function($target) use ($self)
+        {
+            $self->setAjaxRequestTarget($target);
+            $self->getForm()->process($self);
+        });
+        
+        if($onSubmit!=null)
+        {
+            Args::callBackArgs($onSubmit, 1, 'onSubmit');
+        }
+        if($onError!=null)
+        {
+            Args::callBackArgs($onError, 1, 'onError');
+        }
+        
+        $this->onSubmit = $onSubmit;
+        $this->onError = $onError;
+        
+        if($form!=null)
+        {
+            if($form instanceof Form)
+            {
+                $this->form = $form;
+            }
+            else
+            {
+                throw new \InvalidArgumentException('$form must be an instance of Form');
+            }
+        }
+    }
+    
+    public function setAjaxRequestTarget(AjaxRequestTarget $target)
+    {
+        $this->target = $target;
+    }
+    
+    public function getForm()
+    {
+        $form = $this->form;
+        $component = $this->getComponent();
+        if($component instanceof FormComponent)
+        {
+            $form = $component->getForm();
+        }
+        
+        if($form==null)
+        {
+            throw new \IllegalStateException(sprintf('Unable to locate form for ajax submit behaviour on component %s', $component->getId()));
+        }
+        return $form;
+    }
+    
+    public function bind(Component &$component)
+    {
+        parent::bind($component);
+        $this->getForm()->setOutputMarkupId(true);
+    }
+    
+    protected function generateCallScript($url)
+    {
+        return sprintf("piconAjaxSubmit('%s', '%s'", $this->getForm()->getMarkupId(), $url);
+    }
+    
+    public function onError()
+    {
+        $callable = $this->onError;
+        if($callable!=null)
+        {
+            $callable($this->target);
+        }
+    }
+    
+    public function onSubmit()
+    {
+        $callable = $this->onSubmit;
+        if($callable!=null)
+        {
+            $callable($this->target);
+        }
+    }
+}
+
+?>

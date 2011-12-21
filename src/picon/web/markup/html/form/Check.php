@@ -101,6 +101,7 @@ class Check extends LabeledMarkupContainer
         $tag->put('value', $this->getValue());
         $tag->put('name', $this->getName());
         
+        $tag->remove('checked');
         if($this->isSelected($this->getValue()))
         {
             $tag->put('checked', 'checked');
