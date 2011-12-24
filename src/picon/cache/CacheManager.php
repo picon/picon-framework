@@ -116,7 +116,7 @@ class CacheManager
     
     private function getFileName($directory, $name)
     {
-        return $directory.$name.self::EXTENSION;
+        return $directory.$this->sanitizeFileName($name).self::EXTENSION;
     }
     
     private function internalSaveResource($directory, $name, $resource)
@@ -163,6 +163,11 @@ class CacheManager
         $fileName = self::get()->getFileName($dir, $name);
         
         return file_exists($fileName);
+    }
+    
+    private function sanitizeFileName($fileName)
+    {
+        return str_replace(':', '_', $fileName);
     }
 }
 

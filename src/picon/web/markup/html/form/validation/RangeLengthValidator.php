@@ -47,10 +47,17 @@ class RangeLengthValidator extends StringValidator
     
     public function validateValue(Validatable $validateable)
     {
-        parent::validateValue($validateable);
+        $response = parent::validateValue($validateable);
+        if($response!=null)
+        {
+            return $response;
+        }
         if(strlen($validateable->getValue())<$this->minimum || strlen($validateable->getValue())>$this->maximum)
         {
-            $validateable->error(sprintf('Must be a between %d and %d', $this->minimum, $this->maximum));
+            $response = new ValidationResponse($this->getKeyName());
+            $response->addValue('minLength', $this->minimum);
+            $response->addValue('maxLength', $this->maximum);
+            return $response;
         }
     }
 }

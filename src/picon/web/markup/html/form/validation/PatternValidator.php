@@ -43,10 +43,16 @@ class PatternValidator extends StringValidator
     
     public function validateValue(Validatable $validateable)
     {
-        parent::validateValue($validateable);
+        $response = parent::validateValue($validateable);
+        if($response!=null)
+        {
+            return $response;
+        }
         if(preg_match("/".$this->pattern."/", $validateable->getValue())!=1)
         {
-            $validateable->error('Must match the given pattern');
+            $response = new ValidationResponse($this->getKeyName(), $validateable->getValue());
+            $response->addValue('expression', $this->pattern);
+            return $response;
         }
     }
 }

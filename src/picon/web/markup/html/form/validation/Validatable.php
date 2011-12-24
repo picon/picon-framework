@@ -44,7 +44,8 @@ interface Validatable
     /**
      * Called by a validator when an error is found
      */
-    function error($message);
+    function error(ValidationResponse $error);
+ 
 }
 
 ?>

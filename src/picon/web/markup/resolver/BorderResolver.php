@@ -23,29 +23,18 @@
 namespace picon;
 
 /**
- * Description of PanelMarkupSource
+ * Description of BorderResolver
  * 
  * @author Martin Cassidy
  */
-class PanelMarkupSource extends AbstractAssociatedMarkupSource
+class BorderResolver implements ComponentResolver
 {
-    public function onComponentTagBody(Component $component, ComponentTag &$tag)
+    public function resolve(MarkupContainer $container, ComponentTag &$tag)
     {
-        $panelMarkup = $component->loadAssociatedMarkup();
-        $panel = MarkupUtils::findPiconTag('panel', $panelMarkup, $component);
-        
-        if($panel==null)
+        if($tag->getName()=='picon:border')
         {
-            throw new \MarkupNotFoundException(sprintf("Found markup for panel %s however there is no picon:panel tag.", $component->getId(0)));
+            return new TransparentMarkupContainer($tag->getName().$container->getPage()->getAutoIndex());
         }
-        
-        $tag->setChildren(array($panel));
-       
-    }
-    
-    public function getRootTag(MarkupElement $markup)
-    {
-        return MarkupUtils::findPiconTag('panel', $markup);
     }
 }
 

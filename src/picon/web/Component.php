@@ -1058,6 +1058,16 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     {
         
     }
+    
+    public function getLocalizer()
+    {
+        return Localizer::get($this);
+    }
+    
+    public function getComponentKey($suffix)
+    {
+        return sprintf("%s.%s.%s", get_class($this->getPage()), $this->id, $suffix);
+    }
 }
 
 ?>

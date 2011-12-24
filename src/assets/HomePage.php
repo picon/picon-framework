@@ -57,6 +57,8 @@ class HomePage extends AbstractPage
         }, new ArrayModel($fruit)));
         
         $this->add(new ExamplePanel('samplePanel'));
+        
+        $this->add(new SampleBorder('sampleBorder'));
     }
     
     public function renderHead(HeaderResponse $headerResponse)

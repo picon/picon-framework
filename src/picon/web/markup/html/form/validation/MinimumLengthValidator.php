@@ -43,10 +43,16 @@ class MinimumLengthValidator extends StringValidator
     
     public function validateValue(Validatable $validateable)
     {
-        parent::validateValue($validateable);
-        if(strlen($validateable->getValue())>$this->minimum)
+        $response = parent::validateValue($validateable);
+        if($response!=null)
         {
-            $validateable->error(sprintf('Must be more than %d long', $this->minimum));
+            return $response;
+        }
+        if(strlen($validateable->getValue())<$this->minimum)
+        {
+            $response = new ValidationResponse($this->getKeyName());
+            $response->addValue('minLength', $this->minimum);
+            return $response;
         }
     }
 }

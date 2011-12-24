@@ -23,29 +23,45 @@
 namespace picon;
 
 /**
- * Description of PanelMarkupSource
+ * Description of ValidationResponse
  * 
  * @author Martin Cassidy
  */
-class PanelMarkupSource extends AbstractAssociatedMarkupSource
+class ValidationResponse
 {
-    public function onComponentTagBody(Component $component, ComponentTag &$tag)
+    private $key;
+    private $name;
+    private $value;
+    private $values = array();
+    
+    public function __construct($key)
     {
-        $panelMarkup = $component->loadAssociatedMarkup();
-        $panel = MarkupUtils::findPiconTag('panel', $panelMarkup, $component);
-        
-        if($panel==null)
-        {
-            throw new \MarkupNotFoundException(sprintf("Found markup for panel %s however there is no picon:panel tag.", $component->getId(0)));
-        }
-        
-        $tag->setChildren(array($panel));
-       
+        $this->key = $key;
     }
     
-    public function getRootTag(MarkupElement $markup)
+    public function getKey()
     {
-        return MarkupUtils::findPiconTag('panel', $markup);
+        return $this->key;
+    }
+    
+    public function addValue($key, $value)
+    {
+        $this->values[$key] = $value;
+    }
+    
+    public function getValues()
+    {
+        return $this->values;
+    }
+    
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+    
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 }
 

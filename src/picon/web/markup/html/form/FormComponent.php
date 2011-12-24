@@ -27,7 +27,7 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-abstract class FormComponent extends LabeledMarkupContainer implements Validatable
+abstract class FormComponent extends LabeledMarkupContainer
 {    
     /**
      * An array of Validator
@@ -224,10 +224,11 @@ abstract class FormComponent extends LabeledMarkupContainer implements Validatab
     
     public function validateRequired()
     {
-        $required = $this->isRequired()?'true':'false';
         if($this->isRequired() && ($this->rawInput==null || empty($this->rawInput) || (is_array($this->rawInput) && count($this->rawInput)<1)))
         {
-            $this->error(sprintf('Form component %s is required', $this->getId()));
+            $data = array('name' => $this->getId());
+            $message = $this->getLocalizer()->getString($this->getComponentKey('Required'), new ArrayModel($data));
+            $this->error($message);
             $this->invalid();
         }
     }

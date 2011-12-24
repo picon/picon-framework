@@ -39,11 +39,11 @@ namespace picon;
  */
 class MarkupParser extends XMLParser
 {
-    private static $PICON_ELEMENTS = array('child', 'extend', 'panel', 'head');
+    private static $PICON_ELEMENTS = array('picon:child', 'picon:extend', 'picon:panel', 'picon:head', 'picon:border', 'picon:body');
 
     protected function onCharacterData($data, XMLTag $element)
     {
-        $element->addChild(new TextElement(htmlentities($data, ENT_COMPAT | ENT_HTML401, 'UTF-8')));
+        $element->addChild(new TextElement(htmlentities($data, ENT_COMPAT, 'UTF-8')));
     }
     
     protected function newElement($name, $attributes)
@@ -52,7 +52,7 @@ class MarkupParser extends XMLParser
         {
             return new ComponentTag($name, $attributes);
         }
-        elseif (in_array(str_replace('picon:', '', $name), MarkupParser::$PICON_ELEMENTS) || $name=='head')
+        elseif (in_array($name, MarkupParser::$PICON_ELEMENTS) || $name=='head')
         {
             return new PiconTag($name, $attributes);
         }

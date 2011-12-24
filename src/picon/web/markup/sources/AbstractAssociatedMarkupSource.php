@@ -32,7 +32,8 @@ abstract class AbstractAssociatedMarkupSource extends AbstractMarkupSource
     public function getMarkup(MarkupContainer $container, Component $child)
     {
         $markup = $container->loadAssociatedMarkup();
-        return MarkupUtils::findComponentTag($markup, $child->getId(), $container);
+        $root = $this->getRootTag($markup);
+        return MarkupUtils::findComponentTag($root, $child->getId(), $container);
     }
     
     public function renderHead(Component $component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
@@ -64,6 +65,8 @@ abstract class AbstractAssociatedMarkupSource extends AbstractMarkupSource
         }
         return $heads;
     }
+    
+    public abstract function getRootTag(MarkupElement $markup);
 }
 
 ?>

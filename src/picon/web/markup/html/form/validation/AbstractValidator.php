@@ -34,11 +34,26 @@ abstract class AbstractValidator implements Validator
     {
         if($validateable->isValid())
         {
-            $this->validateValue($validateable);
+            $response = $this->validateValue($validateable);
+            
+            if($response!=null && $response instanceof ValidationResponse)
+            {
+                $validateable->error($response);
+            }
         }
     }
     
     public abstract function validateValue(Validatable $validateable);
+    
+    protected final function getKeyName($class = null)
+    {
+        if($class==null)
+        {
+            $class = get_called_class();
+        }
+        $reflection = new \ReflectionClass($class);
+        return $reflection->getShortName();
+    }
 }
 
 ?>

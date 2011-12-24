@@ -42,10 +42,16 @@ class MaximumLengthValidator extends StringValidator
     
     public function validateValue(Validatable $validateable)
     {
-        parent::validateValue($validateable);
+        $response = parent::validateValue($validateable);
+        if($response!=null)
+        {
+            return $response;
+        }
         if(strlen($validateable->getValue())>$this->maximum)
         {
-            $validateable->error(sprintf('Must be a less than %d long', $this->maximum));
+            $response = new ValidationResponse($this->getKeyName());
+            $response->addValue('maxLength', $this->maximum);
+            return $response;
         }
     }
 }

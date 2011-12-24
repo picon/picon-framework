@@ -33,7 +33,7 @@ class NumericValidator extends AbstractValidator
     {
         if(!is_numeric($validateable->getValue()))
         {
-            $validateable->error('Must be a number');
+            return new ValidationResponse($this->getKeyName(get_class()));
         }
     }
 }

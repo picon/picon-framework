@@ -20,32 +20,19 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+use picon\Border;
 
 /**
- * Description of PanelMarkupSource
+ * Description of SampleBorder
  * 
  * @author Martin Cassidy
  */
-class PanelMarkupSource extends AbstractAssociatedMarkupSource
+class SampleBorder extends Border
 {
-    public function onComponentTagBody(Component $component, ComponentTag &$tag)
+    public function __construct($id, Model $model = null)
     {
-        $panelMarkup = $component->loadAssociatedMarkup();
-        $panel = MarkupUtils::findPiconTag('panel', $panelMarkup, $component);
-        
-        if($panel==null)
-        {
-            throw new \MarkupNotFoundException(sprintf("Found markup for panel %s however there is no picon:panel tag.", $component->getId(0)));
-        }
-        
-        $tag->setChildren(array($panel));
-       
-    }
-    
-    public function getRootTag(MarkupElement $markup)
-    {
-        return MarkupUtils::findPiconTag('panel', $markup);
+        parent::__construct($id, $model);
+        $this->add($this->getBorderBody());
     }
 }
 

@@ -23,29 +23,30 @@
 namespace picon;
 
 /**
- * Description of PanelMarkupSource
+ * Description of BorderMarkupSourcingStratagy
  * 
  * @author Martin Cassidy
  */
-class PanelMarkupSource extends AbstractAssociatedMarkupSource
+class BorderMarkupSourcingStratagy extends AbstractAssociatedMarkupSource
 {
     public function onComponentTagBody(Component $component, ComponentTag &$tag)
     {
-        $panelMarkup = $component->loadAssociatedMarkup();
-        $panel = MarkupUtils::findPiconTag('panel', $panelMarkup, $component);
+        $borderMarkup = $component->loadAssociatedMarkup();
+        $border = MarkupUtils::findPiconTag('border', $borderMarkup, $component);
         
-        if($panel==null)
+        if($border==null)
         {
-            throw new \MarkupNotFoundException(sprintf("Found markup for panel %s however there is no picon:panel tag.", $component->getId(0)));
+            throw new \MarkupNotFoundException(sprintf("Found markup for border %s however there is no picon:border tag.", $component->getId(0)));
         }
         
-        $tag->setChildren(array($panel));
-       
+        $body = MarkupUtils::findPiconTag('body', $borderMarkup);
+        $body->setChildren($tag->getChildren());
+        $tag->setChildren(array($border));
     }
     
     public function getRootTag(MarkupElement $markup)
     {
-        return MarkupUtils::findPiconTag('panel', $markup);
+        return MarkupUtils::findPiconTag('border', $markup);
     }
 }
 
