@@ -39,6 +39,7 @@ class ComponentResolverHelper
             array_push(self::$resolvers, new HeaderResolver());
             array_push(self::$resolvers, new PanelResolver());
             array_push(self::$resolvers, new ExtendResolver());
+            array_push(self::$resolvers, new BorderResolver());
         }
     }
     
@@ -46,6 +47,7 @@ class ComponentResolverHelper
     {
         self::init();
         $current = $container;
+        $component = null;
         while($current!=null)
         {
             if($current instanceof ComponentResolver)

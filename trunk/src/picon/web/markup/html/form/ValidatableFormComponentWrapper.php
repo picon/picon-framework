@@ -36,13 +36,15 @@ class ValidatableFormComponentWrapper implements Validatable
     }
     
     /**
-     * @todo should take in a validation message not a string, 
-     * message will store a locator to get the message from a file
+     * @param string $keyHierarchy the key locator for the message
      * @param type $message 
      */
-    public function error($message)
+    public function error(ValidationResponse $error)
     {
-        $this->wrappedComponet->error($this->wrappedComponet->getId().' '.$message);
+        $error->setName($this->wrappedComponet->getId());
+        $error->setValue($this->getValue());
+        $message = $this->wrappedComponet->getLocalizer()->getString($this->wrappedComponet->getComponentKey($error->getKey()), new BasicModel($error));
+        $this->wrappedComponet->error($message);
         $this->wrappedComponet->invalid();
     }
     

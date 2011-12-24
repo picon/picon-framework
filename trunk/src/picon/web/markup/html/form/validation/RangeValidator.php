@@ -27,7 +27,7 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class RangeValidator extends AbstractValidator
+class RangeValidator extends NumericValidator
 {
     private $minimum;
     private $maximum;
@@ -47,10 +47,17 @@ class RangeValidator extends AbstractValidator
     
     public function validateValue(Validatable $validateable)
     {
-        parent::validateValue($validateable);
+        $response = parent::validateValue($validateable);
+        if($response!=null)
+        {
+            return $response;
+        }
         if($validateable->getValue()<$this->minimum || $validateable->getValue()>$this->maximum)
         {
-            $validateable->error(sprintf('Must be a between %d and %d', $this->minimum, $this->maximum));
+            $response = new ValidationResponse($this->getKeyName());
+            $response->addValue('min', $this->minimum);
+            $response->addValue('max', $this->maximum);
+            return $response;
         }
     }
 }

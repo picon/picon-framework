@@ -23,29 +23,21 @@
 namespace picon;
 
 /**
- * Description of PanelMarkupSource
+ * Works like a panel but preserves the origional content by placing it
+ * the <picon:body /> plaeholder
  * 
  * @author Martin Cassidy
  */
-class PanelMarkupSource extends AbstractAssociatedMarkupSource
+class Border extends MarkupContainer
 {
-    public function onComponentTagBody(Component $component, ComponentTag &$tag)
+    protected function getMarkUpSource()
     {
-        $panelMarkup = $component->loadAssociatedMarkup();
-        $panel = MarkupUtils::findPiconTag('panel', $panelMarkup, $component);
-        
-        if($panel==null)
-        {
-            throw new \MarkupNotFoundException(sprintf("Found markup for panel %s however there is no picon:panel tag.", $component->getId(0)));
-        }
-        
-        $tag->setChildren(array($panel));
-       
+        return new BorderMarkupSourcingStratagy();
     }
     
-    public function getRootTag(MarkupElement $markup)
+    public function getBorderBody()
     {
-        return MarkupUtils::findPiconTag('panel', $markup);
+        return new TransparentMarkupContainer('picon_body');
     }
 }
 

@@ -32,7 +32,7 @@ class PiconTag extends ComponentTag
     public function __construct($name, $attributes = array())
     {
         parent::__construct($name, $attributes);
-        $this->put('picon:id', $name);
+        $this->put('picon:id', str_replace(':', '_', $name));
     }
     
     function isHeaderTag()

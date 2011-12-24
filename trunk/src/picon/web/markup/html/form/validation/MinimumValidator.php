@@ -43,10 +43,16 @@ class MinimumValidator extends NumericValidator
     
     public function validateValue(Validatable $validateable)
     {
-        parent::validateValue($validateable);
+        $response = parent::validateValue($validateable);
+        if($response!=null)
+        {
+            return $response;
+        }
         if($validateable->getValue()<$this->minimum)
         {
-            $validateable->error('Must be a greater than'. $this->minimum);
+            $response = new ValidationResponse($this->getKeyName());
+            $response->addValue('min', $this->minimum);
+            return $response;
         }
     }
 }

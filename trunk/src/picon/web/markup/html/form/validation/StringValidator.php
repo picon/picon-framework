@@ -33,7 +33,7 @@ class StringValidator extends AbstractValidator
     {
         if(!is_string($validateable->getValue()))
         {
-            $validateable->error('Must be a string');
+            return new ValidationResponse($this->getKeyName(get_class()));
         }
     }
 }

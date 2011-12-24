@@ -27,7 +27,7 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class MaximumValidator extends AbstractValidator
+class MaximumValidator extends NumericValidator
 {
     private $maximum;
     
@@ -43,10 +43,16 @@ class MaximumValidator extends AbstractValidator
     
     public function validateValue(Validatable $validateable)
     {
-        parent::validateValue($validateable);
+        $response = parent::validateValue($validateable);
+        if($response!=null)
+        {
+            return $response;
+        }
         if($validateable->getValue()>$this->maximum)
         {
-            $validateable->error('Must be a less than'. $this->maximum);
+            $response = new ValidationResponse($this->getKeyName());
+            $response->addValue('max', $this->maximum);
+            return $response;
         }
     }
 }
