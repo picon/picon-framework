@@ -71,9 +71,9 @@ abstract class AbstractRepeater extends MarkupContainer
         return $this->getMarkup();
     }
     
-    public function beforeComponentRender()
+    public function beforePageRender()
     {
-        parent::beforeComponentRender();
+        parent::beforePageRender();
         $this->populate();
     }
     

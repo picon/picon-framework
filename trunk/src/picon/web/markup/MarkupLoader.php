@@ -53,7 +53,12 @@ class MarkupLoader
     {
         $name = get_class($component);
         $fileSafeName = str_replace('\\', '_', $name);
-        if(CacheManager::resourceExists(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, CacheManager::APPLICATION_SCOPE))
+        
+        /*
+         * Doesn't load from the cache in development mode
+         * @todo create profiles for each application mode and have this run from the profiel not the mode
+         */
+        if(CacheManager::resourceExists(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, CacheManager::APPLICATION_SCOPE) && PiconApplication::get()->getConfig()->getMode()!='development')
         {
             return CacheManager::loadResource(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, CacheManager::APPLICATION_SCOPE);
         }
