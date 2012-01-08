@@ -105,6 +105,11 @@ class HeaderResponse
         $url = $GLOBALS['requestCycle']->generateUrl($target);
         $this->renderJavaScriptFile($url);
     }
+    
+    public function renderScript($script)
+    {
+        $this->actualResponse->write(sprintf("<script type=\"text/javascript\">%s</script>", $script));
+    }
 }
 
 ?>

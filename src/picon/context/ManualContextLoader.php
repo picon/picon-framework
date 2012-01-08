@@ -32,7 +32,7 @@ class ManualContextLoader extends AbstractContextLoader
 {
     public function loadResources($classes)
     {
-       
+       throw new \NotImplementedException();
     }
 }
 

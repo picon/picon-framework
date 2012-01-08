@@ -26,10 +26,11 @@ namespace picon;
  * Extends the standard PHP serialization functionality by permiting
  * serialisazation of closures, adds support for transient properties
  * 
- * Use PiconSerializer::serialize() and unserialize::serialize() instead of
- * normal PHP serialize() and unserialize(). __sleep() and __wakeup will
- * be called in the normal way BUT should not rely on Transient properties being present
- * or closures being callable
+ * This class should be extended to take advantage of its features. It is
+ * imperative that be sub classes are serialized the preparForSerialize() be
+ * called. The picon cache manager will do this automatically but manual serialization
+ * elsewhere must call the method. Deserailization is handled automatically through
+ * the __wakeup method and any overrides MUST call the parent implementation
  * 
  * Transient propertie can be used by adding @Transient to the property's 
  * doc block
@@ -37,8 +38,6 @@ namespace picon;
  * If using injection in a subclass, you should implement InjectOnWakeup
  * to ensure injected resources are not null as all injected resources
  * are transient.
- * 
- * 
  * 
  * @author Martin Cassidy
  * @package cache

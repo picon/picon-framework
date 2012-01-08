@@ -23,38 +23,24 @@
 namespace picon;
 
 /**
- * Description of AttributeModifier
- * 
+ * Description of AttributeAppender
+ *
  * @author Martin Cassidy
  */
-class AttributeModifier extends AbstractBehaviour
+class AttributeAppender extends AttributeModifier
 {
-    private $attributeName;
-    private $value;
+    private $seperator;
     
-    public function __construct($attributeName, Model $value)
+    public function __construct($attributeName, Model $value, $seperator)
     {
-        $this->attributeName = $attributeName;
-        $this->value = $value;
-    }
-    
-    public function onComponentTag(Component &$component, ComponentTag &$tag)
-    {
-        parent::onComponentTag($component, $tag);
-        $current = '';
-        foreach($tag->getAttributes() as $name => $value)
-        {
-            if($name==$this->attributeName)
-            {
-                $current = $value;
-            }
-        }
-        $tag->put($this->attributeName, $this->newValue($current));
+        parent::__construct($attributeName, $value);
+        Args::isString($seperator, 'seperator');
+        $this->seperator = $seperator;
     }
     
     public function newValue($current)
     {
-        return $this->value->getModelObject();
+        return $current.$this->seperator.$this->value->getModelObject();
     }
 }
 

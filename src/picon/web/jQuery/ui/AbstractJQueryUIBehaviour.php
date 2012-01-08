@@ -23,38 +23,22 @@
 namespace picon;
 
 /**
- * Description of AttributeModifier
- * 
+ * Description of AbstractJQueryUIBehaviour
+ * @todo add support fo the jquery ui css
  * @author Martin Cassidy
  */
-class AttributeModifier extends AbstractBehaviour
+class AbstractJQueryUIBehaviour extends AbstractJQueryBehaviour
 {
-    private $attributeName;
-    private $value;
+    private static $header = false;
     
-    public function __construct($attributeName, Model $value)
+    public function __construct()
     {
-        $this->attributeName = $attributeName;
-        $this->value = $value;
-    }
-    
-    public function onComponentTag(Component &$component, ComponentTag &$tag)
-    {
-        parent::onComponentTag($component, $tag);
-        $current = '';
-        foreach($tag->getAttributes() as $name => $value)
+        parent::__construct();
+        if(!self::$header)
         {
-            if($name==$this->attributeName)
-            {
-                $current = $value;
-            }
+            PiconApplication::get()->addComponentRenderHeadListener(new JQueryUIRenderHeadListener());
+            self::$header = true;
         }
-        $tag->put($this->attributeName, $this->newValue($current));
-    }
-    
-    public function newValue($current)
-    {
-        return $this->value->getModelObject();
     }
 }
 

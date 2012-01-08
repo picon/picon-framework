@@ -37,7 +37,7 @@ class HomePage extends AbstractPage
         {
             $me->setPage(DatabaseTestPage::getIdentifier());
         }));
-        
+
         $two->add(new Link('authPage', function() use($me)
         {
             $me->setPage(SampleAuthorisedPage::getIdentifier());

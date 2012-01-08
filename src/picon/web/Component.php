@@ -112,6 +112,8 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     
     private $outputMarkupId = false;
     
+    private $visible = true;
+    
     private static $nextId = 0;
     
     /**
@@ -349,6 +351,12 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
         if($markup==null)
         {
             throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
+        }
+        
+        //@todo add ajax placeholder to set display:none on invisible components
+        if(!$this->visible)
+        {
+            return;
         }
         
         if($this->renderBodyOnly)
@@ -1027,6 +1035,12 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     {
         Args::isBoolean($renderBodyOnly, 'renderBodyOnly');
         $this->renderBodyOnly = $renderBodyOnly;
+    }
+    
+    public function setVisible($visible)
+    {
+        Args::isBoolean($visible, 'visible');
+        $this->visible = $visible;
     }
     
     public function getBehaviours()

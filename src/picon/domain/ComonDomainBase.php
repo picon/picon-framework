@@ -30,17 +30,6 @@ namespace picon;
 class ComonDomainBase
 {
     /**
-     * Internal method for checking the existance of a parameter
-     * @param ReflectionClass $obj The reflection object of $this
-     * @param String $name The name of the property
-     * @return Boolean true if the property exists 
-     */
-    private function checkParam(\ReflectionClass $obj, $name)
-    {
-        return $obj->hasProperty($name);
-    }
-    
-    /**
      * Get the requested value
      * @param String $name The name of the property to get
      * @return Object The value of the property 
@@ -48,11 +37,11 @@ class ComonDomainBase
     public function __get($name)
     {
         $obj = new \ReflectionClass($this);
-        if(!$this->checkParam($obj,$name))
+        $property = $this->resolveProperty($obj, $name);
+        if($property==null)
         {
             throw new \InvalidArgumentException ("Unknown property ".$name);
         }
-        $property = $obj->getProperty($name);
         if(!$property->isPublic())
         {
             $property->setAccessible(true);
@@ -68,11 +57,11 @@ class ComonDomainBase
     public function __set($name, $value) 
     {
         $obj = new \ReflectionClass($this);
-        if(!$this->checkParam($obj,$name))
+        $property = $this->resolveProperty($obj, $name);
+        if($property==null)
         {
             throw new \InvalidArgumentException ("Unknown property ".$name);
         }
-        $property = $obj->getProperty($name);
         if(!$property->isPublic())
         {
             $property->setAccessible(true);
@@ -100,6 +89,19 @@ class ComonDomainBase
         }
         return $out;
 
+    }
+    
+    private function resolveProperty(\ReflectionClass $obj, $name)
+    {
+        if($obj->hasProperty($name))
+        {
+            return $obj->getProperty($name);
+        }
+        else if($obj->getParentClass()!=null)
+        {
+            return $this->resolveProperty($obj->getParentClass(), $name);
+        }
+        return null;
     }
 }
 

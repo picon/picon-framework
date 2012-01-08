@@ -29,6 +29,7 @@ namespace picon;
  * to be shared accross sessions
  *
  * @author Martin Cassidy
+ * @package cache
  */
 class CacheManager
 {
