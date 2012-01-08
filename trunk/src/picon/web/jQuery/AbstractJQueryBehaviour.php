@@ -29,10 +29,15 @@ namespace picon;
  */
 abstract class AbstractJQueryBehaviour extends AbstractBehaviour
 {
-    public function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
+    private static $header = false;
+    
+    public function __construct()
     {
-        parent::renderHead($component, $headerContainer, $headerResponse);
-        $headerResponse->renderJavaScriptResourceReference(new ResourceReference('jquery.js', self::getIdentifier()));
+        if(!self::$header)
+        {
+            PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
+            self::$header = true;
+        }
     }
 }
 

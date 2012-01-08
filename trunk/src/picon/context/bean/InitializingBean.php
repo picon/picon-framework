@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * A bean class that requires a method to be invoked after its injection is completed.
  * @author Martin Cassidy
+ * @package context
  */
 interface InitializingBean
 {

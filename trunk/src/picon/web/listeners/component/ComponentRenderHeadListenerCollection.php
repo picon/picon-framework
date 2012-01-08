@@ -23,38 +23,23 @@
 namespace picon;
 
 /**
- * Description of AttributeModifier
- * 
+ * Description of ComponentRenderHeadListenerCollection
+ *
  * @author Martin Cassidy
  */
-class AttributeModifier extends AbstractBehaviour
+class ComponentRenderHeadListenerCollection extends ListenerCollection implements ComponentRenderHeadListener
 {
-    private $attributeName;
-    private $value;
-    
-    public function __construct($attributeName, Model $value)
+    public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
     {
-        $this->attributeName = $attributeName;
-        $this->value = $value;
-    }
-    
-    public function onComponentTag(Component &$component, ComponentTag &$tag)
-    {
-        parent::onComponentTag($component, $tag);
-        $current = '';
-        foreach($tag->getAttributes() as $name => $value)
+        $this->notify(function($listener) use (&$container, &$response)
         {
-            if($name==$this->attributeName)
-            {
-                $current = $value;
-            }
-        }
-        $tag->put($this->attributeName, $this->newValue($current));
+            $listener->onHeadRendering($container, $response);
+        });
     }
     
-    public function newValue($current)
+    protected function validateListener($listener)
     {
-        return $this->value->getModelObject();
+        return $listener instanceof ComponentRenderHeadListener;
     }
 }
 

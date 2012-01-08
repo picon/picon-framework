@@ -41,6 +41,7 @@ class HeaderContainer extends TransparentMarkupContainer
         parent::onComponentTagBody($tag);
         $page = $this->getPage();
         $headerResponse = new HeaderResponse($this->getResponse());
+        PiconApplication::get()->getComponentRenderHeadListener()->onHeadRendering($this, $headerResponse);
         $page->renderHead($headerResponse);
         $self = $this;
         $callback = function(Component &$component) use($headerResponse, $self)

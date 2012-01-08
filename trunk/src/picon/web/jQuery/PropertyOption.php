@@ -23,38 +23,15 @@
 namespace picon;
 
 /**
- * Description of AttributeModifier
- * 
+ * Description of PropertyOption
+ *
  * @author Martin Cassidy
  */
-class AttributeModifier extends AbstractBehaviour
+class PropertyOption extends AbstractOption
 {
-    private $attributeName;
-    private $value;
-    
-    public function __construct($attributeName, Model $value)
+    public function render()
     {
-        $this->attributeName = $attributeName;
-        $this->value = $value;
-    }
-    
-    public function onComponentTag(Component &$component, ComponentTag &$tag)
-    {
-        parent::onComponentTag($component, $tag);
-        $current = '';
-        foreach($tag->getAttributes() as $name => $value)
-        {
-            if($name==$this->attributeName)
-            {
-                $current = $value;
-            }
-        }
-        $tag->put($this->attributeName, $this->newValue($current));
-    }
-    
-    public function newValue($current)
-    {
-        return $this->value->getModelObject();
+        return sprintf("%s : '%s'");
     }
 }
 

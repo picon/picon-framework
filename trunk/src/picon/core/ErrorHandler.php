@@ -22,21 +22,22 @@
 namespace picon;
 
 /**
- * Description of ErrorHandler
+ * Handles all PHP errors and uncaught exceptions, registers handles
+ * upon instantiation.
  * 
  * @author Martin Cassidy
+ * @package core
  */
 class ErrorHandler
 {
     public function __construct()
     {
-        //set_error_handler(array($this, 'onError'));
+        set_error_handler(array($this, 'onError'));
         set_exception_handler(array($this, 'onException'));
     }
     
     /**
-     * @todo make this take into account error level, not just E_ALL
-     * @todo find out why throwing the exception here causes an overflow in the request cycle...
+     * @todo the error level should be setable, warnings and notices are currently ignored
      * @param type $errno
      * @param type $errstr
      * @param type $errfile
@@ -44,7 +45,10 @@ class ErrorHandler
      */
     public function onError($errno, $errstr, $errfile, $errline)
     {
-        //throw new \ErrorException($errstr, 0, $errno, $errfile, $errline);
+        if($errno==E_USER_ERROR||$error==E_ERROR)
+        {
+            throw new \ErrorException($errstr, 0, $errno, $errfile, $errline);
+        }
     }
     
     public function onException(\Exception $exception)

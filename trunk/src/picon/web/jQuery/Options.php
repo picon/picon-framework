@@ -23,38 +23,33 @@
 namespace picon;
 
 /**
- * Description of AttributeModifier
- * 
+ * A set of jQuery options for use with a jQuery behaviour
+ *
  * @author Martin Cassidy
  */
-class AttributeModifier extends AbstractBehaviour
+class Options
 {
-    private $attributeName;
-    private $value;
+    private $options = array();
     
-    public function __construct($attributeName, Model $value)
+    public function render()
     {
-        $this->attributeName = $attributeName;
-        $this->value = $value;
-    }
-    
-    public function onComponentTag(Component &$component, ComponentTag &$tag)
-    {
-        parent::onComponentTag($component, $tag);
-        $current = '';
-        foreach($tag->getAttributes() as $name => $value)
+        $out = '{';
+        $total = count($this->options);
+        foreach($this->options as $index => $option)
         {
-            if($name==$this->attributeName)
+            $out .= $option->render();
+            
+            if($index!=$total-1)
             {
-                $current = $value;
+                $out .= ',';
             }
         }
-        $tag->put($this->attributeName, $this->newValue($current));
+        $out .= '}';
     }
     
-    public function newValue($current)
+    public function add(AbstractOption $option)
     {
-        return $this->value->getModelObject();
+        array_push($this->options, $option);
     }
 }
 

@@ -21,7 +21,7 @@
  * */
 
 /**
- * Description of Service
+ * Indicates that the class is a service component
  * 
  * @author Martin Cassidy
  * @package annotations

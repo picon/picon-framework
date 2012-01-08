@@ -41,10 +41,10 @@ class ErrorPage extends WebPage
         $this->add(new ListView('stack', function(MarkupContainer $entry)
         {
             $object = $entry->getModel()->getModelObject();
-            $entry->add(new Label('class', new BasicModel($object['class'])));
-            $entry->add(new Label('function', new BasicModel($object['function'])));
-            $entry->add(new Label('file', new BasicModel($object['file'])));
-            $entry->add(new Label('line', new BasicModel($object['line'])));
+            $entry->add(new Label('class', new BasicModel(array_key_exists('class', $object)?$object['class']:'')));
+            $entry->add(new Label('function', new BasicModel(array_key_exists('function', $object)?$object['function']:'')));
+            $entry->add(new Label('file', new BasicModel(array_key_exists('file', $object)?$object['file']:'')));
+            $entry->add(new Label('line', new BasicModel(array_key_exists('line', $object)?$object['line']:'')));
         }, new ArrayModel($ex->getTrace())));
     }
 }

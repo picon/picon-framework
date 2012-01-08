@@ -21,7 +21,7 @@
  * */
 
 /**
- * Description of Repository
+ * Indicates that a class is a repository, such as a DAO
  * 
  * @author Martin Cassidy
  * @package annotations

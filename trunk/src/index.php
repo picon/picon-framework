@@ -49,6 +49,10 @@ require_once("picon/PiconApplication.php");
 use picon\PiconApplication;
 use picon\PageClassAuthorisationStrategy;
 
+/**
+ * The sample picon application
+ * @author Martin Cassidy
+ */
 class SampleApplication extends PiconApplication
 {
     public function init()

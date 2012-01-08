@@ -23,38 +23,15 @@
 namespace picon;
 
 /**
- * Description of AttributeModifier
- * 
- * @author Martin Cassidy
+ * Description of JQueryRenderHeadListener
+ *
+ * @author Martin
  */
-class AttributeModifier extends AbstractBehaviour
+class JQueryRenderHeadListener implements ComponentRenderHeadListener
 {
-    private $attributeName;
-    private $value;
-    
-    public function __construct($attributeName, Model $value)
+    public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
     {
-        $this->attributeName = $attributeName;
-        $this->value = $value;
-    }
-    
-    public function onComponentTag(Component &$component, ComponentTag &$tag)
-    {
-        parent::onComponentTag($component, $tag);
-        $current = '';
-        foreach($tag->getAttributes() as $name => $value)
-        {
-            if($name==$this->attributeName)
-            {
-                $current = $value;
-            }
-        }
-        $tag->put($this->attributeName, $this->newValue($current));
-    }
-    
-    public function newValue($current)
-    {
-        return $this->value->getModelObject();
+        $response->renderJavaScriptResourceReference(new ResourceReference('jquery.js', AbstractJQueryBehaviour::getIdentifier()));
     }
 }
 

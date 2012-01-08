@@ -21,7 +21,8 @@
  * */
 
 /**
- * Description of Resource
+ * Indicates that a property needs to have a resource from the application
+ * context injected into it
  * 
  * @author Martin Cassidy
  * @package annotations
