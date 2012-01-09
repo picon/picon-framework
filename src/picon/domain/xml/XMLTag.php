@@ -45,8 +45,8 @@ class XMLTag extends ComonDomainBase implements XmlElement
         $this->name = $name;
         $this->attributes = $attributes;
         
-        //Openclose by default, this is because of the way the xml parser works
-        $this->tagType = new XmlTagType(XmlTagType::OPENCLOSE);
+        //Open by default
+        $this->tagType = new XmlTagType(XmlTagType::OPEN);
     }
     
     /**

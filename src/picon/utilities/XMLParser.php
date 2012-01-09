@@ -38,6 +38,7 @@ class XMLParser
     private $depth = 0;
     private $root;
     protected $xmlFile;
+    private $data;
     
     /**
      * Create a new XMLParser
@@ -69,7 +70,8 @@ class XMLParser
         }
         while ($data = fread($fp, 4096))
         {
-            if (!xml_parse($this->parser, $this->prepare($data), feof($fp)))
+            $this->data = $this->prepare($data);
+            if (!xml_parse($this->parser, $this->data, feof($fp)))
             {
                 $this->onXmlError(xml_error_string(xml_get_error_code($this->parser)), xml_get_current_line_number($this->parser));
             }
@@ -92,6 +94,21 @@ class XMLParser
     {
         $tag = $this->newElement($name, $attributes);
         $this->stack[$this->depth] = $tag;
+        
+        $idx = xml_get_current_byte_index($parser);
+        if (isset($this->data[$idx])) 
+        {
+            $c = $this->data[$idx];
+        } 
+        else 
+        {
+            $length = strlen($this->data);
+            $c = $this->data[$length-1];
+        }
+        if($c=='/')
+        {
+            $tag->setTagType(new XmlTagType(XmlTagType::OPENCLOSE));
+        }
         
         if($this->depth==0)
         {
@@ -123,7 +140,6 @@ class XMLParser
      */
     private function endElement($parser, $name) 
     {
-        $this->stack[$this->depth-1]->setTagType(new XmlTagType(XmlTagType::OPEN));
         $this->depth--;
     }
     
