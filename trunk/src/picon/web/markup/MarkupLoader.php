@@ -111,7 +111,7 @@ class MarkupLoader
             {
                 throw new \MarkupNotFoundException(sprintf("Found picon:extend in markup for %s but there is no parent markup", $className));
             }
-            
+            //@todo this doesn't work if the parent markup has multiple markup inheretence
             $child = MarkupUtils::findPiconTag('child', $parentMarkup);
             if($child==null)
             {
