@@ -26,6 +26,7 @@ namespace picon;
  * Description of MarkupLoader
  * @todo the head processing and markup inheritnce is a bit of message and will
  * fall over if the mark is not written properly. Need to add some sanity checks
+ * 
  * @author Martin Cassidy
  */
 class MarkupLoader
@@ -111,8 +112,8 @@ class MarkupLoader
             {
                 throw new \MarkupNotFoundException(sprintf("Found picon:extend in markup for %s but there is no parent markup", $className));
             }
-            //@todo this doesn't work if the parent markup has multiple markup inheretence
-            $child = MarkupUtils::findPiconTag('child', $parentMarkup);
+            
+            $child = $this->getChildTag($parentMarkup);
             if($child==null)
             {
                 throw new \MarkupNotFoundException(sprintf("Component %s has inherited markup from %s but the inherited markup does not contain a picon:child tag", $className, get_parent_class($className)));
@@ -133,25 +134,25 @@ class MarkupLoader
         return $markup;
     }
     
-    /* Recursively find all picon:head tags
-     * I think there only ever needs to be 1 of them though
-     * @todo finalise
-     * private function locateHead($markup)
+    private function getChildTag($markup)
     {
-        $heads = array();
-        foreach($markup as $element)
+        $child = MarkupUtils::findPiconTag('child', $markup);
+        
+        if($child==null)
         {
-            if($element instanceof PiconTag && $element->isHeaderTag())
-            {
-                array_push($heads, $element);
-            }
-            if($element instanceof MarkupElement && $element->hasChildren())
-            {
-                $heads = array_merge($heads, $this->locateHead($element->getChildren()));
-            }
+            return null;
         }
-        return $heads;
-    }*/
+        
+        $existingExtension = MarkupUtils::findPiconTag('extend', $child);
+        if($existingExtension==null)
+        {
+            return $child;
+        }
+        else
+        {
+            return $this->getChildTag($existingExtension);
+        }
+    }
 }
 
 ?>
