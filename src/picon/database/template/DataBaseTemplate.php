@@ -80,11 +80,20 @@ class DataBaseTemplate implements DataBaseOperations
         return $this->driver->getAffectedRows($this->getConnection());
     }
     
+    public function insert($sql, $arguments = null)
+    {
+        $sql = $this->prepareArgs($sql, $arguments);
+        $this->driver->query($sql, $this->getConnection());
+        return $this->driver->getInsertedId($this->getConnection());
+    }
+    
     private function prepareArgs($sql, $arguments = null)
     {
-        if($arguments!=null)
+        if($arguments!=null && count($arguments)>0)
         {
-            eval("\$sql = sprintf(\$sql, ". implode(',', $arguments).");");
+            $sprintfargs = array_merge(array($sql), $arguments);
+            $sprintf = new \ReflectionFunction('sprintf');
+            $sql = $sprintf->invokeArgs($sprintfargs);
         }
         return $sql;
     }

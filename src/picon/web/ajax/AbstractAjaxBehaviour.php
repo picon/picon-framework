@@ -27,9 +27,14 @@ namespace picon;
  *
  * @author Martin Cassidy
  */
-abstract class AbstractAjaxBehaviour extends AbstractJQueryBehaviour implements BehaviourListener
+abstract class AbstractAjaxBehaviour extends AbstractBehaviour implements BehaviourListener
 {
     private $callDecorator;
+    
+    public function __construct()
+    {
+        PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
+    }
     
     public function bind(Component &$component)
     {

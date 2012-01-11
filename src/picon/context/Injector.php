@@ -41,12 +41,14 @@ class Injector
     }
     
     /**
-     * @todo add support for parent private properties
      * @param type $object 
      */
-    public function inject(&$object)
+    public function inject(&$object, $reflection = null)
     {
-        $reflection = new \ReflectionAnnotatedClass($object);
+        if($reflection==null)
+        {
+            $reflection = new \ReflectionAnnotatedClass($object);
+        }
         $properties = $reflection->getProperties();
                 
         foreach($properties as $property)
@@ -64,6 +66,12 @@ class Injector
                 $property->setAccessible(true);
                 $property->setValue($object, $this->context->getResource($resource));
             }
+        }
+        
+        $parent = $reflection->getParentClass();
+        if($parent!=null)
+        {
+            $this->inject($object, $parent);
         }
     }
     

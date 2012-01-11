@@ -29,9 +29,23 @@ namespace picon;
  */
 class PropertyOption extends AbstractOption
 {
-    public function render()
+    private $value;
+    
+    public function __construct($name, $value)
     {
-        return sprintf("%s : '%s'");
+        parent::__construct($name, $value);
+        Args::isString($value, 'value');
+        $this->value = $value;
+    }
+    
+    protected function getValue()
+    {
+        return $this->value;
+    }
+    
+    public function render(AbstractJQueryBehaviour $behaviour)
+    {
+        return sprintf("%s : '%s'", $this->getName(), $this->getValue());
     }
 }
 

@@ -23,26 +23,32 @@
 namespace picon;
 
 /**
- * Description of AbstractOption
+ * Description of CallbackOption
  *
  * @author Martin Cassidy
  */
-abstract class AbstractOption
+class CallbackOption extends AbstractOption
 {
-    private $name;
+    private $callback;
     
-    public function __construct($name)
+    public function __construct($name, $callback)
     {
-        Args::isString($name, 'name');
-        $this->name = $name;
+        parent::__construct($name);
+        Args::callBackArgs($callback, 1, 'callback');
+        $this->callback = new SerializableClosure($callback);
     }
     
-    public function getName()
+    public function render(AbstractJQueryBehaviour $behaviour)
     {
-        return $this->name;
+        $url = $behaviour->getComponent()->generateUrlFor($behaviour);
+        return sprintf("%s : function() {piconAjaxGet('%s&ajax=ajax&property=%s', function(){}, function(){});}", $this->getName(), $url, $this->getName());
     }
     
-    public abstract function render(AbstractJQueryBehaviour $behaviour);
+    public function call(AjaxRequestTarget $target)
+    {
+        $callable = $this->callback;
+        $callable($target);
+    }
 }
 
 ?>

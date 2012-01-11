@@ -55,6 +55,11 @@ interface DataBaseOperations
      * as an integer
      */
     function queryForInt($sql, $arguments = null);
+    
+    /**
+     * Run the query and return the last inserted it
+     */
+    function insert($sql, $arguments = null);
 }
 
 ?>

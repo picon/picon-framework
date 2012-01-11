@@ -59,6 +59,11 @@ class DefaultJQueryUIBehaviour extends AbstractJQueryUIBehaviour
         return $this->options;
     }
     
+    public function setOptions(Options $options)
+    {
+        $this->options = $options;
+    }
+    
     public function bind(Component &$component)
     {
         parent::bind($component);
@@ -68,7 +73,24 @@ class DefaultJQueryUIBehaviour extends AbstractJQueryUIBehaviour
     public function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
     {
         parent::renderHead($component, $headerContainer, $headerResponse);
-        $headerResponse->renderScript(sprintf("\$(document).ready(function(){\$('#%s').%s(%s);});", $this->getComponent()->getMarkupId(), $this->function, $this->getOptions()->render()));
+        $headerResponse->renderScript(sprintf("\$(document).ready(function(){\$('#%s').%s(%s);});", $this->getComponent()->getMarkupId(), $this->function, $this->getOptions()->render($this)));
+    }
+    
+    public function onEvent()
+    {
+        $property = RequestCycle::get()->getRequest()->getParameter('property');
+        
+        if($property!=null)
+        {
+            $callbackOption = $this->getOptions()->getOption($property);
+            
+            if($callbackOption!=null && $callbackOption instanceof CallbackOption)
+            {
+                $target = new AjaxRequestTarget();
+                $this->getComponent()->getRequestCycle()->addTarget($target);
+                $callbackOption->call($target);
+            }
+        }
     }
 }
 

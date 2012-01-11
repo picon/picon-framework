@@ -60,6 +60,8 @@ interface DatabaseDriver
      */
     function getAffectedRows($connection);
     
+    function getInsertedId($connection);
+    
     /**
      * Get a result set iterator containing an array for the result reference
      */

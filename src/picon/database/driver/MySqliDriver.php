@@ -78,6 +78,11 @@ class MySqliDriver extends AbstractDatabaseDriver
     {
         return count($resultResource->fetch_fields());
     }
+    
+    public function getInsertedId($connection)
+    {
+        return $connection->insert_id;
+    }
 }
 
 ?>

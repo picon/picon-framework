@@ -23,26 +23,13 @@
 namespace picon;
 
 /**
- * Description of AbstractOption
+ * Description of FunctionOption
  *
  * @author Martin Cassidy
  */
-abstract class AbstractOption
+class FunctionOption extends AbstractOption
 {
-    private $name;
-    
-    public function __construct($name)
-    {
-        Args::isString($name, 'name');
-        $this->name = $name;
-    }
-    
-    public function getName()
-    {
-        return $this->name;
-    }
-    
-    public abstract function render(AbstractJQueryBehaviour $behaviour);
+    //put your code here
 }
 
 ?>
