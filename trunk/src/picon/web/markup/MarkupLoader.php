@@ -26,7 +26,6 @@ namespace picon;
  * Description of MarkupLoader
  * @todo the head processing and markup inheritnce is a bit of message and will
  * fall over if the mark is not written properly. Need to add some sanity checks
- * 
  * @author Martin Cassidy
  */
 class MarkupLoader

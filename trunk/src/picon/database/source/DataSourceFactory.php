@@ -40,6 +40,7 @@ class DataSourceFactory
     {
         $driver = self::getDataBaseDriver($config->type);
         $connection = $driver->connect($config->host, $config->username, $config->password, $config->database, $config->port);
+
         return new DataSource($config, $connection, $driver);
     }
     

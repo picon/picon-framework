@@ -35,7 +35,7 @@ class Args
      */
     public static function callBack($object, $argName)
     {
-        if(!is_callable($object))
+        if(!is_callable($object) && !($object instanceof SerializableClosure))
         {
             throw new \InvalidArgumentException(sprintf("%s expected argument %s to be callable", self::getCallingMethod(), $argName));
         }
@@ -51,12 +51,19 @@ class Args
     {
         self::isNumeric($amount, 'amount');
         
-        if(!is_callable($callback))
+        if(!is_callable($callback) && !($callback instanceof SerializableClosure))
         {
             throw new \InvalidArgumentException(sprintf("%s expected argument %s to be callable", self::getCallingMethod(), $argName));
         }
         
-        $reflection = new \ReflectionFunction($callback);
+        if($callback instanceof SerializableClosure)
+        {
+            $reflection = $callback->getReflection();
+        }
+        else
+        {
+            $reflection = new \ReflectionFunction($callback);
+        }
         if(count($reflection->getParameters())!=$amount)
         {
             throw new \InvalidArgumentException(sprintf("%s expected argument %s to be callable and take %d argument(s)", self::getCallingMethod(), $argName, $amount));

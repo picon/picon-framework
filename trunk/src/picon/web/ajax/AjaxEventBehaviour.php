@@ -34,6 +34,7 @@ class AjaxEventBehaviour extends AbstractAjaxBehaviour
     
     public function __construct($event, $callback)
     {
+        parent::__construct();
         Args::isString($event, 'event');
         Args::callBackArgs($callback, 1, 'callback');
         $this->event = $event;

@@ -27,17 +27,22 @@ namespace picon;
  *
  * @author Martin Cassidy
  */
-abstract class AbstractJQueryBehaviour extends AbstractBehaviour
+abstract class AbstractJQueryBehaviour extends AbstractBehaviour implements BehaviourListener
 {
-    private static $header = false;
-    
     public function __construct()
     {
-        if(!self::$header)
-        {
-            PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
-            self::$header = true;
-        }
+        PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
+    }
+    
+    public function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
+    {
+        parent::renderHead($component, $headerContainer, $headerResponse);
+        $headerResponse->renderJavaScriptResourceReference(new ResourceReference('ajax.js', AbstractAjaxBehaviour::getIdentifier()));
+    }
+    
+    public function isStateless()
+    {
+        return false;
     }
 }
 

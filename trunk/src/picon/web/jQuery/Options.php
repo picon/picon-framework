@@ -31,25 +31,45 @@ class Options
 {
     private $options = array();
     
-    public function render()
+    public function render(AbstractJQueryBehaviour $behaviour)
     {
         $out = '{';
         $total = count($this->options);
-        foreach($this->options as $index => $option)
+        $index = 0;
+        foreach($this->options as $option)
         {
-            $out .= $option->render();
+            $out .= $option->render($behaviour);
             
             if($index!=$total-1)
             {
                 $out .= ',';
             }
+            $index++;
         }
         $out .= '}';
+        return $out;
+    }
+    
+    public function getOption($name)
+    {
+        if(array_key_exists($name, $this->options))
+        {
+            return $this->options[$name];
+        }
+        else
+        {
+            return null;
+        }
     }
     
     public function add(AbstractOption $option)
     {
-        array_push($this->options, $option);
+        if(array_key_exists($option->getName(), $this->options))
+        {
+            throw new \InvalidArgumentException(sprintf('An option with the name %s exists already.', $option->getName()));
+        }
+        
+        $this->options[$option->getName()] = $option;
     }
 }
 

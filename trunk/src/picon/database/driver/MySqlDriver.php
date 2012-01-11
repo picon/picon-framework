@@ -31,18 +31,17 @@ class MySqlDriver extends AbstractDatabaseDriver
 {
     public function connect($host, $username, $password, $database, $port = null)
     {
-        $connection = @mysql_connect($host, $username, $password);
+        $connection = mysql_connect($host, $username, $password);
         
         if($connection==false)
         {
             throw new SQLException(mysql_error());
         }
-        $selection = @mysql_select_db($database, $connection);
+        $selection = mysql_select_db($database, $connection);
         if($selection==false)
         {
-            throw new SQLException(mysql_error());
+            throw new SQLException(mysql_error($connection));
         }
-                
         return $connection;
     }
     
@@ -58,10 +57,10 @@ class MySqlDriver extends AbstractDatabaseDriver
     
     public function query($sql, $connection)
     {
-        $result = @mysql_query($sql, $connection);
+        $result = mysql_query($sql, $connection);
         if (!$result) 
         {
-            throw new SQLException(mysql_error());
+            throw new SQLException(mysql_error($connection));
         }
         return $result;
     }
@@ -88,6 +87,11 @@ class MySqlDriver extends AbstractDatabaseDriver
     public function countColumns($resultResource)
     {
         return mysql_num_fields($resultResource);
+    }
+    
+    public function getInsertedId($connection)
+    {
+        return mysql_insert_id($connection);
     }
 }
 

@@ -121,6 +121,11 @@ class RequestCycle
     {
         return $this->request;
     }
+    
+    public static function get()
+    {
+        return $GLOBALS['requestCycle'];
+    }
 }
 
 ?>

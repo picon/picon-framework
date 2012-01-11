@@ -36,6 +36,7 @@ class TextArea extends AbstractTextComponent
     
     protected function onComponentTag(ComponentTag $tag)
     {
+        $tag->setTagType(new XmlTagType(XmlTagType::OPEN));
         $this->checkComponentTag($tag, 'textarea');
         parent::onComponentTag($tag);
     }
