@@ -30,6 +30,7 @@ namespace picon;
 class WebResponse implements Response
 {
     private $body;
+    private $headers = array();
     
     public function write($value)
     {
@@ -38,17 +39,27 @@ class WebResponse implements Response
     
     public function flush()
     {
+        foreach($this->headers as $header)
+        {
+            header($header['value'], true, $header['status']);
+        }
         print($this->body);
     }
     
     public function clean()
     {
         $this->body = "";
+        $this->headers = array();
     }
     
     public function getBody()
     {
         return $this->body;
+    }
+    
+    public function setHeader($value, $status = null)
+    {
+        array_push($this->headers, array('value' => $value, 'status' => $status));
     }
 }
 

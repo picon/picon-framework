@@ -787,17 +787,15 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
      * Set the current page
      * @param mixed $page An instance of web page or an Identifier for a web page
      * @todo add page params
-     * @todo add support for statefull pages
-     * @todo some requests should redirect not rerender to keep urls looking nice
      */
     public function setPage($page)
     {
+        Args::notNull($page, 'page');
         if($page instanceof Identifier)
         {
             if($page->of(WebPage::getIdentifier()))
             {
                 $target = new PageRequestTarget($page);
-                $this->getRequestCycle()->addTarget($target);
             }
             else
             {
@@ -806,11 +804,22 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
         }
         else if($page instanceof WebPage)
         {
-            throw new \NotImplementedException();
+            PageMap::get()->addOrUpdate($page);
+            $target = new PageInstanceRequestTarget($page);
         }
         else
         {
-            throw new \InvalidArgumentException("setPage expects an identifier for a web page or an instance of a web page");
+            throw new \InvalidArgumentException(sprintf("setPage expects an identifier for a web page or an instance of a web page and not a %s", get_class($page)));
+        }
+        
+        if($this->getRequestCycle()->containsTarget(ListenerRequestTarget::getIdentifier()))
+        {
+            $url = $this->getRequestCycle()->generateUrl($target);
+            $this->getRequestCycle()->addTarget(new RedirectRequestTarget($url));
+        }
+        else
+        {
+            $this->getRequestCycle()->addTarget($target);
         }
     }
     

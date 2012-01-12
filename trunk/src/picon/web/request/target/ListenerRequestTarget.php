@@ -27,7 +27,7 @@ namespace picon;
  *
  * @author Martin Cassidy
  */
-class ListenerRequestTarget implements RequestTarget
+class ListenerRequestTarget implements RequestTarget, Identifiable
 {
     private $componentPath;
     private $page;
@@ -65,10 +65,31 @@ class ListenerRequestTarget implements RequestTarget
             return;
         }
         
-        $page->beforePageRender();
+        $listener = $this->getListener($page);
         
+        if($listener==null)
+        {
+            $page->beforePageRender();
+            $listener = $this->getListener($page);
+        }
+        
+        if($listener==null || !($listener instanceof Listener))
+        {
+            throw new \RuntimeException(sprintf("Listener component %s was not found", $this->componentPath));
+        }
+        
+        if($GLOBALS['requestCycle']->getRequest()->isAjax()==false)
+        {
+            $url = $GLOBALS['requestCycle']->generateUrl(new PageInstanceRequestTarget($page));
+            PageMap::get()->addOrUpdate($page);
+            $GLOBALS['requestCycle']->addTarget(new RedirectRequestTarget($url));
+        }
+        $listener->onEvent();
+    }
+    
+    private function getListener($page)
+    {
         $listener = null;
-        
         if($this->behaviour==null)
         {
             $listener = $page->get($this->componentPath);
@@ -81,17 +102,7 @@ class ListenerRequestTarget implements RequestTarget
                 $listener = $component->getBehaviourById($this->behaviour);
             }
         }
-        
-        if($listener==null || !($listener instanceof Listener))
-        {
-            throw new \RuntimeException(sprintf("Listener component %s was not found", $this->componentPath));
-        }
-        
-        if($GLOBALS['requestCycle']->getRequest()->isAjax()==false)
-        {
-            $GLOBALS['requestCycle']->addTarget(new PageInstanceRequestTarget($page));
-        }
-        $listener->onEvent();
+        return $listener;
     }
     
     public function getComponentPath()
@@ -107,6 +118,11 @@ class ListenerRequestTarget implements RequestTarget
     public function getBehaviour()
     {
         return $this->behaviour;
+    }
+    
+    public static function getIdentifier()
+    {
+        return Identifier::forName(get_called_class());
     }
 }
 

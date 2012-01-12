@@ -29,15 +29,9 @@ namespace picon;
  */
 class JQueryRenderHeadListener implements ComponentRenderHeadListener
 {
-    private $rendered = false;
-    
     public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
     {
-        if(!$this->rendered)
-        {
-            $response->renderJavaScriptResourceReference(new ResourceReference('jquery.js', AbstractJQueryBehaviour::getIdentifier()));
-            $this->rendered = true;
-        }
+        $response->renderJavaScriptResourceReference(new ResourceReference('jquery.js', AbstractJQueryBehaviour::getIdentifier()));
     }
 }
 

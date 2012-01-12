@@ -23,14 +23,15 @@
 namespace picon;
 
 /**
- * Description of FunctionOption
+ * Description of CallbackFunctionOption
  *
  * @author Martin Cassidy
  */
-class FunctionOption extends AbstractOption
+class CallbackFunctionOption extends AbstractCallableOption
 {
     private $function;
     private $args = array();
+    private $callback;
     
     /**
      *
@@ -38,15 +39,16 @@ class FunctionOption extends AbstractOption
      * @param type $function 
      * @param ... args the names of the arguments the javascript function should take
      */
-    public function __construct($name, $function)
+    public function __construct($name, $callback, $function)
     {
         parent::__construct($name);
         Args::isString($function, 'function');
+        Args::callBackArgs($callback, 1, 'callback');
+        $this->callback = new SerializableClosure($callback);
         $this->function = $function;
         
         $args = func_get_args();
-        
-        for($i=2;$i<count($args);$i++)
+        for($i=3;$i<count($args);$i++)
         {
             array_push($this->args, $args[$i]);
         }
@@ -54,7 +56,13 @@ class FunctionOption extends AbstractOption
     
     public function render(AbstractJQueryBehaviour $behaviour)
     {
-        return sprintf("%s : function(%s) {%s}", $this->getName(), implode(', ', $this->args), $this->function);
+        return sprintf("%s : function(%s) {var callBackURL = '%s'; %s piconAjaxGet(callBackURL, function(){}, function(){});}", $this->getName(), implode(', ', $this->args), $this->getUrl($behaviour), $this->function);
+    }
+    
+    public function call(AjaxRequestTarget $target)
+    {
+        $callable = $this->callback;
+        $callable($target);
     }
 }
 

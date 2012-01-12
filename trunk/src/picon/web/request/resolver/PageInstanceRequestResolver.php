@@ -31,22 +31,36 @@ class PageInstanceRequestResolver implements RequestResolver
 {
     public function matches(Request $request)
     {
+        if($request->getParameter('picon-resource')==null && $request->getParameter('listener')==null && $request->getParameter('pageid')!=null)
+        {
+            return true;
+        }
         return false;
     }
     
     public function resolve(Request $request)
     {
-        throw new \NotImplementedException();
+        $page = PageMap::get()->getPageById($request->getParameter('pageid'));
+        return new PageInstanceRequestTarget($page);
     }
     
     public function generateUrl(RequestTarget $target)
     {
-        throw new \NotImplementedException();
+        if($target instanceof PageInstanceRequestTarget)
+        {
+            $page = $target->getPage();
+            PageMap::get()->addOrUpdate($page);
+            return '?pageid='.$page->getId();
+        }
+        else
+        {
+            throw new \InvalidArgumentException('Expecting PageInstanceRequestTarget');
+        }
     }
     
     public function handles(RequestTarget $target)
     {
-        return false;
+        return $target instanceof PageInstanceRequestTarget;
     }
 }
 

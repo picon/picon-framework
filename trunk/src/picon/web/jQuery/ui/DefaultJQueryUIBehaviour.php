@@ -84,7 +84,7 @@ class DefaultJQueryUIBehaviour extends AbstractJQueryUIBehaviour
         {
             $callbackOption = $this->getOptions()->getOption($property);
             
-            if($callbackOption!=null && $callbackOption instanceof CallbackOption)
+            if($callbackOption!=null && $callbackOption instanceof AbstractCallableOption)
             {
                 $target = new AjaxRequestTarget();
                 $this->getComponent()->getRequestCycle()->addTarget($target);

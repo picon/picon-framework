@@ -23,17 +23,18 @@
 namespace picon;
 
 /**
- * Description of JQueryRenderHeadListener
+ * Description of AbstractCallableOption
  *
  * @author Martin Cassidy
  */
-class JQueryUIRenderHeadListener implements ComponentRenderHeadListener
-{   
-    public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
+abstract class AbstractCallableOption extends AbstractOption
+{
+    protected function getUrl(AbstractJQueryBehaviour $behaviour)
     {
-        $response->renderJavaScriptResourceReference(new ResourceReference('jquery-ui.js', AbstractJQueryUIBehaviour::getIdentifier()));
-        $response->renderCSSResourceReference(new ResourceReference('jquery-ui.css', AbstractJQueryUIBehaviour::getIdentifier()));
+        return sprintf('%s&ajax=ajax&property=%s', $behaviour->getComponent()->generateUrlFor($behaviour), $this->getName());
     }
+    
+    public abstract function call(AjaxRequestTarget $target);
 }
 
 ?>
