@@ -126,6 +126,19 @@ class RequestCycle
     {
         return $GLOBALS['requestCycle'];
     }
+    
+    public function containsTarget(Identifier $contains)
+    {
+        foreach($this->targetStack as $target)
+        {
+            $identifier = Identifier::forObject($target);
+            if($identifier->of($contains))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 ?>

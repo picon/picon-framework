@@ -45,6 +45,8 @@ interface Response
     function clean();
     
     function getBody();
+    
+    function setHeader($value, $status);
 }
 
 ?>

@@ -23,31 +23,38 @@
 namespace picon;
 
 /**
- * Description of CallbackOption
+ * Produces a callback url as the value for the option, the url will resolve
+ * to the supplied callback.
  *
  * @author Martin Cassidy
  */
-class CallbackOption extends AbstractOption
+class CallbackOption extends AbstractCallableOption
 {
     private $callback;
     
     public function __construct($name, $callback)
     {
         parent::__construct($name);
-        Args::callBackArgs($callback, 1, 'callback');
+        Args::callBack($callback, 'callback');
         $this->callback = new SerializableClosure($callback);
     }
     
     public function render(AbstractJQueryBehaviour $behaviour)
     {
-        $url = $behaviour->getComponent()->generateUrlFor($behaviour);
-        return sprintf("%s : function() {piconAjaxGet('%s&ajax=ajax&property=%s', function(){}, function(){});}", $this->getName(), $url, $this->getName());
+        return sprintf("%s : '%s'", $this->getName(), $this->getUrl($behaviour));
     }
     
+    /**
+     * Despite acception the ajax request target, this option is for passing only 
+     * the url, thus the ajax request will be internally within a jQuery plugin
+     * and will bypass the picon ajax javascript. This means the response is
+     * not needed.
+     * @param AjaxRequestTarget $target
+     */
     public function call(AjaxRequestTarget $target)
     {
         $callable = $this->callback;
-        $callable($target);
+        $callable();
     }
 }
 

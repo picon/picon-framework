@@ -23,16 +23,26 @@
 namespace picon;
 
 /**
- * Description of JQueryRenderHeadListener
+ * Description of RedirectRequestTarget
  *
- * @author Martin Cassidy
+ * @author Martin
  */
-class JQueryUIRenderHeadListener implements ComponentRenderHeadListener
-{   
-    public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
+class RedirectRequestTarget implements RequestTarget
+{
+    private $url;
+    
+    public function __construct($url)
     {
-        $response->renderJavaScriptResourceReference(new ResourceReference('jquery-ui.js', AbstractJQueryUIBehaviour::getIdentifier()));
-        $response->renderCSSResourceReference(new ResourceReference('jquery-ui.css', AbstractJQueryUIBehaviour::getIdentifier()));
+        Args::isString($url, 'url');
+        $this->url = $url;
+    }
+    
+    public function respond(Response $response)
+    {
+        ob_clean();
+        $response->clean();
+        $response->setHeader('Location: '.$this->url, 301);
+        $response->flush();
     }
 }
 

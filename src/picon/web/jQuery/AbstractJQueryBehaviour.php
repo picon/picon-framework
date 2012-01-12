@@ -34,6 +34,15 @@ abstract class AbstractJQueryBehaviour extends AbstractBehaviour implements Beha
         PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
     }
     
+    /**
+     * @todo This is a bad way of forcing listeners to re register
+     */
+    public function __wakeup()
+    {
+        parent::__wakeup();
+        PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
+    }
+    
     public function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
     {
         parent::renderHead($component, $headerContainer, $headerResponse);
