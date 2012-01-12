@@ -41,7 +41,6 @@ namespace picon;
  * used later when it is needed and would otherwise be un-obtainable with SplFileObject.
  * 
  * @todo imporove so that  all type hinting usage of classes within a closure don't need to be fully qualified
- * @package utilities
  * @author Martin Cassidy
  */
 class SerializableClosure
@@ -184,9 +183,17 @@ class SerializableClosure
         $used_vars = array();
         foreach ($vars as $var)
         {
-            $var = trim($var, ' $&amp;');
-            $used_vars[$var] = $static_vars[$var];
+            $var = preg_replace("/\\$|\\&/", "", trim($var));
+            if(is_callable($static_vars[$var]))
+            {
+                $used_vars[$var] = new SerializableClosure($static_vars[$var]);
+            }
+            else
+            {
+                $used_vars[$var] = $static_vars[$var];
+            }
         }
+        
         return $used_vars;
     }
 
