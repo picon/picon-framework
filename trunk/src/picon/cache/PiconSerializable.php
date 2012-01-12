@@ -167,6 +167,11 @@ class PiconSerializable
             {
                 $this->reformArray($value);
             }
+            
+            if($value instanceof InjectOnWakeup)
+            {
+                Injector::get()->inject($value);
+            }
         }
 
         $parent = $reflection->getParentClass();
