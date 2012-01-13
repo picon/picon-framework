@@ -35,28 +35,28 @@ abstract class AbstractRequestResolverTest extends AbstractPiconTest
         $this->resolver = $this->newResolver();
     }
     
-    public function testResolves()
-    {
-        
-    }
-    
-    public function testMatches()
+    public function testHomePage()
     {
         //Homepage request
         $testRequest = new TestRequest(TestRequest::ROOT_PATH.'/', array());
         $this->assertEquals($this->matchesHomePage($testRequest), $this->resolver->matches($testRequest));
         
+        if($this->matchesHomePage($testRequest))
+        {
+            //$this->assertTrue($this->resolver->resolve($testRequest) instanceof PageRequestTarget);
+        }
+        
         //Homepage with listener request
         $testRequest = new TestRequest(TestRequest::ROOT_PATH.'/', array('listener' => 'someListenerPath'));
         $this->assertEquals($this->matchesHomePage($testRequest), $this->resolver->matches($testRequest));
-    }
-    
-    public function testGenerateUrl()
-    {
         
+        if($this->matchesHomePage($testRequest))
+        {
+            //$this->assertTrue($this->resolver->resolve($testRequest) instanceof picon\ListenerRequestTarget);
+        }
     }
     
-    public function testHandles()
+    public function testStatelessPage()
     {
         
     }

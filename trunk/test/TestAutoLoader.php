@@ -21,6 +21,7 @@
  * */
 
 require_once(PICON_DIRECTORY."\\core\\AutoLoader.php");
+require_once(PICON_DIRECTORY."\\cache\\CacheManager.php");
 
 /**
  * Extension of autoloader specialised for testings
