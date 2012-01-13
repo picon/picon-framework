@@ -23,13 +23,27 @@
 namespace picon;
 
 /**
- * Description of ArrayOption
+ * An option containing an array
  *
  * @author Martin Cassidy
+ * @package web/jQuery
  */
 class ArrayOption extends AbstractOption
 {
-    //put your code here
+    public function __construct($name)
+    {
+        throw new \NotImplementedException();
+    }
+    
+    public function getName()
+    {
+        throw new \NotImplementedException();
+    }
+    
+    public function render(AbstractJQueryBehaviour $behaviour)
+    {
+        throw new \NotImplementedException();
+    }
 }
 
 ?>

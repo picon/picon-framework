@@ -28,6 +28,7 @@ namespace picon;
  * be added in the future
  * 
  * @author Martin Cassidy
+ * @package web
  */
 class Localizer
 {

@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of DataSourceFactory
+ * Factory for creating data sources from configurations
  * 
  * @author Martin Cassidy
+ * @package database/source
  */
 class DataSourceFactory
 {

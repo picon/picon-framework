@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of ComponentTag
+ * A markup element which has a picon:id and will expect a component associated with it
  * 
  * @author Martin Cassidy
+ * @package web/domain
  */
 class ComponentTag extends MarkupElement
 {

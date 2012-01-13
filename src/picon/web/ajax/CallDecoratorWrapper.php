@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * Marks an object as allowing a call decorator to be set upon it
  * @author Martin Cassidy
+ * @package web/ajax
  */
 interface CallDecoratorWrapper
 {

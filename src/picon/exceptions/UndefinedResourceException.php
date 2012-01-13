@@ -21,9 +21,9 @@
  * */
 
 /**
- * 
- * 
+ * Thrown when a resource that does no exist is called for
  * @author Martin Cassidy
+ * @package exceptions
  */
 class UndefinedResourceException extends RuntimeException
 {

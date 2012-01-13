@@ -21,9 +21,10 @@
  * */
 
 /**
- * Description of InvalidMarkupException
+ * Thrown by the markup loader when the loaded markup is not valid
  * 
  * @author Martin Cassidy
+ * @package exceptions
  */
 class InvalidMarkupException extends RuntimeException
 {

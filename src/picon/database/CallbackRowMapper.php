@@ -23,9 +23,13 @@
 namespace picon;
 
 /**
- * Description of CallbackRowMapper
+ * A row mapper that will run the provided callback for each record in a result set
+ * 
+ * The callback is expected to take a single argument for the row and return a mapped
+ * object
  * 
  * @author Martin Cassidy
+ * @package database
  */
 class CallbackRowMapper implements RowMapper
 {

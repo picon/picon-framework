@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of FunctionOption
+ * Produces an option which is a function
  *
  * @author Martin Cassidy
+ * @package web/jQuery
  */
 class FunctionOption extends AbstractOption
 {

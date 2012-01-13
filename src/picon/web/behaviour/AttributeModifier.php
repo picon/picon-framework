@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of AttributeModifier
+ * Behaviour which modifies the value of an html attribute
  * 
  * @author Martin Cassidy
+ * @package web/behaviour
  */
 class AttributeModifier extends AbstractBehaviour
 {

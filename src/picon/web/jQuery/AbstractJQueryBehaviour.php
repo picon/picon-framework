@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of AbstractJQueryBehaviour
+ * Adds on the jquery js resource through a listener
  *
  * @author Martin Cassidy
+ * @package web/jQuery
  */
 abstract class AbstractJQueryBehaviour extends AbstractBehaviour implements BehaviourListener
 {
@@ -43,6 +44,12 @@ abstract class AbstractJQueryBehaviour extends AbstractBehaviour implements Beha
         PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
     }
     
+    /**
+     * This ajax.js should NOT be rendered all the time
+     * @param Component $component
+     * @param HeaderContainer $headerContainer
+     * @param HeaderResponse $headerResponse 
+     */
     public function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
     {
         parent::renderHead($component, $headerContainer, $headerResponse);

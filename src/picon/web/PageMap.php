@@ -25,7 +25,8 @@ namespace picon;
 /**
  * Holder for the map to all statfull and statless web pages
  *
- * A singleton which will persist from one request to another via the session
+ * A singleton which will persist from one request to another via the session and
+ * the cache manager
  * For this reason it is important that all stored objects are serializable
  *
  * The page map stores a map of all stateless pages by both their direct path

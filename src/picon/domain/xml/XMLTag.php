@@ -26,7 +26,7 @@ namespace picon;
  * Class representing an XML tag
  *
  * @author Martin Cassidy
- * @package domain
+ * @package domain/xml
  */
 class XMLTag extends ComonDomainBase implements XmlElement
 {

@@ -27,6 +27,7 @@ namespace picon;
  * before serialising and sleep cannot be used in all cases as it cannot return
  * parent private properties. The picon serializer will call detach() before serializing.
  * @author Martin Cassidy
+ * @package web
  */
 interface Detachable
 {

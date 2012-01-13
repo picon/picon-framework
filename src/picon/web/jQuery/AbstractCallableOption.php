@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of AbstractCallableOption
+ * An options which contains a callback url. When requested the url will
+ * invoke the callback method
  *
  * @author Martin Cassidy
+ * @package web/jQuery
  */
 abstract class AbstractCallableOption extends AbstractOption
 {

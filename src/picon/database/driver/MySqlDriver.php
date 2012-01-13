@@ -26,6 +26,7 @@ namespace picon;
  * Database driver for mysql
  * 
  * @author Martin Cassidy
+ * @package database/driver
  */
 class MySqlDriver extends AbstractDatabaseDriver
 {

@@ -21,9 +21,9 @@
  * */
 
 /**
- * 
- *
+ * Generic exception for file related errors
  * @author Martin Cassidy
+ * @package exceptions
  */
 class FileException extends RuntimeException
 {

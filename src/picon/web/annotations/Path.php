@@ -24,7 +24,7 @@
  * Annotation to specify an alternative url path for a page
  *
  * @author Martin Cassidy
- * @package annotations
+ * @package web/annotations
  */
 class Path extends Annotation
 {

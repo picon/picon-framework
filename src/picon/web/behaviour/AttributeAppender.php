@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of AttributeAppender
+ * Behaviour which appends the value of a model onto a specified html attribute
+ * using a given seperator
  *
  * @author Martin Cassidy
+ * @package web/behaviour
  */
 class AttributeAppender extends AttributeModifier
 {

@@ -27,6 +27,7 @@ namespace picon;
  * This expectes any classes that are to be scanned to have been declared
  * 
  * @author Martin Cassidy
+ * @package scanner
  */
 class ClassScanner
 {

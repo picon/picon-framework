@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of PiconTag
+ * A component tag which is not a component but instead a special picon
+ * tag for example picon:child
  * 
  * @author Martin Cassidy
+ * @package web/domain
  */
 class PiconTag extends ComponentTag
 {

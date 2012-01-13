@@ -21,8 +21,9 @@
  * */
 
 /**
- *
+ * A type converter for converting an object to a string and back
  * @author Martin Cassidy
+ * @package web/converters
  */
 interface Converter
 {

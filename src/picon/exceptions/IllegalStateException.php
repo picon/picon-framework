@@ -21,13 +21,14 @@
  * */
 
 /**
- * Description of IllegalStateException
+ * A method has been invoked at an invalid time or a change in data has caused
+ * the instance data of an object to reach a non permited value
  *
  * @author Martin Cassidy
+ * @package exceptions
  */
 class IllegalStateException extends RuntimeException
 {
-    //put your code here
 }
 
 ?>

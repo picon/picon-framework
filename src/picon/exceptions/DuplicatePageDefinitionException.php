@@ -20,12 +20,12 @@
  * */
 
 /**
- * Description of DuplicatePageDefinitionException
+ * Thrown by the page map if a page name has been declared more than once
  *
- * @author Martin
+ * @author Martin Cassidy
+ * @package exceptions
  */
 class DuplicatePageDefinitionException extends RuntimeException
 {
-    //put your code here
 }
 ?>

@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of ConversionException
+ * Thrown when a converter fails or a convert for a given type does not
+ * exist
  * 
  * @author Martin Cassidy
+ * @package web/converters
  */
 class ConversionException extends \RuntimeException
 {

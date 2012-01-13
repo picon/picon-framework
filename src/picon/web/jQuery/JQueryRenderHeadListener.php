@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of JQueryRenderHeadListener
+ * Renders the jQuery js resource
  *
  * @author Martin Cassidy
+ * @package web/jQuery
  */
 class JQueryRenderHeadListener implements ComponentRenderHeadListener
 {

@@ -19,11 +19,15 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
+
 namespace picon;
+
 /**
- * Description of ApplicationContextLoadListener
+ * An application context listener used by the picon application to extract
+ * the context once it is loaded
  *
  * @author Martin Cassidy
+ * @package listeners
  */
 class ApplicationContextLoadListener implements ApplicationInitializerContextLoadListener
 {

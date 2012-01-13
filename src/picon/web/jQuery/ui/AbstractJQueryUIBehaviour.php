@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of AbstractJQueryUIBehaviour
+ * Adds on the jQuery ui resources through a render head listener
  * @todo add support fo the jquery ui css
  * @author Martin Cassidy
+ * @package web/jQuery/ui
  */
 abstract class AbstractJQueryUIBehaviour extends AbstractJQueryBehaviour
 {

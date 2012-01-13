@@ -27,6 +27,7 @@ namespace picon;
  * the given expression
  * 
  * @author Martin Cassidy
+ * @package scanner
  */
 class ClassNameRule implements ClassScannerRule
 {

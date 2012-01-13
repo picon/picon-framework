@@ -21,9 +21,10 @@
  * */
 
 /**
- * Description of DuplicateResourceException
+ * Thrown by the context loader if a resource name has been used more than once
  * 
  * @author Martin Cassidy
+ * @package exceptions
  */
 class DuplicateResourceException extends RuntimeException
 {

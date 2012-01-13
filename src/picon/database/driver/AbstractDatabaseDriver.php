@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of AbstractDatabaseDriver
+ * Abstract implementation for databases to share functionality
  * 
  * @author Martin Cassidy
+ * @package database/driver
  */
 abstract class AbstractDatabaseDriver implements DatabaseDriver
 {

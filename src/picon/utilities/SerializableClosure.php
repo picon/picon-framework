@@ -42,6 +42,7 @@ namespace picon;
  * 
  * @todo imporove so that  all type hinting usage of classes within a closure don't need to be fully qualified
  * @author Martin Cassidy
+ * @package utilities
  */
 class SerializableClosure
 {

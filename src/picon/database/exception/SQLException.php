@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of SQLException
+ * Thrown as a result of any SQL errors by a database template
  * 
  * @author Martin Cassidy
+ * @package database/exception
  */
 class SQLException extends \RuntimeException
 {

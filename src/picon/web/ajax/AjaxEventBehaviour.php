@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of AjaxEventBehaviour
+ * Ajax implementation to add an ajax callback to a component when a javascript
+ * event is fired e.g. onclick
  *
  * @author Martin Cassidy
+ * @package web/ajax
  */
 class AjaxEventBehaviour extends AbstractAjaxBehaviour
 {

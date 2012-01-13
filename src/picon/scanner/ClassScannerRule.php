@@ -25,6 +25,7 @@ namespace picon;
 /**
  * Interface for all class scanner rules
  * @author Martin Cassidy
+ * @package scanner
  */
 interface ClassScannerRule
 {

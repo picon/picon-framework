@@ -26,6 +26,7 @@ namespace picon;
  * Database driver for mysqli
  * 
  * @author Martin Cassidy
+ * @package database/driver
  */
 class MySqliDriver extends AbstractDatabaseDriver
 {

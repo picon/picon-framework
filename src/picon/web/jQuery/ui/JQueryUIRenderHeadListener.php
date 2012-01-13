@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of JQueryRenderHeadListener
+ * Render head listener for render jquery ui js and css
  *
  * @author Martin Cassidy
+ * @package web/jQuery/ui
  */
 class JQueryUIRenderHeadListener implements ComponentRenderHeadListener
 {   

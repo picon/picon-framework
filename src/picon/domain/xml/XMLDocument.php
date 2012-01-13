@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of XMLDocument
+ * Domain object for repesenting an xml document
  * 
  * @author Martin Cassidy
+ * @package domain/xml
  */
 class XMLDocument extends ComonDomainBase
 {

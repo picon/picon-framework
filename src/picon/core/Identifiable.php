@@ -23,7 +23,7 @@
 namespace picon;
 
 /**
- *
+ * Marks a class as identifiable. This is a way around PHP not having a class class
  * @author Martin Cassidy
  */
 interface Identifiable

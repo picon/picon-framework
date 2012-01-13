@@ -23,8 +23,10 @@
 namespace picon;
 
 /**
- *
+ * A component behavour to modify its default functionality at several steps of its
+ * lifecycle
  * @author Martin Cassidy
+ * @package web/behaviour
  */
 interface Behaviour
 {
