@@ -26,7 +26,7 @@ namespace picon;
  * Enum for the 3 type of tag state: open, close, openclose
  * 
  * @author Martin Cassidy
- * @package domain
+ * @package domain/xml
  */
 class XmlTagType extends Enum
 {

@@ -21,13 +21,13 @@
  * */
 
 /**
- * Description of NotImplementedException
+ * Thrown when code for a given operation has not been written or is incomplete.
  *
  * @author Martin
+ * @package exceptions
  */
 class NotImplementedException extends RuntimeException
 {
-    //put your code here
 }
 
 ?>

@@ -24,6 +24,8 @@ namespace picon;
 
 /**
  * Auto loads classes via the PHP autoload handle
+ * Works through the cache manager to prevent directory scanning for the 
+ * same thing time and time again
  * 
  * @author Martin Cassidy
  * @package core

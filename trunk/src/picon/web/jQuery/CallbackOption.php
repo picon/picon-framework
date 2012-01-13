@@ -27,6 +27,7 @@ namespace picon;
  * to the supplied callback.
  *
  * @author Martin Cassidy
+ * @package web/jQuery
  */
 class CallbackOption extends AbstractCallableOption
 {

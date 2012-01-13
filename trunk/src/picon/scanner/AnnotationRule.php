@@ -25,6 +25,7 @@ namespace picon;
 /**
  * Class scanner rule to match classes with a given annotation
  * @author Martin Cassidy
+ * @package scanner
  */
 class AnnotationRule implements ClassScannerRule
 {

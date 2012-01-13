@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of MarkupElement
+ * An xml tag that is a markup element
  * 
  * @author Martin Cassidy
+ * @package web/domain
  */
 class MarkupElement extends XMLTag
 {

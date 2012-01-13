@@ -27,6 +27,7 @@ namespace picon;
  * identifier or one of its super classes
  *
  * @author Martin Cassidy
+ * @package web
  */
 class ResourceReference
 {

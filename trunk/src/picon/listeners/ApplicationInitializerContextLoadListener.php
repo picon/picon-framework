@@ -19,10 +19,13 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
+
 namespace picon;
+
 /**
- *
+ * Listener to provide a callback when the application context has loaded
  * @author Martin Cassidy
+ * @package listeners
  */
 interface ApplicationInitializerContextLoadListener
 {

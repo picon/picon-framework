@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * All database operations that are expected
  * @author Martin Cassidy
+ * @package database/template
  */
 interface DataBaseOperations
 {

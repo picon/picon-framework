@@ -27,6 +27,7 @@ namespace picon;
  * specified class name
  * 
  * @author Martin Cassidy
+ * @package scanner
  */
 class SubClassRule implements ClassScannerRule
 {

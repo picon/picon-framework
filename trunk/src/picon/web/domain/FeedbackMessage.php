@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of FeedbackMessage
+ * A feedback message for use by the feedback message model and feedback panel
  * 
  * @author Martin Cassidy
+ * @package web/domain
  */
 class FeedbackMessage extends ComonDomainBase
 {

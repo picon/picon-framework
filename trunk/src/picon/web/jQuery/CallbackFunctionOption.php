@@ -23,9 +23,20 @@
 namespace picon;
 
 /**
- * Description of CallbackFunctionOption
+ * Allows a user specified function to be rendered but wraps with a callback in the following way
+ * 
+ * [optionName] : function([args...])
+ * {
+ *      var callBackURL = '[url]';
+ *      [userFucntionCode]
+ *      piconAjaxGet(callBackURL, function(){}, function(){});
+ * }
  *
+ * This allows the callback url to be altered by user defined code with function arguments before
+ * it is sent
+ * 
  * @author Martin Cassidy
+ * @package web/jQuery
  */
 class CallbackFunctionOption extends AbstractCallableOption
 {

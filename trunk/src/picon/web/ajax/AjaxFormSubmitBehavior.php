@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of AjaxFormSubmitBehavior
+ * Ajax implmentation that will submit a form on a javascript event
+ * By default, this will be the parent form of the component that this is added to
  *
  * @author Martin Cassidy
+ * @package web/ajax
  */
 class AjaxFormSubmitBehavior extends AjaxEventBehaviour implements FormSubmitter
 {

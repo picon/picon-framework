@@ -25,6 +25,7 @@ namespace picon;
  * Class scanner rule in which a class must be declared in the given namespace
  *
  * @author Martin Cassidy
+ * @package scanner
  */
 class ClassNamespaceRule implements ClassScannerRule
 {

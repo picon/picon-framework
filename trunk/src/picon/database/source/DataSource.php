@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of DataSource
+ * Holder for all objects required to access a databse, config inforamtion
+ * the connection resource and the drive object
  * 
  * @author Martin Cassidy
+ * @package database/source
  */
 class DataSource
 {

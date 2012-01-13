@@ -26,6 +26,7 @@ namespace picon;
  * Generic helper class for validating method arguments
  *
  * @author Martin Cassidy
+ * @package utilities
  */
 class Args
 {
@@ -82,6 +83,11 @@ class Args
         }
     }
     
+    /**
+     * Throw an exception if the object is not an array
+     * @param type $object
+     * @param type $argName 
+     */
     public static function isArray($object, $argName)
     {
         if(!is_array($object))
@@ -90,6 +96,11 @@ class Args
         }
     }
     
+    /**
+     * Throw an exception if the object is not a string
+     * @param type $object
+     * @param type $argName 
+     */
     public static function isString($object, $argName)
     {
         if(!is_string($object))
@@ -98,6 +109,11 @@ class Args
         }
     }
     
+    /**
+     * Throw an exception if the object is not a boolean
+     * @param type $object
+     * @param type $argName 
+     */
     public static function isBoolean($object, $argName)
     {
         if(!is_bool($object))
@@ -106,12 +122,21 @@ class Args
         }
     }
     
+    /**
+     * Helper for finding the calling class so that a better error message can be given
+     * @return type 
+     */
     private static function getCallingMethod()
     {
         $trace = debug_backtrace();
         return $trace[2]['class'].$trace[2]['type'].$trace[2]['function'].'()';
     }
     
+    /**
+     * Throw an exception if the object is null
+     * @param type $object
+     * @param type $argName 
+     */
     public static function notNull($object, $argName)
     {
         if($object==null)
@@ -120,6 +145,12 @@ class Args
         }
     }
     
+    /**
+     * Throw an exception if the object identifier is not a subclass or implementer of expected
+     * @param Identifier $object
+     * @param Identifier $expected
+     * @param type $argName 
+     */
     public static function identifierOf(Identifier $object, Identifier $expected, $argName)
     {
         if(!$object->of($expected))

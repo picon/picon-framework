@@ -25,7 +25,8 @@ namespace picon;
 /**
  * Represents the identity of a class, the class name and the namespace
  *
- * @author Martin
+ * @author Martin Cassidy
+ * @package domain
  */
 class Identifier extends ComonDomainBase
 {

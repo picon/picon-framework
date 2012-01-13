@@ -26,6 +26,7 @@ namespace picon;
  * A set of jQuery options for use with a jQuery behaviour
  *
  * @author Martin Cassidy
+ * @package web/jQuery
  */
 class Options
 {

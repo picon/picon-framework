@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of PropertyOption
+ * A simple property option for a string
  *
  * @author Martin Cassidy
+ * @package web/jQuery
+ * @todo add type analisis to detected numbers and remove the quote marks
  */
 class PropertyOption extends AbstractOption
 {

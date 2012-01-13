@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of ApplicationInitializerConfigLoadListenerContainer
+ * Collection of application config listeners that can be invoked as a single listener
  *
  * @author Martin Cassidy
+ * @package listeners
  */
 class ApplicationInitializerConfigLoadListenerCollection extends ListenerCollection implements ApplicationInitializerConfigLoadListener
 {

@@ -23,8 +23,10 @@
 namespace picon;
 
 /**
- *
+ * A call decorator. This allows additional javascript to be added for ajax
+ * success, failure and also for before request
  * @author Martin Cassidy
+ * @package web/ajax
  */
 interface AjaxCallDecorator
 {

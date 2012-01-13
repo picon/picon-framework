@@ -23,9 +23,12 @@
 namespace picon;
 
 /**
- * Description of AjaxLink
+ * A link which will not direct to a page but submit an ajax request.
+ * The callback method will be invoked when this happens to allow
+ * a response to be created
  *
  * @author Martin Cassidy
+ * @package web/ajax/markup/html
  */
 class AjaxLink extends AbstractLink implements CallDecoratorWrapper
 {

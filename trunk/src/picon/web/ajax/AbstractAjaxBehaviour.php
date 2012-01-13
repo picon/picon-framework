@@ -23,9 +23,12 @@
 namespace picon;
 
 /**
- * Description of AbstractAjaxBehaviour
+ * Super class for ajax behavours
+ * Adds in the ajax resources that are needed and provideds methods for generating
+ * callback urls
  *
  * @author Martin Cassidy
+ * @package web/ajax
  */
 abstract class AbstractAjaxBehaviour extends AbstractBehaviour implements BehaviourListener
 {

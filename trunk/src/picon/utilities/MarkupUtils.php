@@ -23,9 +23,12 @@
 namespace picon;
 
 /**
- * Description of MarkupUtils
+ * Helper class for finding specific tags in markup
  * 
+ * @todo refactor to remove duplicate code
+ * @todo alter to return an array if multiple matching tags exist
  * @author Martin Cassidy
+ * @package utilities
  */
 class MarkupUtils
 {

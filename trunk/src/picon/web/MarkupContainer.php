@@ -23,7 +23,8 @@
 namespace picon;
 
 /**
- * Description of MarkupComponent
+ * A component which may contain child components, allowing for a composition 
+ * hierarchy to be built
  * 
  * @author Martin Cassidy
  * @package web

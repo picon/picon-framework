@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of AbstractOption
+ * A jquery option
  *
  * @author Martin Cassidy
+ * @package web/jQuery
  */
 abstract class AbstractOption
 {

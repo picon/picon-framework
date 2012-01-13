@@ -30,6 +30,7 @@ namespace picon;
  * by the class using the driver
  * 
  * @author Martin Cassidy
+ * @package database/driver
  */
 interface DatabaseDriver
 {

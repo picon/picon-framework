@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of TextElement
+ * A text element or character data of an xml document
  * 
  * @author Martin Cassidy
+ * @package domain/xml
  */
 class TextElement extends ComonDomainBase implements XmlElement
 {

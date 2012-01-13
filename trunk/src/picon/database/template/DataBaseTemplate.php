@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of DataBaseTemplate
+ * Default implementation of DataBaseOperations
+ * Provideds access to functionality through the source
  * 
  * @author Martin Cassidy
+ * @package database/template
  */
 class DataBaseTemplate implements DataBaseOperations
 {

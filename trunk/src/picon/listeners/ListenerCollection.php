@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Represents a collection of listeners
+ * Represents a collection of listeners that are treated as one listener
  *
  * @author Martin Cassidy Cassidy
+ * @package listeners
  */
 abstract class ListenerCollection
 {

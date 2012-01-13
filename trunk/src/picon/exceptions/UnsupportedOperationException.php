@@ -21,9 +21,9 @@
  * */
 
 /**
- * 
- *
+ * Thrown when an operation is not avaialble for the current state of an object
  * @author Martin Cassidy
+ * @package exceptions
  */
 class UnsupportedOperationException extends RuntimeException
 {

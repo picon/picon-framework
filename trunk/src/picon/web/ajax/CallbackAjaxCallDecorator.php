@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of CallbackAjaxCallDecorator
+ * An ajax decorator that invokeds a callback function for each of the decorator
+ * options.
  *
  * @author Martin Cassidy
+ * @package web/ajax
  */
 class CallbackAjaxCallDecorator extends PiconSerializable implements AjaxCallDecorator
 {

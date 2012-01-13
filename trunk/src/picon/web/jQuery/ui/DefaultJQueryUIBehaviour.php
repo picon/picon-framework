@@ -23,9 +23,14 @@
 namespace picon;
 
 /**
- * Description of DefaultJQueryUIBehaviour
+ * Default jQuery ui implementation applying a given plugin to the bound
+ * component and specifing options
  *
+ * @todo There should be a seperate implementation of this for each jQuery ui
+ * plguin
+ * @todo The options should be up in jQueryBehaviour not here
  * @author Martin Cassidy
+ * @package web/jQuery/ui
  */
 class DefaultJQueryUIBehaviour extends AbstractJQueryUIBehaviour
 {

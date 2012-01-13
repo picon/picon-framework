@@ -23,12 +23,13 @@
 namespace picon;
 
 /**
- *
+ * Taging interface for an element that makes up an xml document
  * @author Martin Cassidy
+ * @package domain/xml
  */
 interface XmlElement
 {
-    //put your code here
+    //tagging interface
 }
 
 ?>

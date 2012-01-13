@@ -23,9 +23,12 @@
 namespace picon;
 
 /**
- * Description of DaoSupport
+ * Super class for any user defined DAO
+ * Provides easy access to the database template and allows the DAO to
+ * specify which data source to use by implementing init()
  * 
  * @author Martin Cassidy
+ * @package database/support
  */
 abstract class DaoSupport implements InitializingBean
 {

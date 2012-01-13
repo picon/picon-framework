@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * Row mapper for mapping SQL rows in result sets to objects
  * @author Martin Cassidy
+ * @package database
  */
 interface RowMapper
 {

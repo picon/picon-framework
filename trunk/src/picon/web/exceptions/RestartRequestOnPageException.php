@@ -29,6 +29,7 @@ namespace picon;
  * the given identifier
  * 
  * @author Martin Cassidy
+ * @package web/exceptions
  */
 class RestartRequestOnPageException extends \RuntimeException
 {

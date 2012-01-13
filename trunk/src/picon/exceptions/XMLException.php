@@ -22,9 +22,10 @@
 
 
 /**
- * Description of XMLException
+ * Generic exception for xml
  *
  * @author Martin Cassidy
+ * @package exceptions
  */
 class XMLException extends RuntimeException
 {

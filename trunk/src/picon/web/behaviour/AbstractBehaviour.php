@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of AbstractBehaviour
+ * Abstract behaviour provideds default implementation for each behaviour method
+ * whilst also providing the functionality needed to obtain information about a behaviour
  * 
  * @author Martin Cassidy
+ * @package web/behaviour
  */
 abstract class AbstractBehaviour extends PiconSerializable implements Behaviour, Identifiable
 {

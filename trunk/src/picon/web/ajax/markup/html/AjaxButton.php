@@ -23,15 +23,26 @@
 namespace picon;
 
 /**
- * Description of AjaxButton
+ * A form button which, when clicked will submit the form by ajax
+ * 
+ * One of the calback methods (onSubmit or onError) will be invoked to
+ * allow for a response to be created in either of the posible circumstances
  *
- * @author Martin
+ * @author Martin Cassidy
+ * @package web/ajax/markup/html
  */
 class AjaxButton extends Button implements CallDecoratorWrapper
 {
     private $form;
     private $behaviour;
     
+    /**
+     *
+     * @param type $id
+     * @param type $onSubmit
+     * @param type $onError
+     * @param Form $form 
+     */
     public function __construct($id, $onSubmit = null, $onError = null, $form = null)
     {
         parent::__construct($id);
