@@ -20,33 +20,24 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\AbstractInjectedDataProvider;
-use picon\BasicModel;
+namespace picon;
+
 /**
- * Description of TestDataProvider
+ * Options for the javascript new window function
  * 
  * @author Martin Cassidy
  */
-class TestDataProvider extends AbstractInjectedDataProvider
+class PopupSettings extends ComonDomainBase
 {
-    /**
-     * @Resource
-     */
-    private $sampleDao;
+    private $name;
+    private $height;
+    private $width;
     
-    public function getRecords($start, $count)
+    public function __construct($name, $width, $height)
     {
-        return $this->sampleDao->getTestData($start, $count);
-    }
-    
-    public function getSize()
-    {
-        return $this->sampleDao->getRows();
-    }
-    
-    public function getModel($object)
-    {
-        return new BasicModel($object);
+        $this->name = $name;
+        $this->height = $height;
+        $this->width = $width;
     }
 }
 

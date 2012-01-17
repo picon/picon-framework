@@ -27,7 +27,7 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class NavigationLink extends AbstractLink
+class NavigationLink extends Link
 {
     private $pageable;
     private $page;

@@ -20,19 +20,18 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use \picon\Label, \picon\BasicModel;
-
 /**
- * Description of ExamplePanel
+ * Description of TableEntryDomain
  * 
  * @author Martin Cassidy
  */
-class ExamplePanel extends AbstractExamplePanel
+class TableEntryDomain extends \picon\ComonDomainBase
 {
-    public function __construct($id)
+    private $value;
+    
+    public function __construct($value)
     {
-        parent::__construct($id);
-        $this->add(new Label('text', new BasicModel('Some text')));
+        $this->value = $value;
     }
 }
 

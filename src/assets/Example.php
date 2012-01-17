@@ -20,29 +20,22 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\DefaultDataTable;
-use picon\PropertyColumn;
-use picon\BasicModel;
-use picon\Label;
+use picon\ComonDomainBase;
 
 /**
- * Simple test page for database queries
+ * Description of Example
  * 
  * @author Martin Cassidy
  */
-class DatabaseTestPage extends AbstractPage
+class Example extends ComonDomainBase
 {
-    public function __construct()
+    private $name;
+    private $page;
+    
+    public function __construct($name, \picon\Identifier $page)
     {
-        parent::__construct();
-        
-        $columns = array();
-        
-        $columns[] = new PropertyColumn('Id', 'id');
-        $columns[] = new PropertyColumn('Some Text', 'text');
-        $columns[] = new PropertyColumn('Time', 'timestamp');
-        
-        $this->add(new DefaultDataTable('table', new TestDataProvider(), $columns));
+        $this->name = $name;
+        $this->page = $page;
     }
 }
 

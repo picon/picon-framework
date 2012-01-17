@@ -20,47 +20,22 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\AjaxLink;
-use picon\MarkupContainer;
-use picon\PropertyModel;
-use picon\Label;
-use picon\CallbackAjaxCallDecorator;
-
 /**
- * Description of AjaxPage
- *
+ * Description of PanelPage
+ * 
  * @author Martin Cassidy
  */
-class AjaxPage extends AbstractPage
+class PanelPage extends AbstractPage
 {
-    private $value = 'starting value';
-    
     public function __construct()
     {
         parent::__construct();
-        
-        $update = new Label('toUpdate', new PropertyModel($this, 'value'));
-        $update->setOutputMarkupId(true);
-        $this->add($update);
-        $self = $this;
-        
-        $link = new AjaxLink('ajaxLink', function($target) use ($self, $update)
-        {
-            $self->value = 'ajax value';
-            $target->add($update);
-        });
-        
-        $this->add($link);
+        $this->add(new SamplePanel('panel'));
     }
     
-    public function __get($name)
+    public function getInvolvedFiles()
     {
-        return $this->$name;
-    }
-    
-    public function __set($name, $value)
-    {
-        $this->$name = $value;
+        return array('assets/layout/PanelPage.php', 'assets/layout/PanelPage.html', 'assets/layout/SamplePanel.php', 'assets/layout/SamplePanel.html');
     }
 }
 

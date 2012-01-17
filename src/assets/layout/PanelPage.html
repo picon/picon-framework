@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:picon="http://picon.webquub.com/dtds/picon-xhtml.dtd"  
+      xml:lang="en"  
+      lang="en"> 
+    <head>
+    </head>
+    <body>
+        <picon:extend>
+        <h2>Panels</h2>
+        <p>A panel allows for a block of mark-up to be encapsulated into reusable components. A panel consists of
+        an HTML file and a class containing the code to drive it. Panel can be rendered on any HTML tag.</p>
+        <br />
+        <p>The panel mark-up: </p>
+        <code>
+            &lt;picon:panel&gt;<br />
+            &lt;h2&gt;panel heading&lt;/h2&gt;<br />
+            &lt;/picon:panel&gt;
+        </code>
+        <p>And in the composing class: </p>
+        <code>
+            &lt;h1&gt;heading&lt;/h1&gt;<br />
+            &lt;div picon:id="myPanel"&gt;<br />
+            Panel content will appear here<br />
+            &lt;/div&gt;<br />
+            &lt;p&gt;other mark-up...&lt;/p&gt;
+        </code>
+        <p>Would be rendered as: </p>
+        <code>
+            &lt;h1&gt;heading&lt;/h1&gt;<br />
+            &lt;div picon:id="myPanel"&gt;<br />
+            &lt;h2&gt;panel heading&lt;/h2&gt;<br />
+            &lt;/div&gt;<br />
+            &lt;p&gt;other mark-up...&lt;/p&gt;
+        </code>
+        
+        <br /><br />
+        Sample panel
+        <div picon:id="panel"></div>
+        </picon:extend>
+    </body>
+</html>

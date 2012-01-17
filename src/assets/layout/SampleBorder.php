@@ -20,36 +20,19 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+use picon\Border;
 
 /**
- * Panel to display feedback messages
+ * Description of SampleBorder
  * 
- * @todo add message level as a css class attribute
- * @todo add support for feedback message filtering
  * @author Martin Cassidy
  */
-class FeedbackPanel extends Panel
+class SampleBorder extends Border
 {
-    private $messages;
-    
     public function __construct($id)
     {
         parent::__construct($id);
-        
-        $this->messages = new ListView('messages', function($item)
-        {
-            $item->add(new \picon\Label('message', new \picon\BasicModel($item->getModelObject()->message)));
-        }, FeedbackModel::get());
-        
-        
-        $this->add($this->messages);
-    }
-    
-    public function beforePageRender()
-    {
-        $this->messages->setModel(FeedbackModel::get());
-        parent::beforePageRender();
+        $this->add($this->getBorderBody());
     }
 }
 

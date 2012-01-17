@@ -4,11 +4,22 @@
       xml:lang="en"  
       lang="en"> 
     <head>
-        <title>Picon Framework</title>
+        <title>Picon Framework: Sample Application</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <h1>Picon Framework</h1>
-        <picon:child />
+        <div id="global">
+            <div id="header">
+                <h1>Picon Framework</h1>
+                <ul id="mainNav">
+                    <li><a picon:id="home">Home</a></li>
+                    <li><a href="http://code.google.com/p/picon-framework/">Picon Framework Project</a></li>
+                    <li><a picon:id="source">View Source</a></li>
+                </ul>
+            </div>
+            <div id="content"><picon:child /></div>
+            <div id="push"></div>
+        </div>
+        <div id="footer"><a href="http://code.google.com/p/picon-framework/">Picon Framework</a> Version 0.1alpha<br/>The is a prototype and should not be used in production.</div>
     </body>
 </html>

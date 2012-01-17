@@ -60,9 +60,6 @@ class FormPage extends AbstractPage
         $this->setModel(new CompoundPropertyModel($this, 'domain'));
         $feedback = new FeedbackPanel('feedback');
         $this->add($feedback);
-        $feedback->setOutputMarkupId(true);
-        
-        $this->info('Sample feedback message. These do not persist from request to request');
         
         $form = new Form('form');
         $this->add($form);
@@ -86,24 +83,10 @@ class FormPage extends AbstractPage
         }));
         
         $submitedInfo = new MarkupContainer('submitedInfo');
-        $submitedInfo->setOutputMarkupId(true);
         $this->add($submitedInfo);
-        $form->add(new AjaxButton('ajaxButton', function($target) use ($feedback, $submitedInfo)
-        {
-            $feedback->success('Ajax submit, input ok');
-            $target->add($feedback);
-            $target->add($submitedInfo);
-        }, function($target) use ($feedback)
-        {
-            $feedback->error('Ajax submit, invalid form');
-            $target->add($feedback);
-        }));
         
         $choices = array('default', 'option', 'other option', 'something else');
-        $text = new TextField('textBox');
-        $text->setRequired(true);
-        $text->add(new EmailAddressValidator());
-        $form->add($text);
+        $form->add(new TextField('textBox'));
         $form->add(new TextArea('textArea'));
         $form->add(new DropDown('select', $choices));
         
@@ -124,8 +107,6 @@ class FormPage extends AbstractPage
         $form->add(new CheckChoice('cchoice', $choices));
         
         $form->add(new ListMultiple('mchoice', $choices));
-        
-        
         
         $submitedInfo->add(new Label('textBox'));
         $submitedInfo->add(new Label('textArea'));
@@ -151,11 +132,6 @@ class FormPage extends AbstractPage
         }));
     }
     
-    public function isPageStateless()
-    {
-        return false;
-    }
-    
     public function __get($name)
     {
         return $this->$name;
@@ -164,6 +140,11 @@ class FormPage extends AbstractPage
     public function __set($name, $value)
     {
         $this->$name = $value;
+    }
+    
+    public function getInvolvedFiles()
+    {
+        return array('assets/forms/FormPage.php', 'assets/forms/FormPage.html');
     }
 }
 

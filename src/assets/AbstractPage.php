@@ -20,19 +20,43 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use \picon\WebPage;
+use picon\WebPage;
 use picon\HeaderResponse;
+use picon\Link;
 
 /**
  * Description of AbstractPage
  * 
  * @author Martin Cassidy
  */
-class AbstractPage extends WebPage
+abstract class AbstractPage extends WebPage
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $self = $this;
+        $this->add(new Link('home', function() use ($self)
+        {
+            $self->setPage(HomePage::getIdentifier());
+        }));
+        
+        $files = array('index.php', 'assets/AbstractPage.php', 'assets/AbstractPage.html', 'assets/SamplePageClassAuthorisationStrategy.php');
+        $files = array_merge($files, $this->getInvolvedFiles());
+        
+        $sourceLink = new Link('source', function() use ($self, $files)
+        {
+            $self->setPage(new SourcePage($files));
+        });
+        $sourceLink->setPopupSettings(new \picon\PopupSettings('Source Code', '900px', '600px'));
+        $this->add($sourceLink);
+    }
+    
+    
+    public abstract function getInvolvedFiles();
+    
     public function renderHead(HeaderResponse $headerResponse)
     {
-        $headerResponse->renderCSS('css/sample.css');
+        $headerResponse->renderCSS('css/main.css');
     }
 }
 

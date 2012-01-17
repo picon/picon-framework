@@ -20,19 +20,16 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\Border;
-
 /**
- * Description of SampleBorder
+ * Description of MarkupInheritancePage
  * 
  * @author Martin Cassidy
  */
-class SampleBorder extends Border
+class MarkupInheritancePage extends AbstractPage
 {
-    public function __construct($id, Model $model = null)
+    public function getInvolvedFiles()
     {
-        parent::__construct($id, $model);
-        $this->add($this->getBorderBody());
+        return array('assets/layout/MarkupInheritancePage.php', 'assets/layout/MarkupInheritancePage.html');
     }
 }
 

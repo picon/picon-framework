@@ -25,7 +25,7 @@
  * 
  * @author Martin Cassidy
  */
-class AbstractAuthorisedPage extends AbstractPage
+abstract class AbstractAuthorisedPage extends AbstractPage
 {
     
 }

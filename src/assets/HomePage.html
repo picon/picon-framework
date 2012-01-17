@@ -7,38 +7,16 @@
     </head>
     <body>
         <picon:extend>
-        <h2>Testing Page</h2>
-        <h3>Welcome to the Picon Framework test page.</h3>
-        <p>The HTML that is rendered in your browser has been deconstructed by Picon
-            and put back together again allowing markup to be manipulated programmatically
-            in an object orientated way. This is a test page only. Picon is under heavy development
-            and should not be used in production.
-        </p>
-        <div picon:id="one">
-            <div picon:id="two">
-                <a picon:id="link">Go to page 2</a>
-                <br />
-                <a picon:id="formLink">Form test page</a>
-                <br />
-                <a picon:id="dbLink">Database test page</a>
-                <br />
-                <a picon:id="authPage">Authorisation Test Page</a>
-                <br />
-                <a picon:id="ajaxPage">Ajax Test Page</a>
-            </div>
-        </div>
-        <h3>Example List</h3>
-        <ul>
-            <li picon:id="fruit">
-                <span picon:id="name" />
-            </li>
-        </ul>
-        <div picon:id="samplePanel">
-            The content here is replace with the panel
-        </div>
-        
-        <div picon:id="sampleBorder">
-             Origional content
+        <h2>Sample Application</h2>
+        <p>This sample application demonstrates the functionality and usage of the Picon Framework. </p>
+        <br />
+        <p>The Picon Framework enables the direct programmatic manipulation of mark-up by matching the structure of the code to the structure of the mark-up. Form components, links, labels, tables and lists are all components – a self contained object. These components are programmatically created and placed into a compositional hierarchy which matches the structure of the mark-up. Mark-up is parsed into a similar hierarchy of objects and merged with the defined component hierarchy to produce a dynamic web page. This direct manipulate free mark-up from scriptlets entirely. Every web page is a class with an associated mark-up file. </p>
+        <br />
+        <p>The samples below demonstrate the features of the framework. Use <b>View Source</b> on each page to see how it works.</p>
+        <br />
+        <div picon:id="examples">
+            <h3 picon:id="title"></h3>
+            <ul><li picon:id="list"><a picon:id="link"><span picon:id="exampleName"></span></a></li></ul>
         </div>
         </picon:extend>
     </body>
