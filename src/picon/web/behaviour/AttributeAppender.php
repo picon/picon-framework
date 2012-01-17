@@ -23,11 +23,9 @@
 namespace picon;
 
 /**
- * Behaviour which appends the value of a model onto a specified html attribute
- * using a given seperator
+ * Description of AttributeAppender
  *
  * @author Martin Cassidy
- * @package web/behaviour
  */
 class AttributeAppender extends AttributeModifier
 {
@@ -40,9 +38,9 @@ class AttributeAppender extends AttributeModifier
         $this->seperator = $seperator;
     }
     
-    public function newValue($current)
+    protected function newValue($current)
     {
-        return $current.$this->seperator.$this->value->getModelObject();
+        return $current.$this->seperator.$this->getValue()->getModelObject();
     }
 }
 

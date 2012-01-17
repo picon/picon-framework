@@ -25,8 +25,7 @@ namespace picon;
 /**
  * Holder for the map to all statfull and statless web pages
  *
- * A singleton which will persist from one request to another via the session and
- * the cache manager
+ * A singleton which will persist from one request to another via the session
  * For this reason it is important that all stored objects are serializable
  *
  * The page map stores a map of all stateless pages by both their direct path
@@ -119,8 +118,9 @@ class PageMap
     
     public static function getNextPageId()
     {
-        self::get()->pageId++;
-        return 'page'.self::get()->pageId;
+        $self = self::get();
+        $self->pageId++;
+        return 'page'.$self->pageId;
     }
     
     /**
@@ -152,7 +152,7 @@ class PageMap
         {
             if (isset($_SESSION['page_map']))
             {
-                self::$self = $_SESSION['page_map']; 
+                self::$self = unserialize($_SESSION['page_map']); 
             }
             else
             {
@@ -184,7 +184,7 @@ class PageMap
         {
             CacheManager::saveResource($pageid, $page, CacheManager::SESSION_SCOPE);
         }
-        $_SESSION['page_map'] = $this;
+        $_SESSION['page_map'] = serialize($this);
     }
 }
 

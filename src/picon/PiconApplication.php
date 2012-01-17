@@ -82,7 +82,7 @@ abstract class PiconApplication
         
         $this->initialiser->initialise();
         
-        session_start();
+        
         ob_start();
     }
     
@@ -103,6 +103,7 @@ abstract class PiconApplication
         $this->addContextLoaderListener(new ApplicationContextLoadListener(function($createdContext) use (&$context)  
         {
             $context = $createdContext;
+            session_start();
         }));
         
         $this->componentInstantiationListeners = new ComponentInstantiationListenerCollection();

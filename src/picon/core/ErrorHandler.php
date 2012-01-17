@@ -45,7 +45,7 @@ class ErrorHandler
      */
     public function onError($errno, $errstr, $errfile, $errline)
     {
-        if($errno==E_USER_ERROR||$error==E_ERROR)
+        if($errno==E_USER_ERROR||$errno==E_ERROR)
         {
             throw new \ErrorException($errstr, 0, $errno, $errfile, $errline);
         }
