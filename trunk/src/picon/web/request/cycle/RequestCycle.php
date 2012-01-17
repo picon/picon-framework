@@ -83,6 +83,8 @@ class RequestCycle
             }
             catch(\Exception $ex)
             {
+                $iterator->rewind();
+                $this->targetStack->exchangeArray(array());
                 $this->addTarget(new ExceptionPageRequestTarget($ex));
             }
             $iterator->next();

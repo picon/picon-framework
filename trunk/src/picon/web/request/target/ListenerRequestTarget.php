@@ -71,8 +71,7 @@ class ListenerRequestTarget implements RequestTarget, Identifiable
         {
             $page->beforePageRender();
             $listener = $this->getListener($page);
-        }
-        
+        } 
         if($listener==null || !($listener instanceof Listener))
         {
             throw new \RuntimeException(sprintf("Listener component %s was not found", $this->componentPath));

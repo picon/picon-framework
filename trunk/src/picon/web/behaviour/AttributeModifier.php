@@ -23,10 +23,9 @@
 namespace picon;
 
 /**
- * Behaviour which modifies the value of an html attribute
+ * Description of AttributeModifier
  * 
  * @author Martin Cassidy
- * @package web/behaviour
  */
 class AttributeModifier extends AbstractBehaviour
 {
@@ -42,20 +41,23 @@ class AttributeModifier extends AbstractBehaviour
     public function onComponentTag(Component &$component, ComponentTag &$tag)
     {
         parent::onComponentTag($component, $tag);
+        $attrs = $tag->getAttributes();
         $current = '';
-        foreach($tag->getAttributes() as $name => $value)
+        if(array_key_exists($this->attributeName, $attrs))
         {
-            if($name==$this->attributeName)
-            {
-                $current = $value;
-            }
+            $current = $attrs[$this->attributeName];
         }
         $tag->put($this->attributeName, $this->newValue($current));
     }
     
-    public function newValue($current)
+    protected function getValue()
     {
-        return $this->value->getModelObject();
+        return $this->value;
+    }
+    
+    protected function newValue($current)
+    {
+        return $this->getValue()->getModelObject();
     }
 }
 

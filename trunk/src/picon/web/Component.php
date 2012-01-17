@@ -352,6 +352,11 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
         {
             throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
         }
+        /* @todo this cloning is a quick fix, markup should be imutable until 
+         * this point were a mutable version is created for use by the component 
+         * to render with for only this request
+         */
+        $markup = clone $markup;
         
         //@todo add ajax placeholder to set display:none on invisible components
         if(!$this->visible)
