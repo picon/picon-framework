@@ -49,6 +49,7 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     const TYPE_BOOL = 'boolean';
     const TYPE_DOUBLE = 'double';
     const TYPE_INT = 'int';
+    const TYPE_ARRAY = 'array';
     
     
     const VISITOR_CONTINUE_TRAVERSAL = 1;
@@ -120,12 +121,6 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
      * @var boolean whether the component was added automatically
      */
     private $auto = false;
-    
-    /**
-     * @todo find a better place to put this...
-     * @var FeedbackModel 
-     */
-    private static $feedbackModel;
     
     const PATH_SEPERATOR = ':';
     
@@ -947,48 +942,39 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
         }
     }
     
-    public static function getFeedbackModel()
-    {
-        if(!isset(self::$feedbackModel))
-        {
-            self::$feedbackModel = new FeedbackModel();
-        }
-        return self::$feedbackModel;
-    }
-    
     public function fatel($message)
     {
-        self::getFeedbackModel()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_FATEL, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_FATEL, $message, $this));
     }
     
     public function error($message)
     {
-        self::getFeedbackModel()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_ERROR, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_ERROR, $message, $this));
     }
     
     public function warning($message)
     {
-        self::getFeedbackModel()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_WARNING, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_WARNING, $message, $this));
     }
     
     public function info($message)
     {
-        self::getFeedbackModel()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_INFO, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_INFO, $message, $this));
     }
     
     public function success($message)
     {
-        self::getFeedbackModel()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_SUCCESS, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_SUCCESS, $message, $this));
     }
     
     public function hasMessage($level = null)
     {
-        return self::getFeedbackModel()->hasMessages($this, $level);
+        return FeedbackModel::get()->hasMessages($this, $level);
     }
     
     public function hasErrorMessage()
     {
-        return self::getFeedbackModel()->hasMessages($this, FeedbackMessage::FEEDBACK_MEESAGE_ERROR);
+        return FeedbackModel::get()->hasMessages($this, FeedbackMessage::FEEDBACK_MEESAGE_ERROR);
     }
     
     private function notifyBehavioursBeforeRender()

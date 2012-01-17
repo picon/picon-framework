@@ -4,15 +4,19 @@
       xml:lang="en"  
       lang="en"> 
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Testing Page</title>
     </head>
     <body>
         <picon:extend>
-        <h2>Ajax test Page</h2>
-        <a picon:id="ajaxLink">Click here</a>
+        <h2>Ajax Button</h2>
+        <p>An ajax button submits a form in the same way as a non ajax button.</p>
         <br />
-        <div picon:id="toUpdate"></div>
+        <div picon:id="feedback" />
+        <form picon:id="form">
+            <input type="text" picon:id="text" /><br />
+            <input type="button" picon:id="button" value="Submit" />
+        </form>
+        
+        <span picon:id="text"></span>
         </picon:extend>
     </body>
 </html>

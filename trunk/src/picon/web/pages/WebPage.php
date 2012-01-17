@@ -91,6 +91,7 @@ class WebPage extends MarkupContainer implements RequestablePage
         {
             PageMap::get()->addOrUpdate($this);
         }
+        FeedbackModel::get()->cleanup();
     }
     
     public function beforePageRender()

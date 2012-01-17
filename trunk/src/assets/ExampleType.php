@@ -20,29 +20,22 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\Link;
+use picon\ComonDomainBase;
 
 /**
- * Description of SampleAuthorisedPage
+ * Description of ExampleType
  * 
  * @author Martin Cassidy
  */
-class SampleAuthorisedPage extends AbstractAuthorisedPage
+class ExampleType extends ComonDomainBase
 {
-    public function __construct()
+    private $name;
+    private $examples;
+    
+    public function __construct($name, $examples)
     {
-        parent::__construct();
-        $self = $this;
-        $this->add(new Link('home', function() use ($self)
-        {
-            $self->setPage(HomePage::getIdentifier());
-        }));
-        
-        $this->add(new Link('logout', function() use ($self)
-        {
-            $_SESSION['auth'] = false;
-            $self->setPage(HomePage::getIdentifier());
-        }));
+        $this->name = $name;
+        $this->examples = $examples;
     }
 }
 

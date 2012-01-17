@@ -20,16 +20,20 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use \picon\Panel;
+namespace picon;
 
 /**
- * Description of AbstractExamplePanel
+ * Description of RequiredTextField
  * 
  * @author Martin Cassidy
  */
-class AbstractExamplePanel extends Panel
+class RequiredTextField extends TextField
 {
-    
+    public function __construct($id, Model $model = null)
+    {
+        parent::__construct($id, $model);
+        $this->setRequired(true);
+    }
 }
 
 ?>

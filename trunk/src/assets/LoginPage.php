@@ -40,6 +40,11 @@ class LoginPage extends AbstractPage
             
         }));
     }
+    
+    public function getInvolvedFiles()
+    {
+        return array('assets/LoginPage.php', 'assets/LoginPage.html');
+    }
 }
 
 ?>

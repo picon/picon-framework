@@ -20,36 +20,34 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+use picon\ListView;
+use picon\ArrayModel;
+use picon\Label;
+use picon\BasicModel;
 
 /**
- * Panel to display feedback messages
+ * Description of ListPage
  * 
- * @todo add message level as a css class attribute
- * @todo add support for feedback message filtering
  * @author Martin Cassidy
  */
-class FeedbackPanel extends Panel
+class ListPage extends AbstractPage
 {
-    private $messages;
-    
-    public function __construct($id)
+    public function __construct()
     {
-        parent::__construct($id);
+        parent::__construct();
         
-        $this->messages = new ListView('messages', function($item)
+        $fruit = array('apples', 'pears', 'bananas', 'oranges');
+        
+        $this->add(new ListView('fruit', function($entry)
         {
-            $item->add(new \picon\Label('message', new \picon\BasicModel($item->getModelObject()->message)));
-        }, FeedbackModel::get());
-        
-        
-        $this->add($this->messages);
+            $entry->add(new Label('name', new BasicModel($entry->getModelObject())));
+        }, new ArrayModel($fruit)));
+
     }
     
-    public function beforePageRender()
+    public function getInvolvedFiles()
     {
-        $this->messages->setModel(FeedbackModel::get());
-        parent::beforePageRender();
+        return array('assets/general/ListPage.php', 'assets/general/ListPage.html');
     }
 }
 

@@ -27,11 +27,32 @@ namespace picon;
  * 
  * @author Martin Cassidy
  */
-class FeedbackModel extends ArrayModel
+class FeedbackModel implements Model
 {
-    public function __construct()
+    private static $self;
+    
+    private $feedbackMessages = array();
+    
+    private function __construct()
     {
-        parent::__construct(array());
+        //singleton
+    }
+    
+    public static function get()
+    {
+        if(!isset(self::$self))
+        {
+            if(!isset($_SESSION['feedback_model']))
+            {
+                self::$self = new self();
+                $_SESSION['feedback_model'] = self::$self;
+            }
+            else
+            {
+                self::$self = $_SESSION['feedback_model'];
+            }
+        }
+        return self::$self;
     }
     
     /**
@@ -40,28 +61,12 @@ class FeedbackModel extends ArrayModel
      */
     public function addMessage(FeedbackMessage $message)
     {
-        $messages = $this->getModelObject();
-        array_push($messages, $message);
-        $this->setModelObject($messages);
-    }
-    
-    /**
-     * Cleanup old messages
-     */
-    public function __wakeup()
-    {
-        $array = array();
-        $this->setModelObject($array);
-    }
-    
-    public function setModelObject(&$object)
-    {
-        parent::setModelObject($object);
+        array_push($this->feedbackMessages, $message);
     }
     
     public function hasMessages(Component $reporter, $level = null)
     {
-        foreach($this->getModelObject() as $message)
+        foreach($this->feedbackMessages as $message)
         {
             if($message->reporter==$reporter && ($level==null || $message->level==$level))
             {
@@ -69,6 +74,21 @@ class FeedbackModel extends ArrayModel
             }
         }
         return false;
+    }
+    
+    public function getModelObject()
+    {
+        return $this->feedbackMessages;
+    }
+    
+    public function setModelObject(&$object)
+    {
+        $this->feedbackMessages = $object;
+    }
+    
+    public function cleanup()
+    {
+        $this->feedbackMessages = array();
     }
 }
 

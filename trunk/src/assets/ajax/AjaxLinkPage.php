@@ -20,36 +20,43 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
-
 /**
- * Panel to display feedback messages
+ * Description of AjaxLinkPage
  * 
- * @todo add message level as a css class attribute
- * @todo add support for feedback message filtering
  * @author Martin Cassidy
  */
-class FeedbackPanel extends Panel
+class AjaxLinkPage extends AbstractPage
 {
-    private $messages;
+    private $text = 'Default text';
     
-    public function __construct($id)
+    public function __construct()
     {
-        parent::__construct($id);
+        parent::__construct();
+        $label = new picon\Label('text', new picon\PropertyModel($this, 'text'));
+        $label->setOutputMarkupId(true);
+        $this->add($label);
         
-        $this->messages = new ListView('messages', function($item)
+        $self = $this;
+        $this->add(new \picon\AjaxLink('alterLink', function(picon\AjaxRequestTarget $target) use ($self, $label)
         {
-            $item->add(new \picon\Label('message', new \picon\BasicModel($item->getModelObject()->message)));
-        }, FeedbackModel::get());
-        
-        
-        $this->add($this->messages);
+            $self->text = 'Update in callback text';
+            $target->add($label);
+        }));
     }
     
-    public function beforePageRender()
+    public function getInvolvedFiles()
     {
-        $this->messages->setModel(FeedbackModel::get());
-        parent::beforePageRender();
+        return array('assets/general/AjaxLinkPage.php', 'assets/general/AjaxLinkPage.html');
+    }
+    
+    public function __get($name)
+    {
+        return $this->$name;
+    }
+    
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
     }
 }
 

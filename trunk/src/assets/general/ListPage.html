@@ -4,15 +4,19 @@
       xml:lang="en"  
       lang="en"> 
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Testing Page</title>
     </head>
     <body>
         <picon:extend>
-        <h2>Authorised Page</h2>
-        <p>You will have to have logged in to see this.&nbsp;<a picon:id="home">Go back home</a>&nbsp;or&nbsp;<a picon:id="logout">logout</a>
-        </p>
-        
+        <h2>List Page</h2>
+        <p>The list below is an example of a ListView. It works by iterating through an array and rendering
+        its mark-up once for each iteration.</p>
+        <br />
+        <ul>
+            <li picon:id="fruit">
+                <span picon:id="name" />
+            </li>
+        </ul>
+
         </picon:extend>
     </body>
 </html>

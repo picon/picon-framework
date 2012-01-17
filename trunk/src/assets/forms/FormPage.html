@@ -13,13 +13,14 @@
     </head>
     <body>
         <picon:extend>
-        <h2>Form Test Page</h2>
+        <h2>Form Fields</h2>
         <div picon:id="feedback"/>
+        This page shows an example usage of a form with each type of form field.
         <form picon:id="form">
             <table>
                 <tr>
                     <th style="width:250px;">
-                        A text field (with email validator)
+                        A text field
                     </th>
                     <td>
                         <input type="text" picon:id="textBox" />
@@ -39,14 +40,6 @@
                     </th>
                     <td>
                         <select picon:id="select"/>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        A multi select box
-                    </th>
-                    <td>
-                        <select picon:id="mchoice" multiple="multiple"/>
                     </td>
                 </tr>
                 <tr>
@@ -90,13 +83,21 @@
                     <th>A radio choice, the radios and labels are added automatically from an array</th>
                     <td><div picon:id="rchoice" /></td>
                 </tr>
+                <tr>
+                    <th>
+                        A multi select box
+                    </th>
+                    <td>
+                        <select picon:id="mchoice" multiple="multiple"/>
+                    </td>
+                </tr>
             </table>
             <p>
                 <input type="submit" picon:id="button" value="Submit"/>&nbsp;
                 <input type="submit" picon:id="button2" value="Another submit"/>
-                <input type="submit" picon:id="ajaxButton" value="Ajax Submit"/>
             </p>
         </form>
+        <br />
         <div picon:id="submitedInfo">
             <h3>The following represents the current state of the model</h3>
             The model is updated automatically when a form is processed and the form

@@ -20,50 +20,57 @@ class HomePage extends AbstractPage
     public function __construct()
     {
         parent::__construct();
-        $one = new MarkupContainer("one");
-        $two = new MarkupContainer("two");
-        $one->add($two);
-        $this->add($one);
-        $me = $this;
-        $two->add(new Link('link', function() use($me)
-        {
-            $me->setPage(Page2::getIdentifier());
-        }));
-        $two->add(new Link('formLink', function() use($me)
-        {
-            $me->setPage(FormPage::getIdentifier());
-        }));
-        $two->add(new Link('dbLink', function() use($me)
-        {
-            $me->setPage(DatabaseTestPage::getIdentifier());
-        }));
-
-        $two->add(new Link('authPage', function() use($me)
-        {
-            $me->setPage(SampleAuthorisedPage::getIdentifier());
-        }));
-        $two->add(new Link('ajaxPage', function() use($me)
-        {
-            $me->setPage(AjaxPage::getIdentifier());
-        }));
         
+        $layoutExamples = array();
+        $layoutExamples[] = new Example('Markup Inheretence', MarkupInheritancePage::getIdentifier());
+        $layoutExamples[] = new Example('Panels', PanelPage::getIdentifier());
+        $layoutExamples[] = new Example('Borders', BorderPage::getIdentifier());
         
+        $generalExamples = array();
+        $generalExamples[] = new Example('Labels', LabelPage::getIdentifier());
+        $generalExamples[] = new Example('Links', LinkPage::getIdentifier());
+        $generalExamples[] = new Example('Lists', ListPage::getIdentifier());
         
-        $fruit = array('apples', 'pears', 'bananas', 'oranges');
+        $formExamples = array();
+        $formExamples[] = new Example('Form Fields', FormPage::getIdentifier());
+        $formExamples[] = new Example('Validation', ValidationPage::getIdentifier());
         
-        $this->add(new ListView('fruit', function($entry)
+        $tableExamples = array();
+        $tableExamples[] = new Example('Data Table', DataTablePage::getIdentifier());
+        
+        $ajaxExamples = array();
+        $ajaxExamples[] = new Example('Ajax Link', AjaxLinkPage::getIdentifier());
+        $ajaxExamples[] = new Example('Ajax Button', AjaxButtonPage::getIdentifier());
+        
+        $examples = array();
+        $examples[] = new ExampleType('General', $generalExamples);
+        $examples[] = new ExampleType('Layout', $layoutExamples);
+        $examples[] = new ExampleType('Form Components', $formExamples);
+        $examples[] = new ExampleType('Data Tables', $tableExamples);
+        $examples[] = new ExampleType('Ajax', $ajaxExamples);
+        
+        $self = $this;
+        $this->add(new ListView('examples', function(picon\ListItem $item) use ($self)
         {
-            $entry->add(new Label('name', new BasicModel($entry->getModelObject())));
-        }, new ArrayModel($fruit)));
+            $type = $item->getModelObject();
+            $item->add(new picon\Label('title', new picon\BasicModel($type->name)));
+            
+            $item->add(new ListView('list', function(picon\ListItem $item) use ($self)
+            {
+                $link = new picon\Link('link', function() use ($item, $self)
+                {
+                    $self->setPage($item->getModelObject()->page);
+                });
+                $item->add($link);
+                $link->add(new picon\Label('exampleName', new picon\BasicModel($item->getModelObject()->name)));
+            }, new picon\ArrayModel($type->examples)));
+        }, new ArrayModel($examples)));
         
-        $this->add(new ExamplePanel('samplePanel'));
-        
-        $this->add(new SampleBorder('sampleBorder'));
     }
     
-    public function renderHead(HeaderResponse $headerResponse)
+    public function getInvolvedFiles()
     {
-        $headerResponse->renderCSS(new ResourceReference('test.css', static::getIdentifier()));
+        return array('assets/HomePage.php', 'assets/HomePage.html');
     }
 }
 
