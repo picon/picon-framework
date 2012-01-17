@@ -116,11 +116,11 @@ class ApplicationInitializer
         {
             if(preg_match("/\s*.php{1}$/", $entry))
             {
-                require_once($directory."\\".$entry);
+                require_once($directory."/".$entry);
             }
-            if(is_dir($directory."\\".$entry) && !preg_match("/^.{1}.?$/", $entry))
+            if(is_dir($directory."/".$entry) && !preg_match("/^.{1}.?$/", $entry))
             {
-               self::loadAssets($directory."\\".$entry);
+               self::loadAssets($directory."/".$entry);
             }
         }
         $d->close();

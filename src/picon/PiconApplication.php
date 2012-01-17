@@ -72,10 +72,10 @@ abstract class PiconApplication
         
         $this->initialiser = new ApplicationInitializer();
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY, 'picon');
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\annotations");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\web\\annotations");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\exceptions");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."\\web\\pages");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."/annotations");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."/web/annotations");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."/exceptions");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."/web/pages");
         $this->initialiser->addScannedDirectory(ASSETS_DIRECTORY);
         
         $this->internalInit();

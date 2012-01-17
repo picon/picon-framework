@@ -77,7 +77,7 @@ class MarkupLoader
         
         foreach(self::$extensions as $extension)
         {
-            $file = $fileInfo->getPath()."\\".$reflection->getShortName().'.'.$extension;
+            $file = $fileInfo->getPath()."/".$reflection->getShortName().'.'.$extension;
             if(file_exists($file))
             {
                 return $this->completeMarkup($parser->parse($file), $className);

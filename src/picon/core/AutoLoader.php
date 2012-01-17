@@ -143,13 +143,13 @@ class AutoLoader
         {
             if($entry==$className.'.php')
             {
-                require_once($directory."\\".$entry);
-                $this->cachedPaths[$fullName] = $directory."\\".$entry;
+                require_once($directory."/".$entry);
+                $this->cachedPaths[$fullName] = $directory."/".$entry;
                 $success = true;
             }
-            if(is_dir($directory."\\".$entry) && !preg_match("/^\\.{1}\\.?$/", $entry))
+            if(is_dir($directory."/".$entry) && !preg_match("/^\\.{1}\\.?$/", $entry))
             {
-                $success = $this->loadClass($directory."\\".$entry,$className, $fullName);
+                $success = $this->loadClass($directory."/".$entry,$className, $fullName);
             }
         }
         $d->close();
