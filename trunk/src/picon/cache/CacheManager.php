@@ -106,12 +106,12 @@ class CacheManager
     
     private function getSessionCacheDirectory()
     {
-        return CACHE_DIRECTORY.'\\'.self::SESSION_PATH.'\\'.session_id().'\\';
+        return CACHE_DIRECTORY.'/'.self::SESSION_PATH.'/'.session_id().'/';
     }
     
     private function getApplicationCacheDirectory()
     {
-        return CACHE_DIRECTORY.'\\'.self::APPLICATION_PATH.'\\';
+        return CACHE_DIRECTORY.'/'.self::APPLICATION_PATH.'/';
     }
     
     private function getFileName($directory, $name)
