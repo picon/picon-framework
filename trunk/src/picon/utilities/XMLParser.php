@@ -95,17 +95,9 @@ class XMLParser
         $tag = $this->newElement($name, $attributes);
         $this->stack[$this->depth] = $tag;
         
-        $idx = xml_get_current_byte_index($parser);
-        if (isset($this->data[$idx])) 
-        {
-            $c = $this->data[$idx];
-        } 
-        else 
-        {
-            $length = strlen($this->data);
-            $c = $this->data[$length-1];
-        }
-        if($c=='/')
+        $close = $this->data[$this->getPreceedingCharacter($parser)];
+        
+        if($close=='/')
         {
             $tag->setTagType(new XmlTagType(XmlTagType::OPENCLOSE));
         }
@@ -160,6 +152,36 @@ class XMLParser
         if(!empty($data))
         {
             $element->addChild(new TextElement($data));
+        }
+    }
+    
+    /**
+     * Locates a character preceding the &gt; of the start element.
+     * This works only when called from startElement and has been altered
+     * to allow for differences in the return of xml_get_current_byte_index in 
+     * different versions of lib xml
+     * 
+     * @param XML Parser $parser
+     * @return int 
+     */
+    private function getPreceedingCharacter($parser)
+    {
+        $index = xml_get_current_byte_index($parser);
+        if (isset($this->data[$index])) 
+        {
+            if($this->data[$index]=='<')
+            {
+                return strpos(substr($this->data, $index), '>')+$index-1;
+            }
+            else
+            {
+                return $index;
+            }
+        } 
+        else 
+        {
+            $length = strlen($this->data);
+            return $length-1;
         }
     }
 }
