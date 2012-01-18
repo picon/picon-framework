@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * Denotates a component capable of submiting a form
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 interface FormSubmitter
 {

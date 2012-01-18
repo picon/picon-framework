@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of WebRequest
+ * Basic implementation of request
  *
  * @author Martin Cassidy
+ * @package web/request
  */
 class WebRequest implements Request
 {

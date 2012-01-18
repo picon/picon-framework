@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * Column interface for data table
  * @author Martin Cassidy
+ * @package web/markup/html/table
  */
 interface Column
 {

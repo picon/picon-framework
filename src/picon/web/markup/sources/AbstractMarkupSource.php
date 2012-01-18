@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of AbstractMarkupSource
+ * Super class for mark-up sourcing
  * 
  * @author Martin Cassidy
+ * @package web/markup/sources
  */
 abstract class AbstractMarkupSource implements MarkupSource
 {

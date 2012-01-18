@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of DropDown
+ * A drop down choice HTML select element
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class DropDown extends AbstractSingleChoice
 {

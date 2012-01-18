@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of PageRequestTarget
+ * Request target for rendering a new stateless page
  *
  * @author Martin Cassidy
+ * @package web/request/target
  */
 class PageRequestTarget implements RequestTarget
 {

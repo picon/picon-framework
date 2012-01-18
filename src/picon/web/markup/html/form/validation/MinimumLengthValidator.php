@@ -26,6 +26,7 @@ namespace picon;
  * Validates a string is not shorter than a minium value
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form/validation
  */
 class MinimumLengthValidator extends StringValidator
 {

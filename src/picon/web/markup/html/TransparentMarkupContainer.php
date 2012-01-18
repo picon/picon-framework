@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of TransparentMarkupContainer
+ * A markup contain which has mark-up but does not have child added to it. Instead
+ * if a child is request from it, the child is requested from the parent instead
  *
- * @author Martin
+ * @author Martin Cassidy
+ * @package web/markup/html
  */
 class TransparentMarkupContainer extends MarkupContainer implements ComponentResolver
 {

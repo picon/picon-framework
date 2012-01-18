@@ -23,9 +23,13 @@
 namespace picon;
 
 /**
- * Description of ResourceRequestResolver
+ * Resolver for resource requests such as css and js
  * 
+ * @todo resources should be generated and cached under an unique id, this should be part of
+ * the resource request which should go through resource.php (to be created) not index.php to save
+ * application start up for resources
  * @author Martin Cassidy
+ * @package web/request/resolver
  */
 class ResourceRequestResolver implements RequestResolver
 {

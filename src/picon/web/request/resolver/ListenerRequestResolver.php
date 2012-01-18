@@ -26,6 +26,7 @@ namespace picon;
  * Resolves requests for listener callbacks
  * 
  * @author Martin Cassidy
+ * @package web/request/resolver
  */
 class ListenerRequestResolver implements RequestResolver
 {

@@ -23,15 +23,23 @@
 namespace picon;
 
 /**
- * Description of CheckChoice
+ * An automatically populated list of check boxes to choose from. The options
+ * are defined as an array.
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class CheckChoice extends AbstractMultipleChoice implements ChoiceGroup
 {
     private $group;
     private $selection;
     
+    /**
+     *
+     * @param string $id
+     * @param array $choices The available choices
+     * @param Model $model 
+     */
     public function __construct($id, $choices, Model $model = null)
     {
         parent::__construct($id, $choices, $model);

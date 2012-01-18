@@ -73,7 +73,7 @@ class ResourceReference
         $reflection = new \ReflectionClass($className);
         $fileInfo = new \SplFileInfo($reflection->getFileName());
         
-        $file = $fileInfo->getPath()."\\".$this->file;
+        $file = $fileInfo->getPath()."/".$this->file;
         if(file_exists($file))
         {
             return $file;

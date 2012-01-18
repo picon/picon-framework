@@ -26,6 +26,7 @@ namespace picon;
  * Interface for models which rely on being able to access the component that
  * is using them.
  * @author Martin Cassidy
+ * @package web/model
  */
 interface ComponentAwareModel
 {

@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of HeaderResolver
+ * Resolver for picon:hid and also the normal html head
  *
- * @author Martin
+ * @author Martin Cassidy
+ * @package web/markup/resolver
  */
 class HeaderResolver implements ComponentResolver
 {

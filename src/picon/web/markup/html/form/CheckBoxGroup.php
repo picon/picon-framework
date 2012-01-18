@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of CheckBoxGroup
+ * A wrapping component for checks
  * 
+ * @see Check
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class CheckBoxGroup extends FormComponent
 {    

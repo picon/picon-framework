@@ -46,7 +46,7 @@ class AjaxLinkPage extends AbstractPage
     
     public function getInvolvedFiles()
     {
-        return array('assets/general/AjaxLinkPage.php', 'assets/general/AjaxLinkPage.html');
+        return array('assets/ajax/AjaxLinkPage.php', 'assets/ajax/AjaxLinkPage.html');
     }
     
     public function __get($name)

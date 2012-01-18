@@ -27,6 +27,7 @@ namespace picon;
  * @todo validators should not use string based messages but
  * should instead use a resource key to locate a message from a file
  * @author Martin Cassidy
+ * @package web/markup/html/form/validation
  */
 abstract class AbstractValidator implements Validator
 {

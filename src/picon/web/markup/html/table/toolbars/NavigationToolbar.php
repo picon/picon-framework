@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of NavigationToolbar
+ * A toolbar that shows pagination navigation tools
  * 
+ * @todo this currently only shows 1.2.3.4. should also have previous, newxt, first and last options
  * @author Martin Cassidy
+ * @package web/markup/html/table/toolbar
  */
 class NavigationToolbar extends AbstractToolbar
 {

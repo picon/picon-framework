@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of CheckBox
+ * A checkbox which may be used independantly, it must have a boolean model
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class CheckBox extends FormComponent
 {

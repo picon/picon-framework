@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of TabCollection
+ * An array of tabs which are added to a tab panel
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/tabs
  */
 class TabCollection extends ComonDomainBase
 {

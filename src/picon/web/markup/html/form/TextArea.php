@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of TextArea
+ * A text area form component
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class TextArea extends AbstractTextComponent
 {

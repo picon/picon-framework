@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of AbstractColumn
+ * A column for use in a data table
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/table
  */
 abstract class AbstractColumn implements Column
 {

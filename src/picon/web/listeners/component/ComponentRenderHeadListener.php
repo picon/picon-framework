@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of ComponentRenderHeadListener
+ * A listener fired when the head of a page is about to be rendered
  *
  * @author Martin Cassidy
+ * @package web/listeners/component
  */
 interface ComponentRenderHeadListener
 {

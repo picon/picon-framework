@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of BorderMarkupSourcingStratagy
+ * Source for border components
  * 
  * @author Martin Cassidy
+ * @package web/markup/sources
  */
 class BorderMarkupSourcingStratagy extends AbstractAssociatedMarkupSource
 {

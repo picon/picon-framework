@@ -25,9 +25,11 @@ use picon\Link;
 use picon\Identifier;
 
 /**
- * Description of SessionExpiredPage
+ * Page shown when a request is made for a resource that should be in the session
+ * but not found i.e. session must have expired
  * 
  * @author Martin Cassidy
+ * @package web/pages
  */
 class SessionExpiredPage extends WebPage
 {

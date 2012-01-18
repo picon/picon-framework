@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of DefaultRequestResolverContainer
+ * Collection of resolvers that work as one
  * 
  * @author Martin Cassidy
+ * @package web/request/resolver
  */
 class RequestResolverCollection implements RequestResolver
 {

@@ -23,9 +23,12 @@
 namespace picon;
 
 /**
- * Description of Tab
+ * A tab domain for use with Tab Panel
  * 
+ * @see TabPanel
+ * @see TabCollection
  * @author Martin Cassidy
+ * @package web/markup/html/tabs
  */
 class Tab extends ComonDomainBase
 {

@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of PageRequestResolver
+ * Basic stateless page request resolver
  * 
  * @author Martin Cassidy
+ * @package web/request/resolver
  */
 class PageRequestResolver implements RequestResolver
 {

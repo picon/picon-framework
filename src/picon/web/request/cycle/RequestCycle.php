@@ -32,7 +32,7 @@ namespace picon;
  * </ol>
  * 
  * @author Martin Cassidy
- * @package web
+ * @package web/request/cycle
  * @todo create request listeners
  */
 class RequestCycle

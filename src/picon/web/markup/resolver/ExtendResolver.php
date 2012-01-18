@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of ExtendResolver
+ * Resolver for picon:child and picon:extend
  *
- * @author Martin
+ * @author Martin Cassidy
+ * @package web/markup/resolver
  */
 class ExtendResolver implements ComponentResolver
 {

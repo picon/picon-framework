@@ -25,7 +25,7 @@ namespace picon;
  * Convience class for accessing information about a requests
  * This also provideds convience methods for analysing the request to 
  * determin what kind of request it is
- * @package web
+ * @package web/request
  * @todo lots more to add in here
  * @author Martin Cassidy
  */

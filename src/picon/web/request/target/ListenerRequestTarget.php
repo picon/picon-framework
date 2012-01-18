@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of ListenerRequestTarget
+ * Request target for invoking listeners
  *
  * @author Martin Cassidy
+ * @package web/request/target
  */
 class ListenerRequestTarget implements RequestTarget, Identifiable
 {

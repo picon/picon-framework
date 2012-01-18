@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * A listener fired when a component is initialized
  * @author Martin Cassidy
+ * @package web/listeners/component
  */
 interface ComponentInitializationListener
 {

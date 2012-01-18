@@ -26,6 +26,7 @@ namespace picon;
  * Interface which must be used for classes that support validation 
  * by a Validator
  * @author Martin Cassidy
+ * @package web/markup/html/form/validation
  */
 interface Validatable
 {

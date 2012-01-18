@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of DefaultDataTable
+ * A data table which by default adds on a header toolbar and a navigation toolbar
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/table
  */
 class DefaultDataTable extends DataTable
 {

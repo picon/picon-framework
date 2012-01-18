@@ -25,7 +25,8 @@ namespace picon;
 /**
  * Stateless page request that will retrieve and invoke a listener on the page
  *
- * @author Martin
+ * @author Martin Cassidy
+ * @package web/request/target
  */
 class PageRequestWithListenerTarget extends PageRequestTarget
 {

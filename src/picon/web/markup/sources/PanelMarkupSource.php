@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of PanelMarkupSource
+ * A mark-up source for panels
  * 
  * @author Martin Cassidy
+ * @package web/markup/sources
  */
 class PanelMarkupSource extends AbstractAssociatedMarkupSource
 {

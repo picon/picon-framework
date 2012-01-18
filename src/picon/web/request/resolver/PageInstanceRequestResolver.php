@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of PageInstanceRequestResolver
+ * Resolver for a page instance that has already been created
  * 
  * @author Martin Cassidy
+ * @package web/request/resolver
  */
 class PageInstanceRequestResolver implements RequestResolver
 {

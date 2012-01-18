@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of RepeatingView
+ * A component which repeates once for each of the child components added to it
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/repeater
  */
 class RepeatingView extends AbstractRepeater
 {

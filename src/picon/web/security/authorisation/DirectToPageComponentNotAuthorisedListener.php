@@ -27,6 +27,7 @@ namespace picon;
  * page if the component is not authorised
  * 
  * @author Martin Cassidy
+ * @package web/security/authorisation
  */
 class DirectToPageComponentNotAuthorisedListener implements ComponentNotAuthorisedListener
 {

@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * A listener for unauthorised component instantiation events
  * @author Martin Cassidy
+ * @package web/listeners/component/authorisation
  */
 interface ComponentNotAuthorisedListener
 {

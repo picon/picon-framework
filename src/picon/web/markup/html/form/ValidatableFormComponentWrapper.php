@@ -23,8 +23,12 @@
 namespace picon;
 
 /**
- * Description of ValidatableFormComponentWrapper
+ * A wrapper for form components for usage by validators. This is a proxy/
+ * adaptor whice enables a form validator to work indirectly with a form
+ * component to report validation errors
+ * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class ValidatableFormComponentWrapper implements Validatable
 {

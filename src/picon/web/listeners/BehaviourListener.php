@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * Taging interface to note a behaviour as a request listener
  * @author Martin Cassidy
+ * @package web/listeners
  */
 interface BehaviourListener extends Listener
 {

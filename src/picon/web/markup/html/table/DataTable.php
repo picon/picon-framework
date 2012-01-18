@@ -23,9 +23,12 @@
 namespace picon;
 
 /**
- * Description of DataTable
+ * A data table, showing information from a data provider, specified by
+ * columns.
  * 
+ * @todo add support for sorting and filtering
  * @author Martin Cassidy
+ * @package web/markup/html/table
  */
 class DataTable extends Panel implements Pageable
 {

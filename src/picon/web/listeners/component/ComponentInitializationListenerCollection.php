@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of ComponentInitializationListenerCollection
+ * A collection of component initialization listeners which work as one
  *
  * @author Martin Cassidy
+ * @package web/listeners/component
  */
 class ComponentInitializationListenerCollection extends ListenerCollection implements ComponentInitializationListener
 {

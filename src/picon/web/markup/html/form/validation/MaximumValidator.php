@@ -26,6 +26,7 @@ namespace picon;
  * Validates a number is not greater than a max value
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form/validation
  */
 class MaximumValidator extends NumericValidator
 {

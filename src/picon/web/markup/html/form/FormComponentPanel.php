@@ -23,10 +23,13 @@
 namespace picon;
 
 /**
- * Description of FormComponentPanel
+ * A form component which consists of a panel made up of any other form componets
+ * or any other components for that matter but is treated as a whole as a single
+ * component producing one value.
  * 
  * @todo test and finish
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 abstract class FormComponentPanel extends FormComponent
 {

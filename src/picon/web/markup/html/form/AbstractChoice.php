@@ -27,6 +27,7 @@ namespace picon;
  * posible choices
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 abstract class AbstractChoice extends FormComponent
 {

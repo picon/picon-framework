@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of DefaultNotAuthorisedListener
+ * The default unauthorised listener which throws an exception if not authorised
  * 
  * @author Martin Cassidy
+ * @package web/listeners/component/authorisation
  */
 class DefaultNotAuthorisedListener implements ComponentNotAuthorisedListener
 {

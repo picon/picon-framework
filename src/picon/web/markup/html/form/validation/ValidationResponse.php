@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of ValidationResponse
+ * Domain object containing all information about a message reported by a 
+ * validator. With this, a localized string can be found to render the actual message
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form/validation
  */
 class ValidationResponse
 {

@@ -19,11 +19,15 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
+
 namespace picon;
+
 /**
- * Description of ComponentInjector
+ * An instantiation listener which will inject a resource dependencies into 
+ * the instatiated component
  *
  * @author Martin Cassidy
+ * @package web/listeners/component
  */
 class ComponentInjector implements ComponentInstantiationListener
 {

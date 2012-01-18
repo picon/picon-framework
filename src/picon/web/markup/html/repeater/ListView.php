@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of ListView
+ * A repeating component which works from an array. A ListItem is added
+ * for each one and a callback invoked to populate it.
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/repeater
  */
 class ListView extends AbstractRepeater
 {

@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of TabPanel
+ * A panel topped by a list of links. The panel changes when each link is clicked
  * @todo finish off the class attributes for this
  * @author Martin Cassidy
+ * @package web/markup/html/tabs
  */
 class TabPanel extends Panel
 {

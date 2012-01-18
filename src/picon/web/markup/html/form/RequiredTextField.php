@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of RequiredTextField
+ * A text field which is manditory by default
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class RequiredTextField extends TextField
 {

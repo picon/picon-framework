@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of AjaxRequestTarget
+ * Request target for ajax requests
  *
  * @author Martin Cassidy
+ * @package web/request/target
  */
 class AjaxRequestTarget implements RequestTarget
 {

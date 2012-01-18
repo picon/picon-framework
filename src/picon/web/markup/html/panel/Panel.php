@@ -23,9 +23,31 @@
 namespace picon;
 
 /**
- * Description of Panel
+ * A panel allows for a block of mark-up to be encapsulated into reusable 
+ * components. A panel consists of an HTML file and a class containing the 
+ * code to drive it. Panel can be rendered on any HTML tag.
+ * 
+ * The panel mark-up:
+ * &lt;picon:panel&gt;
+ * &lt;h2&gt;panel heading&lt;/h2&gt;
+ * &lt;/picon:panel&gt;
+ * 
+ * And in the composing class:
+ * &lt;h1&gt;heading&lt;/h1&gt;
+ * &lt;div picon:id="myPanel"&gt;
+ * Panel content will appear here
+ * &lt;/div&gt;
+ * &lt;p&gt;other mark-up...&lt;/p&gt;
+ * 
+ * Would be rendered as:
+ * &lt;h1&gt;heading&lt;/h1&gt;
+ * &lt;div picon:id="myPanel"&gt;
+ * &lt;h2&gt;panel heading&lt;/h2&gt;
+ * &lt;/div&gt;
+ * &lt;p&gt;other mark-up...&lt;/p&gt;
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/panel
  */
 class Panel extends MarkupContainer
 {

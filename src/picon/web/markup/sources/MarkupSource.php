@@ -23,9 +23,12 @@
 namespace picon;
 
 /**
- * Description of MarkupLoader
+ * A mark-up source is required to load mark-up for a component and also
+ * enables callbacks for rendering steps (tag, body and head) to customize if
+ * needed
  * 
  * @author Martin Cassidy
+ * @package web/markup/sources
  */
 interface MarkupSource
 {

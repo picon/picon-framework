@@ -26,6 +26,7 @@ namespace picon;
  * Validats that a string matches a given regular expression
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form/validation
  */
 class PatternValidator extends StringValidator
 {

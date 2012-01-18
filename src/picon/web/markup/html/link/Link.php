@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of Link
+ * Basic implementation of link
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/link
  */
 class Link extends AbstractLink
 {

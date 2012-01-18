@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of GridView
+ * Literally a repeating view of repeating views. Allows for work with both
+ * rows and coloumns, such as a table
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/repeater
  */
 class GridView extends RepeatingView
 {

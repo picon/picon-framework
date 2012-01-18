@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of ExceptionPageRequestTarget
+ * Request target for the error page
  *
- * @author Martin
+ * @author Martin Cassidy
+ * @package web/request/target
  */
 class ExceptionPageRequestTarget implements RequestTarget
 {

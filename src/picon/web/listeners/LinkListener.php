@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
- * @author Martin
+ * Tagging interface to note a component as a link listener
+ * @author Martin Cassidy
+ * @package web/listeners
  */
 interface LinkListener extends Listener
 {

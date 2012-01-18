@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of FormComponentLabel
+ * A label which can be associated with a form component so that 
+ * the <b>for</b> attribute can be added to the output
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class FormComponentLabel extends Label
 {

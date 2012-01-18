@@ -23,12 +23,12 @@
 namespace picon;
 
 /**
- *
+ * Tagging interface to note a component as a form submit listener
  * @author Martin Cassidy
+ * @package web/listeners
  */
 interface FormSubmitListener extends Listener
 {
-    //put your code here
 }
 
 ?>

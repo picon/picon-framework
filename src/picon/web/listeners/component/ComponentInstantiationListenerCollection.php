@@ -19,11 +19,14 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
+
 namespace picon;
+
 /**
- * Description of ComponentInstantiateListenerCollection
+ * A collection of instantiation listeners which work as one
  *
  * @author Martin Cassidy
+ * @package web/listeners/component
  */
 class ComponentInstantiationListenerCollection extends ListenerCollection implements ComponentInstantiationListener
 {

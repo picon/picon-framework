@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of Radio
+ * A radio button for use inside of a RadioGroup
  * 
+ * @see RadioGroup
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class Radio extends LabeledMarkupContainer
 {

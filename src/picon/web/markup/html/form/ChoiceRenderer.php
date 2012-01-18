@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of ChoiceRenderer
+ * For use with abstract choice, allows for any object to be used in the choice
+ * array but enables the output value to be customized
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class ChoiceRenderer
 {

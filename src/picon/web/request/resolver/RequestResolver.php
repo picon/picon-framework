@@ -24,7 +24,8 @@ namespace picon;
 
 /**
  * Resolver for a request
- * @author Martin Cassidy
+ * @author Martin Cassidy 
+ * @package web/request/resolver
  */
 interface RequestResolver
 {

@@ -59,7 +59,7 @@ class AjaxButtonPage extends AbstractPage
     
     public function getInvolvedFiles()
     {
-        return array('assets/general/AjaxButtonPage.php', 'assets/general/AjaxButtonPage.html');
+        return array('assets/ajax/AjaxButtonPage.php', 'assets/ajax/AjaxButtonPage.html');
     }
     
     public function __get($name)

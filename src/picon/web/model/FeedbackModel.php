@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of FeedbackModel
+ * Session persisted singleton model for feedback messages
  * 
  * @author Martin Cassidy
+ * @package web/model
  */
 class FeedbackModel implements Model
 {

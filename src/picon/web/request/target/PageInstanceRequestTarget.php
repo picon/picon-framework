@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of PageInstanceRequestTarget
+ * Request target for rendering page instances
  * 
  * @author Martin Cassidy
+ * @package web/request/target
  */
 class PageInstanceRequestTarget implements RequestTarget
 {
