@@ -23,11 +23,12 @@
 namespace picon;
 
 /**
- * Description of PageNotFoundPage
+ * Default page shown if the request page does not exist
  * 
  * @author Martin Cassidy
+ * @package web/pages
  */
-class PageNotFoundPage
+class PageNotFoundPage extends WebPage
 {
     
 }

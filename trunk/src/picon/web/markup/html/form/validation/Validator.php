@@ -25,6 +25,7 @@ namespace picon;
 /**
  * Interface for validators
  * @author Martin Cassidy
+ * @package web/markup/html/form/validation
  */
 interface Validator
 {

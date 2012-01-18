@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of BorderResolver
+ * Resolves a component for the picon:border element
  * 
  * @author Martin Cassidy
+ * @package web/markup/resolver
  */
 class BorderResolver implements ComponentResolver
 {

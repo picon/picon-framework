@@ -25,7 +25,9 @@ namespace picon;
 /**
  * A checkbox for use inside a check group
  * 
+ * @see CheckGroup
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class Check extends LabeledMarkupContainer
 {

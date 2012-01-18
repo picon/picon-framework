@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of LabeledMarkupContainer
+ * A markup container which supports labeling
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 abstract class LabeledMarkupContainer extends MarkupContainer
 {

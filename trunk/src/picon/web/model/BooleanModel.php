@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of BooleanModel
+ * A model which must be a boolean
  * 
  * @author Martin Cassidy
+ * @package web/model
  */
 class BooleanModel implements Model
 {

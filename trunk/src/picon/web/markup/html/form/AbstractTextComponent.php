@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of AbstractTextComponent
+ * A form component which can accept text based input
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 abstract class AbstractTextComponent extends FormComponent
 {

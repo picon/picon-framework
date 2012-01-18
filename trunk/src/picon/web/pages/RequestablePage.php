@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * A page that can be requested by a request target
  * @author Martin Cassidy
+ * @package web/pages
  */
 interface RequestablePage
 {

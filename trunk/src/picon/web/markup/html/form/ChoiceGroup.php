@@ -25,6 +25,7 @@ namespace picon;
 /**
  * Tagging interface
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 interface ChoiceGroup
 {

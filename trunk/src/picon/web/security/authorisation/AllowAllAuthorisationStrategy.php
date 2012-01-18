@@ -26,6 +26,7 @@ namespace picon;
  * The default authorisation strategy which permits access to everything
  * 
  * @author Martin Cassidy
+ * @package web/security/authorisation
  */
 class AllowAllAuthorisationStrategy implements AuthorisationStrategy
 {

@@ -23,9 +23,13 @@
 namespace picon;
 
 /**
- * Description of Button
+ * A form button, when submited the callback methods will be invoked based on the 
+ * valid state of the form
  * 
+ * @todo This currently needs to be a child of a Form - it should provide the option
+ * of manually specifying the form to submit so the button may be placed elsewhere
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class Button extends FormComponent implements FormSubmitListener, FormSubmitter
 {
@@ -35,7 +39,8 @@ class Button extends FormComponent implements FormSubmitListener, FormSubmitter
     /**
      *
      * @param string $id
-     * @param closure $onSubmit
+     * @param callback $onSubmit Called when the form is valid
+     * @param callback $onError Called when the form is not valid
      */
     public function __construct($id, $onSubmit = null, $onError = null)
     {

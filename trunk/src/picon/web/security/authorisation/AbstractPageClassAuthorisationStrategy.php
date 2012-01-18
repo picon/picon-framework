@@ -27,6 +27,7 @@ namespace picon;
  * use if it is a sub class of a given page
  * 
  * @author Martin Cassidy
+ * @package web/security/authorisation
  */
 abstract class AbstractPageClassAuthorisationStrategy implements AuthorisationStrategy
 {

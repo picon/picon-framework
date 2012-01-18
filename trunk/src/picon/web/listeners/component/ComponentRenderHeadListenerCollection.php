@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of ComponentRenderHeadListenerCollection
+ * A collection of render head listeners which work as one
  *
  * @author Martin Cassidy
+ * @package web/listeners/component
  */
 class ComponentRenderHeadListenerCollection extends ListenerCollection implements ComponentRenderHeadListener
 {

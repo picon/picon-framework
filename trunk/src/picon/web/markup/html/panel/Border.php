@@ -23,10 +23,37 @@
 namespace picon;
 
 /**
- * Works like a panel but preserves the origional content by placing it
- * the <picon:body /> plaeholder
+ * A border works in the same way as a panel but does ont replace the origonal 
+ * content of the HTML tag it is added to.
+ * 
+ * The border mark-up:
+ * 
+ * &lt;picon:border&gt;
+ * &lt;h2&gt;border heading&lt;/h2&gt;
+ * &lt;picon:body /&gt;
+ * &lt;p&gt;other border content&lt;/p&gt;
+ * &lt;/picon:border&gt;
+ * 
+ * And in the composing class:
+ * 
+ * &lt;h1&gt;heading&lt;/h1&gt;
+ * &lt;div picon:id="myBorder"&gt;
+ * Border content will wrap this content
+ * &lt;/div&gt;
+ * &lt;p&gt;other mark-up...&lt;/p&gt;
+ * 
+ * Would be rendered as:
+ * 
+ * &lt;h1&gt;heading&lt;/h1&gt;
+ * &lt;div picon:id="myBorder"&gt;
+ * &lt;h2&gt;border heading&lt;/h2&gt;
+ * Border content will wrap this content
+ * &lt;p&gt;other border content&lt;/p&gt;
+ * &lt;/div&gt;
+ * &lt;p&gt;other mark-up...&lt;/p&gt;
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/panel
  */
 class Border extends MarkupContainer
 {

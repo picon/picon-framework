@@ -23,8 +23,15 @@
 namespace picon;
 
 /**
- *
+ * Generic listener for components and behaviours for use with callbacks.
+ * 
+ * Any component or behaviour that implements this can have a URL generated
+ * for it which will resolve to onEvent method in that component/behavour instance
+ * on that page when clicked.
+ * 
+ * @see ListenerRequestTarget
  * @author Martin Cassidy
+ * @package web/listeners
  */
 interface Listener
 {

@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of HeaderPartContainer
+ * Represents a &lt;picon:head&gt; element
  *
  * @author Martin Cassidy
+ * @package web/markup/html
  */
 class HeaderPartContainer extends MarkupContainer implements ComponentResolver
 {

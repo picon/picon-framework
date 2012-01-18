@@ -26,6 +26,7 @@ namespace picon;
  * A grid view which is paginatable
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/repeater
  */
 class PaginatingGridView extends GridView implements Pageable
 {

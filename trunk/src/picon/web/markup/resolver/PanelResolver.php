@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of PanelResolver
+ * A resolver for picon:panel
  *
- * @author Martin
+ * @author Martin Cassidy
+ * @package web/markup/resolver
  */
 class PanelResolver implements ComponentResolver
 {

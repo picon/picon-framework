@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of ListItem
+ * The component that represents an item in a list view
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/repeater
  */
 class ListItem extends MarkupContainer
 {

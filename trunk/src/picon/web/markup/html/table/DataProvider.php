@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * Data provider which is used by a data table or data grid view
  * @author Martin Cassidy
+ * @package web/markup/html/table
  */
 interface DataProvider
 {

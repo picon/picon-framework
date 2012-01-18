@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of FormComponent
+ * Superclass for all form components
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 abstract class FormComponent extends LabeledMarkupContainer
 {    

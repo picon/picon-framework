@@ -23,10 +23,10 @@
 namespace picon;
 
 /**
- * Description of ResourceRequestTarget
+ * Locates and renders a resource e.g. css or js
  * 
  * @author Martin Cassidy
- * @package web
+ * @package web/request/target
  */
 class ResourceRequestTarget implements RequestTarget
 {

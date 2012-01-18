@@ -31,6 +31,7 @@ namespace picon;
  * request target will clean the response before it starts to write to it
  * 
  * @author Martin Cassidy
+ * @package web/request
  * @todo create helper methods for writing HTTP headers
  */
 interface Response

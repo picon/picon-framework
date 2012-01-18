@@ -26,6 +26,7 @@ namespace picon;
  * Validates a string is not longer than a max length
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form/validation
  */
 class MaximumLengthValidator extends StringValidator
 {

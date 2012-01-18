@@ -23,9 +23,12 @@
 namespace picon;
 
 /**
- * Description of Label
+ * A label is a very simple text based component that can work with almost 
+ * an HTML tag. It is used for placing the contents of a model 
+ * into the body of the associated tag.
  *
  * @author Martin Cassidy
+ * @package web/markup/html/basic
  */
 class Label extends WebComponent
 {

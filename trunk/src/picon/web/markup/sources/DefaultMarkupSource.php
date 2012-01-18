@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of MarkupLoader
+ * Default source for mark-up
  * 
  * @author Martin Cassidy
+ * @package web/markup/sources
  */
 class DefaultMarkupSource extends AbstractMarkupSource
 {

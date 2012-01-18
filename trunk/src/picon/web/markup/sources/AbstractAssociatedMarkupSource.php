@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of AbstractAssociatedMarkupSource
+ * Mark-up source for components which hav associated mark-up
  * 
  * @author Martin Cassidy
+ * @package web/markup/sources
  */
 abstract class AbstractAssociatedMarkupSource extends AbstractMarkupSource
 {

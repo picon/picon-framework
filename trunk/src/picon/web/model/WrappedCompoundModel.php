@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of WrappedCompoundModel
+ * A proxy model for the compound model
  * 
  * @author Martin Cassidy
+ * @package web/model
  */
 class WrappedCompoundModel implements ComponentAwareModel, ComponentInheritedModel
 {

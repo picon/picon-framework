@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * Model interface
  * @author Martin Cassidy
+ * @package web/model
  */
 interface Model
 {

@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of TextField
+ * A text field component
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class TextField extends AbstractTextComponent
 {

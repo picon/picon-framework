@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * A strategy for authorisation components
  * @author Martin Cassidy
+ * @package web/security/authorisation
  */
 interface AuthorisationStrategy
 {

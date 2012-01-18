@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of RedirectRequestTarget
+ * A request target which performs a 301 redirect to a page instance
  *
- * @author Martin
+ * @author Martin Cassidy
+ * @package web/request/target
  */
 class RedirectRequestTarget implements RequestTarget
 {

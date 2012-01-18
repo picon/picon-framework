@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of CompoundPropertyModel
+ * Compound model which runs from a property of an object
  * 
  * @author Martin Cassidy
+ * @package web/model
  */
 class CompoundPropertyModel implements CompoundModel, ComponentInheritedModel
 {

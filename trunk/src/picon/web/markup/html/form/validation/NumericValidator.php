@@ -26,6 +26,7 @@ namespace picon;
  * Generic validator for numeric values
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form/validation
  */
 class NumericValidator extends AbstractValidator
 {

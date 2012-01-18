@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of ComponentAfterRenderListenerCollection
+ * A collection of a after render listeners which work as one
  *
  * @author Martin Cassidy
+ * @package web/listeners/component
  */
 class ComponentAfterRenderListenerCollection extends ListenerCollection implements ComponentAfterRenderListener
 {

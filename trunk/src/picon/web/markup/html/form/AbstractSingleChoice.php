@@ -26,6 +26,7 @@ namespace picon;
  * A form component with pre-defined choices of which 1 can be chosen
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 abstract class AbstractSingleChoice extends AbstractChoice
 {

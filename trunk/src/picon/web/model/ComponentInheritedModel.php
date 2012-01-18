@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * Interface marking models that require a callback when a component inherits it
  * @author Martin Cassidy
+ * @package web/model
  */
 interface ComponentInheritedModel extends Model
 {

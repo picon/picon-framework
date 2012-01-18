@@ -26,6 +26,7 @@ namespace picon;
  * Validates that a number is between minimum and maximum values
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form/validation
  */
 class RangeValidator extends NumericValidator
 {

@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- *
+ * Interface for a model which can contain multiple values for use independantly
  * @author Martin Cassidy
+ * @package web/model
  */
 interface CompoundModel extends Model
 {

@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of ComponentBeforeRenderListenerCollection
+ * A collection of before render listeners which work as one
  *
  * @author Martin Cassidy
+ * @package web/listeners/component
  */
 class ComponentBeforeRenderListenerCollection extends ListenerCollection implements ComponentBeforeRenderListener
 {

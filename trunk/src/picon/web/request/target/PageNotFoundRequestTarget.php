@@ -27,13 +27,16 @@ namespace picon;
  * 
  * @author Martin Cassidy
  * @package web
- * @todo Update to use and render the actual page not found page
  */
 class PageNotFoundRequestTarget implements RequestTarget
 {
     public function respond(Response $response)
     {
-        echo 'Page not found placeholder';
+        ob_clean();
+        $response->clean();
+        $page = new PageNotFoundPage();
+        $page->render();
+        $response->flush();
     }
 }
 

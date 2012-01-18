@@ -30,6 +30,7 @@ use picon\MarkupContainer;
 /**
  * Generic page for showing an exception
  * @author Martin Cassidy
+ * @package web/pages
  */
 class ErrorPage extends WebPage
 {

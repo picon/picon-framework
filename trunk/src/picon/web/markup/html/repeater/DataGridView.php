@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * A GridView which is generated from a data provider
+ * A GridView which is generated from a data provider.
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/repeater
  */
 class DataGridView extends PaginatingGridView
 {

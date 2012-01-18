@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of GridItem
+ * The component used for the cell of a grid view
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/repeater
  */
 class GridItem extends ListItem
 {

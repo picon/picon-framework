@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of ComponentResolverHelper
+ * Stores all of the available component resolvers for use during rendering
  *
  * @author Martin Cassidy
+ * @package web/markup/resolver
  */
 class ComponentResolverHelper
 {

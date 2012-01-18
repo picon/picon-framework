@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Represents the <head> element or a <picon:head> element
+ * Represents the &lt;head&gt; element
  *
  * @author Martin Cassidy
+ * @package web/markup/html
  */
 class HeaderContainer extends TransparentMarkupContainer
 {

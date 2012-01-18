@@ -26,6 +26,7 @@ namespace picon;
  * Validates that a number is not less than a minimum value
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form/validation
  */
 class MinimumValidator extends NumericValidator
 {

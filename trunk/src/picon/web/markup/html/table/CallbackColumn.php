@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of CallbackColumn
+ * A column which will invoke a callback to populate each cell
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/table
  */
 class CallbackColumn extends AbstractColumn
 {

@@ -23,14 +23,21 @@
 namespace picon;
 
 /**
- * Description of RadioChoice
+ * A list of radio buttons generated from an array of choices.
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class RadioChoice extends AbstractSingleChoice implements ChoiceGroup
 {
     private $selection;
     
+    /**
+     *
+     * @param string $id
+     * @param array $choices
+     * @param Model $model 
+     */
     public function __construct($id, $choices, Model $model = null)
     {
         parent::__construct($id, $choices, $model);

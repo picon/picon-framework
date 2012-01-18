@@ -25,6 +25,7 @@ namespace picon;
 /**
  * Interface for components which support pagination
  * @author Martin Cassidy
+ * @package web/markup/html/paging
  */
 interface Pageable
 {

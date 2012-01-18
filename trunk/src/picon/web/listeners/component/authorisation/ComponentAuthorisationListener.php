@@ -23,9 +23,12 @@
 namespace picon;
 
 /**
- * Description of ComponentAuthorisationListener
+ * A component instantiation listener that detects the users authorisation
+ * to use a component. Passes the component onto the authorisation strategry
+ * which will return a boolen to confirm authorised or not.
  * 
  * @author Martin Cassidy
+ * @package web/listeners/component/authorisation
  */
 class ComponentAuthorisationListener implements ComponentInstantiationListener
 {

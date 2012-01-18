@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of HeaderResponse
+ * A fragment of a web response for writting the header contributor to
  *
  * @author Martin Cassidy
+ * @package web/request
  */
 class HeaderResponse
 {

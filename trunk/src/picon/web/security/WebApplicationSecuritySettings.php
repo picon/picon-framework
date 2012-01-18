@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of WebApplicationSecuritySettings
+ * Holder for security settinsg of the picon application
  * 
  * @author Martin Cassidy
+ * @package web/security
  */
 class WebApplicationSecuritySettings
 {

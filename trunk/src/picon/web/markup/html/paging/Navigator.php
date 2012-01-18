@@ -23,9 +23,13 @@
 namespace picon;
 
 /**
- * Description of Navigator
+ * A list of navigation links to allow the choice of all pages of a
+ * paginatable component.
  * 
+ * @todo this will get longer and longer if there are too many pages, the
+ * amount should be restricted and the page links shown varied based on current page
  * @author Martin Cassidy
+ * @package web/markup/html/paging
  */
 class Navigator extends Panel
 {

@@ -19,10 +19,13 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
+
 namespace picon;
+
 /**
- *
+ * A listener fired immediatly before a component is rendered
  * @author Martin Cassidy
+ * @package web/listeners/component
  */
 interface ComponentBeforeRenderListener
 {

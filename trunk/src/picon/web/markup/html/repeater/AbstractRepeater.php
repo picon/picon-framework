@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of AbstractRepeater
+ * A component whose mark-up is rendered multiple times based on some form
+ * of repitition
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/repeater
  */
 abstract class AbstractRepeater extends MarkupContainer
 {

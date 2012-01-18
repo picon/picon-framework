@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of BasicModel
+ * A default model which can contain an object of any type
  *
  * @author Martin Cassidy
+ * @package web/model
  */
 class BasicModel implements Model
 {

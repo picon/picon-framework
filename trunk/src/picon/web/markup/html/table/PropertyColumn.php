@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of PropertyColumn
+ * A column which shows a simple property of an object
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/table
  */
 class PropertyColumn extends AbstractColumn
 {

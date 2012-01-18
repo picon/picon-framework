@@ -23,9 +23,13 @@
 namespace picon;
 
 /**
- * Description of Form
+ * A form which will contain form component.
+ * This will process and validate the post data when the callback is invoked.
+ * If a form is submitted with a button, the appropriate button callback will also
+ * be invoked
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class Form extends MarkupContainer implements FormSubmitListener
 {

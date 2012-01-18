@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of ArrayModel
+ * A model of an array
  * 
  * @author Martin Cassidy
+ * @package web/model
  */
 class ArrayModel implements Model
 {

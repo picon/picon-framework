@@ -23,8 +23,9 @@
 namespace picon;
 
 /**
- * 
+ * A select multiple box where multiple choices can be chosen
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class ListMultiple extends AbstractMultipleChoice
 {

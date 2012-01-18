@@ -23,10 +23,13 @@
 namespace picon;
 
 /**
- * Description of MarkupLoader
+ * The mark-up loads finds, loads and parses the mark-up for a component class.
+ * This also performs the mark-up merge for picon:child and picon:extend
+ * 
  * @todo the head processing and markup inheritnce is a bit of message and will
  * fall over if the mark is not written properly. Need to add some sanity checks
  * @author Martin Cassidy
+ * @package web/markup
  */
 class MarkupLoader
 {

@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of HeaderToolbar
+ * A toolbar that shows column headings
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/table/toolbar
  */
 class HeaderToolbar extends AbstractToolbar
 {

@@ -19,11 +19,14 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
+
 namespace picon;
+
 /**
- *
+ * A request target is returned by a request resolver and is responsable for
+ * processing the request and producing output
  * @author Martin Cassidy
- * @package web
+ * @package web/request/target
  */
 interface RequestTarget
 {

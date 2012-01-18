@@ -26,6 +26,7 @@ namespace picon;
  * Validator to check that the string is a valid email address
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form/validation
  */
 class EmailAddressValidator extends PatternValidator
 {

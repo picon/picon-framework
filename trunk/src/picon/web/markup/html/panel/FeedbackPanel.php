@@ -28,6 +28,7 @@ namespace picon;
  * @todo add message level as a css class attribute
  * @todo add support for feedback message filtering
  * @author Martin Cassidy
+ * @package web/markup/html/panel
  */
 class FeedbackPanel extends Panel
 {

@@ -26,6 +26,7 @@ namespace picon;
  * Generic validator for strings
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/form/validation
  */
 class StringValidator extends AbstractValidator
 {

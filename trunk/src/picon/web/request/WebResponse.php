@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of WebResponse
+ * Basic implementation of a response
  *
  * @author Martin Cassidy
+ * @package web/request
  */
 class WebResponse implements Response
 {

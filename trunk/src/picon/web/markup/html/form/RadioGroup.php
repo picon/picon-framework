@@ -23,9 +23,11 @@
 namespace picon;
 
 /**
- * Description of RadioGroup
+ * A container for radio buttons
  * 
+ * @see Radio
  * @author Martin Cassidy
+ * @package web/markup/html/form
  */
 class RadioGroup extends FormComponent
 {

@@ -23,9 +23,10 @@
 namespace picon;
 
 /**
- * Description of AbstractToolbar
+ * Super class for upper or lower header and footer bars on a data table
  * 
  * @author Martin Cassidy
+ * @package web/markup/html/table/toolbar
  */
 abstract class AbstractToolbar extends Panel
 {
