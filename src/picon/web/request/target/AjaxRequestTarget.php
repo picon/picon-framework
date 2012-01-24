@@ -65,7 +65,10 @@ class AjaxRequestTarget implements RequestTarget
     {
         $ajaxResponse = array();
         $ajaxResponse['components'] = array();
+        $ajaxResponse['header'] = array();
         $ajaxResponse['script'] = $this->script;
+        
+        $headerResponse = new HeaderResponse($response);
         
         foreach($this->components as $component)
         {
@@ -75,9 +78,32 @@ class AjaxRequestTarget implements RequestTarget
             $value = $response->getBody();
             $response->clean();
             array_push($ajaxResponse['components'], array('id' => $component->getMarkupId(), 'value' => $value));
+            
+            $this->renderComponentHeader($component, $response, $headerResponse);
+            $value = $response->getBody();
+            array_push($ajaxResponse['header'], $value);
+            $response->clean();
         }
         FeedbackModel::get()->cleanup();
         print(json_encode($ajaxResponse));
+    }
+    
+    private function renderComponentHeader(Component $component, Response $response, $headerResponse)
+    {
+        $header = new HeaderContainer(HeaderResolver::HEADER_ID);
+        
+        $page = $component->getPage();
+        $page->addOrReplace($header);
+        
+        PiconApplication::get()->getComponentRenderHeadListener()->onHeadRendering($component, $headerResponse);
+        $page->renderHead($headerResponse);
+        
+        $callback = function(Component &$fcomponent) use($headerResponse, $component)
+        {
+            $fcomponent->renderHeadContainer($component, $headerResponse);
+            return Component::VISITOR_CONTINUE_TRAVERSAL;
+        };
+        $page->visitChildren(Component::getIdentifier(), $callback);
     }
 }
 

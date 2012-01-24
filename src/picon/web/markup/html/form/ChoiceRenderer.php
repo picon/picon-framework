@@ -29,7 +29,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
-class ChoiceRenderer
+class ChoiceRenderer extends PiconSerializable
 {
     private $valueCallable;
     private $displayCallable;
