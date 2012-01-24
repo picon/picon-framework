@@ -13,6 +13,13 @@ function piconAjaxGet(getUrl, sucessHandle, failHandle)
                 $('#'+components[i].id).replaceWith(components[i].value);
             }
             
+            var header = data.header;
+            
+            for(var i = 0; i < header.length; i++)
+            {
+                $('head').append(header[i]);
+            }
+            
             var scripts = data.script;
             for(var i = 0; i < scripts.length; i++)
             {
@@ -42,6 +49,13 @@ function piconAjaxSubmit(formId, postUrl, sucessHandle, failHandle)
             for(var i = 0; i < components.length; i++)
             {
                 $('#'+components[i].id).replaceWith(components[i].value);
+            }
+            
+            var header = data.header;
+            
+            for(var i = 0; i < header.length; i++)
+            {
+                $('head').append(header[i]);
             }
             
             var scripts = data.script;

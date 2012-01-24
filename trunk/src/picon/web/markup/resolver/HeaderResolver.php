@@ -30,11 +30,12 @@ namespace picon;
  */
 class HeaderResolver implements ComponentResolver
 {
+    const HEADER_ID = 'picon_header';
     public function resolve(MarkupContainer $container, ComponentTag &$tag)
     {
         if($tag instanceof PiconTag && $tag->getName()=='head')
         {
-            return new HeaderContainer('picon_header');
+            return new HeaderContainer(self::HEADER_ID);
         }
         else if($tag instanceof PiconTag && $tag->isHeaderTag())
         {

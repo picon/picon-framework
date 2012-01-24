@@ -120,7 +120,7 @@ abstract class AbstractChoice extends FormComponent
                 {
                     throw new \InvalidArgumentException('Choices array may not contain nested arrays');
                 }
-                else if(is_object($choice) && get_class($choice)!=$firstType || gettype($choice)!=$firstType)
+                else if((is_object($choice) && get_class($choice)!=$firstType) || (!is_object($choice) && gettype($choice)!=$firstType))
                 {
                     throw new \InvalidArgumentException('Choice array does not contain the same values');
                 }       

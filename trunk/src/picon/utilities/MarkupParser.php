@@ -54,7 +54,14 @@ class MarkupParser extends XMLParser
         }
         elseif (in_array($name, MarkupParser::$PICON_ELEMENTS) || $name=='head')
         {
-            return new PiconTag($name, $attributes);
+            $tag = new PiconTag($name, $attributes);
+            
+            if($name=='head')
+            {
+                $tag->put('picon:id', HeaderResolver::HEADER_ID);
+            }
+            
+            return $tag;
         }
         else
         {
