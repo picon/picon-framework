@@ -43,6 +43,7 @@ class DropDown extends AbstractSingleChoice
     protected function onComponentTag(ComponentTag $tag)
     {
         $this->checkComponentTag($tag, 'select');
+        $tag->setTagType(new XmlTagType(XmlTagType::OPEN));
         parent::onComponentTag($tag);
     }
     

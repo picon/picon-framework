@@ -56,6 +56,8 @@ abstract class FormComponent extends LabeledMarkupContainer
      */
     private $required = false;
     
+    private $disabled = false;
+    
     /**
      * Add a new validator, child component or behavior to the component
      * @param mixed $object
@@ -93,6 +95,11 @@ abstract class FormComponent extends LabeledMarkupContainer
     {
         parent::onComponentTag($tag);
         $tag->put('name', $this->getName());
+        
+        if($this->disabled)
+        {
+            $tag->put('disabled', 'disabled');
+        }
     }
     
     /**
@@ -143,6 +150,11 @@ abstract class FormComponent extends LabeledMarkupContainer
      */
     public function validate()
     {
+        if($this->disabled)
+        {
+            return;
+        }
+        
         if($this->isValid())
         {
             $this->validateRequired();
@@ -177,6 +189,10 @@ abstract class FormComponent extends LabeledMarkupContainer
      */
     public function updateModel()
     {
+        if($this->disabled)
+        {
+            return;
+        }
         $this->setModelObject($this->convertedInput);
     }
     
@@ -225,7 +241,7 @@ abstract class FormComponent extends LabeledMarkupContainer
     
     public function validateRequired()
     {
-        if($this->isRequired() && ($this->rawInput==null || empty($this->rawInput) || (is_array($this->rawInput) && count($this->rawInput)<1)))
+        if($this->isRequired() && !$this->disabled && ($this->rawInput==null || empty($this->rawInput) || (is_array($this->rawInput) && count($this->rawInput)<1)))
         {
             $data = array('name' => $this->getId());
             $message = $this->getLocalizer()->getString($this->getComponentKey('Required'), new ArrayModel($data));
@@ -254,6 +270,10 @@ abstract class FormComponent extends LabeledMarkupContainer
      */
     public function inputChanged()
     {
+        if($this->disabled)
+        {
+            return;
+        }
         $this->emptyInput = false;
         
         $raw = $this->getRequest()->getPostedParameter(str_replace('[]', '', $this->getName()));
@@ -272,6 +292,10 @@ abstract class FormComponent extends LabeledMarkupContainer
     public function getValue()
     {
         $input = null;
+        if($this->disabled)
+        {
+            $input = $this->getModelObjectAsString();
+        }
         if($this->rawInput==null)
         {
             if($this->emptyInput==true)
@@ -311,6 +335,12 @@ abstract class FormComponent extends LabeledMarkupContainer
     {
         parent::beforeComponentRender();
         $this->validateModel();
+    }
+    
+    public function setDisabled($disabled)
+    {
+        Args::isBoolean($disabled, 'disabled');
+        $this->disabled = $disabled;
     }
 }
 
