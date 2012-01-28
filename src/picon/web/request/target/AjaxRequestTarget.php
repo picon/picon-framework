@@ -98,12 +98,13 @@ class AjaxRequestTarget implements RequestTarget
         PiconApplication::get()->getComponentRenderHeadListener()->onHeadRendering($component, $headerResponse);
         $page->renderHead($headerResponse);
         
-        $callback = function(Component &$fcomponent) use($headerResponse, $component)
+        $component->renderHeadContainer($header, $headerResponse);
+        $callback = function(Component &$component) use($headerResponse, $header)
         {
-            $fcomponent->renderHeadContainer($component, $headerResponse);
+            $component->renderHeadContainer($header, $headerResponse);
             return Component::VISITOR_CONTINUE_TRAVERSAL;
         };
-        $page->visitChildren(Component::getIdentifier(), $callback);
+        $component->visitChildren(Component::getIdentifier(), $callback);
     }
 }
 

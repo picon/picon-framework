@@ -31,6 +31,12 @@ namespace picon;
  */
 class TransparentMarkupContainer extends MarkupContainer implements ComponentResolver
 {
+    protected function onComponentTag(ComponentTag $tag)
+    {
+        parent::onComponentTag($tag);
+        $tag->setTagType(new XmlTagType(XmlTagType::OPEN));
+    }
+    
     public function resolve(MarkupContainer $container, ComponentTag &$tag)
     {
         return $this->getParent()->get($tag->getComponentTagId());

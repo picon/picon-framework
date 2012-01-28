@@ -17,13 +17,33 @@ function piconAjaxGet(getUrl, sucessHandle, failHandle)
             
             for(var i = 0; i < header.length; i++)
             {
-                $('head').append(header[i]);
+                $(header[i]).filter('script').each(function()
+                {
+                    var inner = this.innerText || this.textContent || '';
+                    
+                    if(inner=='')
+                    {
+                        if(!scriptExists(this.src))
+                        {
+                            $('head').append(this);
+                        }
+                    }
+                    else
+                    {
+                        $('head').append(this);
+                    }
+
+                });
+                $(header[i]).filter(':not(script)').each(function()
+                {
+                    $('head').append(this);
+                });
             }
             
             var scripts = data.script;
             for(var i = 0; i < scripts.length; i++)
             {
-                eval(scripts[i]);
+                jQuery.globalEval(scripts[i]);
             }
             sucessHandle();
         },
@@ -32,6 +52,19 @@ function piconAjaxGet(getUrl, sucessHandle, failHandle)
             failHandle();
         }
     });
+}
+
+function scriptExists(scriptSrc)
+{
+    var exists = false;
+    $('head script').each(function()
+    {
+        if(this.src==scriptSrc)
+        {
+            exists = true;
+        }
+    });
+    return exists;
 }
 
 function piconAjaxSubmit(formId, postUrl, sucessHandle, failHandle)
@@ -55,13 +88,23 @@ function piconAjaxSubmit(formId, postUrl, sucessHandle, failHandle)
             
             for(var i = 0; i < header.length; i++)
             {
-                $('head').append(header[i]);
+                $(header[i]).filter('script').each(function()
+                {
+                    if(!scriptExists(this.src))
+                    {
+                        $('head').append(this);
+                    }
+                });
+                $(header[i]).filter(':not(script)').each(function()
+                {
+                    $('head').append(this);
+                });
             }
             
             var scripts = data.script;
             for(var i = 0; i < scripts.length; i++)
             {
-                eval(scripts[i]);
+                jQuery.globalEval(scripts[i]);
             }
             sucessHandle();
         },

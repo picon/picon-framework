@@ -97,9 +97,35 @@ class AjaxFormSubmitBehavior extends AjaxEventBehaviour implements FormSubmitter
         $this->getForm()->setOutputMarkupId(true);
     }
     
+    private function getSubmitForm()
+    {
+        $usingComponent = $this->form;
+        $form = $this->form;
+        if($usingComponent==null)
+        {
+            $usingComponent = $this->getComponent();
+        }
+        
+        $callback = function(&$component) use (&$form)
+        {
+            if($component instanceof Form)
+            {
+                $form = $component;
+            }
+            if($component instanceof ModalWindow)
+            {
+                return Component::VISITOR_STOP_TRAVERSAL;
+            }
+            
+            return Component::VISITOR_CONTINUE_TRAVERSAL;
+        };
+        $usingComponent->visitParents(Component::getIdentifier(), $callback);
+        return $form;
+    }
+    
     protected function generateCallScript($url)
     {
-        return sprintf("piconAjaxSubmit('%s', '%s'", $this->getForm()->getMarkupId(), $url);
+        return sprintf("piconAjaxSubmit('%s', '%s'", $this->getSubmitForm()->getMarkupId(), $url);
     }
     
     public function onError()

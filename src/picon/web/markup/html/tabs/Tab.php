@@ -45,12 +45,12 @@ class Tab extends ComonDomainBase
         Args::isString($name, 'name');
         Args::callBackArgs($newMethod, 1, 'newMethod');
         $this->name = $name;
-        $this->newMethod = $newMethod;
+        $this->newMethod = new SerializableClosure($newMethod);
     }
     
     public function newTab($id)
     {
-        $method = new \ReflectionFunction($this->newMethod);
+        $method = $this->newMethod->getReflection();
         return $method->invokeArgs(array($id));
     }
 }
