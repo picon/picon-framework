@@ -23,28 +23,29 @@
 namespace picon;
 
 /**
- * A link which, when clicked, will set the page of an associated paginatable
- * component to the specified value
- * 
+ * Description of PropertyOption
+ *
  * @author Martin Cassidy
- * @package web/markup/html/paging
  */
-class NavigationLink extends Link
+class NumbericOption extends AbstractOption
 {
-    private $pageable;
-    private $page;
+    private $value;
     
-    public function __construct($id, Pageable $pageable, $page)
+    public function __construct($name, $value)
     {
-        parent::__construct($id, function(){});
-        Args::isNumeric($page, 'page');
-        $this->pageable = $pageable;
-        $this->page = $page;
+        parent::__construct($name, $value);
+        Args::isNumeric($value, 'value');
+        $this->value = $value;
     }
     
-    protected function onLinkClicked()
+    protected function getValue()
     {
-        $this->pageable->setCurrentPage($this->page);
+        return $this->value;
+    }
+    
+    public function render(AbstractJQueryBehaviour $behaviour)
+    {
+        return sprintf("%s : %s", $this->getName(), $this->getValue());
     }
 }
 

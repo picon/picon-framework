@@ -73,7 +73,7 @@ class Form extends MarkupContainer implements FormSubmitListener
                 return Component::VISITOR_CONTINUE_TRAVERSAL;
             };
             $this->visitChildren(FormComponent::getIdentifier(), $callback);
-            
+
             foreach($components as $formComponent)
             {
                 $formComponent->inputChanged();

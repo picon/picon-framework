@@ -74,7 +74,7 @@ abstract class AbstractTextComponent extends FormComponent
     protected function validateModel()
     {
         $modelObject = $this->getModelObject();
-        
+
         if($modelObject!=null)
         {
             if(is_object($modelObject) && get_class($modelObject)!=$this->getType())

@@ -185,7 +185,7 @@ class SerializableClosure
         foreach ($vars as $var)
         {
             $var = preg_replace("/\\$|\\&/", "", trim($var));
-            if(is_callable($static_vars[$var]))
+            if(is_callable($static_vars[$var]) && !($static_vars[$var] instanceof SerializableClosure))
             {
                 $used_vars[$var] = new SerializableClosure($static_vars[$var]);
             }

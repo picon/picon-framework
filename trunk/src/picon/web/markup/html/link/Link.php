@@ -36,6 +36,7 @@ class Link extends AbstractLink
     public function __construct($id, $callback)
     {
         parent::__construct($id);
+        Args::callBack($callback, 'callback');
         $this->callback = $callback;
     }
     

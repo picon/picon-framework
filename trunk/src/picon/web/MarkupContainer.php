@@ -173,7 +173,7 @@ class MarkupContainer extends Component
         if($this->childExists($child))
         {
             $childComponent = $this->children[$child];
-            return $childComponent->get(str_replace($child.self::PATH_SEPERATOR, '', $id));
+            return $childComponent->get(substr($id, strlen($child.self::PATH_SEPERATOR)));
         }
         return null;
     }

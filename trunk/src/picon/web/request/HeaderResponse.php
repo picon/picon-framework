@@ -58,7 +58,7 @@ class HeaderResponse
     {
         if(!$this->checkRenderedFile($file))
         {
-            $this->actualResponse->write(sprintf("<link type=\"text/css\" rel=\"stylesheet\" href=\"%s\">", $file));
+            $this->actualResponse->write(sprintf("<link type=\"text/css\" rel=\"stylesheet\" href=\"%s\" />", $file));
             array_push($this->rendered, $file);
         }
     }

@@ -268,7 +268,7 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
         PiconApplication::get()->getComponentAfterRenderListenersr()->onAfterRender($this);
         $this->notifyBehavioursAfterRender();
         
-        if($this instanceof MarkupContainer)
+        if($this instanceof MarkupContainer && $this->visible)
         {
             foreach($this->getChildren() as $child)
             {
@@ -1081,6 +1081,11 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     public function getComponentKey($suffix)
     {
         return sprintf("%s.%s.%s", get_class($this->getPage()), $this->id, $suffix);
+    }
+    
+    public function isRendered()
+    {
+        return $this->rendered;
     }
 }
 

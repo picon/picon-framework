@@ -31,13 +31,23 @@ namespace picon;
 class TabPanel extends Panel
 {
     private $collection;
-    private $selctedTab;
+    private $selctedTab = 0;
     const PANEL_ID = 'panel';
     
     public function __construct($id, TabCollection $collection)
     {
         parent::__construct($id);
-        $this->collection = $collection;
+        $this->collection = $collection;   
+        $this->setup();
+    }
+    
+    protected function getCollection()
+    {
+        return $this->collection;
+    }
+    
+    protected function setup()
+    {
         $this->setSelectedTab(0);
     }
     
@@ -45,17 +55,27 @@ class TabPanel extends Panel
     {
         parent::onInitialize();
         $me = $this;
-        //@todo add the type hint b/ack into the closure when the serializer can handle them
+        //@todo add the type hint back into the closure when the serializer can handle them
         $this->add(new ListView("tab", function($item) use ($me)
         {
             $tab = $item->getModelObject();
-            $link = new Link('link', function() use ($me, $item)
+            $link = $me->newLink('link', $item->getIndex());
+            if($me->getSelectedTab()==$item->getIndex())
             {
-                $me->setSelectedTab($item->getIndex());
-            });
+                $item->add(new \picon\AttributeAppender('class', new \picon\BasicModel('selected'), ' '));
+            }
+            
             $item->add($link);
-            $link->add(new Label('name', new BasicModel($tab->name)));
+            $link->add(new \picon\Label('name', new \picon\BasicModel($tab->name)));
         }, new ArrayModel($this->collection->tabs)));
+    }
+    
+    public function newLink($id, $index)
+    {
+        return new \picon\Link($id, function() use ($me, $item)
+        {
+            $me->setSelectedTab($index);
+        });
     }
     
     private function getPanelForSelected()
@@ -76,6 +96,11 @@ class TabPanel extends Panel
     {
         $this->selctedTab = $tabIndex;
         $this->addOrReplace($this->getPanelForSelected()); 
+    }
+    
+    public function getSelectedTab()
+    {
+        return $this->selctedTab;
     }
 }
 
