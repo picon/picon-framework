@@ -43,14 +43,12 @@ class PropertyModel implements Model
     
     public function getModelObject()
     {
-        $name = $this->property;
-        return $this->target->$name;
+        return PropertyResolver::get($this->target, $this->property);
     }
     
     public function setModelObject(&$object)
     {
-        $name = $this->property;
-        $this->target->$name = $object;
+        PropertyResolver::set($this->target, $this->property, $object);
     }
 }
 

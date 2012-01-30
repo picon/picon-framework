@@ -37,6 +37,12 @@ class Label extends WebComponent
         parent::__construct($id,$model);
     }
     
+    protected function onComponentTag(ComponentTag $tag)
+    {
+        parent::onComponentTag($tag);
+        $tag->setTagType(new XmlTagType(XmlTagType::OPEN));
+    }
+    
     protected function onComponentTagBody(ComponentTag $tag)
     {
         $this->getResponse()->write($this->getModelObjectAsString());

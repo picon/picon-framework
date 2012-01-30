@@ -205,9 +205,8 @@ abstract class FormComponent extends LabeledMarkupContainer
         $this->inputChanged();
         $valid = $this->validate();
         
-        if($valid)
+        if($this->isValid())
         {
-            $this->processInput();
             $this->updateModel();
         }
     }
@@ -262,7 +261,7 @@ abstract class FormComponent extends LabeledMarkupContainer
     
     public function getName()
     {
-        return $this->getComponentPath();
+        return str_replace('.', '_', $this->getComponentPath());
     }
     
     /**

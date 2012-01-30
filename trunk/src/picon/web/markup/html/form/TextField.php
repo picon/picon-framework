@@ -30,6 +30,17 @@ namespace picon;
  */
 class TextField extends AbstractTextComponent
 {
+    private $type;
+    public function __construct($id, Model $model = null, $type = null)
+    {
+        parent::__construct($id, $model);
+        if($type==null)
+        {
+            $type = self::TYPE_STRING;;
+        }
+        $this->type = $type;
+    }
+    
     protected function onComponentTag(ComponentTag $tag)
     {
         $this->checkComponentTag($tag, 'input');
@@ -42,7 +53,7 @@ class TextField extends AbstractTextComponent
      */
     protected function getType()
     {
-        return self::TYPE_STRING;
+        return $this->type;
     }
 }
 
