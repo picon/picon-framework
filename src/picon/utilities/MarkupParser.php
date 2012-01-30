@@ -43,7 +43,7 @@ class MarkupParser extends XMLParser
 
     protected function onCharacterData($data, XMLTag $element)
     {
-        $element->addChild(new TextElement(htmlentities($data, ENT_COMPAT, 'UTF-8')));
+        $element->addChild(new TextElement($this->html_entities($data)));
     }
     
     protected function newElement($name, $attributes)
@@ -84,7 +84,18 @@ class MarkupParser extends XMLParser
         $mapping = array();
         foreach (get_html_translation_table(HTML_ENTITIES, ENT_QUOTES) as $char => $entity)
         {
-            $mapping[$entity] = '&#' . ord($char) . ';';
+            $mapping[$entity] = '!entity-mark#' . ord($char) . '!entity-mar#';
+        }
+        
+        return str_replace(array_keys($mapping), $mapping, $string);
+    }
+    
+    private function html_entities($string)
+    {
+        $mapping = array();
+        foreach (get_html_translation_table(HTML_ENTITIES, ENT_QUOTES) as $char => $entity)
+        {
+            $mapping['!entity-mark#' . ord($char) . '!entity-mar#'] = $entity;
         }
         
         return str_replace(array_keys($mapping), $mapping, $string);

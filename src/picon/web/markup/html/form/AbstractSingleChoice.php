@@ -30,6 +30,13 @@ namespace picon;
  */
 abstract class AbstractSingleChoice extends AbstractChoice
 {
+    /**
+     * @todo this will incorrectly evaluate isSelected() as true if the model object is null 
+     * and the choice render returns a 0
+     * @param type $choice
+     * @param type $index
+     * @return type 
+     */
     public function isSelected($choice, $index)
     {
         if($this->isEmptyInput())
@@ -45,7 +52,7 @@ abstract class AbstractSingleChoice extends AbstractChoice
             }
             else
             {
-                return $this->getModelObjectAsString()==$this->getChoiceRenderer()->getValue($choice, $index);
+                return Objects::equals($this->getModelObject(), $choice);
             }
         }
     }

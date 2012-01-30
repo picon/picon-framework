@@ -23,30 +23,23 @@
 namespace picon;
 
 /**
- * Behavior to add on jQuery UI sortable functionality
+ * Helper class for working with objects
  * 
- * @todo finish off remaining options
- * @todo create a better callback procedure for js code
  * @author Martin Cassidy
- * @package web/jQuery/ui
+ * @package utilities
  */
-class SortableBehavior extends DefaultJQueryUIBehaviour
+class Objects
 {
-    public function __construct()
+    public static function equals($object1, $object2)
     {
-        parent::__construct('sortable');
-    }
-    
-    public function setReceiveCallback($receiveCallback, $jsCode = '')
-    {
-        Args::callBackArgs($receiveCallback, 1, 'receiveCallback');
-        $this->getOptions()->add(new CallbackFunctionOption('receive', $receiveCallback, $jsCode, 'event', 'ui'));
-    }
-    
-    public function setStopCallback($stopCallback, $jsCode = '')
-    {
-        Args::callBackArgs($stopCallback, 1, 'stopCallback');
-        $this->getOptions()->add(new CallbackFunctionOption('stop', $stopCallback, $jsCode, 'event', 'ui'));
+        if($object1 instanceof Equalable && $object2 instanceof Equalable)
+        {
+            return $object1->equals($object2);
+        }
+        else
+        {
+            return $object1==$object2;
+        }
     }
 }
 

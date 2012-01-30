@@ -45,14 +45,12 @@ class WrappedCompoundModel implements ComponentAwareModel, ComponentInheritedMod
     
     public function getModelObject()
     {
-        $propertyName = $this->source->getId();
-        return $this->wrapped->getModelObject()->$propertyName;
+        return PropertyResolver::get($this->wrapped->getModelObject(), $this->source->getId());
     }
     
     public function setModelObject(&$object)
     {
-        $propertyName = $this->source->getId();
-        return $this->wrapped->getModelObject()->$propertyName = $object;
+        PropertyResolver::set($this->wrapped->getModelObject(), $this->source->getId(), $object);
     }
     
     public function onInherit(Component &$component)

@@ -2,50 +2,17 @@ function piconAjaxGet(getUrl, sucessHandle, failHandle)
 {
     $.ajax({
         url: getUrl,
-        dataType : "json",
         context: document.body,
         success: function(data)
         {
-            var components = data.components;
-      
-            for(var i = 0; i < components.length; i++)
+            if(processResults(data))
             {
-                $('#'+components[i].id).replaceWith(components[i].value);
+                sucessHandle();
             }
-            
-            var header = data.header;
-            
-            for(var i = 0; i < header.length; i++)
+            else
             {
-                $(header[i]).filter('script').each(function()
-                {
-                    var inner = this.innerText || this.textContent || '';
-                    
-                    if(inner=='')
-                    {
-                        if(!scriptExists(this.src))
-                        {
-                            $('head').append(this);
-                        }
-                    }
-                    else
-                    {
-                        $('head').append(this);
-                    }
-
-                });
-                $(header[i]).filter(':not(script)').each(function()
-                {
-                    $('head').append(this);
-                });
+                failHandle();
             }
-            
-            var scripts = data.script;
-            for(var i = 0; i < scripts.length; i++)
-            {
-                jQuery.globalEval(scripts[i]);
-            }
-            sucessHandle();
         },
         error : function() 
         {
@@ -73,44 +40,75 @@ function piconAjaxSubmit(formId, postUrl, sucessHandle, failHandle)
         url: postUrl,
         type: "POST",
         context: document.body,
-        dataType : "json",
         data : $('#'+formId).serialize(),
         success: function(data)
         {
-            var components = data.components;
-      
-            for(var i = 0; i < components.length; i++)
+            if(processResults(data))
             {
-                $('#'+components[i].id).replaceWith(components[i].value);
+                sucessHandle();
             }
-            
-            var header = data.header;
-            
-            for(var i = 0; i < header.length; i++)
+            else
             {
-                $(header[i]).filter('script').each(function()
-                {
-                    if(!scriptExists(this.src))
-                    {
-                        $('head').append(this);
-                    }
-                });
-                $(header[i]).filter(':not(script)').each(function()
-                {
-                    $('head').append(this);
-                });
+                failHandle();
             }
-            
-            var scripts = data.script;
-            for(var i = 0; i < scripts.length; i++)
-            {
-                jQuery.globalEval(scripts[i]);
-            }
-            sucessHandle();
         },
         error : function() 
         {
             failHandle();
         }
     });
+}
+
+function processResults(response)
+{
+    try
+    {
+        var data = jQuery.parseJSON(response);
+    }
+    catch(err)
+    {
+        return false;
+    }
+    
+    var components = data.components;
+
+    for(var i = 0; i < components.length; i++)
+    {
+        $('#'+components[i].id).replaceWith(components[i].value);
+    }
+
+    var header = data.header;
+
+    for(var i = 0; i < header.length; i++)
+    {
+        $(header[i]).filter('script').each(function()
+        {
+            var inner = this.innerText || this.textContent || '';
+
+            if(inner=='')
+            {
+                if(!scriptExists(this.src))
+                {
+                    $('head').append(this);
+                }
+            }
+            else
+            {
+                var scriptElement = $('<script type="text/javascript">'+inner+'</script>')
+                $('head').append(scriptElement);
+            }
+        });
+        $(header[i]).filter(':not(script)').each(function()
+        {
+            $('head').append(this);
+        });
+    }
+
+    var scripts = data.script;
+    for(var i = 0; i < scripts.length; i++)
+    {
+        jQuery.globalEval(scripts[i]);
+    }
+    
+
 }

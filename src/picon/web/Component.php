@@ -48,7 +48,7 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     const TYPE_FLOAT = 'float';
     const TYPE_BOOL = 'boolean';
     const TYPE_DOUBLE = 'double';
-    const TYPE_INT = 'int';
+    const TYPE_INT = 'integer';
     const TYPE_ARRAY = 'array';
     
     
@@ -121,6 +121,8 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
      * @var boolean whether the component was added automatically
      */
     private $auto = false;
+    
+    private $beforeComponentRenderCallback;
     
     const PATH_SEPERATOR = ':';
     
@@ -247,6 +249,11 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     {
         PiconApplication::get()->getComponentBeforeRenderListener()->onBeforeRender($this);
         $this->notifyBehavioursBeforeRender();
+        if($this->beforeComponentRenderCallback!=null)
+        {
+            $callable = $this->beforeComponentRenderCallback;
+            $callable($this);
+        }
     }
     
     public function isInitialized()
@@ -1086,6 +1093,12 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     public function isRendered()
     {
         return $this->rendered;
+    }
+    
+    public function setBeforeComponentRenderCallback($beforeComponentRenderCallback)
+    {
+        Args::callBackArgs($beforeComponentRenderCallback, 1, 'beforeComponentRenderCallback');
+        $this->beforeComponentRenderCallback = $beforeComponentRenderCallback;
     }
 }
 
