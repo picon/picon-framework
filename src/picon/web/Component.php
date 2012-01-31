@@ -122,7 +122,13 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
      */
     private $auto = false;
     
+    private $beforePageRenderCallback;
+    private $afterPageRenderCallback;
     private $beforeComponentRenderCallback;
+    private $afterComponentRenderCallback;
+    private $onComponentTagCallback;
+    private $onComponentTagBodyCallback;
+    private $renderHeadCallback;
     
     const PATH_SEPERATOR = ':';
     
@@ -232,6 +238,11 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
      */
     public function beforePageRender()
     {
+        if($this->beforePageRenderCallback!=null)
+        {
+            $callable = $this->beforePageRenderCallback;
+            $callable($this);
+        }
         $this->beforePageRendered = true;
     }
     
@@ -240,6 +251,11 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
      */
     public function afterPageRender()
     {
+        if($this->afterPageRenderCallback!=null)
+        {
+            $callable = $this->afterPageRenderCallback;
+            $callable($this);
+        }
     }
     
     /**
@@ -271,10 +287,15 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
      */
     public function afterComponentRender()
     {
+        if($this->afterComponentRenderCallback!=null)
+        {
+            $callable = $this->afterComponentRender;
+            $callable($this);
+        }
         $this->rendered = true;
         PiconApplication::get()->getComponentAfterRenderListenersr()->onAfterRender($this);
         $this->notifyBehavioursAfterRender();
-        
+           
         if($this instanceof MarkupContainer && $this->visible)
         {
             foreach($this->getChildren() as $child)
@@ -505,6 +526,11 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
      */
     protected function onComponentTag(ComponentTag $tag)
     {
+        if($this->onComponentTagCallback!=null)
+        {
+            $callable = $this->onComponentTagCallback;
+            $callable($this, $tag);
+        }
         $this->getMarkUpSource()->onComponentTag($this, $tag);
         if($this instanceof MarkupContainer && $this->hasChildren())
         {
@@ -547,6 +573,11 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
      */
     protected function onComponentTagBody(ComponentTag $tag)
     {
+        if($this->onComponentTagBodyCallback!=null)
+        {
+            $callable = $this->onComponentTagBodyCallback;
+            $callable($this, $tag);
+        }
         $this->getMarkUpSource()->onComponentTagBody($this, $tag);
     }
     
@@ -1030,7 +1061,11 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
      */
     public function renderHead(HeaderResponse $headerResponse)
     {
-        
+        if($this->renderHeadCallback!=null)
+        {
+            $callable = $this->renderHeadCallback;
+            $callable($this, $headerResponse);
+        }
     }
     
     /**
@@ -1095,10 +1130,46 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
         return $this->rendered;
     }
     
+    public function setBeforePageRenderCallback($beforePageRenderCallback)
+    {
+        Args::callBackArgs($beforePageRenderCallback, 1, 'beforePageRenderCallback');
+        $this->beforePageRenderCallback = $beforePageRenderCallback;
+    }
+    
     public function setBeforeComponentRenderCallback($beforeComponentRenderCallback)
     {
         Args::callBackArgs($beforeComponentRenderCallback, 1, 'beforeComponentRenderCallback');
         $this->beforeComponentRenderCallback = $beforeComponentRenderCallback;
+    }
+    
+    public function setAfterPageRenderCallback($afterPageRenderCallback)
+    {
+        Args::callBackArgs($afterPageRenderCallback, 1, 'afterPageRenderCallback');
+        $this->afterPageRenderCallback = $afterPageRenderCallback;
+    }
+    
+    public function setAfterComponentRenderCallback($afterComponentRenderCallback)
+    {
+        Args::callBackArgs($afterComponentRenderCallback, 1, 'afterComponentRenderCallback');
+        $this->afterComponentRenderCallback = $afterComponentRenderCallback;
+    }
+    
+    public function setOnComponentTagCallback($onComponentTagCallback)
+    {
+        Args::callBackArgs($onComponentTagCallback, 2, 'onComponentTagCallback');
+        $this->onComponentTagCallback = $onComponentTagCallback;
+    }
+    
+    public function setOnComponentTagBodyCallback($onComponentTagBodyCallback)
+    {
+        Args::callBackArgs($onComponentTagBodyCallback, 2, 'onComponentTagBodyCallback');
+        $this->onComponentTagBodyCallback = $onComponentTagBodyCallback;
+    }
+    
+    public function setRenderHeadCallback($renderHeadCallback)
+    {
+        Args::callBackArgs($renderHeadCallback, 2, 'renderHeadCallback');
+        $this->renderHeadCallback = $renderHeadCallback;
     }
 }
 
