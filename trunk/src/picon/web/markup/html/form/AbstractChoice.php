@@ -79,10 +79,10 @@ abstract class AbstractChoice extends FormComponent
         {
              $this->getResponse()->write(' selected="selected"');
         }
-        $this->getResponse()->write(' value="'.$value.'"');
+        $this->getResponse()->write(' value="'.htmlentities($value).'"');
 
         $this->getResponse()->write('>');
-        $this->getResponse()->write($name);
+        $this->getResponse()->write(htmlentities($name));
         $this->getResponse()->write('</option>');
     }
     
@@ -144,14 +144,14 @@ abstract class AbstractChoice extends FormComponent
             }
             else
             {
-                $input = $this->getModel();
+                $input = $this->getModelObject();
             }
         }
         else
         {
             $input = $this->rawInput;
         }
-        return htmlentities($input);
+        return $input;
     }
 }
 
