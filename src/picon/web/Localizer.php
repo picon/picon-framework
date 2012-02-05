@@ -64,47 +64,53 @@ class Localizer
         return new self($component);
     }
     
-    private function getProperties(Component $component, &$properties = array(), $reflection = null)
+    private function getProperties(Component $component)
     {
-        if($reflection==null)
-        {
-            $reflection = new \ReflectionClass($component);
-        }
+        $target = $component;
+        $properties = array();
         
-        $fileInfo = new \SplFileInfo($reflection->getFileName());
-        $fileName = $fileInfo->getPath()."\\".$reflection->getShortName().self::EXTENSION;
-        
-        if(file_exists($fileName))
+        while($target!=null)
         {
-            $fileHandle = fopen($fileName, 'r');
-            while (!feof($fileHandle))
+            $reflection = new \ReflectionClass($target);
+            
+            while($reflection!=null)
             {
-                $raw = fgets($fileHandle, 4096);
-                $pair = explode('=', $raw);
-                if(count($pair)==2)
+                $fileInfo = new \SplFileInfo($reflection->getFileName());
+                $fileName = $fileInfo->getPath()."\\".$reflection->getShortName().self::EXTENSION;
+                if(file_exists($fileName))
                 {
-                    $name = trim($pair[0]);
-                    $value = trim($pair[1]);
-
-                    if(!array_key_exists($name, $properties))
+                    $loaded = $this->loadProperties($fileName);
+                    foreach($loaded as $name => $value)
                     {
-                        $properties[$name] = $value;
+                        if(!array_key_exists($name, $properties))
+                        {
+                            $properties[$name] = $value;
+                        }
                     }
                 }
+                $reflection = $reflection->getParentClass();
             }
-            fclose($fileHandle);
+            $target = $target->getParent();
         }
-        
-        if($component->getParent()!=null)
+        return $properties;
+    }
+    
+    private function loadProperties($fileName)
+    {
+        $properties = array();
+        $fileHandle = fopen($fileName, 'r');
+        while (!feof($fileHandle))
         {
-            $this->getProperties($component->getParent(), $properties);
+            $raw = fgets($fileHandle, 4096);
+            $pair = explode('=', $raw);
+            if(count($pair)==2)
+            {
+                $name = trim($pair[0]);
+                $value = trim($pair[1]);
+                $properties[$name] = $value;
+            }
         }
-        
-        $parent = $reflection->getParentClass();
-        if($parent!=null)
-        {
-            $this->getProperties($component, $properties, $parent);
-        }
+        fclose($fileHandle);
         return $properties;
     }
     
@@ -117,27 +123,13 @@ class Localizer
      */
     public function getString($key, $model = null)
     {
+        $key = str_replace(Component::PATH_SEPERATOR, '.', $this->component->getComponentPath()).$key;
         $string = null;
         if($model!=null && !($model instanceof Model))
         {
             throw new \InvalidArgumentException(sprintf("Localizer::getString() expects argument 2 to be a Model"));
         }
-        if(array_key_exists($key, $this->properties))
-        {
-            $string = $this->properties[$key];
-        }
-        else
-        {
-            $keyHierarchy = explode('.', $key);
-            
-            if(count($keyHierarchy)>1)
-            {
-                unset($keyHierarchy[0]);
-                $lesserKey = implode('.', $keyHierarchy);
-                $string = $this->getString($lesserKey);
-            }
-        }
-        
+        $string = $this->internalGetString($key);
         
         if($string!=null && $model!=null)
         {
@@ -145,6 +137,25 @@ class Localizer
         }
         
         return $string;
+    }
+    
+    private function internalGetString($key)
+    {
+        if(array_key_exists($key, $this->properties))
+        {
+            return $this->properties[$key];
+        }
+        else
+        {
+            $keyHierarchy = explode('.', $key);
+
+            if(count($keyHierarchy)>1)
+            {
+                unset($keyHierarchy[0]);
+                $lesserKey = implode('.', $keyHierarchy);
+                return $this->internalGetString($lesserKey);
+            }
+        }
     }
     
     

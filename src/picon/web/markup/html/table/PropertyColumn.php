@@ -47,7 +47,7 @@ class PropertyColumn extends AbstractColumn
     public function populateCell(GridItem $item, $componentId, Model $model)
     {
         $property = $this->propertyName;
-        $value = $model->getModelObject()->$property;
+        $value = PropertyResolver::get($model->getModelObject(), $property);
         $item->add(new Label($componentId, new BasicModel($value)));
     }
 }

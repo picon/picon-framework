@@ -48,6 +48,12 @@ class SortableBehavior extends DefaultJQueryUIBehaviour
         Args::callBackArgs($stopCallback, 1, 'stopCallback');
         $this->getOptions()->add(new CallbackFunctionOption('stop', $stopCallback, $jsCode, 'event', 'ui'));
     }
+    
+    public function setForcePlaceHolderSize($force)
+    {
+        Args::isBoolean($force, 'force');
+        $this->getOptions()->add(new BooleanOption('forcePlaceholderSize', $force));
+    }
 }
 
 ?>

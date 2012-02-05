@@ -558,6 +558,16 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
     }
     
     /**
+     * Manually set the markup id. Note, using this makes it your
+     * responsability to ensure the id is unique
+     * @param string $id 
+     */
+    public function setMarkupId($id)
+    {
+        $this->markupId = $id;
+    }
+    
+    /**
      *
      * @param boolean $output 
      */

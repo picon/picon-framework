@@ -30,11 +30,6 @@ namespace picon;
  */
 class DropDown extends AbstractSingleChoice
 {
-    /**
-     * @todo this should be obtained from a localized string
-     */
-    private $defaultValue = 'Choose One';
-    
     public function __construct($id, $choices, ChoiceRenderer $choiceRenderer = null, Model $model = null)
     {
         parent::__construct($id, $choices, $choiceRenderer, $model);
@@ -49,12 +44,18 @@ class DropDown extends AbstractSingleChoice
     
     protected function onComponentTagBody(ComponentTag $tag)
     {
-        if($this->getValue()==null || !$this->isRequired())
+        $value = $this->getValue();
+        if($this->isRequired() && empty($value) || !$this->isRequired())
         {
-            $this->renderOption($this->defaultValue, null, false);
+            $this->renderOption($this->getDefaultValue(), null, empty($value));
         }
         
         $this->renderOptions();
+    }
+    
+    protected function getDefaultValue()
+    {
+        return $this->getLocalizer()->getString('default');
     }
 }
 
