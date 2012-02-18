@@ -26,6 +26,8 @@ namespace picon;
  * A form component which contains a pre-defined list of
  * posible choices
  * 
+ * @todo implement disabled for all abstract choice components
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
@@ -35,13 +37,15 @@ abstract class AbstractChoice extends FormComponent
     
     private $choices;
     
+    private $isDisabled;
+    
     /**
      *
      * @param string $id
      * @param array $choices
      * @param Model $model 
      */
-    public function __construct($id, $choices, ChoiceRenderer $choiceRenderer = null, Model $model = null)
+    public function __construct($id, $choices, ChoiceRenderer $choiceRenderer = null, Model $model = null, $isDisabled = null)
     {
         parent::__construct($id, $model);
         Args::isArray($choices, 'choices');
@@ -53,6 +57,12 @@ abstract class AbstractChoice extends FormComponent
             $choiceRenderer = new ChoiceRenderer();
         }
         $this->choiceRenderer = $choiceRenderer;
+        
+        if($isDisabled!=null)
+        {
+            Args::callBackArgs($isDisabled, 2, 'isDisabled');
+            $this->isDisabled = $isDisabled;
+        }
     }
     
     protected function getChoiceRenderer()
@@ -72,27 +82,65 @@ abstract class AbstractChoice extends FormComponent
      * Render an <option> element
      * @param type $choice 
      */
-    protected function renderOption($name, $value, $selected)
+    protected function renderOption($name, $value, $selected, $disabled)
     {
         $this->getResponse()->write('<option');
         if($selected)
         {
              $this->getResponse()->write(' selected="selected"');
         }
+        if($disabled)
+        {
+             $this->getResponse()->write(' disabled="disabled"');
+        }
         $this->getResponse()->write(' value="'.htmlentities($value).'"');
-
+        
         $this->getResponse()->write('>');
         $this->getResponse()->write(htmlentities($name));
         $this->getResponse()->write('</option>');
     }
     
-    protected function renderOptions()
+    protected function renderOptGroup($name, $options, $index)
     {
-        foreach($this->choices as $index => $choice)
+        $this->getResponse()->write('<optgroup');
+        $this->getResponse()->write(' label="'.htmlentities($name).'"');
+        $this->getResponse()->write('>');
+        $this->renderOptions($options, $index);
+        $this->getResponse()->write('</optgroup>');
+    }
+    
+    protected function renderOptions($choices = null, $outerIndex = 1)
+    {
+        if($choices==null)
         {
-            $selected = $this->isSelected($choice, $index);
-            $this->renderOption($this->choiceRenderer->getDisplay($choice, $index), $this->choiceRenderer->getValue($choice, $index), $selected);
+            $choices = $this->choices;
         }
+        $i = 1;
+        foreach($choices as $index => $choice)
+        {
+            $actualIndex = $i * $outerIndex;
+            if(is_array($choice))
+            {
+                $this->renderOptGroup($index, $choice, $i);
+            }
+            else
+            {
+                $selected = $this->isSelected($choice, $actualIndex);
+                $disabled = $this->isDisabled($choice, $actualIndex);
+                $this->renderOption($this->choiceRenderer->getDisplay($choice, $actualIndex), $this->choiceRenderer->getValue($choice, $actualIndex), $selected, $disabled);
+            }
+            $i++;
+        }
+    }
+    
+    protected function isDisabled($choice, $index)
+    {
+        if($this->isDisabled!=null)
+        {
+            $callable = $this->isDisabled;
+            return $callable($choice, $index);
+        }
+        return false;
     }
     
     protected final function valueForChoice($choice, $value, $index)
@@ -116,9 +164,19 @@ abstract class AbstractChoice extends FormComponent
 
             foreach($this->choices as $choice)
             {
-                if(is_array($choice))
+                if(is_array($choice) && !$this->supportNestedArray())
                 {
                     throw new \InvalidArgumentException('Choices array may not contain nested arrays');
+                }
+                else if(is_array($choice) && $this->supportNestedArray())
+                {
+                    foreach($choice as $option)
+                    {
+                        if(is_array($option))
+                        {
+                            throw new \InvalidArgumentException('Nested choice arrays may contain nested arrays');
+                        }
+                    }
                 }
                 else if((is_object($choice) && get_class($choice)!=$firstType) || (!is_object($choice) && gettype($choice)!=$firstType))
                 {
@@ -152,6 +210,11 @@ abstract class AbstractChoice extends FormComponent
             $input = $this->rawInput;
         }
         return $input;
+    }
+    
+    protected function supportNestedArray()
+    {
+        return false;
     }
 }
 

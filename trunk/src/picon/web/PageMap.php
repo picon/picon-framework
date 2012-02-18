@@ -94,6 +94,7 @@ class PageMap
 
             $this->addToPath($path, $reflection->getNamespaceName().'\\'.$reflection->getName());
         }
+        PiconApplication::get()->getPageMapInitializationListener()->onInitialize($this);
     }
 
     private function addToPath($path, $pageName)
@@ -123,9 +124,6 @@ class PageMap
         return 'page'.$self->pageId;
     }
     
-    /**
-     * 
-     */
     public function getPageById($id)
     {
         if(array_key_exists($id, $this->pageInstances))
@@ -185,6 +183,32 @@ class PageMap
             CacheManager::saveResource($pageid, $page, CacheManager::SESSION_SCOPE);
         }
         $_SESSION['page_map'] = serialize($this);
+    }
+    
+    public function mount($path, Identifier $page)
+    {
+        if(!$page->of(WebPage::getIdentifier()))
+        {
+            throw new \InvalidArgumentException('Expected an identifier of a web page');
+        }
+        if($this->isMounted($path))
+        {
+            throw new \InvalidArgumentException(sprintf('The path %s is already mounted', $path));
+        }
+        $this->addToPath($path, $page->getFullyQualifiedName());
+    }
+    
+    public function isMounted($path)
+    {
+        return array_key_exists($path, $this->pages);
+    }
+    
+    public function unMount($path)
+    {
+        if($this->isMounted($path))
+        {
+            unset($this->pages[$path]);
+        }
     }
 }
 
