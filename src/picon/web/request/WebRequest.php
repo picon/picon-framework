@@ -46,7 +46,7 @@ class WebRequest implements Request
     
     public function getPath()
     {
-        return $_SERVER['REQUEST_URI'];
+        return str_replace('?'.$this->getQueryString(), '', $_SERVER['REQUEST_URI']);
     }
     
     public function isAjax()

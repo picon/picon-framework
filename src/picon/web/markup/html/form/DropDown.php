@@ -30,9 +30,9 @@ namespace picon;
  */
 class DropDown extends AbstractSingleChoice
 {
-    public function __construct($id, $choices, ChoiceRenderer $choiceRenderer = null, Model $model = null)
+    public function __construct($id, $choices, ChoiceRenderer $choiceRenderer = null, Model $model = null, $disabled = null)
     {
-        parent::__construct($id, $choices, $choiceRenderer, $model);
+        parent::__construct($id, $choices, $choiceRenderer, $model, $disabled);
     }
     
     protected function onComponentTag(ComponentTag $tag)
@@ -56,6 +56,11 @@ class DropDown extends AbstractSingleChoice
     protected function getDefaultValue()
     {
         return $this->getLocalizer()->getString('default');
+    }
+    
+    protected function supportNestedArray()
+    {
+        return true;
     }
 }
 

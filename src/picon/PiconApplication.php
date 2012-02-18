@@ -43,6 +43,7 @@ abstract class PiconApplication
     //Application Initializer Listeners
     private $configLoadListeners;
     private $contextLoadListeners;
+    private $pageMapInitializationListener;
     
     //Component listeners
     private $componentInstantiationListeners;
@@ -105,6 +106,8 @@ abstract class PiconApplication
             $context = $createdContext;
             session_start();
         }));
+        
+        $this->pageMapInitializationListener = new PageMapInitializationListenerCollection();
         
         $this->componentInstantiationListeners = new ComponentInstantiationListenerCollection();
         $this->addComponentInstantiationListener(new ComponentInjector());
@@ -188,6 +191,11 @@ abstract class PiconApplication
         return $this->componentRenderHeadListener;
     }
     
+    public function getPageMapInitializationListener()
+    {
+        return $this->pageMapInitializationListener;
+    }
+    
     public function addConfigLoaderListener(ApplicationInitializerConfigLoadListener $listener)
     {
         $this->configLoadListeners->add($listener);
@@ -221,6 +229,11 @@ abstract class PiconApplication
     public function addComponentRenderHeadListener(ComponentRenderHeadListener $listener)
     {
         $this->componentRenderHeadListener->add($listener);
+    }
+    
+    public function addPageMapInitializationListenerCollection(PageMapInitializationListenerCollection $listener)
+    {
+        $this->pageMapInitializationListener->add($listener);
     }
     
     public function getConverter($className)

@@ -60,13 +60,30 @@ abstract class AbstractSingleChoice extends AbstractChoice
     protected function convertInput()
     {
         $value = $this->getRawInput();
+        $i = 1;
         foreach($this->getChoices() as $index => $choice)
         {
-            if($this->valueForChoice($choice, $value, $index))
+            if(is_array($choice))
             {
-                $this->setConvertedInput($choice);
-                return;
+                foreach($choice as $innerIndex => $option)
+                {
+                    if($this->valueForChoice($option, $value, $i))
+                    {
+                        $this->setConvertedInput($option);
+                        return;
+                    }
+                    $i++;
+                }
             }
+            else
+            {
+                if($this->valueForChoice($choice, $value, $i))
+                {
+                    $this->setConvertedInput($choice);
+                    return;
+                }
+            }
+            $i++;
         }
     }
 }
