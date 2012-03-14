@@ -43,12 +43,15 @@ class HomePage extends AbstractPage
         $ajaxExamples[] = new Example('Ajax Link', AjaxLinkPage::getIdentifier());
         $ajaxExamples[] = new Example('Ajax Button', AjaxButtonPage::getIdentifier());
         
+        $authoExamples [] = new Example('Authorised Access Page', AuthorisedPage::getIdentifier());
+        
         $examples = array();
         $examples[] = new ExampleType('General', $generalExamples);
         $examples[] = new ExampleType('Layout', $layoutExamples);
         $examples[] = new ExampleType('Form Components', $formExamples);
         $examples[] = new ExampleType('Data Tables', $tableExamples);
         $examples[] = new ExampleType('Ajax', $ajaxExamples);
+        $examples[] = new ExampleType('Security', $authoExamples);
         
         $self = $this;
         $this->add(new ListView('examples', function(picon\ListItem $item) use ($self)
