@@ -104,7 +104,10 @@ class AjaxRequestTarget implements RequestTarget
             $component->renderHeadContainer($header, $headerResponse);
             return Component::VISITOR_CONTINUE_TRAVERSAL;
         };
-        $component->visitChildren(Component::getIdentifier(), $callback);
+        if($component instanceof MarkupContainer)
+        {
+            $component->visitChildren(Component::getIdentifier(), $callback);
+        }
     }
 }
 

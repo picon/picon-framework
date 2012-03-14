@@ -20,36 +20,33 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
-
 /**
- * A model of an array
+ * Description of TabPanelPage
  * 
  * @author Martin Cassidy
- * @package web/model
  */
-class ArrayModel implements Model
+class TabPanelPage extends AbstractPage
 {
-    private $object;
-    
-    /**
-     *
-     * @param array $object 
-     */
-    public function __construct(&$object)
+    public function __construct()
     {
-        Args::isArray($object, 'object');
-        $this->object = &$object;
+        parent::__construct();
+        $collection = new picon\TabCollection();
+        
+        $collection->addTab('One', function($id)
+        {
+            return new TabOnePanel($id);
+        });
+        $collection->addTab('Two', function($id)
+        {
+            return new TabTwoPanel($id);
+        });
+        
+        $this->add(new picon\TabPanel('tabs', $collection));
     }
     
-    public function getModelObject()
+    public function getInvolvedFiles()
     {
-        return $this->object;
-    }
-    
-    public function setModelObject(&$object)
-    {
-        $this->object = &$object;
+        return array('assets/general/TabPanelPage.php', 'assets/general/TabPanelPage.html', 'assets/general/tabs/TabOnePanel.php', 'assets/general/tabs/TabOnePanel.html', 'assets/general/tabs/TabTwoPanel.php', 'assets/general/tabs/TabTwoPanel.html');
     }
 }
 
