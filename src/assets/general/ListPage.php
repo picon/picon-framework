@@ -43,6 +43,16 @@ class ListPage extends AbstractPage
             $entry->add(new Label('name', new BasicModel($entry->getModelObject())));
         }, new ArrayModel($fruit)));
 
+        $repeatingView = new \picon\RepeatingView('repeater');
+        $this->add($repeatingView);
+        
+        foreach($fruit as $item)
+        {
+            $element = new Label('text', new BasicModel($item));
+            $container = new picon\MarkupContainer($repeatingView->getNextChildId());
+            $container->add($element);
+            $repeatingView->add($container);
+        }
     }
     
     public function getInvolvedFiles()
