@@ -20,29 +20,27 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\Link;
-
 /**
- * Description of LoginPage
+ * Description of AuthorisedPage
  * 
  * @author Martin Cassidy
  */
-class LoginPage extends AbstractPage
+class AuthorisedPage extends AbstractAuthorisedPage
 {
     public function __construct()
     {
         parent::__construct();
         $self = $this;
-        $this->add(new Link('login', function() use ($self)
+        $this->add(new picon\Link('link', function() use ($self)
         {
-            $_SESSION['auth'] = true;
+            $_SESSION['auth'] = false;
             $self->setPage(HomePage::getIdentifier());
         }));
     }
     
     public function getInvolvedFiles()
     {
-        return array('assets/LoginPage.php', 'assets/LoginPage.html');
+        return array('assets/auth/AuthorisedPage.php', 'assets/auth/AuthorisedPage.html');
     }
 }
 
