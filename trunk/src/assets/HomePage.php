@@ -30,6 +30,7 @@ class HomePage extends AbstractPage
         $generalExamples[] = new Example('Labels', LabelPage::getIdentifier());
         $generalExamples[] = new Example('Links', LinkPage::getIdentifier());
         $generalExamples[] = new Example('Lists', ListPage::getIdentifier());
+        $generalExamples[] = new Example('Tabs', TabPanelPage::getIdentifier());
         
         $formExamples = array();
         $formExamples[] = new Example('Form Fields', FormPage::getIdentifier());

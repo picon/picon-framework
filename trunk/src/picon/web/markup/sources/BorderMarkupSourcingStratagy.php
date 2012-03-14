@@ -41,6 +41,12 @@ class BorderMarkupSourcingStratagy extends AbstractAssociatedMarkupSource
         }
         
         $body = MarkupUtils::findPiconTag('body', $borderMarkup);
+        
+        if($body==null)
+        {
+            throw new \RuntimeException('No picon:body tag was found in border.');
+        }
+        
         $body->setChildren($tag->getChildren());
         $tag->setChildren(array($border));
     }

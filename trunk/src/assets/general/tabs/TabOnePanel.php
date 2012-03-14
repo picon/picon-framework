@@ -20,37 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
-
 /**
- * A model of an array
+ * Description of TabOnePanel
  * 
  * @author Martin Cassidy
- * @package web/model
  */
-class ArrayModel implements Model
+class TabOnePanel extends picon\Panel
 {
-    private $object;
     
-    /**
-     *
-     * @param array $object 
-     */
-    public function __construct(&$object)
-    {
-        Args::isArray($object, 'object');
-        $this->object = &$object;
-    }
-    
-    public function getModelObject()
-    {
-        return $this->object;
-    }
-    
-    public function setModelObject(&$object)
-    {
-        $this->object = &$object;
-    }
 }
 
 ?>

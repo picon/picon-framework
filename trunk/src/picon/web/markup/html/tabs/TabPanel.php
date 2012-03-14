@@ -72,7 +72,8 @@ class TabPanel extends Panel
     
     public function newLink($id, $index)
     {
-        return new \picon\Link($id, function() use ($me, $item)
+        $me = $this;
+        return new \picon\Link($id, function() use ($me, $item, $index)
         {
             $me->setSelectedTab($index);
         });
