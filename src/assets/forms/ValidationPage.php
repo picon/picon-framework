@@ -74,6 +74,10 @@ class ValidationPage extends AbstractPage
         $rangeString->add(new \picon\RangeLengthValidator(4, 10));
         $form->add($rangeString);
         
+        $textArea = new picon\TextArea('textArea');
+        $textArea->setRequired(true);
+        $form->add($textArea);
+        
     }
     
     public function getInvolvedFiles()

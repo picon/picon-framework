@@ -44,6 +44,7 @@ class TextField extends AbstractTextComponent
     protected function onComponentTag(ComponentTag $tag)
     {
         $this->checkComponentTag($tag, 'input');
+        $this->checkComponentTagAttribute($tag, 'type', 'text');
         parent::onComponentTag($tag);
         $tag->put('value', $this->getValue());
     }

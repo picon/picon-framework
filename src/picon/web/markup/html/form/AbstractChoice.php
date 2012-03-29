@@ -152,15 +152,17 @@ abstract class AbstractChoice extends FormComponent
     {
         if(count($this->choices)>0)
         {
-            $firstType = null;
-            if(is_object($this->choices[0]))
-            {
-                $firstType = get_class($this->choices[0]);
-            }
-            else
-            {
+            //$firstType = null;
+            //if(is_object($this->choices[0]))
+            //{
+                //$firstType = get_class($this->choices[0]);
+            //}
+            //else
+            //{
                 $firstType = gettype($this->choices[0]);
-            }
+            //}
+                
+            //@todo validate model against the type
 
             foreach($this->choices as $choice)
             {
@@ -178,10 +180,10 @@ abstract class AbstractChoice extends FormComponent
                         }
                     }
                 }
-                else if((is_object($choice) && get_class($choice)!=$firstType) || (!is_object($choice) && gettype($choice)!=$firstType))
+                //@todo this doesn't actually work as it assumes that classes will be identical but the full hierarchy should be checked
+                else if((is_object($choice) /*&& get_class($choice)!=$firstType*/) || (!is_object($choice) && gettype($choice)!=$firstType))
                 {
-                    //@todo this doesn't actually work as it assumes that classes will be identical but the full hierarchy should be checked
-                    //throw new \InvalidArgumentException('Choice array does not contain the same values');
+                    throw new \InvalidArgumentException('Choice array does not contain the same values');
                 }       
             }
         }
