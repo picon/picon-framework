@@ -33,9 +33,28 @@ namespace picon;
  */
 class Form extends MarkupContainer implements FormSubmitListener
 {
+    private $onSubmit;
+    private $onError;
+    
+    public function __construct($id, $onSubmit = null, $onError = null)
+    {
+        parent::__construct($id);
+        if($onError!=null)
+        {
+            Args::callBack($onError, 'onError');
+            $this->onError = $onError;
+        }
+        if($onSubmit!=null)
+        {
+            Args::callBack($onSubmit, 'onSubmit');
+            $this->onSubmit = $onSubmit;
+        }
+    }
+    
     protected function onComponentTag(ComponentTag $tag)
     {
         parent::onComponentTag($tag);
+        $this->checkComponentTag($tag, 'form');
         $tag->put('action', $this->urlForListener($this));
         $tag->put('method', 'post');
     }
@@ -158,12 +177,20 @@ class Form extends MarkupContainer implements FormSubmitListener
     
     public function onError()
     {
-        
+        if(is_callable($this->onError))
+        {
+            $callable = $this->onError;
+            $callable();
+        }
     }
     
     public function onSubmit()
     {
-        
+        if(is_callable($this->onSubmit))
+        {
+            $callable = $this->onSubmit;
+            $callable();
+        }
     }
 }
 

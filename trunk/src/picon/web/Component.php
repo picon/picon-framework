@@ -618,7 +618,7 @@ abstract class Component extends PiconSerializable implements InjectOnWakeup, Id
         
         if(!array_key_exists($attribute, $attributes) || $attributes[$attribute] != $value)
         {
-            throw new \IllegalStateException(sprintf("An %s component can only be added to the HTML element %s", get_called_class(), $tagName));
+            throw new \IllegalStateException(sprintf("An %s component can only be added to a tag with a %s of %s", get_called_class(), $attribute, $value));
         }
     }
     
