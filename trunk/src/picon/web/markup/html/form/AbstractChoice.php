@@ -181,10 +181,10 @@ abstract class AbstractChoice extends FormComponent
                     }
                 }
                 //@todo this doesn't actually work as it assumes that classes will be identical but the full hierarchy should be checked
-                else if((is_object($choice) /*&& get_class($choice)!=$firstType*/) || (!is_object($choice) && gettype($choice)!=$firstType))
+                /*else if((is_object($choice) && get_class($choice)!=$firstType) || (!is_object($choice) && gettype($choice)!=$firstType))
                 {
                     throw new \InvalidArgumentException('Choice array does not contain the same values');
-                }       
+                }*/
             }
         }
     }
