@@ -52,13 +52,13 @@ class RadioGroup extends FormComponent
         }
         else
         {
-            return $choice->getComponentPath();
+            return str_replace('.', '_', $choice->getComponentPath());
         }
     }
     
     protected function convertInput()
     {
-        $input = $this->getRawInput();
+        $input = $this->getRawInput(); 
         $value = null;
         $callback = function(Radio &$radio) use(&$value, $input)
         {

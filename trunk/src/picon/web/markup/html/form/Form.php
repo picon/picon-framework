@@ -36,9 +36,9 @@ class Form extends MarkupContainer implements FormSubmitListener
     private $onSubmit;
     private $onError;
     
-    public function __construct($id, $onSubmit = null, $onError = null)
+    public function __construct($id, $model = null, $onSubmit = null, $onError = null)
     {
-        parent::__construct($id);
+        parent::__construct($id, $model);
         if($onError!=null)
         {
             Args::callBack($onError, 'onError');
