@@ -67,7 +67,7 @@ class CheckBoxGroup extends FormComponent
         }
         else
         {
-            return $choice->getComponentPath();
+            return str_replace('.', '_', $choice->getComponentPath());
         }
     }
     

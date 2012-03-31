@@ -34,7 +34,7 @@ class BasicModel implements Model
     
     public function __construct($object)
     {
-        $this->object = $object;
+        $this->object = &$object;
     }
     
     public function getModelObject()
@@ -44,7 +44,7 @@ class BasicModel implements Model
     
     public function setModelObject(&$object)
     {
-        $this->object = $object;
+        $this->object = &$object;
     }
 }
 

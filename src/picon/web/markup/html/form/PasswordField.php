@@ -23,43 +23,21 @@
 namespace picon;
 
 /**
- * A text field component
+ * Description of PasswordField
  * 
  * @author Martin Cassidy
- * @package web/markup/html/form
  */
-class TextField extends AbstractTextComponent
+class PasswordField extends TextField
 {
-    private $type;
     public function __construct($id, Model $model = null, $type = null)
     {
-        parent::__construct($id, $model);
-        if($type==null)
-        {
-            $type = self::TYPE_STRING;;
-        }
-        $this->type = $type;
-    }
-    
-    protected function onComponentTag(ComponentTag $tag)
-    {
-        $this->checkComponentTag($tag, 'input');
-        $this->checkComponentTagAttribute($tag, 'type', $this->getTypeAttribute());
-        parent::onComponentTag($tag);
-        $tag->put('value', $this->getValue());
-    }
-    
-    /**
-     * Get the data type for this text component
-     */
-    protected function getType()
-    {
-        return $this->type;
+        parent::__construct($id, $model, $type);
+        $this->setRequired(true);
     }
     
     protected function getTypeAttribute()
     {
-        return 'text';
+        return 'password';
     }
 }
 

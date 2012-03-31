@@ -41,11 +41,20 @@ class CompoundPropertyModel implements CompoundModel, ComponentInheritedModel
     
     public function getModelObject()
     {
+        if($this->target instanceof Model)
+        {
+            return $this->target->getModelObject();
+        }
         return PropertyResolver::get($this->target, $this->property);
     }
     
     public function setModelObject(&$object)
     {
+        if($this->target instanceof Model)
+        {
+            $this->target->setModelObject($object);
+            return;
+        }
         PropertyResolver::set($this->target, $this->property, $object);
     }
     
