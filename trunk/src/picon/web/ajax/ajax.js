@@ -36,6 +36,46 @@ function scriptExists(scriptSrc)
 
 function piconAjaxSubmit(formId, postUrl, sucessHandle, failHandle)
 {
+    var uploads = $('input[type="file"]', $('#'+formId));
+    if(uploads.length>0)
+    {
+        piconIframeSubmit(formId, postUrl, sucessHandle, failHandle);
+    }
+    else
+    {
+        piconPost(formId, postUrl, sucessHandle, failHandle);
+    }
+}
+
+function piconIframeSubmit(formId, postUrl, sucessHandle, failHandle)
+{
+    var id = formId + '_' + (new Date().getTime());
+    var iframe = $('<iframe id="' + id + '" name="' + id + '" style="position:absolute; top:-9999px; left:-9999px"></iframe>');
+    iframe.insertAfter($('#'+formId));
+    
+    var submitForm = $('#'+formId);
+    submitForm.attr('action', postUrl);
+    submitForm.attr('target', id);
+    submitForm.submit();
+    
+    iframe.load(function()
+    {
+        var frameContents = $('#'+id).contents();
+        var data = jQuery.parseJSON(frameContents.text());
+
+        if(processResults(data))
+        {
+            sucessHandle();
+        }
+        else
+        {
+            failHandle();
+        }
+    });
+}
+
+function piconPost(formId, postUrl, sucessHandle, failHandle)
+{
     $.ajax({
         url: postUrl,
         type: "POST",
@@ -59,17 +99,8 @@ function piconAjaxSubmit(formId, postUrl, sucessHandle, failHandle)
     });
 }
 
-function processResults(response)
-{
-    try
-    {
-        var data = jQuery.parseJSON(response);
-    }
-    catch(err)
-    {
-        return false;
-    }
-    
+function processResults(data)
+{    
     var components = data.components;
 
     for(var i = 0; i < components.length; i++)

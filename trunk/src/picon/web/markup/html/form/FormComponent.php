@@ -341,6 +341,11 @@ abstract class FormComponent extends LabeledMarkupContainer
         Args::isBoolean($disabled, 'disabled');
         $this->disabled = $disabled;
     }
+    
+    public function isMultiPart()
+    {
+        return false;
+    }
 }
 
 ?>

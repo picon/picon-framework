@@ -192,6 +192,26 @@ class Form extends MarkupContainer implements FormSubmitListener
             $callable();
         }
     }
+    
+    public function beforeComponentRender()
+    {
+        parent::beforeComponentRender();
+        $multipart = false;
+        $callback = function(&$component) use (&$multipart)
+        {
+            if($component->isMultiPart())
+            {
+                $multipart = true;
+            }
+            return Component::VISITOR_CONTINUE_TRAVERSAL;
+        };
+        $this->visitChildren(FormComponent::getIdentifier(), $callback);
+        
+        if($multipart)
+        {
+            $this->add(new AttributeModifier('enctype', new BasicModel('multipart/form-data')));
+        }
+    }
 }
 
 ?>
