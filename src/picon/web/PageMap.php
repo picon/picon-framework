@@ -213,7 +213,8 @@ class PageMap
         if($this->isMounted($path))
         {
             unset($this->pages[$path]);
-            unset($this->mountedPages[$path]);
+            $key = array_search($path, $this->mountedPages);
+            unset($this->mountedPages[$key]);
         }
     }
     

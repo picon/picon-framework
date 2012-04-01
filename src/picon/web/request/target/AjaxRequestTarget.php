@@ -85,6 +85,7 @@ class AjaxRequestTarget implements RequestTarget
             $response->clean();
         }
         FeedbackModel::get()->cleanup();
+        header('Content-Type: application/json');
         print(json_encode($ajaxResponse));
     }
     

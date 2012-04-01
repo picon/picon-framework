@@ -67,12 +67,12 @@ class WebRequest implements Request
     
     public function isPost()
     {
-        return $this->post!=false;
+        return $_SERVER['REQUEST_METHOD']=='POST';
     }
     
     public function isGet()
     {
-        return $this->get!=false;
+        return $_SERVER['REQUEST_METHOD']=='GET';
     }
     
     /**
