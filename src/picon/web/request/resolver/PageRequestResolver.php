@@ -70,7 +70,7 @@ class PageRequestResolver implements RequestResolver
         
         foreach($mapEntry as $path => $pageClass)
         {
-            if(preg_match("/^".$this->prepare($request->getRootPath())."\/".$path."{1}([?|&]{1}\\S+={1}\\S+)*$/", urldecode($request->getPath())))
+            if(preg_match("/^".$this->prepare($request->getRootPath())."\/".str_replace("/", "\\/", $path)."{1}([?|&]{1}\\S+={1}\\S+)*$/", urldecode($request->getPath())))
             {
                 return $pageClass::getIdentifier();
             }
