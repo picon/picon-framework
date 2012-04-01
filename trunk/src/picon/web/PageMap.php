@@ -42,11 +42,12 @@ namespace picon;
 class PageMap
 {
     const PAGE_MAP_RESOURCE_NAME = 'pagemap';
-    
+    const PAGE_MAP_MOUNTED_RESOURCE_NAME ='map_mounted';
     private $pages;
     private $pageId = 1;
     private $pageInstances = array();
     private static $self;
+    private $mountedPages;
 
     /**
      * Private constructor, this is a singleton
@@ -64,8 +65,8 @@ class PageMap
         {
             return;
         }
+        $this->mountedPages = array();
         $this->scanPages();
-        CacheManager::saveResource(self::PAGE_MAP_RESOURCE_NAME, $this->pages, CacheManager::APPLICATION_SCOPE);
     }
 
     private function scanPages()
@@ -168,12 +169,15 @@ class PageMap
     
     public function __sleep()
     {
+        CacheManager::saveResource(self::PAGE_MAP_RESOURCE_NAME, $this->pages, CacheManager::APPLICATION_SCOPE);
+        CacheManager::saveResource(self::PAGE_MAP_MOUNTED_RESOURCE_NAME, $this->mountedPages, CacheManager::APPLICATION_SCOPE);
         return array('pageId');
     }
     
     public function __wakeup()
     {
         $this->pages = CacheManager::loadResource(self::PAGE_MAP_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE);
+        $this->mountedPages = CacheManager::loadResource(self::PAGE_MAP_MOUNTED_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE);
     }
     
     public function __destruct()
@@ -196,11 +200,12 @@ class PageMap
             throw new \InvalidArgumentException(sprintf('The path %s is already mounted', $path));
         }
         $this->addToPath($path, $page->getFullyQualifiedName());
+        $this->mountedPages[] = $path;
     }
     
     public function isMounted($path)
     {
-        return array_key_exists($path, $this->pages);
+        return in_array($path, $this->mountedPages);
     }
     
     public function unMount($path)
@@ -208,7 +213,13 @@ class PageMap
         if($this->isMounted($path))
         {
             unset($this->pages[$path]);
+            unset($this->mountedPages[$path]);
         }
+    }
+    
+    public function getMounted()
+    {
+        return $this->mountedPages;
     }
 }
 
