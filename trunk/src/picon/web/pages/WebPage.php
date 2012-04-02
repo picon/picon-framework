@@ -57,15 +57,13 @@ class WebPage extends MarkupContainer implements RequestablePage
             return $stateless;
         }
         
-        $reflection = new \ReflectionClass($this);
+        $reflection = new \ReflectionClass(get_called_class());
         $constructor = $reflection->getConstructor();
         $params = $constructor->getParameters();
         
         //@todo also add page params to this when in place
-        if(count($params)==0)
-        {
-            $stateless = true;
-        }
+        $stateless = count($params)==0;
+        
         if(!$stateless)
         {
             return $stateless;
