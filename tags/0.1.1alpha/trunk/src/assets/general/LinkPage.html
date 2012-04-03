@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:picon="http://picon.webquub.com/dtds/picon-xhtml.dtd"  
+      xml:lang="en"  
+      lang="en"> 
+    <head>
+    </head>
+    <body>
+        <picon:extend>
+        <h2>Links Page</h2>
+        <p>In Picon, links work using callback (anonymous) functions. The function is declared 
+        in the link constructor and executed when the user clicks on it client side.</p>
+        <br />
+        <a picon:id="alterLink">Example One</a>
+        <p>The callback method of this link changes the property of the text below. As no
+        page change occurs in the callback, the current page is rendered again in its new state.</p>
+        
+        <span picon:id="text"></span>
+        <br />
+        <br />
+        <a picon:id="pageLink">Example Two</a>
+        <p>The callback for this link specifies a page change and directs the user back to the home page.</p>
+        </picon:extend>
+    </body>
+</html>
