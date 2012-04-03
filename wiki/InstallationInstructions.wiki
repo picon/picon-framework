@@ -9,7 +9,7 @@ The Picon Framework is presently released only for proof of concept and preview.
 
 Picon Framework requires the following
 
-  * Apache Web Service 2.2 or later with both mod_rewrite and .htaccess overrides enabled 
+  * Apache Web Server 2.2 or later with both mod_rewrite and .htaccess overrides enabled 
   * PHP 5.3 or later
   * MySQL 5.5.15 or later (options)
 
