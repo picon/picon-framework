@@ -54,23 +54,41 @@ function piconIframeSubmit(formId, postUrl, sucessHandle, failHandle)
     iframe.insertAfter($('#'+formId));
     
     var submitForm = $('#'+formId);
+    var restoreAction = submitForm.attr('action');
+    var restoreTarget = submitForm.attr('target');
     submitForm.attr('action', postUrl);
     submitForm.attr('target', id);
     submitForm.submit();
+    
+    submitForm.bind('submit', function() 
+    {
+        return false;
+    });
     
     iframe.load(function()
     {
         var frameContents = $('#'+id).contents();
         var data = jQuery.parseJSON(frameContents.text());
-
-        if(processResults(data))
+        
+        if(data)
         {
-            sucessHandle();
+            if(processResults(data))
+            {
+                sucessHandle();
+            }
+            else
+            {
+                failHandle();
+            }
         }
         else
         {
             failHandle();
         }
+        alert(restoreTarget);
+        submitForm.attr('action', restoreAction==undefined?'':restoreAction);
+        submitForm.attr('target', restoreTarget==undefined?'':restoreTarget);
+        submitForm.unbind('submit');
     });
 }
 
