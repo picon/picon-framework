@@ -35,6 +35,7 @@ class HomePage extends AbstractPage
         $formExamples = array();
         $formExamples[] = new Example('Form Fields', FormPage::getIdentifier());
         $formExamples[] = new Example('Validation', ValidationPage::getIdentifier());
+        $formExamples[] = new Example('Special Fields', SpecialFields::getIdentifier());
         
         $tableExamples = array();
         $tableExamples[] = new Example('Data Table', DataTablePage::getIdentifier());
