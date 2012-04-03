@@ -19,4 +19,5 @@ The framework may function with earlier version of MySQL or Apache but this is n
   * Download the framework ZIP from the downloads page.
   * Extract the contents
   * Place the picon-framework directory into an Appache accessible directory (for example /var/www or C:\Program Files\Apache Software Foundation\Apache2.2\htdocs)
+  * Ensure that picon-framework/cache is writable
   * Navigate to http://localhost/picon-framework
