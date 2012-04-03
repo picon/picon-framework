@@ -76,7 +76,7 @@ class Localizer
             while($reflection!=null)
             {
                 $fileInfo = new \SplFileInfo($reflection->getFileName());
-                $fileName = $fileInfo->getPath()."\\".$reflection->getShortName().self::EXTENSION;
+                $fileName = $fileInfo->getPath()."/".$reflection->getShortName().self::EXTENSION;
                 if(file_exists($fileName))
                 {
                     $loaded = $this->loadProperties($fileName);

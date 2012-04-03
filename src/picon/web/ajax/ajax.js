@@ -85,7 +85,6 @@ function piconIframeSubmit(formId, postUrl, sucessHandle, failHandle)
         {
             failHandle();
         }
-        alert(restoreTarget);
         submitForm.attr('action', restoreAction==undefined?'':restoreAction);
         submitForm.attr('target', restoreTarget==undefined?'':restoreTarget);
         submitForm.unbind('submit');
