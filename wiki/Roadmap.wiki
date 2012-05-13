@@ -1,8 +1,8 @@
 #summary Picon Framework project roadmap
 
 = Release 0.2 =
-  * Improve PiconSerializable to implement the PHP serializable int erface, removing the need to manually call preparForSerialize()
-  *Implement application profiles
+  * Improve PiconSerializable to implement the PHP serializable interface, removing the need to manually call preparForSerialize()
+  * Implement application profiles
   * Implement all jQuery and jQuery UI behaviours
   * Resource requests should go through resource.php not index.php - removing the need to run the entire application for each one
   * Improve test coverage
