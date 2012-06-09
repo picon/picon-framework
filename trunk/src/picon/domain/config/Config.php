@@ -31,17 +31,18 @@ namespace picon;
 class Config extends ComonDomainBase
 {
     private $homePage;
-    private $mode;
+    private $startup;
+    private $profile;
     private $dataSources = array();
     
-    public function setMode(ApplicationMode $mode)
+    public function setProfile(ApplicationProfile $profile)
     {
-        $this->mode = $mode;
+        $this->profile = $profile;
     }
     
-    public function getMode()
+    public function getProfile()
     {
-        return $this->mode;
+        return $this->profile;
     }
     
     public function setHomePage($homePage)
@@ -62,6 +63,16 @@ class Config extends ComonDomainBase
     public function getDataSources()
     {
         return $this->dataSources;
+    }
+    
+    public function setStartUp($startup)
+    {
+        $this->startup = $startup;
+    }
+    
+    public function getStartUp()
+    {
+        return $this->startup;
     }
 }
 

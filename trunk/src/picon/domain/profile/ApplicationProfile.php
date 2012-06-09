@@ -23,15 +23,24 @@
 namespace picon;
 
 /**
- * Enum for the modes in which the picon framework can run
- * 
+ * Domain class for storing application settings
+ *
  * @author Martin Cassidy
- * @package domain/config
  */
-class ApplicationMode extends Enum
+class ApplicationProfile extends ComonDomainBase
 {
-    const DEVELOPMENT = "development";
-    const DEPLOYMENT = "deployment";
+    private $showPiconTags = false;
+    private $cacheMarkup = true;
+    
+    public function isCacheMarkup()
+    {
+        return $this->cacheMarkup;
+    }
+    
+    public function isShowPiconTags()
+    {
+        return $this->showPiconTags;
+    }
 }
 
 ?>

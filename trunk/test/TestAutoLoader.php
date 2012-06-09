@@ -20,6 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+
+namespace picon;
+
 require_once(PICON_DIRECTORY."\\core\\AutoLoader.php");
 require_once(PICON_DIRECTORY."\\cache\\CacheManager.php");
 
@@ -28,7 +31,7 @@ require_once(PICON_DIRECTORY."\\cache\\CacheManager.php");
  * 
  * @author Martin Cassidy
  */
-class TestAutoLoader extends \picon\AutoLoader
+class TestAutoLoader extends AutoLoader
 {
     public function __construct()
     {
