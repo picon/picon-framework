@@ -14,3 +14,4 @@
   * GD integration
   * Created drivers for MSSQL and Postgresql - perhaps others
   * Manual context loading
+  * Create command line interface for the cache (caching config/classes e.c.t.), clearing
