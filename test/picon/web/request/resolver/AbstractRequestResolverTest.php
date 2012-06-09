@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\Request;
+
+namespace picon;
+
 
 /**
  * Description of AbstractRequestResolverTest
@@ -30,15 +32,16 @@ abstract class AbstractRequestResolverTest extends AbstractPiconTest
 {
     private $resolver;
     
-    protected function setUp()
+    public function setUp()
     {
+        parent::setUp();
         $this->resolver = $this->newResolver();
     }
     
     public function testHomePage()
     {
         //Homepage request
-        $testRequest = new TestRequest(TestRequest::ROOT_PATH.'/', array());
+        $testRequest = new \TestRequest(\TestRequest::ROOT_PATH.'/', array());
         $this->assertEquals($this->matchesHomePage($testRequest), $this->resolver->matches($testRequest));
         
         if($this->matchesHomePage($testRequest))
@@ -47,7 +50,7 @@ abstract class AbstractRequestResolverTest extends AbstractPiconTest
         }
         
         //Homepage with listener request
-        $testRequest = new TestRequest(TestRequest::ROOT_PATH.'/', array('listener' => 'someListenerPath'));
+        $testRequest = new \TestRequest(\TestRequest::ROOT_PATH.'/', array('listener' => 'someListenerPath'));
         $this->assertEquals($this->matchesHomePage($testRequest), $this->resolver->matches($testRequest));
         
         if($this->matchesHomePage($testRequest))

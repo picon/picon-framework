@@ -20,12 +20,15 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+
+namespace picon;
+
 /**
- * Description of MarkupUtilsTest
+ * Description of MarkupParserTest
  * @todo this
  * @author Martin Cassidy
  */
-class MarkupUtilsTest
+class MarkupParserTest
 {
     
 }

@@ -20,17 +20,25 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+
+namespace picon;
+
+
 /**
- * Description of PageMapTest
- * 
- * @author Martin Cassidy
+ * Description of ListenerRequestResolverTest
+ *
+ * @author Martin
  */
-class PageMapTest extends AbstractPiconTest
+class ListenerRequestResolverTest extends AbstractRequestResolverTest
 {
-    public function testMap()
+    protected function matchesHomePage(Request $request)
     {
-        \picon\PageMap::get()->initialise();
-        $this->assertEquals(array('TestPageOne' => 'TestPageOne', 'TestPageTwo' => 'TestPageTwo', 'somepath' => '\TestPageOne'), \picon\PageMap::getPageMap());
+        return $request->getParameter('listener')!=null;
+    }
+    
+    protected function newResolver()
+    {
+        return new ListenerRequestResolver();
     }
 }
 

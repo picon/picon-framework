@@ -20,14 +20,32 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of MarkupParserTest
- * @todo this
+ * Description of PiconSerializerTest
+ * @todo test inject on wakeup
  * @author Martin Cassidy
  */
-class MarkupParserTest
+class PiconSerializerTest extends AbstractPiconTest
 {
+    public function testComplexSerialization()
+    {
+        $complexObject = new \ComplexSerialize();
+        $complexObject->preparForSerialize();
+        $serialized = serialize($complexObject);
+        $deSerialized = unserialize($serialized);
+        
+        $this->assertSame("defaultValue", $deSerialized->getTransient());
+        $this->assertSame("defaultValue", $deSerialized->getService());
+        
+        $closure = $deSerialized->getClosure();
+        $this->assertTrue(is_callable($closure));
+        $output = $closure();
+        $this->assertSame("executing 12", $output);
+    }
     
+    //@todo create a test and a process for testing serialization of injected resources
 }
 
 ?>

@@ -20,6 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+
+namespace picon;
+
 /**
  * Test for the class scanner
  * @todo test multiple rules, test scanning subsets
@@ -36,7 +39,7 @@ class ScannerTest extends AbstractPiconTest
         $required = array('picon\ClassScanner', 'picon\AnnotationRule', 'picon\ClassNamespaceRule', 'picon\ClassNameRule', 'picon\SubClassRule');
         foreach($required as $class)
         {
-            new ReflectionClass($class);
+            new \ReflectionClass($class);
         }
     }
     
@@ -54,13 +57,13 @@ class ScannerTest extends AbstractPiconTest
     
     public function testByName()
     {
-        $scanner = new \picon\ClassScanner(new \picon\ClassNameRule('\w*(Scan|Rule){1}\w*'));
-        $this->performAsserts($scanner, array('ScannerTest', 'picon\ClassScanner', 'picon\AnnotationRule', 'picon\ClassNamespaceRule', 'picon\ClassNameRule', 'picon\SubClassRule'));
+        $scanner = new ClassScanner(new ClassNameRule('\w*(Scan|Rule){1}\w*'));
+        $this->performAsserts($scanner, array('picon\ScannerTest', 'picon\ClassScanner', 'picon\AnnotationRule', 'picon\ClassNamespaceRule', 'picon\ClassNameRule', 'picon\SubClassRule'));
     }
     
     public function testBySubClass()
     {
-        $scanner = new \picon\ClassScanner(new \picon\SubClassRule('testnamespace\TestNameSpaceClassOne'));
+        $scanner = new ClassScanner(new SubClassRule('testnamespace\TestNameSpaceClassOne'));
         $this->performAsserts($scanner, array('testnamespace\TestNameSpaceClassTwo'));
     }
     
@@ -72,7 +75,7 @@ class ScannerTest extends AbstractPiconTest
         $expectedReflections = array();
         foreach($expectedClasses as $expected)
         {
-            array_push($expectedReflections, new ReflectionAnnotatedClass($expected));
+            array_push($expectedReflections, new \ReflectionAnnotatedClass($expected));
         }
         
         $results = $scanner->scanForReflection();
