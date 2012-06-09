@@ -19,6 +19,9 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
+
+namespace picon;
+
 class InjectionTest extends AbstractPiconTest
 {
     public function testInjector()
@@ -51,8 +54,8 @@ class InjectionTest extends AbstractPiconTest
     
     public function testSeperateInjector()
     {
-        $empty = new EmptyInjectable();
-        $injector = new \picon\Injector($this->getContext());
+        $empty = new \EmptyInjectable();
+        $injector = new Injector($this->getContext());
         
         $injector->inject($empty);
         
@@ -64,8 +67,8 @@ class InjectionTest extends AbstractPiconTest
     
     public function testSeperateInjectorAlias()
     {
-        $empty = new EmptyInjectableName();
-        $injector = new \picon\Injector($this->getContext());
+        $empty = new \EmptyInjectableName();
+        $injector = new Injector($this->getContext());
         
         $injector->inject($empty);
         
@@ -80,8 +83,8 @@ class InjectionTest extends AbstractPiconTest
     */
     public function testInvalidResource()
     {
-        $toInject = new InvalidInjectable();
-        $injector = new \picon\Injector($this->getContext());
+        $toInject = new \InvalidInjectable();
+        $injector = new Injector($this->getContext());
         
         $injector->inject($toInject);
     }
@@ -91,8 +94,8 @@ class InjectionTest extends AbstractPiconTest
     */
     public function testInvalidResourceAlias()
     {
-        $toInject = new InvalidNameInjectable();
-        $injector = new \picon\Injector($this->getContext());
+        $toInject = new \InvalidNameInjectable();
+        $injector = new Injector($this->getContext());
         
         $injector->inject($toInject);
     }

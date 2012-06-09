@@ -20,15 +20,16 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-class ConfigTest extends AbstractPiconTest
+namespace picon;
+
+/**
+ * Description of MarkupUtilsTest
+ * @todo this
+ * @author Martin Cassidy
+ */
+class MarkupUtilsTest
 {
-    public function testConfigLoad()
-    {
-        $config = \picon\ConfigLoader::load('config/picon.xml');
-        
-        $this->assertSame('HomePage', $config->getHomePage());
-        $this->assertSame('development', $config->getMode());
-    }
+    
 }
 
 ?>

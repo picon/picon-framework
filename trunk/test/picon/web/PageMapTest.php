@@ -20,14 +20,23 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
- * Description of ComponentTest
+ * Description of PageMapTest
  * 
  * @author Martin Cassidy
  */
-class ComponentTest
+class PageMapTest extends AbstractPiconTest
 {
-    
+    /**
+     * @todo fix this
+     */
+    public function testMap()
+    {
+        //\picon\PageMap::get()->initialise();
+        //$this->assertEquals(array('TestPageOne' => 'TestPageOne', 'TestPageTwo' => 'TestPageTwo', 'somepath' => '\TestPageOne'), \picon\PageMap::getPageMap());
+    }
 }
 
 ?>
