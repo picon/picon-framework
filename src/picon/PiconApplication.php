@@ -35,6 +35,8 @@ require_once("cache/CacheManager.php");
  */
 abstract class PiconApplication 
 {
+    const GLOBAL_APPLICATION_KEY = "picon-application";
+    
     private $applicatoinContext;
     private $config;
     private $requestProcessor;
@@ -65,11 +67,11 @@ abstract class PiconApplication
      */
     public function __construct()
     {
-        if(isset($GLOBALS['application']))
+        if(isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
         {
             throw new \IllegalStateException("An instance of picon application already exists");
         }
-        $GLOBALS['application'] = $this;
+        $GLOBALS[self::GLOBAL_APPLICATION_KEY] = $this;
         
         $this->initialiser = new ApplicationInitializer();
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY, 'picon');
@@ -82,7 +84,6 @@ abstract class PiconApplication
         $this->internalInit();
         
         $this->initialiser->initialise();
-        
         
         ob_start();
     }
@@ -146,9 +147,18 @@ abstract class PiconApplication
         return $this->applicatoinContext;
     }
     
+    public final function getProfile()
+    {
+        return $this->config->getProfile();
+    }
+    
     public static function get()
     {
-        return $GLOBALS['application'];
+        if(!isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
+        {
+            throw new \IllegalStateException("Failed to get picon application. The application has not been instantiated.");
+        }
+        return $GLOBALS[self::GLOBAL_APPLICATION_KEY];
     }
     
     public function getHomePage()

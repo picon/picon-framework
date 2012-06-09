@@ -27,22 +27,41 @@ namespace picon;
  * This also performs the mark-up merge for picon:child and picon:extend
  * 
  * @todo the head processing and markup inheritnce is a bit of message and will
- * fall over if the mark is not written properly. Need to add some sanity checks
+ * fall over if the mark-up is not written properly. Need to add some sanity checks
  * @author Martin Cassidy
  * @package web/markup
  */
 class MarkupLoader
 {
+    /**
+     * Constant for the markup resource cache
+     */
     const MARKUP_RESOURCE_PREFIX = 'markup_';
     
+    /**
+     * Self instance
+     * @var MarkupLoader
+     */
     private static $instance;
+    
+    /**
+     * The supported extensions for mark-up
+     * @var array
+     */
     private static $extensions = array('html', 'htm');
     
+    /**
+     * Singleton
+     */
     private function __construct()
     {
         
     }
     
+    /**
+     * Get the markup loader
+     * @return MarkupLoader 
+     */
     public static function get()
     {
         if(!isset(self::$instance))
@@ -52,24 +71,33 @@ class MarkupLoader
         return self::$instance;
     }
     
+    /**
+     * Load the associated markup file for a component
+     * @param Component $component
+     * @return MarkupElement The root markup tag, populated with child tags 
+     */
     public function loadMarkup(Component $component)
     {
         $name = get_class($component);
         $fileSafeName = str_replace('\\', '_', $name);
         
-        /*
-         * Doesn't load from the cache in development mode
-         * @todo create profiles for each application mode and have this run from the profiel not the mode
-         */
-        if(CacheManager::resourceExists(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, CacheManager::APPLICATION_SCOPE) && PiconApplication::get()->getConfig()->getMode()!='development')
+        if(PiconApplication::get()->getProfile()->isCacheMarkup())
         {
-            return CacheManager::loadResource(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, CacheManager::APPLICATION_SCOPE);
+            if(CacheManager::resourceExists(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, CacheManager::APPLICATION_SCOPE))
+            {
+                return CacheManager::loadResource(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, CacheManager::APPLICATION_SCOPE);
+            }
+            else
+            {
+                $markup = $this->internalLoadMarkup($name);
+                CacheManager::saveResource(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, $markup, CacheManager::APPLICATION_SCOPE);
+                return $markup;
+            }
         }
-        $markup = $this->internalLoadMarkup($name);
-        
-        CacheManager::saveResource(self::MARKUP_RESOURCE_PREFIX.$fileSafeName, $markup, CacheManager::APPLICATION_SCOPE);
-        
-        return $markup;
+        else
+        {
+            return $this->internalLoadMarkup($name);;
+        }
     }
     
     private function internalLoadMarkup($className)

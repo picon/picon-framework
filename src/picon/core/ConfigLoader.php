@@ -26,16 +26,13 @@ namespace picon;
  * A helper class for loading config xml
  * @author Martin Cassidy
  * @package core
- * @todo Update so that every element found is validated
  * @todo add support for including other xml files allowing larger configs to be split up
- * @todo finish off the parser to process data sources
- * @todo create a schema for the config xml
  */
 class ConfigLoader
 {
-    const ROOT_ELEMENT = "piconApplication";
+    const SETTINGS_TAG_NAME = "settings";
+    const PROFILES_TAG_NAME = "profile";
     const DATA_SOURCE_ELEMENT = "dataSource";
-    const EXTERNAL_INCLUDE = "include";
     
     private static $CORE_CONFIG = array("homePage", "mode");
     
@@ -49,57 +46,71 @@ class ConfigLoader
         {
             $config = new Config();
         }
-        $xmlParser = new XMLParser();
-        $rawConfig = $xmlParser->parse($file);
-        ConfigLoader::parse($rawConfig, $config);
+        
+        $xml = new \DOMDocument(); 
+        $xml->load($file);
+        libxml_use_internal_errors(true);
+        if (!$xml->schemaValidate(PICON_DIRECTORY.'/core/config.xsd')) 
+        {
+            throw new ConfigException("Config XML does not match schema");
+        }
+        ConfigLoader::parse($xml, $config);
         return $config;
     }
     
-    private static function parse($rawConfig, &$config)
+    private static function parse(\DOMDocument $xml, Config &$config)
     {
-        if($rawConfig->getName()!=self::ROOT_ELEMENT)
-        {
-            throw new ConfigException("Unexpected root element ".$tag->getName());
-        } 
-        foreach($rawConfig->getChildren() as $childTag)
-        {
-            if($childTag instanceof XMLTag && in_array($childTag->getName(), self::$CORE_CONFIG))
-            {
-                $name = $childTag->getName();
-                $config->$name = $childTag->getCharacterData();
-            }
-            
-            if($childTag->getName()==self::DATA_SOURCE_ELEMENT)
-            {
-                $source = self::createDataSource($childTag);
-                $config->addDataSource($source);
-            }
-
-            /*Not tested
-             * if($childTag->getName()==self::EXTERNAL_INCLUDE)
-            {
-                ConfigLoader::load($childTag->getCharacterData(), $config);
-            }*/
-        }
+        self::processSettings($xml, $config);
+        self::processDataSources($xml, $config);
     }
     
-    private static function createDataSource(XMLTag $tag)
+    private static function processSettings(\DOMDocument $xml, Config &$config)
     {
-        $attributes = $tag->getAttributes();
-        $type = DataSourceType::valueOf($tag->getChildByName('type')->getCharacterData());
-        $host = $tag->getChildByName('host')->getCharacterData();
-        $port = null;
-        $portChild = $tag->getChildByName('port');
-        if($portChild!=null)
-        {
-            $port = $portChild->getCharacterData();
-        }
-        $username = $tag->getChildByName('username')->getCharacterData();
-        $password = $tag->getChildByName('password')->getCharacterData();
-        $database = $tag->getChildByName('database')->getCharacterData();
+         $settings = $xml->getElementsByTagName(self::SETTINGS_TAG_NAME)->item(0);
+         $config->setHomePage($settings->getElementsByTagName("homePage")->item(0)->nodeValue);
+         $profileName = $settings->getElementsByTagName("profile")->length==0?null:$settings->getElementsByTagName("profile")->item(0)->nodeValue;
+         $config->setProfile($profileName==null?new ApplicationProfile():self::getProfile($xml, $profileName));
+         $config->setStartup($settings->getElementsByTagName("startUp")->item(0)->nodeValue);
+    }
+    
+    private static function getProfile(\DOMDocument $xml, $profileName)
+    {
+        $profiles = $xml->getElementsByTagName(self::PROFILES_TAG_NAME);
         
-        $dataSource = new DataSourceConfig($type, $attributes['name'], $host, $port, $username, $password, $database);
-        return $dataSource;
+        foreach($profiles as $profile)
+        {
+            if($profile->getAttribute('name')==$profileName)
+            {
+                $aprofile = new ApplicationProfile();
+                $values = array("showPiconTags" => Component::TYPE_BOOL, "cacheMarkup" => Component::TYPE_BOOL);
+                foreach($values as $property => $type)
+                {
+                    $value = $profile->getElementsByTagName($property)->item(0)->nodeValue;
+                    settype($value, $type);
+                    $aprofile->$property = $value;
+                }
+                return $aprofile;
+            }
+        }
+        throw new ConfigException(sprintf("The %s profile name was not found.", $profileName));
+    }
+    
+    private static function processDataSources(\DOMDocument $xml, Config &$config)
+    {
+        $sources = $xml->getElementsByTagName(self::DATA_SOURCE_ELEMENT);
+        
+        foreach($sources as $source)
+        {
+            $type = DataSourceType::valueOf($source->getAttribute('type'));
+            $name = $source->getAttribute('name');
+            $host = $source->getElementsByTagName('host')->item(0)->nodeValue;
+            $port = $source->getElementsByTagName('port')->length==0?null:$source->getElementsByTagName('port')->item(0)->nodeValue;
+            $username = $source->getElementsByTagName('username')->item(0)->nodeValue;
+            $password = $source->getElementsByTagName('password')->item(0)->nodeValue;
+            $database = $source->getElementsByTagName('database')->item(0)->nodeValue;
+            $dataSource = new DataSourceConfig($type, $name, $host, $port, $username, $password, $database);
+            $config->addDataSource($dataSource);
+        }
     }
 }
 

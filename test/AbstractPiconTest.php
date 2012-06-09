@@ -20,6 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon;
+
 /**
  * Same constants as defined normally by index.php
  */
@@ -32,8 +34,9 @@ require_once(PICON_DIRECTORY."\\addendum\\annotation_parser.php");
 require_once(PICON_DIRECTORY."\\addendum\\annotations.php");
 require_once(PICON_DIRECTORY."\\addendum\\doc_comment.php");
 require_once("TestAutoLoader.php");
+require_once("TestApplication.php");
 
-class AbstractPiconTest extends PHPUnit_Framework_TestCase
+class AbstractPiconTest extends \PHPUnit_Framework_TestCase
 {
     private static $autoLoader;
     
@@ -42,7 +45,7 @@ class AbstractPiconTest extends PHPUnit_Framework_TestCase
         AbstractPiconTest::$autoLoader = new TestAutoLoader();
         AbstractPiconTest::loadAssets(ASSETS_DIRECTORY);
     }
-    
+
     public function test()
     {
         /*
@@ -70,7 +73,7 @@ class AbstractPiconTest extends PHPUnit_Framework_TestCase
     
     protected function getConfig()
     {
-        return \picon\ConfigLoader::load('config/picon.xml');
+        return \picon\ConfigLoader::load(__DIR__.'/config/picon.xml');
     }
     
     protected function getContext()
