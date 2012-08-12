@@ -36,6 +36,8 @@ class ConfigLoaderTest extends AbstractPiconTest
         $this->assertSame('auto', $config->getStartUp());
         $this->assertTrue($config->getProfile()->isCacheMarkup());
         $this->assertFalse($config->getProfile()->isShowPiconTags());
+        $this->assertFalse($config->getProfile()->isCleanBeforeOutput());
+        
         
         $sources = $config->getDataSources();
         $this->assertCount(1, $sources);

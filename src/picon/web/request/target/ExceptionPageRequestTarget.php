@@ -39,8 +39,6 @@ class ExceptionPageRequestTarget implements RequestTarget
     
     public function respond(Response $response)
     {
-        ob_clean();
-        $response->clean();
         $page = new \ErrorPage($this->exception);
         $page->renderPage();
         $response->flush();

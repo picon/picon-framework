@@ -39,8 +39,6 @@ class PageRequestTarget implements RequestTarget
 
     public function respond(Response $response)
     {
-        ob_clean();
-        $response->clean();
         $fullClassName = $this->pageClass->getFullyQualifiedName();
         $page = new $fullClassName();
         $page->renderPage();

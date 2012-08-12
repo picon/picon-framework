@@ -133,7 +133,7 @@ class PageMap
         }
 
         $page = CacheManager::loadResource($id, CacheManager::SESSION_SCOPE);
-        
+
         if($page!=null)
         {
             $this->addOrUpdate($page);

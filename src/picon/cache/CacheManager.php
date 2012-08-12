@@ -48,9 +48,6 @@ class CacheManager
     
     /**
      * Saves a resource to the cache.
-     * Important Note: For objects that implement PiconSerializer the preparForSerialize will
-     * be called. It is therefore a good idea to save such resources at the end of a request
-     * when the resources are no longer needed
      * @param type $name
      * @param type $resource
      * @param type $scope 
@@ -122,17 +119,13 @@ class CacheManager
     private function internalSaveResource($directory, $name, $resource)
     {
         $fileName = $this->getFileName($directory, $name);
-        if(is_object($resource) && $resource instanceof PiconSerializable)
-        {
-            $resource->preparForSerialize();
-        }
         
         if(!file_exists($directory))
         {
             mkdir($directory, 0755, true);
         }
         
-        file_put_contents($fileName, serialize($resource));
+        file_put_contents($fileName, PiconSerializer::serialize($resource));
     }
     
     private function internalLoadResource($directory, $name)
@@ -142,7 +135,7 @@ class CacheManager
         if(file_exists($fileName))
         {
             $contents = file_get_contents($fileName);
-            return unserialize($contents);
+            return PiconSerializer::unserialize($contents);
         }
         else
         {

@@ -22,31 +22,11 @@
 
 namespace picon;
 
-/**
- * Domain class for storing application settings
- *
- * @author Martin Cassidy
- */
-class ApplicationProfile extends ComonDomainBase
+require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
+
+class CacheManaagerTest extends AbstractPiconTest
 {
-    private $showPiconTags = false;
-    private $cacheMarkup = true;
-    private $cleanBeforeOutput = true;
     
-    public function isCleanBeforeOutput()
-    {
-        return $this->cleanBeforeOutput;
-    }
-    
-    public function isCacheMarkup()
-    {
-        return $this->cacheMarkup;
-    }
-    
-    public function isShowPiconTags()
-    {
-        return $this->showPiconTags;
-    }
 }
 
 ?>

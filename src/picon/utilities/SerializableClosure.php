@@ -41,6 +41,7 @@ namespace picon;
  * used later when it is needed and would otherwise be un-obtainable with SplFileObject.
  * 
  * @todo imporove so that  all type hinting usage of classes within a closure don't need to be fully qualified
+ * @todo test in PHP 5.4.x
  * @author Martin Cassidy
  * @package utilities
  */
@@ -67,6 +68,11 @@ class SerializableClosure
             $this->code = base64_decode($code);
         }
         $this->arguments = $this->fetchUsedVariables($this->reflection, $this->code);
+        
+        if(method_exists($this->reflection, "getClosureThis"))
+        {
+            $this->source = $this->reflection->getClosureThis();
+        }
     }
     
     /**
@@ -202,11 +208,10 @@ class SerializableClosure
     /**
      * Validates the closure
      * @param Closure The closure to validate
-     * @todo Figure out why instanceof Clousre fails
      */
     private function validateClosure($closure)
     {
-        if (!isset($closure) || get_class($closure)!="Closure" || !is_callable($closure))
+        if (!isset($closure) || !($closure instanceof \Closure) || !is_callable($closure))
         {
             throw new \InvalidArgumentException("Closure was not valid");
         }
@@ -222,28 +227,16 @@ class SerializableClosure
         extract($this->arguments);
         eval('$closure = '.$this->code.";");
         $this->closure = $closure;
-        $this->reflection = new \ReflectionFunction($this->closure);
-    }
-    
-    /**
-     * @todo test in 5.4
-     * @param type $object 
-     */
-    public function bind(&$object)
-    {
+        
         if(method_exists('Closure', 'bind'))
         {
-            $this->source = $object;
             $this->closure = Closure::bind($this->closure, $this->source, get_class($this->source));
         }
+        $this->reflection = new \ReflectionFunction($this->closure);
     }
     
     public function __invoke()
     {
-        if(method_exists('Closure', 'bind') && $this->source==null)
-        {
-            throw new \IllegalStateException("A serialized closure cannot be invoked after deserialization until it has been bound");
-        }
         $args = func_get_args();
         return $this->reflection->invokeArgs($args);
     }

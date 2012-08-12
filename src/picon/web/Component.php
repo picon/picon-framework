@@ -42,7 +42,7 @@ namespace picon;
  * @todo finish adding state flags so that checks can be run to ensure overriden methods are calling
  * the parent implementation
  */
-abstract class Component extends PiconSerializable implements InjectOnWakeup, Identifiable, Detachable
+abstract class Component implements InjectOnWakeup, Identifiable, Detachable
 {
     const TYPE_STRING = 'string';
     const TYPE_FLOAT = 'float';

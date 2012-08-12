@@ -82,7 +82,7 @@ class ConfigLoader
             if($profile->getAttribute('name')==$profileName)
             {
                 $aprofile = new ApplicationProfile();
-                $values = array("showPiconTags" => Component::TYPE_BOOL, "cacheMarkup" => Component::TYPE_BOOL);
+                $values = array("showPiconTags" => Component::TYPE_BOOL, "cacheMarkup" => Component::TYPE_BOOL, "cleanBeforeOutput" => Component::TYPE_BOOL);
                 foreach($values as $property => $type)
                 {
                     $value = $profile->getElementsByTagName($property)->item(0)->nodeValue;

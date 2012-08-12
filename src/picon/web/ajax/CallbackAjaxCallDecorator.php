@@ -29,7 +29,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package web/ajax
  */
-class CallbackAjaxCallDecorator extends PiconSerializable implements AjaxCallDecorator
+class CallbackAjaxCallDecorator implements AjaxCallDecorator
 {
     private $decorator;
     private $successDecorator;

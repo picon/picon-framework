@@ -20,32 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
-
-/**
- * Domain class for storing application settings
- *
- * @author Martin Cassidy
- */
-class ApplicationProfile extends ComonDomainBase
+class ParentComplexObject
 {
-    private $showPiconTags = false;
-    private $cacheMarkup = true;
-    private $cleanBeforeOutput = true;
+    private $parentString = "some text";
     
-    public function isCleanBeforeOutput()
+    public function getParentString()
     {
-        return $this->cleanBeforeOutput;
-    }
-    
-    public function isCacheMarkup()
-    {
-        return $this->cacheMarkup;
-    }
-    
-    public function isShowPiconTags()
-    {
-        return $this->showPiconTags;
+        return $this->parentString;
     }
 }
 

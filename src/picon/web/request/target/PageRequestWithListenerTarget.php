@@ -47,8 +47,6 @@ class PageRequestWithListenerTarget extends PageRequestTarget
     
     public function respond(Response $response)
     {
-        ob_clean();
-        $response->clean();
         $fullClassName = $this->getPageClass()->getFullyQualifiedName();
         $page = new $fullClassName();
         $page->beforePageRender();

@@ -26,7 +26,7 @@
  * @author Martin Cassidy
  * @package annotations
  */
-class Service extends Annotation 
+class Service extends Transient 
 {
     public $name = "";
 }

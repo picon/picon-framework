@@ -32,8 +32,6 @@ class PageNotFoundRequestTarget implements RequestTarget
 {
     public function respond(Response $response)
     {
-        ob_clean();
-        $response->clean();
         $page = new PageNotFoundPage();
         $page->render();
         $response->flush();
