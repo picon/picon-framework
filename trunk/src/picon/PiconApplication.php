@@ -28,6 +28,7 @@ require_once("addendum/annotations.php");
 require_once("addendum/doc_comment.php");
 
 require_once("cache/CacheManager.php");
+require_once("cache/PiconSerializer.php");
 
 /**
  * This is the main class for the entire application.

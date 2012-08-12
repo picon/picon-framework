@@ -29,7 +29,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package web/behaviour
  */
-abstract class AbstractBehaviour extends PiconSerializable implements Behaviour, Identifiable
+abstract class AbstractBehaviour implements Behaviour, Identifiable
 {
     private $component;
     

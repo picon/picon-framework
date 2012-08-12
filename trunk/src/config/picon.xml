@@ -10,6 +10,7 @@ xsi:noNamespaceSchemaLocation="http://piconframework.com/schemas/config.xsd">
         <profile name="development">
             <showPiconTags>0</showPiconTags>
             <cacheMarkup>0</cacheMarkup>
+            <cleanBeforeOutput>0</cleanBeforeOutput>
         </profile>
     </profiles>
 </piconApplication>

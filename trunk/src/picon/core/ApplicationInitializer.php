@@ -22,7 +22,7 @@
 
 namespace picon;
 require_once("AutoLoader.php");
-require_once('ErrorHandler.php');
+require_once('PiconErrorHandler.php');
 
 /**
  * ApplicationInitialiser works like a bootstrap. This is the first step
@@ -48,7 +48,7 @@ class ApplicationInitializer
     public function __construct()
     {
         $this->autoLoader = new AutoLoader();
-        $this->errorHandler = new ErrorHandler;
+        $this->errorHandler = new PiconErrorHandler;
     }
     
     /**

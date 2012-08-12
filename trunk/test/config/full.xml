@@ -11,6 +11,7 @@ xsi:noNamespaceSchemaLocation="http://piconframework.com/schemas/config.xsd">
         <profile name="test">
             <showPiconTags>0</showPiconTags>
             <cacheMarkup>1</cacheMarkup>
+            <cleanBeforeOutput>0</cleanBeforeOutput>
             </profile>
         </profiles>
         

@@ -35,6 +35,7 @@
     	<xs:all>
     		<xs:element name="showPiconTags" type="xs:boolean"></xs:element>
     		<xs:element name="cacheMarkup" type="xs:boolean"></xs:element>
+                <xs:element name="cleanBeforeOutput" type="xs:boolean"></xs:element>
     	</xs:all>
     	<xs:attribute name="name" type="xs:string"></xs:attribute>
     </xs:complexType>

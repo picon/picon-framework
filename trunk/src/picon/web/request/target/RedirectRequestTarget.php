@@ -40,7 +40,6 @@ class RedirectRequestTarget implements RequestTarget
     
     public function respond(Response $response)
     {
-        ob_clean();
         $response->clean();
         $response->setHeader('Location: '.$this->url, 301);
         $response->flush();

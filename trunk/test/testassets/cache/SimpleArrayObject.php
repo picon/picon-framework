@@ -20,52 +20,19 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-/**
- * Description of ComplexSerialize
- * 
- * @author Martin Cassidy
- */
-class ComplexSerialize extends picon\PiconSerializable
+
+class SimpleArrayObject
 {
-    private $closure;
-    
-    /**
-     *
-     * @Transient
-     */
-    private $transient = "defaultValue";
-    
-    /**
-     *
-     * @Service
-     */
-    private $service = "defaultValue";
+    private $array;
     
     public function __construct()
     {
-        $value1 = "1";
-        $value2 = "2";
-        $this->closure = function() use($value1, $value2)
-        {
-            return "executing ".$value1.$value2;
-        };
-        $this->transient = "newValue";
-        $closure = $this->closure;
+        $this->array = array("value1", "value2", "value3");
     }
     
-    public function getClosure()
+    public function getArray()
     {
-        return $this->closure;
-    }
-    
-    public function getTransient()
-    {
-        return $this->transient;
-    }
-    
-    public function getService()
-    {
-        return $this->service;
+        return $this->array;
     }
 }
 

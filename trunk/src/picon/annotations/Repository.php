@@ -26,7 +26,7 @@
  * @author Martin Cassidy
  * @package annotations
  */
-class Repository extends Annotation 
+class Repository extends Transient 
 {
     public $name = "";
 }

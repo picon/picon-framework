@@ -73,6 +73,11 @@ class RequestCycle
         {
             try
             {
+                if(PiconApplication::get()->getProfile()->isCleanBeforeOutput())
+                {
+                    ob_clean();
+                    $this->response->clean();
+                }
                 $iterator->current()->respond($this->response);
             }
             catch(RestartRequestOnPageException $restartEx)

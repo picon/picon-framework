@@ -28,7 +28,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package core
  */
-class ErrorHandler
+class PiconErrorHandler
 {
     public function __construct()
     {
