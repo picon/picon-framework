@@ -23,6 +23,7 @@
 
 namespace picon;
 
+require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 
 /**
  * Tests the picon implementation of enums

@@ -27,12 +27,16 @@ class SimpleArrayObject
     
     public function __construct()
     {
-        $this->array = array("value1", "value2", "value3");
     }
     
     public function getArray()
     {
         return $this->array;
+    }
+    
+    public function setArray($array)
+    {
+        $this->array = $array;
     }
 }
 

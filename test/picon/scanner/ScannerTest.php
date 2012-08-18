@@ -22,7 +22,7 @@
 
 
 namespace picon;
-
+require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 /**
  * Test for the class scanner
  * @todo test multiple rules, test scanning subsets

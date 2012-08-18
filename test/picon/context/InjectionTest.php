@@ -21,7 +21,7 @@
  * */
 
 namespace picon;
-
+require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 class InjectionTest extends AbstractPiconTest
 {
     public function testInjector()

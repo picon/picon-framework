@@ -63,55 +63,133 @@ class PiconSerializerTest extends AbstractPiconTest
         $simpleArray = array("value1", "value2", "value3");
         
         $object = new \SimpleArrayObject();
+        $object->setArray($simpleArray);
         $arrayObject = $this->doSerialize($object);
-        $this->assertCount(count($simpleArray), $arrayObject->getArray());
+        $this->assertArray($simpleArray, $arrayObject->getArray());
         
-        $values = $arrayObject->getArray();
-        for($i = 0; $i < count($simpleArray); $i++)
+        $simpleObjectArray = array(new \SimpleSerialize(), new \SimpleSerialize(), new \SimpleSerialize());
+        $simpleObjectArrayobject = new \SimpleArrayObject();
+        $simpleObjectArrayobject->setArray($simpleObjectArray);
+        $arrayObject = $this->doSerialize($simpleObjectArrayobject);
+        
+        $self = $this;
+        $this->assertArray($simpleObjectArray, $arrayObject->getArray(), function($origional, $new) use($self)
         {
-           $this->assertSame($simpleArray[$i], $values[$i]);
-        }
+            $self->assertSame($origional->getText(), $new->getText());
+        });
+        
+        $closureArray = array(function($value) 
+        {
+            return "1".$value;
+        }, 
+        function($value) 
+        {
+            return "2".$value;
+        }, 
+        function($value) 
+        {
+                return "3".$value;
+        });
+        $closureArrayobject = new \SimpleArrayObject();
+        $closureArrayobject->setArray($closureArray);
+        $arrayObject = $this->doSerialize($closureArrayobject);
+        $self = $this;
+        $this->assertArray($closureArray, $arrayObject->getArray(), function($origional, $new) use($self)
+        {
+            $value = "something";
+            $self->assertSame($origional($value), $origional($value));
+        });
     }
     
     public function testRestorePoint()
     {
+        $complex = new \ComplexSerialize();
+        $this->doSerialize($complex);
         
-    }
-    
-    public function testArrays()
-    {
+        $closure = $complex->getClosure();
+        $this->assertTrue(is_callable($closure));
+        $output = $closure();
+        $this->assertSame("executing 12", $output);
         
-    }
-    
-    public function testTransient()
-    {
+        $this->assertSame("newValue", $complex->getTransient());
         
+        //@todo test array restores
     }
     
     public function testWakeupInjection()
     {
+        $context = $this->getContext();
+        $injector = new \picon\Injector($context);
+        $object = new \InjectOnWakeupObject();
+        $injector->inject($object);
+        $deserialized = $this->doSerialize($object);
         
+        $this->assertSame($context->getResource("testService"), $object->getTestResource());
+        $this->assertSame($context->getResource("testService"), $deserialized->getTestResource());
     }
     
     public function testDetachable()
     {
-        
+        $detachable = new \DetachableObject();
+        $unserialized = $this->doSerialize($detachable);
+        $this->assertSame($detachable->getText(), "after");
     }
     
     public function testObjectRecursion()
     {
+        $complex = new \ComplexSerialize();
+        $complex->setObject($complex);
+        $deSerialized = $this->doSerialize($complex);
         
+        $this->assertSame($deSerialized, $deSerialized->getObject());
+        
+        $secondComplex = new \ComplexSerialize();
+        $complex->setObject($secondComplex);
+        $secondComplex->setObject($complex);
+        $deSerialized = $this->doSerialize($complex);
+        $this->assertSame($deSerialized, $deSerialized->getObject()->getObject());
     }
     
+    /**
+     * @todo test for fully recursive arrays within arrays when the serializer supports
+     */
     public function testArrayRecursion()
     {
+        $simpleArray = array(array("value1", "value2", "value3"), array("value1", "value2", "value3"), array("value1", "value2", "value3"));
         
+        $object = new \SimpleArrayObject();
+        $object->setArray($simpleArray);
+        $arrayObject = $this->doSerialize($object);
+        $this->assertArray($simpleArray, $arrayObject->getArray());
+        
+        $arrays = $arrayObject->getArray();
+        for($i = 0; $i < count($simpleArray); $i++)
+        {
+            $this->assertArray($simpleArray[$i], $arrays[$i]);
+        }
     }
     
     private function doSerialize($object)
     {
         $serialized = PiconSerializer::serialize($object);
         return PiconSerializer::unserialize($serialized);
+    }
+    
+    private function assertArray($origionalArray, $newArray, $eachCallback = null)
+    {
+        $this->assertCount(count($origionalArray), $newArray);
+        
+        for($i = 0; $i < count($origionalArray); $i++)
+        {
+            if($eachCallback==null)
+            {
+                $this->assertSame($origionalArray[$i], $newArray[$i]);
+            }
+            else
+            {
+                $eachCallback($origionalArray[$i], $newArray[$i]);
+            }
+        }
     }
 }
 

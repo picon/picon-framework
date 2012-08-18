@@ -70,7 +70,14 @@ class PiconSerializer
      */
     public static function unserialize($string)
     {
-        return unserialize($string);
+        $unserialzed = unserialize($string);
+        
+        if($unserialzed instanceof InjectOnWakeup)
+        {
+            Injector::get()->inject($unserialzed);
+        }
+        
+        return $unserialzed;
     }
     
     private static function prepareForSerize(\ReflectionAnnotatedClass $reflection, $object, $parent = false)
@@ -141,6 +148,11 @@ class PiconSerializer
         return $globalAltered;
     }
     
+    /**
+     * @todo This should handle array recursion
+     * @param array $entry
+     * @return SerializableClosure 
+     */
     private static function prepareArrayForSerialize($entry)
     {
         $newEntry = array();
@@ -159,7 +171,7 @@ class PiconSerializer
                 $newEntry[$key] = new SerializableClosure($value);
                 $altered = true;
             }
-            else if(is_object($value) && !($value instanceof SerializableClosure) && spl_object_hash($value)!=$hash)
+            else if(is_object($value) && !($value instanceof SerializableClosure) && !in_array(spl_object_hash($value), self::$prepared))
             {
                 $ia = self::prepareForSerize(new \ReflectionAnnotatedClass($value), $value);
                 $altered = $altered?true:$ia;

@@ -20,16 +20,15 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
-require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
-/**
- * Description of MarkupUtilsTest
- * @todo this
- * @author Martin Cassidy
- */
-class MarkupUtilsTest
+class InjectOnWakeupObject implements picon\InjectOnWakeup
 {
+    /** @Resource */
+    private $testService;
     
+    public function getTestResource()
+    {
+        return $this->testService;
+    }
 }
 
 ?>

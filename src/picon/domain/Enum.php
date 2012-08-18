@@ -52,7 +52,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package domain
  */
-abstract class Enum implements Identifiable
+abstract class Enum implements Identifiable, Equalable
 {
     private $value;
     const DEFAULT_NAME = "_DEFAULT";
