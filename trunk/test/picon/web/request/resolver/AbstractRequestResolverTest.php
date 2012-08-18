@@ -22,7 +22,7 @@
 
 
 namespace picon;
-
+require_once(dirname(__FILE__).'/../../../../AbstractPiconTest.php');
 
 /**
  * Description of AbstractRequestResolverTest

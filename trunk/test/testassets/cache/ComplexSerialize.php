@@ -76,6 +76,11 @@ class ComplexSerialize extends ParentComplexObject
     {
         return $this->object;
     }
+    
+    public function setObject($object)
+    {
+        $this->object = $object;
+    }
 }
 
 ?>
