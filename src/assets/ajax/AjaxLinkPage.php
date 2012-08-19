@@ -17,7 +17,14 @@
  *  General Public License for more details.
 
  * You should have received a copy of the GNU General Public License
- * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>. 
+ * 
+ * Repository path:    $HeadURL$
+ * Last committed:     $Revision$
+ * Last changed by:    $Author$
+ * Last changed date:  $Date$
+ * ID:                 $Id$
+ * 
  * */
 
 /**
