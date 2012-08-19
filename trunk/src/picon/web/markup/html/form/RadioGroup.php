@@ -85,7 +85,7 @@ class RadioGroup extends FormComponent
     
     protected function validateModel()
     {
-        //@todo
+        //TODO
     }
     
     protected function onComponentTag(ComponentTag $tag)

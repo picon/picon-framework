@@ -41,7 +41,7 @@ class HeaderResolver implements ComponentResolver
         {
             if($container instanceof WebPage)
             {
-                //@todo this block is UNTESTED 
+                //TODO this block is UNTESTED 
                 $header = new HeaderContainer('header'.$container->getPage()->getAutoIndex());
                 
                 $inner = new TransparentMarkupContainer('picon_header');

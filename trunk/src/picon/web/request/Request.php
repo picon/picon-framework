@@ -26,7 +26,7 @@ namespace picon;
  * This also provideds convience methods for analysing the request to 
  * determin what kind of request it is
  * @package web/request
- * @todo lots more to add in here
+ * TODO lots more to add in here
  * @author Martin Cassidy
  */
 interface Request

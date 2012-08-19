@@ -51,7 +51,7 @@ class PageRequestResolver implements RequestResolver
     /**
      *
      * @param Request $request
-     * @todo alter expression to handle page params
+     * TODO alter expression to handle page params
      * @return type 
      */
     private function isHomePage(Request $request)
@@ -61,7 +61,7 @@ class PageRequestResolver implements RequestResolver
 
     /**
      * @param Request $request
-     * @todo alter expression to handle page params
+     * TODO alter expression to handle page params
      * @return type 
      */
     private function getPageClassForPath(Request $request)
@@ -81,8 +81,8 @@ class PageRequestResolver implements RequestResolver
     /**
      *
      * @param RequestTarget $target
-     * @todo Create a url builder helper
-     * @todo turn this into an absolute url
+     * TODO Create a url builder helper
+     * TODO turn this into an absolute url
      * @return string the URL for the request target
      */
     public function generateUrl(RequestTarget $target)

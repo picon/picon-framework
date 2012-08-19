@@ -49,7 +49,7 @@ class RadioChoice extends AbstractSingleChoice implements ChoiceGroup
         $this->selection = $this->getModelObject();
         $this->group = new RadioGroup('choice', new PropertyModel($this, 'selection'));
         $this->add($this->group);
-        //@todo add the type hint b/ack into the closure when the serializer can handle them
+        //TODO add the type hint b/ack into the closure when the serializer can handle them
         $this->group->add(new ListView('choices', function(&$item)
         {
             $radio = new \picon\Radio('radio', $item->getModel());

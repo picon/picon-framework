@@ -26,7 +26,7 @@ namespace picon;
  * A data table, showing information from a data provider, specified by
  * columns.
  * 
- * @todo add support for sorting and filtering
+ * TODO add support for sorting and filtering
  * @author Martin Cassidy
  * @package web/markup/html/table
  */

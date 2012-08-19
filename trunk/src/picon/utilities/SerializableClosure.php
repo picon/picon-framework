@@ -40,8 +40,8 @@ namespace picon;
  * code is processed so that an closures declared within have their own code isolated so that it may be
  * used later when it is needed and would otherwise be un-obtainable with SplFileObject.
  * 
- * @todo imporove so that  all type hinting usage of classes within a closure don't need to be fully qualified
- * @todo test in PHP 5.4.x
+ * TODO imporove so that  all type hinting usage of classes within a closure don't need to be fully qualified
+ * TODO test in PHP 5.4.x
  * @author Martin Cassidy
  * @package utilities
  */
@@ -93,9 +93,9 @@ class SerializableClosure
             $file->next();
         }
 
-        //@todo this assumes the function will be the only one on that line
+        //TODO this assumes the function will be the only one on that line
         $begin = strpos($code, 'function');
-        //@todo this assumes the } will be the only one on that line
+        //TODO this assumes the } will be the only one on that line
         $end = strrpos($code, '}');
         $code = substr($code, $begin, $end - $begin + 1);
         return $code;
@@ -104,7 +104,7 @@ class SerializableClosure
     /**
      * Performs string analysis to determin if anything needs to be altered
      * to allow the reconstructed closure to work correctly
-     * @todo replace type hints with fq names
+     * TODO replace type hints with fq names
      */
     private function prepareCode()
     {

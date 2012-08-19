@@ -50,7 +50,7 @@ class AjaxLink extends AbstractLink implements CallDecoratorWrapper
         $tag->put('href', 'javascript:;');
     }
     
-    //@todo not good that this is here and does nothing, refactor a bit to get rid of it
+    //TODO not good that this is here and does nothing, refactor a bit to get rid of it
     protected function onLinkClicked()
     {
         

@@ -63,7 +63,7 @@ abstract class AbstractTextComponent extends FormComponent
             catch(ConversionException $ex)
             {
                 $this->invalid();
-                //@todo dont hardcode error, temp message for now
+                //TODO dont hardcode error, temp message for now
                 $this->error('conversion error');
             }
         }

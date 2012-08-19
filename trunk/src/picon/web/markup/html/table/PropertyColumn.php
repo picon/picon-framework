@@ -39,7 +39,7 @@ class PropertyColumn extends AbstractColumn
     }
     
     /**
-     * @todo this should get the property via a resolver helper
+     * TODO this should get the property via a resolver helper
      * @param GridItem $item
      * @param type $componentId
      * @param Model $model 

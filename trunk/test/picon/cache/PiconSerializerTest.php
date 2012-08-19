@@ -113,7 +113,7 @@ class PiconSerializerTest extends AbstractPiconTest
         
         $this->assertSame("newValue", $complex->getTransient());
         
-        //@todo test array restores
+        //TODO test array restores
     }
     
     public function testWakeupInjection()
@@ -151,7 +151,7 @@ class PiconSerializerTest extends AbstractPiconTest
     }
     
     /**
-     * @todo test for fully recursive arrays within arrays when the serializer supports
+     * TODO test for fully recursive arrays within arrays when the serializer supports
      */
     public function testArrayRecursion()
     {

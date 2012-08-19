@@ -32,7 +32,7 @@ namespace picon;
  * 
  * @author Martin Cassidy
  * @package web/request
- * @todo create helper methods for writing HTTP headers
+ * TODO create helper methods for writing HTTP headers
  */
 interface Response
 {

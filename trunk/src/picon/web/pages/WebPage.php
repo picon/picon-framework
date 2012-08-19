@@ -61,7 +61,7 @@ class WebPage extends MarkupContainer implements RequestablePage
         $constructor = $reflection->getConstructor();
         $params = $constructor->getParameters();
         
-        //@todo also add page params to this when in place
+        //TODO also add page params to this when in place
         $stateless = count($params)==0;
         
         if(!$stateless)

@@ -149,7 +149,7 @@ class PiconSerializer
     }
     
     /**
-     * @todo This should handle array recursion
+     * TODO This should handle array recursion
      * @param array $entry
      * @return SerializableClosure 
      */

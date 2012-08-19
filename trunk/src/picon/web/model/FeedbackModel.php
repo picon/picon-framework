@@ -57,7 +57,7 @@ class FeedbackModel implements Model
     }
     
     /**
-     * @todo sort of referencing here to avoid getting then setting
+     * TODO sort of referencing here to avoid getting then setting
      * @param FeedbackMessage $message 
      */
     public function addMessage(FeedbackMessage $message)

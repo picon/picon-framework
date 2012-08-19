@@ -26,7 +26,7 @@ namespace picon;
  * A form component which contains a pre-defined list of
  * posible choices
  * 
- * @todo implement disabled for all abstract choice components
+ * TODO implement disabled for all abstract choice components
  * 
  * @author Martin Cassidy
  * @package web/markup/html/form
@@ -162,7 +162,7 @@ abstract class AbstractChoice extends FormComponent
                 $firstType = gettype($this->choices[0]);
             //}
                 
-            //@todo validate model against the type
+            //TODO validate model against the type
 
             foreach($this->choices as $choice)
             {
@@ -180,7 +180,7 @@ abstract class AbstractChoice extends FormComponent
                         }
                     }
                 }
-                //@todo this doesn't actually work as it assumes that classes will be identical but the full hierarchy should be checked
+                //TODO this doesn't actually work as it assumes that classes will be identical but the full hierarchy should be checked
                 /*else if((is_object($choice) && get_class($choice)!=$firstType) || (!is_object($choice) && gettype($choice)!=$firstType))
                 {
                     throw new \InvalidArgumentException('Choice array does not contain the same values');

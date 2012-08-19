@@ -23,7 +23,7 @@
 namespace picon;
 require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 /**
- * @todo test namae alternates
+ * TODO test namae alternates
  */
 class ContextTest extends AbstractPiconTest
 {    

@@ -27,7 +27,7 @@ namespace picon;
  * or any other components for that matter but is treated as a whole as a single
  * component producing one value.
  * 
- * @todo test and finish
+ * TODO test and finish
  * @author Martin Cassidy
  * @package web/markup/html/form
  */

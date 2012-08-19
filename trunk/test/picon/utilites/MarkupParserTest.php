@@ -25,7 +25,7 @@ namespace picon;
 require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 /**
  * Description of MarkupParserTest
- * @todo this
+ * TODO this
  * @author Martin Cassidy
  */
 class MarkupParserTest

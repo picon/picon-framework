@@ -25,7 +25,7 @@ namespace picon;
 /**
  * Utility class for working with properties of objects
  * 
- * @todo add support for literal getters and setters and not just magic ones
+ * TODO add support for literal getters and setters and not just magic ones
  * @author Martin Cassidy
  */
 class PropertyResolver

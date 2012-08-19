@@ -25,8 +25,8 @@ namespace picon;
 /**
  * Behavior to add on jQuery UI sortable functionality
  * 
- * @todo finish off remaining options
- * @todo create a better callback procedure for js code
+ * TODO finish off remaining options
+ * TODO create a better callback procedure for js code
  * @author Martin Cassidy
  * @package web/jQuery/ui
  */

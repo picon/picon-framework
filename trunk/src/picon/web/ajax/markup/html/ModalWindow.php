@@ -25,7 +25,7 @@ namespace picon;
 /**
  * Panel which implements the jQuery UI dialog
  * 
- * @todo problems arise when adding the entire panel to the ajax request target
+ * TODO problems arise when adding the entire panel to the ajax request target
  * @author Martin Cassidy
  */
 class ModalWindow extends Panel

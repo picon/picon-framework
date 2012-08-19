@@ -34,8 +34,8 @@ namespace picon;
  * 
  * @author Martin Cassidy
  * @package utilities
- * @todo add support for extracting the doctype
- * @todo this needs refactoring to handle different tags in a better way
+ * TODO add support for extracting the doctype
+ * TODO this needs refactoring to handle different tags in a better way
  */
 class MarkupParser extends XMLParser
 {

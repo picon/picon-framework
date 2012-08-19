@@ -160,7 +160,7 @@ class Localizer
     
     
     /**
-     * @todo extract this out to a helper
+     * TODO extract this out to a helper
      * @param type $string
      * @param Model $model 
      */

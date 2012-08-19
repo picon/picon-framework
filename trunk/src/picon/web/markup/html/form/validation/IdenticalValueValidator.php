@@ -39,7 +39,7 @@ class IdenticalValueValidator extends AbstractValidator
     
     public function validateValue(Validatable $validateable)
     {
-        //@todo don't call validate() like this
+        //TODO don't call validate() like this
         $this->other->validate();
         $oValidatable = new ValidatableFormComponentWrapper($this->other);
         if($validateable->getValue()!=$oValidatable->getValue())

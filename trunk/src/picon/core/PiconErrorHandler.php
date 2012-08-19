@@ -37,7 +37,7 @@ class PiconErrorHandler
     }
     
     /**
-     * @todo the error level should be setable, warnings and notices are currently ignored
+     * TODO the error level should be setable, warnings and notices are currently ignored
      * @param type $errno
      * @param type $errstr
      * @param type $errfile

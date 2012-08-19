@@ -62,8 +62,8 @@ class ListenerRequestResolver implements RequestResolver
     
     /**
      * @param Request $request
-     * @todo alter expression to handle page params
-     * @todo this is duplicated from PageRequestTarget, needs refactoring
+     * TODO alter expression to handle page params
+     * TODO this is duplicated from PageRequestTarget, needs refactoring
      * @return type 
      */
     private function getPageClassForPath(Request $request)

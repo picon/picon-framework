@@ -24,7 +24,7 @@ namespace picon;
 
 /**
  * A panel topped by a list of links. The panel changes when each link is clicked
- * @todo finish off the class attributes for this
+ * TODO finish off the class attributes for this
  * @author Martin Cassidy
  * @package web/markup/html/tabs
  */
@@ -55,7 +55,7 @@ class TabPanel extends Panel
     {
         parent::onInitialize();
         $me = $this;
-        //@todo add the type hint back into the closure when the serializer can handle them
+        //TODO add the type hint back into the closure when the serializer can handle them
         $this->add(new ListView("tab", function($item) use ($me)
         {
             $tab = $item->getModelObject();

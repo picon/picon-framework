@@ -25,8 +25,8 @@ namespace picon;
 /**
  * Helper class for finding specific tags in markup
  * 
- * @todo refactor to remove duplicate code
- * @todo alter to return an array if multiple matching tags exist
+ * TODO refactor to remove duplicate code
+ * TODO alter to return an array if multiple matching tags exist
  * @author Martin Cassidy
  * @package utilities
  */

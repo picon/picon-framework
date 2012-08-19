@@ -30,7 +30,7 @@ require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 class PageMapTest extends AbstractPiconTest
 {
     /**
-     * @todo fix this
+     * TODO fix this
      */
     public function testMap()
     {
