@@ -18,37 +18,37 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * $HeadURL$
  * $Revision$
  * $Author$
  * $Date$
  * $Id$
- * 
+ *
  * */
 
 /**
  * Description of DataTablePage
- * 
+ *
  * @author Martin Cassidy
  */
 class DataTablePage extends AbstractPage
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $columns = array();
-        $columns[] = new picon\PropertyColumn('Sample Value', 'value');
-        
-        $provider = new SampleDataProvider();
-        
-        $this->add(new \picon\DefaultDataTable('table', $provider, $columns));
-    }
-    
-    public function getInvolvedFiles()
-    {
-        return array('assets/datatable/DataTablePage.php', 'assets/datatable/DataTablePage.html', 'assets/datatable/SampleDataProvider.php', 'assets/datatable/TableEntryDomain.php');
-    }
+	public function __construct()
+	{
+		parent::__construct();
+		$columns = array();
+		$columns[] = new picon\PropertyColumn('Sample Value', 'value');
+
+		$provider = new SampleDataProvider();
+
+		$this->add(new \picon\DefaultDataTable('table', $provider, $columns));
+	}
+
+	public function getInvolvedFiles()
+	{
+		return array('assets/datatable/DataTablePage.php', 'assets/datatable/DataTablePage.html', 'assets/datatable/SampleDataProvider.php', 'assets/datatable/TableEntryDomain.php');
+	}
 }
 
 ?>

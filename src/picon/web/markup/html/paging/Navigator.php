@@ -25,7 +25,7 @@ namespace picon;
 /**
  * A list of navigation links to allow the choice of all pages of a
  * paginatable component.
- * 
+ *
  * TODO this will get longer and longer if there are too many pages, the
  * amount should be restricted and the page links shown varied based on current page
  * @author Martin Cassidy
@@ -33,25 +33,25 @@ namespace picon;
  */
 class Navigator extends Panel
 {
-    private $pageable;
-    
-    public function __construct($id, Pageable $pageable)
-    {
-        parent::__construct($id);
-        $this->pageable = $pageable;
-        
-        $pageLinks = new RepeatingView('page');
-        $this->add($pageLinks);
-        
-        for($i = 0; $i < $this->pageable->getPageCount(); $i++)
-        {
-            $linkBlock = new MarkupContainer($pageLinks->getNextChildId());
-            $link = new NavigationLink('pageLink', $pageable, $i+1);
-            $linkBlock->add($link);
-            $link->add(new Label('pageNumber', new BasicModel($i+1)));
-            $pageLinks->add($linkBlock);
-        }
-    }
+	private $pageable;
+
+	public function __construct($id, Pageable $pageable)
+	{
+		parent::__construct($id);
+		$this->pageable = $pageable;
+
+		$pageLinks = new RepeatingView('page');
+		$this->add($pageLinks);
+
+		for($i = 0; $i < $this->pageable->getPageCount(); $i++)
+		{
+			$linkBlock = new MarkupContainer($pageLinks->getNextChildId());
+			$link = new NavigationLink('pageLink', $pageable, $i+1);
+			$linkBlock->add($link);
+			$link->add(new Label('pageNumber', new BasicModel($i+1)));
+			$pageLinks->add($linkBlock);
+		}
+	}
 }
 
 ?>

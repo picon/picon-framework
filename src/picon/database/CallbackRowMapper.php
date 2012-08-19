@@ -24,28 +24,28 @@ namespace picon;
 
 /**
  * A row mapper that will run the provided callback for each record in a result set
- * 
+ *
  * The callback is expected to take a single argument for the row and return a mapped
  * object
- * 
+ *
  * @author Martin Cassidy
  * @package database
  */
 class CallbackRowMapper implements RowMapper
 {
-    private $callback;
-    
-    public function __construct($callback)
-    {
-        Args::callBackArgs($callback, 1, 'callback');
-        $this->callback = $callback;
-    }
-    
-    public function mapRow($row)
-    {
-        $callable = $this->callback;
-        return $callable($row);
-    }
+	private $callback;
+
+	public function __construct($callback)
+	{
+		Args::callBackArgs($callback, 1, 'callback');
+		$this->callback = $callback;
+	}
+
+	public function mapRow($row)
+	{
+		$callable = $this->callback;
+		return $callable($row);
+	}
 }
 
 ?>

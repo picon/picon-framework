@@ -27,10 +27,10 @@ namespace picon;
  * @author Martin Cassidy
  * @package domain/config
  */
-class DataSourceType extends Enum 
+class DataSourceType extends Enum
 {
-    const MYSQL = "MySql";
-    const MYSQLI = "MySqli";
+	const MYSQL = "MySql";
+	const MYSQLI = "MySqli";
 }
 
 ?>

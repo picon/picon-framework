@@ -24,39 +24,39 @@ namespace picon;
 
 /**
  * A GridView which is generated from a data provider.
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/repeater
  */
 class DataGridView extends PaginatingGridView
 {
-    private $dataProvider;
-    private $columns;
-    private $valueId;
-    
-    public function __construct($id, $columnId, $valueId, DataProvider $dataProvider, $columns, $rowsPerPage)
-    {
-        parent::__construct($id, $columnId, count($columns), $rowsPerPage);
-        $this->dataProvider = $dataProvider;
-        $this->columns = $columns;
-        $this->valueId = $valueId;
-    }
-    
-    protected function getRecords()
-    {
-        return $this->dataProvider->getRecords(($this->getCurrentPage()-1)*$this->getRowsPerPage(), $this->getRowsPerPage());
-    }
-    
-    protected function populateItem(GridItem $item)
-    {
-        $column = $this->columns[$item->getColumnIndex()];
-        $column->populateCell($item, $this->valueId, $item->getModel());
-    }
-    
-    public function getPageCount()
-    {
-        return ceil($this->dataProvider->getSize()/$this->getRowsPerPage());
-    }
+	private $dataProvider;
+	private $columns;
+	private $valueId;
+
+	public function __construct($id, $columnId, $valueId, DataProvider $dataProvider, $columns, $rowsPerPage)
+	{
+		parent::__construct($id, $columnId, count($columns), $rowsPerPage);
+		$this->dataProvider = $dataProvider;
+		$this->columns = $columns;
+		$this->valueId = $valueId;
+	}
+
+	protected function getRecords()
+	{
+		return $this->dataProvider->getRecords(($this->getCurrentPage()-1)*$this->getRowsPerPage(), $this->getRowsPerPage());
+	}
+
+	protected function populateItem(GridItem $item)
+	{
+		$column = $this->columns[$item->getColumnIndex()];
+		$column->populateCell($item, $this->valueId, $item->getModel());
+	}
+
+	public function getPageCount()
+	{
+		return ceil($this->dataProvider->getSize()/$this->getRowsPerPage());
+	}
 }
 
 ?>

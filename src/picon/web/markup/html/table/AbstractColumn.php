@@ -24,23 +24,23 @@ namespace picon;
 
 /**
  * A column for use in a data table
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/table
  */
 abstract class AbstractColumn implements Column
 {
-    private $heading;
-    
-    public function __construct($heading)
-    {
-        $this->heading = $heading;
-    }
-    
-    public function getHeading()
-    {
-        return $this->heading;
-    }
+	private $heading;
+
+	public function __construct($heading)
+	{
+		$this->heading = $heading;
+	}
+
+	public function getHeading()
+	{
+		return $this->heading;
+	}
 }
 
 ?>

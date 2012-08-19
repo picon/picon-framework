@@ -22,13 +22,13 @@
 
 class InjectOnWakeupObject implements picon\InjectOnWakeup
 {
-    /** @Resource */
-    private $testService;
-    
-    public function getTestResource()
-    {
-        return $this->testService;
-    }
+	/** @Resource */
+	private $testService;
+
+	public function getTestResource()
+	{
+		return $this->testService;
+	}
 }
 
 ?>

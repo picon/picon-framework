@@ -25,28 +25,28 @@ namespace picon;
 /**
  * A not authorised listener for components which will redirect to a given
  * page if the component is not authorised
- * 
+ *
  * @author Martin Cassidy
  * @package web/security/authorisation
  */
 class DirectToPageComponentNotAuthorisedListener implements ComponentNotAuthorisedListener
 {
-    private $targetPage;
-    
-    /**
-     *
-     * @param Identifier $targetPage The page to redirect to
-     */
-    public function __construct(Identifier $targetPage)
-    {
-        Args::identifierOf($targetPage, WebPage::getIdentifier(), 'targetPage');
-        $this->targetPage = $targetPage;
-    }
-    
-    public function onNotAuthorised(Component $component)
-    {
-        throw new RestartRequestOnPageException($this->targetPage);
-    }
+	private $targetPage;
+
+	/**
+	 *
+	 * @param Identifier $targetPage The page to redirect to
+	 */
+	public function __construct(Identifier $targetPage)
+	{
+		Args::identifierOf($targetPage, WebPage::getIdentifier(), 'targetPage');
+		$this->targetPage = $targetPage;
+	}
+
+	public function onNotAuthorised(Component $component)
+	{
+		throw new RestartRequestOnPageException($this->targetPage);
+	}
 }
 
 ?>

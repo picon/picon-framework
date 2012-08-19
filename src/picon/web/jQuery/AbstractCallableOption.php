@@ -31,12 +31,12 @@ namespace picon;
  */
 abstract class AbstractCallableOption extends AbstractOption
 {
-    protected function getUrl(AbstractJQueryBehaviour $behaviour)
-    {
-        return sprintf('%s&ajax=ajax&property=%s', $behaviour->getComponent()->generateUrlFor($behaviour), $this->getName());
-    }
-    
-    public abstract function call(AjaxRequestTarget $target);
+	protected function getUrl(AbstractJQueryBehaviour $behaviour)
+	{
+		return sprintf('%s&ajax=ajax&property=%s', $behaviour->getComponent()->generateUrlFor($behaviour), $this->getName());
+	}
+
+	public abstract function call(AjaxRequestTarget $target);
 }
 
 ?>

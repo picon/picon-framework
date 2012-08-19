@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <validXml>
-<someElement attribute1="value1" attribute2="value2">somedata</someElement>
+	<someElement attribute1="value1" attribute2="value2">somedata</someElement>
 </validXml>

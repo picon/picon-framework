@@ -24,21 +24,21 @@ namespace picon;
 
 /**
  * Options for the javascript new window function
- * 
+ *
  * @author Martin Cassidy
  */
 class PopupSettings extends ComonDomainBase
 {
-    private $name;
-    private $height;
-    private $width;
-    
-    public function __construct($name, $width, $height)
-    {
-        $this->name = $name;
-        $this->height = $height;
-        $this->width = $width;
-    }
+	private $name;
+	private $height;
+	private $width;
+
+	public function __construct($name, $width, $height)
+	{
+		$this->name = $name;
+		$this->height = $height;
+		$this->width = $width;
+	}
 }
 
 ?>

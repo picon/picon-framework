@@ -24,82 +24,82 @@ namespace picon;
 
 /**
  * A radio button for use inside of a RadioGroup
- * 
+ *
  * @see RadioGroup
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 class Radio extends LabeledMarkupContainer
 {
-    private $group;
-   
-    private function getGroup()
-    {
-        if($this->group!=null)
-        {
-            return $this->group;
-        }
-        
-        $group = null;
-        
-        $callback = function(Component &$component) use (&$group)
-        {
-            $group = $component;
-            return Component::VISITOR_STOP_TRAVERSAL;
-        };
-        $this->visitParents(RadioGroup::getIdentifier(), $callback);
-        
-        $this->group = $group;
-        
-        if($group==null)
-        {
-            throw new \RuntimeException('A radio must be a child of RadioGroup');
-        }
-        
-        return $group;
-    }
+	private $group;
+	 
+	private function getGroup()
+	{
+		if($this->group!=null)
+		{
+			return $this->group;
+		}
 
-    public function getValue()
-    {
-        return $this->getComponentPath();
-    }
-    
-    private function isChecked()
-    {
-        $group = $this->getGroup();
-        
-        if($group->getRawInput()!=null)
-        {
-            return $group->getRawInput()==$this->getValue();
-        }
-        else
-        {
-            return $group->getModelObject()==$this->getModelObject();
-        }
-        
-    }
-    
-    protected function onComponentTag(ComponentTag $tag)
-    {
-        parent::onComponentTag($tag);
-        $group = $this->getGroup();
-        $this->checkComponentTag($tag, 'input');
-        $this->checkComponentTagAttribute($tag, 'type', 'radio');
-        
-        $tag->put('name', $group->getName());
-        $tag->put('value', $this->getValue());
+		$group = null;
 
-        $tag->remove('checked');
-        if($this->isChecked())
-        {
-            $tag->put('checked', 'checked');
-        }
-    }
-    
-    public function getLabel()
-    {
-        return $this->getModelObjectAsString();
-    }
+		$callback = function(Component &$component) use (&$group)
+		{
+			$group = $component;
+			return Component::VISITOR_STOP_TRAVERSAL;
+		};
+		$this->visitParents(RadioGroup::getIdentifier(), $callback);
+
+		$this->group = $group;
+
+		if($group==null)
+		{
+			throw new \RuntimeException('A radio must be a child of RadioGroup');
+		}
+
+		return $group;
+	}
+
+	public function getValue()
+	{
+		return $this->getComponentPath();
+	}
+
+	private function isChecked()
+	{
+		$group = $this->getGroup();
+
+		if($group->getRawInput()!=null)
+		{
+			return $group->getRawInput()==$this->getValue();
+		}
+		else
+		{
+			return $group->getModelObject()==$this->getModelObject();
+		}
+
+	}
+
+	protected function onComponentTag(ComponentTag $tag)
+	{
+		parent::onComponentTag($tag);
+		$group = $this->getGroup();
+		$this->checkComponentTag($tag, 'input');
+		$this->checkComponentTagAttribute($tag, 'type', 'radio');
+
+		$tag->put('name', $group->getName());
+		$tag->put('value', $this->getValue());
+
+		$tag->remove('checked');
+		if($this->isChecked())
+		{
+			$tag->put('checked', 'checked');
+		}
+	}
+
+	public function getLabel()
+	{
+		return $this->getModelObjectAsString();
+	}
 }
 
 ?>

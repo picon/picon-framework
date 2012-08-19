@@ -24,40 +24,40 @@ namespace picon;
 
 /**
  * Holder for security settinsg of the picon application
- * 
+ *
  * @author Martin Cassidy
  * @package web/security
  */
 class WebApplicationSecuritySettings
 {
-    private $authorisationStrategy;
-    private $componentNotAuthorisedListener;
-    
-    public function __construct()
-    {
-        $this->authorisationStrategy = new AllowAllAuthorisationStrategy();
-        $this->componentNotAuthorisedListener = new DefaultNotAuthorisedListener();
-    }
-    
-    public function getAuthorisationStrategy()
-    {
-        return $this->authorisationStrategy;
-    }
-    
-    public function setAuthorisationStrategy(AuthorisationStrategy $strategy)
-    {
-        $this->authorisationStrategy = $strategy;
-    }
-    
-    public function getComponentNotAuthorisedListener()
-    {
-        return $this->componentNotAuthorisedListener;
-    }
-    
-    public function setComponentNotAuthorisedListener(ComponentNotAuthorisedListener $listener)
-    {
-        $this->componentNotAuthorisedListener = $listener;
-    }
+	private $authorisationStrategy;
+	private $componentNotAuthorisedListener;
+
+	public function __construct()
+	{
+		$this->authorisationStrategy = new AllowAllAuthorisationStrategy();
+		$this->componentNotAuthorisedListener = new DefaultNotAuthorisedListener();
+	}
+
+	public function getAuthorisationStrategy()
+	{
+		return $this->authorisationStrategy;
+	}
+
+	public function setAuthorisationStrategy(AuthorisationStrategy $strategy)
+	{
+		$this->authorisationStrategy = $strategy;
+	}
+
+	public function getComponentNotAuthorisedListener()
+	{
+		return $this->componentNotAuthorisedListener;
+	}
+
+	public function setComponentNotAuthorisedListener(ComponentNotAuthorisedListener $listener)
+	{
+		$this->componentNotAuthorisedListener = $listener;
+	}
 }
 
 ?>

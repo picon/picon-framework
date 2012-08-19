@@ -25,22 +25,22 @@ namespace picon;
 /**
  * A component tag which is not a component but instead a special picon
  * tag for example picon:child
- * 
+ *
  * @author Martin Cassidy
  * @package web/domain
  */
 class PiconTag extends ComponentTag
 {
-    public function __construct($name, $attributes = array())
-    {
-        parent::__construct($name, $attributes);
-        $this->put('picon:id', str_replace(':', '_', $name));
-    }
-    
-    function isHeaderTag()
-    {
-        return $this->getName()=='picon:head';
-    }
+	public function __construct($name, $attributes = array())
+	{
+		parent::__construct($name, $attributes);
+		$this->put('picon:id', str_replace(':', '_', $name));
+	}
+
+	function isHeaderTag()
+	{
+		return $this->getName()=='picon:head';
+	}
 }
 
 ?>

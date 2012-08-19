@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <piconApplication xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="http://piconframework.com/schemas/config.xsd">
-    <settings>
-    <homePage>HomePage</homePage>
-    <startUp>auto</startUp>
-    </settings>
+	xsi:noNamespaceSchemaLocation="http://piconframework.com/schemas/config.xsd">
+	<settings>
+		<homePage>HomePage</homePage>
+		<startUp>auto</startUp>
+	</settings>
 </piconApplication>

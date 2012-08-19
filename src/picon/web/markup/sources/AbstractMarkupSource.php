@@ -24,26 +24,26 @@ namespace picon;
 
 /**
  * Super class for mark-up sourcing
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/sources
  */
 abstract class AbstractMarkupSource implements MarkupSource
 {
-    public function onComponentTag(Component $component, ComponentTag &$tag)
-    {
-        //none
-    }
-    
-    public function onComponentTagBody(Component $component, ComponentTag &$tag)
-    {
-        //none
-    }
-    
-    public function renderHead(Component $component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
-    {
-        //none
-    }
+	public function onComponentTag(Component $component, ComponentTag &$tag)
+	{
+		//none
+	}
+
+	public function onComponentTagBody(Component $component, ComponentTag &$tag)
+	{
+		//none
+	}
+
+	public function renderHead(Component $component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
+	{
+		//none
+	}
 }
 
 ?>

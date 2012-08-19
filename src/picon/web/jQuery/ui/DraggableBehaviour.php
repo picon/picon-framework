@@ -24,34 +24,34 @@ namespace picon;
 
 /**
  * Behavior to add on jQuery UI dragable functionality
- * 
+ *
  * TODO finish off remaining options
  * @author Martin Cassidy
  * @package web/jQuery/ui
  */
 class DraggableBehaviour extends DefaultJQueryUIBehaviour
 {
-    public function __construct()
-    {
-        parent::__construct('draggable');
-    }
-    
-    public function setHelper($helper)
-    {
-        $this->getOptions()->add(new PropertyOption('helper', $helper));
-    }
-    
-    public function setRevert($revert)
-    {
-        Args::isBoolean($revert, 'revert');
-        $this->getOptions()->add(new BooleanOption('revert', $revert));
-    }
-    
-    public function setConnectToSortable(Component $sortable)
-    {
-        $sortable->setOutputMarkupId(true);
-        $this->getOptions()->add(new PropertyOption('connectToSortable', '#'.$sortable->getMarkupId()));
-    }
+	public function __construct()
+	{
+		parent::__construct('draggable');
+	}
+
+	public function setHelper($helper)
+	{
+		$this->getOptions()->add(new PropertyOption('helper', $helper));
+	}
+
+	public function setRevert($revert)
+	{
+		Args::isBoolean($revert, 'revert');
+		$this->getOptions()->add(new BooleanOption('revert', $revert));
+	}
+
+	public function setConnectToSortable(Component $sortable)
+	{
+		$sortable->setOutputMarkupId(true);
+		$this->getOptions()->add(new PropertyOption('connectToSortable', '#'.$sortable->getMarkupId()));
+	}
 }
 
 ?>

@@ -32,7 +32,7 @@ namespace picon;
  */
 interface PageMapInitializationListener
 {
-    function onInitialize(PageMap $map);
+	function onInitialize(PageMap $map);
 }
 
 ?>

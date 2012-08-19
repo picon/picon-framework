@@ -30,18 +30,18 @@ namespace picon;
  */
 class ComponentRenderHeadListenerCollection extends ListenerCollection implements ComponentRenderHeadListener
 {
-    public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
-    {
-        $this->notify(function($listener) use (&$container, &$response)
-        {
-            $listener->onHeadRendering($container, $response);
-        });
-    }
-    
-    protected function validateListener($listener)
-    {
-        return $listener instanceof ComponentRenderHeadListener;
-    }
+	public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
+	{
+		$this->notify(function($listener) use (&$container, &$response)
+		{
+			$listener->onHeadRendering($container, $response);
+		});
+	}
+
+	protected function validateListener($listener)
+	{
+		return $listener instanceof ComponentRenderHeadListener;
+	}
 }
 
 ?>

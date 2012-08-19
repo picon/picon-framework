@@ -24,7 +24,7 @@ namespace picon;
 
 /**
  * Helper class for finding specific tags in markup
- * 
+ *
  * TODO refactor to remove duplicate code
  * TODO alter to return an array if multiple matching tags exist
  * @author Martin Cassidy
@@ -32,118 +32,118 @@ namespace picon;
  */
 class MarkupUtils
 {
-    private function __constructor()
-    {
-        
-    }
-    
-    public static function findComponentTag($markup, $componentTagId, Component $component)
-    {
-        if(is_array($markup))
-        {
-            $componentTag = null;
-            foreach($markup as $element)
-            {
-                self::validateElement($element);
-                $componentTag = self::internalFindComponentTag($element, $componentTagId, $component);
-                if($componentTag!=null)
-                {
-                    break;
-                }
-            }
-            return $componentTag;
-        }
-        else
-        {
-            self::validateElement($markup);
-            return self::findComponentTag($markup->getChildren(), $componentTagId, $component);
-        }
-    }
-    
-    private static function validateElement($element)
-    {
-        if(!($element instanceof XmlElement))
-        {
-            throw new \InvalidArgumentException(sprintf("Expected XmlElement %s given.", gettype($element)));
-        }
-    }
-    
-    private static function internalFindComponentTag(XmlElement $markup, $componentTagId, Component $component)
-    {
-        if($markup instanceof ComponentTag && $markup->getComponentTagId()==$componentTagId)
-        {
-            return $markup;
-        }
-        else
-        {
-            if(($markup instanceof MarkupElement) && $markup->hasChildren() && (!($markup instanceof ComponentTag) || $component->getId()==$markup->getComponentTagId()))
-            {
-                $componentTag = null;
-                foreach($markup->getChildren() as $element)
-                {
-                    if($element instanceof MarkupElement)
-                    {
-                        $componentTag = self::internalFindComponentTag($element, $componentTagId, $component);
-                        if($componentTag!=null)
-                        {
-                            return $componentTag;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-    }
-    
-    public static function findPiconTag($type, $markup)
-    {
-        if(is_array($markup))
-        {
-            $piconTag = null;
-            foreach($markup as $element)
-            {
-                self::validateElement($element);
-                $piconTag = self::internalFindPiconTag($element, $type);
-                if($piconTag!=null)
-                {
-                    break;
-                }
-            }
-            return $piconTag;
-        }
-        else
-        {
-            self::validateElement($markup);
-            return self::internalFindPiconTag($markup, $type);
-        }
-    }
-    
-    private static function internalFindPiconTag(MarkupElement $markup, $type)
-    {
-        if($markup instanceof PiconTag && $markup->getName()=='picon:'.$type)
-        {
-            return $markup;
-        }
-        else
-        {
-            if($markup->hasChildren())
-            {
-                $piconTag = null;
-                foreach($markup->getChildren() as $element)
-                {
-                    if($element instanceof MarkupElement)
-                    {
-                        $piconTag = self::internalFindPiconTag($element, $type);
-                        if($piconTag!=null)
-                        {
-                            return $piconTag;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-    }
+	private function __constructor()
+	{
+
+	}
+
+	public static function findComponentTag($markup, $componentTagId, Component $component)
+	{
+		if(is_array($markup))
+		{
+			$componentTag = null;
+			foreach($markup as $element)
+			{
+				self::validateElement($element);
+				$componentTag = self::internalFindComponentTag($element, $componentTagId, $component);
+				if($componentTag!=null)
+				{
+					break;
+				}
+			}
+			return $componentTag;
+		}
+		else
+		{
+			self::validateElement($markup);
+			return self::findComponentTag($markup->getChildren(), $componentTagId, $component);
+		}
+	}
+
+	private static function validateElement($element)
+	{
+		if(!($element instanceof XmlElement))
+		{
+			throw new \InvalidArgumentException(sprintf("Expected XmlElement %s given.", gettype($element)));
+		}
+	}
+
+	private static function internalFindComponentTag(XmlElement $markup, $componentTagId, Component $component)
+	{
+		if($markup instanceof ComponentTag && $markup->getComponentTagId()==$componentTagId)
+		{
+			return $markup;
+		}
+		else
+		{
+			if(($markup instanceof MarkupElement) && $markup->hasChildren() && (!($markup instanceof ComponentTag) || $component->getId()==$markup->getComponentTagId()))
+			{
+				$componentTag = null;
+				foreach($markup->getChildren() as $element)
+				{
+					if($element instanceof MarkupElement)
+					{
+						$componentTag = self::internalFindComponentTag($element, $componentTagId, $component);
+						if($componentTag!=null)
+						{
+							return $componentTag;
+						}
+					}
+				}
+			}
+			return null;
+		}
+	}
+
+	public static function findPiconTag($type, $markup)
+	{
+		if(is_array($markup))
+		{
+			$piconTag = null;
+			foreach($markup as $element)
+			{
+				self::validateElement($element);
+				$piconTag = self::internalFindPiconTag($element, $type);
+				if($piconTag!=null)
+				{
+					break;
+				}
+			}
+			return $piconTag;
+		}
+		else
+		{
+			self::validateElement($markup);
+			return self::internalFindPiconTag($markup, $type);
+		}
+	}
+
+	private static function internalFindPiconTag(MarkupElement $markup, $type)
+	{
+		if($markup instanceof PiconTag && $markup->getName()=='picon:'.$type)
+		{
+			return $markup;
+		}
+		else
+		{
+			if($markup->hasChildren())
+			{
+				$piconTag = null;
+				foreach($markup->getChildren() as $element)
+				{
+					if($element instanceof MarkupElement)
+					{
+						$piconTag = self::internalFindPiconTag($element, $type);
+						if($piconTag!=null)
+						{
+							return $piconTag;
+						}
+					}
+				}
+			}
+			return null;
+		}
+	}
 }
 
 ?>

@@ -22,12 +22,12 @@
 
 /**
  * Description of TestPageTwo
- * 
+ *
  * @author Martin Cassidy
  */
 class TestPageTwo extends \picon\WebPage
 {
-    
+
 }
 
 ?>

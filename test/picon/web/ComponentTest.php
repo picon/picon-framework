@@ -24,12 +24,12 @@ namespace picon;
 require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 /**
  * Description of ComponentTest
- * 
+ *
  * @author Martin Cassidy
- */
+*/
 class ComponentTest
 {
-    
+
 }
 
 ?>

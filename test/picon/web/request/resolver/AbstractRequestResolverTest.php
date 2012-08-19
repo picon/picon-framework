@@ -27,54 +27,54 @@ require_once(dirname(__FILE__).'/../../../../AbstractPiconTest.php');
 /**
  * Description of AbstractRequestResolverTest
  * @author Martin Cassidy
- */
+*/
 abstract class AbstractRequestResolverTest extends AbstractPiconTest
 {
-    private $resolver;
-    
-    public function setUp()
-    {
-        parent::setUp();
-        $this->resolver = $this->newResolver();
-    }
-    
-    public function testHomePage()
-    {
-        //Homepage request
-        $testRequest = new \TestRequest(\TestRequest::ROOT_PATH.'/', array());
-        $this->assertEquals($this->matchesHomePage($testRequest), $this->resolver->matches($testRequest));
-        
-        if($this->matchesHomePage($testRequest))
-        {
-            //$this->assertTrue($this->resolver->resolve($testRequest) instanceof PageRequestTarget);
-        }
-        
-        //Homepage with listener request
-        $testRequest = new \TestRequest(\TestRequest::ROOT_PATH.'/', array('listener' => 'someListenerPath'));
-        $this->assertEquals($this->matchesHomePage($testRequest), $this->resolver->matches($testRequest));
-        
-        if($this->matchesHomePage($testRequest))
-        {
-            //$this->assertTrue($this->resolver->resolve($testRequest) instanceof picon\ListenerRequestTarget);
-        }
-    }
-    
-    public function testStatelessPage()
-    {
-        
-    }
-    
-    protected abstract function newResolver();
-    
-    protected function matchesHomePageListener(Request $request)
-    {
-        return false;
-    }
-    
-    protected function matchesHomePage(Request $request)
-    {
-        return false;
-    }
+	private $resolver;
+
+	public function setUp()
+	{
+		parent::setUp();
+		$this->resolver = $this->newResolver();
+	}
+
+	public function testHomePage()
+	{
+		//Homepage request
+		$testRequest = new \TestRequest(\TestRequest::ROOT_PATH.'/', array());
+		$this->assertEquals($this->matchesHomePage($testRequest), $this->resolver->matches($testRequest));
+
+		if($this->matchesHomePage($testRequest))
+		{
+			//$this->assertTrue($this->resolver->resolve($testRequest) instanceof PageRequestTarget);
+		}
+
+		//Homepage with listener request
+		$testRequest = new \TestRequest(\TestRequest::ROOT_PATH.'/', array('listener' => 'someListenerPath'));
+		$this->assertEquals($this->matchesHomePage($testRequest), $this->resolver->matches($testRequest));
+
+		if($this->matchesHomePage($testRequest))
+		{
+			//$this->assertTrue($this->resolver->resolve($testRequest) instanceof picon\ListenerRequestTarget);
+		}
+	}
+
+	public function testStatelessPage()
+	{
+
+	}
+
+	protected abstract function newResolver();
+
+	protected function matchesHomePageListener(Request $request)
+	{
+		return false;
+	}
+
+	protected function matchesHomePage(Request $request)
+	{
+		return false;
+	}
 }
 
 ?>

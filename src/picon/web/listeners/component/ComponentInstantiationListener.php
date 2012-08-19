@@ -29,7 +29,7 @@ namespace picon;
  */
 interface ComponentInstantiationListener
 {
-    function onInstantiate(Component &$component);
+	function onInstantiate(Component &$component);
 }
 
 ?>

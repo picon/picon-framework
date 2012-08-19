@@ -24,33 +24,33 @@ namespace picon;
 
 /**
  * A model of an array
- * 
+ *
  * @author Martin Cassidy
  * @package web/model
  */
 class ArrayModel implements Model
 {
-    private $object;
-    
-    /**
-     *
-     * @param array $object 
-     */
-    public function __construct(&$object)
-    {
-        Args::isArray($object, 'object');
-        $this->object = &$object;
-    }
-    
-    public function getModelObject()
-    {
-        return $this->object;
-    }
-    
-    public function setModelObject(&$object)
-    {
-        $this->object = &$object;
-    }
+	private $object;
+
+	/**
+	 *
+	 * @param array $object
+	 */
+	public function __construct(&$object)
+	{
+		Args::isArray($object, 'object');
+		$this->object = &$object;
+	}
+
+	public function getModelObject()
+	{
+		return $this->object;
+	}
+
+	public function setModelObject(&$object)
+	{
+		$this->object = &$object;
+	}
 }
 
 ?>

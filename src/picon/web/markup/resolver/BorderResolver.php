@@ -24,19 +24,19 @@ namespace picon;
 
 /**
  * Resolves a component for the picon:border element
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/resolver
  */
 class BorderResolver implements ComponentResolver
 {
-    public function resolve(MarkupContainer $container, ComponentTag &$tag)
-    {
-        if($tag->getName()=='picon:border')
-        {
-            return new TransparentMarkupContainer($tag->getName().$container->getPage()->getAutoIndex());
-        }
-    }
+	public function resolve(MarkupContainer $container, ComponentTag &$tag)
+	{
+		if($tag->getName()=='picon:border')
+		{
+			return new TransparentMarkupContainer($tag->getName().$container->getPage()->getAutoIndex());
+		}
+	}
 }
 
 ?>

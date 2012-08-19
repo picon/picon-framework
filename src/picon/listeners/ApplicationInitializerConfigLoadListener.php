@@ -29,7 +29,7 @@ namespace picon;
  */
 interface ApplicationInitializerConfigLoadListener
 {
-    function onConfigLoaded(Config $config);
+	function onConfigLoaded(Config $config);
 }
 
 ?>

@@ -30,20 +30,20 @@ namespace picon;
  */
 class RedirectRequestTarget implements RequestTarget
 {
-    private $url;
-    
-    public function __construct($url)
-    {
-        Args::isString($url, 'url');
-        $this->url = $url;
-    }
-    
-    public function respond(Response $response)
-    {
-        $response->clean();
-        $response->setHeader('Location: '.$this->url, 301);
-        $response->flush();
-    }
+	private $url;
+
+	public function __construct($url)
+	{
+		Args::isString($url, 'url');
+		$this->url = $url;
+	}
+
+	public function respond(Response $response)
+	{
+		$response->clean();
+		$response->setHeader('Location: '.$this->url, 301);
+		$response->flush();
+	}
 }
 
 ?>

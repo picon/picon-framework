@@ -24,42 +24,42 @@ namespace picon;
 
 /**
  * Factory for creating data sources from configurations
- * 
+ *
  * @author Martin Cassidy
  * @package database/source
  */
 class DataSourceFactory
 {
-    private static $drivers = array();
-    
-    private function __construct()
-    {
-        
-    }
-    
-    public static function getDataSource(DataSourceConfig $config)
-    {
-        $driver = self::getDataBaseDriver($config->type);
-        $connection = $driver->connect($config->host, $config->username, $config->password, $config->database, $config->port);
+	private static $drivers = array();
 
-        return new DataSource($config, $connection, $driver);
-    }
-    
-    private static function getDataBaseDriver(DataSourceType $type)
-    {
-        $driverName = $type->__toString();
-        if(array_key_exists($driverName, self::$drivers))
-        {
-            return self::$drivers[$driverName];
-        }
-        $className = "\\picon\\".$driverName.'Driver';
-        if(class_exists($className))
-        {
-            self::$drivers[$driverName] = new $className();
-            return self::$drivers[$driverName];
-        }
-        throw new \InvalidArgumentException(sprintf('Database driver %s does not exist', $driverName));
-    }
+	private function __construct()
+	{
+
+	}
+
+	public static function getDataSource(DataSourceConfig $config)
+	{
+		$driver = self::getDataBaseDriver($config->type);
+		$connection = $driver->connect($config->host, $config->username, $config->password, $config->database, $config->port);
+
+		return new DataSource($config, $connection, $driver);
+	}
+
+	private static function getDataBaseDriver(DataSourceType $type)
+	{
+		$driverName = $type->__toString();
+		if(array_key_exists($driverName, self::$drivers))
+		{
+			return self::$drivers[$driverName];
+		}
+		$className = "\\picon\\".$driverName.'Driver';
+		if(class_exists($className))
+		{
+			self::$drivers[$driverName] = new $className();
+			return self::$drivers[$driverName];
+		}
+		throw new \InvalidArgumentException(sprintf('Database driver %s does not exist', $driverName));
+	}
 }
 
 ?>

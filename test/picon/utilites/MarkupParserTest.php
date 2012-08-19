@@ -27,10 +27,10 @@ require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
  * Description of MarkupParserTest
  * TODO this
  * @author Martin Cassidy
- */
+*/
 class MarkupParserTest
 {
-    
+
 }
 
 ?>

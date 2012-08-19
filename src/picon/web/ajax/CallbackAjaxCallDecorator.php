@@ -31,60 +31,60 @@ namespace picon;
  */
 class CallbackAjaxCallDecorator implements AjaxCallDecorator
 {
-    private $decorator;
-    private $successDecorator;
-    private $failDecorator;
-    
-    /**
-     *
-     * @param closure $decorator
-     * @param closure $successDecorator
-     * @param closure $failDecorator 
-     */
-    public function __construct($decorator, $successDecorator = null, $failDecorator = null)
-    {
-        Args::callBackArgs($decorator, 1, 'decorator');
-        
-        if($successDecorator!=null)
-        {
-            Args::callBackArgs($successDecorator, 1, 'successDecorator');
-        }
-        
-        if($failDecorator!=null)
-        {
-            Args::callBackArgs($failDecorator, 1, 'failDecorator');
-        }
-        
-        $this->decorator = $decorator;
-        $this->successDecorator = $successDecorator;
-        $this->failDecorator = $failDecorator;
-    }
-    
-    public function decorateScript($script)
-    {
-        $callable = $this->decorator;
-        return $callable($script);
-    }
-    
-    public function decorateSuccessScript($script)
-    {
-        $callable = $this->successDecorator;
-        if($callable==null)
-        {
-            return $script;
-        }
-        return $callable($script);
-    }
-    
-    public function decorateFailScript($script)
-    {
-        $callable = $this->failDecorator;
-        if($callable==null)
-        {
-            return $script;
-        }
-        return $callable($script);
-    }
+	private $decorator;
+	private $successDecorator;
+	private $failDecorator;
+
+	/**
+	 *
+	 * @param closure $decorator
+	 * @param closure $successDecorator
+	 * @param closure $failDecorator
+	 */
+	public function __construct($decorator, $successDecorator = null, $failDecorator = null)
+	{
+		Args::callBackArgs($decorator, 1, 'decorator');
+
+		if($successDecorator!=null)
+		{
+			Args::callBackArgs($successDecorator, 1, 'successDecorator');
+		}
+
+		if($failDecorator!=null)
+		{
+			Args::callBackArgs($failDecorator, 1, 'failDecorator');
+		}
+
+		$this->decorator = $decorator;
+		$this->successDecorator = $successDecorator;
+		$this->failDecorator = $failDecorator;
+	}
+
+	public function decorateScript($script)
+	{
+		$callable = $this->decorator;
+		return $callable($script);
+	}
+
+	public function decorateSuccessScript($script)
+	{
+		$callable = $this->successDecorator;
+		if($callable==null)
+		{
+			return $script;
+		}
+		return $callable($script);
+	}
+
+	public function decorateFailScript($script)
+	{
+		$callable = $this->failDecorator;
+		if($callable==null)
+		{
+			return $script;
+		}
+		return $callable($script);
+	}
 }
 
 ?>

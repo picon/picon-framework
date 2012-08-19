@@ -18,29 +18,29 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * $HeadURL$
  * $Revision$
  * $Author$
  * $Date$
  * $Id$
- * 
+ *
  * */
 
 use picon\Border;
 
 /**
  * Description of SampleBorder
- * 
+ *
  * @author Martin Cassidy
  */
 class SampleBorder extends Border
 {
-    public function __construct($id)
-    {
-        parent::__construct($id);
-        $this->add($this->getBorderBody());
-    }
+	public function __construct($id)
+	{
+		parent::__construct($id);
+		$this->add($this->getBorderBody());
+	}
 }
 
 ?>

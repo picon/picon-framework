@@ -24,38 +24,38 @@ namespace picon;
 
 /**
  * Validates a string is not shorter than a minium value
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/form/validation
  */
 class MinimumLengthValidator extends StringValidator
 {
-    private $minimum;
-    
-    /**
-     *
-     * @param number $minimum 
-     */
-    public function __construct($minimum)
-    {
-        Args::isNumeric($minimum, 'minimum');
-        $this->minimum = $minimum;
-    }
-    
-    public function validateValue(Validatable $validateable)
-    {
-        $response = parent::validateValue($validateable);
-        if($response!=null)
-        {
-            return $response;
-        }
-        if(strlen($validateable->getValue())<$this->minimum)
-        {
-            $response = new ValidationResponse($this->getKeyName());
-            $response->addValue('minLength', $this->minimum);
-            return $response;
-        }
-    }
+	private $minimum;
+
+	/**
+	 *
+	 * @param number $minimum
+	 */
+	public function __construct($minimum)
+	{
+		Args::isNumeric($minimum, 'minimum');
+		$this->minimum = $minimum;
+	}
+
+	public function validateValue(Validatable $validateable)
+	{
+		$response = parent::validateValue($validateable);
+		if($response!=null)
+		{
+			return $response;
+		}
+		if(strlen($validateable->getValue())<$this->minimum)
+		{
+			$response = new ValidationResponse($this->getKeyName());
+			$response->addValue('minLength', $this->minimum);
+			return $response;
+		}
+	}
 }
 
 ?>

@@ -30,52 +30,52 @@ namespace picon;
  */
 abstract class ListenerCollection
 {
-    private $listeners = array();
-    
-    public function add($listener)
-    {
-        if(!$this->validateListener($listener))
-        {
-            throw new \InvalidArgumentException(sprintf("Listener of type %s was nat valid for the listener collection", get_class($listener)));
-        }
-        array_push($this->listeners, $listener);
-    }
-    
-    public function remove($listener)
-    {
-        $index = null;
-        array_walk($this->listeners, function($value, $key) use($listener, &$index)
-        {
-            if($value==$listener)
-            {
-                $index = $key;
-            }
-        });
-        if($index!=null)
-        {
-            unset($this->listeners[$index]);
-        }
-    }
-    
-    /**
-     *
-     * @param closure $callback 
-     */
-    public function notify($callback)
-    {
-        Args::callBackArgs($callback, 1, 'callback');
-        
-        foreach($this->listeners as $listener)
-        {
-            $callback($listener);
-        }
-    }
-    
-    /**
-     * @param $listener The listener to validate
-     * @return Boolean true if the listener is valid
-     */
-    protected abstract function validateListener($listener);
+	private $listeners = array();
+
+	public function add($listener)
+	{
+		if(!$this->validateListener($listener))
+		{
+			throw new \InvalidArgumentException(sprintf("Listener of type %s was nat valid for the listener collection", get_class($listener)));
+		}
+		array_push($this->listeners, $listener);
+	}
+
+	public function remove($listener)
+	{
+		$index = null;
+		array_walk($this->listeners, function($value, $key) use($listener, &$index)
+		{
+			if($value==$listener)
+			{
+				$index = $key;
+			}
+		});
+		if($index!=null)
+		{
+			unset($this->listeners[$index]);
+		}
+	}
+
+	/**
+	 *
+	 * @param closure $callback
+	 */
+	public function notify($callback)
+	{
+		Args::callBackArgs($callback, 1, 'callback');
+
+		foreach($this->listeners as $listener)
+		{
+			$callback($listener);
+		}
+	}
+
+	/**
+	 * @param $listener The listener to validate
+	 * @return Boolean true if the listener is valid
+	 */
+	protected abstract function validateListener($listener);
 }
 
 ?>

@@ -24,15 +24,15 @@ namespace picon;
 
 /**
  * Behavior to add on jQuery UI date picker functionality
- * 
+ *
  * @author Martin Cassidy
  */
 class DatePickerBehaviour extends DefaultJQueryUIBehaviour
 {
-    public function __construct()
-    {
-        parent::__construct('datepicker');
-    }
+	public function __construct()
+	{
+		parent::__construct('datepicker');
+	}
 }
 
 ?>

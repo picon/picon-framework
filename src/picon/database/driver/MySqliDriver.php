@@ -24,66 +24,66 @@ namespace picon;
 
 /**
  * Database driver for mysqli
- * 
+ *
  * @author Martin Cassidy
  * @package database/driver
  */
 class MySqliDriver extends AbstractDatabaseDriver
 {
-    public function connect($host, $username, $password, $database, $port = null)
-    {
-        $connection = new mysqli($host, $username, $password, $database, $port);
-        
-        if ($connection->connect_error) 
-        {
-            throw new SQLException($mysqli->connect_error,$mysqli->connect_errno);
-        }
-        return $connection;
-    }
-    
-    public function dissconnect($connection)
-    {
-        $connection->close();
-    }
-    
-    public function getAffectedRows($connection)
-    {
-        return $connection->affected_rows;
-    }
-    
-    public function query($sql, $connection)
-    {
-        return $connection->query($sql);
-    }
-    
-    public function resultSetObject($resultResource, $className = null)
-    {
-        if($className==null)
-        {
-            return $resultResource->fetch_object();
-        }
-        return $resultResource->fetch_object($className);
-    }
-    
-    public function resultSetArray($resultResource)
-    {
-        return $resultResource->fetch_array();
-    }
-    
-    public function countRows($resultResource)
-    {
-        return $resultResource->num_rows();
-    }
-    
-    public function countColumns($resultResource)
-    {
-        return count($resultResource->fetch_fields());
-    }
-    
-    public function getInsertedId($connection)
-    {
-        return $connection->insert_id;
-    }
+	public function connect($host, $username, $password, $database, $port = null)
+	{
+		$connection = new mysqli($host, $username, $password, $database, $port);
+
+		if ($connection->connect_error)
+		{
+			throw new SQLException($mysqli->connect_error,$mysqli->connect_errno);
+		}
+		return $connection;
+	}
+
+	public function dissconnect($connection)
+	{
+		$connection->close();
+	}
+
+	public function getAffectedRows($connection)
+	{
+		return $connection->affected_rows;
+	}
+
+	public function query($sql, $connection)
+	{
+		return $connection->query($sql);
+	}
+
+	public function resultSetObject($resultResource, $className = null)
+	{
+		if($className==null)
+		{
+			return $resultResource->fetch_object();
+		}
+		return $resultResource->fetch_object($className);
+	}
+
+	public function resultSetArray($resultResource)
+	{
+		return $resultResource->fetch_array();
+	}
+
+	public function countRows($resultResource)
+	{
+		return $resultResource->num_rows();
+	}
+
+	public function countColumns($resultResource)
+	{
+		return count($resultResource->fetch_fields());
+	}
+
+	public function getInsertedId($connection)
+	{
+		return $connection->insert_id;
+	}
 }
 
 ?>

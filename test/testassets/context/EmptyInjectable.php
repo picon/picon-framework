@@ -25,17 +25,17 @@
  */
 class EmptyInjectable extends AbstractContext
 {
-    /** @Resource */
-    protected $testService;
+	/** @Resource */
+	protected $testService;
 
-    /** @Resource */
-    protected $repo;
+	/** @Resource */
+	protected $repo;
 
-    /** @Resource */
-    protected $serv;
-    
-    /** @Resource */
-    protected $testRepository;
+	/** @Resource */
+	protected $serv;
+
+	/** @Resource */
+	protected $testRepository;
 }
 
 ?>

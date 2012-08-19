@@ -24,7 +24,7 @@ namespace picon;
 
 /**
  * A tab domain for use with Tab Panel
- * 
+ *
  * @see TabPanel
  * @see TabCollection
  * @author Martin Cassidy
@@ -32,27 +32,27 @@ namespace picon;
  */
 class Tab extends ComonDomainBase
 {
-    private $name;
-    private $newMethod;
-    
-    /**
-     *
-     * @param string $name
-     * @param closure $newMethod 
-     */
-    public function __construct($name, $newMethod)
-    {
-        Args::isString($name, 'name');
-        Args::callBackArgs($newMethod, 1, 'newMethod');
-        $this->name = $name;
-        $this->newMethod = new SerializableClosure($newMethod);
-    }
-    
-    public function newTab($id)
-    {
-        $method = $this->newMethod->getReflection();
-        return $method->invokeArgs(array($id));
-    }
+	private $name;
+	private $newMethod;
+
+	/**
+	 *
+	 * @param string $name
+	 * @param closure $newMethod
+	 */
+	public function __construct($name, $newMethod)
+	{
+		Args::isString($name, 'name');
+		Args::callBackArgs($newMethod, 1, 'newMethod');
+		$this->name = $name;
+		$this->newMethod = new SerializableClosure($newMethod);
+	}
+
+	public function newTab($id)
+	{
+		$method = $this->newMethod->getReflection();
+		return $method->invokeArgs(array($id));
+	}
 }
 
 ?>

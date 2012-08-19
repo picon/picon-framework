@@ -29,19 +29,19 @@ namespace picon;
  */
 class AttributeAppender extends AttributeModifier
 {
-    private $seperator;
-    
-    public function __construct($attributeName, Model $value, $seperator)
-    {
-        parent::__construct($attributeName, $value);
-        Args::isString($seperator, 'seperator');
-        $this->seperator = $seperator;
-    }
-    
-    protected function newValue($current)
-    {
-        return $current.$this->seperator.$this->getValue()->getModelObject();
-    }
+	private $seperator;
+
+	public function __construct($attributeName, Model $value, $seperator)
+	{
+		parent::__construct($attributeName, $value);
+		Args::isString($seperator, 'seperator');
+		$this->seperator = $seperator;
+	}
+
+	protected function newValue($current)
+	{
+		return $current.$this->seperator.$this->getValue()->getModelObject();
+	}
 }
 
 ?>

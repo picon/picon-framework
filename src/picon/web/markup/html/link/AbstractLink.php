@@ -24,17 +24,17 @@ namespace picon;
 
 /**
  * Super class for links
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/link
  */
 abstract class AbstractLink extends MarkupContainer implements LinkListener
 {
-    public function onEvent()
-    {
-        $this->onLinkClicked();
-    }
-    
+	public function onEvent()
+	{
+		$this->onLinkClicked();
+	}
+
 }
 
 ?>

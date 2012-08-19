@@ -24,14 +24,14 @@ namespace picon;
 
 /**
  * All picon tags (e.g. picon:head or picon:child) are component tags, but need
- * not have a component created in the hierarchy for them by the user as a 
+ * not have a component created in the hierarchy for them by the user as a
  * resolve will create one automatically during the render process
- * @author Martin Cassidy 
+ * @author Martin Cassidy
  * @package web/markup/resolver
  */
 interface ComponentResolver
 {
-    function resolve(MarkupContainer $container, ComponentTag &$tag);
+	function resolve(MarkupContainer $container, ComponentTag &$tag);
 }
 
 ?>

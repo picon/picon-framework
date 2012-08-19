@@ -23,7 +23,7 @@
 namespace picon;
 
 /**
- * An instantiation listener which will inject a resource dependencies into 
+ * An instantiation listener which will inject a resource dependencies into
  * the instatiated component
  *
  * @author Martin Cassidy
@@ -31,10 +31,10 @@ namespace picon;
  */
 class ComponentInjector implements ComponentInstantiationListener
 {
-    public function onInstantiate(Component &$component)
-    {
-        Injector::get()->inject($component);
-    }
+	public function onInstantiate(Component &$component)
+	{
+		Injector::get()->inject($component);
+	}
 }
 
 ?>

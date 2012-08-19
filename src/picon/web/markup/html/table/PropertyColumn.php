@@ -24,32 +24,32 @@ namespace picon;
 
 /**
  * A column which shows a simple property of an object
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/table
  */
 class PropertyColumn extends AbstractColumn
 {
-    private $propertyName;
-    
-    public function __construct($header, $propertyName)
-    {
-        parent::__construct($header);
-        $this->propertyName = $propertyName;
-    }
-    
-    /**
-     * TODO this should get the property via a resolver helper
-     * @param GridItem $item
-     * @param type $componentId
-     * @param Model $model 
-     */
-    public function populateCell(GridItem $item, $componentId, Model $model)
-    {
-        $property = $this->propertyName;
-        $value = PropertyResolver::get($model->getModelObject(), $property);
-        $item->add(new Label($componentId, new BasicModel($value)));
-    }
+	private $propertyName;
+
+	public function __construct($header, $propertyName)
+	{
+		parent::__construct($header);
+		$this->propertyName = $propertyName;
+	}
+
+	/**
+	 * TODO this should get the property via a resolver helper
+	 * @param GridItem $item
+	 * @param type $componentId
+	 * @param Model $model
+	 */
+	public function populateCell(GridItem $item, $componentId, Model $model)
+	{
+		$property = $this->propertyName;
+		$value = PropertyResolver::get($model->getModelObject(), $property);
+		$item->add(new Label($componentId, new BasicModel($value)));
+	}
 }
 
 ?>

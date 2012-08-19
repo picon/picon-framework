@@ -24,82 +24,82 @@ namespace picon;
 
 /**
  * Description of AjaxFormComponentUpdateBehavior
- * 
+ *
  * @author Martin Cassidy
  */
 class AjaxFormComponentUpdateBehavior extends AjaxEventBehaviour
 {
-    
-    public function __construct($event, $onEvent, $onSubmit, $onError)
-    {
-        Args::callBackArgs($onEvent, 1, 'onEvent');
-        
-        if($onSubmit!=null)
-        {
-            Args::callBackArgs($onSubmit, 1, 'onSubmit');
-        }
-        if($onError!=null)
-        {
-            Args::callBackArgs($onError, 1, 'onError');
-        }
-        
-        $self = $this;
-        parent::__construct($event, function($target) use ($self, $onEvent, $onSubmit, $onError)
-        {
-            $formComponent = $self->getComponent();
-            $formComponent->processInput();
-            $onEvent($target);
-            
-            if($formComponent->isValid() && $onSubmit!=null)
-            {
-                $onSubmit($target);
-            }
-            if(!$formComponent->isValid() && $onError!=null)
-            {
-                $onError($target);
-            }
-        });
-    }
-    
-    public function bind(Component &$component)
-    {
-        if(!($component instanceof FormComponent))
-        {
-            throw new \InvalidArgumentException('AjaxFormComponentUpdateBehavior can only be added to a form component');
-        }
-        parent::bind($component);
-    }
-    
-    protected function generateCallScript($url)
-    {
-        return sprintf("piconAjaxSubmit('%s', '%s'", $this->getSubmitForm()->getMarkupId(), $url);
-    }
-    
-    private function getSubmitForm()
-    {
-        $usingComponent = $this->form;
-        $form = $this->form;
-        if($usingComponent==null)
-        {
-            $usingComponent = $this->getComponent();
-        }
-        
-        $callback = function(&$component) use (&$form)
-        {
-            if($component instanceof Form)
-            {
-                $form = $component;
-            }
-            if($component instanceof ModalWindow)
-            {
-                return Component::VISITOR_STOP_TRAVERSAL;
-            }
-            
-            return Component::VISITOR_CONTINUE_TRAVERSAL;
-        };
-        $usingComponent->visitParents(Component::getIdentifier(), $callback);
-        return $form;
-    }
+
+	public function __construct($event, $onEvent, $onSubmit, $onError)
+	{
+		Args::callBackArgs($onEvent, 1, 'onEvent');
+
+		if($onSubmit!=null)
+		{
+			Args::callBackArgs($onSubmit, 1, 'onSubmit');
+		}
+		if($onError!=null)
+		{
+			Args::callBackArgs($onError, 1, 'onError');
+		}
+
+		$self = $this;
+		parent::__construct($event, function($target) use ($self, $onEvent, $onSubmit, $onError)
+		{
+			$formComponent = $self->getComponent();
+			$formComponent->processInput();
+			$onEvent($target);
+
+			if($formComponent->isValid() && $onSubmit!=null)
+			{
+				$onSubmit($target);
+			}
+			if(!$formComponent->isValid() && $onError!=null)
+			{
+				$onError($target);
+			}
+		});
+	}
+
+	public function bind(Component &$component)
+	{
+		if(!($component instanceof FormComponent))
+		{
+			throw new \InvalidArgumentException('AjaxFormComponentUpdateBehavior can only be added to a form component');
+		}
+		parent::bind($component);
+	}
+
+	protected function generateCallScript($url)
+	{
+		return sprintf("piconAjaxSubmit('%s', '%s'", $this->getSubmitForm()->getMarkupId(), $url);
+	}
+
+	private function getSubmitForm()
+	{
+		$usingComponent = $this->form;
+		$form = $this->form;
+		if($usingComponent==null)
+		{
+			$usingComponent = $this->getComponent();
+		}
+
+		$callback = function(&$component) use (&$form)
+		{
+			if($component instanceof Form)
+			{
+				$form = $component;
+			}
+			if($component instanceof ModalWindow)
+			{
+				return Component::VISITOR_STOP_TRAVERSAL;
+			}
+
+			return Component::VISITOR_CONTINUE_TRAVERSAL;
+		};
+		$usingComponent->visitParents(Component::getIdentifier(), $callback);
+		return $form;
+	}
 }
 
 ?>

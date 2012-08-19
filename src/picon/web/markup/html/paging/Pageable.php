@@ -29,11 +29,11 @@ namespace picon;
  */
 interface Pageable
 {
-    function getPageCount();
-    
-    function getCurrentPage();
-    
-    function setCurrentPage($page);
+	function getPageCount();
+
+	function getCurrentPage();
+
+	function setCurrentPage($page);
 }
 
 ?>

@@ -30,18 +30,18 @@ namespace picon;
  */
 class ComponentBeforeRenderListenerCollection extends ListenerCollection implements ComponentBeforeRenderListener
 {
-    public function onBeforeRender(Component &$component)
-    {
-        $this->notify(function($listener) use (&$component)
-        {
-            $listener->onBeforeRender($component);
-        });
-    }
-    
-    protected function validateListener($listener)
-    {
-        return $listener instanceof ComponentBeforeRenderListener;
-    }
+	public function onBeforeRender(Component &$component)
+	{
+		$this->notify(function($listener) use (&$component)
+		{
+			$listener->onBeforeRender($component);
+		});
+	}
+
+	protected function validateListener($listener)
+	{
+		return $listener instanceof ComponentBeforeRenderListener;
+	}
 }
 
 ?>

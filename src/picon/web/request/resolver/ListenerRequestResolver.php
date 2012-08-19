@@ -24,76 +24,76 @@ namespace picon;
 
 /**
  * Resolves requests for listener callbacks
- * 
+ *
  * @author Martin Cassidy
  * @package web/request/resolver
  */
 class ListenerRequestResolver implements RequestResolver
 {
-    public function matches(Request $request)
-    {
-        return array_key_exists('listener', $request->getParameters());
-    }
-    
-    public function resolve(Request $request)
-    {
-        $behaviour = null;
-        
-        if(array_key_exists('behaviour', $request->getParameters()))
-        {
-            $behaviour = $request->getParameter('behaviour');
-        }
-        
-        if(array_key_exists('pageid', $request->getParameters()))
-        {
-            $page = PageMap::get()->getPageById($request->getParameter('pageid'));
-            if($page!=null)
-            {
-                return new ListenerRequestTarget($page, $request->getParameter('listener'), $behaviour);
-            }
-            return new PageRequestTarget(\SessionExpiredPage::getIdentifier());
-        }
-        else
-        {
-            return new ListenerRequestTarget($this->getPageClassForPath($request), $request->getParameter('listener'), $behaviour);
-        }
-        
-    }
-    
-    /**
-     * @param Request $request
-     * TODO alter expression to handle page params
-     * TODO this is duplicated from PageRequestTarget, needs refactoring
-     * @return type 
-     */
-    private function getPageClassForPath(Request $request)
-    {
-        $mapEntry = PageMap::getPageMap();
-        
-        foreach($mapEntry as $path => $pageClass)
-        {
-            if(preg_match("/^".$this->prepare($request->getRootPath())."\/".$path."{1}([?|&]{1}\\S+={1}\\S+)*$/", $request->getPath()))
-            {
-                return $pageClass::getIdentifier();
-            }
-        }
-        return false;
-    }
-    
-    public function generateUrl(RequestTarget $target)
-    {
-        throw new \NotImplementedException();
-    }
-    
-    public function handles(RequestTarget $target)
-    {
-        return false;
-    }
-    
-    private function prepare($value)
-    {
-        return str_replace('/', "\\/", $value);
-    }
+	public function matches(Request $request)
+	{
+		return array_key_exists('listener', $request->getParameters());
+	}
+
+	public function resolve(Request $request)
+	{
+		$behaviour = null;
+
+		if(array_key_exists('behaviour', $request->getParameters()))
+		{
+			$behaviour = $request->getParameter('behaviour');
+		}
+
+		if(array_key_exists('pageid', $request->getParameters()))
+		{
+			$page = PageMap::get()->getPageById($request->getParameter('pageid'));
+			if($page!=null)
+			{
+				return new ListenerRequestTarget($page, $request->getParameter('listener'), $behaviour);
+			}
+			return new PageRequestTarget(\SessionExpiredPage::getIdentifier());
+		}
+		else
+		{
+			return new ListenerRequestTarget($this->getPageClassForPath($request), $request->getParameter('listener'), $behaviour);
+		}
+
+	}
+
+	/**
+	 * @param Request $request
+	 * TODO alter expression to handle page params
+	 * TODO this is duplicated from PageRequestTarget, needs refactoring
+	 * @return type
+	 */
+	private function getPageClassForPath(Request $request)
+	{
+		$mapEntry = PageMap::getPageMap();
+
+		foreach($mapEntry as $path => $pageClass)
+		{
+			if(preg_match("/^".$this->prepare($request->getRootPath())."\/".$path."{1}([?|&]{1}\\S+={1}\\S+)*$/", $request->getPath()))
+			{
+				return $pageClass::getIdentifier();
+			}
+		}
+		return false;
+	}
+
+	public function generateUrl(RequestTarget $target)
+	{
+		throw new \NotImplementedException();
+	}
+
+	public function handles(RequestTarget $target)
+	{
+		return false;
+	}
+
+	private function prepare($value)
+	{
+		return str_replace('/', "\\/", $value);
+	}
 }
 
 ?>

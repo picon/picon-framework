@@ -29,7 +29,7 @@ namespace picon;
  */
 interface ComponentAfterRenderListener
 {
-    function onAfterRender(Component &$component);
+	function onAfterRender(Component &$component);
 }
 
 ?>

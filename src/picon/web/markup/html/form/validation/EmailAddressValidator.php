@@ -24,16 +24,16 @@ namespace picon;
 
 /**
  * Validator to check that the string is a valid email address
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/form/validation
  */
 class EmailAddressValidator extends PatternValidator
 {
-    public function __construct()
-    {
-        parent::__construct("^([0-9a-zA-Z]+([_.-]?[0-9a-zA-Z]+)*@[0-9a-zA-Z]+[0-9,a-z,A-Z,.,-]*(.){1}[a-zA-Z]{2,4})+$");
-    }
+	public function __construct()
+	{
+		parent::__construct("^([0-9a-zA-Z]+([_.-]?[0-9a-zA-Z]+)*@[0-9a-zA-Z]+[0-9,a-z,A-Z,.,-]*(.){1}[a-zA-Z]{2,4})+$");
+	}
 }
 
 ?>

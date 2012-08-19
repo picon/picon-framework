@@ -24,24 +24,24 @@ namespace picon;
 
 /**
  * Description of BooleanOption
- * 
+ *
  * @author Martin Cassidy
  */
 class BooleanOption extends AbstractOption
 {
-    private $value;
-    
-    public function __construct($name, $value)
-    {
-        parent::__construct($name);
-        Args::isBoolean($value, 'value');
-        $this->value = $value;
-    }
-    
-    public function render(AbstractJQueryBehaviour $behaviour)
-    {
-        return sprintf("%s : %s", $this->getName(), $this->value?'true':'false');
-    }
+	private $value;
+
+	public function __construct($name, $value)
+	{
+		parent::__construct($name);
+		Args::isBoolean($value, 'value');
+		$this->value = $value;
+	}
+
+	public function render(AbstractJQueryBehaviour $behaviour)
+	{
+		return sprintf("%s : %s", $this->getName(), $this->value?'true':'false');
+	}
 }
 
 ?>

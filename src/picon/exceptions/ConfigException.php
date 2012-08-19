@@ -24,13 +24,13 @@ namespace picon;
 
 /**
  * Thrown in picon config is not valid
- * 
+ *
  * @author Martin Cassidy
  * @package exceptions
  */
 class ConfigException extends \Exception
 {
-    
+
 }
 
 ?>

@@ -24,13 +24,13 @@ namespace picon;
 
 /**
  * A panel with default and empty mark-up. Useful as a placeholder.
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/panel
  */
 class EmptyPanel extends Panel
 {
-    
+
 }
 
 ?>

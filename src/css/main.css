@@ -1,97 +1,98 @@
 * {
 	margin: 0;
 }
-html, body {
+
+html,body {
 	height: 100%;
 }
 
 body {
-    margin:0px;
-    padding:0px;
-    font-family: sans-serif;
-    color:#333;
+	margin: 0px;
+	padding: 0px;
+	font-family: sans-serif;
+	color: #333;
 }
 
 a {
-    color:#333;
+	color: #333;
 }
 
 #global {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -45px;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -45px;
 }
 
 #header {
-    background-color:#333;
-    height:40px;
-    line-height:40px;
+	background-color: #333;
+	height: 40px;
+	line-height: 40px;
 }
 
 #header h1 {
-    margin:0 0 0 30px;
-    float:left;
-    color:#fff;
-    font-size:16pt;
+	margin: 0 0 0 30px;
+	float: left;
+	color: #fff;
+	font-size: 16pt;
 }
 
 #header ul {
-    list-style:none;
-    margin:0 0 0 30px;
-    padding:0px;
-    float:left;
-    margin-right:30px;
+	list-style: none;
+	margin: 0 0 0 30px;
+	padding: 0px;
+	float: left;
+	margin-right: 30px;
 }
 
 #header li {
-    display:inline-block;
-    margin-right:10px;
+	display: inline-block;
+	margin-right: 10px;
 }
 
 #header li a {
-    color:#fff;
-    background-color:#666;
-    padding:0 5px 0 5px;
-    border-radius:5px;
-    text-decoration: none;
-    font-size:10pt;
-    height:25px;
-    line-height:25px;
-    display:block;
-    font-weight:bold;
+	color: #fff;
+	background-color: #666;
+	padding: 0 5px 0 5px;
+	border-radius: 5px;
+	text-decoration: none;
+	font-size: 10pt;
+	height: 25px;
+	line-height: 25px;
+	display: block;
+	font-weight: bold;
 }
 
 #header li a:hover {
-    background-color: #999;
+	background-color: #999;
 }
 
 #content {
-    margin:20px 0 10px 30px;
-    padding-right:100px;
+	margin: 20px 0 10px 30px;
+	padding-right: 100px;
 }
 
 #push {
-    height: 45px;
+	height: 45px;
 }
 
 #footer {
-    height: 30px;
-    background-color:#333;
-    font-size:8pt;
-    color:#fff;
-    padding:10px 0 5px 30px;
+	height: 30px;
+	background-color: #333;
+	font-size: 8pt;
+	color: #fff;
+	padding: 10px 0 5px 30px;
 }
 
 #footer a {
-    color:#fff;
+	color: #fff;
 }
 
 code {
-    background-color:#ddd;
-    border:1px solid #777;
-    padding:5px;
-    margin:4px;
-    display:block;
-    width:400px;
+	background-color: #ddd;
+	border: 1px solid #777;
+	padding: 5px;
+	margin: 4px;
+	display: block;
+	width: 400px;
 }

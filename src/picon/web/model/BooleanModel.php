@@ -24,32 +24,32 @@ namespace picon;
 
 /**
  * A model which must be a boolean
- * 
+ *
  * @author Martin Cassidy
  * @package web/model
  */
 class BooleanModel implements Model
 {
-    private $value;
-    
-    public function __construct($value)
-    {
-        $this->setModelObject($value);
-    }
-    
-    public function getModelObject()
-    {
-        return $this->value;
-    }
-    
-    public function setModelObject(&$object)
-    {
-        if(!is_bool($object))
-        {
-            throw new \InvalidArgumentException('Boolean model can only store a boolean value');
-        }
-        $this->value = $object;
-    }
+	private $value;
+
+	public function __construct($value)
+	{
+		$this->setModelObject($value);
+	}
+
+	public function getModelObject()
+	{
+		return $this->value;
+	}
+
+	public function setModelObject(&$object)
+	{
+		if(!is_bool($object))
+		{
+			throw new \InvalidArgumentException('Boolean model can only store a boolean value');
+		}
+		$this->value = $object;
+	}
 }
 
 ?>

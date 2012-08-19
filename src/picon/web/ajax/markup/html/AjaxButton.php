@@ -24,7 +24,7 @@ namespace picon;
 
 /**
  * A form button which, when clicked will submit the form by ajax
- * 
+ *
  * One of the calback methods (onSubmit or onError) will be invoked to
  * allow for a response to be created in either of the posible circumstances
  *
@@ -33,58 +33,58 @@ namespace picon;
  */
 class AjaxButton extends Button implements CallDecoratorWrapper
 {
-    private $form;
-    private $behaviour;
-    
-    /**
-     *
-     * @param type $id
-     * @param type $onSubmit
-     * @param type $onError
-     * @param Form $form 
-     */
-    public function __construct($id, $onSubmit = null, $onError = null, $form = null)
-    {
-        parent::__construct($id);
-        
-        if($form!=null)
-        {
-            if($form instanceof Form)
-            {
-                $this->form = $form;
-            }
-            else
-            {
-                throw new \InvalidArgumentException('$form must be an instance of Form');
-            }
-        }
-        
-        $this->behaviour = new AjaxFormSubmitBehavior('onClick', $onSubmit, $onError, $form);
-        $this->add($this->behaviour);
-    }
-    
-    protected function onComponentTag(ComponentTag $tag)
-    {
-        parent::onComponentTag($tag);
-        $tag->put('type', 'button');
-    }
-    
-    public function getForm()
-    {
-        if($this->form==null)
-        {
-            return parent::getForm();
-        }
-        else
-        {
-            return $this->form;
-        }
-    }
-    
-    public function setAjaxCallDecorator(AjaxCallDecorator &$decorator)
-    {
-        $this->behaviour->setAjaxCallDecorator($decorator);
-    }
+	private $form;
+	private $behaviour;
+
+	/**
+	 *
+	 * @param type $id
+	 * @param type $onSubmit
+	 * @param type $onError
+	 * @param Form $form
+	 */
+	public function __construct($id, $onSubmit = null, $onError = null, $form = null)
+	{
+		parent::__construct($id);
+
+		if($form!=null)
+		{
+			if($form instanceof Form)
+			{
+				$this->form = $form;
+			}
+			else
+			{
+				throw new \InvalidArgumentException('$form must be an instance of Form');
+			}
+		}
+
+		$this->behaviour = new AjaxFormSubmitBehavior('onClick', $onSubmit, $onError, $form);
+		$this->add($this->behaviour);
+	}
+
+	protected function onComponentTag(ComponentTag $tag)
+	{
+		parent::onComponentTag($tag);
+		$tag->put('type', 'button');
+	}
+
+	public function getForm()
+	{
+		if($this->form==null)
+		{
+			return parent::getForm();
+		}
+		else
+		{
+			return $this->form;
+		}
+	}
+
+	public function setAjaxCallDecorator(AjaxCallDecorator &$decorator)
+	{
+		$this->behaviour->setAjaxCallDecorator($decorator);
+	}
 }
 
 ?>

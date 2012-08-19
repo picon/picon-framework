@@ -18,32 +18,32 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * $HeadURL$
  * $Revision$
  * $Author$
  * $Date$
  * $Id$
- * 
+ *
  * */
 
 /**
  * Description of PanelPage
- * 
+ *
  * @author Martin Cassidy
  */
 class PanelPage extends AbstractPage
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->add(new SamplePanel('panel'));
-    }
-    
-    public function getInvolvedFiles()
-    {
-        return array('assets/layout/PanelPage.php', 'assets/layout/PanelPage.html', 'assets/layout/SamplePanel.php', 'assets/layout/SamplePanel.html');
-    }
+	public function __construct()
+	{
+		parent::__construct();
+		$this->add(new SamplePanel('panel'));
+	}
+
+	public function getInvolvedFiles()
+	{
+		return array('assets/layout/PanelPage.php', 'assets/layout/PanelPage.html', 'assets/layout/SamplePanel.php', 'assets/layout/SamplePanel.html');
+	}
 }
 
 ?>

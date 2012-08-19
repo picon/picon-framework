@@ -24,25 +24,25 @@ namespace picon;
 
 /**
  * A toolbar that shows column headings
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/table/toolbar
  */
 class HeaderToolbar extends AbstractToolbar
 {
-    public function __construct(DataTable $dataTable)
-    {
-        parent::__construct($dataTable);
-        $headings = new RepeatingView('head');
-        
-        foreach($dataTable->getColumns() as $column)
-        {
-            $header = new MarkupContainer($headings->getNextChildId());
-            $headings->add($header);
-            $header->add(new Label('heading', new BasicModel($column->getHeading())));
-        }
-        $this->add($headings);
-    }
+	public function __construct(DataTable $dataTable)
+	{
+		parent::__construct($dataTable);
+		$headings = new RepeatingView('head');
+
+		foreach($dataTable->getColumns() as $column)
+		{
+			$header = new MarkupContainer($headings->getNextChildId());
+			$headings->add($header);
+			$header->add(new Label('heading', new BasicModel($column->getHeading())));
+		}
+		$this->add($headings);
+	}
 }
 
 ?>

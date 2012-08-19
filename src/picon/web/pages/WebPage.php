@@ -24,88 +24,88 @@ namespace picon;
 
 /**
  * Super class for all web pages
- * 
+ *
  * @author Martin Cassidy
  * @package web/pages
  */
 class WebPage extends MarkupContainer implements RequestablePage
 {
-    private $autoIndex = 0;
-    
-    public function __construct()
-    {
-        parent::__construct(PageMap::getNextPageId());
-    }
-    
-    protected function onRender()
-    {
-        $pageMarkup = $this->getMarkup(); 
-        parent::renderAll(array(&$pageMarkup));
-    }
-    
-    public function renderPage()
-    {
-        $this->render();
-    }
-    
-    public function isPageStateless()
-    {
-        $stateless = $this->isStateless();
-        
-        if(!$stateless)
-        {
-            return $stateless;
-        }
-        
-        $reflection = new \ReflectionClass(get_called_class());
-        $constructor = $reflection->getConstructor();
-        $params = $constructor->getParameters();
-        
-        //TODO also add page params to this when in place
-        $stateless = count($params)==0;
-        
-        if(!$stateless)
-        {
-            return $stateless;
-        }
-        
-        $callback = function($component) use (&$stateless)
-        {
-            if(!$component->isStateless())
-            {
-                $stateless = false;
-                return Component::VISITOR_STOP_TRAVERSAL;
-            }
-            return Component::VISITOR_CONTINUE_TRAVERSAL;
-        };
-        $this->visitChildren(Component::getIdentifier(), $callback);
-        return $stateless;
-    }
-    
-    public function afterPageRender()
-    {
-        parent::afterPageRender();
-        if(!$this->isPageStateless())
-        {
-            PageMap::get()->addOrUpdate($this);
-        }
-        FeedbackModel::get()->cleanup();
-    }
-    
-    public function beforePageRender()
-    {
-        parent::beforePageRender();
-        if(!$this->isInitialized())
-        {
-            $this->internalInitialize();
-        }
-    }
-    
-    public function getAutoIndex()
-    {
-        $this->autoIndex++;
-        return $this->autoIndex;
-    }
+	private $autoIndex = 0;
+
+	public function __construct()
+	{
+		parent::__construct(PageMap::getNextPageId());
+	}
+
+	protected function onRender()
+	{
+		$pageMarkup = $this->getMarkup();
+		parent::renderAll(array(&$pageMarkup));
+	}
+
+	public function renderPage()
+	{
+		$this->render();
+	}
+
+	public function isPageStateless()
+	{
+		$stateless = $this->isStateless();
+
+		if(!$stateless)
+		{
+			return $stateless;
+		}
+
+		$reflection = new \ReflectionClass(get_called_class());
+		$constructor = $reflection->getConstructor();
+		$params = $constructor->getParameters();
+
+		//TODO also add page params to this when in place
+		$stateless = count($params)==0;
+
+		if(!$stateless)
+		{
+			return $stateless;
+		}
+
+		$callback = function($component) use (&$stateless)
+		{
+			if(!$component->isStateless())
+			{
+				$stateless = false;
+				return Component::VISITOR_STOP_TRAVERSAL;
+			}
+			return Component::VISITOR_CONTINUE_TRAVERSAL;
+		};
+		$this->visitChildren(Component::getIdentifier(), $callback);
+		return $stateless;
+	}
+
+	public function afterPageRender()
+	{
+		parent::afterPageRender();
+		if(!$this->isPageStateless())
+		{
+			PageMap::get()->addOrUpdate($this);
+		}
+		FeedbackModel::get()->cleanup();
+	}
+
+	public function beforePageRender()
+	{
+		parent::beforePageRender();
+		if(!$this->isInitialized())
+		{
+			$this->internalInitialize();
+		}
+	}
+
+	public function getAutoIndex()
+	{
+		$this->autoIndex++;
+		return $this->autoIndex;
+	}
 }
 
 ?>

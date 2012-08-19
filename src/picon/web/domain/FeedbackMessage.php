@@ -24,28 +24,28 @@ namespace picon;
 
 /**
  * A feedback message for use by the feedback message model and feedback panel
- * 
+ *
  * @author Martin Cassidy
  * @package web/domain
  */
 class FeedbackMessage extends ComonDomainBase
 {
-    const FEEDBACK_MEESAGE_FATEL = '1';
-    const FEEDBACK_MEESAGE_ERROR = '2';
-    const FEEDBACK_MEESAGE_WARNING = '3';
-    const FEEDBACK_MEESAGE_INFO = '4';
-    const FEEDBACK_MEESAGE_SUCCESS = '5';
-    
-    private $level;
-    private $message;
-    private $reporter;
-    
-    public function __construct($level, $message, Component &$reporter)
-    {
-        $this->level = $level;
-        $this->message = $message;
-        $this->reporter = $reporter;
-    }
+	const FEEDBACK_MEESAGE_FATEL = '1';
+	const FEEDBACK_MEESAGE_ERROR = '2';
+	const FEEDBACK_MEESAGE_WARNING = '3';
+	const FEEDBACK_MEESAGE_INFO = '4';
+	const FEEDBACK_MEESAGE_SUCCESS = '5';
+
+	private $level;
+	private $message;
+	private $reporter;
+
+	public function __construct($level, $message, Component &$reporter)
+	{
+		$this->level = $level;
+		$this->message = $message;
+		$this->reporter = $reporter;
+	}
 }
 
 ?>

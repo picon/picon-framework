@@ -24,45 +24,45 @@ namespace picon;
 
 /**
  * Description of DialogBehavior
- * 
+ *
  * @author Martin Cassidy
  */
 class DialogBehavior extends DefaultJQueryUIBehaviour
 {
-    public function __construct()
-    {
-        parent::__construct('dialog');
-    }
-    
-    public function setModal($modal)
-    {
-        Args::isBoolean($modal, 'modal');
-        $this->getOptions()->add(new BooleanOption('modal', $modal));
-    }
-    
-    public function setAutoOpen($autoOpen)
-    {
-        Args::isBoolean($autoOpen, 'autoOpen');
-        $this->getOptions()->add(new BooleanOption('autoOpen', $autoOpen));
-    }
-    
-    public function setHeight($height)
-    {
-        Args::isNumeric($height, 'height');
-        $this->getOptions()->add(new NumbericOption('height', $height));
-    }
-    
-    public function setWidth($width)
-    {
-        Args::isNumeric($width, 'width');
-        $this->getOptions()->add(new NumbericOption('width', $width));
-    }
-    
-    public function setBeforeClose($beforeClose, $function = '')
-    {
-        Args::callBackArgs($beforeClose, 1, 'beforeClose');
-        $this->getOptions()->add(new CallbackFunctionOption('beforeClose', $beforeClose, $function));
-    }
+	public function __construct()
+	{
+		parent::__construct('dialog');
+	}
+
+	public function setModal($modal)
+	{
+		Args::isBoolean($modal, 'modal');
+		$this->getOptions()->add(new BooleanOption('modal', $modal));
+	}
+
+	public function setAutoOpen($autoOpen)
+	{
+		Args::isBoolean($autoOpen, 'autoOpen');
+		$this->getOptions()->add(new BooleanOption('autoOpen', $autoOpen));
+	}
+
+	public function setHeight($height)
+	{
+		Args::isNumeric($height, 'height');
+		$this->getOptions()->add(new NumbericOption('height', $height));
+	}
+
+	public function setWidth($width)
+	{
+		Args::isNumeric($width, 'width');
+		$this->getOptions()->add(new NumbericOption('width', $width));
+	}
+
+	public function setBeforeClose($beforeClose, $function = '')
+	{
+		Args::callBackArgs($beforeClose, 1, 'beforeClose');
+		$this->getOptions()->add(new CallbackFunctionOption('beforeClose', $beforeClose, $function));
+	}
 }
 
 ?>

@@ -29,20 +29,20 @@ namespace picon;
  */
 class ClassNamespaceRule implements ClassScannerRule
 {
-    private $namespace;
+	private $namespace;
 
-    /**
-     *
-     * @param String $namespace The name of the namespace
-     */
-    public function __construct($namespace)
-    {
-        $this->namespace = $namespace;
-    }
+	/**
+	 *
+	 * @param String $namespace The name of the namespace
+	 */
+	public function __construct($namespace)
+	{
+		$this->namespace = $namespace;
+	}
 
-    public function matches($className, \ReflectionAnnotatedClass $reflection)
-    {
-        return $reflection->getNamespaceName()==$this->namespace;
-    }
+	public function matches($className, \ReflectionAnnotatedClass $reflection)
+	{
+		return $reflection->getNamespaceName()==$this->namespace;
+	}
 }
 ?>

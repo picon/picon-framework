@@ -30,20 +30,20 @@ namespace picon;
  */
 abstract class AbstractJQueryUIBehaviour extends AbstractJQueryBehaviour
 {
-    public function __construct()
-    {
-        parent::__construct();
-        PiconApplication::get()->addComponentRenderHeadListener(new JQueryUIRenderHeadListener());
-    }
-    
-    /**
-     * TODO This is a bad way of forcing listeners to re register
-     */
-    public function __wakeup()
-    {
-        parent::__wakeup();
-        PiconApplication::get()->addComponentRenderHeadListener(new JQueryUIRenderHeadListener());
-    }
+	public function __construct()
+	{
+		parent::__construct();
+		PiconApplication::get()->addComponentRenderHeadListener(new JQueryUIRenderHeadListener());
+	}
+
+	/**
+	 * TODO This is a bad way of forcing listeners to re register
+	 */
+	public function __wakeup()
+	{
+		parent::__wakeup();
+		PiconApplication::get()->addComponentRenderHeadListener(new JQueryUIRenderHeadListener());
+	}
 }
 
 ?>

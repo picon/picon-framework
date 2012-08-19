@@ -24,50 +24,50 @@ namespace picon;
 
 /**
  * Mark-up source for components which hav associated mark-up
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/sources
  */
 abstract class AbstractAssociatedMarkupSource extends AbstractMarkupSource
 {
-    public function getMarkup(MarkupContainer $container, Component $child)
-    {
-        $markup = $container->loadAssociatedMarkup();
-        $root = $this->getRootTag($markup);
-        return MarkupUtils::findComponentTag($root, $child->getId(), $container);
-    }
-    
-    public function renderHead(Component $component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
-    {
-        $markup = $component->loadAssociatedMarkup();
-        $heads = $this->findHead(array($markup));
+	public function getMarkup(MarkupContainer $container, Component $child)
+	{
+		$markup = $container->loadAssociatedMarkup();
+		$root = $this->getRootTag($markup);
+		return MarkupUtils::findComponentTag($root, $child->getId(), $container);
+	}
 
-        foreach($heads as $index => $head)
-        {
-            $id = $component->getId().'_head_'.$index;
-            $headerPart = new HeaderPartContainer($id, $head);
-            $headerPart->render();
-        }
-    }
-    
-    private function findHead($markup)
-    {
-        $heads = array();
-        foreach($markup as $element)
-        {
-            if($element instanceof PiconTag && $element->isHeaderTag())
-            {
-                array_push($heads, $element);
-            }
-            if($element instanceof MarkupElement && $element->hasChildren())
-            {
-                $heads = array_merge($heads, $this->findHead($element->getChildren()));
-            }
-        }
-        return $heads;
-    }
-    
-    public abstract function getRootTag(MarkupElement $markup);
+	public function renderHead(Component $component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
+	{
+		$markup = $component->loadAssociatedMarkup();
+		$heads = $this->findHead(array($markup));
+
+		foreach($heads as $index => $head)
+		{
+			$id = $component->getId().'_head_'.$index;
+			$headerPart = new HeaderPartContainer($id, $head);
+			$headerPart->render();
+		}
+	}
+
+	private function findHead($markup)
+	{
+		$heads = array();
+		foreach($markup as $element)
+		{
+			if($element instanceof PiconTag && $element->isHeaderTag())
+			{
+				array_push($heads, $element);
+			}
+			if($element instanceof MarkupElement && $element->hasChildren())
+			{
+				$heads = array_merge($heads, $this->findHead($element->getChildren()));
+			}
+		}
+		return $heads;
+	}
+
+	public abstract function getRootTag(MarkupElement $markup);
 }
 
 ?>

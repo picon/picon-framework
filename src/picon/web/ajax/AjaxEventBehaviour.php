@@ -31,44 +31,44 @@ namespace picon;
  */
 class AjaxEventBehaviour extends AbstractAjaxBehaviour
 {
-    private $event;
-    private $callback;
-    
-    public function __construct($event, $callback)
-    {
-        parent::__construct();
-        Args::isString($event, 'event');
-        Args::callBackArgs($callback, 1, 'callback');
-        $this->event = $event;
-        $this->callback = $callback;
-    }
-    
-    public function onComponentTag(Component &$component, ComponentTag &$tag)
-    {
-        parent::onComponentTag($component, $tag);
-        $tag->put($this->event, $this->generateCallbackScript());
-    }
-    
-    public function onEventCallback(AjaxRequestTarget $target)
-    {
-        $callable = $this->callback;
-        $callable($target);
-    }
-    
-    protected function callScript()
-    {
-        return "";
-    }
-    
-    protected function successScript()
-    {
-        return "";
-    }
-    
-    protected function failScript()
-    {
-        return "";
-    }
+	private $event;
+	private $callback;
+
+	public function __construct($event, $callback)
+	{
+		parent::__construct();
+		Args::isString($event, 'event');
+		Args::callBackArgs($callback, 1, 'callback');
+		$this->event = $event;
+		$this->callback = $callback;
+	}
+
+	public function onComponentTag(Component &$component, ComponentTag &$tag)
+	{
+		parent::onComponentTag($component, $tag);
+		$tag->put($this->event, $this->generateCallbackScript());
+	}
+
+	public function onEventCallback(AjaxRequestTarget $target)
+	{
+		$callable = $this->callback;
+		$callable($target);
+	}
+
+	protected function callScript()
+	{
+		return "";
+	}
+
+	protected function successScript()
+	{
+		return "";
+	}
+
+	protected function failScript()
+	{
+		return "";
+	}
 }
 
 ?>

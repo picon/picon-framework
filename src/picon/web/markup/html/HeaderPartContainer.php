@@ -30,18 +30,18 @@ namespace picon;
  */
 class HeaderPartContainer extends MarkupContainer implements ComponentResolver
 {
-    public function __construct($id, MarkupElement $markup)
-    {
-        parent::__construct($id);
-        $this->setMarkup($markup);
-        $this->setRenderBodyOnly(true);
-    }
-    
-    
-    public function resolve(MarkupContainer $container, ComponentTag &$tag)
-    {
-        return $this->getParent()->get($tag->getComponentTagId());
-    }
+	public function __construct($id, MarkupElement $markup)
+	{
+		parent::__construct($id);
+		$this->setMarkup($markup);
+		$this->setRenderBodyOnly(true);
+	}
+
+
+	public function resolve(MarkupContainer $container, ComponentTag &$tag)
+	{
+		return $this->getParent()->get($tag->getComponentTagId());
+	}
 }
 
 ?>

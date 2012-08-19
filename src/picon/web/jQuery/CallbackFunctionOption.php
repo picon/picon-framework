@@ -24,7 +24,7 @@ namespace picon;
 
 /**
  * Allows a user specified function to be rendered but wraps with a callback in the following way
- * 
+ *
  * [optionName] : function([args...])
  * {
  *      var callBackURL = '[url]';
@@ -34,47 +34,47 @@ namespace picon;
  *
  * This allows the callback url to be altered by user defined code with function arguments before
  * it is sent
- * 
+ *
  * @author Martin Cassidy
  * @package web/jQuery
  */
 class CallbackFunctionOption extends AbstractCallableOption
 {
-    private $function;
-    private $args = array();
-    private $callback;
-    
-    /**
-     *
-     * @param type $name
-     * @param type $function 
-     * @param ... args the names of the arguments the javascript function should take
-     */
-    public function __construct($name, $callback, $function)
-    {
-        parent::__construct($name);
-        Args::isString($function, 'function');
-        Args::callBackArgs($callback, 1, 'callback');
-        $this->callback = new SerializableClosure($callback);
-        $this->function = $function;
-        
-        $args = func_get_args();
-        for($i=3;$i<count($args);$i++)
-        {
-            array_push($this->args, $args[$i]);
-        }
-    }
-    
-    public function render(AbstractJQueryBehaviour $behaviour)
-    {
-        return sprintf("%s : function(%s) {var callBackURL = '%s'; %s piconAjaxGet(callBackURL, function(){}, function(){});}", $this->getName(), implode(', ', $this->args), $this->getUrl($behaviour), $this->function);
-    }
-    
-    public function call(AjaxRequestTarget $target)
-    {
-        $callable = $this->callback;
-        $callable($target);
-    }
+	private $function;
+	private $args = array();
+	private $callback;
+
+	/**
+	 *
+	 * @param type $name
+	 * @param type $function
+	 * @param ... args the names of the arguments the javascript function should take
+	 */
+	public function __construct($name, $callback, $function)
+	{
+		parent::__construct($name);
+		Args::isString($function, 'function');
+		Args::callBackArgs($callback, 1, 'callback');
+		$this->callback = new SerializableClosure($callback);
+		$this->function = $function;
+
+		$args = func_get_args();
+		for($i=3;$i<count($args);$i++)
+		{
+			array_push($this->args, $args[$i]);
+		}
+	}
+
+	public function render(AbstractJQueryBehaviour $behaviour)
+	{
+		return sprintf("%s : function(%s) {var callBackURL = '%s'; %s piconAjaxGet(callBackURL, function(){}, function(){});}", $this->getName(), implode(', ', $this->args), $this->getUrl($behaviour), $this->function);
+	}
+
+	public function call(AjaxRequestTarget $target)
+	{
+		$callable = $this->callback;
+		$callable($target);
+	}
 }
 
 ?>

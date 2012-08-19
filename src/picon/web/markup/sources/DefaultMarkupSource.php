@@ -24,45 +24,45 @@ namespace picon;
 
 /**
  * Default source for mark-up
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/sources
  */
 class DefaultMarkupSource extends AbstractMarkupSource
 {
-    public function getMarkup(MarkupContainer $container, Component $child)
-    {
-        $markup = $container->getMarkup();
-        
-        if($markup==null)
-        {
-            throw new \MarkupNotFoundException(sprintf("Markup for %s could not be found.", $child->getId()));
-        }
-        
-        if($child==null)
-        {
-            return $markup;
-        }
-        $m = MarkupUtils::findComponentTag($markup, $child->getId(), $container);
-        
-        if($m==null)
-        {
-            foreach($container->getChildren() as $ch)
-            {
-                if($ch!=$child && $ch instanceof MarkupContainer && $ch instanceof ComponentResolver)
-                {
-                    $m = $ch->getMarkupForChild($child);
-                    
-                    if($m!=null)
-                    {
-                        return $m;
-                    }
-                }
-            }
-        }
-        
-        return $m;
-    }
+	public function getMarkup(MarkupContainer $container, Component $child)
+	{
+		$markup = $container->getMarkup();
+
+		if($markup==null)
+		{
+			throw new \MarkupNotFoundException(sprintf("Markup for %s could not be found.", $child->getId()));
+		}
+
+		if($child==null)
+		{
+			return $markup;
+		}
+		$m = MarkupUtils::findComponentTag($markup, $child->getId(), $container);
+
+		if($m==null)
+		{
+			foreach($container->getChildren() as $ch)
+			{
+				if($ch!=$child && $ch instanceof MarkupContainer && $ch instanceof ComponentResolver)
+				{
+					$m = $ch->getMarkupForChild($child);
+
+					if($m!=null)
+					{
+						return $m;
+					}
+				}
+			}
+		}
+
+		return $m;
+	}
 }
 
 ?>

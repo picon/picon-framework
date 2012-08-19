@@ -29,7 +29,7 @@ namespace picon;
  */
 interface ComponentInheritedModel extends Model
 {
-    function onInherit(Component &$component);
+	function onInherit(Component &$component);
 }
 
 ?>

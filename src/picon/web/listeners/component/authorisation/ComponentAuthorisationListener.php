@@ -26,21 +26,21 @@ namespace picon;
  * A component instantiation listener that detects the users authorisation
  * to use a component. Passes the component onto the authorisation strategry
  * which will return a boolen to confirm authorised or not.
- * 
+ *
  * @author Martin Cassidy
  * @package web/listeners/component/authorisation
  */
 class ComponentAuthorisationListener implements ComponentInstantiationListener
 {
-    public function onInstantiate(Component &$component)
-    {
-        $strategy = PiconApplication::get()->getSecuritySettings()->getAuthorisationStrategy();
-        
-        if(!$strategy->isComponentInstantiationAuthorised($component))
-        {
-            PiconApplication::get()->getSecuritySettings()->getComponentNotAuthorisedListener()->onNotAuthorised($component);
-        }
-    }
+	public function onInstantiate(Component &$component)
+	{
+		$strategy = PiconApplication::get()->getSecuritySettings()->getAuthorisationStrategy();
+
+		if(!$strategy->isComponentInstantiationAuthorised($component))
+		{
+			PiconApplication::get()->getSecuritySettings()->getComponentNotAuthorisedListener()->onNotAuthorised($component);
+		}
+	}
 }
 
 ?>

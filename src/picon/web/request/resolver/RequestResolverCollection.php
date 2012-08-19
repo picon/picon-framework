@@ -24,86 +24,86 @@ namespace picon;
 
 /**
  * Collection of resolvers that work as one
- * 
+ *
  * @author Martin Cassidy
  * @package web/request/resolver
  */
 class RequestResolverCollection implements RequestResolver
 {
-    private $resolvers = array();
-    
-    public function __construct()
-    {
-        $this->add(new PageRequestResolver());
-        $this->add(new PageInstanceRequestResolver());
-        $this->add(new ListenerRequestResolver());
-        $this->add(new ResourceRequestResolver);
-    }
-    
-    public function add(RequestResolver $resolver)
-    {
-        array_push($this->resolvers, $resolver);
-    }
-    
-    public function matches(Request $request)
-    {
-        foreach($this->resolvers as $resolver)
-        {
-            if($resolver->matches($request))
-            {
-                return true;
-            }
-        }
-        
-        return false;
-    }
-    
-    /**
-     *
-     * @param Request $request
-     * @return RequestTarget the target that matches the request, null if none did 
-     */
-    public function resolve(Request $request)
-    {
-        foreach($this->resolvers as $resolver)
-        {
-            if($resolver->matches($request))
-            {
-                return $resolver->resolve($request);
-            }
-        }
-        
-        return null;
-    }
-    
-    public function generateUrl(RequestTarget $target)
-    {
-        foreach($this->resolvers as $resolver)
-        {
-            if($resolver->handles($target))
-            {
-                $url = $resolver->generateUrl($target);
-                if(!empty($url))
-                {
-                    return $url;
-                }
-            }
-        }
-        
-        return null;
-    }
-    
-    public function handles(RequestTarget $target)
-    {
-        foreach($this->resolvers as $resolver)
-        {
-            if($resolver->handles($target))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+	private $resolvers = array();
+
+	public function __construct()
+	{
+		$this->add(new PageRequestResolver());
+		$this->add(new PageInstanceRequestResolver());
+		$this->add(new ListenerRequestResolver());
+		$this->add(new ResourceRequestResolver);
+	}
+
+	public function add(RequestResolver $resolver)
+	{
+		array_push($this->resolvers, $resolver);
+	}
+
+	public function matches(Request $request)
+	{
+		foreach($this->resolvers as $resolver)
+		{
+			if($resolver->matches($request))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 *
+	 * @param Request $request
+	 * @return RequestTarget the target that matches the request, null if none did
+	 */
+	public function resolve(Request $request)
+	{
+		foreach($this->resolvers as $resolver)
+		{
+			if($resolver->matches($request))
+			{
+				return $resolver->resolve($request);
+			}
+		}
+
+		return null;
+	}
+
+	public function generateUrl(RequestTarget $target)
+	{
+		foreach($this->resolvers as $resolver)
+		{
+			if($resolver->handles($target))
+			{
+				$url = $resolver->generateUrl($target);
+				if(!empty($url))
+				{
+					return $url;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	public function handles(RequestTarget $target)
+	{
+		foreach($this->resolvers as $resolver)
+		{
+			if($resolver->handles($target))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }
 
 ?>

@@ -18,33 +18,33 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * $HeadURL$
  * $Revision$
  * $Author$
  * $Date$
  * $Id$
- * 
+ *
  * */
 
 use picon\ComonDomainBase;
 
 /**
  * A simple domain object being used for the form page
- * 
+ *
  * @author Martin Cassidy
  */
 class ExampleDomain extends ComonDomainBase
 {
-    private $textBox = 'default value';
-    private $textArea = 'default text area value';
-    private $select = 'option';
-    private $rgroup = 'option2';
-    private $icheck = false;
-    private $cgroup = array('option1');
-    private $rchoice = 'option';
-    private $cchoice = array('default', 'something else');
-    private $mchoice = array('option');
+	private $textBox = 'default value';
+	private $textArea = 'default text area value';
+	private $select = 'option';
+	private $rgroup = 'option2';
+	private $icheck = false;
+	private $cgroup = array('option1');
+	private $rchoice = 'option';
+	private $cchoice = array('default', 'something else');
+	private $mchoice = array('option');
 }
 
 ?>

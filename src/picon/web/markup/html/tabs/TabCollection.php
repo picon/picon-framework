@@ -24,37 +24,37 @@ namespace picon;
 
 /**
  * An array of tabs which are added to a tab panel
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/tabs
  */
 class TabCollection extends ComonDomainBase
 {
-    private $tabs = array();
-    
-    public function __construct($tabs = array())
-    {
-        $this->tabs = $tabs;
-    }
-    
-    /**
-     *
-     * @param Tab $tab
-     * @param closure $newMethod 
-     */
-    public function addTab($tab, $newMethod = null)
-    {
-        if($tab instanceof Tab)
-        {
-            array_push($this->tabs, $tab);
-        }
-        else
-        {
-            Args::isString($tab, 'tab');
-            Args::callBackArgs($newMethod, 1, 'newMethod');
-            array_push($this->tabs, new Tab($tab, $newMethod));
-        }
-    }
+	private $tabs = array();
+
+	public function __construct($tabs = array())
+	{
+		$this->tabs = $tabs;
+	}
+
+	/**
+	 *
+	 * @param Tab $tab
+	 * @param closure $newMethod
+	 */
+	public function addTab($tab, $newMethod = null)
+	{
+		if($tab instanceof Tab)
+		{
+			array_push($this->tabs, $tab);
+		}
+		else
+		{
+			Args::isString($tab, 'tab');
+			Args::callBackArgs($newMethod, 1, 'newMethod');
+			array_push($this->tabs, new Tab($tab, $newMethod));
+		}
+	}
 }
 
 ?>
