@@ -24,13 +24,13 @@ namespace picon;
 
 /**
  * Abstract implementation for databases to share functionality
- * 
+ *
  * @author Martin Cassidy
  * @package database/driver
  */
 abstract class AbstractDatabaseDriver implements DatabaseDriver
 {
-    
+
 }
 
 ?>

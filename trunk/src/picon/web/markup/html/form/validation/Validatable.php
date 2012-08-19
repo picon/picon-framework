@@ -23,30 +23,30 @@
 namespace picon;
 
 /**
- * Interface which must be used for classes that support validation 
+ * Interface which must be used for classes that support validation
  * by a Validator
  * @author Martin Cassidy
  * @package web/markup/html/form/validation
  */
 interface Validatable
 {
-    /**
-     * Get the value to validate
-     * @return mixed
-     */
-    function getValue();
-    
-    /**
-     * Get the current valid state of the Validatable
-     * @return boolean
-     */
-    function isValid();
-    
-    /**
-     * Called by a validator when an error is found
-     */
-    function error(ValidationResponse $error);
- 
+	/**
+	 * Get the value to validate
+	 * @return mixed
+	 */
+	function getValue();
+
+	/**
+	 * Get the current valid state of the Validatable
+	 * @return boolean
+	*/
+	function isValid();
+
+	/**
+	 * Called by a validator when an error is found
+	*/
+	function error(ValidationResponse $error);
+
 }
 
 ?>

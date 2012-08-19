@@ -25,25 +25,25 @@
  */
 abstract class AbstractContext
 {
-    public function getTestService()
-    {
-        return $this->testService;
-    }
-    
-    public function getTestServ()
-    {
-        return $this->serv;
-    }
-    
-    public function getTestRepo()
-    {
-        return $this->repo;
-    }
-    
-    public function getTestRepository()
-    {
-        return $this->testRepository;
-    }
+	public function getTestService()
+	{
+		return $this->testService;
+	}
+
+	public function getTestServ()
+	{
+		return $this->serv;
+	}
+
+	public function getTestRepo()
+	{
+		return $this->repo;
+	}
+
+	public function getTestRepository()
+	{
+		return $this->testRepository;
+	}
 }
 
 ?>

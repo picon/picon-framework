@@ -24,30 +24,30 @@ namespace picon;
 
 /**
  * Represents the response for a request
- * 
+ *
  * Although a request will have only one response, their may be multiple
  * request targets that all write to the response, consiquently it is posible
  * that a page might be rendered twice. It is therefore expected that a page
  * request target will clean the response before it starts to write to it
- * 
+ *
  * @author Martin Cassidy
  * @package web/request
  * TODO create helper methods for writing HTTP headers
  */
 interface Response
 {
-    /**
-     * @param string $value the value to write to the response
-     */
-    function write($value);
-    
-    function flush();
-    
-    function clean();
-    
-    function getBody();
-    
-    function setHeader($value, $status);
+	/**
+	 * @param string $value the value to write to the response
+	 */
+	function write($value);
+
+	function flush();
+
+	function clean();
+
+	function getBody();
+
+	function setHeader($value, $status);
 }
 
 ?>

@@ -31,7 +31,7 @@ namespace picon;
  */
 interface Detachable
 {
-    function detach();
+	function detach();
 }
 
 ?>

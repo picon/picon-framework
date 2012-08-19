@@ -24,16 +24,16 @@ namespace picon;
 
 /**
  * A data provider which supports injection
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/table
  */
 abstract class AbstractInjectedDataProvider implements DataProvider, InjectOnWakeup
 {
-    public function __construct()
-    {
-        Injector::get()->inject($this);
-    }
+	public function __construct()
+	{
+		Injector::get()->inject($this);
+	}
 }
 
 ?>

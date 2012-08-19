@@ -24,76 +24,76 @@ namespace picon;
 
 /**
  * Database driver for mysql
- * 
+ *
  * @author Martin Cassidy
  * @package database/driver
  */
 class MySqlDriver extends AbstractDatabaseDriver
 {
-    public function connect($host, $username, $password, $database, $port = null)
-    {
-        $connection = mysql_connect($host, $username, $password);
-        
-        if($connection==false)
-        {
-            throw new SQLException(mysql_error());
-        }
-        $selection = mysql_select_db($database, $connection);
-        if($selection==false)
-        {
-            throw new SQLException(mysql_error($connection));
-        }
-        return $connection;
-    }
-    
-    public function dissconnect($connection)
-    {
-        mysql_close($connection);
-    }
-    
-    public function getAffectedRows($connection)
-    {
-        return mysql_affected_rows($connection);
-    }
-    
-    public function query($sql, $connection)
-    {
-        $result = mysql_query($sql, $connection);
-        if (!$result) 
-        {
-            throw new SQLException(mysql_error($connection));
-        }
-        return $result;
-    }
-    
-    public function resultSetObject($resultResource, $className = null)
-    {
-        if($className==null)
-        {
-            return mysql_fetch_object($resultResource);
-        }
-        return mysql_fetch_object($resultResource, $className);
-    }
-    
-    public function resultSetArray($resultResource)
-    {
-        return mysql_fetch_array($resultResource);
-    }
-    
-    public function countRows($resultResource)
-    {
-        return mysql_num_rows($resultResource);
-    }
-    
-    public function countColumns($resultResource)
-    {
-        return mysql_num_fields($resultResource);
-    }
-    
-    public function getInsertedId($connection)
-    {
-        return mysql_insert_id($connection);
-    }
+	public function connect($host, $username, $password, $database, $port = null)
+	{
+		$connection = mysql_connect($host, $username, $password);
+
+		if($connection==false)
+		{
+			throw new SQLException(mysql_error());
+		}
+		$selection = mysql_select_db($database, $connection);
+		if($selection==false)
+		{
+			throw new SQLException(mysql_error($connection));
+		}
+		return $connection;
+	}
+
+	public function dissconnect($connection)
+	{
+		mysql_close($connection);
+	}
+
+	public function getAffectedRows($connection)
+	{
+		return mysql_affected_rows($connection);
+	}
+
+	public function query($sql, $connection)
+	{
+		$result = mysql_query($sql, $connection);
+		if (!$result)
+		{
+			throw new SQLException(mysql_error($connection));
+		}
+		return $result;
+	}
+
+	public function resultSetObject($resultResource, $className = null)
+	{
+		if($className==null)
+		{
+			return mysql_fetch_object($resultResource);
+		}
+		return mysql_fetch_object($resultResource, $className);
+	}
+
+	public function resultSetArray($resultResource)
+	{
+		return mysql_fetch_array($resultResource);
+	}
+
+	public function countRows($resultResource)
+	{
+		return mysql_num_rows($resultResource);
+	}
+
+	public function countColumns($resultResource)
+	{
+		return mysql_num_fields($resultResource);
+	}
+
+	public function getInsertedId($connection)
+	{
+		return mysql_insert_id($connection);
+	}
 }
 
 ?>

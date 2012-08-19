@@ -24,36 +24,36 @@ namespace picon;
 require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 /**
  * TODO test namae alternates
- */
+*/
 class ContextTest extends AbstractPiconTest
-{    
-    public function testAutoLoadContext()
-    {
-        $context = $this->getContext();
-        $this->assertArrayHasKey('testRepository', $context->getResources());
-        $this->assertArrayHasKey('testService', $context->getResources());
-        $this->assertArrayHasKey('repo', $context->getResources());
-        $this->assertArrayHasKey('serv', $context->getResources());
-        
-        $this->assertEquals(4, count($context->getResources()));
-    }
-    
-    public function testAutoLoadContextGetByName()
-    {
-        $context = $this->getContext();
-        $this->assertInstanceOf('TestRepository', $context->getResource("testRepository"));
-        $this->assertInstanceOf('TestService', $context->getResource("testService"));
-        $this->assertInstanceOf('TestRepositoryName', $context->getResource("repo"));
-        $this->assertInstanceOf('TestServiceName', $context->getResource("serv"));
-    }
-    
-   /**
-    * @expectedException UndefinedResourceException
-    */
-    public function testInvalidResource()
-    {
-        $context = $this->getContext();
-        $context->getResource("notExist");
-    }
+{
+	public function testAutoLoadContext()
+	{
+		$context = $this->getContext();
+		$this->assertArrayHasKey('testRepository', $context->getResources());
+		$this->assertArrayHasKey('testService', $context->getResources());
+		$this->assertArrayHasKey('repo', $context->getResources());
+		$this->assertArrayHasKey('serv', $context->getResources());
+
+		$this->assertEquals(4, count($context->getResources()));
+	}
+
+	public function testAutoLoadContextGetByName()
+	{
+		$context = $this->getContext();
+		$this->assertInstanceOf('TestRepository', $context->getResource("testRepository"));
+		$this->assertInstanceOf('TestService', $context->getResource("testService"));
+		$this->assertInstanceOf('TestRepositoryName', $context->getResource("repo"));
+		$this->assertInstanceOf('TestServiceName', $context->getResource("serv"));
+	}
+
+	/**
+	 * @expectedException UndefinedResourceException
+	 */
+	public function testInvalidResource()
+	{
+		$context = $this->getContext();
+		$context->getResource("notExist");
+	}
 }
 ?>

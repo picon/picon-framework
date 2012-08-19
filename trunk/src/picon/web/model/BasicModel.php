@@ -30,22 +30,22 @@ namespace picon;
  */
 class BasicModel implements Model
 {
-    private $object;
-    
-    public function __construct($object)
-    {
-        $this->object = &$object;
-    }
-    
-    public function getModelObject()
-    {
-        return $this->object;
-    }
-    
-    public function setModelObject(&$object)
-    {
-        $this->object = &$object;
-    }
+	private $object;
+
+	public function __construct($object)
+	{
+		$this->object = &$object;
+	}
+
+	public function getModelObject()
+	{
+		return $this->object;
+	}
+
+	public function setModelObject(&$object)
+	{
+		$this->object = &$object;
+	}
 }
 
 ?>

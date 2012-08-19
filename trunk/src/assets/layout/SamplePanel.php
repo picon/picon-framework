@@ -18,25 +18,25 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * $HeadURL$
  * $Revision$
  * $Author$
  * $Date$
  * $Id$
- * 
+ *
  * */
 
 use picon\Panel;
 
 /**
  * Description of SamplePanel
- * 
+ *
  * @author Martin Cassidy
  */
 class SamplePanel extends Panel
 {
-    
+
 }
 
 ?>

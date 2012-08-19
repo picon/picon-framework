@@ -24,18 +24,18 @@ namespace picon;
 
 /**
  * A data table which by default adds on a header toolbar and a navigation toolbar
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/table
  */
 class DefaultDataTable extends DataTable
 {
-    public function __construct($id, DataProvider $provider, $columns, $rowsPerPage = 10)
-    {
-        parent::__construct($id, $provider, $columns, $rowsPerPage);
-        $this->addBottomToolbar(new NavigationToolbar($this));
-        $this->addTopToolbar(new HeaderToolbar($this));
-    }
+	public function __construct($id, DataProvider $provider, $columns, $rowsPerPage = 10)
+	{
+		parent::__construct($id, $provider, $columns, $rowsPerPage);
+		$this->addBottomToolbar(new NavigationToolbar($this));
+		$this->addTopToolbar(new HeaderToolbar($this));
+	}
 }
 
 ?>

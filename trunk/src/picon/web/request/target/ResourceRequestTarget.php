@@ -24,28 +24,28 @@ namespace picon;
 
 /**
  * Locates and renders a resource e.g. css or js
- * 
+ *
  * @author Martin Cassidy
  * @package web/request/target
  */
 class ResourceRequestTarget implements RequestTarget
 {
-    private $resource;
-    
-    public function __construct(ResourceReference $resource)
-    {
-        $this->resource = $resource;
-    }
-    
-    public function respond(Response $response)
-    {
-        print($this->resource->loadResource());
-    }
-    
-    public function getResource()
-    {
-        return $this->resource;
-    }
+	private $resource;
+
+	public function __construct(ResourceReference $resource)
+	{
+		$this->resource = $resource;
+	}
+
+	public function respond(Response $response)
+	{
+		print($this->resource->loadResource());
+	}
+
+	public function getResource()
+	{
+		return $this->resource;
+	}
 }
 
 ?>

@@ -28,82 +28,82 @@ require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
  * Test for the class scanner
  * TODO test multiple rules, test scanning subsets
  * @author Martin Cassidy
- */
+*/
 class ClassScannerTest extends AbstractPiconTest
 {
-    /**
-     * Force all the scanner classes to be auto loaded
-     */
-    public static function setUpBeforeClass()
-    {
-        parent::setUpBeforeClass();
-        $required = array('picon\ClassScanner', 'picon\AnnotationRule', 'picon\ClassNamespaceRule', 'picon\ClassNameRule', 'picon\SubClassRule');
-        foreach($required as $class)
-        {
-            new \ReflectionClass($class);
-        }
-    }
-    
-    public function testByAnnotation()
-    {
-        $scanner = new \picon\ClassScanner(new \picon\AnnotationRule('Service'));
-        $this->performAsserts($scanner, array('TestService', 'TestServiceName'));
-    }
-    
-    public function testByNamespace()
-    {
-        $scanner = new \picon\ClassScanner(new \picon\ClassNamespaceRule('testnamespace'));
-        $this->performAsserts($scanner, array('testnamespace\TestNameSpaceClassOne', 'testnamespace\TestNameSpaceClassTwo'));
-    }
-    
-    public function testByName()
-    {
-        $scanner = new ClassScanner(new ClassNameRule('\w*(Scan|Rule){1}\w*'));
-        $this->performAsserts($scanner, array('picon\ClassScannerTest', 'picon\ClassScanner', 'picon\AnnotationRule', 'picon\ClassNamespaceRule', 'picon\ClassNameRule', 'picon\SubClassRule'));
-    }
-    
-    public function testBySubClass()
-    {
-        $scanner = new ClassScanner(new SubClassRule('testnamespace\TestNameSpaceClassOne'));
-        $this->performAsserts($scanner, array('testnamespace\TestNameSpaceClassTwo'));
-    }
-    
-    /**
-     * @expectedException     InvalidArgumentException
-     */
-    public function testInvalidRule()
-    {
-        $scanner = new ClassScanner(new \stdClass());
-    }
-    
-    public function testRuleArray()
-    {
-        $scanner = new \picon\ClassScanner(array(new SubClassRule('testnamespace\TestNameSpaceClassOne'), new \picon\ClassNamespaceRule('testnamespace')));
-        $this->performAsserts($scanner, array('testnamespace\TestNameSpaceClassOne', 'testnamespace\TestNameSpaceClassTwo'));
-    }
-    
-    /**
-     * @expectedException     InvalidArgumentException
-     */
-    public function testInvalidRuleArray()
-    {
-        $scanner = new \picon\ClassScanner(array(new SubClassRule('testnamespace\TestNameSpaceClassOne'), new \stdClass()));
-    }
-    
-    private function performAsserts(\picon\ClassScanner $scanner, $expectedClasses)
-    {
-        $results = $scanner->scanForName();
-        $this->assertEquals($expectedClasses, $results);
-        
-        $expectedReflections = array();
-        foreach($expectedClasses as $expected)
-        {
-            array_push($expectedReflections, new \ReflectionAnnotatedClass($expected));
-        }
-        
-        $results = $scanner->scanForReflection();
-        $this->assertEquals($expectedReflections, $results);
-    }
+	/**
+	 * Force all the scanner classes to be auto loaded
+	 */
+	public static function setUpBeforeClass()
+	{
+		parent::setUpBeforeClass();
+		$required = array('picon\ClassScanner', 'picon\AnnotationRule', 'picon\ClassNamespaceRule', 'picon\ClassNameRule', 'picon\SubClassRule');
+		foreach($required as $class)
+		{
+			new \ReflectionClass($class);
+		}
+	}
+
+	public function testByAnnotation()
+	{
+		$scanner = new \picon\ClassScanner(new \picon\AnnotationRule('Service'));
+		$this->performAsserts($scanner, array('TestService', 'TestServiceName'));
+	}
+
+	public function testByNamespace()
+	{
+		$scanner = new \picon\ClassScanner(new \picon\ClassNamespaceRule('testnamespace'));
+		$this->performAsserts($scanner, array('testnamespace\TestNameSpaceClassOne', 'testnamespace\TestNameSpaceClassTwo'));
+	}
+
+	public function testByName()
+	{
+		$scanner = new ClassScanner(new ClassNameRule('\w*(Scan|Rule){1}\w*'));
+		$this->performAsserts($scanner, array('picon\ClassScannerTest', 'picon\ClassScanner', 'picon\AnnotationRule', 'picon\ClassNamespaceRule', 'picon\ClassNameRule', 'picon\SubClassRule'));
+	}
+
+	public function testBySubClass()
+	{
+		$scanner = new ClassScanner(new SubClassRule('testnamespace\TestNameSpaceClassOne'));
+		$this->performAsserts($scanner, array('testnamespace\TestNameSpaceClassTwo'));
+	}
+
+	/**
+	 * @expectedException     InvalidArgumentException
+	 */
+	public function testInvalidRule()
+	{
+		$scanner = new ClassScanner(new \stdClass());
+	}
+
+	public function testRuleArray()
+	{
+		$scanner = new \picon\ClassScanner(array(new SubClassRule('testnamespace\TestNameSpaceClassOne'), new \picon\ClassNamespaceRule('testnamespace')));
+		$this->performAsserts($scanner, array('testnamespace\TestNameSpaceClassOne', 'testnamespace\TestNameSpaceClassTwo'));
+	}
+
+	/**
+	 * @expectedException     InvalidArgumentException
+	 */
+	public function testInvalidRuleArray()
+	{
+		$scanner = new \picon\ClassScanner(array(new SubClassRule('testnamespace\TestNameSpaceClassOne'), new \stdClass()));
+	}
+
+	private function performAsserts(\picon\ClassScanner $scanner, $expectedClasses)
+	{
+		$results = $scanner->scanForName();
+		$this->assertEquals($expectedClasses, $results);
+
+		$expectedReflections = array();
+		foreach($expectedClasses as $expected)
+		{
+			array_push($expectedReflections, new \ReflectionAnnotatedClass($expected));
+		}
+
+		$results = $scanner->scanForReflection();
+		$this->assertEquals($expectedReflections, $results);
+	}
 }
 
 ?>

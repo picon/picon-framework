@@ -30,36 +30,36 @@ namespace picon;
  */
 abstract class AbstractJQueryBehaviour extends AbstractBehaviour implements BehaviourListener
 {
-    public function __construct()
-    {
-        PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
-    }
-    
-    /**
-     * TODO This is a bad way of forcing listeners to re register
-     */
-    public function __wakeup()
-    {
-        parent::__wakeup();
-        PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
-    }
-    
-    /**
-     * This ajax.js should NOT be rendered all the time
-     * @param Component $component
-     * @param HeaderContainer $headerContainer
-     * @param HeaderResponse $headerResponse 
-     */
-    public function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
-    {
-        parent::renderHead($component, $headerContainer, $headerResponse);
-        $headerResponse->renderJavaScriptResourceReference(new ResourceReference('ajax.js', AbstractAjaxBehaviour::getIdentifier()));
-    }
-    
-    public function isStateless()
-    {
-        return false;
-    }
+	public function __construct()
+	{
+		PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
+	}
+
+	/**
+	 * TODO This is a bad way of forcing listeners to re register
+	 */
+	public function __wakeup()
+	{
+		parent::__wakeup();
+		PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
+	}
+
+	/**
+	 * This ajax.js should NOT be rendered all the time
+	 * @param Component $component
+	 * @param HeaderContainer $headerContainer
+	 * @param HeaderResponse $headerResponse
+	 */
+	public function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
+	{
+		parent::renderHead($component, $headerContainer, $headerResponse);
+		$headerResponse->renderJavaScriptResourceReference(new ResourceReference('ajax.js', AbstractAjaxBehaviour::getIdentifier()));
+	}
+
+	public function isStateless()
+	{
+		return false;
+	}
 }
 
 ?>

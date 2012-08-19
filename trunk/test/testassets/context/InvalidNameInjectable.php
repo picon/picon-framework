@@ -25,8 +25,8 @@
  */
 class InvalidNameInjectable
 {
-    /** @Resource(name = 'notexists') */
-    private $testService;
+	/** @Resource(name = 'notexists') */
+	private $testService;
 }
 
 ?>

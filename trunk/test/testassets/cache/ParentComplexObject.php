@@ -22,12 +22,12 @@
 
 class ParentComplexObject
 {
-    private $parentString = "some text";
-    
-    public function getParentString()
-    {
-        return $this->parentString;
-    }
+	private $parentString = "some text";
+
+	public function getParentString()
+	{
+		return $this->parentString;
+	}
 }
 
 ?>

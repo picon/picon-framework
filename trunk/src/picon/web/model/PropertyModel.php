@@ -32,24 +32,24 @@ namespace picon;
  */
 class PropertyModel implements Model
 {
-    private $target;
-    private $property;
-    
-    public function __construct(&$target, $property)
-    {
-        $this->target = $target;
-        $this->property = $property;
-    }
-    
-    public function getModelObject()
-    {
-        return PropertyResolver::get($this->target, $this->property);
-    }
-    
-    public function setModelObject(&$object)
-    {
-        PropertyResolver::set($this->target, $this->property, $object);
-    }
+	private $target;
+	private $property;
+
+	public function __construct(&$target, $property)
+	{
+		$this->target = $target;
+		$this->property = $property;
+	}
+
+	public function getModelObject()
+	{
+		return PropertyResolver::get($this->target, $this->property);
+	}
+
+	public function setModelObject(&$object)
+	{
+		PropertyResolver::set($this->target, $this->property, $object);
+	}
 }
 
 ?>

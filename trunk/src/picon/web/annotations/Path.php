@@ -28,7 +28,7 @@
  */
 class Path extends Annotation
 {
-    public $path = "";
+	public $path = "";
 }
 
 ?>

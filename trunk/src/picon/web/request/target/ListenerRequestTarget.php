@@ -30,100 +30,100 @@ namespace picon;
  */
 class ListenerRequestTarget implements RequestTarget, Identifiable
 {
-    private $componentPath;
-    private $page;
-    private $behaviour;
-    
-    /**
-     *
-     * @param string $page The name of the page 
-     * @param type $componentPath The path to the listener component
-     */
-    public function __construct($page, $componentPath, $behaviour = null)
-    {
-        $this->page = $page;
-        $this->componentPath = $componentPath;
-        $this->behaviour = $behaviour;
-    }
-    
-    public function respond(Response $response)
-    {
-        if($this->page instanceof Identifier)
-        {
-            $fullClassName = $this->page->getFullyQualifiedName();
-            $page = new $fullClassName();
-            $page->internalInitialize();
-        }
-        else
-        {
-            $page = $this->page;
+	private $componentPath;
+	private $page;
+	private $behaviour;
 
-        }
-        
-        if($page==null)
-        {
-            $GLOBALS['requestCycle']->addTarget(new PageNotFoundRequestTarget());
-            return;
-        }
-        
-        $listener = $this->getListener($page);
-        
-        if($listener==null)
-        {
-            $page->beforePageRender();
-            $listener = $this->getListener($page);
-        } 
-        if($listener==null || !($listener instanceof Listener))
-        {
-            throw new \RuntimeException(sprintf("Listener component %s was not found", $this->componentPath));
-        }
-        
-        if($GLOBALS['requestCycle']->getRequest()->isAjax()==false)
-        {
-            $url = $GLOBALS['requestCycle']->generateUrl(new PageInstanceRequestTarget($page));
-            PageMap::get()->addOrUpdate($page);
-            $GLOBALS['requestCycle']->addTarget(new RedirectRequestTarget($url));
-        }
-        $listener->onEvent();
-    }
-    
-    private function getListener($page)
-    {
-        $listener = null;
-        if($this->behaviour==null)
-        {
-            $listener = $page->get($this->componentPath);
-        }
-        else
-        {
-            $component = $page->get($this->componentPath);
-            if($component!=null && $component instanceof Component)
-            {
-                $listener = $component->getBehaviourById($this->behaviour);
-            }
-        }
-        return $listener;
-    }
-    
-    public function getComponentPath()
-    {
-        return $this->componentPath;
-    }
+	/**
+	 *
+	 * @param string $page The name of the page
+	 * @param type $componentPath The path to the listener component
+	 */
+	public function __construct($page, $componentPath, $behaviour = null)
+	{
+		$this->page = $page;
+		$this->componentPath = $componentPath;
+		$this->behaviour = $behaviour;
+	}
 
-    public function getPage()
-    {
-        return $this->page;
-    }
-    
-    public function getBehaviour()
-    {
-        return $this->behaviour;
-    }
-    
-    public static function getIdentifier()
-    {
-        return Identifier::forName(get_called_class());
-    }
+	public function respond(Response $response)
+	{
+		if($this->page instanceof Identifier)
+		{
+			$fullClassName = $this->page->getFullyQualifiedName();
+			$page = new $fullClassName();
+			$page->internalInitialize();
+		}
+		else
+		{
+			$page = $this->page;
+
+		}
+
+		if($page==null)
+		{
+			$GLOBALS['requestCycle']->addTarget(new PageNotFoundRequestTarget());
+			return;
+		}
+
+		$listener = $this->getListener($page);
+
+		if($listener==null)
+		{
+			$page->beforePageRender();
+			$listener = $this->getListener($page);
+		}
+		if($listener==null || !($listener instanceof Listener))
+		{
+			throw new \RuntimeException(sprintf("Listener component %s was not found", $this->componentPath));
+		}
+
+		if($GLOBALS['requestCycle']->getRequest()->isAjax()==false)
+		{
+			$url = $GLOBALS['requestCycle']->generateUrl(new PageInstanceRequestTarget($page));
+			PageMap::get()->addOrUpdate($page);
+			$GLOBALS['requestCycle']->addTarget(new RedirectRequestTarget($url));
+		}
+		$listener->onEvent();
+	}
+
+	private function getListener($page)
+	{
+		$listener = null;
+		if($this->behaviour==null)
+		{
+			$listener = $page->get($this->componentPath);
+		}
+		else
+		{
+			$component = $page->get($this->componentPath);
+			if($component!=null && $component instanceof Component)
+			{
+				$listener = $component->getBehaviourById($this->behaviour);
+			}
+		}
+		return $listener;
+	}
+
+	public function getComponentPath()
+	{
+		return $this->componentPath;
+	}
+
+	public function getPage()
+	{
+		return $this->page;
+	}
+
+	public function getBehaviour()
+	{
+		return $this->behaviour;
+	}
+
+	public static function getIdentifier()
+	{
+		return Identifier::forName(get_called_class());
+	}
 }
 
 ?>

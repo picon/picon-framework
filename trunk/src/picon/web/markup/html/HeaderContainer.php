@@ -30,51 +30,51 @@ namespace picon;
  */
 class HeaderContainer extends TransparentMarkupContainer
 {
-    public function __construct($id, Model $model = null)
-    {
-        parent::__construct($id, $model);
-        $this->setRenderBodyOnly(true);
-    }
-    
-    protected function onComponentTagBody(ComponentTag $tag)
-    {
-        $this->getResponse()->write('<head>');
-        parent::onComponentTagBody($tag);
-        $page = $this->getPage();
-        $headerResponse = new HeaderResponse($this->getResponse());
-        PiconApplication::get()->getComponentRenderHeadListener()->onHeadRendering($this, $headerResponse);
-        $page->renderHead($headerResponse);
-        $self = $this;
-        $callback = function(Component &$component) use($headerResponse, $self)
-        {
-            $component->renderHeadContainer($self, $headerResponse);
-            return Component::VISITOR_CONTINUE_TRAVERSAL;
-        };
-        
-        $page->visitChildren(Component::getIdentifier(), $callback);
-        $this->getResponse()->write('</head>');
-    }
-    
-    public function getMarkup()
-    {
-        $parent = $this->getParent();
-        
-        if($parent==null)
-        {
-            throw new \RuntimeException('Unable to locate parent for header container');
-        }
-        
-        $headerMarkup = $parent->getMarkup()->getChildByName('head');
-        
-        if($headerMarkup!=null)
-        {
-            return $headerMarkup;
-        }
-        
-        $headerMarkup = MarkupUtils::findPiconTag('head', $parent->getMarkup());
-        return $headerMarkup;         
-    }
-    
+	public function __construct($id, Model $model = null)
+	{
+		parent::__construct($id, $model);
+		$this->setRenderBodyOnly(true);
+	}
+
+	protected function onComponentTagBody(ComponentTag $tag)
+	{
+		$this->getResponse()->write('<head>');
+		parent::onComponentTagBody($tag);
+		$page = $this->getPage();
+		$headerResponse = new HeaderResponse($this->getResponse());
+		PiconApplication::get()->getComponentRenderHeadListener()->onHeadRendering($this, $headerResponse);
+		$page->renderHead($headerResponse);
+		$self = $this;
+		$callback = function(Component &$component) use($headerResponse, $self)
+		{
+			$component->renderHeadContainer($self, $headerResponse);
+			return Component::VISITOR_CONTINUE_TRAVERSAL;
+		};
+
+		$page->visitChildren(Component::getIdentifier(), $callback);
+		$this->getResponse()->write('</head>');
+	}
+
+	public function getMarkup()
+	{
+		$parent = $this->getParent();
+
+		if($parent==null)
+		{
+			throw new \RuntimeException('Unable to locate parent for header container');
+		}
+
+		$headerMarkup = $parent->getMarkup()->getChildByName('head');
+
+		if($headerMarkup!=null)
+		{
+			return $headerMarkup;
+		}
+
+		$headerMarkup = MarkupUtils::findPiconTag('head', $parent->getMarkup());
+		return $headerMarkup;
+	}
+
 }
 
 ?>

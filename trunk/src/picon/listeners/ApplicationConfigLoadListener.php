@@ -31,17 +31,17 @@ namespace picon;
  */
 class ApplicationConfigLoadListener implements ApplicationInitializerConfigLoadListener
 {
-    private $callback;
-    
-    public function __construct($callback)
-    {
-        $this->callback = $callback;
-    }
-    
-    public function onConfigLoaded(Config $config)
-    {
-        call_user_func($this->callback, $config);
-    }
+	private $callback;
+
+	public function __construct($callback)
+	{
+		$this->callback = $callback;
+	}
+
+	public function onConfigLoaded(Config $config)
+	{
+		call_user_func($this->callback, $config);
+	}
 }
 
 ?>

@@ -18,28 +18,28 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * $HeadURL$
  * $Revision$
  * $Author$
  * $Date$
  * $Id$
- * 
+ *
  * */
 
 use picon\AbstractPageClassAuthorisationStrategy;
 
 /**
  * Description of SamplePageClassAuthorisationStrategy
- * 
+ *
  * @author Martin Cassidy
  */
 class SamplePageClassAuthorisationStrategy extends AbstractPageClassAuthorisationStrategy
 {
-    protected function isAuthorised()
-    {
-        return isset($_SESSION['auth']) && $_SESSION['auth']==true;
-    }
+	protected function isAuthorised()
+	{
+		return isset($_SESSION['auth']) && $_SESSION['auth']==true;
+	}
 }
 
 ?>

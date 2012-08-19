@@ -18,32 +18,32 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * $HeadURL$
  * $Revision$
  * $Author$
  * $Date$
  * $Id$
- * 
+ *
  * */
 
 /**
  * Description of BorderPage
- * 
+ *
  * @author Martin Cassidy
  */
 class BorderPage extends AbstractPage
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->add(new SampleBorder('border'));
-    }
-    
-    public function getInvolvedFiles()
-    {
-        return array('assets/layout/BorderPage.php', 'assets/layout/BorderPage.html', 'assets/layout/SampleBorder.php', 'assets/layout/SampleBorder.html');
-    }
+	public function __construct()
+	{
+		parent::__construct();
+		$this->add(new SampleBorder('border'));
+	}
+
+	public function getInvolvedFiles()
+	{
+		return array('assets/layout/BorderPage.php', 'assets/layout/BorderPage.html', 'assets/layout/SampleBorder.php', 'assets/layout/SampleBorder.html');
+	}
 }
 
 ?>

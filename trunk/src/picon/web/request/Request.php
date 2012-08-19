@@ -23,45 +23,45 @@ namespace picon;
 
 /**
  * Convience class for accessing information about a requests
- * This also provideds convience methods for analysing the request to 
+ * This also provideds convience methods for analysing the request to
  * determin what kind of request it is
  * @package web/request
  * TODO lots more to add in here
  * @author Martin Cassidy
  */
 interface Request
-{    
-    public function getQueryString();
-    
-    public function getPath();
-    
-    public function isAjax();
-    
-    public function isResourceRequest();
-    
-    public function getRootPath();
-    
-    public function isPost();
-    
-    public function isGet();
-    
-    /**
-     * Get a POST parameter
-     * @param type $name
-     * @return type 
-     */
-    public function getPostedParameter($name);
-    
-    /**
-     * Get a GET paramater
-     * @param type $name
-     * @return type 
-     */
-    public function getParameter($name);
-    
-    public function getParameters();
-    
-    public function getPostParameters();
+{
+	public function getQueryString();
+
+	public function getPath();
+
+	public function isAjax();
+
+	public function isResourceRequest();
+
+	public function getRootPath();
+
+	public function isPost();
+
+	public function isGet();
+
+	/**
+	 * Get a POST parameter
+	 * @param type $name
+	 * @return type
+	*/
+	public function getPostedParameter($name);
+
+	/**
+	 * Get a GET paramater
+	 * @param type $name
+	 * @return type
+	*/
+	public function getParameter($name);
+
+	public function getParameters();
+
+	public function getPostParameters();
 }
 
 ?>

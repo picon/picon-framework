@@ -24,75 +24,75 @@ namespace picon;
 
 /**
  * A container for radio buttons
- * 
+ *
  * @see Radio
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 class RadioGroup extends FormComponent
 {
-    public function getChoiceGroup()
-    {
-        $choice = null;
-        $callback = function(&$component) use (&$choice)
-        {
-             $choice = $component;
-             return Component::VISITOR_STOP_TRAVERSAL;
-        };
-        $this->visitParents(Identifier::forName('picon\ChoiceGroup'), $callback);
-        return $choice;
-    }
-    
-    public function getName()
-    {
-        $choice = $this->getChoiceGroup();
-        if($choice==null)
-        {
-            return parent::getName();
-        }
-        else
-        {
-            return str_replace('.', '_', $choice->getComponentPath());
-        }
-    }
-    
-    protected function convertInput()
-    {
-        $input = $this->getRawInput(); 
-        $value = null;
-        $callback = function(Radio &$radio) use(&$value, $input)
-        {
-            if($radio->getValue()==$input)
-            {
-                $value = $radio->getModelObject();
-                return Component::VISITOR_STOP_TRAVERSAL;
-            }
-            return Component::VISITOR_CONTINUE_TRAVERSAL;
-        };
-        $this->visitChildren(Radio::getIdentifier(), $callback);
-        
-        if($value!=null)
-        {
-            $this->setConvertedInput($value);
-        }
-    }
-    
-    public function isRequired()
-    {
-        $choice = $this->getChoiceGroup();
-        return $choice==null && parent::isRequired();
-    }
-    
-    protected function validateModel()
-    {
-        //TODO
-    }
-    
-    protected function onComponentTag(ComponentTag $tag)
-    {
-        parent::onComponentTag($tag);
-        $tag->remove('name');
-    }
+	public function getChoiceGroup()
+	{
+		$choice = null;
+		$callback = function(&$component) use (&$choice)
+		{
+			$choice = $component;
+			return Component::VISITOR_STOP_TRAVERSAL;
+		};
+		$this->visitParents(Identifier::forName('picon\ChoiceGroup'), $callback);
+		return $choice;
+	}
+
+	public function getName()
+	{
+		$choice = $this->getChoiceGroup();
+		if($choice==null)
+		{
+			return parent::getName();
+		}
+		else
+		{
+			return str_replace('.', '_', $choice->getComponentPath());
+		}
+	}
+
+	protected function convertInput()
+	{
+		$input = $this->getRawInput();
+		$value = null;
+		$callback = function(Radio &$radio) use(&$value, $input)
+		{
+			if($radio->getValue()==$input)
+			{
+				$value = $radio->getModelObject();
+				return Component::VISITOR_STOP_TRAVERSAL;
+			}
+			return Component::VISITOR_CONTINUE_TRAVERSAL;
+		};
+		$this->visitChildren(Radio::getIdentifier(), $callback);
+
+		if($value!=null)
+		{
+			$this->setConvertedInput($value);
+		}
+	}
+
+	public function isRequired()
+	{
+		$choice = $this->getChoiceGroup();
+		return $choice==null && parent::isRequired();
+	}
+
+	protected function validateModel()
+	{
+		//TODO
+	}
+
+	protected function onComponentTag(ComponentTag $tag)
+	{
+		parent::onComponentTag($tag);
+		$tag->remove('name');
+	}
 }
 
 ?>

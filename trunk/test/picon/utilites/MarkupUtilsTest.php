@@ -26,10 +26,10 @@ require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
  * Description of MarkupUtilsTest
  * TODO this
  * @author Martin Cassidy
- */
+*/
 class MarkupUtilsTest
 {
-    
+
 }
 
 ?>

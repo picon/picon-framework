@@ -29,10 +29,10 @@ namespace picon;
  */
 interface InitializingBean
 {
-    /**
-     * Called when all resources have had their properties set
-     */
-    function afterPropertiesSet();
+	/**
+	 * Called when all resources have had their properties set
+	 */
+	function afterPropertiesSet();
 }
 
 ?>

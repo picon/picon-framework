@@ -30,33 +30,33 @@ namespace picon;
  */
 class FunctionOption extends AbstractOption
 {
-    private $function;
-    private $args = array();
-    
-    /**
-     *
-     * @param type $name
-     * @param type $function 
-     * @param ... args the names of the arguments the javascript function should take
-     */
-    public function __construct($name, $function)
-    {
-        parent::__construct($name);
-        Args::isString($function, 'function');
-        $this->function = $function;
-        
-        $args = func_get_args();
-        
-        for($i=2;$i<count($args);$i++)
-        {
-            array_push($this->args, $args[$i]);
-        }
-    }
-    
-    public function render(AbstractJQueryBehaviour $behaviour)
-    {
-        return sprintf("%s : function(%s) {%s}", $this->getName(), implode(', ', $this->args), $this->function);
-    }
+	private $function;
+	private $args = array();
+
+	/**
+	 *
+	 * @param type $name
+	 * @param type $function
+	 * @param ... args the names of the arguments the javascript function should take
+	*/
+	public function __construct($name, $function)
+	{
+		parent::__construct($name);
+		Args::isString($function, 'function');
+		$this->function = $function;
+
+		$args = func_get_args();
+
+		for($i=2;$i<count($args);$i++)
+		{
+			array_push($this->args, $args[$i]);
+		}
+	}
+
+	public function render(AbstractJQueryBehaviour $behaviour)
+	{
+		return sprintf("%s : function(%s) {%s}", $this->getName(), implode(', ', $this->args), $this->function);
+	}
 }
 
 ?>

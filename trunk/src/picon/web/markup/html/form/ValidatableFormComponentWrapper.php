@@ -26,41 +26,41 @@ namespace picon;
  * A wrapper for form components for usage by validators. This is a proxy/
  * adaptor whice enables a form validator to work indirectly with a form
  * component to report validation errors
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 class ValidatableFormComponentWrapper implements Validatable
 {
-    private $wrappedComponet;
-    
-    public function __construct(FormComponent &$component)
-    {
-        $this->wrappedComponet = $component;
-    }
-    
-    /**
-     * @param string $keyHierarchy the key locator for the message
-     * @param type $message 
-     */
-    public function error(ValidationResponse $error)
-    {
-        $error->setName($this->wrappedComponet->getId());
-        $error->setValue($this->getValue());
-        $message = $this->wrappedComponet->getLocalizer()->getString($this->wrappedComponet->getComponentKey($error->getKey()), new BasicModel($error));
-        $this->wrappedComponet->error($message);
-        $this->wrappedComponet->invalid();
-    }
-    
-    public function getValue()
-    {
-        return $this->wrappedComponet->getConvertedInput();
-    }
-    
-    public function isValid()
-    {
-        return $this->wrappedComponet->isValid();
-    }
+	private $wrappedComponet;
+
+	public function __construct(FormComponent &$component)
+	{
+		$this->wrappedComponet = $component;
+	}
+
+	/**
+	 * @param string $keyHierarchy the key locator for the message
+	 * @param type $message
+	 */
+	public function error(ValidationResponse $error)
+	{
+		$error->setName($this->wrappedComponet->getId());
+		$error->setValue($this->getValue());
+		$message = $this->wrappedComponet->getLocalizer()->getString($this->wrappedComponet->getComponentKey($error->getKey()), new BasicModel($error));
+		$this->wrappedComponet->error($message);
+		$this->wrappedComponet->invalid();
+	}
+
+	public function getValue()
+	{
+		return $this->wrappedComponet->getConvertedInput();
+	}
+
+	public function isValid()
+	{
+		return $this->wrappedComponet->isValid();
+	}
 }
 
 ?>

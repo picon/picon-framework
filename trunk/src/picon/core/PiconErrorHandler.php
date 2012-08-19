@@ -24,46 +24,46 @@ namespace picon;
 /**
  * Handles all PHP errors and uncaught exceptions, registers handles
  * upon instantiation.
- * 
+ *
  * @author Martin Cassidy
  * @package core
  */
 class PiconErrorHandler
 {
-    public function __construct()
-    {
-        set_error_handler(array($this, 'onError'));
-        set_exception_handler(array($this, 'onException'));
-    }
-    
-    /**
-     * TODO the error level should be setable, warnings and notices are currently ignored
-     * @param type $errno
-     * @param type $errstr
-     * @param type $errfile
-     * @param type $errline 
-     */
-    public function onError($errno, $errstr, $errfile, $errline)
-    {
-        if($errno==E_USER_ERROR||$errno==E_ERROR)
-        {
-            throw new \ErrorException($errstr, 0, $errno, $errfile, $errline);
-        }
-    }
-    
-    public function onException(\Exception $exception)
-    {
-        print('<h1>Unhandled Exception</h1>');
-        print('<h3>'.$exception->getMessage().' in '.$exception->getFile().' on line '.$exception->getLine().'</h3>');
-        print('<h2>Trace</h2><ul>');
-        foreach($exception->getTrace() as $trace)
-        {
-            print('<li>'.$trace['class'].'::'.$trace['function'].'() in '.$trace['file'].' on line '.$trace['line'].'</li>');
-        }
-        print('</ul>');
+	public function __construct()
+	{
+		set_error_handler(array($this, 'onError'));
+		set_exception_handler(array($this, 'onException'));
+	}
 
-        die();
-    }
+	/**
+	 * TODO the error level should be setable, warnings and notices are currently ignored
+	 * @param type $errno
+	 * @param type $errstr
+	 * @param type $errfile
+	 * @param type $errline
+	 */
+	public function onError($errno, $errstr, $errfile, $errline)
+	{
+		if($errno==E_USER_ERROR||$errno==E_ERROR)
+		{
+			throw new \ErrorException($errstr, 0, $errno, $errfile, $errline);
+		}
+	}
+
+	public function onException(\Exception $exception)
+	{
+		print('<h1>Unhandled Exception</h1>');
+		print('<h3>'.$exception->getMessage().' in '.$exception->getFile().' on line '.$exception->getLine().'</h3>');
+		print('<h2>Trace</h2><ul>');
+		foreach($exception->getTrace() as $trace)
+		{
+			print('<li>'.$trace['class'].'::'.$trace['function'].'() in '.$trace['file'].' on line '.$trace['line'].'</li>');
+		}
+		print('</ul>');
+
+		die();
+	}
 }
 
 ?>

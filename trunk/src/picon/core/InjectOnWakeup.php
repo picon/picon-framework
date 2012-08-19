@@ -23,14 +23,14 @@
 namespace picon;
 
 /**
- * Tagging interface for sub classes of PiconSerializer which need to 
- * be re-injected during deserialization. 
+ * Tagging interface for sub classes of PiconSerializer which need to
+ * be re-injected during deserialization.
  * @author Martin Cassidy
  * @package core
  */
 interface InjectOnWakeup
 {
-    //tagging interface
+	//tagging interface
 }
 
 ?>

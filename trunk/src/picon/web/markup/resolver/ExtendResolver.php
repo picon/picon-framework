@@ -30,14 +30,14 @@ namespace picon;
  */
 class ExtendResolver implements ComponentResolver
 {
-    public function resolve(MarkupContainer $container, ComponentTag &$tag)
-    {
-        if($tag instanceof PiconTag && ($tag->getName()=='picon:extend' || $tag->getName()=='picon:child'))
-        {
-            return new TransparentMarkupContainer($tag->getName().$container->getPage()->getAutoIndex());
-        }
-        return null;
-    }
+	public function resolve(MarkupContainer $container, ComponentTag &$tag)
+	{
+		if($tag instanceof PiconTag && ($tag->getName()=='picon:extend' || $tag->getName()=='picon:child'))
+		{
+			return new TransparentMarkupContainer($tag->getName().$container->getPage()->getAutoIndex());
+		}
+		return null;
+	}
 }
 
 ?>

@@ -18,75 +18,75 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * $HeadURL$
  * $Revision$
  * $Author$
  * $Date$
  * $Id$
- * 
+ *
  * */
 
 use picon\Panel;
 
 /**
  * Description of CodeOutputPanel
- * 
+ *
  * @author Martin Cassidy
  */
 class CodeOutputPanel extends Panel
 {
-    public function __construct($id, $filename)
-    {
-        parent::__construct($id);
-        $file = fopen($filename, 'r');
-        $contents = fread($file, filesize($filename));
-        fclose($file);
-        $this->add(new picon\Label('code', new picon\BasicModel($this->format($contents))));
-    }
-    
-    private function getColour($type)
-    {
-        $colours = array(T_STRING => '#000', T_VARIABLE => '#800', T_DOC_COMMENT => '#005500', T_COMMENT => '#005500');
-        if(array_key_exists($type, $colours))
-        {
-            return $colours[$type];
-        }
-        else if($type!=null)
-        {
-            return '#000099';
-        }
-        return null;
-    }
-    
-    private function format($code)
-    {
-        $output = "";
+	public function __construct($id, $filename)
+	{
+		parent::__construct($id);
+		$file = fopen($filename, 'r');
+		$contents = fread($file, filesize($filename));
+		fclose($file);
+		$this->add(new picon\Label('code', new picon\BasicModel($this->format($contents))));
+	}
 
-        foreach(token_get_all($code) as $token)
-        {
-            $token_name = is_array($token) ? $token[0] : null;
-            $token_data = is_array($token) ? $token[1] : $token;
-            
-            $token_data = htmlentities($token_data);
-            $token_data = str_replace("\n", '<br/>', $token_data);
-            $token_data = str_replace(" ", '&nbsp;', $token_data);
-            $token_data = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $token_data);
-            
-            $colour = $this->getColour($token_name);
-            
-            if($colour!=null)
-            {
-                $output .= sprintf('<span style="color:%s;">%s</span>', $colour, $token_data);
-            }
-            else
-            {
-                $output .= $token_data;
-            }
-        }
-        
-        return $output;
-    }
+	private function getColour($type)
+	{
+		$colours = array(T_STRING => '#000', T_VARIABLE => '#800', T_DOC_COMMENT => '#005500', T_COMMENT => '#005500');
+		if(array_key_exists($type, $colours))
+		{
+			return $colours[$type];
+		}
+		else if($type!=null)
+		{
+			return '#000099';
+		}
+		return null;
+	}
+
+	private function format($code)
+	{
+		$output = "";
+
+		foreach(token_get_all($code) as $token)
+		{
+			$token_name = is_array($token) ? $token[0] : null;
+			$token_data = is_array($token) ? $token[1] : $token;
+
+			$token_data = htmlentities($token_data);
+			$token_data = str_replace("\n", '<br/>', $token_data);
+			$token_data = str_replace(" ", '&nbsp;', $token_data);
+			$token_data = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $token_data);
+
+			$colour = $this->getColour($token_name);
+
+			if($colour!=null)
+			{
+				$output .= sprintf('<span style="color:%s;">%s</span>', $colour, $token_data);
+			}
+			else
+			{
+				$output .= $token_data;
+			}
+		}
+
+		return $output;
+	}
 }
 
 ?>

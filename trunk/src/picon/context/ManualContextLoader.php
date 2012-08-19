@@ -24,16 +24,16 @@ namespace picon;
 
 /**
  * TODO manual loading
- * 
+ *
  * @author Martin Cassidy
  * @package context
  */
 class ManualContextLoader extends AbstractContextLoader
 {
-    public function loadResources($classes)
-    {
-       throw new \NotImplementedException();
-    }
+	public function loadResources($classes)
+	{
+		throw new \NotImplementedException();
+	}
 }
 
 ?>

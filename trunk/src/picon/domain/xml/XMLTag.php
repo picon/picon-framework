@@ -30,166 +30,166 @@ namespace picon;
  */
 class XMLTag extends ComonDomainBase implements XmlElement
 {
-    private $name;
-    private $tagType;
-    private $attributes = array();
-    private $children = array();
-    
-    /**
-     * Construct a new xml tag
-     * @param String $name the name of the tag
-     * @param Array $attributes optional, defaults to an empty array
-     */
-    public function __construct($name, $attributes = array())
-    {
-        $this->name = $name;
-        $this->attributes = $attributes;
-        
-        //Open by default
-        $this->tagType = new XmlTagType(XmlTagType::OPEN);
-    }
-    
-    /**
-     * Add a new XMLTag child
-     * @param XMLTag $child the child to add
-     */
-    public function addChild(XmlElement $child)
-    {
-        array_push($this->children, $child);
-    }
-    
-    /**
-     * Set the name of this tag
-     * @param String the name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-    
-    /**
-     * Sets the attributes
-     * @param Array the attributes of this tag
-     */
-    public function setAttributes($attributes)
-    {
-        if(!is_array($attributes))
-        {
-            throw new \InvalidArgumentException(sprintf("Expected array, %s given.", gettype($attributes)));
-        }
-        $this->attributes = $attributes;
-    }
-    
-    public function getName()
-    {
-        return $this->name;
-    }
-    
-    public function getAttributes()
-    {
-        return $this->attributes;
-    }
-    
-    public function getChildren()
-    {
-        return $this->children;
-    }
-    
-    /**
-     * Does this tag have any children
-     * @return boolean true if there are children 
-     */
-    public function hasChildren()
-    {
-        return count($this->children)>0;
-    }
-    
-    /**
-     * Set the type of tag this is: open, close, openclose
-     * @param XmlTagType The type
-     */
-    public function setTagType(XmlTagType $type)
-    {
-        $this->tagType = $type;
-    }
-    
-    public function isOpen()
-    {
-        return $this->tagType->equals(new XmlTagType(XmlTagType::OPEN));
-    }
-    
-    public function isClose()
-    {
-        return $this->tagType->equals(new XmlTagType(XmlTagType::CLOSED));
-    }
-    
-    public function isOpenClose()
-    {
-        return $this->tagType->equals(new XmlTagType(XmlTagType::OPENCLOSE));
-    }
-    
-    public function put($name, $value)
-    {
-        $this->attributes[$name] = $value;
-    }
-    
-    /**
-     * Remove an attribute
-     * @param type $name 
-     */
-    public function remove($name)
-    {
-        if(array_key_exists($name, $this->attributes))
-        {
-            unset($this->attributes[$name]);
-        }
-    }
-    
-    /**
-     *
-     * @param array $children 
-     */
-    public function setChildren($children)
-    {
-        Args::isArray($children, 'children');
-        $this->children = $children;
-    }
-    
-    public function getCharacterData()
-    {
-        $data = "";
-        foreach($this->children as $child)
-        {
-            if($child instanceof TextElement)
-            {
-                $data .= $child->getContent();
-            }
-        }
-        return $data;
-    }
-    
-    public function getChildByName($name)
-    {
-        foreach($this->children as $child)
-        {
-            if($child instanceof XMLTag)
-            {
-                if($child->getName()==$name)
-                {
-                    return $child;
-                }
-                if($child->hasChildren())
-                {
-                    $found = $child->getChildByName($name);
-                    if($found!=null)
-                    {
-                        return $found;
-                    }
-                }
-            }
-        }
-        return null;
-    }
+	private $name;
+	private $tagType;
+	private $attributes = array();
+	private $children = array();
+
+	/**
+	 * Construct a new xml tag
+	 * @param String $name the name of the tag
+	 * @param Array $attributes optional, defaults to an empty array
+	*/
+	public function __construct($name, $attributes = array())
+	{
+		$this->name = $name;
+		$this->attributes = $attributes;
+
+		//Open by default
+		$this->tagType = new XmlTagType(XmlTagType::OPEN);
+	}
+
+	/**
+	 * Add a new XMLTag child
+	 * @param XMLTag $child the child to add
+	 */
+	public function addChild(XmlElement $child)
+	{
+		array_push($this->children, $child);
+	}
+
+	/**
+	 * Set the name of this tag
+	 * @param String the name
+	 */
+	public function setName($name)
+	{
+		$this->name = $name;
+	}
+
+	/**
+	 * Sets the attributes
+	 * @param Array the attributes of this tag
+	 */
+	public function setAttributes($attributes)
+	{
+		if(!is_array($attributes))
+		{
+			throw new \InvalidArgumentException(sprintf("Expected array, %s given.", gettype($attributes)));
+		}
+		$this->attributes = $attributes;
+	}
+
+	public function getName()
+	{
+		return $this->name;
+	}
+
+	public function getAttributes()
+	{
+		return $this->attributes;
+	}
+
+	public function getChildren()
+	{
+		return $this->children;
+	}
+
+	/**
+	 * Does this tag have any children
+	 * @return boolean true if there are children
+	 */
+	public function hasChildren()
+	{
+		return count($this->children)>0;
+	}
+
+	/**
+	 * Set the type of tag this is: open, close, openclose
+	 * @param XmlTagType The type
+	 */
+	public function setTagType(XmlTagType $type)
+	{
+		$this->tagType = $type;
+	}
+
+	public function isOpen()
+	{
+		return $this->tagType->equals(new XmlTagType(XmlTagType::OPEN));
+	}
+
+	public function isClose()
+	{
+		return $this->tagType->equals(new XmlTagType(XmlTagType::CLOSED));
+	}
+
+	public function isOpenClose()
+	{
+		return $this->tagType->equals(new XmlTagType(XmlTagType::OPENCLOSE));
+	}
+
+	public function put($name, $value)
+	{
+		$this->attributes[$name] = $value;
+	}
+
+	/**
+	 * Remove an attribute
+	 * @param type $name
+	 */
+	public function remove($name)
+	{
+		if(array_key_exists($name, $this->attributes))
+		{
+			unset($this->attributes[$name]);
+		}
+	}
+
+	/**
+	 *
+	 * @param array $children
+	 */
+	public function setChildren($children)
+	{
+		Args::isArray($children, 'children');
+		$this->children = $children;
+	}
+
+	public function getCharacterData()
+	{
+		$data = "";
+		foreach($this->children as $child)
+		{
+			if($child instanceof TextElement)
+			{
+				$data .= $child->getContent();
+			}
+		}
+		return $data;
+	}
+
+	public function getChildByName($name)
+	{
+		foreach($this->children as $child)
+		{
+			if($child instanceof XMLTag)
+			{
+				if($child->getName()==$name)
+				{
+					return $child;
+				}
+				if($child->hasChildren())
+				{
+					$found = $child->getChildByName($name);
+					if($found!=null)
+					{
+						return $found;
+					}
+				}
+			}
+		}
+		return null;
+	}
 }
 
 ?>

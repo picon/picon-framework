@@ -18,26 +18,26 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * $HeadURL$
  * $Revision$
  * $Author$
  * $Date$
  * $Id$
- * 
+ *
  * */
 
 /**
  * Description of MarkupInheritancePage
- * 
+ *
  * @author Martin Cassidy
  */
 class MarkupInheritancePage extends AbstractPage
 {
-    public function getInvolvedFiles()
-    {
-        return array('assets/layout/MarkupInheritancePage.php', 'assets/layout/MarkupInheritancePage.html');
-    }
+	public function getInvolvedFiles()
+	{
+		return array('assets/layout/MarkupInheritancePage.php', 'assets/layout/MarkupInheritancePage.html');
+	}
 }
 
 ?>

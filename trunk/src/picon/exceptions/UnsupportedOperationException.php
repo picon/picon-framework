@@ -27,6 +27,6 @@
  */
 class UnsupportedOperationException extends RuntimeException
 {
-    
+
 }
 ?>

@@ -26,19 +26,19 @@ namespace picon;
  * A mark-up source is required to load mark-up for a component and also
  * enables callbacks for rendering steps (tag, body and head) to customize if
  * needed
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/sources
  */
 interface MarkupSource
 {
-    function getMarkup(MarkupContainer $container, Component $child);
-    
-    function onComponentTag(Component $component, ComponentTag &$tag);
-    
-    function onComponentTagBody(Component $component, ComponentTag &$tag);
-    
-    function renderHead(Component $component, HeaderContainer $headerContainer, HeaderResponse $headerResponse);
+	function getMarkup(MarkupContainer $container, Component $child);
+
+	function onComponentTag(Component $component, ComponentTag &$tag);
+
+	function onComponentTagBody(Component $component, ComponentTag &$tag);
+
+	function renderHead(Component $component, HeaderContainer $headerContainer, HeaderResponse $headerResponse);
 }
 
 ?>

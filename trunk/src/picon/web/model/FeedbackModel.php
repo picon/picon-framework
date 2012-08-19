@@ -24,73 +24,73 @@ namespace picon;
 
 /**
  * Session persisted singleton model for feedback messages
- * 
+ *
  * @author Martin Cassidy
  * @package web/model
  */
 class FeedbackModel implements Model
 {
-    private static $self;
-    
-    private $feedbackMessages = array();
-    
-    private function __construct()
-    {
-        //singleton
-    }
-    
-    public static function get()
-    {
-        if(!isset(self::$self))
-        {
-            if(!isset($_SESSION['feedback_model']))
-            {
-                self::$self = new self();
-                $_SESSION['feedback_model'] = self::$self;
-            }
-            else
-            {
-                self::$self = $_SESSION['feedback_model'];
-            }
-        }
-        return self::$self;
-    }
-    
-    /**
-     * TODO sort of referencing here to avoid getting then setting
-     * @param FeedbackMessage $message 
-     */
-    public function addMessage(FeedbackMessage $message)
-    {
-        array_push($this->feedbackMessages, $message);
-    }
-    
-    public function hasMessages(Component $reporter, $level = null)
-    {
-        foreach($this->feedbackMessages as $message)
-        {
-            if($message->reporter==$reporter && ($level==null || $message->level==$level))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public function getModelObject()
-    {
-        return $this->feedbackMessages;
-    }
-    
-    public function setModelObject(&$object)
-    {
-        $this->feedbackMessages = $object;
-    }
-    
-    public function cleanup()
-    {
-        $this->feedbackMessages = array();
-    }
+	private static $self;
+
+	private $feedbackMessages = array();
+
+	private function __construct()
+	{
+		//singleton
+	}
+
+	public static function get()
+	{
+		if(!isset(self::$self))
+		{
+			if(!isset($_SESSION['feedback_model']))
+			{
+				self::$self = new self();
+				$_SESSION['feedback_model'] = self::$self;
+			}
+			else
+			{
+				self::$self = $_SESSION['feedback_model'];
+			}
+		}
+		return self::$self;
+	}
+
+	/**
+	 * TODO sort of referencing here to avoid getting then setting
+	 * @param FeedbackMessage $message
+	 */
+	public function addMessage(FeedbackMessage $message)
+	{
+		array_push($this->feedbackMessages, $message);
+	}
+
+	public function hasMessages(Component $reporter, $level = null)
+	{
+		foreach($this->feedbackMessages as $message)
+		{
+			if($message->reporter==$reporter && ($level==null || $message->level==$level))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public function getModelObject()
+	{
+		return $this->feedbackMessages;
+	}
+
+	public function setModelObject(&$object)
+	{
+		$this->feedbackMessages = $object;
+	}
+
+	public function cleanup()
+	{
+		$this->feedbackMessages = array();
+	}
 }
 
 ?>

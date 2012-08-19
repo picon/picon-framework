@@ -24,38 +24,38 @@ namespace picon;
 
 /**
  * Validates that a number is not less than a minimum value
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/form/validation
  */
 class MinimumValidator extends NumericValidator
 {
-    private $minimum;
-    
-    /**
-     *
-     * @param number $minimum 
-     */
-    public function __construct($minimum)
-    {
-        Args::isNumeric($minimum, 'minimum');
-        $this->minimum = $minimum;
-    }
-    
-    public function validateValue(Validatable $validateable)
-    {
-        $response = parent::validateValue($validateable);
-        if($response!=null)
-        {
-            return $response;
-        }
-        if($validateable->getValue()<$this->minimum)
-        {
-            $response = new ValidationResponse($this->getKeyName());
-            $response->addValue('min', $this->minimum);
-            return $response;
-        }
-    }
+	private $minimum;
+
+	/**
+	 *
+	 * @param number $minimum
+	 */
+	public function __construct($minimum)
+	{
+		Args::isNumeric($minimum, 'minimum');
+		$this->minimum = $minimum;
+	}
+
+	public function validateValue(Validatable $validateable)
+	{
+		$response = parent::validateValue($validateable);
+		if($response!=null)
+		{
+			return $response;
+		}
+		if($validateable->getValue()<$this->minimum)
+		{
+			$response = new ValidationResponse($this->getKeyName());
+			$response->addValue('min', $this->minimum);
+			return $response;
+		}
+	}
 }
 
 ?>

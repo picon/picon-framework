@@ -29,7 +29,7 @@ namespace picon;
  */
 interface ComponentInitializationListener
 {
-    function onInitialize(Component &$component);
+	function onInitialize(Component &$component);
 }
 
 ?>

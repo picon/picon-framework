@@ -24,31 +24,31 @@ namespace picon;
 
 /**
  * A column which will invoke a callback to populate each cell
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/table
  */
 class CallbackColumn extends AbstractColumn
 {
-    private $callback;
-    
-    public function __construct($heading, $callback)
-    {
-        Args::callBackArgs($callback, 2, 'callback');
-        $this->callback = $callback;
-    }
-    
-    public function populateCell(GridItem $item, $componentId, Model $model)
-    {
-        $callable = $this->callback;
-        $component = $callable($componentId, $model);
-        if($component==null || !($component instanceof Component) || $component->getId()!=$componentId)
-        {
-            throw new \IllegalStateException('Callback for CallbackColumn is expected to return a componet with the given id');
-        }
-        $item->add($component);
-    }
-   
+	private $callback;
+
+	public function __construct($heading, $callback)
+	{
+		Args::callBackArgs($callback, 2, 'callback');
+		$this->callback = $callback;
+	}
+
+	public function populateCell(GridItem $item, $componentId, Model $model)
+	{
+		$callable = $this->callback;
+		$component = $callable($componentId, $model);
+		if($component==null || !($component instanceof Component) || $component->getId()!=$componentId)
+		{
+			throw new \IllegalStateException('Callback for CallbackColumn is expected to return a componet with the given id');
+		}
+		$item->add($component);
+	}
+	 
 }
 
 ?>

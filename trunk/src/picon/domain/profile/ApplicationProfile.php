@@ -29,24 +29,24 @@ namespace picon;
  */
 class ApplicationProfile extends ComonDomainBase
 {
-    private $showPiconTags = false;
-    private $cacheMarkup = true;
-    private $cleanBeforeOutput = true;
-    
-    public function isCleanBeforeOutput()
-    {
-        return $this->cleanBeforeOutput;
-    }
-    
-    public function isCacheMarkup()
-    {
-        return $this->cacheMarkup;
-    }
-    
-    public function isShowPiconTags()
-    {
-        return $this->showPiconTags;
-    }
+	private $showPiconTags = false;
+	private $cacheMarkup = true;
+	private $cleanBeforeOutput = true;
+
+	public function isCleanBeforeOutput()
+	{
+		return $this->cleanBeforeOutput;
+	}
+
+	public function isCacheMarkup()
+	{
+		return $this->cacheMarkup;
+	}
+
+	public function isShowPiconTags()
+	{
+		return $this->showPiconTags;
+	}
 }
 
 ?>

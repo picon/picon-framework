@@ -18,32 +18,32 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * $HeadURL$
  * $Revision$
  * $Author$
  * $Date$
  * $Id$
- * 
+ *
  * */
 
 use picon\ComonDomainBase;
 
 /**
  * Description of Example
- * 
+ *
  * @author Martin Cassidy
  */
 class Example extends ComonDomainBase
 {
-    private $name;
-    private $page;
-    
-    public function __construct($name, \picon\Identifier $page)
-    {
-        $this->name = $name;
-        $this->page = $page;
-    }
+	private $name;
+	private $page;
+
+	public function __construct($name, \picon\Identifier $page)
+	{
+		$this->name = $name;
+		$this->page = $page;
+	}
 }
 
 ?>

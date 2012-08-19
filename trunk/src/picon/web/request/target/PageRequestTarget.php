@@ -30,28 +30,28 @@ namespace picon;
  */
 class PageRequestTarget implements RequestTarget
 {
-    private $pageClass;
+	private $pageClass;
 
-    public function __construct(Identifier $pageClass)
-    {
-        $this->pageClass = $pageClass;
-    }
+	public function __construct(Identifier $pageClass)
+	{
+		$this->pageClass = $pageClass;
+	}
 
-    public function respond(Response $response)
-    {
-        $fullClassName = $this->pageClass->getFullyQualifiedName();
-        $page = new $fullClassName();
-        $page->renderPage();
-        $response->flush();
-    }
-    
-    /**
-     *
-     * @return Identifier 
-     */
-    public function getPageClass()
-    {
-        return $this->pageClass;
-    }
+	public function respond(Response $response)
+	{
+		$fullClassName = $this->pageClass->getFullyQualifiedName();
+		$page = new $fullClassName();
+		$page->renderPage();
+		$response->flush();
+	}
+
+	/**
+	 *
+	 * @return Identifier
+	 */
+	public function getPageClass()
+	{
+		return $this->pageClass;
+	}
 }
 ?>

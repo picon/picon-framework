@@ -29,7 +29,7 @@ namespace picon;
  */
 interface RowMapper
 {
-    function mapRow($row);
+	function mapRow($row);
 }
 
 ?>

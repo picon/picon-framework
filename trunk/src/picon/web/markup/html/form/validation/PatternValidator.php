@@ -24,38 +24,38 @@ namespace picon;
 
 /**
  * Validats that a string matches a given regular expression
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/form/validation
  */
 class PatternValidator extends StringValidator
 {
-    private $pattern;
-    
-    /**
-     *
-     * @param string $pattern The regular expression
-     */
-    public function __construct($pattern)
-    {
-        Args::isString($pattern, 'pattern');
-        $this->pattern = $pattern;
-    }
-    
-    public function validateValue(Validatable $validateable)
-    {
-        $response = parent::validateValue($validateable);
-        if($response!=null)
-        {
-            return $response;
-        }
-        if(preg_match("/".$this->pattern."/", $validateable->getValue())!=1)
-        {
-            $response = new ValidationResponse($this->getKeyName(), $validateable->getValue());
-            $response->addValue('expression', $this->pattern);
-            return $response;
-        }
-    }
+	private $pattern;
+
+	/**
+	 *
+	 * @param string $pattern The regular expression
+	 */
+	public function __construct($pattern)
+	{
+		Args::isString($pattern, 'pattern');
+		$this->pattern = $pattern;
+	}
+
+	public function validateValue(Validatable $validateable)
+	{
+		$response = parent::validateValue($validateable);
+		if($response!=null)
+		{
+			return $response;
+		}
+		if(preg_match("/".$this->pattern."/", $validateable->getValue())!=1)
+		{
+			$response = new ValidationResponse($this->getKeyName(), $validateable->getValue());
+			$response->addValue('expression', $this->pattern);
+			return $response;
+		}
+	}
 }
 
 ?>

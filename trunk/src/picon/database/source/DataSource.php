@@ -25,32 +25,32 @@ namespace picon;
 /**
  * Holder for all objects required to access a databse, config inforamtion
  * the connection resource and the drive object
- * 
+ *
  * @author Martin Cassidy
  * @package database/source
  */
 class DataSource
 {
-    private $config;
-    private $connection;
-    private $driver;
-    
-    public function __construct(DataSourceConfig $config, $connection, DatabaseDriver $driver)
-    {
-        $this->config = $config;
-        $this->connection = $connection;
-        $this->driver = $driver;
-    }
-    
-    public function getConnection()
-    {
-        return $this->connection;
-    }
-    
-    public function getDriver()
-    {
-        return $this->driver;
-    }
+	private $config;
+	private $connection;
+	private $driver;
+
+	public function __construct(DataSourceConfig $config, $connection, DatabaseDriver $driver)
+	{
+		$this->config = $config;
+		$this->connection = $connection;
+		$this->driver = $driver;
+	}
+
+	public function getConnection()
+	{
+		return $this->connection;
+	}
+
+	public function getDriver()
+	{
+		return $this->driver;
+	}
 }
 
 ?>

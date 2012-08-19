@@ -25,37 +25,37 @@
  */
 class EmptyInjectableName extends AbstractContext
 {
-    /** @Resource(name = 'testService') */
-    protected $testServiceHere;
+	/** @Resource(name = 'testService') */
+	protected $testServiceHere;
 
-    /** @Resource(name = 'repo') */
-    protected $repoHere;
+	/** @Resource(name = 'repo') */
+	protected $repoHere;
 
-    /** @Resource(name = 'serv') */
-    protected $servHere;
-    
-    /** @Resource(name = 'testRepository') */
-    protected $testRepositoryHere;
-    
-    public function getTestService()
-    {
-        return $this->testServiceHere;
-    }
-    
-    public function getTestServ()
-    {
-        return $this->servHere;
-    }
-    
-    public function getTestRepo()
-    {
-        return $this->repoHere;
-    }
-    
-    public function getTestRepository()
-    {
-        return $this->testRepositoryHere;
-    }
+	/** @Resource(name = 'serv') */
+	protected $servHere;
+
+	/** @Resource(name = 'testRepository') */
+	protected $testRepositoryHere;
+
+	public function getTestService()
+	{
+		return $this->testServiceHere;
+	}
+
+	public function getTestServ()
+	{
+		return $this->servHere;
+	}
+
+	public function getTestRepo()
+	{
+		return $this->repoHere;
+	}
+
+	public function getTestRepository()
+	{
+		return $this->testRepositoryHere;
+	}
 }
 
 ?>

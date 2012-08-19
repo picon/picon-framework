@@ -24,29 +24,29 @@ namespace picon;
 
 /**
  * Request target for rendering page instances
- * 
+ *
  * @author Martin Cassidy
  * @package web/request/target
  */
 class PageInstanceRequestTarget implements RequestTarget
 {
-    private $page;
-    
-    public function __construct(WebPage $page)
-    {
-        $this->page = $page;
-    }
-    
-    public function getPage()
-    {
-        return $this->page;
-    }
-    
-    public function respond(Response $response)
-    {
-        $this->page->renderPage();
-        $response->flush();
-    }
+	private $page;
+
+	public function __construct(WebPage $page)
+	{
+		$this->page = $page;
+	}
+
+	public function getPage()
+	{
+		return $this->page;
+	}
+
+	public function respond(Response $response)
+	{
+		$this->page->renderPage();
+		$response->flush();
+	}
 }
 
 ?>

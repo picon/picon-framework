@@ -18,57 +18,57 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * $HeadURL$
  * $Revision$
  * $Author$
  * $Date$
  * $Id$
- * 
+ *
  * */
 
 
 
 /**
  * Description of LinkPage
- * 
+ *
  * @author Martin Cassidy
  */
 class LinkPage extends AbstractPage
 {
-    private $text = 'Default text';
-    
-    public function __construct()
-    {
-        parent::__construct();
-        $this->add(new picon\Label('text', new picon\PropertyModel($this, 'text')));
-        
-        $self = $this;
-        $this->add(new \picon\Link('alterLink', function() use ($self)
-        {
-            $self->text = 'Update in callback text';
-        }));
-        
-        $this->add(new \picon\Link('pageLink', function() use ($self)
-        {
-            $self->setPage(HomePage::getIdentifier());
-        }));
-    }
-    
-    public function getInvolvedFiles()
-    {
-        return array('assets/general/LinkPage.php', 'assets/general/LinkPage.html');
-    }
-    
-    public function __get($name)
-    {
-        return $this->$name;
-    }
-    
-    public function __set($name, $value)
-    {
-        $this->$name = $value;
-    }
+	private $text = 'Default text';
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->add(new picon\Label('text', new picon\PropertyModel($this, 'text')));
+
+		$self = $this;
+		$this->add(new \picon\Link('alterLink', function() use ($self)
+		{
+			$self->text = 'Update in callback text';
+		}));
+
+		$this->add(new \picon\Link('pageLink', function() use ($self)
+		{
+			$self->setPage(HomePage::getIdentifier());
+		}));
+	}
+
+	public function getInvolvedFiles()
+	{
+		return array('assets/general/LinkPage.php', 'assets/general/LinkPage.html');
+	}
+
+	public function __get($name)
+	{
+		return $this->$name;
+	}
+
+	public function __set($name, $value)
+	{
+		$this->$name = $value;
+	}
 }
 
 ?>

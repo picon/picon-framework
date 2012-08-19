@@ -29,9 +29,9 @@ namespace picon;
  */
 interface Column
 {
-    function getHeading();
-    
-    function populateCell(GridItem $item, $componentId, Model $model);
+	function getHeading();
+
+	function populateCell(GridItem $item, $componentId, Model $model);
 }
 
 ?>

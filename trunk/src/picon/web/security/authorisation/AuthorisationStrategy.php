@@ -29,7 +29,7 @@ namespace picon;
  */
 interface AuthorisationStrategy
 {
-    function isComponentInstantiationAuthorised(Component $component);
+	function isComponentInstantiationAuthorised(Component $component);
 }
 
 ?>

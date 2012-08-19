@@ -28,7 +28,7 @@ namespace picon;
  */
 interface Equalable
 {
-    function equals($object);
+	function equals($object);
 }
 
 ?>

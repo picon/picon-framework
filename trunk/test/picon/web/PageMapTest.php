@@ -24,19 +24,19 @@ namespace picon;
 require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 /**
  * Description of PageMapTest
- * 
+ *
  * @author Martin Cassidy
- */
+*/
 class PageMapTest extends AbstractPiconTest
 {
-    /**
-     * TODO fix this
-     */
-    public function testMap()
-    {
-        //\picon\PageMap::get()->initialise();
-        //$this->assertEquals(array('TestPageOne' => 'TestPageOne', 'TestPageTwo' => 'TestPageTwo', 'somepath' => '\TestPageOne'), \picon\PageMap::getPageMap());
-    }
+	/**
+	 * TODO fix this
+	 */
+	public function testMap()
+	{
+		//\picon\PageMap::get()->initialise();
+		//$this->assertEquals(array('TestPageOne' => 'TestPageOne', 'TestPageTwo' => 'TestPageTwo', 'somepath' => '\TestPageOne'), \picon\PageMap::getPageMap());
+	}
 }
 
 ?>

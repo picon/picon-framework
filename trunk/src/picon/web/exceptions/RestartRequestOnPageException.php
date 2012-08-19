@@ -27,27 +27,27 @@ namespace picon;
  * target response. It will cause the request target to truncate the request
  * target stack and create a new single PageRequestTarget for a page of
  * the given identifier
- * 
+ *
  * @author Martin Cassidy
  * @package web/exceptions
  */
 class RestartRequestOnPageException extends \RuntimeException
 {
-    private $page;
-    public function __construct(Identifier $page)
-    {
-        if(!$page->of(WebPage::getIdentifier()))
-        {
-            throw new \InvalidArgumentException(sprintf('RestartRequestOnPageException expects a web page identifier, %s given.', $page->getFullyQualifiedName()));
-        }
-        $this->page = $page;
-        parent::__construct('RestartRequestOnPageException');
-    }
-    
-    public function getPageIdentifier()
-    {
-        return $this->page;
-    }
+	private $page;
+	public function __construct(Identifier $page)
+	{
+		if(!$page->of(WebPage::getIdentifier()))
+		{
+			throw new \InvalidArgumentException(sprintf('RestartRequestOnPageException expects a web page identifier, %s given.', $page->getFullyQualifiedName()));
+		}
+		$this->page = $page;
+		parent::__construct('RestartRequestOnPageException');
+	}
+
+	public function getPageIdentifier()
+	{
+		return $this->page;
+	}
 }
 
 ?>

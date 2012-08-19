@@ -31,120 +31,120 @@ namespace picon;
  */
 class AjaxFormSubmitBehavior extends AjaxEventBehaviour implements FormSubmitter
 {
-    private $form;
-    private $onSubmit;
-    private $onError;
-    private $target;
-    
-    public function __construct($event, $onSubmit = null, $onError = null, $form = null)
-    {
-        $self = $this;
-        parent::__construct($event, function($target) use ($self)
-        {
-            $self->setAjaxRequestTarget($target);
-            $self->getForm()->process($self);
-        });
-        
-        if($onSubmit!=null)
-        {
-            Args::callBackArgs($onSubmit, 1, 'onSubmit');
-        }
-        if($onError!=null)
-        {
-            Args::callBackArgs($onError, 1, 'onError');
-        }
-        
-        $this->onSubmit = $onSubmit;
-        $this->onError = $onError;
-        
-        if($form!=null)
-        {
-            if($form instanceof Form)
-            {
-                $this->form = $form;
-            }
-            else
-            {
-                throw new \InvalidArgumentException('$form must be an instance of Form');
-            }
-        }
-    }
-    
-    public function setAjaxRequestTarget(AjaxRequestTarget $target)
-    {
-        $this->target = $target;
-    }
-    
-    public function getForm()
-    {
-        $form = $this->form;
-        $component = $this->getComponent();
-        if($component instanceof FormComponent)
-        {
-            $form = $component->getForm();
-        }
-        
-        if($form==null)
-        {
-            throw new \IllegalStateException(sprintf('Unable to locate form for ajax submit behaviour on component %s', $component->getId()));
-        }
-        return $form;
-    }
-    
-    public function bind(Component &$component)
-    {
-        parent::bind($component);
-        $this->getForm()->setOutputMarkupId(true);
-    }
-    
-    private function getSubmitForm()
-    {
-        $usingComponent = $this->form;
-        $form = $this->form;
-        if($usingComponent==null)
-        {
-            $usingComponent = $this->getComponent();
-        }
-        
-        $callback = function(&$component) use (&$form)
-        {
-            if($component instanceof Form)
-            {
-                $form = $component;
-            }
-            if($component instanceof ModalWindow)
-            {
-                return Component::VISITOR_STOP_TRAVERSAL;
-            }
-            
-            return Component::VISITOR_CONTINUE_TRAVERSAL;
-        };
-        $usingComponent->visitParents(Component::getIdentifier(), $callback);
-        return $form;
-    }
-    
-    protected function generateCallScript($url)
-    {
-        return sprintf("piconAjaxSubmit('%s', '%s'", $this->getSubmitForm()->getMarkupId(), $url);
-    }
-    
-    public function onError()
-    {
-        $callable = $this->onError;
-        if($callable!=null)
-        {
-            $callable($this->target);
-        }
-    }
-    
-    public function onSubmit()
-    {
-        $callable = $this->onSubmit;
-        if($callable!=null)
-        {
-            $callable($this->target);
-        }
-    }
+	private $form;
+	private $onSubmit;
+	private $onError;
+	private $target;
+
+	public function __construct($event, $onSubmit = null, $onError = null, $form = null)
+	{
+		$self = $this;
+		parent::__construct($event, function($target) use ($self)
+		{
+			$self->setAjaxRequestTarget($target);
+			$self->getForm()->process($self);
+		});
+
+		if($onSubmit!=null)
+		{
+			Args::callBackArgs($onSubmit, 1, 'onSubmit');
+		}
+		if($onError!=null)
+		{
+			Args::callBackArgs($onError, 1, 'onError');
+		}
+
+		$this->onSubmit = $onSubmit;
+		$this->onError = $onError;
+
+		if($form!=null)
+		{
+			if($form instanceof Form)
+			{
+				$this->form = $form;
+			}
+			else
+			{
+				throw new \InvalidArgumentException('$form must be an instance of Form');
+			}
+		}
+	}
+
+	public function setAjaxRequestTarget(AjaxRequestTarget $target)
+	{
+		$this->target = $target;
+	}
+
+	public function getForm()
+	{
+		$form = $this->form;
+		$component = $this->getComponent();
+		if($component instanceof FormComponent)
+		{
+			$form = $component->getForm();
+		}
+
+		if($form==null)
+		{
+			throw new \IllegalStateException(sprintf('Unable to locate form for ajax submit behaviour on component %s', $component->getId()));
+		}
+		return $form;
+	}
+
+	public function bind(Component &$component)
+	{
+		parent::bind($component);
+		$this->getForm()->setOutputMarkupId(true);
+	}
+
+	private function getSubmitForm()
+	{
+		$usingComponent = $this->form;
+		$form = $this->form;
+		if($usingComponent==null)
+		{
+			$usingComponent = $this->getComponent();
+		}
+
+		$callback = function(&$component) use (&$form)
+		{
+			if($component instanceof Form)
+			{
+				$form = $component;
+			}
+			if($component instanceof ModalWindow)
+			{
+				return Component::VISITOR_STOP_TRAVERSAL;
+			}
+
+			return Component::VISITOR_CONTINUE_TRAVERSAL;
+		};
+		$usingComponent->visitParents(Component::getIdentifier(), $callback);
+		return $form;
+	}
+
+	protected function generateCallScript($url)
+	{
+		return sprintf("piconAjaxSubmit('%s', '%s'", $this->getSubmitForm()->getMarkupId(), $url);
+	}
+
+	public function onError()
+	{
+		$callable = $this->onError;
+		if($callable!=null)
+		{
+			$callable($this->target);
+		}
+	}
+
+	public function onSubmit()
+	{
+		$callable = $this->onSubmit;
+		if($callable!=null)
+		{
+			$callable($this->target);
+		}
+	}
 }
 
 ?>

@@ -27,9 +27,9 @@
  */
 interface Converter
 {
-    function convertToObject($string);
-    
-    function convertToString($object);
+	function convertToObject($string);
+
+	function convertToString($object);
 }
 
 ?>

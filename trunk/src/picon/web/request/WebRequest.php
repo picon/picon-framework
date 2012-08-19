@@ -30,96 +30,96 @@ namespace picon;
  */
 class WebRequest implements Request
 {
-    private $post;
-    private $get;
-    
-    public function __construct()
-    {
-        $this->post = isset($_POST)?$_POST:false;
-        $this->get = isset($_GET)?$_GET:false;
-    }
-    
-    public function getQueryString()
-    {
-        return $_SERVER['QUERY_STRING'];
-    }
-    
-    public function getPath()
-    {
-        return str_replace('?'.$this->getQueryString(), '', $_SERVER['REQUEST_URI']);
-    }
-    
-    public function isAjax()
-    {
-        return isset($_GET['ajax']);
-    }
-    
-    public function isResourceRequest()
-    {
-        return isset($_GET['picon-resource']);
-    }
-    
-    public function getRootPath()
-    {
-        $root = preg_replace("/\/{1}\w*\.php$/", "", $_SERVER['PHP_SELF']);
-        return $root;
-    }
-    
-    public function isPost()
-    {
-        return $_SERVER['REQUEST_METHOD']=='POST';
-    }
-    
-    public function isGet()
-    {
-        return $_SERVER['REQUEST_METHOD']=='GET';
-    }
-    
-    /**
-     * Get a POST parameter
-     * @param type $name
-     * @return type 
-     */
-    public function getPostedParameter($name)
-    { 
-        if($this->post==false)
-        {
-            return null;
-        }
-        if(array_key_exists($name, $this->post))
-        {
-            return $this->post[$name];
-        }
-        return null;
-    }
-    
-    /**
-     * Get a GET paramater
-     * @param type $name
-     * @return type 
-     */
-    public function getParameter($name)
-    {
-        if($this->get==false)
-        {
-            return null;
-        }
-        if(array_key_exists($name, $this->get))
-        {
-            return $this->get[$name];
-        }
-        return null;
-    }
-    
-    public function getParameters()
-    {
-        return $this->get;
-    }
-    
-    public function getPostParameters()
-    {
-        return $this->post;
-    }
+	private $post;
+	private $get;
+
+	public function __construct()
+	{
+		$this->post = isset($_POST)?$_POST:false;
+		$this->get = isset($_GET)?$_GET:false;
+	}
+
+	public function getQueryString()
+	{
+		return $_SERVER['QUERY_STRING'];
+	}
+
+	public function getPath()
+	{
+		return str_replace('?'.$this->getQueryString(), '', $_SERVER['REQUEST_URI']);
+	}
+
+	public function isAjax()
+	{
+		return isset($_GET['ajax']);
+	}
+
+	public function isResourceRequest()
+	{
+		return isset($_GET['picon-resource']);
+	}
+
+	public function getRootPath()
+	{
+		$root = preg_replace("/\/{1}\w*\.php$/", "", $_SERVER['PHP_SELF']);
+		return $root;
+	}
+
+	public function isPost()
+	{
+		return $_SERVER['REQUEST_METHOD']=='POST';
+	}
+
+	public function isGet()
+	{
+		return $_SERVER['REQUEST_METHOD']=='GET';
+	}
+
+	/**
+	 * Get a POST parameter
+	 * @param type $name
+	 * @return type
+	 */
+	public function getPostedParameter($name)
+	{
+		if($this->post==false)
+		{
+			return null;
+		}
+		if(array_key_exists($name, $this->post))
+		{
+			return $this->post[$name];
+		}
+		return null;
+	}
+
+	/**
+	 * Get a GET paramater
+	 * @param type $name
+	 * @return type
+	 */
+	public function getParameter($name)
+	{
+		if($this->get==false)
+		{
+			return null;
+		}
+		if(array_key_exists($name, $this->get))
+		{
+			return $this->get[$name];
+		}
+		return null;
+	}
+
+	public function getParameters()
+	{
+		return $this->get;
+	}
+
+	public function getPostParameters()
+	{
+		return $this->post;
+	}
 }
 
 ?>

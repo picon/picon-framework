@@ -24,16 +24,16 @@ namespace picon;
 
 /**
  * The default unauthorised listener which throws an exception if not authorised
- * 
+ *
  * @author Martin Cassidy
  * @package web/listeners/component/authorisation
  */
 class DefaultNotAuthorisedListener implements ComponentNotAuthorisedListener
 {
-    public function onNotAuthorised(Component $component)
-    {
-        throw new UnAuthorisdeException(sprintf('Not authorised for component %s', $component->getId()));
-    }
+	public function onNotAuthorised(Component $component)
+	{
+		throw new UnAuthorisdeException(sprintf('Not authorised for component %s', $component->getId()));
+	}
 }
 
 ?>

@@ -28,18 +28,18 @@ require_once(dirname(__FILE__).'/AbstractRequestResolverTest.php');
  * Description of ListenerRequestResolverTest
  *
  * @author Martin
- */
+*/
 class ListenerRequestResolverTest extends AbstractRequestResolverTest
 {
-    protected function matchesHomePage(Request $request)
-    {
-        return $request->getParameter('listener')!=null;
-    }
-    
-    protected function newResolver()
-    {
-        return new ListenerRequestResolver();
-    }
+	protected function matchesHomePage(Request $request)
+	{
+		return $request->getParameter('listener')!=null;
+	}
+
+	protected function newResolver()
+	{
+		return new ListenerRequestResolver();
+	}
 }
 
 ?>

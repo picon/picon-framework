@@ -24,7 +24,7 @@ namespace picon;
 
 /**
  * Panel to display feedback messages
- * 
+ *
  * TODO add message level as a css class attribute
  * TODO add support for feedback message filtering
  * @author Martin Cassidy
@@ -32,26 +32,26 @@ namespace picon;
  */
 class FeedbackPanel extends Panel
 {
-    private $messages;
-    
-    public function __construct($id)
-    {
-        parent::__construct($id);
-        
-        $this->messages = new ListView('messages', function($item)
-        {
-            $item->add(new \picon\Label('message', new \picon\BasicModel($item->getModelObject()->message)));
-        }, FeedbackModel::get());
-        
-        
-        $this->add($this->messages);
-    }
-    
-    public function beforePageRender()
-    {
-        $this->messages->setModel(FeedbackModel::get());
-        parent::beforePageRender();
-    }
+	private $messages;
+
+	public function __construct($id)
+	{
+		parent::__construct($id);
+
+		$this->messages = new ListView('messages', function($item)
+		{
+			$item->add(new \picon\Label('message', new \picon\BasicModel($item->getModelObject()->message)));
+		}, FeedbackModel::get());
+
+
+		$this->add($this->messages);
+	}
+
+	public function beforePageRender()
+	{
+		$this->messages->setModel(FeedbackModel::get());
+		parent::beforePageRender();
+	}
 }
 
 ?>

@@ -24,90 +24,90 @@ namespace picon;
 
 /**
  * A checkbox for use inside a check group
- * 
+ *
  * @see CheckGroup
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 class Check extends LabeledMarkupContainer
 {
-    private $group;
-    
-    public function getLabel()
-    {
-        return $this->getModelObjectAsString();
-    }
-    
-    private function getGroup()
-    {
-        if($this->group!=null)
-        {
-            return $this->group;
-        }
-        
-        $group = null;
-        
-        $callback = function(Component &$component) use (&$group)
-        {
-            $group = $component;
-            return Component::VISITOR_STOP_TRAVERSAL;
-        };
-        $this->visitParents(CheckBoxGroup::getIdentifier(), $callback);
-        
-        $this->group = $group;
-        
-        if($group==null)
-        {
-            throw new \RuntimeException('A check must be a child of CheckBoxGroup');
-        }
-        
-        return $group;
-    }
-    
-    public function getValue()
-    {
-        return $this->getComponentPath();
-    }
-    
-    public function getName()
-    {
-        $group = $this->getGroup();
-        return $group->getName().'[]';
-    }
-    
-    protected function isSelected($value)
-    {
-        $group = $this->getGroup();
-        if(count($group->getRawInputArray())==0)
-        {
-            if($group->isEmptyInput())
-            {
-                return false;
-            }
-            else
-            {
-                return in_array($this->getModelObject(), $group->getModelObject());
-            }
-        }
-        else
-        {
-            return in_array($value, $group->getRawInputArray());
-        }
-    }
-    
-    protected function onComponentTag(ComponentTag $tag)
-    {
-        parent::onComponentTag($tag); 
-        $this->checkComponentTag($tag, 'input');
-        $this->checkComponentTagAttribute($tag, 'type', 'checkbox');
-        $tag->put('value', $this->getValue());
-        $tag->put('name', $this->getName());
-        
-        $tag->remove('checked');
-        if($this->isSelected($this->getValue()))
-        {
-            $tag->put('checked', 'checked');
-        }
-    }
+	private $group;
+
+	public function getLabel()
+	{
+		return $this->getModelObjectAsString();
+	}
+
+	private function getGroup()
+	{
+		if($this->group!=null)
+		{
+			return $this->group;
+		}
+
+		$group = null;
+
+		$callback = function(Component &$component) use (&$group)
+		{
+			$group = $component;
+			return Component::VISITOR_STOP_TRAVERSAL;
+		};
+		$this->visitParents(CheckBoxGroup::getIdentifier(), $callback);
+
+		$this->group = $group;
+
+		if($group==null)
+		{
+			throw new \RuntimeException('A check must be a child of CheckBoxGroup');
+		}
+
+		return $group;
+	}
+
+	public function getValue()
+	{
+		return $this->getComponentPath();
+	}
+
+	public function getName()
+	{
+		$group = $this->getGroup();
+		return $group->getName().'[]';
+	}
+
+	protected function isSelected($value)
+	{
+		$group = $this->getGroup();
+		if(count($group->getRawInputArray())==0)
+		{
+			if($group->isEmptyInput())
+			{
+				return false;
+			}
+			else
+			{
+				return in_array($this->getModelObject(), $group->getModelObject());
+			}
+		}
+		else
+		{
+			return in_array($value, $group->getRawInputArray());
+		}
+	}
+
+	protected function onComponentTag(ComponentTag $tag)
+	{
+		parent::onComponentTag($tag);
+		$this->checkComponentTag($tag, 'input');
+		$this->checkComponentTagAttribute($tag, 'type', 'checkbox');
+		$tag->put('value', $this->getValue());
+		$tag->put('name', $this->getName());
+
+		$tag->remove('checked');
+		if($this->isSelected($this->getValue()))
+		{
+			$tag->put('checked', 'checked');
+		}
+	}
 }
 ?>

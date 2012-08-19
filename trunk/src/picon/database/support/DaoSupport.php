@@ -26,50 +26,50 @@ namespace picon;
  * Super class for any user defined DAO
  * Provides easy access to the database template and allows the DAO to
  * specify which data source to use by implementing init()
- * 
+ *
  * @author Martin Cassidy
  * @package database/support
  */
 abstract class DaoSupport implements InitializingBean
 {
-    private $template;
-    
-    public function setTemplate(DataBaseTemplate $template)
-    {
-        $this->template = $template;
-    }
-    
-    public function getTemplate()
-    {
-        return $this->template;
-    }
-    
-    public function setDataSource(DataSource $source)
-    {
-        $this->template = new DataBaseTemplate($source);
-    }
-    
-    public function getDataSource()
-    {
-        return $this->template->getDataSource();
-    }
-    
-    public final function afterPropertiesSet()
-    {
-        $this->init();
-        
-        if($this->template==null)
-        {
-            throw new IllegalStateException('The database template was null after init()');
-        }
-    }
-    
-    /**
-     * Called when the Dao is ready to be initialized
-     * Sub classes will need to ensure that the implementation of this method will set the
-     * data source or the template
-     */
-    protected abstract function init();
+	private $template;
+
+	public function setTemplate(DataBaseTemplate $template)
+	{
+		$this->template = $template;
+	}
+
+	public function getTemplate()
+	{
+		return $this->template;
+	}
+
+	public function setDataSource(DataSource $source)
+	{
+		$this->template = new DataBaseTemplate($source);
+	}
+
+	public function getDataSource()
+	{
+		return $this->template->getDataSource();
+	}
+
+	public final function afterPropertiesSet()
+	{
+		$this->init();
+
+		if($this->template==null)
+		{
+			throw new IllegalStateException('The database template was null after init()');
+		}
+	}
+
+	/**
+	 * Called when the Dao is ready to be initialized
+	 * Sub classes will need to ensure that the implementation of this method will set the
+	 * data source or the template
+	 */
+	protected abstract function init();
 }
 
 ?>

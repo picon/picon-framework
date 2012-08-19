@@ -25,12 +25,12 @@
  */
 class InvalidInjectable
 {
-    /** @Resource */
-    private $doesntexist;
+	/** @Resource */
+	private $doesntexist;
 
 
-    /** @Resource */
-    private $serv;
+	/** @Resource */
+	private $serv;
 }
 
 ?>

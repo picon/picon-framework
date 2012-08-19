@@ -24,7 +24,7 @@ namespace picon;
 
 /**
  * Behavior to add on jQuery UI sortable functionality
- * 
+ *
  * TODO finish off remaining options
  * TODO create a better callback procedure for js code
  * @author Martin Cassidy
@@ -32,28 +32,28 @@ namespace picon;
  */
 class SortableBehavior extends DefaultJQueryUIBehaviour
 {
-    public function __construct()
-    {
-        parent::__construct('sortable');
-    }
-    
-    public function setReceiveCallback($receiveCallback, $jsCode = '')
-    {
-        Args::callBackArgs($receiveCallback, 1, 'receiveCallback');
-        $this->getOptions()->add(new CallbackFunctionOption('receive', $receiveCallback, $jsCode, 'event', 'ui'));
-    }
-    
-    public function setStopCallback($stopCallback, $jsCode = '')
-    {
-        Args::callBackArgs($stopCallback, 1, 'stopCallback');
-        $this->getOptions()->add(new CallbackFunctionOption('stop', $stopCallback, $jsCode, 'event', 'ui'));
-    }
-    
-    public function setForcePlaceHolderSize($force)
-    {
-        Args::isBoolean($force, 'force');
-        $this->getOptions()->add(new BooleanOption('forcePlaceholderSize', $force));
-    }
+	public function __construct()
+	{
+		parent::__construct('sortable');
+	}
+
+	public function setReceiveCallback($receiveCallback, $jsCode = '')
+	{
+		Args::callBackArgs($receiveCallback, 1, 'receiveCallback');
+		$this->getOptions()->add(new CallbackFunctionOption('receive', $receiveCallback, $jsCode, 'event', 'ui'));
+	}
+
+	public function setStopCallback($stopCallback, $jsCode = '')
+	{
+		Args::callBackArgs($stopCallback, 1, 'stopCallback');
+		$this->getOptions()->add(new CallbackFunctionOption('stop', $stopCallback, $jsCode, 'event', 'ui'));
+	}
+
+	public function setForcePlaceHolderSize($force)
+	{
+		Args::isBoolean($force, 'force');
+		$this->getOptions()->add(new BooleanOption('forcePlaceholderSize', $force));
+	}
 }
 
 ?>

@@ -32,34 +32,34 @@ namespace picon;
  */
 class AjaxLink extends AbstractLink implements CallDecoratorWrapper
 {
-    private $callback;
-    private $eventBehaviour;
-    
-    public function __construct($id, $callback, $callDecorator = null)
-    {
-        parent::__construct($id);
-        Args::callBackArgs($callback, 1, 'callback');
-        $this->eventBehaviour = new AjaxEventBehaviour('onclick', $callback);
-        $this->add($this->eventBehaviour);
-        $this->callback = $callback;
-    }
-    
-    protected function onComponentTag(ComponentTag $tag)
-    {
-        parent::onComponentTag($tag);
-        $tag->put('href', 'javascript:;');
-    }
-    
-    //TODO not good that this is here and does nothing, refactor a bit to get rid of it
-    protected function onLinkClicked()
-    {
-        
-    }
-    
-    public function setAjaxCallDecorator(AjaxCallDecorator &$decorator)
-    {
-        $this->eventBehaviour->setAjaxCallDecorator($decorator);
-    }
+	private $callback;
+	private $eventBehaviour;
+
+	public function __construct($id, $callback, $callDecorator = null)
+	{
+		parent::__construct($id);
+		Args::callBackArgs($callback, 1, 'callback');
+		$this->eventBehaviour = new AjaxEventBehaviour('onclick', $callback);
+		$this->add($this->eventBehaviour);
+		$this->callback = $callback;
+	}
+
+	protected function onComponentTag(ComponentTag $tag)
+	{
+		parent::onComponentTag($tag);
+		$tag->put('href', 'javascript:;');
+	}
+
+	//TODO not good that this is here and does nothing, refactor a bit to get rid of it
+	protected function onLinkClicked()
+	{
+
+	}
+
+	public function setAjaxCallDecorator(AjaxCallDecorator &$decorator)
+	{
+		$this->eventBehaviour->setAjaxCallDecorator($decorator);
+	}
 }
 
 ?>

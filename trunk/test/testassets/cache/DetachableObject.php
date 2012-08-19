@@ -22,17 +22,17 @@
 
 class DetachableObject implements picon\Detachable
 {
-    private $text = "before";
-    
-    public function detach()
-    {
-        $this->text = "after";
-    }
-    
-    public function getText()
-    {
-        return $this->text;
-    }
+	private $text = "before";
+
+	public function detach()
+	{
+		$this->text = "after";
+	}
+
+	public function getText()
+	{
+		return $this->text;
+	}
 }
 
 ?>

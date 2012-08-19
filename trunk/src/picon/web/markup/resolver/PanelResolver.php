@@ -30,16 +30,16 @@ namespace picon;
  */
 class PanelResolver implements ComponentResolver
 {
-    public function resolve(MarkupContainer $container, ComponentTag &$tag)
-    {
-        if($tag instanceof PiconTag && $tag->getName()=='picon:panel')
-        {
-            $id = 'panel'.$container->getPage()->getAutoIndex();
-            $tag->setComponentTagId($id);
-            return new TransparentMarkupContainer($id);
-        }
-        return null;
-    }
+	public function resolve(MarkupContainer $container, ComponentTag &$tag)
+	{
+		if($tag instanceof PiconTag && $tag->getName()=='picon:panel')
+		{
+			$id = 'panel'.$container->getPage()->getAutoIndex();
+			$tag->setComponentTagId($id);
+			return new TransparentMarkupContainer($id);
+		}
+		return null;
+	}
 }
 
 ?>

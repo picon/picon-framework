@@ -22,13 +22,13 @@
 
 /**
  * Thrown when markup for a component cannot be found
- * 
+ *
  * @author Martin Cassidy
  * @package exceptions
  */
 class MarkupNotFoundException extends RuntimeException
 {
-    
+
 }
 
 ?>

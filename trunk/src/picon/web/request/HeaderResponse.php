@@ -30,87 +30,87 @@ namespace picon;
  */
 class HeaderResponse
 {
-    private $actualResponse;
-    private $rendered = array();
-    
-    public function __construct(Response $response)
-    {
-        $this->actualResponse = $response;
-    }
-    
-    public function renderCSS($css)
-    {
-        if(is_string($css))
-        {
-            $this->renderCSSFile($css);
-        }
-        else if($css instanceof ResourceReference)
-        {
-            $this->renderCSSResourceReference($css);
-        }
-        else
-        {
-            throw new \InvalidArgumentException('renderCSS() expects a string');
-        }
-    }
-     
-    public function renderCSSFile($file)
-    {
-        if(!$this->checkRenderedFile($file))
-        {
-            $this->actualResponse->write(sprintf("<link type=\"text/css\" rel=\"stylesheet\" href=\"%s\" />", $file));
-            array_push($this->rendered, $file);
-        }
-    }
-    
-    public function renderJavaScript($javaScript)
-    {
-        if(is_string($javaScript))
-        {
-            $this->renderJavaScriptFile($javaScript);
-        }
-        else if($javaScript instanceof ResourceReference)
-        {
-            $this->renderJavaScriptResourceReference($javaScript);
-        }
-        else
-        {
-            throw new \InvalidArgumentException('renderJavaScript() expects a string');
-        }
-    }
-    
-    public function renderJavaScriptFile($file)
-    {
-        if(!$this->checkRenderedFile($file))
-        {
-            $this->actualResponse->write(sprintf("<script type=\"text/javascript\" src=\"%s\"></script>", $file));
-            array_push($this->rendered, $file);
-        }
-    }
-    
-    private function checkRenderedFile($file)
-    {
-        return in_array($file, $this->rendered);
-    }
-    
-    public function renderCSSResourceReference(ResourceReference $reference)
-    {
-        $target = new ResourceRequestTarget($reference);
-        $url = $GLOBALS['requestCycle']->generateUrl($target);
-        $this->renderCSSFile($url);
-    }
-    
-    public function renderJavaScriptResourceReference(ResourceReference $reference)
-    {
-        $target = new ResourceRequestTarget($reference);
-        $url = $GLOBALS['requestCycle']->generateUrl($target);
-        $this->renderJavaScriptFile($url);
-    }
-    
-    public function renderScript($script)
-    {
-        $this->actualResponse->write(sprintf("<script type=\"text/javascript\">%s</script>", $script));
-    }
+	private $actualResponse;
+	private $rendered = array();
+
+	public function __construct(Response $response)
+	{
+		$this->actualResponse = $response;
+	}
+
+	public function renderCSS($css)
+	{
+		if(is_string($css))
+		{
+			$this->renderCSSFile($css);
+		}
+		else if($css instanceof ResourceReference)
+		{
+			$this->renderCSSResourceReference($css);
+		}
+		else
+		{
+			throw new \InvalidArgumentException('renderCSS() expects a string');
+		}
+	}
+	 
+	public function renderCSSFile($file)
+	{
+		if(!$this->checkRenderedFile($file))
+		{
+			$this->actualResponse->write(sprintf("<link type=\"text/css\" rel=\"stylesheet\" href=\"%s\" />", $file));
+			array_push($this->rendered, $file);
+		}
+	}
+
+	public function renderJavaScript($javaScript)
+	{
+		if(is_string($javaScript))
+		{
+			$this->renderJavaScriptFile($javaScript);
+		}
+		else if($javaScript instanceof ResourceReference)
+		{
+			$this->renderJavaScriptResourceReference($javaScript);
+		}
+		else
+		{
+			throw new \InvalidArgumentException('renderJavaScript() expects a string');
+		}
+	}
+
+	public function renderJavaScriptFile($file)
+	{
+		if(!$this->checkRenderedFile($file))
+		{
+			$this->actualResponse->write(sprintf("<script type=\"text/javascript\" src=\"%s\"></script>", $file));
+			array_push($this->rendered, $file);
+		}
+	}
+
+	private function checkRenderedFile($file)
+	{
+		return in_array($file, $this->rendered);
+	}
+
+	public function renderCSSResourceReference(ResourceReference $reference)
+	{
+		$target = new ResourceRequestTarget($reference);
+		$url = $GLOBALS['requestCycle']->generateUrl($target);
+		$this->renderCSSFile($url);
+	}
+
+	public function renderJavaScriptResourceReference(ResourceReference $reference)
+	{
+		$target = new ResourceRequestTarget($reference);
+		$url = $GLOBALS['requestCycle']->generateUrl($target);
+		$this->renderJavaScriptFile($url);
+	}
+
+	public function renderScript($script)
+	{
+		$this->actualResponse->write(sprintf("<script type=\"text/javascript\">%s</script>", $script));
+	}
 }
 
 ?>

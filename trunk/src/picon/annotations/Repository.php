@@ -22,13 +22,13 @@
 
 /**
  * Indicates that a class is a repository, such as a DAO
- * 
+ *
  * @author Martin Cassidy
  * @package annotations
  */
-class Repository extends Transient 
+class Repository extends Transient
 {
-    public $name = "";
+	public $name = "";
 }
 
 ?>

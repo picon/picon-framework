@@ -24,22 +24,22 @@ namespace picon;
 
 /**
  * A markup element which has a picon:id and will expect a component associated with it
- * 
+ *
  * @author Martin Cassidy
  * @package web/domain
  */
 class ComponentTag extends MarkupElement
 {
-    public function getComponentTagId()
-    {
-        $attributes = $this->getAttributes();
-        return $attributes['picon:id'];
-    }
-    
-    public function setComponentTagId($id)
-    {
-        $this->put('picon:id', $id);
-    }
+	public function getComponentTagId()
+	{
+		$attributes = $this->getAttributes();
+		return $attributes['picon:id'];
+	}
+
+	public function setComponentTagId($id)
+	{
+		$this->put('picon:id', $id);
+	}
 }
 
 ?>

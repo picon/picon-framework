@@ -24,40 +24,40 @@ namespace picon;
 
 /**
  * A form field for uploading files
- * 
+ *
  * @author Martin Cassidy
  */
 class FileUploadField extends FormComponent
 {
-    public function __construct($id, FileModel $model = null)
-    {
-        parent::__construct($id, $model);
-    }
-    
-    protected function onComponentTag(ComponentTag $tag)
-    {
-        parent::onComponentTag($tag);
-        $this->checkComponentTag($tag, 'input');
-        $this->checkComponentTagAttribute($tag, 'type', 'file');
-    }
-    
-    protected function convertInput()
-    {
-        $this->setConvertedInput($_FILES[$this->getName()]);
-    }
-    
-    protected function validateModel()
-    {
-        if(!($this->getModel() instanceof FileModel))
-        {
-            throw new \IllegalStateException(sprintf("A file upload field must have a file model, actual %s", gettype($this->getModelObject())));
-        }
-    }
-    
-    public function isMultiPart()
-    {
-        return true;
-    }
+	public function __construct($id, FileModel $model = null)
+	{
+		parent::__construct($id, $model);
+	}
+
+	protected function onComponentTag(ComponentTag $tag)
+	{
+		parent::onComponentTag($tag);
+		$this->checkComponentTag($tag, 'input');
+		$this->checkComponentTagAttribute($tag, 'type', 'file');
+	}
+
+	protected function convertInput()
+	{
+		$this->setConvertedInput($_FILES[$this->getName()]);
+	}
+
+	protected function validateModel()
+	{
+		if(!($this->getModel() instanceof FileModel))
+		{
+			throw new \IllegalStateException(sprintf("A file upload field must have a file model, actual %s", gettype($this->getModelObject())));
+		}
+	}
+
+	public function isMultiPart()
+	{
+		return true;
+	}
 }
 
 ?>

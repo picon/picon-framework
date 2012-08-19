@@ -22,14 +22,14 @@
 
 /**
  * Description of TestEnum
- * 
+ *
  * @author Martin Cassidy
  */
 class TestEnum extends \picon\Enum
 {
-    const ONE = 'one';
-    const TWO = 'two';
-    const THREE = 'three';
+	const ONE = 'one';
+	const TWO = 'two';
+	const THREE = 'three';
 }
 
 ?>

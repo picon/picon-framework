@@ -24,43 +24,43 @@ namespace picon;
 
 /**
  * Validates that a number is between minimum and maximum values
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/form/validation
  */
 class RangeValidator extends NumericValidator
 {
-    private $minimum;
-    private $maximum;
-    
-    /**
-     *
-     * @param number $minimum
-     * @param number $maximum 
-     */
-    public function __construct($minimum, $maximum)
-    {
-        Args::isNumeric($maximum, 'maximum');
-        Args::isNumeric($minimum, 'minimum');
-        $this->minimum = $minimum;
-        $this->maximum = $maximum;
-    }
-    
-    public function validateValue(Validatable $validateable)
-    {
-        $response = parent::validateValue($validateable);
-        if($response!=null)
-        {
-            return $response;
-        }
-        if($validateable->getValue()<$this->minimum || $validateable->getValue()>$this->maximum)
-        {
-            $response = new ValidationResponse($this->getKeyName());
-            $response->addValue('min', $this->minimum);
-            $response->addValue('max', $this->maximum);
-            return $response;
-        }
-    }
+	private $minimum;
+	private $maximum;
+
+	/**
+	 *
+	 * @param number $minimum
+	 * @param number $maximum
+	 */
+	public function __construct($minimum, $maximum)
+	{
+		Args::isNumeric($maximum, 'maximum');
+		Args::isNumeric($minimum, 'minimum');
+		$this->minimum = $minimum;
+		$this->maximum = $maximum;
+	}
+
+	public function validateValue(Validatable $validateable)
+	{
+		$response = parent::validateValue($validateable);
+		if($response!=null)
+		{
+			return $response;
+		}
+		if($validateable->getValue()<$this->minimum || $validateable->getValue()>$this->maximum)
+		{
+			$response = new ValidationResponse($this->getKeyName());
+			$response->addValue('min', $this->minimum);
+			$response->addValue('max', $this->maximum);
+			return $response;
+		}
+	}
 }
 
 ?>

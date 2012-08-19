@@ -30,48 +30,48 @@ namespace picon;
  */
 class ComponentResolverHelper
 {
-    private static $resolvers;
-    
-    private static function init()
-    {
-        if(self::$resolvers==null)
-        {
-            self::$resolvers = array();
-            array_push(self::$resolvers, new HeaderResolver());
-            array_push(self::$resolvers, new PanelResolver());
-            array_push(self::$resolvers, new ExtendResolver());
-            array_push(self::$resolvers, new BorderResolver());
-        }
-    }
-    
-    public static function resolve(MarkupContainer $container, ComponentTag &$tag)
-    {
-        self::init();
-        $current = $container;
-        $component = null;
-        while($current!=null)
-        {
-            if($current instanceof ComponentResolver)
-            {
-                $component = $current->resolve($container, $tag);
-            }
-            if($component!=null)
-            {
-                return $component;
-            }
-            $current = $current->getParent();
-        }
-        
-        foreach(self::$resolvers as $resolver)
-        {
-            $component = $resolver->resolve($container, $tag);
-            if($component!=null)
-            {
-                return $component;
-            }
-        }
-        return null;
-    }
+	private static $resolvers;
+
+	private static function init()
+	{
+		if(self::$resolvers==null)
+		{
+			self::$resolvers = array();
+			array_push(self::$resolvers, new HeaderResolver());
+			array_push(self::$resolvers, new PanelResolver());
+			array_push(self::$resolvers, new ExtendResolver());
+			array_push(self::$resolvers, new BorderResolver());
+		}
+	}
+
+	public static function resolve(MarkupContainer $container, ComponentTag &$tag)
+	{
+		self::init();
+		$current = $container;
+		$component = null;
+		while($current!=null)
+		{
+			if($current instanceof ComponentResolver)
+			{
+				$component = $current->resolve($container, $tag);
+			}
+			if($component!=null)
+			{
+				return $component;
+			}
+			$current = $current->getParent();
+		}
+
+		foreach(self::$resolvers as $resolver)
+		{
+			$component = $resolver->resolve($container, $tag);
+			if($component!=null)
+			{
+				return $component;
+			}
+		}
+		return null;
+	}
 }
 
 ?>
