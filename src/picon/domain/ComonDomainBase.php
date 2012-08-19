@@ -71,7 +71,7 @@ class ComonDomainBase
     
     /**
      * A generic to string
-     * @todo Add support for arrays
+     * TODO Add support for arrays
      * @return string A string representation of the object
      */
     public function __toString()

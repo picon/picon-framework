@@ -98,7 +98,7 @@ abstract class AbstractAjaxBehaviour extends AbstractBehaviour implements Behavi
         $this->onEventCallback($target);
     }
     
-    //@todo rename this method when listeners can support their own method names and are not fixed
+    //TODO rename this method when listeners can support their own method names and are not fixed
     //to onEvent()
     public abstract function onEventCallback(AjaxRequestTarget $target);
     

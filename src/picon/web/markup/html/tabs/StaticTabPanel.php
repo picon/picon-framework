@@ -33,7 +33,7 @@ class StaticTabPanel extends TabPanel
     private $indexes = array();
     
     /**
-     * @todo get rid of this when listener is finished
+     * TODO get rid of this when listener is finished
      */
     public function __wakeup()
     {

@@ -26,7 +26,7 @@ namespace picon;
  * A form button, when submited the callback methods will be invoked based on the 
  * valid state of the form
  * 
- * @todo This currently needs to be a child of a Form - it should provide the option
+ * TODO This currently needs to be a child of a Form - it should provide the option
  * of manually specifying the form to submit so the button may be placed elsewhere
  * @author Martin Cassidy
  * @package web/markup/html/form

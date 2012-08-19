@@ -25,7 +25,7 @@ namespace picon;
 /**
  * Behavior to add on jQuery UI dragable functionality
  * 
- * @todo finish off remaining options
+ * TODO finish off remaining options
  * @author Martin Cassidy
  * @package web/jQuery/ui
  */

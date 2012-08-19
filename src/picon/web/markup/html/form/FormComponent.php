@@ -83,7 +83,7 @@ abstract class FormComponent extends LabeledMarkupContainer
     }
     
     /**
-     * @todo
+     * TODO
      * @return type 
      */
     public function getLabel()

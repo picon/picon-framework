@@ -61,7 +61,7 @@ class Form extends MarkupContainer implements FormSubmitListener
     
     /**
      * Called when the form is submited
-     * @todo sort out code for nested forms
+     * TODO sort out code for nested forms
      */
     public function onEvent()
     {

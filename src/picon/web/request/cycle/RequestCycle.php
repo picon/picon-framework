@@ -33,7 +33,7 @@ namespace picon;
  * 
  * @author Martin Cassidy
  * @package web/request/cycle
- * @todo create request listeners
+ * TODO create request listeners
  */
 class RequestCycle
 {
@@ -41,7 +41,7 @@ class RequestCycle
     private $response;
     private $resolver;
     private $targetStack;
-    private $maxStackSize = 10; //@todo put this somewhere else
+    private $maxStackSize = 10; //TODO put this somewhere else
     
     public function __construct()
     {

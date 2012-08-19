@@ -222,7 +222,7 @@ class MarkupContainer extends Component
     
     /**
      * Loads the markup accosiated with this markup container
-     * @todo the functionality of this method should be extracted into
+     * TODO the functionality of this method should be extracted into
      * a helper class as it needs extending to load from parent folders
      */
     public function loadAssociatedMarkup()

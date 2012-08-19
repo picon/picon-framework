@@ -26,7 +26,7 @@ require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 
 /**
  * Test for the class scanner
- * @todo test multiple rules, test scanning subsets
+ * TODO test multiple rules, test scanning subsets
  * @author Martin Cassidy
  */
 class ClassScannerTest extends AbstractPiconTest

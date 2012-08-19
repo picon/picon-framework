@@ -31,7 +31,7 @@ namespace picon;
 abstract class AbstractSingleChoice extends AbstractChoice
 {
     /**
-     * @todo this will incorrectly evaluate isSelected() as true if the model object is null 
+     * TODO this will incorrectly evaluate isSelected() as true if the model object is null 
      * and the choice render returns a 0
      * @param type $choice
      * @param type $index

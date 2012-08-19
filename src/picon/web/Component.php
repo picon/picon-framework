@@ -39,7 +39,7 @@ namespace picon;
  * 
  * @author Martin Cassidy
  * @package web
- * @todo finish adding state flags so that checks can be run to ensure overriden methods are calling
+ * TODO finish adding state flags so that checks can be run to ensure overriden methods are calling
  * the parent implementation
  */
 abstract class Component implements InjectOnWakeup, Identifiable, Detachable
@@ -303,7 +303,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
                 /**
                  * If the child component has not been rendered it must
                  * not have been present in the markup
-                 * @todo move this into another non component parent calling method
+                 * TODO move this into another non component parent calling method
                  * so that all children may have internalAfterRender
                  */
                 if(!$child->rendered)
@@ -375,13 +375,13 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
         {
             throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
         }
-        /* @todo this cloning is a quick fix, markup should be imutable until 
+        /* TODO this cloning is a quick fix, markup should be imutable until 
          * this point were a mutable version is created for use by the component 
          * to render with for only this request
          */
         $markup = clone $markup;
         
-        //@todo add ajax placeholder to set display:none on invisible components
+        //TODO add ajax placeholder to set display:none on invisible components
         if(!$this->visible)
         {
             return;
@@ -755,7 +755,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     }
     
     /**
-     * @todo this should use a request target
+     * TODO this should use a request target
      * @param Identifier $page
      * @return type 
      */
@@ -775,7 +775,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     }
     
     /**
-     * @todo this should use a request target
+     * TODO this should use a request target
      * @param Identifier $page
      * @return type 
      */
@@ -834,7 +834,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     /**
      * Set the current page
      * @param mixed $page An instance of web page or an Identifier for a web page
-     * @todo add page params
+     * TODO add page params
      */
     public function setPage($page)
     {
@@ -872,7 +872,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     }
     
     /**
-     * @todo add support for model inheritence (compound models)
+     * TODO add support for model inheritence (compound models)
      * @return Model The model for this component
      */
     public function getModel()
@@ -953,7 +953,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     }
     
     /**
-     * @todo should really create converters for primatives
+     * TODO should really create converters for primatives
      * @return string a representation of the model object as a string
      */
     public function getModelObjectAsString()

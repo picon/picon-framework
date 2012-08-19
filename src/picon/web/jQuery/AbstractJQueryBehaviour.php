@@ -36,7 +36,7 @@ abstract class AbstractJQueryBehaviour extends AbstractBehaviour implements Beha
     }
     
     /**
-     * @todo This is a bad way of forcing listeners to re register
+     * TODO This is a bad way of forcing listeners to re register
      */
     public function __wakeup()
     {

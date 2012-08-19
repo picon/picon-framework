@@ -24,7 +24,7 @@ namespace picon;
 
 /**
  * Super class for all validators
- * @todo validators should not use string based messages but
+ * TODO validators should not use string based messages but
  * should instead use a resource key to locate a message from a file
  * @author Martin Cassidy
  * @package web/markup/html/form/validation

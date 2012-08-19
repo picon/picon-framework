@@ -24,7 +24,7 @@ namespace picon;
 
 /**
  * Adds on the jQuery ui resources through a render head listener
- * @todo add support fo the jquery ui css
+ * TODO add support fo the jquery ui css
  * @author Martin Cassidy
  * @package web/jQuery/ui
  */
@@ -37,7 +37,7 @@ abstract class AbstractJQueryUIBehaviour extends AbstractJQueryBehaviour
     }
     
     /**
-     * @todo This is a bad way of forcing listeners to re register
+     * TODO This is a bad way of forcing listeners to re register
      */
     public function __wakeup()
     {
