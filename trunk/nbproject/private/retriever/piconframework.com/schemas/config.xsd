@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="piconApplication" type="piconApplication">
+	</xs:element>
+
+	<xs:complexType name="piconApplication">
+		<xs:all>
+			<xs:element name="settings" minOccurs="1" type="settings">
+			</xs:element>
+			<xs:element name="profiles" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="profile" minOccurs="0" maxOccurs="unbounded" type="Profile" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+
+	<xs:simpleType name="startUpType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="auto" />
+		</xs:restriction>
+	</xs:simpleType> 
+
+    <xs:complexType name="profile">
+    	<xs:sequence>
+    		<xs:element name="showPiconTags" type="xs:boolean"></xs:element>
+    		<xs:element name="cacheMarkup" type="xs:boolean"></xs:element>
+    	</xs:sequence>
+    	<xs:attribute name="name" type="xs:string"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="settings">
+            <xs:sequence>
+            	<xs:element name="homePage" type="xs:string" />
+            	<xs:element name="startUp" type="startUpType" />
+            	<xs:element name="profile" type="xs:string"></xs:element>
+            </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="profiles"></xs:complexType>
+</xs:schema>
