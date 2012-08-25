@@ -24,23 +24,23 @@ namespace picon;
 
 /**
  * Description of PageMapInitializationListenerCollection
- *
+ * 
  * @author Martin Cassidy
  */
 class PageMapInitializationListenerCollection extends ListenerCollection implements PageMapInitializationListener
 {
-	public function onInitialize(PageMap $map)
-	{
-		$this->notify(function($listener) use ($map)
-		{
-			$listener->onInitialize($map);
-		});
-	}
-
-	protected function validateListener($listener)
-	{
-		return $listener instanceof PageMapInitializationListener;
-	}
+    public function onInitialize(PageMap $map)
+    {
+        $this->notify(function($listener) use ($map)
+        {
+            $listener->onInitialize($map);
+        });
+    }
+    
+    protected function validateListener($listener)
+    {
+        return $listener instanceof PageMapInitializationListener;
+    }
 }
 
 ?>

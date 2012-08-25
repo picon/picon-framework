@@ -24,68 +24,68 @@ namespace picon;
 
 /**
  * A form component with pre-defined choices of which 1 can be chosen
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 abstract class AbstractSingleChoice extends AbstractChoice
 {
-	/**
-	 * TODO this will incorrectly evaluate isSelected() as true if the model object is null
-	 * and the choice render returns a 0
-	 * @param type $choice
-	 * @param type $index
-	 * @return type
-	 */
-	public function isSelected($choice, $index)
-	{
-		if($this->isEmptyInput())
-		{
-			return false;
-		}
-		else
-		{
-			$raw = $this->getRawInput();
-			if(!empty($raw))
-			{
-				return $this->getRawInput()==$this->getChoiceRenderer()->getValue($choice, $index);
-			}
-			else
-			{
-				return Objects::equals($this->getModelObject(), $choice);
-			}
-		}
-	}
-
-	protected function convertInput()
-	{
-		$value = $this->getRawInput();
-		$i = 1;
-		foreach($this->getChoices() as $index => $choice)
-		{
-			if(is_array($choice))
-			{
-				foreach($choice as $innerIndex => $option)
-				{
-					if($this->valueForChoice($option, $value, $i))
-					{
-						$this->setConvertedInput($option);
-						return;
-					}
-					$i++;
-				}
-			}
-			else
-			{
-				if($this->valueForChoice($choice, $value, $i))
-				{
-					$this->setConvertedInput($choice);
-					return;
-				}
-			}
-			$i++;
-		}
-	}
+    /**
+     * @todo this will incorrectly evaluate isSelected() as true if the model object is null 
+     * and the choice render returns a 0
+     * @param type $choice
+     * @param type $index
+     * @return type 
+     */
+    public function isSelected($choice, $index)
+    {
+        if($this->isEmptyInput())
+        {
+            return false;
+        }
+        else
+        {
+            $raw = $this->getRawInput();
+            if(!empty($raw))
+            {
+                return $this->getRawInput()==$this->getChoiceRenderer()->getValue($choice, $index);
+            }
+            else
+            {
+                return Objects::equals($this->getModelObject(), $choice);
+            }
+        }
+    }
+    
+    protected function convertInput()
+    {
+        $value = $this->getRawInput();
+        $i = 1;
+        foreach($this->getChoices() as $index => $choice)
+        {
+            if(is_array($choice))
+            {
+                foreach($choice as $innerIndex => $option)
+                {
+                    if($this->valueForChoice($option, $value, $i))
+                    {
+                        $this->setConvertedInput($option);
+                        return;
+                    }
+                    $i++;
+                }
+            }
+            else
+            {
+                if($this->valueForChoice($choice, $value, $i))
+                {
+                    $this->setConvertedInput($choice);
+                    return;
+                }
+            }
+            $i++;
+        }
+    }
 }
 
 ?>

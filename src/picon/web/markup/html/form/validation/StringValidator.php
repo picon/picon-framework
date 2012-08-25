@@ -24,19 +24,19 @@ namespace picon;
 
 /**
  * Generic validator for strings
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/form/validation
  */
 class StringValidator extends AbstractValidator
 {
-	public function validateValue(Validatable $validateable)
-	{
-		if(!is_string($validateable->getValue()))
-		{
-			return new ValidationResponse($this->getKeyName(get_class()));
-		}
-	}
+    public function validateValue(Validatable $validateable)
+    {
+        if(!is_string($validateable->getValue()))
+        {
+            return new ValidationResponse($this->getKeyName(get_class()));
+        }
+    }
 }
 
 ?>

@@ -25,16 +25,16 @@ namespace picon;
 /**
  * A component which may not contain any child i.e. one which marks the end
  * of hierarchy for a particular branch
- *
+ * 
  * @author Martin Cassidy
  * @package web
  */
 class WebComponent extends Component
 {
-	protected function onRender()
-	{
-		parent::internalRenderComponent();
-	}
+    protected function onRender()
+    {
+        parent::internalRenderComponent();
+    }
 }
 
 ?>

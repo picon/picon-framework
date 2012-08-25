@@ -24,30 +24,30 @@ namespace picon;
 
 /**
  * A component which repeates once for each of the child components added to it
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/repeater
  */
 class RepeatingView extends AbstractRepeater
 {
-	private $nextId = 0;
-
-	protected function getRenderArray()
-	{
-		return $this->getChildren();
-	}
-
-	protected function populate()
-	{
-		//Implementing classes will do this
-	}
-
-	public function getNextChildId()
-	{
-		$id = $this->getId().$this->nextId;
-		$this->nextId++;
-		return $id;
-	}
+    private $nextId = 0;
+    
+    protected function getRenderArray()
+    {
+        return $this->getChildren();
+    }
+    
+    protected function populate()
+    {
+        //Implementing classes will do this
+    }
+    
+    public function getNextChildId()
+    {
+        $id = $this->getId().$this->nextId;
+        $this->nextId++;
+        return $id;
+    }
 }
 
 ?>

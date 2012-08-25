@@ -25,61 +25,61 @@ namespace picon;
 /**
  * A component whose mark-up is rendered multiple times based on some form
  * of repitition
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/repeater
  */
 abstract class AbstractRepeater extends MarkupContainer
 {
-	public function __construct($id, $model = null)
-	{
-		if($model!=null && !($model instanceof ArrayModel) && gettype($model->getModelObject())!=Component::TYPE_ARRAY)
-		{
-			throw new \InvalidArgumentException('List View must have an Array Model or a model of an array');
-		}
-		if($model==null)
-		{
-			parent::__construct($id);
-		}
-		else
-		{
-			parent::__construct($id, $model);
-		}
-	}
-
-	/**
-	 * Sub classes should implement this method to return
-	 * an array of all of the child to be rendered
-	 */
-	protected abstract function getRenderArray();
-
-	protected function onRender()
-	{
-		$components = $this->getRenderArray();
-		Args::isArray($components, 'getRenderArray return value');
-		foreach($components as $index => $component)
-		{
-			$this->renderChild($component);
-		}
-	}
-
-	protected function renderChild(Component $child)
-	{
-		$child->render();
-	}
-
-	public function getMarkupForChild(Component $child)
-	{
-		return $this->getMarkup();
-	}
-
-	public function beforePageRender()
-	{
-		parent::beforePageRender();
-		$this->populate();
-	}
-
-	protected abstract function populate();
+    public function __construct($id, $model = null)
+    {
+        if($model!=null && !($model instanceof ArrayModel) && gettype($model->getModelObject())!=Component::TYPE_ARRAY)
+        {
+            throw new \InvalidArgumentException('List View must have an Array Model or a model of an array');
+        }
+        if($model==null)
+        {
+            parent::__construct($id);
+        }
+        else
+        {
+            parent::__construct($id, $model);
+        }
+    }
+    
+    /**
+     * Sub classes should implement this method to return
+     * an array of all of the child to be rendered
+     */
+    protected abstract function getRenderArray();
+    
+    protected function onRender()
+    {
+        $components = $this->getRenderArray();
+        Args::isArray($components, 'getRenderArray return value');
+        foreach($components as $index => $component)
+        {
+            $this->renderChild($component);
+        }
+    }
+    
+    protected function renderChild(Component $child)
+    {
+        $child->render();
+    }
+    
+    public function getMarkupForChild(Component $child)
+    {
+        return $this->getMarkup();
+    }
+    
+    public function beforePageRender()
+    {
+        parent::beforePageRender();
+        $this->populate();
+    }
+    
+    protected abstract function populate();
 }
 
 ?>

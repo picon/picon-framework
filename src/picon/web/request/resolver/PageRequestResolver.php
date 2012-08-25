@@ -24,121 +24,121 @@ namespace picon;
 
 /**
  * Basic stateless page request resolver
- *
+ * 
  * @author Martin Cassidy
  * @package web/request/resolver
  */
 class PageRequestResolver implements RequestResolver
 {
-	public function resolve(Request $request)
-	{
-		if($this->isHomePage($request))
-		{
-			$homepage = PiconApplication::get()->getHomePage();
-			return new PageRequestTarget($homepage::getIdentifier());
-		}
-		else
-		{
-			return new PageRequestTarget($this->getPageClassForPath($request));
-		}
-	}
+    public function resolve(Request $request)
+    {
+        if($this->isHomePage($request))
+        {
+            $homepage = PiconApplication::get()->getHomePage();
+            return new PageRequestTarget($homepage::getIdentifier());
+        }
+        else
+        {
+            return new PageRequestTarget($this->getPageClassForPath($request));
+        }
+    }
+    
+    public function matches(Request $request)
+    {
+        return ($this->isHomePage($request) || $this->getPageClassForPath($request)!=false) && $request->getParameter('picon-resource')==null && $request->getParameter('listener')==null && $request->getParameter('pageid')==null;
+    }
+    
+    /**
+     *
+     * @param Request $request
+     * @todo alter expression to handle page params
+     * @return type 
+     */
+    private function isHomePage(Request $request)
+    {
+        return preg_match("/^".$this->prepare($request->getRootPath())."\/{1}([?|&]{1}\\S+={1}\\S+)*$/", $request->getPath());
+    }
 
-	public function matches(Request $request)
-	{
-		return ($this->isHomePage($request) || $this->getPageClassForPath($request)!=false) && $request->getParameter('picon-resource')==null && $request->getParameter('listener')==null && $request->getParameter('pageid')==null;
-	}
-
-	/**
-	 *
-	 * @param Request $request
-	 * TODO alter expression to handle page params
-	 * @return type
-	 */
-	private function isHomePage(Request $request)
-	{
-		return preg_match("/^".$this->prepare($request->getRootPath())."\/{1}([?|&]{1}\\S+={1}\\S+)*$/", $request->getPath());
-	}
-
-	/**
-	 * @param Request $request
-	 * TODO alter expression to handle page params
-	 * @return type
-	 */
-	private function getPageClassForPath(Request $request)
-	{
-		$mapEntry = PageMap::getPageMap();
-
-		foreach($mapEntry as $path => $pageClass)
-		{
-			if(preg_match("/^".$this->prepare($request->getRootPath())."\/".str_replace("/", "\\/", $path)."{1}([?|&]{1}\\S+={1}\\S+)*$/", urldecode($request->getPath())))
-			{
-				return $pageClass::getIdentifier();
-			}
-		}
-		return false;
-	}
-
-	/**
-	 *
-	 * @param RequestTarget $target
-	 * TODO Create a url builder helper
-	 * TODO turn this into an absolute url
-	 * @return string the URL for the request target
-	 */
-	public function generateUrl(RequestTarget $target)
-	{
-		if($target instanceof PageRequestWithListenerTarget)
-		{
-			$trail = "";
-			if($target->getPageClass()->namespace!=null)
-			{
-				$trail = '/';
-			}
-			$behaviourApped = null;
-			if($target->getBehaviour()!=null)
-			{
-				$behaviourApped = '&behaviour='.$target->getBehaviour();
-			}
-
-			return $target->getPageClass()->namespace.$trail.$target->getPageClass()->className.'?listener='.$target->getComponentPath().$behaviourApped;
-		}
-		else if($target instanceof ListenerRequestTarget)
-		{
-			$ident = $target->getPage()->getIdentifier();
-			$trail = "";
-			if($ident->namespace!=null)
-			{
-				$trail = '/';
-			}
-
-			$behaviourApped = null;
-			if($target->getBehaviour()!=null)
-			{
-				$behaviourApped = '&behaviour='.$target->getBehaviour();
-			}
-
-			return $ident->namespace.$trail.$ident->className.'?pageid='.$target->getPage()->getId().'&listener='.$target->getComponentPath().$behaviourApped;
-		}
-		else
-		{
-			$trail = "";
-			if($target->getPageClass()->namespace!=null)
-			{
-				$trail = '/';
-			}
-			return $target->getPageClass()->namespace.$trail.$target->getPageClass()->className;
-		}
-	}
-
-	public function handles(RequestTarget $target)
-	{
-		return $target instanceof PageRequestTarget || $target instanceof ListenerRequestTarget;
-	}
-
-	private function prepare($value)
-	{
-		return str_replace('/', "\\/", $value);
-	}
+    /**
+     * @param Request $request
+     * @todo alter expression to handle page params
+     * @return type 
+     */
+    private function getPageClassForPath(Request $request)
+    {
+        $mapEntry = PageMap::getPageMap();
+        
+        foreach($mapEntry as $path => $pageClass)
+        {
+            if(preg_match("/^".$this->prepare($request->getRootPath())."\/".str_replace("/", "\\/", $path)."{1}([?|&]{1}\\S+={1}\\S+)*$/", urldecode($request->getPath())))
+            {
+                return $pageClass::getIdentifier();
+            }
+        }
+        return false;
+    }
+    
+    /**
+     *
+     * @param RequestTarget $target
+     * @todo Create a url builder helper
+     * @todo turn this into an absolute url
+     * @return string the URL for the request target
+     */
+    public function generateUrl(RequestTarget $target)
+    {
+        if($target instanceof PageRequestWithListenerTarget)
+        {
+            $trail = "";
+            if($target->getPageClass()->namespace!=null)
+            {
+                $trail = '/';
+            }
+            $behaviourApped = null;
+            if($target->getBehaviour()!=null)
+            {
+                $behaviourApped = '&behaviour='.$target->getBehaviour();
+            }
+            
+            return $target->getPageClass()->namespace.$trail.$target->getPageClass()->className.'?listener='.$target->getComponentPath().$behaviourApped;
+        }
+        else if($target instanceof ListenerRequestTarget)
+        {
+            $ident = $target->getPage()->getIdentifier();
+            $trail = "";
+            if($ident->namespace!=null)
+            {
+                $trail = '/';
+            }
+            
+            $behaviourApped = null;
+            if($target->getBehaviour()!=null)
+            {
+                $behaviourApped = '&behaviour='.$target->getBehaviour();
+            }
+            
+            return $ident->namespace.$trail.$ident->className.'?pageid='.$target->getPage()->getId().'&listener='.$target->getComponentPath().$behaviourApped;
+        }
+        else
+        {
+            $trail = "";
+            if($target->getPageClass()->namespace!=null)
+            {
+                $trail = '/';
+            }
+            return $target->getPageClass()->namespace.$trail.$target->getPageClass()->className;
+        }
+    }
+    
+    public function handles(RequestTarget $target)
+    {
+        return $target instanceof PageRequestTarget || $target instanceof ListenerRequestTarget;
+    }
+    
+    private function prepare($value)
+    {
+        return str_replace('/', "\\/", $value);
+    }
 }
 
 ?>

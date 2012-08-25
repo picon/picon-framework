@@ -30,19 +30,19 @@ namespace picon;
  */
 class ExceptionPageRequestTarget implements RequestTarget
 {
-	private $exception;
-
-	public function __construct(\Exception $exception)
-	{
-		$this->exception = $exception;
-	}
-
-	public function respond(Response $response)
-	{
-		$page = new \ErrorPage($this->exception);
-		$page->renderPage();
-		$response->flush();
-	}
+    private $exception;
+    
+    public function __construct(\Exception $exception)
+    {
+        $this->exception = $exception;
+    }
+    
+    public function respond(Response $response)
+    {
+        $page = new \ErrorPage($this->exception);
+        $page->renderPage();
+        $response->flush();
+    }
 }
 
 ?>

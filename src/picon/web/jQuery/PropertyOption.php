@@ -27,28 +27,28 @@ namespace picon;
  *
  * @author Martin Cassidy
  * @package web/jQuery
- * TODO add type analisis to detected numbers and remove the quote marks
+ * @todo add type analisis to detected numbers and remove the quote marks
  */
 class PropertyOption extends AbstractOption
 {
-	private $value;
-
-	public function __construct($name, $value)
-	{
-		parent::__construct($name, $value);
-		Args::isString($value, 'value');
-		$this->value = $value;
-	}
-
-	protected function getValue()
-	{
-		return $this->value;
-	}
-
-	public function render(AbstractJQueryBehaviour $behaviour)
-	{
-		return sprintf("%s : '%s'", $this->getName(), $this->getValue());
-	}
+    private $value;
+    
+    public function __construct($name, $value)
+    {
+        parent::__construct($name, $value);
+        Args::isString($value, 'value');
+        $this->value = $value;
+    }
+    
+    protected function getValue()
+    {
+        return $this->value;
+    }
+    
+    public function render(AbstractJQueryBehaviour $behaviour)
+    {
+        return sprintf("%s : '%s'", $this->getName(), $this->getValue());
+    }
 }
 
 ?>

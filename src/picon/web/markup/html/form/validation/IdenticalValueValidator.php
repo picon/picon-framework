@@ -25,30 +25,30 @@ namespace picon;
 /**
  * Validator that works on two form components and requires that they both
  * have the same value
- *
+ * 
  * @author Martin Cassidy
  */
 class IdenticalValueValidator extends AbstractValidator
 {
-	private $other;
-
-	public function __construct(FormComponent $other)
-	{
-		$this->other = $other;
-	}
-
-	public function validateValue(Validatable $validateable)
-	{
-		//TODO don't call validate() like this
-		$this->other->validate();
-		$oValidatable = new ValidatableFormComponentWrapper($this->other);
-		if($validateable->getValue()!=$oValidatable->getValue())
-		{
-			$response = new ValidationResponse($this->getKeyName(), $validateable->getValue());
-			$response->addValue('other', $this->other->getId());
-			return $response;
-		}
-	}
+    private $other;
+    
+    public function __construct(FormComponent $other)
+    {
+        $this->other = $other;
+    }
+    
+    public function validateValue(Validatable $validateable)
+    {
+        //@todo don't call validate() like this
+        $this->other->validate();
+        $oValidatable = new ValidatableFormComponentWrapper($this->other);
+        if($validateable->getValue()!=$oValidatable->getValue())
+        {
+            $response = new ValidationResponse($this->getKeyName(), $validateable->getValue());
+            $response->addValue('other', $this->other->getId());
+            return $response;
+        }
+    }
 }
 
 ?>

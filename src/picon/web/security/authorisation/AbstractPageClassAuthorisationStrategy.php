@@ -25,34 +25,34 @@ namespace picon;
 /**
  * An authorisation strategy for web pages. A page requires an authorised
  * use if it is a sub class of a given page
- *
+ * 
  * @author Martin Cassidy
  * @package web/security/authorisation
  */
 abstract class AbstractPageClassAuthorisationStrategy implements AuthorisationStrategy
 {
-	private $pageAuthIdentifier;
-	private $loginPageIdentifier;
-
-	public function __construct(Identifier $pageIdentifier, Identifier $loginPage)
-	{
-		Args::identifierOf($pageIdentifier, WebPage::getIdentifier(), 'pageIdentifier');
-		Args::identifierOf($loginPage, WebPage::getIdentifier(), 'loginPage');
-		$this->pageAuthIdentifier = $pageIdentifier;
-		$this->loginPageIdentifier = $loginPage;
-		PiconApplication::get()->getSecuritySettings()->setComponentNotAuthorisedListener(new DirectToPageComponentNotAuthorisedListener($loginPage));
-	}
-
-	public function isComponentInstantiationAuthorised(Component $component)
-	{
-		if($component instanceof WebPage && $component->getIdentifier()->of($this->pageAuthIdentifier))
-		{
-			return $this->isAuthorised();
-		}
-		return true;
-	}
-
-	protected abstract function isAuthorised();
+    private $pageAuthIdentifier;
+    private $loginPageIdentifier;
+    
+    public function __construct(Identifier $pageIdentifier, Identifier $loginPage)
+    {
+        Args::identifierOf($pageIdentifier, WebPage::getIdentifier(), 'pageIdentifier');
+        Args::identifierOf($loginPage, WebPage::getIdentifier(), 'loginPage');
+        $this->pageAuthIdentifier = $pageIdentifier;
+        $this->loginPageIdentifier = $loginPage;
+        PiconApplication::get()->getSecuritySettings()->setComponentNotAuthorisedListener(new DirectToPageComponentNotAuthorisedListener($loginPage));
+    }
+    
+    public function isComponentInstantiationAuthorised(Component $component)
+    {
+        if($component instanceof WebPage && $component->getIdentifier()->of($this->pageAuthIdentifier))
+        {
+            return $this->isAuthorised();
+        }
+        return true;
+    }
+    
+    protected abstract function isAuthorised();
 }
 
 ?>

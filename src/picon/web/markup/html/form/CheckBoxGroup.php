@@ -24,79 +24,79 @@ namespace picon;
 
 /**
  * A wrapping component for checks
- *
+ * 
  * @see Check
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 class CheckBoxGroup extends FormComponent
-{
-	protected function onInitialize()
-	{
-		parent::onInitialize();
-		$this->validateModel();
-	}
-
-	protected function validateModel()
-	{
-		$object = $this->getModelObject();
-		if($object!=null && !is_array($object))
-		{
-			throw new \IllegalStateException('Check box group must have an array model');
-		}
-	}
-
-	public function getChoiceGroup()
-	{
-		$choice = null;
-		$callback = function(&$component) use (&$choice)
-		{
-			$choice = $component;
-			return Component::VISITOR_STOP_TRAVERSAL;
-		};
-		$this->visitParents(Identifier::forName('picon\ChoiceGroup'), $callback);
-		return $choice;
-	}
-
-	public function getName()
-	{
-		$choice = $this->getChoiceGroup();
-		if($choice==null)
-		{
-			return parent::getName();
-		}
-		else
-		{
-			return str_replace('.', '_', $choice->getComponentPath());
-		}
-	}
-
-	protected function convertInput()
-	{
-		$checks = array();
-		$callback = function(&$component) use(&$checks)
-		{
-			array_push($checks, $component);
-			return Component::VISITOR_CONTINUE_TRAVERSAL;
-		};
-		$this->visitChildren(Check::getIdentifier(), $callback);
-		$values = array();
-
-		foreach($checks as $check)
-		{
-			if(in_array($check->getValue(), $this->getRawInputArray()))
-			{
-				array_push($values, $check->getModelObject());
-			}
-		}
-		$this->setConvertedInput($values);
-	}
-
-	public function isRequired()
-	{
-		$choice = $this->getChoiceGroup();
-		return $choice==null && parent::isRequired();
-	}
+{    
+    protected function onInitialize()
+    {
+        parent::onInitialize();
+        $this->validateModel();
+    }
+    
+    protected function validateModel()
+    {
+        $object = $this->getModelObject();
+        if($object!=null && !is_array($object))
+        {
+            throw new \IllegalStateException('Check box group must have an array model');
+        }
+    }
+    
+    public function getChoiceGroup()
+    {
+        $choice = null;
+        $callback = function(&$component) use (&$choice)
+        {
+             $choice = $component;
+             return Component::VISITOR_STOP_TRAVERSAL;
+        };
+        $this->visitParents(Identifier::forName('picon\ChoiceGroup'), $callback);
+        return $choice;
+    }
+    
+    public function getName()
+    {
+        $choice = $this->getChoiceGroup();
+        if($choice==null)
+        {
+            return parent::getName();
+        }
+        else
+        {
+            return str_replace('.', '_', $choice->getComponentPath());
+        }
+    }
+    
+    protected function convertInput()
+    { 
+        $checks = array();
+        $callback = function(&$component) use(&$checks)
+        {
+            array_push($checks, $component);
+            return Component::VISITOR_CONTINUE_TRAVERSAL;
+        };
+        $this->visitChildren(Check::getIdentifier(), $callback);
+        $values = array();
+        
+        foreach($checks as $check)
+        {
+            if(in_array($check->getValue(), $this->getRawInputArray()))
+            { 
+                array_push($values, $check->getModelObject());
+            }
+        }
+        $this->setConvertedInput($values);
+    }
+    
+    public function isRequired()
+    {
+        $choice = $this->getChoiceGroup();
+        return $choice==null && parent::isRequired();
+    }
 }
 
 ?>

@@ -31,32 +31,32 @@ namespace picon;
  */
 class CallbackOption extends AbstractCallableOption
 {
-	private $callback;
-
-	public function __construct($name, $callback)
-	{
-		parent::__construct($name);
-		Args::callBack($callback, 'callback');
-		$this->callback = new SerializableClosure($callback);
-	}
-
-	public function render(AbstractJQueryBehaviour $behaviour)
-	{
-		return sprintf("%s : '%s'", $this->getName(), $this->getUrl($behaviour));
-	}
-
-	/**
-	 * Despite acception the ajax request target, this option is for passing only
-	 * the url, thus the ajax request will be internally within a jQuery plugin
-	 * and will bypass the picon ajax javascript. This means the response is
-	 * not needed.
-	 * @param AjaxRequestTarget $target
-	 */
-	public function call(AjaxRequestTarget $target)
-	{
-		$callable = $this->callback;
-		$callable();
-	}
+    private $callback;
+    
+    public function __construct($name, $callback)
+    {
+        parent::__construct($name);
+        Args::callBack($callback, 'callback');
+        $this->callback = new SerializableClosure($callback);
+    }
+    
+    public function render(AbstractJQueryBehaviour $behaviour)
+    {
+        return sprintf("%s : '%s'", $this->getName(), $this->getUrl($behaviour));
+    }
+    
+    /**
+     * Despite acception the ajax request target, this option is for passing only 
+     * the url, thus the ajax request will be internally within a jQuery plugin
+     * and will bypass the picon ajax javascript. This means the response is
+     * not needed.
+     * @param AjaxRequestTarget $target
+     */
+    public function call(AjaxRequestTarget $target)
+    {
+        $callable = $this->callback;
+        $callable();
+    }
 }
 
 ?>

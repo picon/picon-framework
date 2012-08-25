@@ -30,18 +30,18 @@ namespace picon;
  */
 class ComponentInitializationListenerCollection extends ListenerCollection implements ComponentInitializationListener
 {
-	public function onInitialize(Component &$component)
-	{
-		$this->notify(function($listener) use (&$component)
-		{
-			$listener->onInitialize($component);
-		});
-	}
-
-	protected function validateListener($listener)
-	{
-		return $listener instanceof ComponentInitializationListener;
-	}
+    public function onInitialize(Component &$component)
+    {
+        $this->notify(function($listener) use (&$component)
+        {
+            $listener->onInitialize($component);
+        });
+    }
+    
+    protected function validateListener($listener)
+    {
+        return $listener instanceof ComponentInitializationListener;
+    }
 }
 
 ?>

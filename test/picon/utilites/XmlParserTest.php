@@ -24,51 +24,51 @@ namespace picon;
 require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 /**
  * Tests for the Xml Parser
- *
+ * 
  * @author Martin Cassidy
-*/
+ */
 class XmlParserTest extends AbstractPiconTest
 {
-	public function testValidXML()
-	{
-		$parser = new \picon\XMLParser();
-		$output = $parser->parse('resources/validxml.xml');
-
-		$this->assertTrue(count($output)==1);
-		$this->assertSame("validXml", $output->getName());
-
-		$this->assertEquals(1, count($output->getChildren()));
-
-		$children = $output->getChildren();
-
-		$this->assertSame("someElement", $children[0]->getName());
-		$this->assertSame("somedata", $children[0]->getCharacterData());
-
-		$attributes = $children[0]->getAttributes();
-		$this->assertTrue(count($attributes)==2);
-		$this->assertArrayHasKey("attribute1", $attributes);
-		$this->assertArrayHasKey("attribute1", $attributes);
-		$this->assertSame("value1", $attributes['attribute1']);
-		$this->assertSame("value2", $attributes['attribute2']);
-	}
-
-	/**
-	 * @expectedException XMLException
-	 */
-	public function testBadXml()
-	{
-		$parser = new \picon\XMLParser();
-		$parser->parse('resources/badxml.xml');
-	}
-
-	/**
-	 * @expectedException FileException
-	 */
-	public function testNoFile()
-	{
-		$parser = new \picon\XMLParser();
-		$parser->parse('doesnotexist.xml');
-	}
+    public function testValidXML()
+    {
+        $parser = new \picon\XMLParser();
+        $output = $parser->parse('resources/validxml.xml');
+        
+        $this->assertTrue(count($output)==1);
+        $this->assertSame("validXml", $output->getName());
+        
+        $this->assertEquals(1, count($output->getChildren()));
+        
+        $children = $output->getChildren();
+        
+        $this->assertSame("someElement", $children[0]->getName());
+        $this->assertSame("somedata", $children[0]->getCharacterData());
+        
+        $attributes = $children[0]->getAttributes();
+        $this->assertTrue(count($attributes)==2);
+        $this->assertArrayHasKey("attribute1", $attributes);
+        $this->assertArrayHasKey("attribute1", $attributes);
+        $this->assertSame("value1", $attributes['attribute1']);
+        $this->assertSame("value2", $attributes['attribute2']);
+    }
+    
+   /**
+    * @expectedException XMLException
+    */
+    public function testBadXml()
+    {
+        $parser = new \picon\XMLParser();
+        $parser->parse('resources/badxml.xml');
+    }
+    
+   /**
+    * @expectedException FileException
+    */
+    public function testNoFile()
+    {
+        $parser = new \picon\XMLParser();
+        $parser->parse('doesnotexist.xml');
+    }
 }
 
 ?>

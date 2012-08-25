@@ -29,7 +29,7 @@ namespace picon;
  */
 interface ApplicationInitializerContextLoadListener
 {
-	function onContextLoaded(ApplicationContext $context);
+    function onContextLoaded(ApplicationContext $context);
 }
 
 ?>

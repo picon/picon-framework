@@ -24,18 +24,18 @@ namespace picon;
 
 /**
  * A comment element of an xml document
- *
+ * 
  * @author Martin Cassidy
  * @package domain/xml
  */
 class Comment extends ComonDomainBase implements XmlElement
 {
-	private $comment;
-
-	public function __construct($comment)
-	{
-		$this->comment = $comment;
-	}
+    private $comment;
+    
+    public function __construct($comment)
+    {
+        $this->comment = $comment;
+    }
 }
 
 ?>

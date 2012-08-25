@@ -30,18 +30,18 @@ namespace picon;
  */
 class ApplicationInitializerContextLoadListenerCollection extends ListenerCollection implements ApplicationInitializerContextLoadListener
 {
-	protected function validateListener($listener)
-	{
-		return $listener instanceof ApplicationInitializerContextLoadListener;
-	}
-
-	public function onContextLoaded(ApplicationContext $context)
-	{
-		$this->notify(function($listener) use ($context)
-		{
-			$listener->onContextLoaded($context);
-		});
-	}
+    protected function validateListener($listener)
+    {
+        return $listener instanceof ApplicationInitializerContextLoadListener;
+    }
+    
+    public function onContextLoaded(ApplicationContext $context)
+    {
+        $this->notify(function($listener) use ($context)
+        {
+            $listener->onContextLoaded($context);
+        });
+    }
 }
 
 ?>

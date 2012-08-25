@@ -23,12 +23,12 @@
 
 class SimpleSerialize
 {
-	private $text = "Some text";
-
-	public function getText()
-	{
-		return $this->text;
-	}
+    private $text = "Some text";
+    
+    public function getText()
+    {
+        return $this->text;
+    }
 }
 
 ?>

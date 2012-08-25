@@ -30,38 +30,38 @@ namespace picon;
  */
 class HeaderResolver implements ComponentResolver
 {
-	const HEADER_ID = 'picon_header';
-	public function resolve(MarkupContainer $container, ComponentTag &$tag)
-	{
-		if($tag instanceof PiconTag && $tag->getName()=='head')
-		{
-			return new HeaderContainer(self::HEADER_ID);
-		}
-		else if($tag instanceof PiconTag && $tag->isHeaderTag())
-		{
-			if($container instanceof WebPage)
-			{
-				//TODO this block is UNTESTED
-				$header = new HeaderContainer('header'.$container->getPage()->getAutoIndex());
-
-				$inner = new TransparentMarkupContainer('picon_header');
-				$inner->setRenderBodyOnly(true);
-				$header->add($inner);
-				return $header;
-
-			}
-			elseif($container instanceof HeaderContainer)
-			{
-				$header = new TransparentMarkupContainer('picon_header');
-				$header->setRenderBodyOnly(true);
-				return $header;
-			}
-
-			throw new \RuntimeException('<picon:head> tag was in an invalid location. It must be outside of <picon:extend> and <picon:panel>');
-		}
-
-		return null;
-	}
+    const HEADER_ID = 'picon_header';
+    public function resolve(MarkupContainer $container, ComponentTag &$tag)
+    {
+        if($tag instanceof PiconTag && $tag->getName()=='head')
+        {
+            return new HeaderContainer(self::HEADER_ID);
+        }
+        else if($tag instanceof PiconTag && $tag->isHeaderTag())
+        {
+            if($container instanceof WebPage)
+            {
+                //@todo this block is UNTESTED 
+                $header = new HeaderContainer('header'.$container->getPage()->getAutoIndex());
+                
+                $inner = new TransparentMarkupContainer('picon_header');
+                $inner->setRenderBodyOnly(true);
+                $header->add($inner);
+                return $header;
+                
+            }
+            elseif($container instanceof HeaderContainer)
+            {
+                $header = new TransparentMarkupContainer('picon_header');
+                $header->setRenderBodyOnly(true);
+                return $header;
+            }
+            
+            throw new \RuntimeException('<picon:head> tag was in an invalid location. It must be outside of <picon:extend> and <picon:panel>');
+        }
+        
+        return null;
+    }
 }
 
 ?>

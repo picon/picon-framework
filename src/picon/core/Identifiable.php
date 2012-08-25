@@ -28,7 +28,7 @@ namespace picon;
  */
 interface Identifiable
 {
-	static function getIdentifier();
+    static function getIdentifier();
 }
 
 ?>

@@ -30,20 +30,20 @@ namespace picon;
  */
 class ArrayOption extends AbstractOption
 {
-	public function __construct($name)
-	{
-		throw new \NotImplementedException();
-	}
-
-	public function getName()
-	{
-		throw new \NotImplementedException();
-	}
-
-	public function render(AbstractJQueryBehaviour $behaviour)
-	{
-		throw new \NotImplementedException();
-	}
+    public function __construct($name)
+    {
+        throw new \NotImplementedException();
+    }
+    
+    public function getName()
+    {
+        throw new \NotImplementedException();
+    }
+    
+    public function render(AbstractJQueryBehaviour $behaviour)
+    {
+        throw new \NotImplementedException();
+    }
 }
 
 ?>

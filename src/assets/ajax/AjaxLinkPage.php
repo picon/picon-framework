@@ -18,53 +18,46 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- *
- * $HeadURL$
- * $Revision$
- * $Author$
- * $Date$
- * $Id$
- *
  * */
 
 /**
  * Description of AjaxLinkPage
- *
+ * 
  * @author Martin Cassidy
  */
 class AjaxLinkPage extends AbstractPage
 {
-	private $text = 'Default text';
-
-	public function __construct()
-	{
-		parent::__construct();
-		$label = new picon\Label('text', new picon\PropertyModel($this, 'text'));
-		$label->setOutputMarkupId(true);
-		$this->add($label);
-
-		$self = $this;
-		$this->add(new \picon\AjaxLink('alterLink', function(picon\AjaxRequestTarget $target) use ($self, $label)
-		{
-			$self->text = 'Update in callback text';
-			$target->add($label);
-		}));
-	}
-
-	public function getInvolvedFiles()
-	{
-		return array('assets/ajax/AjaxLinkPage.php', 'assets/ajax/AjaxLinkPage.html');
-	}
-
-	public function __get($name)
-	{
-		return $this->$name;
-	}
-
-	public function __set($name, $value)
-	{
-		$this->$name = $value;
-	}
+    private $text = 'Default text';
+    
+    public function __construct()
+    {
+        parent::__construct();
+        $label = new picon\Label('text', new picon\PropertyModel($this, 'text'));
+        $label->setOutputMarkupId(true);
+        $this->add($label);
+        
+        $self = $this;
+        $this->add(new \picon\AjaxLink('alterLink', function(picon\AjaxRequestTarget $target) use ($self, $label)
+        {
+            $self->text = 'Update in callback text';
+            $target->add($label);
+        }));
+    }
+    
+    public function getInvolvedFiles()
+    {
+        return array('assets/ajax/AjaxLinkPage.php', 'assets/ajax/AjaxLinkPage.html');
+    }
+    
+    public function __get($name)
+    {
+        return $this->$name;
+    }
+    
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
+    }
 }
 
 ?>

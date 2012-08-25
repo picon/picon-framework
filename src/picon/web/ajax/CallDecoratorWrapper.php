@@ -29,7 +29,7 @@ namespace picon;
  */
 interface CallDecoratorWrapper
 {
-	function setAjaxCallDecorator(AjaxCallDecorator &$decorator);
+    function setAjaxCallDecorator(AjaxCallDecorator &$decorator);
 }
 
 ?>

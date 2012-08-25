@@ -18,43 +18,36 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- *
- * $HeadURL$
- * $Revision$
- * $Author$
- * $Date$
- * $Id$
- *
  * */
 
 /**
  * Description of TabPanelPage
- *
+ * 
  * @author Martin Cassidy
  */
 class TabPanelPage extends AbstractPage
 {
-	public function __construct()
-	{
-		parent::__construct();
-		$collection = new picon\TabCollection();
-
-		$collection->addTab('One', function($id)
-		{
-			return new TabOnePanel($id);
-		});
-		$collection->addTab('Two', function($id)
-		{
-			return new TabTwoPanel($id);
-		});
-
-		$this->add(new picon\TabPanel('tabs', $collection));
-	}
-
-	public function getInvolvedFiles()
-	{
-		return array('assets/general/TabPanelPage.php', 'assets/general/TabPanelPage.html', 'assets/general/tabs/TabOnePanel.php', 'assets/general/tabs/TabOnePanel.html', 'assets/general/tabs/TabTwoPanel.php', 'assets/general/tabs/TabTwoPanel.html');
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        $collection = new picon\TabCollection();
+        
+        $collection->addTab('One', function($id)
+        {
+            return new TabOnePanel($id);
+        });
+        $collection->addTab('Two', function($id)
+        {
+            return new TabTwoPanel($id);
+        });
+        
+        $this->add(new picon\TabPanel('tabs', $collection));
+    }
+    
+    public function getInvolvedFiles()
+    {
+        return array('assets/general/TabPanelPage.php', 'assets/general/TabPanelPage.html', 'assets/general/tabs/TabOnePanel.php', 'assets/general/tabs/TabOnePanel.html', 'assets/general/tabs/TabTwoPanel.php', 'assets/general/tabs/TabTwoPanel.html');
+    }
 }
 
 ?>

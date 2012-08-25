@@ -27,38 +27,38 @@ require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 
 /**
  * Tests the picon implementation of enums
- *
+ * 
  * @author Martin Cassidy
-*/
+ */
 class EnumTest extends AbstractPiconTest
 {
-	public function testEnumValues()
-	{
-		$one = new \TestEnum(\TestEnum::ONE);
-		$two = new \TestEnum(\TestEnum::TWO);
-		$three = new \TestEnum(\TestEnum::THREE);
-
-		$this->assertSame(\TestEnum::ONE, $one->__toString());
-
-		$this->assertSame(array('ONE' => \TestEnum::ONE, 'TWO' => \TestEnum::TWO, 'THREE' => \TestEnum::THREE), \TestEnum::values());
-
-		$this->assertEquals($two, \TestEnum::valueOf('two'));
-	}
-
-	public function testDefaultValues()
-	{
-		$one = new \DefaultTestEnum(\TestEnum::ONE);
-		$two = new \DefaultTestEnum(\TestEnum::TWO);
-		$three = new \DefaultTestEnum(\TestEnum::THREE);
-
-		$this->assertSame(\DefaultTestEnum::ONE, $one->__toString());
-
-		$this->assertSame(array('ONE' => \DefaultTestEnum::ONE, 'TWO' => \DefaultTestEnum::TWO, 'THREE' => \DefaultTestEnum::THREE), \DefaultTestEnum::values());
-
-		$this->assertEquals($two, \DefaultTestEnum::valueOf('two'));
-
-		$this->assertEquals($three, new \DefaultTestEnum);
-	}
+    public function testEnumValues()
+    {
+        $one = new \TestEnum(\TestEnum::ONE);
+        $two = new \TestEnum(\TestEnum::TWO);
+        $three = new \TestEnum(\TestEnum::THREE);
+        
+        $this->assertSame(\TestEnum::ONE, $one->__toString());
+        
+        $this->assertSame(array('ONE' => \TestEnum::ONE, 'TWO' => \TestEnum::TWO, 'THREE' => \TestEnum::THREE), \TestEnum::values());
+        
+        $this->assertEquals($two, \TestEnum::valueOf('two'));
+    }
+    
+    public function testDefaultValues()
+    {
+        $one = new \DefaultTestEnum(\TestEnum::ONE);
+        $two = new \DefaultTestEnum(\TestEnum::TWO);
+        $three = new \DefaultTestEnum(\TestEnum::THREE);
+        
+        $this->assertSame(\DefaultTestEnum::ONE, $one->__toString());
+        
+        $this->assertSame(array('ONE' => \DefaultTestEnum::ONE, 'TWO' => \DefaultTestEnum::TWO, 'THREE' => \DefaultTestEnum::THREE), \DefaultTestEnum::values());
+        
+        $this->assertEquals($two, \DefaultTestEnum::valueOf('two'));
+        
+        $this->assertEquals($three, new \DefaultTestEnum);
+    }
 }
 
 ?>

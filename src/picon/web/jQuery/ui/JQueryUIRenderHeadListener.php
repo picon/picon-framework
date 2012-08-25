@@ -29,12 +29,12 @@ namespace picon;
  * @package web/jQuery/ui
  */
 class JQueryUIRenderHeadListener implements ComponentRenderHeadListener
-{
-	public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
-	{
-		$response->renderJavaScriptResourceReference(new ResourceReference('jquery-ui.js', AbstractJQueryUIBehaviour::getIdentifier()));
-		$response->renderCSSResourceReference(new ResourceReference('jquery-ui.css', AbstractJQueryUIBehaviour::getIdentifier()));
-	}
+{   
+    public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
+    {
+        $response->renderJavaScriptResourceReference(new ResourceReference('jquery-ui.js', AbstractJQueryUIBehaviour::getIdentifier()));
+        $response->renderCSSResourceReference(new ResourceReference('jquery-ui.css', AbstractJQueryUIBehaviour::getIdentifier()));
+    }
 }
 
 ?>

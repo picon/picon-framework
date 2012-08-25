@@ -24,17 +24,17 @@ namespace picon;
 
 /**
  * A text field which is manditory by default
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 class RequiredTextField extends TextField
 {
-	public function __construct($id, Model $model = null, $type = null)
-	{
-		parent::__construct($id, $model, $type);
-		$this->setRequired(true);
-	}
+    public function __construct($id, Model $model = null, $type = null)
+    {
+        parent::__construct($id, $model, $type);
+        $this->setRequired(true);
+    }
 }
 
 ?>

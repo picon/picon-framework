@@ -24,32 +24,32 @@ namespace picon;
 
 /**
  * A model which runs from a property of an object
- * TODO this should use a property resolver helper to extract properties from object
- * TODO this should be able to support a model as the target
- * TODO this should be able to handle property name recursion e.g. person.name.first
+ * @todo this should use a property resolver helper to extract properties from object
+ * @todo this should be able to support a model as the target
+ * @todo this should be able to handle property name recursion e.g. person.name.first
  * @author Martin Cassidy
  * @package web/model
  */
 class PropertyModel implements Model
 {
-	private $target;
-	private $property;
-
-	public function __construct(&$target, $property)
-	{
-		$this->target = $target;
-		$this->property = $property;
-	}
-
-	public function getModelObject()
-	{
-		return PropertyResolver::get($this->target, $this->property);
-	}
-
-	public function setModelObject(&$object)
-	{
-		PropertyResolver::set($this->target, $this->property, $object);
-	}
+    private $target;
+    private $property;
+    
+    public function __construct(&$target, $property)
+    {
+        $this->target = $target;
+        $this->property = $property;
+    }
+    
+    public function getModelObject()
+    {
+        return PropertyResolver::get($this->target, $this->property);
+    }
+    
+    public function setModelObject(&$object)
+    {
+        PropertyResolver::set($this->target, $this->property, $object);
+    }
 }
 
 ?>

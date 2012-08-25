@@ -27,7 +27,7 @@
  */
 class UndefinedResourceException extends RuntimeException
 {
-
+    
 }
 
 ?>

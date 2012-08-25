@@ -25,83 +25,83 @@ namespace picon;
 /**
  * Literally a repeating view of repeating views. Allows for work with both
  * rows and coloumns, such as a table
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/repeater
  */
 class GridView extends RepeatingView
 {
-	private $columns;
-	private $rows = array();
-	private $columnId;
-	private $callback;
-
-	public function __construct($id, $columnId, $columns, $callback = null, $model = null)
-	{
-		parent::__construct($id, $model);
-
-		if($callback!=null)
-		{
-			Args::callBackArgs($callback, 1, 'callback');
-		}
-		$this->columns = $columns;
-		$this->columnId = $columnId;
-		$this->callback = $callback;
-	}
-
-	public function getColumns()
-	{
-		return $this->columns;
-	}
-
-	protected function populate()
-	{
-		$this->removeAll();
-
-		foreach($this->getRecords() as $index => $object)
-		{
-			$this->populateRow(new BasicModel($object), $index);
-		}
-	}
-
-	protected function populateRow(Model $model, $index)
-	{
-		$row = new ListItem($this->getNextChildId(), $model, $index);
-		array_push($this->rows, $row);
-		$this->add($row);
-		$cells = new RepeatingView($this->columnId);
-		$row->add($cells);
-		for($i = 0; $i < $this->getColumns(); $i++)
-		{
-			$item = new GridItem($cells->getNextChildId(), $model, $index, $i);
-			$cells->add($item);
-			$this->populateItem($item);
-		}
-	}
-
-	protected function removeAll()
-	{
-		foreach($this->rows as $row)
-		{
-			$this->remove($row);
-		}
-		$this->rows = array();
-	}
-
-	protected function populateItem(GridItem $item)
-	{
-		if($this->callback==null)
-		{
-			throw new \IllegalStateException('When not passing a callback to GridView it is expected that the populateItem() method will be overriden');
-		}
-		$callablel = $this->callback;
-		$callablel($item);
-	}
-
-	protected function getRecords()
-	{
-		return $this->getModelObject();
-	}
+    private $columns;
+    private $rows = array();
+    private $columnId;
+    private $callback;
+    
+    public function __construct($id, $columnId, $columns, $callback = null, $model = null)
+    {
+        parent::__construct($id, $model);
+        
+        if($callback!=null)
+        {
+            Args::callBackArgs($callback, 1, 'callback');
+        }
+        $this->columns = $columns;
+        $this->columnId = $columnId;
+        $this->callback = $callback;
+    }
+    
+    public function getColumns()
+    {
+        return $this->columns;
+    }
+    
+    protected function populate()
+    {
+        $this->removeAll();
+        
+        foreach($this->getRecords() as $index => $object)
+        {
+            $this->populateRow(new BasicModel($object), $index);
+        }
+    }
+    
+    protected function populateRow(Model $model, $index)
+    {
+        $row = new ListItem($this->getNextChildId(), $model, $index);
+        array_push($this->rows, $row);
+        $this->add($row);
+        $cells = new RepeatingView($this->columnId);
+        $row->add($cells);
+        for($i = 0; $i < $this->getColumns(); $i++)
+        {
+            $item = new GridItem($cells->getNextChildId(), $model, $index, $i);
+            $cells->add($item);
+            $this->populateItem($item);
+        }
+    }
+    
+    protected function removeAll()
+    {
+        foreach($this->rows as $row)
+        {
+            $this->remove($row);
+        }
+        $this->rows = array();
+    }
+    
+    protected function populateItem(GridItem $item)
+    {
+        if($this->callback==null)
+        {
+            throw new \IllegalStateException('When not passing a callback to GridView it is expected that the populateItem() method will be overriden');
+        }
+        $callablel = $this->callback;
+        $callablel($item);
+    }
+    
+    protected function getRecords()
+    {
+        return $this->getModelObject();
+    }
 }
 
 ?>

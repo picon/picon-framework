@@ -30,11 +30,11 @@ namespace picon;
  */
 interface AjaxCallDecorator
 {
-	function decorateScript($script);
-
-	function decorateSuccessScript($script);
-
-	function decorateFailScript($script);
+    function decorateScript($script);
+    
+    function decorateSuccessScript($script);
+    
+    function decorateFailScript($script);
 }
 
 ?>

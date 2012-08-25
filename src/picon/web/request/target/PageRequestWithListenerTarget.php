@@ -30,61 +30,61 @@ namespace picon;
  */
 class PageRequestWithListenerTarget extends PageRequestTarget
 {
-	private $componentPath;
-	private $behaviour;
-
-	/**
-	 *
-	 * @param string $page The name of the page
-	 * @param type $componentPath The path to the listener component
-	 */
-	public function __construct(Identifier $pageClass, $componentPath, $behaviour = null)
-	{
-		parent::__construct($pageClass);
-		$this->componentPath = $componentPath;
-		$this->behaviour = $behaviour;
-	}
-
-	public function respond(Response $response)
-	{
-		$fullClassName = $this->getPageClass()->getFullyQualifiedName();
-		$page = new $fullClassName();
-		$page->beforePageRender();
-
-		$listener = null;
-
-		if($this->behaviour==null)
-		{
-			$listener = $page->get($this->componentPath);
-		}
-		else
-		{
-			$component = $page->get($this->componentPath);
-			if($component!=null && $component instanceof Component)
-			{
-				$listener = $component->getBehaviourById($this->behaviour);
-			}
-		}
-
-		if($listener==null)
-		{
-			throw new \RuntimeException(sprintf("Listener component %s was not found", $this->componentPath));
-		}
-
-		$listener->onEvent();
-		$page->renderPage();
-		$response->flush();
-	}
-
-	public function getComponentPath()
-	{
-		return $this->componentPath;
-	}
-
-	public function getBehaviour()
-	{
-		return $this->behaviour;
-	}
+    private $componentPath;
+    private $behaviour;
+    
+    /**
+     *
+     * @param string $page The name of the page 
+     * @param type $componentPath The path to the listener component
+     */
+    public function __construct(Identifier $pageClass, $componentPath, $behaviour = null)
+    {
+        parent::__construct($pageClass);
+        $this->componentPath = $componentPath;
+        $this->behaviour = $behaviour;
+    }
+    
+    public function respond(Response $response)
+    {
+        $fullClassName = $this->getPageClass()->getFullyQualifiedName();
+        $page = new $fullClassName();
+        $page->beforePageRender();
+        
+        $listener = null;
+        
+        if($this->behaviour==null)
+        {
+            $listener = $page->get($this->componentPath);
+        }
+        else
+        {
+            $component = $page->get($this->componentPath);
+            if($component!=null && $component instanceof Component)
+            {
+                $listener = $component->getBehaviourById($this->behaviour);
+            }
+        }
+        
+        if($listener==null)
+        {
+            throw new \RuntimeException(sprintf("Listener component %s was not found", $this->componentPath));
+        }
+        
+        $listener->onEvent();
+        $page->renderPage();
+        $response->flush();
+    }
+    
+    public function getComponentPath()
+    {
+        return $this->componentPath;
+    }
+    
+    public function getBehaviour()
+    {
+        return $this->behaviour;
+    }
 }
 
 ?>

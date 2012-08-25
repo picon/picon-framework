@@ -23,13 +23,13 @@
 /**
  * Indicates that a property needs to have a resource from the application
  * context injected into it
- *
+ * 
  * @author Martin Cassidy
  * @package annotations
  */
-class Resource extends Transient
+class Resource extends Transient 
 {
-	public $name = "";
+    public $name = "";
 }
 
 ?>

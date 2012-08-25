@@ -23,7 +23,7 @@
 namespace picon;
 
 /**
- * A serialization helper that extends the standard PHP serialization
+ * A serialization helper that extends the standard PHP serialization 
  * functionality by permiting serialisazation of closures and providing
  * support for transient properties.
  *
@@ -32,190 +32,190 @@ namespace picon;
  */
 class PiconSerializer
 {
-	private static $prepared = array();
-	private static $restore = array();
-
-	private function __construct()
-	{
-		//Singleton
-	}
-
-	/**
-	 * serialize an object
-	 * @param mixed $object
-	 * @return string
-	 */
-	public static function serialize($object)
-	{
-		if(!is_object($object))
-		{
-			return serialize($object);
-		}
-		self::$prepared = array();
-		self::$restore = array();
-		self::prepareForSerize(new \ReflectionAnnotatedClass($object), $object);
-
-		$serialized = serialize($object);
-		self::restore();
-
-		self::$prepared = array();
-		self::$restore = array();
-		return $serialized;
-	}
-
-	/**
-	 * Unserialize an object
-	 * @param string $string
-	 * @return mixed
-	 */
-	public static function unserialize($string)
-	{
-		$unserialzed = unserialize($string);
-
-		if($unserialzed instanceof InjectOnWakeup)
-		{
-			Injector::get()->inject($unserialzed);
-		}
-
-		return $unserialzed;
-	}
-
-	private static function prepareForSerize(\ReflectionAnnotatedClass $reflection, $object, $parent = false)
-	{
-		$hash = spl_object_hash($object);
-		if(in_array($hash, self::$prepared) && $parent==false)
-		{
-			return;
-		}
-		array_push(self::$prepared, $hash);
-		$globalAltered = false;
-		$defaults = null;
-
-		foreach($reflection->getProperties() as $property)
-		{
-			$altered = false;
-			$property->setAccessible(true);
-			$value = $property->getValue($object);
-			if(self::isTransient($property))
-			{
-				$defaults = $defaults==null?$reflection->getDefaultProperties():$defaults;
-				$name = $property->getName();
-				$property->setValue($object, array_key_exists($name, $defaults)?$defaults[$name]:null);
-				$altered = true;
-			}
-			else if(is_object($value) && $value instanceof \Closure)
-			{
-				$property->setValue($object, new SerializableClosure($value));
-				$altered = true;
-			}
-			else if(is_object($value) && !($value instanceof SerializableClosure) && spl_object_hash($value)!=$hash)
-			{
-				$valueReflection = new \ReflectionAnnotatedClass($value);
-				$altered = self::prepareForSerize($valueReflection, $value);
-			}
-			else if(is_array($value))
-			{
-				$newValue = self::prepareArrayForSerialize($value);
-
-				if(is_array($newValue))
-				{
-					$property->setValue($object, $newValue);
-					$altered = true;
-				}
-			}
-
-			if($altered)
-			{
-				self::addRestore($property, $object, $value);
-				$globalAltered = true;
-			}
-		}
-
-		$parent = $reflection->getParentClass();
-
-		if($parent!=null)
-		{
-			self::prepareForSerize($parent, $object, true);
-		}
-
-		if(!$parent)
-		{
-			if($object instanceof Detachable)
-			{
-				$object->detach();
-			}
-		}
-		return $globalAltered;
-	}
-
-	/**
-	 * TODO This should handle array recursion
-	 * @param array $entry
-	 * @return SerializableClosure
-	 */
-	private static function prepareArrayForSerialize($entry)
-	{
-		$newEntry = array();
-		$altered = false;
-
-		foreach($entry as $key => $value)
-		{
-			if(is_array($value))
-			{
-				$newValue = self::prepareArrayForSerialize($value);
-				$newEntry[$key] = is_array($newValue) ? $newValue : $value;
-				$altered = $altered?true:is_array($newValue);
-			}
-			else if(is_object($value) && $value instanceof \Closure)
-			{
-				$newEntry[$key] = new SerializableClosure($value);
-				$altered = true;
-			}
-			else if(is_object($value) && !($value instanceof SerializableClosure) && !in_array(spl_object_hash($value), self::$prepared))
-			{
-				$ia = self::prepareForSerize(new \ReflectionAnnotatedClass($value), $value);
-				$altered = $altered?true:$ia;
-				$newEntry[$key] = $value;
-			}
-			else
-			{
-				$newEntry[$key] = $value;
-			}
-		}
-
-		if($altered)
-		{
-			return $newEntry;
-		}
-		return false;
-	}
-
-	private static function addRestore(\ReflectionAnnotatedProperty $property, $object, $value)
-	{
-		$restore = new \stdClass();
-		$restore->property = $property;
-		$restore->object = $object;
-		$restore->value = $value;
-		self::$restore[] = $restore;
-	}
-
-	private static function restore()
-	{
-		foreach(self::$restore as $restore)
-		{
-			$restore->property->setValue($restore->object, $restore->value);
-		}
-	}
-
-	private static function isTransient(\ReflectionAnnotatedProperty $property)
-	{
-		$annotations = $property->getAllAnnotations();
-
-		foreach($annotations as $annotation)
-		{
-			return is_subclass_of($annotation, "Transient") || get_class($annotation)=="Transient";
-		}
-	}
+    private static $prepared = array();
+    private static $restore = array();
+    
+    private function __construct()
+    {
+        //Singleton
+    }
+    
+    /**
+     * serialize an object
+     * @param mixed $object
+     * @return string 
+     */
+    public static function serialize($object)
+    {
+        if(!is_object($object))
+        {
+            return serialize($object);
+        }
+        self::$prepared = array();
+        self::$restore = array();
+        self::prepareForSerize(new \ReflectionAnnotatedClass($object), $object);
+        
+        $serialized = serialize($object);
+        self::restore();
+        
+        self::$prepared = array();
+        self::$restore = array();
+        return $serialized;
+    }
+    
+    /**
+     * Unserialize an object
+     * @param string $string
+     * @return mixed 
+     */
+    public static function unserialize($string)
+    {
+        $unserialzed = unserialize($string);
+        
+        if($unserialzed instanceof InjectOnWakeup)
+        {
+            Injector::get()->inject($unserialzed);
+        }
+        
+        return $unserialzed;
+    }
+    
+    private static function prepareForSerize(\ReflectionAnnotatedClass $reflection, $object, $parent = false)
+    {
+        $hash = spl_object_hash($object);
+        if(in_array($hash, self::$prepared) && $parent==false)
+        {
+            return;
+        }
+        array_push(self::$prepared, $hash);
+        $globalAltered = false;
+        $defaults = null;
+        
+        foreach($reflection->getProperties() as $property)
+        {
+            $altered = false;
+            $property->setAccessible(true);
+            $value = $property->getValue($object);
+            if(self::isTransient($property))
+            {
+                $defaults = $defaults==null?$reflection->getDefaultProperties():$defaults;
+                $name = $property->getName();
+                $property->setValue($object, array_key_exists($name, $defaults)?$defaults[$name]:null);
+                $altered = true;
+            }
+            else if(is_object($value) && $value instanceof \Closure)
+            {
+                $property->setValue($object, new SerializableClosure($value));
+                $altered = true;
+            }
+            else if(is_object($value) && !($value instanceof SerializableClosure) && spl_object_hash($value)!=$hash)
+            {
+                $valueReflection = new \ReflectionAnnotatedClass($value);
+                $altered = self::prepareForSerize($valueReflection, $value);
+            }
+            else if(is_array($value))
+            {
+                $newValue = self::prepareArrayForSerialize($value);
+                
+                if(is_array($newValue))
+                {
+                    $property->setValue($object, $newValue);
+                    $altered = true;
+                }
+            }
+            
+            if($altered)
+            {
+                self::addRestore($property, $object, $value);
+                $globalAltered = true;
+            }
+        }
+        
+        $parent = $reflection->getParentClass();
+        
+        if($parent!=null)
+        {
+            self::prepareForSerize($parent, $object, true);
+        }
+        
+        if(!$parent)
+        {
+            if($object instanceof Detachable)
+            {
+                $object->detach();
+            }
+        }
+        return $globalAltered;
+    }
+    
+    /**
+     * @todo This should handle array recursion
+     * @param array $entry
+     * @return SerializableClosure 
+     */
+    private static function prepareArrayForSerialize($entry)
+    {
+        $newEntry = array();
+        $altered = false;
+        
+        foreach($entry as $key => $value)
+        {
+            if(is_array($value))
+            {
+                $newValue = self::prepareArrayForSerialize($value);
+                $newEntry[$key] = is_array($newValue) ? $newValue : $value;
+                $altered = $altered?true:is_array($newValue);
+            }
+            else if(is_object($value) && $value instanceof \Closure)
+            {
+                $newEntry[$key] = new SerializableClosure($value);
+                $altered = true;
+            }
+            else if(is_object($value) && !($value instanceof SerializableClosure) && !in_array(spl_object_hash($value), self::$prepared))
+            {
+                $ia = self::prepareForSerize(new \ReflectionAnnotatedClass($value), $value);
+                $altered = $altered?true:$ia;
+                $newEntry[$key] = $value;
+            }
+            else
+            {
+                $newEntry[$key] = $value;
+            }
+        }
+        
+        if($altered)
+        {
+            return $newEntry;
+        }
+        return false;
+    }
+    
+    private static function addRestore(\ReflectionAnnotatedProperty $property, $object, $value)
+    {
+        $restore = new \stdClass();
+        $restore->property = $property;
+        $restore->object = $object;
+        $restore->value = $value;
+        self::$restore[] = $restore;
+    }
+    
+    private static function restore()
+    {
+        foreach(self::$restore as $restore)
+        {
+            $restore->property->setValue($restore->object, $restore->value);
+        }
+    }
+    
+    private static function isTransient(\ReflectionAnnotatedProperty $property)
+    {
+        $annotations = $property->getAllAnnotations();
+        
+        foreach($annotations as $annotation)
+        {
+            return is_subclass_of($annotation, "Transient") || get_class($annotation)=="Transient";
+        }
+    }
 }
 
 ?>

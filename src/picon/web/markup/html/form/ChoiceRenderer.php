@@ -25,53 +25,53 @@ namespace picon;
 /**
  * For use with abstract choice, allows for any object to be used in the choice
  * array but enables the output value to be customized
- * TODO need to add some extra validation in here
+ * @todo need to add some extra validation in here
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 class ChoiceRenderer
 {
-	private $valueCallable;
-	private $displayCallable;
-
-	/**
-	 *
-	 * @param closure $valueCallable
-	 * @param closure $displayCallable
-	 */
-	public function __construct($valueCallable = null, $displayCallable = null)
-	{
-		if($valueCallable!=null)
-		{
-			Args::callBackArgs($valueCallable, 2, 'valueCallable');
-		}
-		if($displayCallable!=null)
-		{
-			Args::callBackArgs($displayCallable, 2, 'displayCallable');
-		}
-		$this->displayCallable = $displayCallable;
-		$this->valueCallable = $valueCallable;
-	}
-
-	public function getValue($choice, $index)
-	{
-		if($this->valueCallable==null)
-		{
-			return $choice;
-		}
-		$callable = $this->valueCallable;
-		return $callable($choice, $index);
-	}
-
-	public function getDisplay($choice, $index)
-	{
-		if($this->displayCallable==null)
-		{
-			return $choice;
-		}
-		$callable = $this->displayCallable;
-		return $callable($choice, $index);
-	}
+    private $valueCallable;
+    private $displayCallable;
+    
+    /**
+     *
+     * @param closure $valueCallable
+     * @param closure $displayCallable 
+     */
+    public function __construct($valueCallable = null, $displayCallable = null)
+    {
+        if($valueCallable!=null)
+        {
+            Args::callBackArgs($valueCallable, 2, 'valueCallable');
+        }
+        if($displayCallable!=null)
+        {
+            Args::callBackArgs($displayCallable, 2, 'displayCallable');
+        }
+        $this->displayCallable = $displayCallable;
+        $this->valueCallable = $valueCallable;
+    }
+    
+    public function getValue($choice, $index)
+    {
+        if($this->valueCallable==null)
+        {
+            return $choice;
+        }
+        $callable = $this->valueCallable;
+        return $callable($choice, $index);
+    }
+    
+    public function getDisplay($choice, $index)
+    {
+        if($this->displayCallable==null)
+        {
+            return $choice;
+        }
+        $callable = $this->displayCallable;
+        return $callable($choice, $index);
+    }
 }
 
 ?>

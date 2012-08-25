@@ -25,41 +25,41 @@ namespace picon;
 /**
  * Automatic loader for context resources
  * Loads resources bassed on pre defined annotations (Service, Repository)
- *
+ * 
  * @author Martin Cassidy
  * @package context
  */
 class AutoContextLoader extends AbstractContextLoader
 {
-	public function loadResourceMap($classes)
-	{
-		$resources = array();
-		foreach($classes as $class)
-		{
-			$reflection = new \ReflectionAnnotatedClass($class);
-			$name = "";
-			if($reflection->hasAnnotation("Service"))
-			{
-				$annotation = $reflection->getAnnotation('Service');
-				$resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
-			}
-			if($reflection->hasAnnotation("Repository"))
-			{
-				$annotation = $reflection->getAnnotation('Repository');
-				$resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
-			}
-		}
-		return $resources;
-	}
-
-	protected function loadDataSources($sourceConfig)
-	{
-		foreach($sourceConfig as $config)
-		{
-			$source = DataSourceFactory::getDataSource($config);
-			$this->pushToResourceMap($config->name, $source);
-		}
-	}
+    public function loadResourceMap($classes)
+    {
+       $resources = array();
+       foreach($classes as $class)
+       {
+             $reflection = new \ReflectionAnnotatedClass($class);
+             $name = "";
+             if($reflection->hasAnnotation("Service"))
+             {
+                 $annotation = $reflection->getAnnotation('Service');
+                 $resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
+             }
+             if($reflection->hasAnnotation("Repository"))
+             {
+                 $annotation = $reflection->getAnnotation('Repository');
+                 $resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
+             }
+        }
+        return $resources;
+    }
+    
+    protected function loadDataSources($sourceConfig)
+    {
+        foreach($sourceConfig as $config)
+        {
+            $source = DataSourceFactory::getDataSource($config);
+            $this->pushToResourceMap($config->name, $source);
+        }
+    }
 }
 
 ?>

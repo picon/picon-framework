@@ -24,38 +24,38 @@ namespace picon;
 
 /**
  * Validates a number is not greater than a max value
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/form/validation
  */
 class MaximumValidator extends NumericValidator
 {
-	private $maximum;
-
-	/**
-	 *
-	 * @param number $maximum
-	 */
-	public function __construct($maximum)
-	{
-		Args::isNumeric($maximum, 'maximum');
-		$this->maximum = $maximum;
-	}
-
-	public function validateValue(Validatable $validateable)
-	{
-		$response = parent::validateValue($validateable);
-		if($response!=null)
-		{
-			return $response;
-		}
-		if($validateable->getValue()>$this->maximum)
-		{
-			$response = new ValidationResponse($this->getKeyName());
-			$response->addValue('max', $this->maximum);
-			return $response;
-		}
-	}
+    private $maximum;
+    
+    /**
+     *
+     * @param number $maximum 
+     */
+    public function __construct($maximum)
+    {
+        Args::isNumeric($maximum, 'maximum');
+        $this->maximum = $maximum;
+    }
+    
+    public function validateValue(Validatable $validateable)
+    {
+        $response = parent::validateValue($validateable);
+        if($response!=null)
+        {
+            return $response;
+        }
+        if($validateable->getValue()>$this->maximum)
+        {
+            $response = new ValidationResponse($this->getKeyName());
+            $response->addValue('max', $this->maximum);
+            return $response;
+        }
+    }
 }
 
 ?>

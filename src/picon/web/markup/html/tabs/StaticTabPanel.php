@@ -23,52 +23,52 @@
 namespace picon;
 
 /**
- * A tab panel whos links do not change page but simple swap
+ * A tab panel whos links do not change page but simple swap 
  * the visibility of an inner panel.
- *
+ * 
  * @author Martin Cassidy
  */
 class StaticTabPanel extends TabPanel
 {
-	private $indexes = array();
-
-	/**
-	 * TODO get rid of this when listener is finished
-	*/
-	public function __wakeup()
-	{
-		parent::__wakeup();
-		PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
-	}
-
-	protected function setup()
-	{
-		PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
-		$view = new RepeatingView(TabPanel::PANEL_ID);
-		$this->add($view);
-		foreach($this->getCollection()->tabs as $index => $tabItem)
-		{
-			$panel = $tabItem->newTab($view->getNextChildId());
-			$panel->setOutputMarkupId(true);
-			$this->indexes[$index] = $panel->getMarkupId();
-			$panel->add(new AttributeModifier('style', new BasicModel('display:none;')));
-			$view->add($panel);
-		}
-	}
-
-	public function newLink($id, $index)
-	{
-		$switchLink = new MarkupContainer($id);
-		$switchLink->add(new AttributeModifier('href', new BasicModel(sprintf('javascript:;', $this->indexes[$index]))));
-		$switchLink->add(new AttributeModifier('onClick', new BasicModel(sprintf('$(\'#\'+currentTab).hide(); $(\'#%s\').show();currentTab = \'%s\'; $(\'li.selected\', $(this).parents(\'ul\').first()).removeClass(\'selected\'); $(this).parents(\'li\').first().addClass(\'selected\');', $this->indexes[$index], $this->indexes[$index]))));
-		return $switchLink;
-	}
-
-	public function renderHead(HeaderResponse $headerResponse)
-	{
-		parent::renderHead($headerResponse);
-		$headerResponse->renderScript(sprintf('var currentTab; $(document).ready(function(){$(\'#%s\').show(); currentTab = \'%s\';});', $this->indexes[0], $this->indexes[0]));
-	}
+    private $indexes = array();
+    
+    /**
+     * @todo get rid of this when listener is finished
+     */
+    public function __wakeup()
+    {
+        parent::__wakeup();
+        PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
+    }
+    
+    protected function setup()
+    {
+        PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
+        $view = new RepeatingView(TabPanel::PANEL_ID);
+        $this->add($view);
+        foreach($this->getCollection()->tabs as $index => $tabItem)
+        {
+            $panel = $tabItem->newTab($view->getNextChildId());
+            $panel->setOutputMarkupId(true);
+            $this->indexes[$index] = $panel->getMarkupId();
+            $panel->add(new AttributeModifier('style', new BasicModel('display:none;')));
+            $view->add($panel);
+        }
+    }
+    
+    public function newLink($id, $index)
+    {
+        $switchLink = new MarkupContainer($id);
+        $switchLink->add(new AttributeModifier('href', new BasicModel(sprintf('javascript:;', $this->indexes[$index]))));
+        $switchLink->add(new AttributeModifier('onClick', new BasicModel(sprintf('$(\'#\'+currentTab).hide(); $(\'#%s\').show();currentTab = \'%s\'; $(\'li.selected\', $(this).parents(\'ul\').first()).removeClass(\'selected\'); $(this).parents(\'li\').first().addClass(\'selected\');', $this->indexes[$index], $this->indexes[$index]))));
+        return $switchLink;
+    }
+    
+    public function renderHead(HeaderResponse $headerResponse)
+    {
+        parent::renderHead($headerResponse);
+        $headerResponse->renderScript(sprintf('var currentTab; $(document).ready(function(){$(\'#%s\').show(); currentTab = \'%s\';});', $this->indexes[0], $this->indexes[0]));
+    }
 }
 
 ?>

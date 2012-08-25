@@ -26,77 +26,77 @@ namespace picon;
  * Default jQuery ui implementation applying a given plugin to the bound
  * component and specifing options
  *
- * TODO There should be a seperate implementation of this for each jQuery ui
+ * @todo There should be a seperate implementation of this for each jQuery ui
  * plguin
- * TODO The options should be up in jQueryBehaviour not here
+ * @todo The options should be up in jQueryBehaviour not here
  * @author Martin Cassidy
  * @package web/jQuery/ui
  */
 class DefaultJQueryUIBehaviour extends AbstractJQueryUIBehaviour
 {
-	private $function;
-	private $options;
-
-	public function __construct($function, $options = null)
-	{
-		parent::__construct();
-		$this->function = $function;
-
-		if($options!=null)
-		{
-			if($options instanceof Options)
-			{
-				$this->options = $options;
-			}
-			else
-			{
-				throw new \InvalidArgumentException('DefaultJQueryUIBehaviour::__construct expected argument 2 to be an an Options object');
-			}
-		}
-		else
-		{
-			$this->options = new Options();
-		}
-	}
-
-	public function getOptions()
-	{
-		return $this->options;
-	}
-
-	public function setOptions(Options $options)
-	{
-		$this->options = $options;
-	}
-
-	public function bind(Component &$component)
-	{
-		parent::bind($component);
-		$component->setOutputMarkupId(true);
-	}
-
-	public function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
-	{
-		parent::renderHead($component, $headerContainer, $headerResponse);
-		$headerResponse->renderScript(sprintf("\$(document).ready(function(){\$('#%s').%s(%s);});", $this->getComponent()->getMarkupId(), $this->function, $this->getOptions()->render($this)));
-	}
-
-	public function onEvent()
-	{
-		$property = RequestCycle::get()->getRequest()->getParameter('property');
-
-		if($property!=null)
-		{
-			$callbackOption = $this->getOptions()->getOption($property);
-
-			if($callbackOption!=null && $callbackOption instanceof AbstractCallableOption)
-			{
-				$target = new AjaxRequestTarget();
-				$this->getComponent()->getRequestCycle()->addTarget($target);
-				$callbackOption->call($target);
-			}
-		}
-	}
+    private $function;
+    private $options;
+    
+    public function __construct($function, $options = null)
+    {
+        parent::__construct();
+        $this->function = $function;
+        
+        if($options!=null)
+        {
+            if($options instanceof Options)
+            {
+                $this->options = $options;
+            }
+            else
+            {
+                throw new \InvalidArgumentException('DefaultJQueryUIBehaviour::__construct expected argument 2 to be an an Options object');
+            }
+        }
+        else
+        {
+            $this->options = new Options();
+        }
+    }
+    
+    public function getOptions()
+    {
+        return $this->options;
+    }
+    
+    public function setOptions(Options $options)
+    {
+        $this->options = $options;
+    }
+    
+    public function bind(Component &$component)
+    {
+        parent::bind($component);
+        $component->setOutputMarkupId(true);
+    }
+    
+    public function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse)
+    {
+        parent::renderHead($component, $headerContainer, $headerResponse);
+        $headerResponse->renderScript(sprintf("\$(document).ready(function(){\$('#%s').%s(%s);});", $this->getComponent()->getMarkupId(), $this->function, $this->getOptions()->render($this)));
+    }
+    
+    public function onEvent()
+    {
+        $property = RequestCycle::get()->getRequest()->getParameter('property');
+        
+        if($property!=null)
+        {
+            $callbackOption = $this->getOptions()->getOption($property);
+            
+            if($callbackOption!=null && $callbackOption instanceof AbstractCallableOption)
+            {
+                $target = new AjaxRequestTarget();
+                $this->getComponent()->getRequestCycle()->addTarget($target);
+                $callbackOption->call($target);
+            }
+        }
+    }
 }
 
 ?>

@@ -18,37 +18,30 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- *
- * $HeadURL$
- * $Revision$
- * $Author$
- * $Date$
- * $Id$
- *
  * */
 
 /**
  * Description of AuthorisedPage
- *
+ * 
  * @author Martin Cassidy
  */
 class AuthorisedPage extends AbstractAuthorisedPage
 {
-	public function __construct()
-	{
-		parent::__construct();
-		$self = $this;
-		$this->add(new picon\Link('link', function() use ($self)
-		{
-			$_SESSION['auth'] = false;
-			$self->setPage(HomePage::getIdentifier());
-		}));
-	}
-
-	public function getInvolvedFiles()
-	{
-		return array('assets/auth/AuthorisedPage.php', 'assets/auth/AuthorisedPage.html');
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        $self = $this;
+        $this->add(new picon\Link('link', function() use ($self)
+        {
+            $_SESSION['auth'] = false;
+            $self->setPage(HomePage::getIdentifier());
+        }));
+    }
+    
+    public function getInvolvedFiles()
+    {
+        return array('assets/auth/AuthorisedPage.php', 'assets/auth/AuthorisedPage.html');
+    }
 }
 
 ?>

@@ -24,30 +24,30 @@ namespace picon;
 
 /**
  * A mark-up source for panels
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/sources
  */
 class PanelMarkupSource extends AbstractAssociatedMarkupSource
 {
-	public function onComponentTagBody(Component $component, ComponentTag &$tag)
-	{
-		$panelMarkup = $component->loadAssociatedMarkup();
-		$panel = MarkupUtils::findPiconTag('panel', $panelMarkup, $component);
-
-		if($panel==null)
-		{
-			throw new \MarkupNotFoundException(sprintf("Found markup for panel %s however there is no picon:panel tag.", $component->getId(0)));
-		}
-
-		$tag->setChildren(array($panel));
-		 
-	}
-
-	public function getRootTag(MarkupElement $markup)
-	{
-		return MarkupUtils::findPiconTag('panel', $markup);
-	}
+    public function onComponentTagBody(Component $component, ComponentTag &$tag)
+    {
+        $panelMarkup = $component->loadAssociatedMarkup();
+        $panel = MarkupUtils::findPiconTag('panel', $panelMarkup, $component);
+        
+        if($panel==null)
+        {
+            throw new \MarkupNotFoundException(sprintf("Found markup for panel %s however there is no picon:panel tag.", $component->getId(0)));
+        }
+        
+        $tag->setChildren(array($panel));
+       
+    }
+    
+    public function getRootTag(MarkupElement $markup)
+    {
+        return MarkupUtils::findPiconTag('panel', $markup);
+    }
 }
 
 ?>

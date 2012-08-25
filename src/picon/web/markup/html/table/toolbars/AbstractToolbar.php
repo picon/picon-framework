@@ -24,19 +24,19 @@ namespace picon;
 
 /**
  * Super class for upper or lower header and footer bars on a data table
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/table/toolbar
  */
 abstract class AbstractToolbar extends Panel
 {
-	private $dataTable;
-
-	public function __construct(DataTable $dataTable)
-	{
-		parent::__construct($dataTable->getNextToolbarId());
-		$this->dataTable = $dataTable;
-	}
+    private $dataTable;
+    
+    public function __construct(DataTable $dataTable)
+    {
+        parent::__construct($dataTable->getNextToolbarId());
+        $this->dataTable = $dataTable;
+    }
 }
 
 ?>

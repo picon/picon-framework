@@ -24,19 +24,19 @@ namespace picon;
 
 /**
  * Generic validator for numeric values
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/form/validation
  */
 class NumericValidator extends AbstractValidator
 {
-	public function validateValue(Validatable $validateable)
-	{
-		if(!is_numeric($validateable->getValue()))
-		{
-			return new ValidationResponse($this->getKeyName(get_class()));
-		}
-	}
+    public function validateValue(Validatable $validateable)
+    {
+        if(!is_numeric($validateable->getValue()))
+        {
+            return new ValidationResponse($this->getKeyName(get_class()));
+        }
+    }
 }
 
 ?>

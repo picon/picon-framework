@@ -24,13 +24,13 @@ namespace picon;
 
 /**
  * Thrown when a user is not authorised to access a particular component
- *
+ * 
  * @author Martin Cassidy
  * @package web/exceptions
  */
 class UnAuthorisdeException extends \RuntimeException
 {
-
+    
 }
 
 ?>

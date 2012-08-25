@@ -25,48 +25,48 @@ require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 
 class ConfigLoaderTest extends AbstractPiconTest
 {
-	public function testValidConfig()
-	{
-		$config = ConfigLoader::load(dirname(__FILE__).'/../../config/picon.xml');
-		$this->assertSame('HomePage', $config->getHomePage());
-		$this->assertSame('auto', $config->getStartUp());
-
-		$config = ConfigLoader::load(dirname(__FILE__).'/../../config/full.xml');
-		$this->assertSame('HomePage', $config->getHomePage());
-		$this->assertSame('auto', $config->getStartUp());
-		$this->assertTrue($config->getProfile()->isCacheMarkup());
-		$this->assertFalse($config->getProfile()->isShowPiconTags());
-		$this->assertFalse($config->getProfile()->isCleanBeforeOutput());
-
-
-		$sources = $config->getDataSources();
-		$this->assertCount(1, $sources);
-
-		$source = $sources[0];
-		$this->assertSame($source->name, 'testSource');
-		$this->assertEquals($source->type, DataSourceType::valueOf("MySQL"));
-		$this->assertSame($source->port, '3306');
-		$this->assertSame($source->host, 'localhost');
-		$this->assertSame($source->username, 'someuser');
-		$this->assertSame($source->password, 'somepassword');
-		$this->assertSame($source->database, 'somedb');
-	}
-
-	/**
-	 * @expectedException \picon\ConfigException
-	 */
-	public function testSchemaValidation()
-	{
-		ConfigLoader::load(dirname(__FILE__).'/../../resources/badconfig.xml');
-	}
-
-	/**
-	 * @expectedException \picon\ConfigException
-	 */
-	public function testMissingProfile()
-	{
-		ConfigLoader::load(dirname(__FILE__).'/../../resources/missingprofile.xml');
-	}
+    public function testValidConfig()
+    {
+        $config = ConfigLoader::load(dirname(__FILE__).'/../../config/picon.xml');
+        $this->assertSame('HomePage', $config->getHomePage());
+        $this->assertSame('auto', $config->getStartUp());
+        
+        $config = ConfigLoader::load(dirname(__FILE__).'/../../config/full.xml');
+        $this->assertSame('HomePage', $config->getHomePage());
+        $this->assertSame('auto', $config->getStartUp());
+        $this->assertTrue($config->getProfile()->isCacheMarkup());
+        $this->assertFalse($config->getProfile()->isShowPiconTags());
+        $this->assertFalse($config->getProfile()->isCleanBeforeOutput());
+        
+        
+        $sources = $config->getDataSources();
+        $this->assertCount(1, $sources);
+        
+        $source = $sources[0];
+        $this->assertSame($source->name, 'testSource');
+        $this->assertEquals($source->type, DataSourceType::valueOf("MySQL"));
+        $this->assertSame($source->port, '3306');
+        $this->assertSame($source->host, 'localhost');
+        $this->assertSame($source->username, 'someuser');
+        $this->assertSame($source->password, 'somepassword');
+        $this->assertSame($source->database, 'somedb');
+    }
+    
+    /**
+     * @expectedException \picon\ConfigException
+     */
+    public function testSchemaValidation()
+    {
+        ConfigLoader::load(dirname(__FILE__).'/../../resources/badconfig.xml');
+    }
+    
+    /**
+     * @expectedException \picon\ConfigException
+     */
+    public function testMissingProfile()
+    {
+        ConfigLoader::load(dirname(__FILE__).'/../../resources/missingprofile.xml');
+    }
 }
 
 ?>

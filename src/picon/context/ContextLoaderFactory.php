@@ -23,23 +23,23 @@
 namespace picon;
 
 /**
- *
+ * 
  * Factory class containing a method to retrieve the appropriate context
  * loader bassed upon the configuration
- *
+ * 
  * @author Martin Cassidy
  * @package context
  */
 class ContextLoaderFactory
 {
-	public static function getLoader($config)
-	{
-		/*
-		 * TODO Currently only auto is available, add option to config
-		* to permit manual and create class to do it
-		*/
-		return new AutoContextLoader();
-	}
+    public static function getLoader($config)
+    {
+        /*
+         * TODO Currently only auto is available, add option to config 
+         * to permit manual and create class to do it
+        */
+        return new AutoContextLoader();
+    }
 }
 
 ?>

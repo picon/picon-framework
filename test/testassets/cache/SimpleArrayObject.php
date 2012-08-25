@@ -23,21 +23,21 @@
 
 class SimpleArrayObject
 {
-	private $array;
-
-	public function __construct()
-	{
-	}
-
-	public function getArray()
-	{
-		return $this->array;
-	}
-
-	public function setArray($array)
-	{
-		$this->array = $array;
-	}
+    private $array;
+    
+    public function __construct()
+    {
+    }
+    
+    public function getArray()
+    {
+        return $this->array;
+    }
+    
+    public function setArray($array)
+    {
+        $this->array = $array;
+    }
 }
 
 ?>

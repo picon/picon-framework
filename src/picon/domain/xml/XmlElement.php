@@ -29,7 +29,7 @@ namespace picon;
  */
 interface XmlElement
 {
-	//tagging interface
+    //tagging interface
 }
 
 ?>

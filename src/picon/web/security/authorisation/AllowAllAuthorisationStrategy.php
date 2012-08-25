@@ -24,16 +24,16 @@ namespace picon;
 
 /**
  * The default authorisation strategy which permits access to everything
- *
+ * 
  * @author Martin Cassidy
  * @package web/security/authorisation
  */
 class AllowAllAuthorisationStrategy implements AuthorisationStrategy
 {
-	public function isComponentInstantiationAuthorised(Component $component)
-	{
-		return true;
-	}
+    public function isComponentInstantiationAuthorised(Component $component)
+    {
+        return true;
+    }
 }
 
 ?>

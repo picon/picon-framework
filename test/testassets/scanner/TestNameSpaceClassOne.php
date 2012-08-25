@@ -24,12 +24,12 @@ namespace testnamespace;
 
 /**
  * Description of TestNameSpaceClassOne
- *
+ * 
  * @author Martin Cassidy
  */
 class TestNameSpaceClassOne
 {
-
+    
 }
 
 ?>

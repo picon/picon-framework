@@ -18,48 +18,41 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- *
- * $HeadURL$
- * $Revision$
- * $Author$
- * $Date$
- * $Id$
- *
  * */
 
 use picon\DataProvider;
 
 /**
  * Description of SampleDataProvider
- *
+ * 
  * @author Martin Cassidy
  */
 class SampleDataProvider implements DataProvider
 {
-	private $records = array();
-
-	public function __construct()
-	{
-		for($i = 0 ; $i < 25; $i++)
-		{
-			array_push($this->records, new TableEntryDomain('entry '.$i));
-		}
-	}
-
-	public function getSize()
-	{
-		return count($this->records);
-	}
-
-	public function getRecords($start, $count)
-	{
-		return array_slice($this->records, $start, $count);
-	}
-
-	public function getModel($object)
-	{
-		return new picon\BasicModel($object);
-	}
+    private $records = array();
+    
+    public function __construct()
+    {
+        for($i = 0 ; $i < 25; $i++)
+        {
+            array_push($this->records, new TableEntryDomain('entry '.$i));
+        }
+    }
+    
+    public function getSize()
+    {
+        return count($this->records);
+    }
+    
+    public function getRecords($start, $count)
+    {
+        return array_slice($this->records, $start, $count);
+    }
+    
+    public function getModel($object)
+    {
+        return new picon\BasicModel($object);
+    }
 }
 
 ?>

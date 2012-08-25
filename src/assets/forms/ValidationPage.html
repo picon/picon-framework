@@ -1,68 +1,93 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:picon="http://picon.webquub.com/dtds/picon-xhtml.dtd"
-	xml:lang="en" lang="en">
-<head>
-<picon:head>
-	<style>
-th {
-	text-align: left;
-}
-
-th,td {
-	border-style: solid;
-	border-width: 0 0 1px 0;
-}
-</style>
-</picon:head>
-</head>
-<body>
-	<picon:extend>
-		<h2>Form Fields</h2>
-		<p>Picon offers a number of built in form validation helpers. All
-			fields on this page have been set to mandatory and offer different
-			validation requirements</p>
-		<br />
-		<div picon:id="feedback" />
-		<form picon:id="form">
-			<table>
-				<tr>
-					<th style="width: 330px;">E-mail address</th>
-					<td><input type="text" picon:id="email" /></td>
-				</tr>
-				<tr>
-					<th>A number less than 14</th>
-					<td><input type="text" picon:id="maxNumber" /></td>
-				</tr>
-				<tr>
-					<th>A number greater than 34</th>
-					<td><input type="text" picon:id="minNumber" /></td>
-				</tr>
-				<tr>
-					<th>A number between 4 and 45</th>
-					<td><input type="text" picon:id="rangeNumber" /></td>
-				</tr>
-				<tr>
-					<th>A string, less than 10 characters long</th>
-					<td><input type="text" picon:id="maxString" /></td>
-				</tr>
-				<tr>
-					<th>A string, more than 4 characters long</th>
-					<td><input type="text" picon:id="minString" /></td>
-				</tr>
-				<tr>
-					<th>A string, between 4 and 10 characters long</th>
-					<td><input type="text" picon:id="rangeString" /></td>
-				</tr>
-				<tr>
-					<th>Manditory text area</th>
-					<td><textarea picon:id="textArea" /></td>
-				</tr>
-			</table>
-			<p>
-				<input type="submit" picon:id="button" value="Submit" />&nbsp;
-			</p>
-		</form>
-	</picon:extend>
-</body>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:picon="http://picon.webquub.com/dtds/picon-xhtml.dtd"  
+      xml:lang="en"  
+      lang="en"> 
+    <head>
+        <picon:head>
+        <style>
+            th { text-align:left;}
+            th, td {border-style: solid; border-width: 0 0 1px 0;}
+        </style>
+        </picon:head>
+    </head>
+    <body>
+        <picon:extend>
+        <h2>Form Fields</h2>
+        <p>Picon offers a number of built in form validation helpers. All fields on this page have been set to
+        mandatory and offer different validation requirements</p><br />
+        <div picon:id="feedback"/>
+        <form picon:id="form">
+            <table>
+                <tr>
+                    <th style="width:330px;">
+                        E-mail address
+                    </th>
+                    <td>
+                        <input type="text" picon:id="email" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        A number less than 14
+                    </th>
+                    <td>
+                        <input type="text" picon:id="maxNumber" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        A number greater than 34
+                    </th>
+                    <td>
+                        <input type="text" picon:id="minNumber" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        A number between 4 and 45
+                    </th>
+                    <td>
+                        <input type="text" picon:id="rangeNumber" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        A string, less than 10 characters long
+                    </th>
+                    <td>
+                        <input type="text" picon:id="maxString" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        A string, more than 4 characters long
+                    </th>
+                    <td>
+                        <input type="text" picon:id="minString" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        A string, between 4 and 10 characters long
+                    </th>
+                    <td>
+                        <input type="text" picon:id="rangeString" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Manditory text area
+                    </th>
+                    <td>
+                        <textarea picon:id="textArea" />
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <input type="submit" picon:id="button" value="Submit"/>&nbsp;
+            </p>
+        </form>
+        </picon:extend>
+    </body>
 </html>

@@ -25,10 +25,10 @@ require_once(PICON_DIRECTORY.'/PiconApplication.php');
 /**
  *
  * @author Martin Cassidy
-*/
+ */
 class TestApplication extends PiconApplication
 {
-
+    
 }
 
 ?>

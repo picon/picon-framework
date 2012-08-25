@@ -24,23 +24,23 @@ namespace picon;
 
 /**
  * A text element or character data of an xml document
- *
+ * 
  * @author Martin Cassidy
  * @package domain/xml
  */
 class TextElement extends ComonDomainBase implements XmlElement
 {
-	private $content;
-
-	public function __construct($content)
-	{
-		$this->content = $content;
-	}
-
-	public function getContent()
-	{
-		return $this->content;
-	}
+    private $content;
+    
+    public function __construct($content)
+    {
+        $this->content = $content;
+    }
+    
+    public function getContent()
+    {
+        return $this->content;
+    }
 }
 
 ?>

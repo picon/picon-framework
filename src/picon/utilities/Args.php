@@ -30,134 +30,134 @@ namespace picon;
  */
 class Args
 {
-	/**
-	 * Throws and excpetion if not a callback
-	 * @param mixed $object The object to test
-	 */
-	public static function callBack($object, $argName)
-	{
-		if(!is_callable($object) && !($object instanceof SerializableClosure))
-		{
-			throw new \InvalidArgumentException(sprintf("%s expected argument %s to be callable", self::getCallingMethod(), $argName));
-		}
-	}
-
-	/**
-	 * Throws an exception if the callback does not accept the required number of
-	 * arguments
-	 * @param Closure $callback The callback to test
-	 * @param int $amount The number of arguments the callback should have
-	 */
-	public static function callBackArgs($callback, $amount, $argName)
-	{
-		self::isNumeric($amount, 'amount');
-
-		if(!is_callable($callback) && !($callback instanceof SerializableClosure))
-		{
-			throw new \InvalidArgumentException(sprintf("%s expected argument %s to be callable", self::getCallingMethod(), $argName));
-		}
-
-		if($callback instanceof SerializableClosure)
-		{
-			$reflection = $callback->getReflection();
-		}
-		else
-		{
-			$reflection = new \ReflectionFunction($callback);
-		}
-		if(count($reflection->getParameters())!=$amount)
-		{
-			throw new \InvalidArgumentException(sprintf("%s expected argument %s to be callable and take %d argument(s)", self::getCallingMethod(), $argName, $amount));
-		}
-	}
-
-	/**
-	 * Throws an exception if not numeric
-	 * @param type $number
-	 */
-	public static function isNumeric($number, $argName)
-	{
-		if(!is_numeric($number))
-		{
-			throw new \InvalidArgumentException(sprintf("%s expected argument %s to be numeric", self::getCallingMethod(), $argName));
-		}
-	}
-
-	/**
-	 * Throw an exception if the object is not an array
-	 * @param type $object
-	 * @param type $argName
-	 */
-	public static function isArray($object, $argName)
-	{
-		if(!is_array($object))
-		{
-			throw new \InvalidArgumentException(sprintf("%s expected argument %s to be an array", self::getCallingMethod(), $argName));
-		}
-	}
-
-	/**
-	 * Throw an exception if the object is not a string
-	 * @param type $object
-	 * @param type $argName
-	 */
-	public static function isString($object, $argName)
-	{
-		if(!is_string($object))
-		{
-			throw new \InvalidArgumentException(sprintf("%s expected argument %s to be a string", self::getCallingMethod(), $argName));
-		}
-	}
-
-	/**
-	 * Throw an exception if the object is not a boolean
-	 * @param type $object
-	 * @param type $argName
-	 */
-	public static function isBoolean($object, $argName)
-	{
-		if(!is_bool($object))
-		{
-			throw new \InvalidArgumentException(sprintf("%s expected argument %s to be a boolean", self::getCallingMethod(), $argName));
-		}
-	}
-
-	/**
-	 * Helper for finding the calling class so that a better error message can be given
-	 * @return type
-	 */
-	private static function getCallingMethod()
-	{
-		$trace = debug_backtrace();
-		return $trace[2]['class'].$trace[2]['type'].$trace[2]['function'].'()';
-	}
-
-	/**
-	 * Throw an exception if the object is null
-	 * @param type $object
-	 * @param type $argName
-	 */
-	public static function notNull($object, $argName)
-	{
-		if($object==null)
-		{
-			throw new \InvalidArgumentException(sprintf("%s expected argument %s to be non null", self::getCallingMethod(), $argName));
-		}
-	}
-
-	/**
-	 * Throw an exception if the object identifier is not a subclass or implementer of expected
-	 * @param Identifier $object
-	 * @param Identifier $expected
-	 * @param type $argName
-	 */
-	public static function identifierOf(Identifier $object, Identifier $expected, $argName)
-	{
-		if(!$object->of($expected))
-		{
-			throw new \InvalidArgumentException(sprintf("%s expected argument %s to be an identifier of %s, actual %s", self::getCallingMethod(), $argName, $expected->getFullyQualifiedName(), $object->getFullyQualifiedName()));
-		}
-	}
+    /**
+     * Throws and excpetion if not a callback
+     * @param mixed $object The object to test
+     */
+    public static function callBack($object, $argName)
+    {
+        if(!is_callable($object) && !($object instanceof SerializableClosure))
+        {
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be callable", self::getCallingMethod(), $argName));
+        }
+    }
+    
+    /**
+     * Throws an exception if the callback does not accept the required number of
+     * arguments
+     * @param Closure $callback The callback to test
+     * @param int $amount The number of arguments the callback should have
+     */
+    public static function callBackArgs($callback, $amount, $argName)
+    {
+        self::isNumeric($amount, 'amount');
+        
+        if(!is_callable($callback) && !($callback instanceof SerializableClosure))
+        {
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be callable", self::getCallingMethod(), $argName));
+        }
+        
+        if($callback instanceof SerializableClosure)
+        {
+            $reflection = $callback->getReflection();
+        }
+        else
+        {
+            $reflection = new \ReflectionFunction($callback);
+        }
+        if(count($reflection->getParameters())!=$amount)
+        {
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be callable and take %d argument(s)", self::getCallingMethod(), $argName, $amount));
+        }
+    }
+    
+    /**
+     * Throws an exception if not numeric
+     * @param type $number 
+     */
+    public static function isNumeric($number, $argName)
+    {
+        if(!is_numeric($number))
+        {
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be numeric", self::getCallingMethod(), $argName));
+        }
+    }
+    
+    /**
+     * Throw an exception if the object is not an array
+     * @param type $object
+     * @param type $argName 
+     */
+    public static function isArray($object, $argName)
+    {
+        if(!is_array($object))
+        {
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be an array", self::getCallingMethod(), $argName));
+        }
+    }
+    
+    /**
+     * Throw an exception if the object is not a string
+     * @param type $object
+     * @param type $argName 
+     */
+    public static function isString($object, $argName)
+    {
+        if(!is_string($object))
+        {
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be a string", self::getCallingMethod(), $argName));
+        }
+    }
+    
+    /**
+     * Throw an exception if the object is not a boolean
+     * @param type $object
+     * @param type $argName 
+     */
+    public static function isBoolean($object, $argName)
+    {
+        if(!is_bool($object))
+        {
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be a boolean", self::getCallingMethod(), $argName));
+        }
+    }
+    
+    /**
+     * Helper for finding the calling class so that a better error message can be given
+     * @return type 
+     */
+    private static function getCallingMethod()
+    {
+        $trace = debug_backtrace();
+        return $trace[2]['class'].$trace[2]['type'].$trace[2]['function'].'()';
+    }
+    
+    /**
+     * Throw an exception if the object is null
+     * @param type $object
+     * @param type $argName 
+     */
+    public static function notNull($object, $argName)
+    {
+        if($object==null)
+        {
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be non null", self::getCallingMethod(), $argName));
+        }
+    }
+    
+    /**
+     * Throw an exception if the object identifier is not a subclass or implementer of expected
+     * @param Identifier $object
+     * @param Identifier $expected
+     * @param type $argName 
+     */
+    public static function identifierOf(Identifier $object, Identifier $expected, $argName)
+    {
+        if(!$object->of($expected))
+        {
+            throw new \InvalidArgumentException(sprintf("%s expected argument %s to be an identifier of %s, actual %s", self::getCallingMethod(), $argName, $expected->getFullyQualifiedName(), $object->getFullyQualifiedName()));
+        }
+    }
 }
 
 ?>

@@ -30,17 +30,17 @@ namespace picon;
  */
 interface Behaviour
 {
-	function beforeRender(Component &$component);
-
-	function afterRender(Component &$component);
-
-	function onComponentTag(Component &$component, ComponentTag &$tag);
-
-	function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse);
-
-	function isStateless();
-
-	function getBehaviourId();
+    function beforeRender(Component &$component);
+    
+    function afterRender(Component &$component);
+    
+    function onComponentTag(Component &$component, ComponentTag &$tag);
+    
+    function renderHead(Component &$component, HeaderContainer $headerContainer, HeaderResponse $headerResponse);
+    
+    function isStateless();
+    
+    function getBehaviourId();
 }
 
 ?>

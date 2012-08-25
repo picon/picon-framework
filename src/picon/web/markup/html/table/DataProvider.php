@@ -29,11 +29,11 @@ namespace picon;
  */
 interface DataProvider
 {
-	function getSize();
-
-	function getModel($object);
-
-	function getRecords($start, $count);
+    function getSize();
+    
+    function getModel($object);
+    
+    function getRecords($start, $count);
 }
 
 ?>

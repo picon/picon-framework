@@ -30,10 +30,10 @@ namespace picon;
  */
 class JQueryRenderHeadListener implements ComponentRenderHeadListener
 {
-	public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
-	{
-		$response->renderJavaScriptResourceReference(new ResourceReference('jquery.js', AbstractJQueryBehaviour::getIdentifier()));
-	}
+    public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
+    {
+        $response->renderJavaScriptResourceReference(new ResourceReference('jquery.js', AbstractJQueryBehaviour::getIdentifier()));
+    }
 }
 
 ?>

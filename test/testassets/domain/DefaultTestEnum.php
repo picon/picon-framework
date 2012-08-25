@@ -22,16 +22,16 @@
 
 /**
  * Description of DefaultTestEnum
- *
+ * 
  * @author Martin Cassidy
  */
 class DefaultTestEnum extends \picon\Enum
 {
-	const ONE = 'one';
-	const TWO = 'two';
-	const THREE = 'three';
-	const _DEFAULT = 'three';
-
+    const ONE = 'one';
+    const TWO = 'two';
+    const THREE = 'three';
+    const _DEFAULT = 'three';
+    
 }
 
 ?>

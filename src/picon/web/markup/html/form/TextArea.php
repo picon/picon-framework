@@ -24,31 +24,31 @@ namespace picon;
 
 /**
  * A text area form component
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 class TextArea extends AbstractTextComponent
 {
-	protected function onComponentTagBody(ComponentTag $tag)
-	{
-		$this->getResponse()->write($this->getValue());
-	}
-
-	protected function onComponentTag(ComponentTag $tag)
-	{
-		$tag->setTagType(new XmlTagType(XmlTagType::OPEN));
-		$this->checkComponentTag($tag, 'textarea');
-		parent::onComponentTag($tag);
-	}
-
-	/**
-	 * Get the data type for this text component
-	 */
-	protected function getType()
-	{
-		return self::TYPE_STRING;
-	}
+    protected function onComponentTagBody(ComponentTag $tag)
+    {
+        $this->getResponse()->write($this->getValue());
+    }
+    
+    protected function onComponentTag(ComponentTag $tag)
+    {
+        $tag->setTagType(new XmlTagType(XmlTagType::OPEN));
+        $this->checkComponentTag($tag, 'textarea');
+        parent::onComponentTag($tag);
+    }
+    
+    /**
+     * Get the data type for this text component
+     */
+    protected function getType()
+    {
+        return self::TYPE_STRING;
+    }
 }
 
 ?>

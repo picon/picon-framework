@@ -29,7 +29,7 @@ namespace picon;
  */
 interface Validator
 {
-	function validate(Validatable $validateable);
+    function validate(Validatable $validateable);
 }
 
 ?>

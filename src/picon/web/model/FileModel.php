@@ -26,65 +26,65 @@ namespace picon;
  * A model which represents a file upload
  * This provides methods to gain access to information about a file upload after
  * it has been uploaded.
- *
+ * 
  * @author Martin Cassidy
  */
 class FileModel implements Model
 {
-	private $file;
-
-	public function getModelObject()
-	{
-		return $this->file;
-	}
-
-	/**
-	 * The key for a file in $_FILE
-	 * This method is for internal use only!
-	 * @param string $object
-	 */
-	public function setModelObject(&$object)
-	{
-		$this->file = $object;
-	}
-
-	public function getName()
-	{
-		$this->enforce();
-		return $this->file['name'];
-	}
-
-	public function getTempName()
-	{
-		$this->enforce();
-		return $this->file['tmp_name'];
-	}
-
-	public function getType()
-	{
-		$this->enforce();
-		return $this->file['type'];
-	}
-
-	public function getSize()
-	{
-		$this->enforce();
-		return $this->file['size'];
-	}
-
-	public function getError()
-	{
-		$this->enforce();
-		return $this->file['error'];
-	}
-
-	private function enforce()
-	{
-		if($this->file==null)
-		{
-			throw new \IllegalStateException('No file upload has been registered with this model');
-		}
-	}
+    private $file;
+    
+    public function getModelObject()
+    {
+        return $this->file;
+    }
+    
+    /**
+     * The key for a file in $_FILE
+     * This method is for internal use only!
+     * @param string $object 
+     */
+    public function setModelObject(&$object)
+    {
+        $this->file = $object;
+    }
+    
+    public function getName()
+    {
+        $this->enforce();
+        return $this->file['name'];
+    }
+    
+    public function getTempName()
+    {
+        $this->enforce();
+        return $this->file['tmp_name'];
+    }
+    
+    public function getType()
+    {
+        $this->enforce();
+        return $this->file['type'];
+    }
+    
+    public function getSize()
+    {
+        $this->enforce();
+        return $this->file['size'];
+    }
+    
+    public function getError()
+    {
+        $this->enforce();
+        return $this->file['error'];
+    }
+    
+    private function enforce()
+    {
+        if($this->file==null)
+        {
+            throw new \IllegalStateException('No file upload has been registered with this model');
+        }
+    }
 }
 
 ?>
