@@ -24,37 +24,37 @@ namespace picon;
 
 /**
  * Source for border components
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/sources
  */
 class BorderMarkupSourcingStratagy extends AbstractAssociatedMarkupSource
 {
-	public function onComponentTagBody(Component $component, ComponentTag &$tag)
-	{
-		$borderMarkup = $component->loadAssociatedMarkup();
-		$border = MarkupUtils::findPiconTag('border', $borderMarkup, $component);
-
-		if($border==null)
-		{
-			throw new \MarkupNotFoundException(sprintf("Found markup for border %s however there is no picon:border tag.", $component->getId(0)));
-		}
-
-		$body = MarkupUtils::findPiconTag('body', $borderMarkup);
-
-		if($body==null)
-		{
-			throw new \RuntimeException('No picon:body tag was found in border.');
-		}
-
-		$body->setChildren($tag->getChildren());
-		$tag->setChildren(array($border));
-	}
-
-	public function getRootTag(MarkupElement $markup)
-	{
-		return MarkupUtils::findPiconTag('border', $markup);
-	}
+    public function onComponentTagBody(Component $component, ComponentTag &$tag)
+    {
+        $borderMarkup = $component->loadAssociatedMarkup();
+        $border = MarkupUtils::findPiconTag('border', $borderMarkup, $component);
+        
+        if($border==null)
+        {
+            throw new \MarkupNotFoundException(sprintf("Found markup for border %s however there is no picon:border tag.", $component->getId(0)));
+        }
+        
+        $body = MarkupUtils::findPiconTag('body', $borderMarkup);
+        
+        if($body==null)
+        {
+            throw new \RuntimeException('No picon:body tag was found in border.');
+        }
+        
+        $body->setChildren($tag->getChildren());
+        $tag->setChildren(array($border));
+    }
+    
+    public function getRootTag(MarkupElement $markup)
+    {
+        return MarkupUtils::findPiconTag('border', $markup);
+    }
 }
 
 ?>

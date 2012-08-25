@@ -24,61 +24,61 @@ namespace picon;
 
 /**
  * A list of radio buttons generated from an array of choices.
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 class RadioChoice extends AbstractSingleChoice implements ChoiceGroup
 {
-	private $selection;
+    private $selection;
+    
+    /**
+     *
+     * @param string $id
+     * @param array $choices
+     * @param Model $model 
+     */
+    public function __construct($id, $choices, Model $model = null)
+    {
+        parent::__construct($id, $choices, $model);
+    }
+    
+    protected function onInitialize()
+    {
+        parent::onInitialize();
+        $this->selection = $this->getModelObject();
+        $this->group = new RadioGroup('choice', new PropertyModel($this, 'selection'));
+        $this->add($this->group);
+        //@todo add the type hint b/ack into the closure when the serializer can handle them
+        $this->group->add(new ListView('choices', function(&$item)
+        {
+            $radio = new \picon\Radio('radio', $item->getModel());
+            $item->add($radio);
+            $item->add(new \picon\FormComponentLabel('label', $radio));
+        }, new ArrayModel($this->getChoices())));
+    }
+    
+    protected function newMarkupSource()
+    {
+        return new PanelMarkupSource();
+    }
+    
+    public function __get($name)
+    {
+        return $this->$name;
+    }
+    
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
+    }
+    
 
-	/**
-	 *
-	 * @param string $id
-	 * @param array $choices
-	 * @param Model $model
-	 */
-	public function __construct($id, $choices, Model $model = null)
-	{
-		parent::__construct($id, $choices, $model);
-	}
-
-	protected function onInitialize()
-	{
-		parent::onInitialize();
-		$this->selection = $this->getModelObject();
-		$this->group = new RadioGroup('choice', new PropertyModel($this, 'selection'));
-		$this->add($this->group);
-		//TODO add the type hint b/ack into the closure when the serializer can handle them
-		$this->group->add(new ListView('choices', function(&$item)
-		{
-			$radio = new \picon\Radio('radio', $item->getModel());
-			$item->add($radio);
-			$item->add(new \picon\FormComponentLabel('label', $radio));
-		}, new ArrayModel($this->getChoices())));
-	}
-
-	protected function newMarkupSource()
-	{
-		return new PanelMarkupSource();
-	}
-
-	public function __get($name)
-	{
-		return $this->$name;
-	}
-
-	public function __set($name, $value)
-	{
-		$this->$name = $value;
-	}
-
-
-	protected function convertInput()
-	{
-		$this->group->processInput();
-		$this->setConvertedInput($this->group->getConvertedInput());
-	}
+    protected function convertInput()
+    {
+        $this->group->processInput();
+        $this->setConvertedInput($this->group->getConvertedInput());
+    }
 }
 
 ?>

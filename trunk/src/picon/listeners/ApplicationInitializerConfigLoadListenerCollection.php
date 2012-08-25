@@ -30,18 +30,18 @@ namespace picon;
  */
 class ApplicationInitializerConfigLoadListenerCollection extends ListenerCollection implements ApplicationInitializerConfigLoadListener
 {
-	protected function validateListener($listener)
-	{
-		return $listener instanceof ApplicationInitializerConfigLoadListener;
-	}
-
-	public function onConfigLoaded(Config $config)
-	{
-		$this->notify(function($listener) use ($config)
-		{
-			$listener->onConfigLoaded($config);
-		});
-	}
+    protected function validateListener($listener)
+    {
+        return $listener instanceof ApplicationInitializerConfigLoadListener;
+    }
+    
+    public function onConfigLoaded(Config $config)
+    {
+        $this->notify(function($listener) use ($config)
+        {
+            $listener->onConfigLoaded($config);
+        });
+    }
 }
 
 ?>

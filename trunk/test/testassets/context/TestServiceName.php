@@ -26,19 +26,19 @@
  */
 class TestServiceName extends AbstractContext
 {
-	/** @Resource */
-	protected $testRepository;
+    /** @Resource */
+    protected $testRepository;
 
-	/** @Resource */
-	protected $repo;
+    /** @Resource */
+    protected $repo;
 
-	/** @Resource */
-	protected $testService;
-
-	public function getTestServ()
-	{
-		return $this;
-	}
+    /** @Resource */
+    protected $testService;
+    
+    public function getTestServ()
+    {
+        return $this;
+    }
 }
 
 ?>

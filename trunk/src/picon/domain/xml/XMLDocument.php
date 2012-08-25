@@ -24,25 +24,25 @@ namespace picon;
 
 /**
  * Domain object for repesenting an xml document
- *
+ * 
  * @author Martin Cassidy
  * @package domain/xml
  */
 class XMLDocument extends ComonDomainBase
 {
-	private $doctype;
-	private $root;
-
-	public function __construct($doctype, $root = null)
-	{
-		$this->doctype = $doctype;
-		$this->root = $root;
-	}
-
-	public function setRootElement(XMLTag $root)
-	{
-		$this->root = $root;
-	}
+    private $doctype;
+    private $root;
+    
+    public function __construct($doctype, $root = null)
+    {
+        $this->doctype = $doctype;
+        $this->root = $root;
+    }
+    
+    public function setRootElement(XMLTag $root)
+    {
+        $this->root = $root;
+    }
 }
 
 ?>

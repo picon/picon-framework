@@ -18,28 +18,21 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- *
- * $HeadURL$
- * $Revision$
- * $Author$
- * $Date$
- * $Id$
- *
  * */
 
 /**
  * Description of TableEntryDomain
- *
+ * 
  * @author Martin Cassidy
  */
 class TableEntryDomain extends \picon\ComonDomainBase
 {
-	private $value;
-
-	public function __construct($value)
-	{
-		$this->value = $value;
-	}
+    private $value;
+    
+    public function __construct($value)
+    {
+        $this->value = $value;
+    }
 }
 
 ?>

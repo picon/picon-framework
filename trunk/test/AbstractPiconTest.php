@@ -38,49 +38,49 @@ require_once("TestApplication.php");
 
 class AbstractPiconTest extends \PHPUnit_Framework_TestCase
 {
-	private static $autoLoader;
+    private static $autoLoader;
+    
+    public static function setUpBeforeClass()
+    {
+        AbstractPiconTest::$autoLoader = new TestAutoLoader();
+        AbstractPiconTest::loadAssets(ASSETS_DIRECTORY);
+    }
 
-	public static function setUpBeforeClass()
-	{
-		AbstractPiconTest::$autoLoader = new TestAutoLoader();
-		AbstractPiconTest::loadAssets(ASSETS_DIRECTORY);
-	}
-
-	public function test()
-	{
-		/*
-		 * actually doesn't test anything but allows this super class
-		* to exist without an error
-		*/
-	}
-
-	private static function loadAssets($directory)
-	{
-		$d = dir($directory);
-		while (false !== ($entry = $d->read()))
-		{
-			if(preg_match("/\s*.php{1}$/", $entry))
-			{
-				require_once($directory."\\".$entry);
-			}
-			if(is_dir($directory."\\".$entry) && !preg_match("/^.{1}.?$/", $entry))
-			{
-				self::loadAssets($directory."\\".$entry);
-			}
-		}
-		$d->close();
-	}
-
-	protected function getConfig()
-	{
-		return \picon\ConfigLoader::load(__DIR__.'/config/picon.xml');
-	}
-
-	protected function getContext()
-	{
-		$loader = new \picon\AutoContextLoader();
-		return $loader->load($this->getConfig());
-	}
+    public function test()
+    {
+        /*
+        * actually doesn't test anything but allows this super class
+        * to exist without an error
+        */
+    }
+    
+    private static function loadAssets($directory)
+    {
+        $d = dir($directory);
+        while (false !== ($entry = $d->read()))
+        {
+            if(preg_match("/\s*.php{1}$/", $entry))
+            {
+                require_once($directory."\\".$entry);
+            }
+            if(is_dir($directory."\\".$entry) && !preg_match("/^.{1}.?$/", $entry))
+            {
+               self::loadAssets($directory."\\".$entry);
+            }
+        }
+        $d->close();
+    }
+    
+    protected function getConfig()
+    {
+        return \picon\ConfigLoader::load(__DIR__.'/config/picon.xml');
+    }
+    
+    protected function getContext()
+    {
+        $loader = new \picon\AutoContextLoader();
+        return $loader->load($this->getConfig());
+    }
 }
 
 ?>

@@ -24,43 +24,43 @@ namespace picon;
 
 /**
  * Validates the length of a string is between minimum and maximum values
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/form/validation
  */
 class RangeLengthValidator extends StringValidator
 {
-	private $minimum;
-	private $maximum;
-
-	/**
-	 *
-	 * @param number $minimum
-	 * @param number $maximum
-	 */
-	public function __construct($minimum, $maximum)
-	{
-		Args::isNumeric($maximum, 'maximum');
-		Args::isNumeric($minimum, 'minimum');
-		$this->minimum = $minimum;
-		$this->maximum = $maximum;
-	}
-
-	public function validateValue(Validatable $validateable)
-	{
-		$response = parent::validateValue($validateable);
-		if($response!=null)
-		{
-			return $response;
-		}
-		if(strlen($validateable->getValue())<$this->minimum || strlen($validateable->getValue())>$this->maximum)
-		{
-			$response = new ValidationResponse($this->getKeyName());
-			$response->addValue('minLength', $this->minimum);
-			$response->addValue('maxLength', $this->maximum);
-			return $response;
-		}
-	}
+    private $minimum;
+    private $maximum;
+    
+    /**
+     *
+     * @param number $minimum
+     * @param number $maximum 
+     */
+    public function __construct($minimum, $maximum)
+    {
+        Args::isNumeric($maximum, 'maximum');
+        Args::isNumeric($minimum, 'minimum');
+        $this->minimum = $minimum;
+        $this->maximum = $maximum;
+    }
+    
+    public function validateValue(Validatable $validateable)
+    {
+        $response = parent::validateValue($validateable);
+        if($response!=null)
+        {
+            return $response;
+        }
+        if(strlen($validateable->getValue())<$this->minimum || strlen($validateable->getValue())>$this->maximum)
+        {
+            $response = new ValidationResponse($this->getKeyName());
+            $response->addValue('minLength', $this->minimum);
+            $response->addValue('maxLength', $this->maximum);
+            return $response;
+        }
+    }
 }
 
 ?>

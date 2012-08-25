@@ -24,22 +24,22 @@ namespace picon;
 
 /**
  * A toolbar that shows pagination navigation tools
- *
- * TODO this currently only shows 1.2.3.4. should also have previous, newxt, first and last options
+ * 
+ * @todo this currently only shows 1.2.3.4. should also have previous, newxt, first and last options
  * @author Martin Cassidy
  * @package web/markup/html/table/toolbar
  */
 class NavigationToolbar extends AbstractToolbar
 {
-	public function __construct(DataTable $dataTable)
-	{
-		parent::__construct($dataTable);
-		$cell = new MarkupContainer('cell');
-		$this->add($cell);
-		$cell->add(new AttributeModifier('colspan', new BasicModel(count($dataTable->getColumns()))));
-
-		$cell->add(new Navigator('nav', $dataTable));
-	}
+    public function __construct(DataTable $dataTable)
+    {
+        parent::__construct($dataTable);
+        $cell = new MarkupContainer('cell');
+        $this->add($cell);
+        $cell->add(new AttributeModifier('colspan', new BasicModel(count($dataTable->getColumns()))));
+        
+        $cell->add(new Navigator('nav', $dataTable));
+    }
 }
 
 ?>

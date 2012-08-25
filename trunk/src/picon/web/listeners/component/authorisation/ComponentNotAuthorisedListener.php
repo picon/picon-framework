@@ -29,7 +29,7 @@ namespace picon;
  */
 interface ComponentNotAuthorisedListener
 {
-	function onNotAuthorised(Component $component);
+    function onNotAuthorised(Component $component);
 }
 
 ?>

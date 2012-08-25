@@ -24,48 +24,48 @@ namespace picon;
 
 /**
  * Compound model which runs from a property of an object
- *
+ * 
  * @author Martin Cassidy
  * @package web/model
  */
 class CompoundPropertyModel implements CompoundModel, ComponentInheritedModel
 {
-	private $target;
-	private $property;
-
-	public function __construct(&$object, $property)
-	{
-		$this->target = $object;
-		$this->property = $property;
-	}
-
-	public function getModelObject()
-	{
-		if($this->target instanceof Model)
-		{
-			return $this->target->getModelObject();
-		}
-		return PropertyResolver::get($this->target, $this->property);
-	}
-
-	public function setModelObject(&$object)
-	{
-		if($this->target instanceof Model)
-		{
-			$this->target->setModelObject($object);
-			return;
-		}
-		PropertyResolver::set($this->target, $this->property, $object);
-	}
-
-	public function onInherit(Component &$component)
-	{
-		if(!PropertyResolver::hasProperty($this->getModelObject(), $component->getId()))
-		{
-			return null;
-		}
-		return new WrappedCompoundModel($this);
-	}
+    private $target;
+    private $property;
+    
+    public function __construct(&$object, $property)
+    {
+        $this->target = $object;
+        $this->property = $property;
+    }
+    
+    public function getModelObject()
+    {
+        if($this->target instanceof Model)
+        {
+            return $this->target->getModelObject();
+        }
+        return PropertyResolver::get($this->target, $this->property);
+    }
+    
+    public function setModelObject(&$object)
+    {
+        if($this->target instanceof Model)
+        {
+            $this->target->setModelObject($object);
+            return;
+        }
+        PropertyResolver::set($this->target, $this->property, $object);
+    }
+    
+    public function onInherit(Component &$component)
+    {
+        if(!PropertyResolver::hasProperty($this->getModelObject(), $component->getId()))
+        {
+            return null;
+        }
+        return new WrappedCompoundModel($this);
+    }
 }
 
 ?>

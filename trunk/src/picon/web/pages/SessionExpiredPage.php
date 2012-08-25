@@ -27,21 +27,21 @@ use picon\Identifier;
 /**
  * Page shown when a request is made for a resource that should be in the session
  * but not found i.e. session must have expired
- *
+ * 
  * @author Martin Cassidy
  * @package web/pages
  */
 class SessionExpiredPage extends WebPage
 {
-	public function __construct()
-	{
-		parent::__construct();
-		$me = $this;
-		$this->add(new Link('home', function() use($me)
-		{
-			$this->setPage(Identifier::forName($me->getApplication()->getHomePage()));
-		}));
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        $me = $this;
+        $this->add(new Link('home', function() use($me)
+        {
+            $this->setPage(Identifier::forName($me->getApplication()->getHomePage()));
+        }));
+    }
 }
 
 ?>

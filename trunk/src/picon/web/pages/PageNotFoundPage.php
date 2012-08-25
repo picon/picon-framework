@@ -24,13 +24,13 @@ namespace picon;
 
 /**
  * Default page shown if the request page does not exist
- *
+ * 
  * @author Martin Cassidy
  * @package web/pages
  */
 class PageNotFoundPage extends WebPage
 {
-
+    
 }
 
 ?>

@@ -28,34 +28,34 @@ require_once(PICON_DIRECTORY."\\cache\\CacheManager.php");
 
 /**
  * Extension of autoloader specialised for testings
- *
+ * 
  * @author Martin Cassidy
-*/
+ */
 class TestAutoLoader extends AutoLoader
 {
-	public function __construct()
-	{
-		parent::__construct();
-
-		$this->addScannedDirectory(PICON_DIRECTORY, 'picon');
-		$this->addScannedDirectory(PICON_DIRECTORY."\\annotations");
-		$this->addScannedDirectory(PICON_DIRECTORY."\\exceptions");
-		$this->addScannedDirectory(PICON_DIRECTORY."\\web\\annotations");
-		$this->addScannedDirectory(__DIR__."\\resources");
-		$this->addScannedDirectory(ASSETS_DIRECTORY);
-	}
-
-	/**
-	 * Ignores PHPUnit classes which will also pass through this auto loader
-	 * @param String $className Name of the class to load
-	 */
-	protected function autoLoad($className)
-	{
-		if(!preg_match("/^PHPUnit+.*$/", $className))
-		{
-			parent::autoLoad($className);
-		}
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        
+        $this->addScannedDirectory(PICON_DIRECTORY, 'picon');
+        $this->addScannedDirectory(PICON_DIRECTORY."\\annotations");
+        $this->addScannedDirectory(PICON_DIRECTORY."\\exceptions");
+        $this->addScannedDirectory(PICON_DIRECTORY."\\web\\annotations");
+        $this->addScannedDirectory(__DIR__."\\resources");
+        $this->addScannedDirectory(ASSETS_DIRECTORY);
+    }
+    
+    /**
+     * Ignores PHPUnit classes which will also pass through this auto loader
+     * @param String $className Name of the class to load
+     */
+    protected function autoLoad($className)
+    {
+        if(!preg_match("/^PHPUnit+.*$/", $className))
+        {
+            parent::autoLoad($className);
+        }
+    }
 }
 
 ?>

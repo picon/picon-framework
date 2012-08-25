@@ -24,26 +24,26 @@ namespace picon;
 
 /**
  * Adds on the jQuery ui resources through a render head listener
- * TODO add support fo the jquery ui css
+ * @todo add support fo the jquery ui css
  * @author Martin Cassidy
  * @package web/jQuery/ui
  */
 abstract class AbstractJQueryUIBehaviour extends AbstractJQueryBehaviour
 {
-	public function __construct()
-	{
-		parent::__construct();
-		PiconApplication::get()->addComponentRenderHeadListener(new JQueryUIRenderHeadListener());
-	}
-
-	/**
-	 * TODO This is a bad way of forcing listeners to re register
-	 */
-	public function __wakeup()
-	{
-		parent::__wakeup();
-		PiconApplication::get()->addComponentRenderHeadListener(new JQueryUIRenderHeadListener());
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        PiconApplication::get()->addComponentRenderHeadListener(new JQueryUIRenderHeadListener());
+    }
+    
+    /**
+     * @todo This is a bad way of forcing listeners to re register
+     */
+    public function __wakeup()
+    {
+        parent::__wakeup();
+        PiconApplication::get()->addComponentRenderHeadListener(new JQueryUIRenderHeadListener());
+    }
 }
 
 ?>

@@ -24,33 +24,33 @@ namespace picon;
 
 /**
  * Resolver for a request
- * @author Martin Cassidy
+ * @author Martin Cassidy 
  * @package web/request/resolver
  */
 interface RequestResolver
 {
-	/**
-	 * Resolves a request to a RequestTarget
-	 * @return RequestTarget the request target for the request
-	 */
-	function resolve(Request $request);
-
-	/**
-	 *
-	 * @return boolean true if this request resolver can be used for the request
-	*/
-	function matches(Request $request);
-
-	/**
-	 * Generate a URL for requests of this type
-	 * @return string the URL for the given target
-	*/
-	function generateUrl(RequestTarget $target);
-
-	/**
-	 * @return boolean true if this resolver can handle the given target
-	*/
-	function handles(RequestTarget $target);
+    /**
+     * Resolves a request to a RequestTarget
+     * @return RequestTarget the request target for the request
+     */
+    function resolve(Request $request);
+    
+    /**
+     * 
+     * @return boolean true if this request resolver can be used for the request
+     */
+    function matches(Request $request);
+    
+    /**
+     * Generate a URL for requests of this type
+     * @return string the URL for the given target
+     */
+    function generateUrl(RequestTarget $target);
+    
+    /**
+     * @return boolean true if this resolver can handle the given target
+     */
+    function handles(RequestTarget $target);
 }
 
 ?>

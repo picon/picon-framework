@@ -29,19 +29,19 @@ define("PICON_DIRECTORY", __DIR__.'/picon');
 /**
  * Path to the assets directory in which the user
  * created classes reside
-*/
+ */
 define("ASSETS_DIRECTORY", __DIR__.'/assets');
 
 /**
  * Path to the config directory in which the xml config files
  * reside
-*/
+ */
 define("CONFIG_FILE", __DIR__.'/config/picon.xml');
 
 /**
  * Path to the cache directory in which persisted resources
  * will be stored. This directory needs write access
-*/
+ */
 define("CACHE_DIRECTORY", __DIR__.'/cache');
 
 require_once("picon/PiconApplication.php");
@@ -55,10 +55,10 @@ use picon\PageClassAuthorisationStrategy;
  */
 class SampleApplication extends PiconApplication
 {
-	public function init()
-	{
-		$this->getSecuritySettings()->setAuthorisationStrategy(new SamplePageClassAuthorisationStrategy(AbstractAuthorisedPage::getIdentifier(), LoginPage::getIdentifier()));
-	}
+    public function init()
+    {
+        $this->getSecuritySettings()->setAuthorisationStrategy(new SamplePageClassAuthorisationStrategy(AbstractAuthorisedPage::getIdentifier(), LoginPage::getIdentifier()));
+    }
 }
 
 //Create the application

@@ -27,7 +27,7 @@
  */
 class FileException extends RuntimeException
 {
-
+    
 }
 
 ?>

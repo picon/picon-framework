@@ -24,23 +24,23 @@ namespace picon;
 
 /**
  * Helper class for working with objects
- *
+ * 
  * @author Martin Cassidy
  * @package utilities
  */
 class Objects
 {
-	public static function equals($object1, $object2)
-	{
-		if($object1 instanceof Equalable && $object2 instanceof Equalable)
-		{
-			return $object1->equals($object2);
-		}
-		else
-		{
-			return $object1==$object2;
-		}
-	}
+    public static function equals($object1, $object2)
+    {
+        if($object1 instanceof Equalable && $object2 instanceof Equalable)
+        {
+            return $object1->equals($object2);
+        }
+        else
+        {
+            return $object1==$object2;
+        }
+    }
 }
 
 ?>

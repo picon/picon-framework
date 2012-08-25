@@ -29,9 +29,9 @@ namespace picon;
  */
 interface RequestablePage
 {
-	/**
-	 * Render the page to the response
-	 */
-	function renderPage();
+    /**
+     * Render the page to the response
+     */
+    function renderPage();
 }
 ?>

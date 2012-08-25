@@ -25,30 +25,30 @@ namespace picon;
 /**
  * Rule for the class scanner in which the class must be a sub class of the
  * specified class name
- *
+ * 
  * @author Martin Cassidy
  * @package scanner
  */
 class SubClassRule implements ClassScannerRule
 {
-	private $superClass;
+    private $superClass;
 
-	/**
-	 *
-	 * @param String $superClass The name of the super class to test against
-	 */
-	public function __construct($superClass)
-	{
-		$this->superClass = $superClass;
-	}
+    /**
+     *
+     * @param String $superClass The name of the super class to test against
+     */
+    public function __construct($superClass)
+    {
+        $this->superClass = $superClass;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function matches($className, \ReflectionAnnotatedClass $reflection)
-	{
-		return $reflection->isSubclassOf($this->superClass);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function matches($className, \ReflectionAnnotatedClass $reflection)
+    {
+        return $reflection->isSubclassOf($this->superClass);
+    }
 }
 
 ?>

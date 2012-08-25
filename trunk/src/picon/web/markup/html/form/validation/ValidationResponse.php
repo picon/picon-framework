@@ -23,48 +23,48 @@
 namespace picon;
 
 /**
- * Domain object containing all information about a message reported by a
+ * Domain object containing all information about a message reported by a 
  * validator. With this, a localized string can be found to render the actual message
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/form/validation
  */
 class ValidationResponse
 {
-	private $key;
-	private $name;
-	private $value;
-	private $values = array();
-
-	public function __construct($key)
-	{
-		$this->key = $key;
-	}
-
-	public function getKey()
-	{
-		return $this->key;
-	}
-
-	public function addValue($key, $value)
-	{
-		$this->values[$key] = $value;
-	}
-
-	public function getValues()
-	{
-		return $this->values;
-	}
-
-	public function setValue($value)
-	{
-		$this->value = $value;
-	}
-
-	public function setName($name)
-	{
-		$this->name = $name;
-	}
+    private $key;
+    private $name;
+    private $value;
+    private $values = array();
+    
+    public function __construct($key)
+    {
+        $this->key = $key;
+    }
+    
+    public function getKey()
+    {
+        return $this->key;
+    }
+    
+    public function addValue($key, $value)
+    {
+        $this->values[$key] = $value;
+    }
+    
+    public function getValues()
+    {
+        return $this->values;
+    }
+    
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+    
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 }
 
 ?>

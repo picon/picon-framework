@@ -29,13 +29,13 @@ namespace picon;
  */
 interface ClassScannerRule
 {
-	/**
-	 * Does the given class match the criteria of the rule
-	 * @param String $className the name of the class
-	 * @param \ReflectionAnnotatedClass $reflection The reflection of the class
-	 * @return true if the class matches the criteria
-	 */
-	function matches($className, \ReflectionAnnotatedClass $reflection);
+    /**
+     * Does the given class match the criteria of the rule
+     * @param String $className the name of the class
+     * @param \ReflectionAnnotatedClass $reflection The reflection of the class
+     * @return true if the class matches the criteria
+     */
+    function matches($className, \ReflectionAnnotatedClass $reflection);
 }
 
 ?>

@@ -24,79 +24,79 @@ namespace picon;
 
 /**
  * Panel which implements the jQuery UI dialog
- *
- * TODO problems arise when adding the entire panel to the ajax request target
+ * 
+ * @todo problems arise when adding the entire panel to the ajax request target
  * @author Martin Cassidy
  */
 class ModalWindow extends Panel
 {
-	private $dialog;
-	private $style = 'dispaly:none;';
-	private $wrapper;
-	private $panel;
-
-	public function __construct($id)
-	{
-		parent::__construct($id);
-		$this->wrapper = new MarkupContainer('wrapper');
-		$this->wrapper->setOutputMarkupId(true);
-		$this->add($this->wrapper);
-		$this->dialog = new DialogBehavior();
-		$this->dialog->setModal(true);
-		$this->dialog->setAutoOpen(false);
-		$this->setOutputMarkupId(true);
-		$this->setContent(new EmptyPanel($this->getContentId()));
-		$this->add($this->dialog);
-	}
-
-	protected function onComponentTag(ComponentTag $tag)
-	{
-		$tag->setName('div');
-		parent::onComponentTag($tag);
-	}
-
-	public function getContentId()
-	{
-		return 'content-panel';
-	}
-
-	public function setContent(Panel $panel)
-	{
-		$this->wrapper->addOrReplace($panel);
-	}
-
-	public function show(AjaxRequestTarget $target)
-	{
-		$target->add($this->wrapper);
-		$target->executeScript(sprintf("$('#%s').dialog('open');", $this->getMarkupId()));
-	}
-
-	public function hide(AjaxRequestTarget $target)
-	{
-		$target->executeScript(sprintf("$('#%s').dialog('close');", $this->getMarkupId()));
-	}
-
-	public function setHeight($height)
-	{
-		Args::isNumeric($height, 'height');
-		$this->dialog->setHeight($height);
-	}
-
-	public function setWidth($width)
-	{
-		Args::isNumeric($width, 'width');
-		$this->dialog->setWidth($width);
-	}
-
-	public function __get($name)
-	{
-		return $this->$name;
-	}
-
-	public function __set($name, $value)
-	{
-		$this->$name = $value;
-	}
+    private $dialog;
+    private $style = 'dispaly:none;';
+    private $wrapper;
+    private $panel;
+    
+    public function __construct($id)
+    {
+        parent::__construct($id);
+        $this->wrapper = new MarkupContainer('wrapper');
+        $this->wrapper->setOutputMarkupId(true);
+        $this->add($this->wrapper);
+        $this->dialog = new DialogBehavior();
+        $this->dialog->setModal(true);
+        $this->dialog->setAutoOpen(false);
+        $this->setOutputMarkupId(true);
+        $this->setContent(new EmptyPanel($this->getContentId()));
+        $this->add($this->dialog);
+    }
+    
+    protected function onComponentTag(ComponentTag $tag)
+    {
+        $tag->setName('div');
+        parent::onComponentTag($tag);
+    }
+    
+    public function getContentId()
+    {
+        return 'content-panel';
+    }
+    
+    public function setContent(Panel $panel)
+    {
+        $this->wrapper->addOrReplace($panel);
+    }
+    
+    public function show(AjaxRequestTarget $target)
+    {
+        $target->add($this->wrapper);
+        $target->executeScript(sprintf("$('#%s').dialog('open');", $this->getMarkupId()));
+    }
+    
+    public function hide(AjaxRequestTarget $target)
+    {
+        $target->executeScript(sprintf("$('#%s').dialog('close');", $this->getMarkupId()));
+    }
+    
+    public function setHeight($height)
+    {
+        Args::isNumeric($height, 'height');
+        $this->dialog->setHeight($height);
+    }
+    
+    public function setWidth($width)
+    {
+        Args::isNumeric($width, 'width');
+        $this->dialog->setWidth($width);
+    }
+    
+    public function __get($name)
+    {
+        return $this->$name;
+    }
+    
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
+    }
 }
 
 ?>

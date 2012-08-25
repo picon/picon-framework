@@ -24,18 +24,18 @@ namespace picon;
 
 /**
  * Request target used if the requested page cannot be located
- *
+ * 
  * @author Martin Cassidy
  * @package web
  */
 class PageNotFoundRequestTarget implements RequestTarget
 {
-	public function respond(Response $response)
-	{
-		$page = new PageNotFoundPage();
-		$page->render();
-		$response->flush();
-	}
+    public function respond(Response $response)
+    {
+        $page = new PageNotFoundPage();
+        $page->render();
+        $response->flush();
+    }
 }
 
 ?>

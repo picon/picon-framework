@@ -30,7 +30,7 @@ namespace picon;
  */
 interface ComponentAwareModel
 {
-	function bind(Component &$component);
+    function bind(Component &$component);
 }
 
 ?>

@@ -24,37 +24,37 @@ namespace picon;
 
 /**
  * Validates a string is not longer than a max length
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/form/validation
  */
 class MaximumLengthValidator extends StringValidator
 {
-	private $maximum;
-
-	/**
-	 * @param number $maximum
-	 */
-	public function __construct($maximum)
-	{
-		Args::isNumeric($maximum, 'maximum');
-		$this->maximum = $maximum;
-	}
-
-	public function validateValue(Validatable $validateable)
-	{
-		$response = parent::validateValue($validateable);
-		if($response!=null)
-		{
-			return $response;
-		}
-		if(strlen($validateable->getValue())>$this->maximum)
-		{
-			$response = new ValidationResponse($this->getKeyName());
-			$response->addValue('maxLength', $this->maximum);
-			return $response;
-		}
-	}
+    private $maximum;
+    
+    /**
+     * @param number $maximum 
+     */
+    public function __construct($maximum)
+    {
+        Args::isNumeric($maximum, 'maximum');
+        $this->maximum = $maximum;
+    }
+    
+    public function validateValue(Validatable $validateable)
+    {
+        $response = parent::validateValue($validateable);
+        if($response!=null)
+        {
+            return $response;
+        }
+        if(strlen($validateable->getValue())>$this->maximum)
+        {
+            $response = new ValidationResponse($this->getKeyName());
+            $response->addValue('maxLength', $this->maximum);
+            return $response;
+        }
+    }
 }
 
 ?>

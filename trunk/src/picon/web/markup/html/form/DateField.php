@@ -24,16 +24,16 @@ namespace picon;
 
 /**
  * Text field with a JQuery UI date picker attached
- *
+ * 
  * @author Martin Cassidy
  */
 class DateField extends TextField
 {
-	public function __construct($id, Model $model = null)
-	{
-		parent::__construct($id, $model, Component::TYPE_STRING);
-		$this->add(new DatePickerBehaviour());
-	}
+    public function __construct($id, Model $model = null)
+    {
+        parent::__construct($id, $model, Component::TYPE_STRING);
+        $this->add(new DatePickerBehaviour());
+    }
 }
 
 ?>

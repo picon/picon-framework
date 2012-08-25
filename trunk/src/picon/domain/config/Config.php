@@ -30,50 +30,50 @@ namespace picon;
  */
 class Config extends ComonDomainBase
 {
-	private $homePage;
-	private $startup;
-	private $profile;
-	private $dataSources = array();
-
-	public function setProfile(ApplicationProfile $profile)
-	{
-		$this->profile = $profile;
-	}
-
-	public function getProfile()
-	{
-		return $this->profile;
-	}
-
-	public function setHomePage($homePage)
-	{
-		$this->homePage = $homePage;
-	}
-
-	public function getHomePage()
-	{
-		return $this->homePage;
-	}
-
-	public function addDataSource(DataSourceConfig $source)
-	{
-		array_push($this->dataSources, $source);
-	}
-
-	public function getDataSources()
-	{
-		return $this->dataSources;
-	}
-
-	public function setStartUp($startup)
-	{
-		$this->startup = $startup;
-	}
-
-	public function getStartUp()
-	{
-		return $this->startup;
-	}
+    private $homePage;
+    private $startup;
+    private $profile;
+    private $dataSources = array();
+    
+    public function setProfile(ApplicationProfile $profile)
+    {
+        $this->profile = $profile;
+    }
+    
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+    
+    public function setHomePage($homePage)
+    {
+        $this->homePage = $homePage;
+    }
+    
+    public function getHomePage()
+    {
+        return $this->homePage;
+    }
+    
+    public function addDataSource(DataSourceConfig $source)
+    {
+        array_push($this->dataSources, $source);
+    }
+    
+    public function getDataSources()
+    {
+        return $this->dataSources;
+    }
+    
+    public function setStartUp($startup)
+    {
+        $this->startup = $startup;
+    }
+    
+    public function getStartUp()
+    {
+        return $this->startup;
+    }
 }
 
 ?>

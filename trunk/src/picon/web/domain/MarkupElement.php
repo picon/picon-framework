@@ -24,7 +24,7 @@ namespace picon;
 
 /**
  * An xml tag that is a markup element
- *
+ * 
  * @author Martin Cassidy
  * @package web/domain
  */

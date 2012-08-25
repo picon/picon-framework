@@ -24,24 +24,24 @@ namespace picon;
 
 /**
  * The component used for the cell of a grid view
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/repeater
  */
 class GridItem extends ListItem
 {
-	private $columnIndex;
-
-	public function __construct($id, Model $model, $index, $columnIndex)
-	{
-		parent::__construct($id, $model, $index);
-		$this->columnIndex = $columnIndex;
-	}
-
-	public function getColumnIndex()
-	{
-		return $this->columnIndex;
-	}
+    private $columnIndex;
+    
+    public function __construct($id, Model $model, $index, $columnIndex)
+    {
+        parent::__construct($id, $model, $index);
+        $this->columnIndex = $columnIndex;
+    }
+    
+    public function getColumnIndex()
+    {
+        return $this->columnIndex;
+    }
 }
 
 ?>

@@ -33,238 +33,238 @@ require_once("cache/PiconSerializer.php");
 /**
  * This is the main class for the entire application.
  * @author Martin Cassidy
-*/
-abstract class PiconApplication
+ */
+abstract class PiconApplication 
 {
-	const GLOBAL_APPLICATION_KEY = "picon-application";
+    const GLOBAL_APPLICATION_KEY = "picon-application";
+    
+    private $applicatoinContext;
+    private $config;
+    private $requestProcessor;
+    private $initialiser;
+    
+    //Application Initializer Listeners
+    private $configLoadListeners;
+    private $contextLoadListeners;
+    private $pageMapInitializationListener;
+    
+    //Component listeners
+    private $componentInstantiationListeners;
+    private $componentInitializationListeners;
+    private $componentBeforeRenderListeners;
+    private $componentAfterRenderListeners;
+    private $componentRenderHeadListener;
+    
+    //Converter
+    private $converters = array();
+    
+    private $securitySettings;
+    
+    /**
+     * Create a new Picon Application
+     * Fires off the application initialiser to load an instantiat all resources
+     * Despite not being private, like a normal singleton, it is not
+     * expected for a Picon Application to be instantiated more than once
+     */
+    public function __construct()
+    {
+        if(isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
+        {
+            throw new \IllegalStateException("An instance of picon application already exists");
+        }
+        $GLOBALS[self::GLOBAL_APPLICATION_KEY] = $this;
+        
+        $this->initialiser = new ApplicationInitializer();
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY, 'picon');
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."/annotations");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."/web/annotations");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."/exceptions");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."/web/pages");
+        $this->initialiser->addScannedDirectory(ASSETS_DIRECTORY);
+        
+        $this->internalInit();
+        
+        $this->initialiser->initialise();
+        
+        ob_start();
+    }
+    
+    private function internalInit()
+    {
+        $this->securitySettings = new WebApplicationSecuritySettings();
+        
+        $this->configLoadListeners = new ApplicationInitializerConfigLoadListenerCollection();
+        $this->contextLoadListeners = new ApplicationInitializerContextLoadListenerCollection();
+        
+        $config = &$this->config;
+        $context = &$this->applicatoinContext;
+        
+        $this->addConfigLoaderListener(new ApplicationConfigLoadListener(function($loadedConfig) use (&$config)  
+        {
+            $config = $loadedConfig;
+        }));
+        $this->addContextLoaderListener(new ApplicationContextLoadListener(function($createdContext) use (&$context)  
+        {
+            $context = $createdContext;
+            session_start();
+        }));
+        
+        $this->pageMapInitializationListener = new PageMapInitializationListenerCollection();
+        
+        $this->componentInstantiationListeners = new ComponentInstantiationListenerCollection();
+        $this->addComponentInstantiationListener(new ComponentInjector());
+        $this->addComponentInstantiationListener(new ComponentAuthorisationListener());
+        
+        $this->componentInitializationListeners = new ComponentInitializationListenerCollection();
+        $this->componentBeforeRenderListeners = new ComponentBeforeRenderListenerCollection();
+        $this->componentAfterRenderListeners = new ComponentAfterRenderListenerCollection();
+        $this->componentRenderHeadListener = new ComponentRenderHeadListenerCollection();
+        
+        $this->init();
+    }
+    
+    /**
+     * Called once the application has been created but not run the application initializer
+     * This method creates listener collections.
+     */
+    public function init()
+    {
 
-	private $applicatoinContext;
-	private $config;
-	private $requestProcessor;
-	private $initialiser;
-
-	//Application Initializer Listeners
-	private $configLoadListeners;
-	private $contextLoadListeners;
-	private $pageMapInitializationListener;
-
-	//Component listeners
-	private $componentInstantiationListeners;
-	private $componentInitializationListeners;
-	private $componentBeforeRenderListeners;
-	private $componentAfterRenderListeners;
-	private $componentRenderHeadListener;
-
-	//Converter
-	private $converters = array();
-
-	private $securitySettings;
-
-	/**
-	 * Create a new Picon Application
-	 * Fires off the application initialiser to load an instantiat all resources
-	 * Despite not being private, like a normal singleton, it is not
-	 * expected for a Picon Application to be instantiated more than once
-	 */
-	public function __construct()
-	{
-		if(isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
-		{
-			throw new \IllegalStateException("An instance of picon application already exists");
-		}
-		$GLOBALS[self::GLOBAL_APPLICATION_KEY] = $this;
-
-		$this->initialiser = new ApplicationInitializer();
-		$this->initialiser->addScannedDirectory(PICON_DIRECTORY, 'picon');
-		$this->initialiser->addScannedDirectory(PICON_DIRECTORY."/annotations");
-		$this->initialiser->addScannedDirectory(PICON_DIRECTORY."/web/annotations");
-		$this->initialiser->addScannedDirectory(PICON_DIRECTORY."/exceptions");
-		$this->initialiser->addScannedDirectory(PICON_DIRECTORY."/web/pages");
-		$this->initialiser->addScannedDirectory(ASSETS_DIRECTORY);
-
-		$this->internalInit();
-
-		$this->initialiser->initialise();
-
-		ob_start();
-	}
-
-	private function internalInit()
-	{
-		$this->securitySettings = new WebApplicationSecuritySettings();
-
-		$this->configLoadListeners = new ApplicationInitializerConfigLoadListenerCollection();
-		$this->contextLoadListeners = new ApplicationInitializerContextLoadListenerCollection();
-
-		$config = &$this->config;
-		$context = &$this->applicatoinContext;
-
-		$this->addConfigLoaderListener(new ApplicationConfigLoadListener(function($loadedConfig) use (&$config)
-		{
-			$config = $loadedConfig;
-		}));
-		$this->addContextLoaderListener(new ApplicationContextLoadListener(function($createdContext) use (&$context)
-		{
-			$context = $createdContext;
-			session_start();
-		}));
-
-		$this->pageMapInitializationListener = new PageMapInitializationListenerCollection();
-
-		$this->componentInstantiationListeners = new ComponentInstantiationListenerCollection();
-		$this->addComponentInstantiationListener(new ComponentInjector());
-		$this->addComponentInstantiationListener(new ComponentAuthorisationListener());
-
-		$this->componentInitializationListeners = new ComponentInitializationListenerCollection();
-		$this->componentBeforeRenderListeners = new ComponentBeforeRenderListenerCollection();
-		$this->componentAfterRenderListeners = new ComponentAfterRenderListenerCollection();
-		$this->componentRenderHeadListener = new ComponentRenderHeadListenerCollection();
-
-		$this->init();
-	}
-
-	/**
-	 * Called once the application has been created but not run the application initializer
-	 * This method creates listener collections.
-	 */
-	public function init()
-	{
-
-	}
-
-	public final function run()
-	{
-		$this->requestProcessor = new RequestCycle();
-		$this->requestProcessor->process();
-	}
-
-	public final function getConfig()
-	{
-		return $this->config;
-	}
-
-	public final function getApplicationContext()
-	{
-		return $this->applicatoinContext;
-	}
-
-	public final function getProfile()
-	{
-		return $this->config->getProfile();
-	}
-
-	public static function get()
-	{
-		if(!isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
-		{
-			throw new \IllegalStateException("Failed to get picon application. The application has not been instantiated.");
-		}
-		return $GLOBALS[self::GLOBAL_APPLICATION_KEY];
-	}
-
-	public function getHomePage()
-	{
-		return $this->getConfig()->getHomePage();
-	}
-
-	public function getConfigLoadListener()
-	{
-		return $this->configLoadListeners;
-	}
-
-	public function getContextLoadListener()
-	{
-		return $this->contextLoadListeners;
-	}
-
-	public function getComponentInstantiationListener()
-	{
-		return $this->componentInstantiationListeners;
-	}
-
-	public function getComponentInitializationListener()
-	{
-		return $this->componentInitializationListeners;
-	}
-
-	public function getComponentBeforeRenderListener()
-	{
-		return $this->componentBeforeRenderListeners;
-	}
-
-	public function getComponentAfterRenderListenersr()
-	{
-		return $this->componentAfterRenderListeners;
-	}
-
-	public function getComponentRenderHeadListener()
-	{
-		return $this->componentRenderHeadListener;
-	}
-
-	public function getPageMapInitializationListener()
-	{
-		return $this->pageMapInitializationListener;
-	}
-
-	public function addConfigLoaderListener(ApplicationInitializerConfigLoadListener $listener)
-	{
-		$this->configLoadListeners->add($listener);
-	}
-
-	public function addContextLoaderListener(ApplicationInitializerContextLoadListener $listener)
-	{
-		$this->contextLoadListeners->add($listener);
-	}
-
-	public function addComponentInstantiationListener(ComponentInstantiationListener $listener)
-	{
-		$this->componentInstantiationListeners->add($listener);
-	}
-
-	public function addComponentInitializationListener(ComponentInitializationListener $listener)
-	{
-		$this->componentInitializationListener->add($listener);
-	}
-
-	public function addComponentBeforeRenderListener(ComponentBeforeRenderListener $listener)
-	{
-		$this->componentBeforeRenderListeners->add($listener);
-	}
-
-	public function addComponentAfterRenderListenersr(ComponentAfterRenderListener $listener)
-	{
-		$this->componentAfterRenderListeners->add($listener);
-	}
-
-	public function addComponentRenderHeadListener(ComponentRenderHeadListener $listener)
-	{
-		$this->componentRenderHeadListener->add($listener);
-	}
-
-	public function addPageMapInitializationListenerCollection(PageMapInitializationListenerCollection $listener)
-	{
-		$this->pageMapInitializationListener->add($listener);
-	}
-
-	public function getConverter($className)
-	{
-		if(array_key_exists($className, $this->converters))
-		{
-			return $this->converters[$className];
-		}
-		return null;
-	}
-
-	public function __destruct()
-	{
-		ob_end_flush();
-	}
-
-	public function getSecuritySettings()
-	{
-		return $this->securitySettings;
-	}
+    }
+    
+    public final function run()
+    {
+        $this->requestProcessor = new RequestCycle();
+        $this->requestProcessor->process();
+    }
+    
+    public final function getConfig()
+    {
+        return $this->config;
+    }
+    
+    public final function getApplicationContext()
+    {
+        return $this->applicatoinContext;
+    }
+    
+    public final function getProfile()
+    {
+        return $this->config->getProfile();
+    }
+    
+    public static function get()
+    {
+        if(!isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
+        {
+            throw new \IllegalStateException("Failed to get picon application. The application has not been instantiated.");
+        }
+        return $GLOBALS[self::GLOBAL_APPLICATION_KEY];
+    }
+    
+    public function getHomePage()
+    {
+        return $this->getConfig()->getHomePage();
+    }
+    
+    public function getConfigLoadListener()
+    {
+        return $this->configLoadListeners;
+    }
+    
+    public function getContextLoadListener()
+    {
+        return $this->contextLoadListeners;
+    }
+    
+    public function getComponentInstantiationListener()
+    {
+        return $this->componentInstantiationListeners;
+    }
+    
+    public function getComponentInitializationListener()
+    {
+        return $this->componentInitializationListeners;
+    }
+    
+    public function getComponentBeforeRenderListener()
+    {
+        return $this->componentBeforeRenderListeners;
+    }
+    
+    public function getComponentAfterRenderListenersr()
+    {
+        return $this->componentAfterRenderListeners;
+    }
+    
+    public function getComponentRenderHeadListener()
+    {
+        return $this->componentRenderHeadListener;
+    }
+    
+    public function getPageMapInitializationListener()
+    {
+        return $this->pageMapInitializationListener;
+    }
+    
+    public function addConfigLoaderListener(ApplicationInitializerConfigLoadListener $listener)
+    {
+        $this->configLoadListeners->add($listener);
+    }
+    
+    public function addContextLoaderListener(ApplicationInitializerContextLoadListener $listener)
+    {
+        $this->contextLoadListeners->add($listener);
+    }
+    
+    public function addComponentInstantiationListener(ComponentInstantiationListener $listener)
+    {
+        $this->componentInstantiationListeners->add($listener);
+    }
+    
+    public function addComponentInitializationListener(ComponentInitializationListener $listener)
+    {
+        $this->componentInitializationListener->add($listener);
+    }
+    
+    public function addComponentBeforeRenderListener(ComponentBeforeRenderListener $listener)
+    {
+        $this->componentBeforeRenderListeners->add($listener);
+    }
+    
+    public function addComponentAfterRenderListenersr(ComponentAfterRenderListener $listener)
+    {
+        $this->componentAfterRenderListeners->add($listener);
+    }
+    
+    public function addComponentRenderHeadListener(ComponentRenderHeadListener $listener)
+    {
+        $this->componentRenderHeadListener->add($listener);
+    }
+    
+    public function addPageMapInitializationListenerCollection(PageMapInitializationListenerCollection $listener)
+    {
+        $this->pageMapInitializationListener->add($listener);
+    }
+    
+    public function getConverter($className)
+    {
+        if(array_key_exists($className, $this->converters))
+        {
+            return $this->converters[$className];
+        }
+        return null;
+    }
+    
+    public function __destruct()
+    {
+        ob_end_flush();
+    }
+    
+    public function getSecuritySettings()
+    {
+        return $this->securitySettings;
+    }
 }
 
 ?>

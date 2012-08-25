@@ -1,45 +1,46 @@
 body {
-	margin: 0px;
-	padding: 0px;
-	font-family: sans-serif;
+    margin:0px;
+    padding:0px;
+    font-family: sans-serif;
 }
 
 #sourceFiles {
-	list-style: none;
-	margin: 0px;
-	float: left;
-	width: 200px;
-	padding: 5px;
-	overflow: hidden;
-	height: 600px;
-	font-size: 10pt;
-	background-color: #333;
+    list-style:none;
+    margin:0px;
+    float:left;
+    width:200px;
+    padding:5px;
+    overflow:hidden;
+    height:600px;
+    font-size:10pt;
+    background-color:#333;
 }
 
 #sourceFiles li {
-	margin: 4px 0 4px 0;
+    margin:4px 0 4px 0;
 }
 
 #sourceFiles a {
-	color: #fff;
+    color:#fff;
 }
 
 #sourceFiles a span {
-	width: 200px;
+    width:200px;
+
 }
 
 code {
-	margin-left: 200px;
-	height: 600px;
-	display: block;
-	overflow: auto;
-	padding: 5px 0 0 5px;
+    margin-left:200px;
+    height:600px;
+    display:block;
+    overflow:auto;
+    padding:5px 0 0 5px;
 }
 
-code,#sourceFiles a span {
-	white-space: pre-wrap; /* css-3 */
-	white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
-	white-space: -pre-wrap; /* Opera 4-6 */
-	white-space: -o-pre-wrap; /* Opera 7 */
-	word-wrap: break-word; /* Internet Explorer 5.5+ */
+code, #sourceFiles a span {
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
 }

@@ -23,8 +23,8 @@
 namespace picon;
 
 /**
- * A label is a very simple text based component that can work with almost
- * an HTML tag. It is used for placing the contents of a model
+ * A label is a very simple text based component that can work with almost 
+ * an HTML tag. It is used for placing the contents of a model 
  * into the body of the associated tag.
  *
  * @author Martin Cassidy
@@ -32,21 +32,21 @@ namespace picon;
  */
 class Label extends WebComponent
 {
-	public function __construct($id, Model $model = null)
-	{
-		parent::__construct($id,$model);
-	}
-
-	protected function onComponentTag(ComponentTag $tag)
-	{
-		parent::onComponentTag($tag);
-		$tag->setTagType(new XmlTagType(XmlTagType::OPEN));
-	}
-
-	protected function onComponentTagBody(ComponentTag $tag)
-	{
-		$this->getResponse()->write($this->getModelObjectAsString());
-	}
+    public function __construct($id, Model $model = null)
+    {
+        parent::__construct($id,$model);
+    }
+    
+    protected function onComponentTag(ComponentTag $tag)
+    {
+        parent::onComponentTag($tag);
+        $tag->setTagType(new XmlTagType(XmlTagType::OPEN));
+    }
+    
+    protected function onComponentTagBody(ComponentTag $tag)
+    {
+        $this->getResponse()->write($this->getModelObjectAsString());
+    }
 }
 
 ?>

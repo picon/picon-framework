@@ -26,20 +26,20 @@ require_once(dirname(__FILE__).'/../../../../AbstractPiconTest.php');
 require_once(dirname(__FILE__).'/AbstractRequestResolverTest.php');
 /**
  * Description of PageRequestResolverTest
- *
+ * 
  * @author Martin Cassidy
-*/
+ */
 class PageRequestResolverTest extends AbstractRequestResolverTest
 {
-	protected function newResolver()
-	{
-		return new PageRequestResolver();
-	}
-
-	protected function matchesHomePage(Request $request)
-	{
-		return $request->getParameter('listener')==null;
-	}
+    protected function newResolver()
+    {
+        return new PageRequestResolver();
+    }
+    
+    protected function matchesHomePage(Request $request)
+    {
+        return $request->getParameter('listener')==null;
+    }
 }
 
 ?>

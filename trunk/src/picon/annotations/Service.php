@@ -22,13 +22,13 @@
 
 /**
  * Indicates that the class is a service component
- *
+ * 
  * @author Martin Cassidy
  * @package annotations
  */
-class Service extends Transient
+class Service extends Transient 
 {
-	public $name = "";
+    public $name = "";
 }
 
 ?>

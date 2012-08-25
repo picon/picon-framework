@@ -24,39 +24,39 @@ namespace picon;
 
 /**
  * A proxy model for the compound model
- *
+ * 
  * @author Martin Cassidy
  * @package web/model
  */
 class WrappedCompoundModel implements ComponentAwareModel, ComponentInheritedModel
 {
-	private $source;
-	private $wrapped;
-
-	public function __construct(Model &$model)
-	{
-		$this->wrapped = $model;
-	}
-
-	public function bind(Component &$component)
-	{
-		$this->source = $component;
-	}
-
-	public function getModelObject()
-	{
-		return PropertyResolver::get($this->wrapped->getModelObject(), $this->source->getId());
-	}
-
-	public function setModelObject(&$object)
-	{
-		PropertyResolver::set($this->wrapped->getModelObject(), $this->source->getId(), $object);
-	}
-
-	public function onInherit(Component &$component)
-	{
-		return $this;
-	}
+    private $source;
+    private $wrapped;
+    
+    public function __construct(Model &$model)
+    {
+        $this->wrapped = $model;
+    }
+    
+    public function bind(Component &$component)
+    {
+        $this->source = $component;
+    }
+    
+    public function getModelObject()
+    {
+        return PropertyResolver::get($this->wrapped->getModelObject(), $this->source->getId());
+    }
+    
+    public function setModelObject(&$object)
+    {
+        PropertyResolver::set($this->wrapped->getModelObject(), $this->source->getId(), $object);
+    }
+    
+    public function onInherit(Component &$component)
+    {
+        return $this;
+    }
 }
 
 ?>

@@ -31,17 +31,17 @@ namespace picon;
  */
 class ApplicationContextLoadListener implements ApplicationInitializerContextLoadListener
 {
-	private $callback;
-
-	public function __construct($callback)
-	{
-		$this->callback = $callback;
-	}
-
-	public function onContextLoaded(ApplicationContext $context)
-	{
-		call_user_func($this->callback, $context);
-	}
+    private $callback;
+    
+    public function __construct($callback)
+    {
+        $this->callback = $callback;
+    }
+    
+    public function onContextLoaded(ApplicationContext $context)
+    {
+        call_user_func($this->callback, $context);
+    }
 }
 
 ?>

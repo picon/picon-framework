@@ -24,24 +24,24 @@ namespace picon;
 
 /**
  * The component that represents an item in a list view
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/repeater
  */
 class ListItem extends MarkupContainer
 {
-	private $index;
-
-	public function __construct($id, Model $model, $index)
-	{
-		parent::__construct($id, $model);
-		$this->index = $index;
-	}
-
-	public function getIndex()
-	{
-		return $this->index;
-	}
+    private $index;
+    
+    public function __construct($id, Model $model, $index)
+    {
+        parent::__construct($id, $model);
+        $this->index = $index;
+    }
+    
+    public function getIndex()
+    {
+        return $this->index;
+    }
 }
 
 ?>

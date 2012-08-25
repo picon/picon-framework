@@ -31,59 +31,59 @@ namespace picon;
  */
 class ResourceReference
 {
-	private $file;
-	private $identifier;
+    private $file;
+    private $identifier;
+    
+    public function __construct($file, Identifier $identifier)
+    {
+        Args::isString($file, 'file');
+        $this->file = $file;
+        $this->identifier = $identifier;
+    }
+    
+    public function getFile()
+    {
+        return $this->file;
+    }
+    
+    public function getIdentifier()
+    {
+        return $this->identifier;
+    }
+    
+    public function loadResource()
+    {
+        $fileName = $this->getResourceFile($this->identifier->getFullyQualifiedName());
 
-	public function __construct($file, Identifier $identifier)
-	{
-		Args::isString($file, 'file');
-		$this->file = $file;
-		$this->identifier = $identifier;
-	}
-
-	public function getFile()
-	{
-		return $this->file;
-	}
-
-	public function getIdentifier()
-	{
-		return $this->identifier;
-	}
-
-	public function loadResource()
-	{
-		$fileName = $this->getResourceFile($this->identifier->getFullyQualifiedName());
-
-		if($fileName==null)
-		{
-			throw new \RuntimeException(sprintf("Unable to located file for resource %s with class scope %s", $this->file, $this->identifier->getFullyQualifiedName()));
-		}
-		$resouce = @file_get_contents($fileName);
-
-		if($resouce==false)
-		{
-			throw new \FileException(sprintf("Failed to open file %s", $fileName));
-		}
-		return $resouce;
-	}
-
-	private function getResourceFile($className)
-	{
-		$reflection = new \ReflectionClass($className);
-		$fileInfo = new \SplFileInfo($reflection->getFileName());
-
-		$file = $fileInfo->getPath()."/".$this->file;
-		if(file_exists($file))
-		{
-			return $file;
-		}
-		if(get_parent_class($className)!=false)
-		{
-			return $this->getResourceFile(get_parent_class($className));
-		}
-		return null;
-	}
+        if($fileName==null)
+        {
+            throw new \RuntimeException(sprintf("Unable to located file for resource %s with class scope %s", $this->file, $this->identifier->getFullyQualifiedName()));
+        }
+        $resouce = @file_get_contents($fileName);
+        
+        if($resouce==false)
+        {
+            throw new \FileException(sprintf("Failed to open file %s", $fileName));
+        }
+        return $resouce;
+    }
+    
+    private function getResourceFile($className)
+    {
+        $reflection = new \ReflectionClass($className);
+        $fileInfo = new \SplFileInfo($reflection->getFileName());
+        
+        $file = $fileInfo->getPath()."/".$this->file;
+        if(file_exists($file))
+        {
+            return $file;
+        }
+        if(get_parent_class($className)!=false)
+        {
+            return $this->getResourceFile(get_parent_class($className));
+        }
+        return null;
+    }
 }
 
 ?>

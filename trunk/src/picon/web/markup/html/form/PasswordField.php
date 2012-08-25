@@ -24,21 +24,21 @@ namespace picon;
 
 /**
  * Description of PasswordField
- *
+ * 
  * @author Martin Cassidy
  */
 class PasswordField extends TextField
 {
-	public function __construct($id, Model $model = null, $type = null)
-	{
-		parent::__construct($id, $model, $type);
-		$this->setRequired(true);
-	}
-
-	protected function getTypeAttribute()
-	{
-		return 'password';
-	}
+    public function __construct($id, Model $model = null, $type = null)
+    {
+        parent::__construct($id, $model, $type);
+        $this->setRequired(true);
+    }
+    
+    protected function getTypeAttribute()
+    {
+        return 'password';
+    }
 }
 
 ?>

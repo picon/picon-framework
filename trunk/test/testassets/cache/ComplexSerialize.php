@@ -22,65 +22,65 @@
 
 /**
  * Description of ComplexSerialize
- *
+ * 
  * @author Martin Cassidy
  */
 class ComplexSerialize extends ParentComplexObject
 {
-	private $closure;
-
-	/**
-	 *
-	 * @Transient
-	 */
-	private $transient = "defaultValue";
-
-	/**
-	 *
-	 * @Service
-	 */
-	private $service = "defaultValue";
-
-	private $object;
-
-	public function __construct()
-	{
-		$value1 = "1";
-		$value2 = "2";
-		$this->object = new SimpleSerialize();
-		$this->closure = function() use($value1, $value2)
-		{
-			return "executing ".$value1.$value2;
-		};
-		$this->transient = "newValue";
-		$this->service = "newValue2";
-		$closure = $this->closure;
-	}
-
-	public function getClosure()
-	{
-		return $this->closure;
-	}
-
-	public function getTransient()
-	{
-		return $this->transient;
-	}
-
-	public function getService()
-	{
-		return $this->service;
-	}
-
-	public function getObject()
-	{
-		return $this->object;
-	}
-
-	public function setObject($object)
-	{
-		$this->object = $object;
-	}
+    private $closure;
+    
+    /**
+     *
+     * @Transient
+     */
+    private $transient = "defaultValue";
+    
+    /**
+     *
+     * @Service
+     */
+    private $service = "defaultValue";
+    
+    private $object;
+    
+    public function __construct()
+    {
+        $value1 = "1";
+        $value2 = "2";
+        $this->object = new SimpleSerialize();
+        $this->closure = function() use($value1, $value2)
+        {
+            return "executing ".$value1.$value2;
+        };
+        $this->transient = "newValue";
+        $this->service = "newValue2";
+        $closure = $this->closure;
+    }
+    
+    public function getClosure()
+    {
+        return $this->closure;
+    }
+    
+    public function getTransient()
+    {
+        return $this->transient;
+    }
+    
+    public function getService()
+    {
+        return $this->service;
+    }
+    
+    public function getObject()
+    {
+        return $this->object;
+    }
+    
+    public function setObject($object)
+    {
+        $this->object = $object;
+    }
 }
 
 ?>

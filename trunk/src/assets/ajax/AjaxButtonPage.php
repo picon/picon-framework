@@ -18,66 +18,66 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- *
- * $HeadURL$
- * $Revision$
- * $Author$
- * $Date$
- * $Id$
- *
+ * 
+ * Repository path:    $HeadURL$
+ * Last committed:     $Revision$
+ * Last changed by:    $Author$
+ * Last changed date:  $Date$
+ * ID:                 $Id$
+ * 
  * */
 
 /**
  * Description of AjaxLinkPage
- *
+ * 
  * @author Martin Cassidy
  */
 class AjaxButtonPage extends AbstractPage
 {
-	private $text = 'Default text';
-
-	public function __construct()
-	{
-		parent::__construct();
-
-		$feedback = new \picon\FeedbackPanel('feedback');
-		$feedback->setOutputMarkupId(true);
-		$this->add($feedback);
-
-		$label = new picon\Label('text', new picon\PropertyModel($this, 'text'));
-		$label->setOutputMarkupId(true);
-		$this->add($label);
-
-		$form = new picon\Form('form');
-		$this->add($form);
-		$form->add(new picon\RequiredTextField('text', new picon\PropertyModel($this, 'text')));
-
-		$self = $this;
-		$form->add(new \picon\AjaxButton('button', function(picon\AjaxRequestTarget $target) use ($label, $feedback)
-		{
-			$target->add($label);
-			$target->add($feedback);
-		},
-		function(picon\AjaxRequestTarget $target) use ($feedback)
-		{
-			$target->add($feedback);
-		}));
-	}
-
-	public function getInvolvedFiles()
-	{
-		return array('assets/ajax/AjaxButtonPage.php', 'assets/ajax/AjaxButtonPage.html');
-	}
-
-	public function __get($name)
-	{
-		return $this->$name;
-	}
-
-	public function __set($name, $value)
-	{
-		$this->$name = $value;
-	}
+    private $text = 'Default text';
+    
+    public function __construct()
+    {
+        parent::__construct();
+        
+        $feedback = new \picon\FeedbackPanel('feedback');
+        $feedback->setOutputMarkupId(true);
+        $this->add($feedback);
+        
+        $label = new picon\Label('text', new picon\PropertyModel($this, 'text'));
+        $label->setOutputMarkupId(true);
+        $this->add($label);
+        
+        $form = new picon\Form('form');
+        $this->add($form);
+        $form->add(new picon\RequiredTextField('text', new picon\PropertyModel($this, 'text')));
+        
+        $self = $this;
+        $form->add(new \picon\AjaxButton('button', function(picon\AjaxRequestTarget $target) use ($label, $feedback)
+        {
+            $target->add($label);
+            $target->add($feedback);
+        }, 
+        function(picon\AjaxRequestTarget $target) use ($feedback)
+        {
+            $target->add($feedback);
+        }));
+    }
+    
+    public function getInvolvedFiles()
+    {
+        return array('assets/ajax/AjaxButtonPage.php', 'assets/ajax/AjaxButtonPage.html');
+    }
+    
+    public function __get($name)
+    {
+        return $this->$name;
+    }
+    
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
+    }
 }
 
 ?>

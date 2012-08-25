@@ -25,60 +25,60 @@ namespace picon;
 /**
  * Dependency injector for resources. All resources are inject after instantiation.
  * Although any object can be manually injected at any time.
- *
+ * 
  * @author Martin Cassidy
  * @package context
  */
 class Injector
 {
-	private $context;
-	private static $injector;
-
-	public function __construct(ApplicationContext $context)
-	{
-		$this->context = $context;
-		Injector::$injector = $this;
-	}
-
-	/**
-	 * @param type $object
-	 */
-	public function inject(&$object, $reflection = null)
-	{
-		if($reflection==null)
-		{
-			$reflection = new \ReflectionAnnotatedClass($object);
-		}
-		$properties = $reflection->getProperties();
-
-		foreach($properties as $property)
-		{
-			if($property->hasAnnotation("Resource"))
-			{
-				$annotation = $property->getAnnotation("Resource");
-				$resource = $property->getName();
-
-				if(!empty($annotation->name))
-				{
-					$resource = $annotation->name;
-				}
-
-				$property->setAccessible(true);
-				$property->setValue($object, $this->context->getResource($resource));
-			}
-		}
-
-		$parent = $reflection->getParentClass();
-		if($parent!=null)
-		{
-			$this->inject($object, $parent);
-		}
-	}
-
-	public static function get()
-	{
-		return Injector::$injector;
-	}
+    private $context;
+    private static $injector;
+    
+    public function __construct(ApplicationContext $context)
+    {
+        $this->context = $context;
+        Injector::$injector = $this;
+    }
+    
+    /**
+     * @param type $object 
+     */
+    public function inject(&$object, $reflection = null)
+    {
+        if($reflection==null)
+        {
+            $reflection = new \ReflectionAnnotatedClass($object);
+        }
+        $properties = $reflection->getProperties();
+                
+        foreach($properties as $property)
+        { 
+            if($property->hasAnnotation("Resource"))
+            {
+                $annotation = $property->getAnnotation("Resource");
+                $resource = $property->getName();
+                
+                if(!empty($annotation->name))
+                {
+                    $resource = $annotation->name;
+                }
+                
+                $property->setAccessible(true);
+                $property->setValue($object, $this->context->getResource($resource));
+            }
+        }
+        
+        $parent = $reflection->getParentClass();
+        if($parent!=null)
+        {
+            $this->inject($object, $parent);
+        }
+    }
+    
+    public static function get()
+    {
+        return Injector::$injector;
+    }
 }
 
 ?>

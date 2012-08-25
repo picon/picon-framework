@@ -18,44 +18,37 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- *
- * $HeadURL$
- * $Revision$
- * $Author$
- * $Date$
- * $Id$
- *
  * */
 
 /**
  * Description of LabelPage
- *
+ * 
  * @author Martin Cassidy
  */
 class LabelPage extends AbstractPage
 {
-	private $text = 'Label text';
-
-	public function __construct()
-	{
-		parent::__construct();
-		$this->add(new picon\Label('text', new picon\PropertyModel($this, 'text')));
-	}
-
-	public function getInvolvedFiles()
-	{
-		return array('assets/general/LabelPage.php', 'assets/general/LabelPage.html');
-	}
-
-	public function __get($name)
-	{
-		return $this->$name;
-	}
-
-	public function __set($name, $value)
-	{
-		$this->$name = $value;
-	}
+    private $text = 'Label text';
+    
+    public function __construct()
+    {
+        parent::__construct();
+        $this->add(new picon\Label('text', new picon\PropertyModel($this, 'text')));
+    }
+    
+    public function getInvolvedFiles()
+    {
+        return array('assets/general/LabelPage.php', 'assets/general/LabelPage.html');
+    }
+    
+    public function __get($name)
+    {
+        return $this->$name;
+    }
+    
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
+    }
 }
 
 ?>

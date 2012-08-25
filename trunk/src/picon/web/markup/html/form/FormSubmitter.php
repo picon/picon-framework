@@ -29,11 +29,11 @@ namespace picon;
  */
 interface FormSubmitter
 {
-	function onSubmit();
-
-	function onError();
-
-	function getForm();
+    function onSubmit();
+    
+    function onError();
+    
+    function getForm();
 }
 
 ?>

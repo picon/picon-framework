@@ -30,7 +30,7 @@ namespace picon;
  */
 interface RequestTarget
 {
-	function respond(Response $response);
+    function respond(Response $response);
 }
 
 ?>

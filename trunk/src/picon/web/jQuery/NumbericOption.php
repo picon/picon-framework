@@ -29,24 +29,24 @@ namespace picon;
  */
 class NumbericOption extends AbstractOption
 {
-	private $value;
-
-	public function __construct($name, $value)
-	{
-		parent::__construct($name, $value);
-		Args::isNumeric($value, 'value');
-		$this->value = $value;
-	}
-
-	protected function getValue()
-	{
-		return $this->value;
-	}
-
-	public function render(AbstractJQueryBehaviour $behaviour)
-	{
-		return sprintf("%s : %s", $this->getName(), $this->getValue());
-	}
+    private $value;
+    
+    public function __construct($name, $value)
+    {
+        parent::__construct($name, $value);
+        Args::isNumeric($value, 'value');
+        $this->value = $value;
+    }
+    
+    protected function getValue()
+    {
+        return $this->value;
+    }
+    
+    public function render(AbstractJQueryBehaviour $behaviour)
+    {
+        return sprintf("%s : %s", $this->getName(), $this->getValue());
+    }
 }
 
 ?>

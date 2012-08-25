@@ -24,62 +24,62 @@ namespace picon;
 
 /**
  * A checkbox which may be used independantly, it must have a boolean model
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 class CheckBox extends FormComponent
 {
-	protected function validateModel()
-	{
-		if($this->getModel()!=null && !($this->getModel() instanceof BooleanModel) && $this->getModelObject()!=null && !is_bool($this->getModelObject()))
-		{
-			throw new \IllegalStateException(sprintf("A check box must have a boolean model, actual %s", gettype($this->getModelObject())));
-		}
-	}
+    protected function validateModel()
+    {
+        if($this->getModel()!=null && !($this->getModel() instanceof BooleanModel) && $this->getModelObject()!=null && !is_bool($this->getModelObject()))
+        {
+            throw new \IllegalStateException(sprintf("A check box must have a boolean model, actual %s", gettype($this->getModelObject())));
+        }
+    }
+    
+    public function getValue()
+    {
+        return $this->getComponentPath();
+    }
+    
+    protected function isSelected($value)
+    {
+        if($this->isEmptyInput())
+        {
+            return false;
+        }
+        else
+        {
+            if($this->getRawInput()==null)
+            {
+                return $this->getModelObject();
+            }
+            else
+            {
+                return $value==$this->getRawInput();
+            }
+        }
+    }
+    
+    protected function onComponentTag(ComponentTag $tag)
+    {
+        parent::onComponentTag($tag); 
+        $this->checkComponentTag($tag, 'input');
+        $this->checkComponentTagAttribute($tag, 'type', 'checkbox');
+        $tag->put('value', $this->getValue());
+        
+        if($this->isSelected($this->getValue()))
+        {
+            $tag->put('checked', 'checked');
+        }
+    }
 
-	public function getValue()
-	{
-		return $this->getComponentPath();
-	}
-
-	protected function isSelected($value)
-	{
-		if($this->isEmptyInput())
-		{
-			return false;
-		}
-		else
-		{
-			if($this->getRawInput()==null)
-			{
-				return $this->getModelObject();
-			}
-			else
-			{
-				return $value==$this->getRawInput();
-			}
-		}
-	}
-
-	protected function onComponentTag(ComponentTag $tag)
-	{
-		parent::onComponentTag($tag);
-		$this->checkComponentTag($tag, 'input');
-		$this->checkComponentTagAttribute($tag, 'type', 'checkbox');
-		$tag->put('value', $this->getValue());
-
-		if($this->isSelected($this->getValue()))
-		{
-			$tag->put('checked', 'checked');
-		}
-	}
-
-	protected function convertInput()
-	{
-		$value = ($this->getRawInput()==$this->getValue())==true;
-		$this->setConvertedInput($value);
-	}
+    protected function convertInput()
+    {
+        $value = ($this->getRawInput()==$this->getValue())==true;
+        $this->setConvertedInput($value);
+    }
 }
 
 ?>

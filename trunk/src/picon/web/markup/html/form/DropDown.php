@@ -24,44 +24,44 @@ namespace picon;
 
 /**
  * A drop down choice HTML select element
- *
+ * 
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 class DropDown extends AbstractSingleChoice
 {
-	public function __construct($id, $choices, ChoiceRenderer $choiceRenderer = null, Model $model = null, $disabled = null)
-	{
-		parent::__construct($id, $choices, $choiceRenderer, $model, $disabled);
-	}
-
-	protected function onComponentTag(ComponentTag $tag)
-	{
-		$this->checkComponentTag($tag, 'select');
-		$tag->setTagType(new XmlTagType(XmlTagType::OPEN));
-		parent::onComponentTag($tag);
-	}
-
-	protected function onComponentTagBody(ComponentTag $tag)
-	{
-		$value = $this->getValue();
-		if($this->isRequired() && empty($value) || !$this->isRequired())
-		{
-			$this->renderOption($this->getDefaultValue(), null, empty($value));
-		}
-
-		$this->renderOptions();
-	}
-
-	protected function getDefaultValue()
-	{
-		return $this->getLocalizer()->getString('default');
-	}
-
-	protected function supportNestedArray()
-	{
-		return true;
-	}
+    public function __construct($id, $choices, ChoiceRenderer $choiceRenderer = null, Model $model = null, $disabled = null)
+    {
+        parent::__construct($id, $choices, $choiceRenderer, $model, $disabled);
+    }
+    
+    protected function onComponentTag(ComponentTag $tag)
+    {
+        $this->checkComponentTag($tag, 'select');
+        $tag->setTagType(new XmlTagType(XmlTagType::OPEN));
+        parent::onComponentTag($tag);
+    }
+    
+    protected function onComponentTagBody(ComponentTag $tag)
+    {
+        $value = $this->getValue();
+        if($this->isRequired() && empty($value) || !$this->isRequired())
+        {
+            $this->renderOption($this->getDefaultValue(), null, empty($value));
+        }
+        
+        $this->renderOptions();
+    }
+    
+    protected function getDefaultValue()
+    {
+        return $this->getLocalizer()->getString('default');
+    }
+    
+    protected function supportNestedArray()
+    {
+        return true;
+    }
 }
 
 ?>

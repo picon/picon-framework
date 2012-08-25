@@ -30,122 +30,122 @@ namespace picon;
  * <li>Executes any listener events</li>
  * <li>Produces the response</li>
  * </ol>
- *
+ * 
  * @author Martin Cassidy
  * @package web/request/cycle
- * TODO create request listeners
+ * @todo create request listeners
  */
 class RequestCycle
 {
-	private $request;
-	private $response;
-	private $resolver;
-	private $targetStack;
-	private $maxStackSize = 10; //TODO put this somewhere else
+    private $request;
+    private $response;
+    private $resolver;
+    private $targetStack;
+    private $maxStackSize = 10; //@todo put this somewhere else
+    
+    public function __construct()
+    {
+        $GLOBALS['requestCycle'] = $this;
+        $this->targetStack = new \ArrayObject();
+        $this->resolver = new RequestResolverCollection();
+        $this->request = new WebRequest();
+        $this->response = new WebResponse();
+    }
+    
+    public function process()
+    {
+        $target = $this->resolver->resolve($this->request);
+        
+        if($target!=null)
+        {
+            $this->addTarget($target);
+        }
+        
+        if(count($this->targetStack)==0)
+        {
+            $this->addTarget(new PageNotFoundRequestTarget());
+        }
+        
 
-	public function __construct()
-	{
-		$GLOBALS['requestCycle'] = $this;
-		$this->targetStack = new \ArrayObject();
-		$this->resolver = new RequestResolverCollection();
-		$this->request = new WebRequest();
-		$this->response = new WebResponse();
-	}
+        $iterator = $this->targetStack->getIterator();
 
-	public function process()
-	{
-		$target = $this->resolver->resolve($this->request);
-
-		if($target!=null)
-		{
-			$this->addTarget($target);
-		}
-
-		if(count($this->targetStack)==0)
-		{
-			$this->addTarget(new PageNotFoundRequestTarget());
-		}
-
-
-		$iterator = $this->targetStack->getIterator();
-
-		while($iterator->valid())
-		{
-			try
-			{
-				if(PiconApplication::get()->getProfile()->isCleanBeforeOutput())
-				{
-					ob_clean();
-					$this->response->clean();
-				}
-				$iterator->current()->respond($this->response);
-			}
-			catch(RestartRequestOnPageException $restartEx)
-			{
-				$iterator->rewind();
-				$this->targetStack->exchangeArray(array());
-				$this->addTarget(new PageRequestTarget($restartEx->getPageIdentifier()));
-			}
-			catch(\Exception $ex)
-			{
-				$iterator->rewind();
-				$this->targetStack->exchangeArray(array());
-				$this->addTarget(new ExceptionPageRequestTarget($ex));
-			}
-			$iterator->next();
-		}
-
-	}
-
-	public function addTarget($target)
-	{
-		if($target==null)
-		{
-			return;
-		}
-		if(!($target instanceof RequestTarget))
-		{
-			throw new \InvalidArgumentException("addTarget() expects a paramater that is an instance of RequestTarget");
-		}
-		if($this->targetStack->count()==$this->maxStackSize)
-		{
-			throw new \OverflowException(sprintf("The request target stack cannot contain more than %d elements per request", $this->maxStackSize));
-		}
-		$this->targetStack->append($target);
-	}
-
-	public function generateUrl(RequestTarget $target)
-	{
-		return $this->resolver->generateUrl($target);
-	}
-
-	public function getResponse()
-	{
-		return $this->response;
-	}
-
-	public function getRequest()
-	{
-		return $this->request;
-	}
-
-	public static function get()
-	{
-		return $GLOBALS['requestCycle'];
-	}
-
-	public function containsTarget(Identifier $contains)
-	{
-		foreach($this->targetStack as $target)
-		{
-			$identifier = Identifier::forObject($target);
-			if($identifier->of($contains))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
+        while($iterator->valid()) 
+        {
+            try
+            {
+                if(PiconApplication::get()->getProfile()->isCleanBeforeOutput())
+                {
+                    ob_clean();
+                    $this->response->clean();
+                }
+                $iterator->current()->respond($this->response);
+            }
+            catch(RestartRequestOnPageException $restartEx)
+            {
+                $iterator->rewind();
+                $this->targetStack->exchangeArray(array());
+                $this->addTarget(new PageRequestTarget($restartEx->getPageIdentifier()));
+            }
+            catch(\Exception $ex)
+            {
+                $iterator->rewind();
+                $this->targetStack->exchangeArray(array());
+                $this->addTarget(new ExceptionPageRequestTarget($ex));
+            }
+            $iterator->next();
+        }
+        
+    }
+    
+    public function addTarget($target)
+    {
+        if($target==null)
+        {
+            return;
+        }
+        if(!($target instanceof RequestTarget))
+        {
+            throw new \InvalidArgumentException("addTarget() expects a paramater that is an instance of RequestTarget");
+        }
+        if($this->targetStack->count()==$this->maxStackSize)
+        {
+            throw new \OverflowException(sprintf("The request target stack cannot contain more than %d elements per request", $this->maxStackSize));
+        }
+        $this->targetStack->append($target);
+    }
+    
+    public function generateUrl(RequestTarget $target)
+    {
+        return $this->resolver->generateUrl($target);
+    }
+    
+    public function getResponse()
+    {
+        return $this->response;
+    }
+    
+    public function getRequest()
+    {
+        return $this->request;
+    }
+    
+    public static function get()
+    {
+        return $GLOBALS['requestCycle'];
+    }
+    
+    public function containsTarget(Identifier $contains)
+    {
+        foreach($this->targetStack as $target)
+        {
+            $identifier = Identifier::forObject($target);
+            if($identifier->of($contains))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 ?>

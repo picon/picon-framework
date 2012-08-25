@@ -18,13 +18,6 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- *
- * $HeadURL$
- * $Revision$
- * $Author$
- * $Date$
- * $Id$
- *
  * */
 
 use picon\ListView;
@@ -34,38 +27,38 @@ use picon\BasicModel;
 
 /**
  * Description of ListPage
- *
+ * 
  * @author Martin Cassidy
  */
 class ListPage extends AbstractPage
 {
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
+        
+        $fruit = array('apples', 'pears', 'bananas', 'oranges');
+        
+        $this->add(new ListView('fruit', function($entry)
+        {
+            $entry->add(new Label('name', new BasicModel($entry->getModelObject())));
+        }, new ArrayModel($fruit)));
 
-		$fruit = array('apples', 'pears', 'bananas', 'oranges');
-
-		$this->add(new ListView('fruit', function($entry)
-		{
-			$entry->add(new Label('name', new BasicModel($entry->getModelObject())));
-		}, new ArrayModel($fruit)));
-
-		$repeatingView = new \picon\RepeatingView('repeater');
-		$this->add($repeatingView);
-
-		foreach($fruit as $item)
-		{
-			$element = new Label('text', new BasicModel($item));
-			$container = new picon\MarkupContainer($repeatingView->getNextChildId());
-			$container->add($element);
-			$repeatingView->add($container);
-		}
-	}
-
-	public function getInvolvedFiles()
-	{
-		return array('assets/general/ListPage.php', 'assets/general/ListPage.html');
-	}
+        $repeatingView = new \picon\RepeatingView('repeater');
+        $this->add($repeatingView);
+        
+        foreach($fruit as $item)
+        {
+            $element = new Label('text', new BasicModel($item));
+            $container = new picon\MarkupContainer($repeatingView->getNextChildId());
+            $container->add($element);
+            $repeatingView->add($container);
+        }
+    }
+    
+    public function getInvolvedFiles()
+    {
+        return array('assets/general/ListPage.php', 'assets/general/ListPage.html');
+    }
 }
 
 ?>

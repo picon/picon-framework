@@ -24,37 +24,37 @@ namespace picon;
 
 /**
  * Super class for all validators
- * TODO validators should not use string based messages but
+ * @todo validators should not use string based messages but
  * should instead use a resource key to locate a message from a file
  * @author Martin Cassidy
  * @package web/markup/html/form/validation
  */
 abstract class AbstractValidator implements Validator
 {
-	public function validate(Validatable $validateable)
-	{
-		if($validateable->isValid())
-		{
-			$response = $this->validateValue($validateable);
-
-			if($response!=null && $response instanceof ValidationResponse)
-			{
-				$validateable->error($response);
-			}
-		}
-	}
-
-	public abstract function validateValue(Validatable $validateable);
-
-	protected final function getKeyName($class = null)
-	{
-		if($class==null)
-		{
-			$class = get_called_class();
-		}
-		$reflection = new \ReflectionClass($class);
-		return $reflection->getShortName();
-	}
+    public function validate(Validatable $validateable)
+    {
+        if($validateable->isValid())
+        {
+            $response = $this->validateValue($validateable);
+            
+            if($response!=null && $response instanceof ValidationResponse)
+            {
+                $validateable->error($response);
+            }
+        }
+    }
+    
+    public abstract function validateValue(Validatable $validateable);
+    
+    protected final function getKeyName($class = null)
+    {
+        if($class==null)
+        {
+            $class = get_called_class();
+        }
+        $reflection = new \ReflectionClass($class);
+        return $reflection->getShortName();
+    }
 }
 
 ?>

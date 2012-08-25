@@ -23,103 +23,103 @@
 namespace picon;
 
 /**
- * Scanner to find classes that match a given set of rules.
+ * Scanner to find classes that match a given set of rules. 
  * This expectes any classes that are to be scanned to have been declared
- *
+ * 
  * @author Martin Cassidy
  * @package scanner
  */
 class ClassScanner
 {
-	private $rules;
+    private $rules;
+    
+    /**
+     *
+     * @param mixed $rule Array of ClassScannerRule or a single ClassScannerRule
+     */
+    public function __construct($rules = array())
+    {
+        if(is_array($rules))
+        {
+            foreach($rules as $rule)
+            {
+                if(!($rule instanceof ClassScannerRule))
+                {
+                    throw new \InvalidArgumentException(sprintf("Expected an array of ClassScannerRule. %s is not a ClassScannerRulle", get_class($rule)));
+                }
+            }
+            $this->rules = $rules;
+        }
+        else
+        {
+            if(!($rules instanceof ClassScannerRule))
+            {
+                throw new \InvalidArgumentException(sprintf("Expected ClassScannerRule, actual %s", get_class($rules)));
+            }
+            $this->rules = array($rules);
+        }
+    }
+    
+    /**
+     * Add a new rule to the class scanner
+     * @param ClassScannerRule $rule The rule to add
+     */
+    public function addRule(ClassScannerRule $rule)
+    {
+        array_push($this->rules, $rule);
+    }
+    
+    /**
+     * Scan classes for those matching the rules that have been added
+     *
+     * @param Array $classesToScan A list of classes to scan, optional if not specified
+     * all declared classess will be scanned.
+     * @return Array An array of the class reflections which matched (ReflectionAnnotatedClass)
+     */
+    public function scanForReflection($classesToScan = null)
+    {
+        return array_values($this->scan($classesToScan));
+    }
 
-	/**
-	 *
-	 * @param mixed $rule Array of ClassScannerRule or a single ClassScannerRule
-	 */
-	public function __construct($rules = array())
-	{
-		if(is_array($rules))
-		{
-			foreach($rules as $rule)
-			{
-				if(!($rule instanceof ClassScannerRule))
-				{
-					throw new \InvalidArgumentException(sprintf("Expected an array of ClassScannerRule. %s is not a ClassScannerRulle", get_class($rule)));
-				}
-			}
-			$this->rules = $rules;
-		}
-		else
-		{
-			if(!($rules instanceof ClassScannerRule))
-			{
-				throw new \InvalidArgumentException(sprintf("Expected ClassScannerRule, actual %s", get_class($rules)));
-			}
-			$this->rules = array($rules);
-		}
-	}
+    /**
+     * Scan classes for those matching the rules that have been added
+     *
+     * @param Array $classesToScan A list of classes to scan, optional if not specified
+     * all declared classess will be scanned.
+     * @return Array An array of the class names which matched
+     */
+    public function scanForName($classesToScan = null)
+    {
+        return array_keys($this->scan($classesToScan));
+    }
 
-	/**
-	 * Add a new rule to the class scanner
-	 * @param ClassScannerRule $rule The rule to add
-	 */
-	public function addRule(ClassScannerRule $rule)
-	{
-		array_push($this->rules, $rule);
-	}
+    private function scan($classesToScan = null)
+    {
+        $matchedClasses = array();
 
-	/**
-	 * Scan classes for those matching the rules that have been added
-	 *
-	 * @param Array $classesToScan A list of classes to scan, optional if not specified
-	 * all declared classess will be scanned.
-	 * @return Array An array of the class reflections which matched (ReflectionAnnotatedClass)
-	 */
-	public function scanForReflection($classesToScan = null)
-	{
-		return array_values($this->scan($classesToScan));
-	}
+        if($classesToScan==null)
+        {
+            $classesToScan = get_declared_classes();
+        }
 
-	/**
-	 * Scan classes for those matching the rules that have been added
-	 *
-	 * @param Array $classesToScan A list of classes to scan, optional if not specified
-	 * all declared classess will be scanned.
-	 * @return Array An array of the class names which matched
-	 */
-	public function scanForName($classesToScan = null)
-	{
-		return array_keys($this->scan($classesToScan));
-	}
+        foreach($classesToScan as $className)
+        {
+            $match = false;
+            $reflection = new \ReflectionAnnotatedClass($className);
+            foreach($this->rules as $rule)
+            {
+                $match = $rule->matches($className, $reflection);
 
-	private function scan($classesToScan = null)
-	{
-		$matchedClasses = array();
+                if($match)
+                {
+                    $matchedClasses[$className] = $reflection;
+                    break;
+                }
+            }
+        }
 
-		if($classesToScan==null)
-		{
-			$classesToScan = get_declared_classes();
-		}
-
-		foreach($classesToScan as $className)
-		{
-			$match = false;
-			$reflection = new \ReflectionAnnotatedClass($className);
-			foreach($this->rules as $rule)
-			{
-				$match = $rule->matches($className, $reflection);
-
-				if($match)
-				{
-					$matchedClasses[$className] = $reflection;
-					break;
-				}
-			}
-		}
-
-		return $matchedClasses;
-	}
+        return $matchedClasses;
+    }
 }
 
 ?>

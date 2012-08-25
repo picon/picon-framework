@@ -30,7 +30,7 @@ namespace picon;
  */
 interface ComponentRenderHeadListener
 {
-	function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response);
+    function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response);
 }
 
 ?>

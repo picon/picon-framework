@@ -24,80 +24,80 @@ namespace picon;
 require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 class InjectionTest extends AbstractPiconTest
 {
-	public function testInjector()
-	{
-		$context = $this->getContext();
-		$injector = new \picon\Injector($context);
-
-		foreach($context->getResources() as $resource)
-		{
-			$injector->inject($resource);
-		}
-
-		$this->assertInstanceOf('TestService', $context->getResource("testRepository")->getTestService());
-		$this->assertInstanceOf('TestRepositoryName', $context->getResource("testRepository")->getTestRepo());
-		$this->assertInstanceOf('TestServiceName', $context->getResource("testRepository")->getTestServ());
-
-
-		$this->assertInstanceOf('TestRepository', $context->getResource("testService")->getTestRepository());
-		$this->assertInstanceOf('TestRepositoryName', $context->getResource("testService")->getTestRepo());
-		$this->assertInstanceOf('TestServiceName', $context->getResource("testService")->getTestServ());
-
-		$this->assertInstanceOf('TestRepository', $context->getResource("repo")->getTestRepository());
-		$this->assertInstanceOf('TestService', $context->getResource("repo")->getTestService());
-		$this->assertInstanceOf('TestServiceName', $context->getResource("repo")->getTestServ());
-
-		$this->assertInstanceOf('TestRepository', $context->getResource("serv")->getTestRepository());
-		$this->assertInstanceOf('TestService', $context->getResource("serv")->getTestService());
-		$this->assertInstanceOf('TestRepositoryName', $context->getResource("serv")->getTestRepo());
-	}
-
-	public function testSeperateInjector()
-	{
-		$empty = new \EmptyInjectable();
-		$injector = new Injector($this->getContext());
-
-		$injector->inject($empty);
-
-		$this->assertInstanceOf('TestService', $empty->getTestService());
-		$this->assertInstanceOf('TestRepository', $empty->getTestRepository());
-		$this->assertInstanceOf('TestRepositoryName', $empty->getTestRepo());
-		$this->assertInstanceOf('TestServiceName', $empty->getTestServ());
-	}
-
-	public function testSeperateInjectorAlias()
-	{
-		$empty = new \EmptyInjectableName();
-		$injector = new Injector($this->getContext());
-
-		$injector->inject($empty);
-
-		$this->assertInstanceOf('TestService', $empty->getTestService());
-		$this->assertInstanceOf('TestRepository', $empty->getTestRepository());
-		$this->assertInstanceOf('TestRepositoryName', $empty->getTestRepo());
-		$this->assertInstanceOf('TestServiceName', $empty->getTestServ());
-	}
-
-	/**
-	 * @expectedException UndefinedResourceException
-	 */
-	public function testInvalidResource()
-	{
-		$toInject = new \InvalidInjectable();
-		$injector = new Injector($this->getContext());
-
-		$injector->inject($toInject);
-	}
-
-	/**
-	 * @expectedException UndefinedResourceException
-	 */
-	public function testInvalidResourceAlias()
-	{
-		$toInject = new \InvalidNameInjectable();
-		$injector = new Injector($this->getContext());
-
-		$injector->inject($toInject);
-	}
+    public function testInjector()
+    {
+        $context = $this->getContext();
+        $injector = new \picon\Injector($context);
+        
+        foreach($context->getResources() as $resource)
+        {
+            $injector->inject($resource);
+        }
+        
+        $this->assertInstanceOf('TestService', $context->getResource("testRepository")->getTestService());
+        $this->assertInstanceOf('TestRepositoryName', $context->getResource("testRepository")->getTestRepo());
+        $this->assertInstanceOf('TestServiceName', $context->getResource("testRepository")->getTestServ());
+        
+        
+        $this->assertInstanceOf('TestRepository', $context->getResource("testService")->getTestRepository());
+        $this->assertInstanceOf('TestRepositoryName', $context->getResource("testService")->getTestRepo());
+        $this->assertInstanceOf('TestServiceName', $context->getResource("testService")->getTestServ());
+        
+        $this->assertInstanceOf('TestRepository', $context->getResource("repo")->getTestRepository());
+        $this->assertInstanceOf('TestService', $context->getResource("repo")->getTestService());
+        $this->assertInstanceOf('TestServiceName', $context->getResource("repo")->getTestServ());
+        
+        $this->assertInstanceOf('TestRepository', $context->getResource("serv")->getTestRepository());
+        $this->assertInstanceOf('TestService', $context->getResource("serv")->getTestService());
+        $this->assertInstanceOf('TestRepositoryName', $context->getResource("serv")->getTestRepo());
+    }
+    
+    public function testSeperateInjector()
+    {
+        $empty = new \EmptyInjectable();
+        $injector = new Injector($this->getContext());
+        
+        $injector->inject($empty);
+        
+        $this->assertInstanceOf('TestService', $empty->getTestService());
+        $this->assertInstanceOf('TestRepository', $empty->getTestRepository());
+        $this->assertInstanceOf('TestRepositoryName', $empty->getTestRepo());
+        $this->assertInstanceOf('TestServiceName', $empty->getTestServ());
+    }
+    
+    public function testSeperateInjectorAlias()
+    {
+        $empty = new \EmptyInjectableName();
+        $injector = new Injector($this->getContext());
+        
+        $injector->inject($empty);
+        
+        $this->assertInstanceOf('TestService', $empty->getTestService());
+        $this->assertInstanceOf('TestRepository', $empty->getTestRepository());
+        $this->assertInstanceOf('TestRepositoryName', $empty->getTestRepo());
+        $this->assertInstanceOf('TestServiceName', $empty->getTestServ());
+    }
+    
+   /**
+    * @expectedException UndefinedResourceException
+    */
+    public function testInvalidResource()
+    {
+        $toInject = new \InvalidInjectable();
+        $injector = new Injector($this->getContext());
+        
+        $injector->inject($toInject);
+    }
+    
+   /**
+    * @expectedException UndefinedResourceException
+    */
+    public function testInvalidResourceAlias()
+    {
+        $toInject = new \InvalidNameInjectable();
+        $injector = new Injector($this->getContext());
+        
+        $injector->inject($toInject);
+    }
 }
 ?>
