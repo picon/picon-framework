@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.7.0" />
+
+	<title>Class SessionExpiredPage | Picon Framework</title>
+
+	<script type="text/javascript" src="resources/combined.js?1069802229"></script>
+	<script type="text/javascript" src="elementlist.js?3232593492"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?1567499433" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-picon.html">picon</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-ErrorPage.html">ErrorPage</a></li>
+				<li><a href="class-Path.html">Path</a></li>
+				<li><a href="class-Repository.html">Repository</a></li>
+				<li><a href="class-Resource.html">Resource</a></li>
+				<li><a href="class-Service.html">Service</a></li>
+				<li class="active"><a href="class-SessionExpiredPage.html">SessionExpiredPage</a></li>
+				<li><a href="class-Transient.html">Transient</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Converter.html">Converter</a></li>
+			</ul>
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-DuplicatePageDefinitionException.html">DuplicatePageDefinitionException</a></li>
+				<li><a href="class-DuplicateResourceException.html">DuplicateResourceException</a></li>
+				<li><a href="class-FileException.html">FileException</a></li>
+				<li><a href="class-IllegalStateException.html">IllegalStateException</a></li>
+				<li><a href="class-InvalidMarkupException.html">InvalidMarkupException</a></li>
+				<li><a href="class-MarkupNotFoundException.html">MarkupNotFoundException</a></li>
+				<li><a href="class-NotImplementedException.html">NotImplementedException</a></li>
+				<li><a href="class-UndefinedResourceException.html">UndefinedResourceException</a></li>
+				<li><a href="class-UnsupportedOperationException.html">UnsupportedOperationException</a></li>
+				<li><a href="class-XMLException.html">XMLException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-None.html" title="Summary of None"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="deprecated.html" title="List of deprecated elements"><span>Deprecated</span></a>
+			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class SessionExpiredPage</h1>
+
+
+	<div class="description">
+	
+<p>Page shown when a request is made for a resource that should be in the
+session but not found i.e. session must have expired</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-picon.Component.html"><span>picon\Component</span></a>
+			
+			 implements 
+				<a href="class-picon.InjectOnWakeup.html"><span>picon\InjectOnWakeup</span></a>, 
+			
+				<a href="class-picon.Identifiable.html"><span>picon\Identifiable</span></a>, 
+			
+				<a href="class-picon.Detachable.html"><span>picon\Detachable</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-picon.MarkupContainer.html"><span>picon\MarkupContainer</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-picon.WebPage.html"><span>picon\WebPage</span></a>
+			
+			 implements 
+				<a href="class-picon.RequestablePage.html"><span>picon\RequestablePage</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:90px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>SessionExpiredPage</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> web\pages<br />
+
+				<b>Author:</b>
+				Martin Cassidy<br />
+		<b>Located at</b> <a href="source-class-SessionExpiredPage.html#27" title="Go to source code">web/pages/SessionExpiredPage.php</a><br />
+	</div>
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-SessionExpiredPage.html#36" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			
+<p>Create a new component. Any overrides of the constructor must call the
+super.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new component. Any overrides of the constructor must call the
+super.</p>
+
+
+
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-picon.WebPage.html#_">picon\WebPage::__construct</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-picon.WebPage.html#methods">picon\WebPage</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.WebPage.html#_">afterPageRender()</a>, 
+			<a href="class-picon.WebPage.html#_">beforePageRender()</a>, 
+			<a href="class-picon.WebPage.html#_">getAutoIndex()</a>, 
+			<a href="class-picon.WebPage.html#_">isPageStateless()</a>, 
+			<a href="class-picon.WebPage.html#_">onRender()</a>, 
+			<a href="class-picon.WebPage.html#_">renderPage()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-picon.MarkupContainer.html#methods">picon\MarkupContainer</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.MarkupContainer.html#_">add()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">addComponent()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">addOrReplace()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">childExists()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">detach()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">get()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">getChildren()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">getMarkupForChild()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">hasChildren()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">internalInitialize()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">loadAssociatedMarkup()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">onComponentAdded()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">onComponentTagBody()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">remove()</a>, 
+			<a href="class-picon.MarkupContainer.html#_">visitChildren()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-picon.Component.html#methods">picon\Component</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.Component.html#_">addBehaviour()</a>, 
+			<a href="class-picon.Component.html#_">afterComponentRender()</a>, 
+			<a href="class-picon.Component.html#_">beforeComponentRender()</a>, 
+			<a href="class-picon.Component.html#_">checkComponentTag()</a>, 
+			<a href="class-picon.Component.html#_">checkComponentTagAttribute()</a>, 
+			<a href="class-picon.Component.html#_">error()</a>, 
+			<a href="class-picon.Component.html#_">fatel()</a>, 
+			<a href="class-picon.Component.html#_">fireInitialize()</a>, 
+			<a href="class-picon.Component.html#_">generateUrlFor()</a>, 
+			<a href="class-picon.Component.html#_">getApplication()</a>, 
+			<a href="class-picon.Component.html#_">getBehaviourById()</a>, 
+			<a href="class-picon.Component.html#_">getBehaviours()</a>, 
+			<a href="class-picon.Component.html#_">getComponentKey()</a>, 
+			<a href="class-picon.Component.html#_">getComponentPath()</a>, 
+			<a href="class-picon.Component.html#_">getId()</a>, 
+			<a href="class-picon.Component.html#_">getIdentifier()</a>, 
+			<a href="class-picon.Component.html#_">getLocalizer()</a>, 
+			<a href="class-picon.Component.html#_">getMarkUpSource()</a>, 
+			<a href="class-picon.Component.html#_">getMarkup()</a>, 
+			<a href="class-picon.Component.html#_">getMarkupId()</a>, 
+			<a href="class-picon.Component.html#_">getModel()</a>, 
+			<a href="class-picon.Component.html#_">getModelObject()</a>, 
+			<a href="class-picon.Component.html#_">getModelObjectAsString()</a>, 
+			<a href="class-picon.Component.html#_">getPage()</a>, 
+			<a href="class-picon.Component.html#_">getParent()</a>, 
+			<a href="class-picon.Component.html#_">getRequest()</a>, 
+			<a href="class-picon.Component.html#_">getRequestCycle()</a>, 
+			<a href="class-picon.Component.html#_">getResponse()</a>, 
+			<a href="class-picon.Component.html#_">hasErrorMessage()</a>, 
+			<a href="class-picon.Component.html#_">hasMessage()</a>, 
+			<a href="class-picon.Component.html#_">info()</a>, 
+			<a href="class-picon.Component.html#_">internalRenderComponent()</a>, 
+			<a href="class-picon.Component.html#_">isAuto()</a>, 
+			<a href="class-picon.Component.html#_">isBeforePageRender()</a>, 
+			<a href="class-picon.Component.html#_">isInitialized()</a>, 
+			<a href="class-picon.Component.html#_">isRendered()</a>, 
+			<a href="class-picon.Component.html#_">isStateless()</a>, 
+			<a href="class-picon.Component.html#_">newMarkupSource()</a>, 
+			<a href="class-picon.Component.html#_">onComponentTag()</a>, 
+			<a href="class-picon.Component.html#_">onInitialize()</a>, 
+			<a href="class-picon.Component.html#_">render()</a>, 
+			<a href="class-picon.Component.html#_">renderAll()</a>, 
+			<a href="class-picon.Component.html#_">renderElement()</a>, 
+			<a href="class-picon.Component.html#_">renderHead()</a>, 
+			<a href="class-picon.Component.html#_">renderHeadContainer()</a>, 
+			<a href="class-picon.Component.html#_">setAfterComponentRenderCallback()</a>, 
+			<a href="class-picon.Component.html#_">setAfterPageRenderCallback()</a>, 
+			<a href="class-picon.Component.html#_">setBeforeComponentRenderCallback()</a>, 
+			<a href="class-picon.Component.html#_">setBeforePageRenderCallback()</a>, 
+			<a href="class-picon.Component.html#_">setMarkup()</a>, 
+			<a href="class-picon.Component.html#_">setMarkupId()</a>, 
+			<a href="class-picon.Component.html#_">setModel()</a>, 
+			<a href="class-picon.Component.html#_">setModelObject()</a>, 
+			<a href="class-picon.Component.html#_">setOnComponentTagBodyCallback()</a>, 
+			<a href="class-picon.Component.html#_">setOnComponentTagCallback()</a>, 
+			<a href="class-picon.Component.html#_">setOutputMarkupId()</a>, 
+			<a href="class-picon.Component.html#_">setPage()</a>, 
+			<a href="class-picon.Component.html#_">setParent()</a>, 
+			<a href="class-picon.Component.html#_">setRenderBodyOnly()</a>, 
+			<a href="class-picon.Component.html#_">setRenderHeadCallback()</a>, 
+			<a href="class-picon.Component.html#_">setVisible()</a>, 
+			<a href="class-picon.Component.html#_">success()</a>, 
+			<a href="class-picon.Component.html#_">urlForListener()</a>, 
+			<a href="class-picon.Component.html#_">urlForPage()</a>, 
+			<a href="class-picon.Component.html#_">urlForPageInstance()</a>, 
+			<a href="class-picon.Component.html#_">visitParents()</a>, 
+			<a href="class-picon.Component.html#_">warning()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+	<table class="summary inherited">
+	<caption>Constants inherited from <a href="class-picon.Component.html#constants">picon\Component</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.Component.html#PATH_SEPERATOR"><b>PATH_SEPERATOR</b></a>, 
+			<a href="class-picon.Component.html#TYPE_ARRAY"><b>TYPE_ARRAY</b></a>, 
+			<a href="class-picon.Component.html#TYPE_BOOL"><b>TYPE_BOOL</b></a>, 
+			<a href="class-picon.Component.html#TYPE_DOUBLE"><b>TYPE_DOUBLE</b></a>, 
+			<a href="class-picon.Component.html#TYPE_FLOAT"><b>TYPE_FLOAT</b></a>, 
+			<a href="class-picon.Component.html#TYPE_INT"><b>TYPE_INT</b></a>, 
+			<a href="class-picon.Component.html#TYPE_STRING"><b>TYPE_STRING</b></a>, 
+			<a href="class-picon.Component.html#VISITOR_CONTINUE_TRAVERSAL"><b>VISITOR_CONTINUE_TRAVERSAL</b></a>, 
+			<a href="class-picon.Component.html#VISITOR_CONTINUE_TRAVERSAL_NO_DEEPER"><b>VISITOR_CONTINUE_TRAVERSAL_NO_DEEPER</b></a>, 
+			<a href="class-picon.Component.html#VISITOR_STOP_TRAVERSAL"><b>VISITOR_STOP_TRAVERSAL</b></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-picon.Component.html#properties">picon\Component</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.Component.html#$added"><var>$added</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+</div>
+
+	<div id="footer">
+		Picon Framework API documentation generated by <a href="http://apigen.org">ApiGen 2.7.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
