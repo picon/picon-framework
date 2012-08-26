@@ -44,16 +44,15 @@ define("CONFIG_FILE", __DIR__.'/config/picon.xml');
  */
 define("CACHE_DIRECTORY", __DIR__.'/cache');
 
-require_once("picon/PiconApplication.php");
+require_once(dirname(__FILE__)."/picon/web/PiconWebApplication.php");
 
-use picon\PiconApplication;
-use picon\PageClassAuthorisationStrategy;
+use picon\PiconWebApplication;
 
 /**
  * The sample picon application
  * @author Martin Cassidy
  */
-class SampleApplication extends PiconApplication
+class SampleApplication extends PiconWebApplication
 {
     public function init()
     {

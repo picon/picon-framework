@@ -18,35 +18,28 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * */
+ * 
+ * $HeadURL$
+ * $Revision$
+ * $Author$
+ * $Date$
+ * $Id$
+ */
 
 namespace picon;
-require_once("core/ApplicationInitializer.php");
 
-require_once("addendum/annotation_parser.php");
-require_once("addendum/annotations.php");
-require_once("addendum/doc_comment.php");
+require_once(dirname(__FILE__)."/../core/PiconApplication.php");
+require_once(dirname(__FILE__)."/application/WebApplicationInitializer.php");
 
-require_once("cache/CacheManager.php");
-require_once("cache/PiconSerializer.php");
 
 /**
- * This is the main class for the entire application.
+ * A Picon Application for producing web pages
+ *
  * @author Martin Cassidy
  */
-abstract class PiconApplication 
+class PiconWebApplication extends PiconApplication
 {
-    const GLOBAL_APPLICATION_KEY = "picon-application";
-    
-    private $applicatoinContext;
-    private $config;
     private $requestProcessor;
-    private $initialiser;
-    
-    //Application Initializer Listeners
-    private $configLoadListeners;
-    private $contextLoadListeners;
-    private $pageMapInitializationListener;
     
     //Component listeners
     private $componentInstantiationListeners;
@@ -55,81 +48,47 @@ abstract class PiconApplication
     private $componentAfterRenderListeners;
     private $componentRenderHeadListener;
     
-    //Converter
-    private $converters = array();
-    
+    private $pageMapInitializationListener;
+	
     private $securitySettings;
     
-    /**
-     * Create a new Picon Application
-     * Fires off the application initialiser to load an instantiat all resources
-     * Despite not being private, like a normal singleton, it is not
-     * expected for a Picon Application to be instantiated more than once
-     */
-    public function __construct()
+    protected function getApplicationInitializer()
     {
-        if(isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
-        {
-            throw new \IllegalStateException("An instance of picon application already exists");
-        }
-        $GLOBALS[self::GLOBAL_APPLICATION_KEY] = $this;
-        
-        $this->initialiser = new ApplicationInitializer();
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY, 'picon');
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."/annotations");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."/web/annotations");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."/exceptions");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY."/web/pages");
-        $this->initialiser->addScannedDirectory(ASSETS_DIRECTORY);
-        
-        $this->internalInit();
-        
-        $this->initialiser->initialise();
-        
-        ob_start();
+        return new WebApplicationInitializer();
     }
     
-    private function internalInit()
+    protected final function internalInit()
     {
-        $this->securitySettings = new WebApplicationSecuritySettings();
-        
-        $this->configLoadListeners = new ApplicationInitializerConfigLoadListenerCollection();
-        $this->contextLoadListeners = new ApplicationInitializerContextLoadListenerCollection();
-        
-        $config = &$this->config;
-        $context = &$this->applicatoinContext;
-        
-        $this->addConfigLoaderListener(new ApplicationConfigLoadListener(function($loadedConfig) use (&$config)  
+        parent::internalInit();
+        $this->addContextLoaderListener(new ApplicationContextLoadListener(function($createdContext)
         {
-            $config = $loadedConfig;
-        }));
-        $this->addContextLoaderListener(new ApplicationContextLoadListener(function($createdContext) use (&$context)  
-        {
-            $context = $createdContext;
             session_start();
         }));
         
-        $this->pageMapInitializationListener = new PageMapInitializationListenerCollection();
+        $this->securitySettings = new WebApplicationSecuritySettings();
         
+        $this->pageMapInitializationListener = new PageMapInitializationListenerCollection();
+
         $this->componentInstantiationListeners = new ComponentInstantiationListenerCollection();
         $this->addComponentInstantiationListener(new ComponentInjector());
         $this->addComponentInstantiationListener(new ComponentAuthorisationListener());
-        
+
         $this->componentInitializationListeners = new ComponentInitializationListenerCollection();
         $this->componentBeforeRenderListeners = new ComponentBeforeRenderListenerCollection();
         $this->componentAfterRenderListeners = new ComponentAfterRenderListenerCollection();
         $this->componentRenderHeadListener = new ComponentRenderHeadListenerCollection();
-        
+
         $this->init();
     }
     
+
     /**
      * Called once the application has been created but not run the application initializer
      * This method creates listener collections.
      */
     public function init()
     {
-
+        
     }
     
     public final function run()
@@ -138,43 +97,9 @@ abstract class PiconApplication
         $this->requestProcessor->process();
     }
     
-    public final function getConfig()
-    {
-        return $this->config;
-    }
-    
-    public final function getApplicationContext()
-    {
-        return $this->applicatoinContext;
-    }
-    
-    public final function getProfile()
-    {
-        return $this->config->getProfile();
-    }
-    
-    public static function get()
-    {
-        if(!isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
-        {
-            throw new \IllegalStateException("Failed to get picon application. The application has not been instantiated.");
-        }
-        return $GLOBALS[self::GLOBAL_APPLICATION_KEY];
-    }
-    
     public function getHomePage()
     {
         return $this->getConfig()->getHomePage();
-    }
-    
-    public function getConfigLoadListener()
-    {
-        return $this->configLoadListeners;
-    }
-    
-    public function getContextLoadListener()
-    {
-        return $this->contextLoadListeners;
     }
     
     public function getComponentInstantiationListener()
@@ -207,16 +132,6 @@ abstract class PiconApplication
         return $this->pageMapInitializationListener;
     }
     
-    public function addConfigLoaderListener(ApplicationInitializerConfigLoadListener $listener)
-    {
-        $this->configLoadListeners->add($listener);
-    }
-    
-    public function addContextLoaderListener(ApplicationInitializerContextLoadListener $listener)
-    {
-        $this->contextLoadListeners->add($listener);
-    }
-    
     public function addComponentInstantiationListener(ComponentInstantiationListener $listener)
     {
         $this->componentInstantiationListeners->add($listener);
@@ -247,23 +162,14 @@ abstract class PiconApplication
         $this->pageMapInitializationListener->add($listener);
     }
     
-    public function getConverter($className)
+    public function getSecuritySettings()
     {
-        if(array_key_exists($className, $this->converters))
-        {
-            return $this->converters[$className];
-        }
-        return null;
+        return $this->securitySettings;
     }
     
     public function __destruct()
     {
         ob_end_flush();
-    }
-    
-    public function getSecuritySettings()
-    {
-        return $this->securitySettings;
     }
 }
 

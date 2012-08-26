@@ -30,11 +30,11 @@ define("ASSETS_DIRECTORY", __DIR__.'\\testassets');
 define("CONFIG_FILE", __DIR__.'\\config\\picon.xml');
 define("CACHE_DIRECTORY", __DIR__.'\\cache');
 
+require_once(PICON_DIRECTORY."/cache/PiconSerializer.php");
 require_once(PICON_DIRECTORY."\\addendum\\annotation_parser.php");
 require_once(PICON_DIRECTORY."\\addendum\\annotations.php");
 require_once(PICON_DIRECTORY."\\addendum\\doc_comment.php");
 require_once("TestAutoLoader.php");
-require_once("TestApplication.php");
 
 class AbstractPiconTest extends \PHPUnit_Framework_TestCase
 {
@@ -73,12 +73,12 @@ class AbstractPiconTest extends \PHPUnit_Framework_TestCase
     
     protected function getConfig()
     {
-        return \picon\ConfigLoader::load(__DIR__.'/config/picon.xml');
+        return ConfigLoader::load(__DIR__.'/config/picon.xml');
     }
     
     protected function getContext()
     {
-        $loader = new \picon\AutoContextLoader();
+        $loader = new AutoContextLoader();
         return $loader->load($this->getConfig());
     }
 }

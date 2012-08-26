@@ -18,7 +18,14 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * */
+ * 
+ * $HeadURL$
+ * $Revision$
+ * $Author$
+ * $Date$
+ * $Id$
+ * 
+ */
 
 namespace picon;
 require_once("AutoLoader.php");
@@ -36,7 +43,7 @@ require_once('PiconErrorHandler.php');
  * @author Martin Cassidy
  * @package core
  */
-class ApplicationInitializer
+abstract class ApplicationInitializer
 {
     const CONFIG_RESOURCE_NAME = 'picon_config';
     
@@ -65,40 +72,7 @@ class ApplicationInitializer
     /**
      * Initialise the application
      */
-    public function initialise()
-    {
-        $config = null;
-        if(CacheManager::resourceExists(self::CONFIG_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE))
-        {
-            $config = CacheManager::loadResource(self::CONFIG_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE);
-        }
-        else
-        {
-            $config = ConfigLoader::load(CONFIG_FILE);
-            CacheManager::saveResource(self::CONFIG_RESOURCE_NAME, $config, CacheManager::APPLICATION_SCOPE);
-        }
-        PiconApplication::get()->getConfigLoadListener()->onConfigLoaded($config);
-        
-        $loader = ContextLoaderFactory::getLoader($config);
-        $context = $loader->load($config);
-        $injector = new Injector($context);
-        
-        foreach($context->getResources() as $resource)
-        {
-            $injector->inject($resource);
-        }
-        foreach($context->getResources() as $resource)
-        {
-            if($resource instanceof InitializingBean)
-            {
-                $resource->afterPropertiesSet();
-            }
-        }
-        
-        PiconApplication::get()->getContextLoadListener()->onContextLoaded($context);
-
-        PageMap::get()->initialise();
-    }
+    public abstract function initialise();
     
     /**
      * Runs a require_once() on all the php files in the given directory
