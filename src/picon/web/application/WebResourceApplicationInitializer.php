@@ -18,17 +18,31 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * */
+ * 
+ * $HeadURL$
+ * $Revision$
+ * $Author$
+ * $Date$
+ * $Id$
+ */
 
 namespace picon;
-require_once(PICON_DIRECTORY.'/PiconApplication.php');
+
+require_once(dirname(__FILE__)."/../../core/ApplicationInitializer.php");
+
 /**
+ * An empty Application Initialiser which does nothing. This skimmed down
+ * version is used for web resources
  *
  * @author Martin Cassidy
+ * @package web/application
  */
-class TestApplication extends PiconApplication
+class WebResourceApplicationInitializer extends ApplicationInitializer
 {
-    
+    public function initialise()
+    {
+        //Nothing
+    }
 }
 
 ?>
