@@ -47,10 +47,16 @@ class PiconSerializer
      */
     public static function serialize($object)
     {
-        if(!is_object($object))
+        if(!is_object($object) && (!is_callable($object) && !($object instanceof \Closure)))
         {
             return serialize($object);
         }
+        
+        if($object instanceof \Closure)
+        {
+            return serialize(new SerializableClosure($object));
+        }
+        
         self::$prepared = array();
         self::$restore = array();
         self::prepareForSerize(new \ReflectionAnnotatedClass($object), $object);

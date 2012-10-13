@@ -124,7 +124,7 @@ class AutoLoader
      */
     protected function onFail($namespace, $class)
     {
-        trigger_error(sprintf("Unable to load class %s in namespace %s, please check that the name of file matches tha name of the class and that the file is in a directory that is used by the class scanner", $class, $namespace),E_USER_ERROR);
+        
     }
     
     /**
