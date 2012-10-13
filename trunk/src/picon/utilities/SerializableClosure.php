@@ -40,7 +40,6 @@ namespace picon;
  * code is processed so that an closures declared within have their own code isolated so that it may be
  * used later when it is needed and would otherwise be un-obtainable with SplFileObject.
  * 
- * @todo imporove so that  all type hinting usage of classes within a closure don't need to be fully qualified
  * @todo test in PHP 5.4.x
  * @author Martin Cassidy
  * @package utilities
@@ -52,6 +51,8 @@ class SerializableClosure
     private $arguments;
     private $source;
     private $reflection;
+    private $imports;
+    private $declaredNameSpace;
     
     public function __construct($closure, $code = null)
     {
@@ -60,7 +61,7 @@ class SerializableClosure
         
         if($code==null)
         {
-            $this->code = $this->fetchCode($this->reflection);
+            $this->evaluate($this->reflection);
             $this->prepareCode();
         }
         else
@@ -76,29 +77,101 @@ class SerializableClosure
     }
     
     /**
-     * Extract the code from the callback as a string
+     * Evaluates the closure and the code in the reset of the file. This sets
+     * the code for the closure, the namespace it is declared in (if any) and
+     * any applicable namespace imports
      * @param ReflectionFunction The reflected function of the closure
      * @return String The code the closure runs 
      */
-    private function fetchCode(\ReflectionFunction $reflection)
+    private function evaluate(\ReflectionFunction $reflection)
     {
-        $code = null;
-        $file = new \SplFileObject($reflection->getFileName());
-        $file->seek($reflection->getStartLine() - 1);
-
         $code = '';
-        while ($file->key() < $reflection->getEndLine())
+        $full = '';
+        
+        $file = new \SplFileObject($reflection->getFileName());
+
+        while (!$file->eof())
         {
-            $code .= $file->current();
+            if($file->key()>=$reflection->getStartLine() - 1 && $file->key() < $reflection->getEndLine())
+            {
+                $code .= $file->current();
+            }
+            $full .= $file->current();
             $file->next();
         }
-
+        
         //@todo this assumes the function will be the only one on that line
         $begin = strpos($code, 'function');
         //@todo this assumes the } will be the only one on that line
         $end = strrpos($code, '}');
-        $code = substr($code, $begin, $end - $begin + 1);
-        return $code;
+        
+        $this->code = substr($code, $begin, $end - $begin + 1);
+        $this->extractDetail($full);
+    }
+    
+    /**
+     * Called by evaluate() to determine the declared namespace and class
+     * imports applicable to the closure
+     * @param string $fileContent
+     */
+    private function extractDetail($fileContent)
+    {
+        $imports = array();
+        $codeBlocks = token_get_all($fileContent);
+        $index = 0;
+        foreach($codeBlocks as $c)
+        {
+            if(is_array($c))
+            {
+                if($c[0]==T_NAMESPACE)
+                {
+                    $namespace = $this->getNext(T_STRING, $index, $codeBlocks);
+                    if($namespace!=false)
+                    {
+                        $this->declaredNameSpace = $namespace;
+                    }
+                }
+                if($c[0]==T_USE)
+                {
+                    $importCandidate = '';
+                    
+                    for($i = $index+1; $i < count($codeBlocks); $i++)
+                    {
+                        if(is_array($codeBlocks[$i]))
+                        {
+                            $importCandidate .= trim($codeBlocks[$i][1]);
+                        }
+                        else
+                        {
+                            if(strstr($codeBlocks[$i], ";")!=false)
+                            {
+                                break;
+                            }
+                            $importCandidate .= trim($codeBlocks[$i]);
+                        }
+                    }
+                    if(preg_match("/^[a-zA-Z0-9\\\\]+$/", $importCandidate) &&  class_exists($importCandidate))
+                    {
+                        $imports[] = $importCandidate;
+                    }
+                }
+            }
+            $index++;
+        }
+        
+        $this->imports = $imports;
+    }
+    
+    private function getNext($t, $index, $code)
+    {
+        for($i = $index; $i < count($code); $i++)
+        {
+            if(is_array($code[$i]) && $code[$i][0]==$t)
+            {
+                return $code[$i][1];
+            }
+        }
+        return false;
     }
     
     /**
@@ -114,7 +187,8 @@ class SerializableClosure
         $delcaration = false;
         $preparedClosure = "";
         $codeBlocks = token_get_all("<?php $this->code ?>");
-
+        $index = 0;
+        
         foreach($codeBlocks as $c)
         {
             $value = '';
@@ -133,7 +207,15 @@ class SerializableClosure
                         $preparedClosure .= 'new picon\SerializableClosure(';
                     }
                 }
-                $value = $c[1];
+                
+                if($c[0]==T_STRING && $this->isNonFullyQualifiedClassName($codeBlocks, $index))
+                {
+                    $value = $this->resolveToFullyQualifiedClassName($c[1]);
+                }
+                else
+                {
+                    $value = $c[1];
+                }
             }
             else
             {
@@ -160,12 +242,114 @@ class SerializableClosure
                     unset($nested[$index]);
                 }
             }
+            $index++;
         }
-        $preparedClosure = substr($preparedClosure, 5, strlen($preparedClosure)-7);
         
-        //function{1}\s*\({1}(\w*\s*&?\${1}\w+)*\){1}
-        $this->code = $preparedClosure;
+        $this->code = substr($preparedClosure, 5, strlen($preparedClosure)-7);
     } 
+    
+    /**
+     * Determins if the code block index provided is a class name that is not
+     * fully qualified. This is detected by looking back or forwards
+     * up to 2 indexes (to allow for whichspace) and looks for either new or ::
+     * @param array $codeBlcoks
+     * @param int $currentIndex
+     * @return boolean
+     */
+    private function isNonFullyQualifiedClassName($codeBlcoks, $currentIndex)
+    {
+        /* Detects class names preceeded by new or succeded by ::
+         * If the string is preceeded or succeded by a \ it is alread
+         * fully qualified and ignored
+         */
+        for($i = $currentIndex-2; $i <= $currentIndex+2; $i++)
+        {
+            if(is_array($codeBlcoks[$i]))
+            {
+                $c = $codeBlcoks[$i];
+                
+                if($c[0]==T_NS_SEPARATOR)
+                {
+                    return false;
+                }
+                
+                if($c[0]==T_NEW && $i < $currentIndex || $c[0]==T_DOUBLE_COLON && $i > $currentIndex)
+                {
+                    return true; 
+                }
+            }
+        }
+        
+        /**
+         * Determin the index of the ( that starts the closure argument
+         * definition
+         */
+        $workingIndex = 0;
+        $search = false;
+        $paramOpenIndex = 0;
+        while($workingIndex<count($codeBlcoks))
+        {
+            if(is_array($codeBlcoks[$workingIndex]) && $codeBlcoks[$workingIndex][0]==T_FUNCTION)
+            {
+                $search = true;
+            }
+            if(!is_array($codeBlcoks[$workingIndex]) && $search && $codeBlcoks[$workingIndex]=="(")
+            {
+                $paramOpenIndex = $workingIndex;
+            }
+            $workingIndex++;
+        }
+        
+        /**
+         * Determins if the first ( preceeding the string is the argument
+         * declartion, if so this must a type hint
+         */
+        $trackback = $currentIndex;
+        while($trackback>=0)
+        {
+            if(!is_array($codeBlcoks[$trackback]) && $codeBlcoks[$trackback]=="(" 
+                    && $trackback==$paramOpenIndex && $paramOpenIndex!=0)
+            {
+                return true;
+            }
+            $trackback--;
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Identifies the fully qualified class name (if not already)
+     * @param string $className
+     * @return string The fully qualified class name
+     */
+    private function resolveToFullyQualifiedClassName($className)
+    {
+        if(!strstr($className, "\\"))
+        {
+            if(!class_exists("\\".$className))
+            {
+                if(isset($this->declaredNameSpace) && class_exists($this->declaredNameSpace."\\".$className))
+                {
+                    return $this->declaredNameSpace."\\".$className;
+                }
+                if(isset($this->imports) && count($this->imports)>0)
+                {
+                    foreach($this->imports as $import)
+                    {
+                        $structure = explode("\\", $import);
+                        if($structure[count($structure)-1]==$className)
+                        {
+                            return $import;
+                        }
+                    }
+                }
+                throw new \IllegalStateException(sprintf("Unable to locate fully qualified class name for class declared within closure. Offending class %s. Closure: %s", $className, $this->code));
+
+            }
+        }   
+        return $className;
+    }
     
     /**
      * Extract bound variables
