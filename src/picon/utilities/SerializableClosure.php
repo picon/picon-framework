@@ -187,7 +187,7 @@ class SerializableClosure
         $delcaration = false;
         $preparedClosure = "";
         $codeBlocks = token_get_all("<?php $this->code ?>");
-        $index = 0;
+        $i = 0;
         
         foreach($codeBlocks as $c)
         {
@@ -208,7 +208,7 @@ class SerializableClosure
                     }
                 }
                 
-                if($c[0]==T_STRING && $this->isNonFullyQualifiedClassName($codeBlocks, $index))
+                if($c[0]==T_STRING && $this->isNonFullyQualifiedClassName($codeBlocks, $i))
                 {
                     $value = $this->resolveToFullyQualifiedClassName($c[1]);
                 }
@@ -242,7 +242,7 @@ class SerializableClosure
                     unset($nested[$index]);
                 }
             }
-            $index++;
+            $i++;
         }
         
         $this->code = substr($preparedClosure, 5, strlen($preparedClosure)-7);
@@ -258,6 +258,7 @@ class SerializableClosure
      */
     private function isNonFullyQualifiedClassName($codeBlcoks, $currentIndex)
     {
+        $nonFullQualifiedName = false;
         /* Detects class names preceeded by new or succeded by ::
          * If the string is preceeded or succeded by a \ it is alread
          * fully qualified and ignored
@@ -275,9 +276,14 @@ class SerializableClosure
                 
                 if($c[0]==T_NEW && $i < $currentIndex || $c[0]==T_DOUBLE_COLON && $i > $currentIndex)
                 {
-                    return true; 
+                    $nonFullQualifiedName = true;
                 }
             }
+        }
+        
+        if($nonFullQualifiedName)
+        {
+            return true;
         }
         
         /**
@@ -296,6 +302,7 @@ class SerializableClosure
             if(!is_array($codeBlcoks[$workingIndex]) && $search && $codeBlcoks[$workingIndex]=="(")
             {
                 $paramOpenIndex = $workingIndex;
+                break;
             }
             $workingIndex++;
         }
@@ -307,10 +314,17 @@ class SerializableClosure
         $trackback = $currentIndex;
         while($trackback>=0)
         {
-            if(!is_array($codeBlcoks[$trackback]) && $codeBlcoks[$trackback]=="(" 
-                    && $trackback==$paramOpenIndex && $paramOpenIndex!=0)
+            if(!is_array($codeBlcoks[$trackback]))
             {
-                return true;
+                if($codeBlcoks[$trackback]=="(" 
+                    && $trackback==$paramOpenIndex && $paramOpenIndex!=0)
+                {
+                    return true;
+                }
+                else if($codeBlcoks[$trackback]==")")
+                {
+                    return false;
+                }
             }
             $trackback--;
         }
