@@ -1,0 +1,15 @@
+# Release 0.2 #
+  * Improve PiconSerializable to implement the PHP serializable interface, removing the need to manually call preparForSerialize()
+  * Implement application profiles
+  * Implement all jQuery and jQuery UI behaviours
+  * Resource requests should go through resource.php not index.php - removing the need to run the entire application for each one
+  * Improve test coverage
+  * Automate the config parsing
+
+# Release 0.3 #
+  * Re-implement annotations with a new syntax: <> instead of @
+  * Dynamic resources
+  * GD integration
+  * Created drivers for MSSQL and Postgresql - perhaps others
+  * Manual context loading
+  * Create command line interface for the cache (caching config/classes e.c.t.), clearing

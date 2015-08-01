@@ -1,0 +1,21 @@
+# Introduction #
+
+The Picon Framework is presently released only for proof of concept and preview. The framework is unfinished and should not be used in production.
+
+
+# System Requirements #
+
+Picon Framework requires the following
+
+  * Apache Web Server 2.2 or later with both mod\_rewrite and .htaccess overrides enabled
+  * PHP 5.3 or later
+  * MySQL 5.5.15 or later (options)
+
+The framework may function with earlier version of MySQL or Apache but this is not test. No earlier PHP version can be used.
+
+# Installation #
+  * Download the framework ZIP from the downloads page.
+  * Extract the contents
+  * Place the picon-framework directory into an Appache accessible directory (for example /var/www or C:\Program Files\Apache Software Foundation\Apache2.2\htdocs)
+  * Ensure that picon-framework/cache is writable
+  * Navigate to http://localhost/picon-framework
