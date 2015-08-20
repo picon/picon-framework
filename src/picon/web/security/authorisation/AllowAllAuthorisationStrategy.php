@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\security\authorisation;
 
 /**
  * The default authorisation strategy which permits access to everything

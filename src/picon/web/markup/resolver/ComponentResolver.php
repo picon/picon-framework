@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web;
 
 /**
  * All picon tags (e.g. picon:head or picon:child) are component tags, but need

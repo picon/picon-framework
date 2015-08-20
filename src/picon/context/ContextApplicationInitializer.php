@@ -26,8 +26,12 @@
  * $Id$
  */
 
-namespace picon;
+namespace picon\context;
+
+use \picon\BaseApplicationInitializer;
+use picon\PiconApplication;
 require_once(dirname(__FILE__)."/../core/BaseApplicationInitializer.php");
+
 /**
  * An Application Initialiser which load context
  *

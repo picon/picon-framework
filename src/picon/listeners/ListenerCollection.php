@@ -22,6 +22,8 @@
 
 namespace picon;
 
+use \closure;
+
 /**
  * Represents a collection of listeners that are treated as one listener
  *
@@ -31,8 +33,11 @@ namespace picon;
 abstract class ListenerCollection
 {
     private $listeners = array();
-    
-    public function add($listener)
+
+    /**
+     * @param closure $listener
+     */
+    public function add(closure $listener)
     {
         if(!$this->validateListener($listener))
         {
@@ -61,7 +66,7 @@ abstract class ListenerCollection
      *
      * @param closure $callback 
      */
-    public function notify($callback)
+    public function notify(closure $callback)
     {
         Args::callBackArgs($callback, 1, 'callback');
         

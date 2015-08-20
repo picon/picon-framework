@@ -20,7 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web;
+
+use picon\ApplicationInitializer;
+use picon\ClassScanner;
+use picon\SubClassRule;
+use picon\CacheManager;
+use picon\AnnotationRule;
+use picon\PiconApplication;
 
 /**
  * Holder for the map to all statfull and statless web pages
@@ -73,7 +80,7 @@ class PageMap
     {
         ApplicationInitializer::loadAssets(ASSETS_DIRECTORY);
         $this->pages = array();
-        $scanner = new ClassScanner(array(new SubClassRule('\picon\WebPage')));
+        $scanner = new ClassScanner(array(new SubClassRule('\picon\web\WebPage')));
 
         $pages = $scanner->scanForName();
         foreach($pages as $pageName)

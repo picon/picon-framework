@@ -1,0 +1,16 @@
+{
+  "name": "picon/picon-framework",
+  "type": "library",
+  "version":"1.0.0",
+  "description": "The Picon Framework",
+  "keywords": ["framework"],
+  "homepage": "http://piconframework.com",
+  "minimum-stability": "dev",
+  "license": "GNU",
+  "authors": [
+    {
+      "name": "Martin Cassidy",
+      "email": "email@example.com"
+    }
+  ]
+}

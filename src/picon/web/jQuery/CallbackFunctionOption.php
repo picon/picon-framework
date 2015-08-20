@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web;
 
 /**
  * Allows a user specified function to be rendered but wraps with a callback in the following way

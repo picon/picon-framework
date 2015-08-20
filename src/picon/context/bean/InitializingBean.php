@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\context;
 
 /**
  * A bean class that requires a method to be invoked after its injection is completed.

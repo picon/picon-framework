@@ -22,6 +22,9 @@
 
 namespace picon;
 
+//todo remove this dependency
+use picon\web\Component;
+
 /**
  * A helper class for loading config xml
  * @author Martin Cassidy

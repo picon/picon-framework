@@ -1,0 +1,15 @@
+{
+  "name": "picon/picon-demo",
+  "version":"1.0.0",
+  "description": "The Demo application for Picon Framework",
+  "keywords": ["demo"],
+  "homepage": "http://piconframework.com",
+  "minimum-stability": "dev",
+  "license": "GNU",
+  "authors": [
+    {
+      "name": "Martin Cassidy",
+      "email": "email@example.com"
+    }
+  ]
+}

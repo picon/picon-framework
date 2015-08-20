@@ -26,7 +26,7 @@
  * $Id$
  */
 
-namespace picon;
+namespace picon\web;
 
 require_once(dirname(__FILE__)."/..//core/PiconApplication.php");
 require_once(dirname(__FILE__)."/application/WebResourceApplicationInitializer.php");

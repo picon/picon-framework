@@ -92,12 +92,12 @@ class AutoLoader
         {
             $namespace = "default";
         }
-        
+
         if(substr($namespace, 0, 1)=='\\')
         {
             $namespace = substr($namespace, 1, strlen($namespace)-1);
         }
-        
+
         if(!array_key_exists($namespace, $this->scannedDirectories))
         {
             $this->onFail($namespace, $class);
@@ -124,7 +124,7 @@ class AutoLoader
      */
     protected function onFail($namespace, $class)
     {
-        
+
     }
     
     /**

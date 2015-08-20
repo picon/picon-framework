@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web;
+
+use picon\PiconApplication;
+use picon\MarkupParser;
+use picon\MarkupUtils;
 
 /**
  * The mark-up loads finds, loads and parses the mark-up for a component class.

@@ -20,7 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web;
+
+use picon\InjectOnWakeup;
+use picon\Identifiable;
+use picon\Identifier;
+use picon\Args;
+use picon\PiconApplication;
+use picon\TextElement;
 
 /**
  * Component sersvices as the hightest and most abstract super class for all

@@ -20,8 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\security\authorisation;
 
+use picon\Args;
+use picon\web\WebPage;
+use picon\PiconApplication;
 /**
  * An authorisation strategy for web pages. A page requires an authorised
  * use if it is a sub class of a given page

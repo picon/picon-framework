@@ -22,6 +22,10 @@
 
 namespace picon;
 
+use picon\web\MarkupElement;
+use picon\web\PiconTag;
+use picon\web\HeaderResolver;
+
 /**
  * Parser for picon XML. This works like the XMLParser but will produce
  * different XMLTag objects for different picon elements

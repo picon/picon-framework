@@ -26,7 +26,7 @@
  * $Id$
  */
 
-namespace picon;
+namespace picon\web;
 
 require_once(dirname(__FILE__)."/../../core/ApplicationInitializer.php");
 

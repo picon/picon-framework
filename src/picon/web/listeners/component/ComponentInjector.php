@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web;
+
+use picon\context\Injector;
 
 /**
  * An instantiation listener which will inject a resource dependencies into 

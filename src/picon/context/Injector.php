@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\context;
 
 /**
  * Dependency injector for resources. All resources are inject after instantiation.

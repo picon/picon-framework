@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\ajax\markup\html;
 
 /**
  * A link which will not direct to a page but submit an ajax request.

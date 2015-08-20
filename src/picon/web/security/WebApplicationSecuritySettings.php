@@ -20,10 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\security;
+
+use picon\web\security\authorisation\AllowAllAuthorisationStrategy;
+use picon\web\DefaultNotAuthorisedListener;
 
 /**
- * Holder for security settinsg of the picon application
+ * Holder for security settings of the picon application
  * 
  * @author Martin Cassidy
  * @package web/security

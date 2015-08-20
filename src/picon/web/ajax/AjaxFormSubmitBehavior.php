@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\ajax;
+
+use \Closure;
+use \picon\web\markup\html\form\Form;
 
 /**
  * Ajax implmentation that will submit a form on a javascript event
@@ -35,8 +38,14 @@ class AjaxFormSubmitBehavior extends AjaxEventBehaviour implements FormSubmitter
     private $onSubmit;
     private $onError;
     private $target;
-    
-    public function __construct($event, $onSubmit = null, $onError = null, $form = null)
+
+    /**
+     * @param $event
+     * @param closure $onSubmit
+     * @param closure $onError
+     * @param Form $form
+     */
+    public function __construct($event, $onSubmit = null, $onError = null, Form $form = null)
     {
         $self = $this;
         parent::__construct($event, function($target) use ($self)
