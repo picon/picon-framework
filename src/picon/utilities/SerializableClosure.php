@@ -21,6 +21,8 @@
  * */
 namespace picon;
 
+use \Closure;
+
 /**
  * A wrapper for closures enabling them to be serialized.
  * IMPORTANT NOTE: This is highly experimental and needs further improvment and testing
@@ -125,10 +127,10 @@ class SerializableClosure
             {
                 if($c[0]==T_NAMESPACE)
                 {
-                    $namespace = $this->getNext(T_STRING, $index, $codeBlocks);
-                    if($namespace!=false)
+                    $namespace = $this->getUntilStatement($index+1, $codeBlocks);
+                    if(!empty($namespace))
                     {
-                        $this->declaredNameSpace = $namespace;
+                        $this->declaredNameSpace = trim($namespace);
                     }
                 }
                 if($c[0]==T_USE)
@@ -172,6 +174,23 @@ class SerializableClosure
             }
         }
         return false;
+    }
+
+    private function getUntilStatement($index, $code)
+    {
+        $statement = "";
+        for($i = $index; $i < count($code); $i++)
+        {
+            if($code[$i]==";")
+            {
+                break;
+            }
+            if(is_array($code[$i]))
+            {
+                $statement .= $code[$i][1];
+            }
+        }
+        return $statement;
     }
     
     /**
