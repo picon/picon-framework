@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\MarkupUtils;
+
 /**
  * A mark-up source for panels
  * 

@@ -22,6 +22,9 @@
 
 namespace picon;
 
+use picon\context\InitializingBean;
+use \IllegalStateException;
+
 /**
  * Super class for any user defined DAO
  * Provides easy access to the database template and allows the DAO to

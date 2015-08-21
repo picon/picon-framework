@@ -22,11 +22,17 @@
 
 namespace picon\web\ajax;
 
-use \Closure;
-use \picon\web\markup\html\form\Form;
+use Closure;
+use picon\web\markup\html\form\Form;
+use picon\web\FormSubmitter;
+use picon\web\ajax\markup\html\ModalWindow;
+use picon\web\Component;
+use picon\Args;
+use picon\web\AjaxRequestTarget;
+use picon\web\FormComponent;
 
 /**
- * Ajax implmentation that will submit a form on a javascript event
+ * Ajax implementation that will submit a form on a javascript event
  * By default, this will be the parent form of the component that this is added to
  *
  * @author Martin Cassidy

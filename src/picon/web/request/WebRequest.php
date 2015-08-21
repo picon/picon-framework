@@ -77,8 +77,8 @@ class WebRequest implements Request
     
     /**
      * Get a POST parameter
-     * @param type $name
-     * @return type 
+     * @param $name
+     * @return
      */
     public function getPostedParameter($name)
     { 
@@ -95,8 +95,8 @@ class WebRequest implements Request
     
     /**
      * Get a GET paramater
-     * @param type $name
-     * @return type 
+     * @param $name
+     * @return
      */
     public function getParameter($name)
     {

@@ -23,6 +23,7 @@
 namespace picon\web;
 
 use picon\PiconApplication;
+use picon\MarkupUtils;
 
 /**
  * Represents the &lt;head&gt; element

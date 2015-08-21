@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Args;
+
 /**
  * A column which will invoke a callback to populate each cell
  * 

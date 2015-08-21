@@ -22,6 +22,16 @@
 
 namespace picon\web\ajax;
 
+use picon\web\Component;
+use picon\PiconApplication;
+use picon\web\BehaviourListener;
+use picon\web\AbstractBehaviour;
+use picon\web\JQueryRenderHeadListener;
+use picon\web\HeaderContainer;
+use picon\web\HeaderResponse;
+use picon\web\ResourceReference;
+use picon\web\AjaxRequestTarget;
+
 /**
  * Super class for ajax behavours
  * Adds in the ajax resources that are needed and provideds methods for generating

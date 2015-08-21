@@ -22,6 +22,9 @@
 
 namespace picon\web;
 
+use picon\Identifiable;
+use picon\Identifier;
+
 /**
  * Abstract behaviour provideds default implementation for each behaviour method
  * whilst also providing the functionality needed to obtain information about a behaviour

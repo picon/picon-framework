@@ -20,12 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\web\WebPage;
-use picon\web\Label;
-use picon\web\ListView;
 use picon\web\ArrayModel;
 use picon\web\BasicModel;
+use picon\web\Label;
+use picon\web\ListView;
 use picon\web\MarkupContainer;
+use picon\web\WebPage;
 
 /**
  * Generic page for showing an exception
@@ -49,5 +49,3 @@ class ErrorPage extends WebPage
         }, new ArrayModel($ex->getTrace())));
     }
 }
-
-?>

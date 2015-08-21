@@ -22,6 +22,9 @@
 
 namespace picon\web;
 
+use picon\Args;
+use picon\Identifier;
+
 /**
  * A pointer to a file which is located in the same directory as the class
  * identifier or one of its super classes

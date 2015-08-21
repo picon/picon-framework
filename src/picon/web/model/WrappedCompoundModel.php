@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\PropertyResolver;
+
 /**
  * A proxy model for the compound model
  * 

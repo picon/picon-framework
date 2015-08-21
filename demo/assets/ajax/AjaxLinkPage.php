@@ -20,6 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+use picon\web\Label;
+use picon\web\PropertyModel;
+use picon\web\AjaxRequestTarget;
+use picon\web\ajax\markup\html\AjaxLink;
+
 /**
  * Description of AjaxLinkPage
  * 
@@ -32,12 +37,12 @@ class AjaxLinkPage extends AbstractPage
     public function __construct()
     {
         parent::__construct();
-        $label = new picon\Label('text', new picon\PropertyModel($this, 'text'));
+        $label = new Label('text', new PropertyModel($this, 'text'));
         $label->setOutputMarkupId(true);
         $this->add($label);
         
         $self = $this;
-        $this->add(new \picon\AjaxLink('alterLink', function(picon\AjaxRequestTarget $target) use ($self, $label)
+        $this->add(new AjaxLink('alterLink', function(AjaxRequestTarget $target) use ($self, $label)
         {
             $self->text = 'Update in callback text';
             $target->add($label);

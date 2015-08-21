@@ -23,10 +23,10 @@
 namespace picon\web\security\authorisation;
 
 use picon\Args;
-use picon\web\WebPage;
-use picon\PiconApplication;
 use picon\Identifier;
+use picon\PiconApplication;
 use picon\web\Component;
+use picon\web\WebPage;
 
 /**
  * An authorisation strategy for web pages. A page requires an authorised

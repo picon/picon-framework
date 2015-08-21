@@ -22,6 +22,10 @@
 
 namespace picon\web;
 
+use picon\Args;
+use picon\ComonDomainBase;
+use picon\SerializableClosure;
+
 /**
  * A tab domain for use with Tab Panel
  * 
@@ -38,7 +42,7 @@ class Tab extends ComonDomainBase
     /**
      *
      * @param string $name
-     * @param closure $newMethod 
+     * @param callable $newMethod
      */
     public function __construct($name, $newMethod)
     {

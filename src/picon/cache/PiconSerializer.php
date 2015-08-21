@@ -22,6 +22,10 @@
 
 namespace picon;
 
+//@todo remove this coupling to web
+use picon\web\Detachable;
+use picon\context\Injector;
+
 /**
  * A serialization helper that extends the standard PHP serialization 
  * functionality by permiting serialisazation of closures and providing

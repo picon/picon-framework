@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Identifier;
+
 /**
  * Resolver for resource requests such as css and js
  * 
@@ -37,7 +39,7 @@ class ResourceRequestResolver implements RequestResolver
      * @todo validate the content of the param with a reg ex, return false if
      * it doesn't match
      * @param Request $request
-     * @return type 
+     * @return
      */
     public function matches(Request $request)
     {

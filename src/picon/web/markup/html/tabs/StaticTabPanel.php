@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\PiconApplication;
+
 /**
  * A tab panel whos links do not change page but simple swap 
  * the visibility of an inner panel.

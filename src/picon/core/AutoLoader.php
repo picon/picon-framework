@@ -119,8 +119,8 @@ class AutoLoader
     
     /**
      * Called when the auto loader fails to load the requested class
-     * @param type $namespace
-     * @param type $class 
+     * @param $namespace
+     * @param $class
      */
     protected function onFail($namespace, $class)
     {

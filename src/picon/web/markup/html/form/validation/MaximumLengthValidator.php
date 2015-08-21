@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Args;
+
 /**
  * Validates a string is not longer than a max length
  * 

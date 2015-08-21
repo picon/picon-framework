@@ -41,7 +41,7 @@ interface DataBaseOperations
      * Run a query of given SQL.
      * Replace values in the query with the passed arguments. Query
      * values should be a type specifier
-     * @return the number of affected records
+     * @return int the number of affected records
      */
     function update($sql, $arguments = null);
     

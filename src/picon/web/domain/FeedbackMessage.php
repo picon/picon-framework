@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\ComonDomainBase;
+
 /**
  * A feedback message for use by the feedback message model and feedback panel
  * 

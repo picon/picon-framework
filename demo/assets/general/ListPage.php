@@ -20,10 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\ListView;
-use picon\ArrayModel;
-use picon\Label;
-use picon\BasicModel;
+use picon\web\ListView;
+use picon\web\ArrayModel;
+use picon\web\Label;
+use picon\web\BasicModel;
+use picon\web\RepeatingView;
+use picon\web\MarkupContainer;
 
 /**
  * Description of ListPage
@@ -43,13 +45,13 @@ class ListPage extends AbstractPage
             $entry->add(new Label('name', new BasicModel($entry->getModelObject())));
         }, new ArrayModel($fruit)));
 
-        $repeatingView = new \picon\RepeatingView('repeater');
+        $repeatingView = new RepeatingView('repeater');
         $this->add($repeatingView);
         
         foreach($fruit as $item)
         {
             $element = new Label('text', new BasicModel($item));
-            $container = new picon\MarkupContainer($repeatingView->getNextChildId());
+            $container = new MarkupContainer($repeatingView->getNextChildId());
             $container->add($element);
             $repeatingView->add($container);
         }

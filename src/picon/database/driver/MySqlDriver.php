@@ -46,7 +46,7 @@ class MySqlDriver extends AbstractDatabaseDriver
         return $connection;
     }
     
-    public function dissconnect($connection)
+    public function disconnect($connection)
     {
         mysql_close($connection);
     }

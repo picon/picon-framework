@@ -63,19 +63,16 @@ abstract class PiconApplication
 
     /**
      * Stores the application context
-     * @var ApplicationContext 
      */
     private $applicatoinContext;
 
     /**
      * Stores the configuration
-     * @var Config 
      */
     private $config;
 
     /**
      * Stores a class which helps with application initialisation
-     * @var ApplicationInitializer 
      */
     private $initialiser;
 
@@ -112,6 +109,8 @@ abstract class PiconApplication
         $GLOBALS[self::GLOBAL_APPLICATION_KEY] = $this;
 
         $this->initialiser = $this->getApplicationInitializer();
+
+        //@todo sort this out once the namespaces are all correct and get this working with composer
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY, 'picon');
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/annotations");
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/annotations");
@@ -121,6 +120,9 @@ abstract class PiconApplication
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/security", "picon\\web\\security");
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/security/authorisation", "picon\\web\\security\\authorisation");
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/context", "picon\\context");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/markup/html/form", "picon\\web\\markup\\html\\form");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/ajax/markup/html", "picon\\web\\ajax\\markup\\html");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/ajax", "picon\\web\\ajax");
         $this->initialiser->addScannedDirectory(ASSETS_DIRECTORY);
 
         $this->internalInit();

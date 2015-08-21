@@ -22,8 +22,8 @@
 
 namespace picon\web;
 
+use closure;
 use picon\Args;
-use \closure;
 
 /**
  * A repeating component which works from an array. A ListItem is added

@@ -97,7 +97,7 @@ class UrlBuilder
     
     /**
      * Create a new URL builder
-     * @param type $baseURL
+     * @param $baseURL
      * @return UrlBuilder
      */
     public static function url($baseURL)

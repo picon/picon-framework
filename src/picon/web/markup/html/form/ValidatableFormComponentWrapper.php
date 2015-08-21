@@ -41,7 +41,7 @@ class ValidatableFormComponentWrapper implements Validatable
     
     /**
      * @param string $keyHierarchy the key locator for the message
-     * @param type $message 
+     * @param $message
      */
     public function error(ValidationResponse $error)
     {

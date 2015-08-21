@@ -22,8 +22,6 @@
 
 namespace picon\web;
 
-use picon\Identifier;
-
 /**
  * Super class for all web pages
  * 

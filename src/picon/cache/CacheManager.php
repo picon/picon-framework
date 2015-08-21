@@ -50,9 +50,9 @@ class CacheManager
     
     /**
      * Saves a resource to the cache.
-     * @param type $name
-     * @param type $resource
-     * @param type $scope 
+     * @param $name
+     * @param $resource
+     * @param $scope
      */
     public static function saveResource($name, $resource, $scope)
     {
@@ -65,9 +65,9 @@ class CacheManager
     /**
      * Load a previously saved resource. If the resource was not
      * found this will return null
-     * @param type $name
-     * @param type $scope
-     * @return type 
+     * @param $name
+     * @param $scope
+     * @return
      */
     public static function loadResource($name, $scope)
     {
@@ -152,9 +152,9 @@ class CacheManager
     
     /**
      * Determins whether a resource with that name exists
-     * @param type $name
-     * @param type $scope
-     * @return type 
+     * @param $name
+     * @param $scope
+     * @return
      */
     public static function resourceExists($name, $scope)
     {

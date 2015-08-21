@@ -55,9 +55,9 @@ class CheckChoice extends AbstractMultipleChoice implements ChoiceGroup
         //@todo add the type hint back into the closure when the serializer can handle them
         $this->group->add(new ListView('choices', function(&$item)
         {
-            $check = new \picon\Check('checkbox', $item->getModel());
+            $check = new Check('checkbox', $item->getModel());
             $item->add($check);
-            $item->add(new \picon\FormComponentLabel('label', $check));
+            $item->add(new FormComponentLabel('label', $check));
         }, new ArrayModel($this->getChoices())));
     }
     

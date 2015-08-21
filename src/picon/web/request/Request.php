@@ -47,15 +47,15 @@ interface Request
     
     /**
      * Get a POST parameter
-     * @param type $name
-     * @return type 
+     * @param $name
+     * @return
      */
     public function getPostedParameter($name);
     
     /**
-     * Get a GET paramater
-     * @param type $name
-     * @return type 
+     * Get a GET parameter
+     * @param string $name
+     * @return string
      */
     public function getParameter($name);
     

@@ -23,6 +23,7 @@
 namespace picon\web;
 
 use picon\PiconApplication;
+use picon\Identifier;
 
 /**
  * Front controller for incoming requests.

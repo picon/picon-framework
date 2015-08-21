@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Args;
+
 /**
  * A link which, when clicked, will set the page of an associated paginatable
  * component to the specified value

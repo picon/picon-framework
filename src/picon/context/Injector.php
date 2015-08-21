@@ -41,7 +41,7 @@ class Injector
     }
     
     /**
-     * @param type $object 
+     * @param $object
      */
     public function inject(&$object, $reflection = null)
     {

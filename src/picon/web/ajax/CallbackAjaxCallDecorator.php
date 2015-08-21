@@ -22,7 +22,7 @@
 
 namespace picon\web\ajax;
 
-use \Closure;
+use picon\Args;
 
 /**
  * An ajax decorator that invokeds a callback function for each of the decorator
@@ -39,9 +39,9 @@ class CallbackAjaxCallDecorator implements AjaxCallDecorator
     
     /**
      *
-     * @param closure $decorator
-     * @param closure $successDecorator
-     * @param closure $failDecorator 
+     * @param callable $decorator
+     * @param callable $successDecorator
+     * @param callable $failDecorator
      */
     public function __construct($decorator, $successDecorator = null, $failDecorator = null)
     {

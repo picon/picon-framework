@@ -22,13 +22,14 @@
 
 namespace picon\web;
 
-use picon\InjectOnWakeup;
+use picon\Args;
 use picon\Identifiable;
 use picon\Identifier;
-use picon\Args;
+use picon\InjectOnWakeup;
 use picon\PiconApplication;
 use picon\TextElement;
 use picon\XmlTagType;
+use \Exception;
 
 /**
  * Component sersvices as the hightest and most abstract super class for all
@@ -143,6 +144,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     /**
      * Create a new component. Any overrides of the constructor must call the super.
      * @param string $id the ID of this component
+     * @param Model $model
      */
     public function __construct($id, Model $model = null)
     {
@@ -459,7 +461,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     
     /**
      * Render all of the markup elements in the array
-     * @param Array An array of markup elements
+     * @param array An array of markup elements
      */
     protected function renderAll($markup = null)
     {
@@ -554,7 +556,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     
     /**
      * Generates and returns a markup id for this component
-     * @param type $generate
+     * @param $generate
      */
     public function getMarkupId()
     {
@@ -634,7 +636,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
      * Visit all the parent components of this components and execute
      * a callback on each
      * @param Identifier $identifier The identifier of the parent to look for
-     * @param closure $callback The callback to run
+     * @param callable $callback The callback to run
      */
     public function visitParents(Identifier $identifier, $callback)
     {
@@ -740,7 +742,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
      * WebPage Instance - Generate a URL for the page instance
      * 
      * @param mixed $for
-     * @return type 
+     * @return
      */
     public function generateUrlFor($for)
     {
@@ -750,7 +752,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
         }
         else if($for instanceof Identifier)
         {
-            return $this->urlForPage($page);
+            return $this->urlForPage($for);
         }
         else if($for instanceof WebPage)
         {
@@ -765,7 +767,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     /**
      * @todo this should use a request target
      * @param Identifier $page
-     * @return type 
+     * @return
      */
     public function urlForPage(Identifier $page)
     {
@@ -784,12 +786,11 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     
     /**
      * @todo this should use a request target
-     * @param Identifier $page
-     * @return type 
+     * @param Listener $listener
+     * @return string
      */
     public function urlForListener(Listener $listener)
     {
-        $target;
         $page = $this->getPage();
         
         $behaviour = null;
@@ -867,7 +868,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
         {
             throw new \InvalidArgumentException(sprintf("setPage expects an identifier for a web page or an instance of a web page and not a %s", get_class($page)));
         }
-        
+
         if($this->getRequestCycle()->containsTarget(ListenerRequestTarget::getIdentifier()))
         {
             $url = $this->getRequestCycle()->generateUrl($target);

@@ -27,6 +27,14 @@
  * 
  * */
 
+use picon\web\Label;
+use picon\web\FeedbackPanel;
+use picon\web\markup\html\form\Form;
+use picon\web\RequiredTextField;
+use picon\web\PropertyModel;
+use picon\web\ajax\markup\html\AjaxButton;
+use picon\web\AjaxRequestTarget;
+
 /**
  * Description of AjaxLinkPage
  * 
@@ -40,25 +48,25 @@ class AjaxButtonPage extends AbstractPage
     {
         parent::__construct();
         
-        $feedback = new \picon\FeedbackPanel('feedback');
+        $feedback = new FeedbackPanel('feedback');
         $feedback->setOutputMarkupId(true);
         $this->add($feedback);
         
-        $label = new picon\Label('text', new picon\PropertyModel($this, 'text'));
+        $label = new Label('text', new PropertyModel($this, 'text'));
         $label->setOutputMarkupId(true);
         $this->add($label);
         
-        $form = new picon\Form('form');
+        $form = new Form('form');
         $this->add($form);
-        $form->add(new picon\RequiredTextField('text', new picon\PropertyModel($this, 'text')));
+        $form->add(new RequiredTextField('text', new PropertyModel($this, 'text')));
         
         $self = $this;
-        $form->add(new \picon\AjaxButton('button', function(picon\AjaxRequestTarget $target) use ($label, $feedback)
+        $form->add(new AjaxButton('button', function(AjaxRequestTarget $target) use ($label, $feedback)
         {
             $target->add($label);
             $target->add($feedback);
         }, 
-        function(picon\AjaxRequestTarget $target) use ($feedback)
+        function(AjaxRequestTarget $target) use ($feedback)
         {
             $target->add($feedback);
         }));

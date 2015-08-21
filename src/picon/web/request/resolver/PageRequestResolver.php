@@ -54,7 +54,7 @@ class PageRequestResolver implements RequestResolver
      *
      * @param Request $request
      * @todo alter expression to handle page params
-     * @return type 
+     * @return
      */
     private function isHomePage(Request $request)
     {
@@ -64,7 +64,7 @@ class PageRequestResolver implements RequestResolver
     /**
      * @param Request $request
      * @todo alter expression to handle page params
-     * @return type 
+     * @return
      */
     private function getPageClassForPath(Request $request)
     {

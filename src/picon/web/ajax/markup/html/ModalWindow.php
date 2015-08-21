@@ -22,6 +22,14 @@
 
 namespace picon\web\ajax\markup\html;
 
+use picon\web\MarkupContainer;
+use picon\web\EmptyPanel;
+use picon\web\Panel;
+use picon\web\DialogBehavior;
+use picon\web\ComponentTag;
+use picon\web\AjaxRequestTarget;
+use picon\Args;
+
 /**
  * Panel which implements the jQuery UI dialog
  * 

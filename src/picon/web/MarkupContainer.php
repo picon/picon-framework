@@ -195,7 +195,7 @@ class MarkupContainer extends Component
      * Recursivly visit all child components matching the Identifier and execute
      * a callback on each
      * @param Identifier $identifier
-     * @param closure $callback 
+     * @param callback $callback
      */
     public function visitChildren(Identifier $identifier, $callback)
     {

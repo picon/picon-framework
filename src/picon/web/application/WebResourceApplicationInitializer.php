@@ -28,6 +28,8 @@
 
 namespace picon\web;
 
+use picon\ApplicationInitializer;
+
 require_once(dirname(__FILE__)."/../../core/ApplicationInitializer.php");
 
 /**

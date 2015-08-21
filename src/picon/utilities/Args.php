@@ -22,7 +22,7 @@
 
 namespace picon;
 
-use \Closure;
+use Closure;
 
 /**
  * Generic helper class for validating method arguments
@@ -33,8 +33,9 @@ use \Closure;
 class Args
 {
     /**
-     * Throws and excpetion if not a callback
+     * Throws and exception if not a callback
      * @param mixed $object The object to test
+     * @param string $argName The name of the argument
      */
     public static function callBack($object, $argName)
     {
@@ -49,6 +50,7 @@ class Args
      * arguments
      * @param Closure $callback The callback to test
      * @param int $amount The number of arguments the callback should have
+     * @param string $argName The name of the argument
      */
     public static function callBackArgs($callback, $amount, $argName)
     {
@@ -76,6 +78,7 @@ class Args
     /**
      * Throws an exception if not numeric
      * @param int $number
+     * @param string $argName The name of the argument
      */
     public static function isNumeric($number, $argName)
     {
@@ -87,8 +90,8 @@ class Args
     
     /**
      * Throw an exception if the object is not an array
-     * @param type $object
-     * @param type $argName 
+     * @param mixed $object
+     * @param string $argName
      */
     public static function isArray($object, $argName)
     {
@@ -100,8 +103,8 @@ class Args
     
     /**
      * Throw an exception if the object is not a string
-     * @param type $object
-     * @param type $argName 
+     * @param mixed $object
+     * @param string $argName
      */
     public static function isString($object, $argName)
     {
@@ -113,8 +116,8 @@ class Args
     
     /**
      * Throw an exception if the object is not a boolean
-     * @param type $object
-     * @param type $argName 
+     * @param mixed $object
+     * @param string $argName
      */
     public static function isBoolean($object, $argName)
     {
@@ -126,7 +129,7 @@ class Args
     
     /**
      * Helper for finding the calling class so that a better error message can be given
-     * @return type 
+     * @return string
      */
     private static function getCallingMethod()
     {
@@ -136,8 +139,8 @@ class Args
     
     /**
      * Throw an exception if the object is null
-     * @param type $object
-     * @param type $argName 
+     * @param mixed $object
+     * @param string $argName
      */
     public static function notNull($object, $argName)
     {
@@ -151,7 +154,7 @@ class Args
      * Throw an exception if the object identifier is not a subclass or implementer of expected
      * @param Identifier $object
      * @param Identifier $expected
-     * @param type $argName 
+     * @param string $argName
      */
     public static function identifierOf(Identifier $object, Identifier $expected, $argName)
     {

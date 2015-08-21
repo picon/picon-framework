@@ -20,9 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\WebPage;
-use picon\Link;
 use picon\Identifier;
+use picon\web\Link;
+use picon\web\WebPage;
 
 /**
  * Page shown when a request is made for a resource that should be in the session
@@ -43,5 +43,3 @@ class SessionExpiredPage extends WebPage
         }));
     }
 }
-
-?>

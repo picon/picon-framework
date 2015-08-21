@@ -142,7 +142,7 @@ function processResults(data)
             }
             else
             {
-                var scriptElement = $('<script type="text/javascript">'+inner+'</script>')
+                var scriptElement = $('<script type="text/javascript">'+inner+'</script>');
                 $('head').append(scriptElement);
             }
         });

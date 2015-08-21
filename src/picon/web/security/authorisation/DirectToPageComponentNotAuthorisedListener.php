@@ -22,12 +22,12 @@
 
 namespace picon\web\security\authorisation;
 
+use picon\Args;
+use picon\Identifier;
+use picon\web\Component;
 use picon\web\ComponentNotAuthorisedListener;
 use picon\web\RestartRequestOnPageException;
-use picon\web\Component;
-use picon\Args;
 use picon\web\WebPage;
-use picon\Identifier;
 
 /**
  * A not authorised listener for components which will redirect to a given

@@ -28,9 +28,9 @@
 
 namespace picon\web;
 
-use \picon\PiconApplication;
-use \picon\ApplicationContextLoadListener;
-use \picon\web\security\WebApplicationSecuritySettings;
+use picon\ApplicationContextLoadListener;
+use picon\PiconApplication;
+use picon\web\security\WebApplicationSecuritySettings;
 
 require_once(dirname(__FILE__)."/../core/PiconApplication.php");
 require_once(dirname(__FILE__)."/application/WebApplicationInitializer.php");

@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Args;
+
 /**
  * For use with abstract choice, allows for any object to be used in the choice
  * array but enables the output value to be customized
@@ -36,8 +38,8 @@ class ChoiceRenderer
     
     /**
      *
-     * @param closure $valueCallable
-     * @param closure $displayCallable 
+     * @param callable $valueCallable
+     * @param callable $displayCallable
      */
     public function __construct($valueCallable = null, $displayCallable = null)
     {

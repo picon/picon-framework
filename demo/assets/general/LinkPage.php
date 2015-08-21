@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-
+use picon\web\Link;
+use picon\web\Label;
+use picon\web\PropertyModel;
 
 /**
  * Description of LinkPage
@@ -34,15 +36,15 @@ class LinkPage extends AbstractPage
     public function __construct()
     {
         parent::__construct();
-        $this->add(new picon\Label('text', new picon\PropertyModel($this, 'text')));
+        $this->add(new Label('text', new PropertyModel($this, 'text')));
         
         $self = $this;
-        $this->add(new \picon\Link('alterLink', function() use ($self)
+        $this->add(new Link('alterLink', function() use ($self)
         {
             $self->text = 'Update in callback text';
         }));
         
-        $this->add(new \picon\Link('pageLink', function() use ($self)
+        $this->add(new Link('pageLink', function() use ($self)
         {
             $self->setPage(HomePage::getIdentifier());
         }));

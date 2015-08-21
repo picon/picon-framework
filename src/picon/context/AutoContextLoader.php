@@ -22,6 +22,8 @@
 
 namespace picon\context;
 
+use picon\DataSourceFactory;
+
 /**
  * Automatic loader for context resources
  * Loads resources bassed on pre defined annotations (Service, Repository)

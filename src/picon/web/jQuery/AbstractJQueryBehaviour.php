@@ -22,6 +22,9 @@
 
 namespace picon\web;
 
+use picon\PiconApplication;
+use picon\web\ajax\AbstractAjaxBehaviour;
+
 /**
  * Adds on the jquery js resource through a listener
  *

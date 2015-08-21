@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Args;
+
 /**
  * Validates the length of a string is between minimum and maximum values
  * 

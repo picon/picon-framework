@@ -20,29 +20,26 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\WebPage;
-use picon\Form;
-use picon\Button;
-use picon\TextField;
-use picon\CompoundPropertyModel;
-use picon\Label;
-use picon\TextArea;
-use picon\DropDown;
-use picon\Radio;
-use picon\RadioGroup;
-use picon\CheckBox;
-use picon\Check;
-use picon\CheckBoxGroup;
-use picon\CheckChoice;
-use picon\RadioChoice;
-use picon\BasicModel;
-use picon\ListView;
-use picon\ListItem;
-use picon\FeedbackPanel;
-use picon\EmailAddressValidator;
-use picon\ListMultiple;
-use picon\AjaxButton;
-use picon\MarkupContainer;
+use picon\web\markup\html\form\Form;
+use picon\web\Button;
+use picon\web\TextField;
+use picon\web\CompoundPropertyModel;
+use picon\web\Label;
+use picon\web\TextArea;
+use picon\web\DropDown;
+use picon\web\Radio;
+use picon\web\RadioGroup;
+use picon\web\CheckBox;
+use picon\web\Check;
+use picon\web\CheckBoxGroup;
+use picon\web\CheckChoice;
+use picon\web\RadioChoice;
+use picon\web\BasicModel;
+use picon\web\ListView;
+use picon\web\FeedbackPanel;
+use picon\web\ListMultiple;
+use picon\web\AjaxButton;
+use picon\web\MarkupContainer;
 
 /**
  * Description of FormPage
@@ -116,19 +113,19 @@ class FormPage extends AbstractPage
         
         $submitedInfo->add(new ListView('cgroup', function(&$item)
         {
-            $item->add(new picon\Label('value', $item->getModel()));
+            $item->add(new Label('value', $item->getModel()));
         }));
         
         $submitedInfo->add(new Label('rchoice'));
         
         $submitedInfo->add(new ListView('cchoice', function(&$item)
         {
-            $item->add(new picon\Label('value', $item->getModel()));
+            $item->add(new Label('value', $item->getModel()));
         }));
         
         $submitedInfo->add(new ListView('mchoice', function(&$item)
         {
-            $item->add(new picon\Label('value', $item->getModel()));
+            $item->add(new Label('value', $item->getModel()));
         }));
     }
     

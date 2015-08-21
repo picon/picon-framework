@@ -22,9 +22,10 @@
 
 namespace picon\context;
 
-use picon\CacheManager;
 use picon\ApplicationInitializer;
+use picon\CacheManager;
 use picon\Config;
+use \Annotation;
 
 /**
  * Context loader super class
@@ -89,9 +90,9 @@ abstract class AbstractContextLoader
      * the name is extracted from there instead.
      * @param Annotation $annotation
      * @param String $className
-     * @return type 
+     * @return string
      */
-    protected function getResourceName(\Annotation $annotation, $className)
+    protected function getResourceName(Annotation $annotation, $className)
     {
         $name = $annotation->name;
         

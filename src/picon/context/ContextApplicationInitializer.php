@@ -28,8 +28,9 @@
 
 namespace picon\context;
 
-use \picon\BaseApplicationInitializer;
+use picon\BaseApplicationInitializer;
 use picon\PiconApplication;
+
 require_once(dirname(__FILE__)."/../core/BaseApplicationInitializer.php");
 
 /**

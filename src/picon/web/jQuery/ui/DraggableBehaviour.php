@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Args;
+
 /**
  * Behavior to add on jQuery UI dragable functionality
  * 

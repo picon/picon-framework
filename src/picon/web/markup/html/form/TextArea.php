@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\XmlTagType;
+
 /**
  * A text area form component
  * 

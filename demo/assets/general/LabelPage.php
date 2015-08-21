@@ -20,6 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+use picon\web\Label;
+use picon\web\PropertyModel;
+
 /**
  * Description of LabelPage
  * 
@@ -32,7 +35,7 @@ class LabelPage extends AbstractPage
     public function __construct()
     {
         parent::__construct();
-        $this->add(new picon\Label('text', new picon\PropertyModel($this, 'text')));
+        $this->add(new Label('text', new PropertyModel($this, 'text')));
     }
     
     public function getInvolvedFiles()

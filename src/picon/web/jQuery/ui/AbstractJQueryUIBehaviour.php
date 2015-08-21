@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\PiconApplication;
+
 /**
  * Adds on the jQuery ui resources through a render head listener
  * @todo add support fo the jquery ui css

@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Args;
+
 /**
  * A data table, showing information from a data provider, specified by
  * columns.
@@ -62,7 +64,7 @@ class DataTable extends Panel implements Pageable
     
     public function setRowsPerPage($rowsPerPage)
     {
-        Args::isNumeric($rows, 'rowsPerPage');
+        Args::isNumeric($rowsPerPage, 'rowsPerPage');
         $this->gridView->setRowsPerPage($rowsPerPage);
     }
     

@@ -36,12 +36,12 @@ class MySqliDriver extends AbstractDatabaseDriver
         
         if ($connection->connect_error) 
         {
-            throw new SQLException($mysqli->connect_error,$mysqli->connect_errno);
+            throw new SQLException($connection->connect_error,$mysqli->connect_errno);
         }
         return $connection;
     }
     
-    public function dissconnect($connection)
+    public function disconnect($connection)
     {
         $connection->close();
     }

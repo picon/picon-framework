@@ -22,7 +22,7 @@
 
 namespace picon;
 
-use \closure;
+use closure;
 
 /**
  * Represents a collection of listeners that are treated as one listener

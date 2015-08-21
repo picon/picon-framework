@@ -22,6 +22,9 @@
 
 namespace picon\web;
 
+use picon\Args;
+use picon\SerializableClosure;
+
 /**
  * Produces a callback url as the value for the option, the url will resolve
  * to the supplied callback.
@@ -32,7 +35,11 @@ namespace picon\web;
 class CallbackOption extends AbstractCallableOption
 {
     private $callback;
-    
+
+    /**
+     * @param string $name
+     * @param callable $callback
+     */
     public function __construct($name, $callback)
     {
         parent::__construct($name);

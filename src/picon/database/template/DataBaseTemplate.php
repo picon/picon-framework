@@ -22,6 +22,8 @@
 
 namespace picon;
 
+use picon\web\Component;
+
 /**
  * Default implementation of DataBaseOperations
  * Provideds access to functionality through the source
@@ -52,7 +54,7 @@ class DataBaseTemplate implements DataBaseOperations
     
     public function __destruct()
     {
-        $this->driver->dissconnect($this->getConnection());
+        $this->driver->disconnect($this->getConnection());
     }
     
     public function execute($sql)

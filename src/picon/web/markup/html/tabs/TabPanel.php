@@ -37,7 +37,7 @@ class TabPanel extends Panel
     public function __construct($id, TabCollection $collection)
     {
         parent::__construct($id);
-        $this->collection = $collection;   
+        $this->collection = $collection;
         $this->setup();
     }
     
@@ -62,18 +62,18 @@ class TabPanel extends Panel
             $link = $me->newLink('link', $item->getIndex());
             if($me->getSelectedTab()==$item->getIndex())
             {
-                $item->add(new \picon\AttributeAppender('class', new \picon\BasicModel('selected'), ' '));
+                $item->add(new AttributeAppender('class', new BasicModel('selected'), ' '));
             }
             
             $item->add($link);
-            $link->add(new \picon\Label('name', new \picon\BasicModel($tab->name)));
+            $link->add(new Label('name', new BasicModel($tab->name)));
         }, new ArrayModel($this->collection->tabs)));
     }
     
     public function newLink($id, $index)
     {
         $me = $this;
-        return new \picon\Link($id, function() use ($me, $item, $index)
+        return new Link($id, function() use ($me, $index)
         {
             $me->setSelectedTab($index);
         });
@@ -96,7 +96,8 @@ class TabPanel extends Panel
     public function setSelectedTab($tabIndex)
     {
         $this->selctedTab = $tabIndex;
-        $this->addOrReplace($this->getPanelForSelected()); 
+        $panel = $this->getPanelForSelected();
+        $this->addOrReplace($panel);
     }
     
     public function getSelectedTab()

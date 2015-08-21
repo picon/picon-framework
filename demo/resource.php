@@ -44,9 +44,9 @@ define("CONFIG_FILE", __DIR__.'/config/picon.xml');
  */
 define("CACHE_DIRECTORY", __DIR__.'/cache');
 
-require_once("picon/web/PiconWebResourceApplication.php");
+require_once("../src/picon/web/PiconWebResourceApplication.php");
 
-use picon\PiconWebResourceApplication;
+use picon\web\PiconWebResourceApplication;
 
 $application = new PiconWebResourceApplication();
 $application->run();

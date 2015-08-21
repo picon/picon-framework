@@ -22,8 +22,8 @@
 
 namespace picon\web;
 
+use closure;
 use picon\Args;
-use \closure;
 
 /**
  * Basic implementation of link

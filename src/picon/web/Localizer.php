@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\CacheManager;
+
 /**
  * Localizer for a specific component
  * It is through this method that internationalization support will
@@ -161,7 +163,7 @@ class Localizer
     
     /**
      * @todo extract this out to a helper
-     * @param type $string
+     * @param $string
      * @param Model $model 
      */
     private function interpolate($string, Model $model)

@@ -59,7 +59,7 @@ class XMLParser
     /**
      * Process the XML file into an array of XMLTag objects
      * @param String $xmlFile Path to the XML file
-     * @return An array of XMLTag objects
+     * @return array An array of XMLTag objects
      */
     public function parse($xmlFile)
     {
@@ -161,7 +161,7 @@ class XMLParser
      * to allow for differences in the return of xml_get_current_byte_index in 
      * different versions of lib xml
      * 
-     * @param XML Parser $parser
+     * @param XMLParser $parser
      * @return int 
      */
     private function getPreceedingCharacter($parser)

@@ -43,7 +43,7 @@ interface DatabaseDriver
     /**
      * Disconnect the given connection
      */
-    function dissconnect($connection);
+    function disconnect($connection);
     
     /**
      * Run a query on the connection

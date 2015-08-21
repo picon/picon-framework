@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Args;
+
 /**
  * A form button, when submited the callback methods will be invoked based on the 
  * valid state of the form

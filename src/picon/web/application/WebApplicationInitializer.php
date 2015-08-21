@@ -28,7 +28,7 @@
 
 namespace picon\web;
 
-use \picon\context\ContextApplicationInitializer;
+use picon\context\ContextApplicationInitializer;
 
 require_once(dirname(__FILE__)."/../../context/ContextApplicationInitializer.php");
 

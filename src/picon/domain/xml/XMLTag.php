@@ -60,7 +60,7 @@ class XMLTag extends ComonDomainBase implements XmlElement
     
     /**
      * Set the name of this tag
-     * @param String the name
+     * @param string the name
      */
     public function setName($name)
     {
@@ -69,7 +69,7 @@ class XMLTag extends ComonDomainBase implements XmlElement
     
     /**
      * Sets the attributes
-     * @param Array the attributes of this tag
+     * @param array the attributes of this tag
      */
     public function setAttributes($attributes)
     {
@@ -135,7 +135,7 @@ class XMLTag extends ComonDomainBase implements XmlElement
     
     /**
      * Remove an attribute
-     * @param type $name 
+     * @param string $name
      */
     public function remove($name)
     {

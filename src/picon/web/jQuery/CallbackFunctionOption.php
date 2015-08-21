@@ -22,6 +22,9 @@
 
 namespace picon\web;
 
+use picon\Args;
+use picon\SerializableClosure;
+
 /**
  * Allows a user specified function to be rendered but wraps with a callback in the following way
  * 
@@ -46,8 +49,8 @@ class CallbackFunctionOption extends AbstractCallableOption
     
     /**
      *
-     * @param type $name
-     * @param type $function 
+     * @param $name
+     * @param $function
      * @param ... args the names of the arguments the javascript function should take
      */
     public function __construct($name, $callback, $function)

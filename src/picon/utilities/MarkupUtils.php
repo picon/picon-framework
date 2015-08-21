@@ -22,9 +22,9 @@
 
 namespace picon;
 
-use picon\web\MarkupElement;
 use picon\web\Component;
 use picon\web\ComponentTag;
+use picon\web\MarkupElement;
 use picon\web\PiconTag;
 
 /**

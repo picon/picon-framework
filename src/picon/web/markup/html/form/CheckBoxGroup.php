@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Identifier;
+
 /**
  * A wrapping component for checks
  * 

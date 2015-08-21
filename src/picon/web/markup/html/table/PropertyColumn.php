@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\PropertyResolver;
+
 /**
  * A column which shows a simple property of an object
  * 
@@ -41,7 +43,7 @@ class PropertyColumn extends AbstractColumn
     /**
      * @todo this should get the property via a resolver helper
      * @param GridItem $item
-     * @param type $componentId
+     * @param $componentId
      * @param Model $model 
      */
     public function populateCell(GridItem $item, $componentId, Model $model)

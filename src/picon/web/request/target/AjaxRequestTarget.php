@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\PiconApplication;
+
 /**
  * Request target for ajax requests
  *
@@ -95,8 +97,9 @@ class AjaxRequestTarget implements RequestTarget
         
         $page = $component->getPage();
         $page->addOrReplace($header);
-        
-        PiconApplication::get()->getComponentRenderHeadListener()->onHeadRendering($component, $headerResponse);
+
+        //@todo commented out because it doesn't work, do need to call this but on the container instead
+        //PiconApplication::get()->getComponentRenderHeadListener()->onHeadRendering($component, $headerResponse);
         $page->renderHead($headerResponse);
         
         $component->renderHeadContainer($header, $headerResponse);

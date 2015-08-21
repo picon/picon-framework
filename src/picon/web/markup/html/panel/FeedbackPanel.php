@@ -40,7 +40,7 @@ class FeedbackPanel extends Panel
         
         $this->messages = new ListView('messages', function($item)
         {
-            $item->add(new \picon\Label('message', new \picon\BasicModel($item->getModelObject()->message)));
+            $item->add(new Label('message', new BasicModel($item->getModelObject()->message)));
         }, FeedbackModel::get());
         
         
@@ -49,7 +49,8 @@ class FeedbackPanel extends Panel
     
     public function beforePageRender()
     {
-        $this->messages->setModel(FeedbackModel::get());
+        $model = FeedbackModel::get();
+        $this->messages->setModel($model);
         parent::beforePageRender();
     }
 }

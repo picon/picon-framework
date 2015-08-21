@@ -56,10 +56,9 @@ abstract class Enum implements Identifiable, Equalable
 {
     private $value;
     const DEFAULT_NAME = "_DEFAULT";
-    
+
     /**
-     * Create a new enum
-     * @param Object $value The enum value
+     * @param null $value
      */
     public function __construct($value = null)
     {
@@ -91,8 +90,8 @@ abstract class Enum implements Identifiable, Equalable
     
     /**
      * Create an enum for the given value
-     * @param String $obj A string of the value
-     * @return The enum for the value, or null if no value can be found
+     * @param string $obj A string of the value
+     * @return Enum The enum for the value, or null if no value can be found
      */
     public static function valueOf($obj)
     {
@@ -110,8 +109,8 @@ abstract class Enum implements Identifiable, Equalable
     /**
      * Gets all the posible values for this enum
      * 
-     * @param Boolean include the default value, defaults to false
-     * @return Array of values for this enum
+     * @param boolean include the default value, defaults to false
+     * @return array of values for this enum
      */
     public static function values($includeDefault = false)
     {

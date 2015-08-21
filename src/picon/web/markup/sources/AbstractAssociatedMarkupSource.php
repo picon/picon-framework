@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\MarkupUtils;
+
 /**
  * Mark-up source for components which hav associated mark-up
  * 

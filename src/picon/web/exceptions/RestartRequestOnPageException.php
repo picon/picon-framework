@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Identifier;
+
 /**
  * Can be thrown at any time during the life cycle of a component or a request
  * target response. It will cause the request target to truncate the request

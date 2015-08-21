@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\PropertyResolver;
+
 /**
  * Compound model which runs from a property of an object
  * 

@@ -22,8 +22,8 @@
 
 namespace picon\web;
 
-use picon\Identifier;
 use picon\Identifiable;
+use picon\Identifier;
 
 /**
  * Request target for invoking listeners
@@ -36,11 +36,11 @@ class ListenerRequestTarget implements RequestTarget, Identifiable
     private $componentPath;
     private $page;
     private $behaviour;
-    
+
     /**
-     *
-     * @param string $page The name of the page 
-     * @param type $componentPath The path to the listener component
+     * @param string $page The name of the page
+     * @param string $componentPath The path to the listener component
+     * @param null $behaviour
      */
     public function __construct($page, $componentPath, $behaviour = null)
     {
@@ -62,7 +62,7 @@ class ListenerRequestTarget implements RequestTarget, Identifiable
             $page = $this->page;
 
         }
-        
+
         if($page==null)
         {
             $GLOBALS['requestCycle']->addTarget(new PageNotFoundRequestTarget());
@@ -75,12 +75,12 @@ class ListenerRequestTarget implements RequestTarget, Identifiable
         {
             $page->beforePageRender();
             $listener = $this->getListener($page);
-        } 
+        }
         if($listener==null || !($listener instanceof Listener))
         {
             throw new \RuntimeException(sprintf("Listener component %s was not found", $this->componentPath));
         }
-        
+
         if($GLOBALS['requestCycle']->getRequest()->isAjax()==false)
         {
             $url = $GLOBALS['requestCycle']->generateUrl(new PageInstanceRequestTarget($page));

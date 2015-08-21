@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\PropertyResolver;
+
 /**
  * A model which runs from a property of an object
  * @todo this should use a property resolver helper to extract properties from object

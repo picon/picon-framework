@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Args;
+
 /**
  * Literally a repeating view of repeating views. Allows for work with both
  * rows and coloumns, such as a table
@@ -35,7 +37,14 @@ class GridView extends RepeatingView
     private $rows = array();
     private $columnId;
     private $callback;
-    
+
+    /**
+     * @param string $id
+     * @param null $columnId
+     * @param $columns
+     * @param callable $callback
+     * @param mixed $model
+     */
     public function __construct($id, $columnId, $columns, $callback = null, $model = null)
     {
         parent::__construct($id, $model);
@@ -94,8 +103,8 @@ class GridView extends RepeatingView
         {
             throw new \IllegalStateException('When not passing a callback to GridView it is expected that the populateItem() method will be overriden');
         }
-        $callablel = $this->callback;
-        $callablel($item);
+        $callable = $this->callback;
+        $callable($item);
     }
     
     protected function getRecords()

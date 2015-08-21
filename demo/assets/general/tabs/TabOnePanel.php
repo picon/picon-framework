@@ -20,14 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+use picon\web\Panel;
+
 /**
  * Description of TabOnePanel
  * 
  * @author Martin Cassidy
  */
-class TabOnePanel extends picon\web\Panel
+class TabOnePanel extends Panel
 {
     
 }
-
-?>

@@ -22,6 +22,10 @@
 
 namespace picon\web;
 
+use picon\ComonDomainBase;
+
+use picon\Args;
+
 /**
  * An array of tabs which are added to a tab panel
  * 
@@ -39,8 +43,8 @@ class TabCollection extends ComonDomainBase
     
     /**
      *
-     * @param Tab $tab
-     * @param closure $newMethod 
+     * @param mixed $tab
+     * @param callable $newMethod
      */
     public function addTab($tab, $newMethod = null)
     {

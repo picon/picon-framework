@@ -32,15 +32,15 @@ class PiconErrorHandler
 {
     public function __construct()
     {
-        set_error_handler(array($this, 'onError'));
-        set_exception_handler(array($this, 'onException'));
+        //set_error_handler(array($this, 'onError'));
+        //set_exception_handler(array($this, 'onException'));
     }
     
     /**
-     * @param type $errno
-     * @param type $errstr
-     * @param type $errfile
-     * @param type $errline
+     * @param $errno
+     * @param $errstr
+     * @param $errfile
+     * @param $errline
      * @throws \ErrorException
      */
     public function onError($errno, $errstr, $errfile, $errline)

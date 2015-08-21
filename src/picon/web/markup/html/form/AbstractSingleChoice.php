@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Objects;
+
 /**
  * A form component with pre-defined choices of which 1 can be chosen
  * 
@@ -33,9 +35,9 @@ abstract class AbstractSingleChoice extends AbstractChoice
     /**
      * @todo this will incorrectly evaluate isSelected() as true if the model object is null 
      * and the choice render returns a 0
-     * @param type $choice
-     * @param type $index
-     * @return type 
+     * @param $choice
+     * @param $index
+     * @return
      */
     public function isSelected($choice, $index)
     {

@@ -22,6 +22,9 @@
 
 namespace picon\web;
 
+use picon\Args;
+use picon\web\markup\html\form\Form;
+
 /**
  * Superclass for all form components
  * 
@@ -52,7 +55,7 @@ abstract class FormComponent extends LabeledMarkupContainer
     private $convertedInput;
     
     /**
-     * @var boolean is this form component manditory 
+     * @var boolean is this form component mandatory
      */
     private $required = false;
     
@@ -84,7 +87,7 @@ abstract class FormComponent extends LabeledMarkupContainer
     
     /**
      * @todo
-     * @return type 
+     * @return string
      */
     public function getLabel()
     {

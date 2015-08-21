@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Args;
+
 /**
  * Produces an option which is a function
  *
@@ -35,8 +37,8 @@ class FunctionOption extends AbstractOption
     
     /**
      *
-     * @param type $name
-     * @param type $function 
+     * @param string $name
+     * @param string $function
      * @param ... args the names of the arguments the javascript function should take
      */
     public function __construct($name, $function)

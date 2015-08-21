@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Args;
+
 /**
  * A form component which contains a pre-defined list of
  * posible choices
@@ -75,12 +77,14 @@ abstract class AbstractChoice extends FormComponent
         return $this->choices;
     }
     
-    public abstract function isSelected($choice, $index);   
-    
-    
+    public abstract function isSelected($choice, $index);
+
     /**
      * Render an <option> element
-     * @param type $choice 
+     * @param $name
+     * @param $value
+     * @param $selected
+     * @param $disabled
      */
     protected function renderOption($name, $value, $selected, $disabled)
     {
