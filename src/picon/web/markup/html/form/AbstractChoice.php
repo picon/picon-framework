@@ -45,7 +45,8 @@ abstract class AbstractChoice extends FormComponent
      *
      * @param string $id
      * @param array $choices
-     * @param Model $model 
+     * @param Model $model
+     * @param callable $isDisabled
      */
     public function __construct($id, $choices, ChoiceRenderer $choiceRenderer = null, Model $model = null, $isDisabled = null)
     {
@@ -130,14 +131,14 @@ abstract class AbstractChoice extends FormComponent
             else
             {
                 $selected = $this->isSelected($choice, $actualIndex);
-                $disabled = $this->isDisabled($choice, $actualIndex);
+                $disabled = $this->isOptionDisabled($choice, $actualIndex);
                 $this->renderOption($this->choiceRenderer->getDisplay($choice, $actualIndex), $this->choiceRenderer->getValue($choice, $actualIndex), $selected, $disabled);
             }
             $i++;
         }
     }
     
-    protected function isDisabled($choice, $index)
+    protected function isOptionDisabled($choice, $index)
     {
         if($this->isDisabled!=null)
         {
@@ -196,13 +197,13 @@ abstract class AbstractChoice extends FormComponent
     public function getValue()
     {
         $input = null;
-        if($this->disabled)
+        if($this->isDisabled())
         {
             $input = $this->getModelObject();
         }
-        if($this->rawInput==null)
+        if($this->getRawInput()==null)
         {
-            if($this->emptyInput==true)
+            if($this->getEmptyInput()==true)
             {
                 return null;
             }
@@ -213,7 +214,7 @@ abstract class AbstractChoice extends FormComponent
         }
         else
         {
-            $input = $this->rawInput;
+            $input = $this->getRawInput();
         }
         return $input;
     }

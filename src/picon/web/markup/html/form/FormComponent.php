@@ -349,6 +349,16 @@ abstract class FormComponent extends LabeledMarkupContainer
     {
         return false;
     }
+
+    protected function getEmptyInput()
+    {
+        return $this->emptyInput;
+    }
+
+    public function isDisabled()
+    {
+        return $this->disabled;
+    }
 }
 
 ?>
