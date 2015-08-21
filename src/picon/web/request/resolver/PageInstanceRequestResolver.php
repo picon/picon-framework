@@ -42,6 +42,12 @@ class PageInstanceRequestResolver implements RequestResolver
     public function resolve(Request $request)
     {
         $page = PageMap::get()->getPageById($request->getParameter('pageid'));
+
+        if($page==null)
+        {
+            return new PageNotFoundRequestTarget();
+        }
+
         return new PageInstanceRequestTarget($page);
     }
     

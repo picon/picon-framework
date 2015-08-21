@@ -32,8 +32,8 @@ class PiconErrorHandler
 {
     public function __construct()
     {
-        //set_error_handler(array($this, 'onError'));
-        //set_exception_handler(array($this, 'onException'));
+        set_error_handler(array($this, 'onError'));
+        set_exception_handler(array($this, 'onException'));
     }
     
     /**

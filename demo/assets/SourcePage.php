@@ -28,6 +28,7 @@ use picon\web\ArrayModel;
 use picon\web\AjaxRequestTarget;
 use picon\web\MarkupContainer;
 use picon\web\Label;
+use picon\web\ajax\markup\html\AjaxLink;
 
 /**
  * Description of SourcePage

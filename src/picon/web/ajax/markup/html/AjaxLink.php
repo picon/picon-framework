@@ -41,7 +41,12 @@ class AjaxLink extends AbstractLink implements CallDecoratorWrapper
 {
     private $callback;
     private $eventBehaviour;
-    
+
+    /**
+     * @param string $id
+     * @param callable $callback
+     * @param null $callDecorator
+     */
     public function __construct($id, $callback, $callDecorator = null)
     {
         parent::__construct($id);
