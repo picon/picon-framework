@@ -28,6 +28,7 @@ use picon\Identifier;
 use picon\Args;
 use picon\PiconApplication;
 use picon\TextElement;
+use picon\XmlTagType;
 
 /**
  * Component sersvices as the hightest and most abstract super class for all
@@ -363,7 +364,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     private function internalRender()
     {
         $markup = $this->getMarkup();
-        
+
         if($markup==null)
         {
             throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
@@ -377,7 +378,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     protected final function internalRenderComponent()
     {
         $markup = $this->getMarkup();
-        
+
         if($markup==null)
         {
             throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
@@ -553,7 +554,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     
     /**
      * Generates and returns a markup id for this component
-     * @param type $generate 
+     * @param type $generate
      */
     public function getMarkupId()
     {

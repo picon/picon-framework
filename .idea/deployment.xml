@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="Local">
+    <serverData>
+      <paths name="Local">
+        <serverdata>
+          <mappings>
+            <mapping deploy="picon" local="$PROJECT_DIR$" web="/picon/demo" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="/Library/WebServer/Documents/picon/demo/cache" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

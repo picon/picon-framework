@@ -24,6 +24,8 @@ namespace picon\web\security;
 
 use picon\web\security\authorisation\AllowAllAuthorisationStrategy;
 use picon\web\DefaultNotAuthorisedListener;
+use picon\web\ComponentNotAuthorisedListener;
+use picon\web\security\authorisation\AuthorisationStrategy;
 
 /**
  * Holder for security settings of the picon application

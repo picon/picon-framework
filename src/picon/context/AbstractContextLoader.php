@@ -24,6 +24,7 @@ namespace picon\context;
 
 use picon\CacheManager;
 use picon\ApplicationInitializer;
+use picon\Config;
 
 /**
  * Context loader super class

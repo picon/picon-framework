@@ -35,9 +35,9 @@ abstract class ListenerCollection
     private $listeners = array();
 
     /**
-     * @param closure $listener
+     * @param $listener
      */
-    public function add(closure $listener)
+    public function add($listener)
     {
         if(!$this->validateListener($listener))
         {
@@ -64,7 +64,7 @@ abstract class ListenerCollection
     
     /**
      *
-     * @param closure $callback 
+     * @param closure $callback
      */
     public function notify(closure $callback)
     {

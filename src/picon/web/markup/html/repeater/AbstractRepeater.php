@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Args;
+
 /**
  * A component whose mark-up is rendered multiple times based on some form
  * of repitition

@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Args;
+
 /**
  * A model of an array
  * 

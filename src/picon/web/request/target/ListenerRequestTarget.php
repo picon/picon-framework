@@ -22,6 +22,9 @@
 
 namespace picon\web;
 
+use picon\Identifier;
+use picon\Identifiable;
+
 /**
  * Request target for invoking listeners
  *

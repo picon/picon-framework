@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\PiconApplication;
+
 /**
  * Basic stateless page request resolver
  * 

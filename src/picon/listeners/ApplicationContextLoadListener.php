@@ -22,6 +22,8 @@
 
 namespace picon;
 
+use picon\context\ApplicationContext;
+
 /**
  * An application context listener used by the picon application to extract
  * the context once it is loaded

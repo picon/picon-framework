@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\Identifier;
+
 /**
  * Stateless page request that will retrieve and invoke a listener on the page
  *
@@ -32,11 +34,11 @@ class PageRequestWithListenerTarget extends PageRequestTarget
 {
     private $componentPath;
     private $behaviour;
-    
+
     /**
-     *
-     * @param string $page The name of the page 
-     * @param type $componentPath The path to the listener component
+     * @param Identifier $pageClass
+     * @param $componentPath
+     * @param null $behaviour
      */
     public function __construct(Identifier $pageClass, $componentPath, $behaviour = null)
     {

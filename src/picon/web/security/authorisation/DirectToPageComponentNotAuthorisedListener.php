@@ -27,6 +27,8 @@ use picon\web\RestartRequestOnPageException;
 use picon\web\Component;
 use picon\Args;
 use picon\web\WebPage;
+use picon\Identifier;
+
 /**
  * A not authorised listener for components which will redirect to a given
  * page if the component is not authorised

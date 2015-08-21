@@ -20,12 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\WebPage;
-use picon\Label;
-use picon\ListView;
-use picon\ArrayModel;
-use picon\BasicModel;
-use picon\MarkupContainer;
+use picon\web\WebPage;
+use picon\web\Label;
+use picon\web\ListView;
+use picon\web\ArrayModel;
+use picon\web\BasicModel;
+use picon\web\MarkupContainer;
 
 /**
  * Generic page for showing an exception

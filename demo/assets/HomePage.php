@@ -1,13 +1,11 @@
 <?php
 
-use \picon\MarkupContainer;
-use \picon\Link;
-use \picon\ListView;
-use \picon\ArrayModel;
-use \picon\BasicModel;
-use \picon\Label;
-use \picon\ResourceReference;
-use \picon\HeaderResponse;
+use picon\web\ListView;
+use picon\web\ArrayModel;
+use picon\web\Label;
+use picon\web\ListItem;
+use picon\web\BasicModel;
+use picon\web\Link;
 
 /**
  * Sample Homepage
@@ -20,7 +18,7 @@ class HomePage extends AbstractPage
     public function __construct()
     {
         parent::__construct();
-        
+
         $layoutExamples = array();
         $layoutExamples[] = new Example('Markup Inheretence', MarkupInheritancePage::getIdentifier());
         $layoutExamples[] = new Example('Panels', PanelPage::getIdentifier());
@@ -55,20 +53,20 @@ class HomePage extends AbstractPage
         $examples[] = new ExampleType('Security', $authoExamples);
         
         $self = $this;
-        $this->add(new ListView('examples', function(picon\ListItem $item) use ($self)
+        $this->add(new ListView('examples', function(ListItem $item) use ($self)
         {
             $type = $item->getModelObject();
-            $item->add(new picon\Label('title', new picon\BasicModel($type->name)));
-            
-            $item->add(new ListView('list', function(picon\ListItem $item) use ($self)
+            $item->add(new Label('title', new BasicModel($type->name)));
+            $examples = $type->examples;
+            $item->add(new ListView('list', function(ListItem $item) use ($self, $examples)
             {
-                $link = new picon\Link('link', function() use ($item, $self)
+                $link = new Link('link', function() use ($item, $self)
                 {
                     $self->setPage($item->getModelObject()->page);
                 });
                 $item->add($link);
-                $link->add(new picon\Label('exampleName', new picon\BasicModel($item->getModelObject()->name)));
-            }, new picon\ArrayModel($type->examples)));
+                $link->add(new Label('exampleName', new BasicModel($item->getModelObject()->name)));
+            }, new ArrayModel($examples)));
         }, new ArrayModel($examples)));
         
     }

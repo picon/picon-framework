@@ -22,6 +22,8 @@
 
 namespace picon;
 
+use picon\context\ApplicationContext;
+
 /**
  * A collection of context listeners which are treated as one listener
  *

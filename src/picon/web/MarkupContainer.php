@@ -23,6 +23,7 @@
 namespace picon\web;
 
 use picon\Args;
+use picon\Identifier;
 
 /**
  * A component which may contain child components, allowing for a composition 

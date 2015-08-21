@@ -22,6 +22,8 @@
 
 namespace picon\web\security\authorisation;
 
+use picon\web\Component;
+
 /**
  * The default authorisation strategy which permits access to everything
  * 

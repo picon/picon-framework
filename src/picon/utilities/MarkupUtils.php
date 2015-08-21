@@ -22,6 +22,11 @@
 
 namespace picon;
 
+use picon\web\MarkupElement;
+use picon\web\Component;
+use picon\web\ComponentTag;
+use picon\web\PiconTag;
+
 /**
  * Helper class for finding specific tags in markup
  * 

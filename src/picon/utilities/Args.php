@@ -22,6 +22,8 @@
 
 namespace picon;
 
+use \Closure;
+
 /**
  * Generic helper class for validating method arguments
  *
@@ -73,7 +75,7 @@ class Args
     
     /**
      * Throws an exception if not numeric
-     * @param type $number 
+     * @param int $number
      */
     public static function isNumeric($number, $argName)
     {

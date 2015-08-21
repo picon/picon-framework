@@ -22,6 +22,9 @@
 
 namespace picon\web;
 
+use picon\Args;
+use \closure;
+
 /**
  * Basic implementation of link
  * 
@@ -33,7 +36,7 @@ class Link extends AbstractLink
     private $callback;
     private $popupSettings;
     
-    public function __construct($id, $callback)
+    public function __construct($id, closure $callback)
     {
         parent::__construct($id);
         Args::callBack($callback, 'callback');
@@ -56,7 +59,7 @@ class Link extends AbstractLink
         parent::onComponentTag($tag);
         $url = $this->urlForListener($this);
         $tag->put('href', $this->popupSettings==null?$url:'javascript:;');
-        
+
         if($this->popupSettings!=null)
         {
             $properties = $this->popupSettings;

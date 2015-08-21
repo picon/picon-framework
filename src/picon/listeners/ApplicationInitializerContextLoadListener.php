@@ -22,6 +22,8 @@
 
 namespace picon;
 
+use picon\context\ApplicationContext;
+
 /**
  * Listener to provide a callback when the application context has loaded
  * @author Martin Cassidy

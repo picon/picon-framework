@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\ComonDomainBase;
+
 /**
  * Options for the javascript new window function
  * 

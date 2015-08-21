@@ -25,6 +25,9 @@ namespace picon\web\security\authorisation;
 use picon\Args;
 use picon\web\WebPage;
 use picon\PiconApplication;
+use picon\Identifier;
+use picon\web\Component;
+
 /**
  * An authorisation strategy for web pages. A page requires an authorised
  * use if it is a sub class of a given page

@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\XmlTagType;
+
 /**
  * A markup contain which has mark-up but does not have child added to it. Instead
  * if a child is request from it, the child is requested from the parent instead

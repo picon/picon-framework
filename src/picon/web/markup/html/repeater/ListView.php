@@ -22,6 +22,9 @@
 
 namespace picon\web;
 
+use picon\Args;
+use \closure;
+
 /**
  * A repeating component which works from an array. A ListItem is added
  * for each one and a callback invoked to populate it.
@@ -52,7 +55,7 @@ class ListView extends AbstractRepeater
         return $this->items;
     }
     
-    public function populateItem($entry)
+    public function populateItem(ListItem $entry)
     {
         $callable = $this->callback;
         $callable($entry);

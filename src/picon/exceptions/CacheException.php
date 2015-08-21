@@ -1,10 +1,9 @@
 <?php
-
 /**
  * Picon Framework
- * http://code.google.com/p/picon-framework/
+ * http://piconframework.com
  *
- * Copyright (C) 2011-2012 Martin Cassidy <martin.cassidy@webquub.com>
+ * Copyright (C) 2011-2015 Martin Cassidy <martin.cassidy@webquub.com>
 
  * Picon Framework is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,18 +19,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web\security\authorisation;
+namespace picon\exceptions;
 
-use picon\web\Component;
 
-/**
- * A strategy for authorisation components
- * @author Martin Cassidy
- * @package web/security/authorisation
- */
-interface AuthorisationStrategy
+class CacheException extends \RuntimeException
 {
-    function isComponentInstantiationAuthorised(Component $component);
-}
 
-?>
+}

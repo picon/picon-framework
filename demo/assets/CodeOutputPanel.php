@@ -21,6 +21,8 @@
  * */
 
 use picon\web\Panel;
+use picon\web\Label;
+use picon\web\BasicModel;
 
 /**
  * Description of CodeOutputPanel
@@ -35,7 +37,7 @@ class CodeOutputPanel extends Panel
         $file = fopen($filename, 'r');
         $contents = fread($file, filesize($filename));
         fclose($file);
-        $this->add(new picon\Label('code', new picon\BasicModel($this->format($contents))));
+        $this->add(new Label('code', new BasicModel($this->format($contents))));
     }
     
     private function getColour($type)

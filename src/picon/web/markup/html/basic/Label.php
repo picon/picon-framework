@@ -22,6 +22,8 @@
 
 namespace picon\web;
 
+use picon\XmlTagType;
+
 /**
  * A label is a very simple text based component that can work with almost 
  * an HTML tag. It is used for placing the contents of a model 

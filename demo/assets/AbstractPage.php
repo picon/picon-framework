@@ -23,6 +23,7 @@
 use picon\web\WebPage;
 use picon\web\HeaderResponse;
 use picon\web\Link;
+use picon\web\PopupSettings;
 
 /**
  * Description of AbstractPage
@@ -47,7 +48,7 @@ abstract class AbstractPage extends WebPage
         {
             $self->setPage(new SourcePage($files));
         });
-        $sourceLink->setPopupSettings(new \picon\PopupSettings('Source Code', '900px', '600px'));
+        $sourceLink->setPopupSettings(new PopupSettings('Source Code', '900px', '600px'));
         $this->add($sourceLink);
     }
     

@@ -25,6 +25,7 @@ namespace picon;
 use picon\web\MarkupElement;
 use picon\web\PiconTag;
 use picon\web\HeaderResolver;
+use picon\web\ComponentTag;
 
 /**
  * Parser for picon XML. This works like the XMLParser but will produce

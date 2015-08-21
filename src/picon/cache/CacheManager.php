@@ -22,6 +22,8 @@
 
 namespace picon;
 
+use picon\exceptions\CacheException;
+
 /**
  * Helper class for saving and loading resources from the cache.
  * 
@@ -122,7 +124,12 @@ class CacheManager
         
         if(!file_exists($directory))
         {
-            mkdir($directory, 0755, true);
+            $success = @mkdir($directory, 0755, true);
+
+            if(!$success)
+            {
+                throw new CacheException(sprintf("Failed to write to create directory %s", $directory));
+            }
         }
         
         file_put_contents($fileName, PiconSerializer::serialize($resource));

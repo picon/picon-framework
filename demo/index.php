@@ -64,6 +64,4 @@ class SampleApplication extends PiconWebApplication
 $application = new SampleApplication();
 $application->run();
 
-
-
 ?>
