@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class picon\web\ajax\AjaxFormSubmitBehavior</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li>
+					<a href="namespace-None.html">
+						None					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-picon.html">
+						picon<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-picon.beans.html">
+						beans					</a>
+
+						</li>
+				<li>
+					<a href="namespace-picon.context.html">
+						context					</a>
+
+						</li>
+				<li>
+					<a href="namespace-picon.core.html">
+						core<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-picon.core.serializer.html">
+						serializer					</a>
+
+						</li>
+							</ul></li>
+				<li>
+					<a href="namespace-picon.exceptions.html">
+						exceptions					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-picon.web.html">
+						web<span></span>
+					</a>
+
+						<ul>
+				<li class="active">
+					<a href="namespace-picon.web.ajax.html">
+						ajax<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-picon.web.ajax.markup.html">
+						markup<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-picon.web.ajax.markup.html.html">
+						html					</a>
+
+						</li>
+							</ul></li></ul></li>
+				<li>
+					<a href="namespace-picon.web.markup.html">
+						markup<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-picon.web.markup.html.html">
+						html<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-picon.web.markup.html.form.html">
+						form					</a>
+
+						</li>
+							</ul></li></ul></li>
+				<li>
+					<a href="namespace-picon.web.security.html">
+						security<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="namespace-picon.web.security.authorisation.html">
+						authorisation					</a>
+
+						</li>
+							</ul></li></ul></li></ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-picon.web.ajax.AbstractAjaxBehaviour.html">AbstractAjaxBehaviour</a></li>
+				<li><a href="class-picon.web.ajax.AjaxEventBehaviour.html">AjaxEventBehaviour</a></li>
+				<li><a href="class-picon.web.ajax.AjaxFormComponentUpdateBehavior.html">AjaxFormComponentUpdateBehavior</a></li>
+				<li class="active"><a href="class-picon.web.ajax.AjaxFormSubmitBehavior.html">AjaxFormSubmitBehavior</a></li>
+				<li><a href="class-picon.web.ajax.CallbackAjaxCallDecorator.html">CallbackAjaxCallDecorator</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-picon.web.ajax.AjaxCallDecorator.html">AjaxCallDecorator</a></li>
+				<li><a href="class-picon.web.ajax.CallDecoratorWrapper.html">CallDecoratorWrapper</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-picon.web.ajax.html" title="Summary of picon\web\ajax"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class AjaxFormSubmitBehavior</h1>
+
+
+	<div class="description">
+	<p>Ajax implementation that will submit a form on a javascript event
+By default, this will be the parent form of the component that this is added to</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-picon.web.AbstractBehaviour.html"><span>picon\web\AbstractBehaviour</span></a>
+			
+			 implements 
+				<a href="class-picon.web.Behaviour.html"><span>picon\web\Behaviour</span></a>, 
+			
+				<a href="class-picon.Identifiable.html"><span>picon\Identifiable</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-picon.web.ajax.AbstractAjaxBehaviour.html"><span>picon\web\ajax\AbstractAjaxBehaviour</span></a>
+			
+			 implements 
+				<a href="class-picon.web.BehaviourListener.html"><span>picon\web\BehaviourListener</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-picon.web.ajax.AjaxEventBehaviour.html"><span>picon\web\ajax\AjaxEventBehaviour</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:90px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>picon\web\ajax\AjaxFormSubmitBehavior</span></b>			
+			 implements 
+				<a href="class-picon.web.FormSubmitter.html"><span>picon\web\FormSubmitter</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-picon.html">picon</a>\<a href="namespace-picon.web.html">web</a>\<a href="namespace-picon.web.ajax.html">ajax</a><br>
+		<b>Package:</b> web\ajax<br>
+
+				<b>Author:</b>
+				Martin Cassidy<br>
+			<b>Located at</b> <a href="source-class-picon.web.ajax.AjaxFormSubmitBehavior.html#34-163" title="Go to source code">picon/web/ajax/AjaxFormSubmitBehavior.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-picon.web.ajax.AjaxFormSubmitBehavior.html#48-86" title="Go to source code">__construct</a>( <span> <var>$event</var></span>, <span>closure <var>$onSubmit</var> = <span class="php-keyword1">null</span></span>, <span>closure <var>$onError</var> = <span class="php-keyword1">null</span></span>, <span><code><a href="class-picon.web.markup.html.form.Form.html">picon\web\markup\html\form\Form</a></code> <var>$form</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd></dd>
+					<dt><var>$onSubmit</var></dt>
+					<dd></dd>
+					<dt><var>$onError</var></dt>
+					<dd></dd>
+					<dt><var>$form</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-picon.web.ajax.AjaxEventBehaviour.html#___construct">picon\web\ajax\AjaxEventBehaviour::__construct()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setAjaxRequestTarget" id="_setAjaxRequestTarget">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setAjaxRequestTarget">#</a>
+		<code><a href="source-class-picon.web.ajax.AjaxFormSubmitBehavior.html#88-91" title="Go to source code">setAjaxRequestTarget</a>( <span><code><a href="class-picon.web.AjaxRequestTarget.html">picon\web\AjaxRequestTarget</a></code> <var>$target</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getForm" id="_getForm">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getForm">#</a>
+		<code><a href="source-class-picon.web.ajax.AjaxFormSubmitBehavior.html#93-107" title="Go to source code">getForm</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-picon.web.FormSubmitter.html#_getForm">picon\web\FormSubmitter::getForm()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bind" id="_bind">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bind">#</a>
+		<code><a href="source-class-picon.web.ajax.AjaxFormSubmitBehavior.html#109-113" title="Go to source code">bind</a>( <span><code><a href="class-picon.web.Component.html">picon\web\Component</a></code> <var>&amp; $component</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-picon.web.ajax.AbstractAjaxBehaviour.html#_bind">picon\web\ajax\AbstractAjaxBehaviour::bind()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="generateCallScript" id="_generateCallScript">
+
+		<td class="attributes"><code>
+			 protected 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_generateCallScript">#</a>
+		<code><a href="source-class-picon.web.ajax.AjaxFormSubmitBehavior.html#141-144" title="Go to source code">generateCallScript</a>( <span> <var>$url</var></span> )</code>
+
+		<div class="description short">
+			<p>Should return the partial ajax script, that is the js function to call
+and the paramaters pass it up the call decoratos, should not include a trailing
+) or ,</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Should return the partial ajax script, that is the js function to call
+and the paramaters pass it up the call decoratos, should not include a trailing
+) or ,</p>
+
+
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-picon.web.ajax.AbstractAjaxBehaviour.html#_generateCallScript">picon\web\ajax\AbstractAjaxBehaviour::generateCallScript()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="onError" id="_onError">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_onError">#</a>
+		<code><a href="source-class-picon.web.ajax.AjaxFormSubmitBehavior.html#146-153" title="Go to source code">onError</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-picon.web.FormSubmitter.html#_onError">picon\web\FormSubmitter::onError()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="onSubmit" id="_onSubmit">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_onSubmit">#</a>
+		<code><a href="source-class-picon.web.ajax.AjaxFormSubmitBehavior.html#155-162" title="Go to source code">onSubmit</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-picon.web.FormSubmitter.html#_onSubmit">picon\web\FormSubmitter::onSubmit()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-picon.web.ajax.AjaxEventBehaviour.html#methods">picon\web\ajax\AjaxEventBehaviour</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.web.ajax.AjaxEventBehaviour.html#_callScript">callScript()</a>, 
+			<a href="class-picon.web.ajax.AjaxEventBehaviour.html#_failScript">failScript()</a>, 
+			<a href="class-picon.web.ajax.AjaxEventBehaviour.html#_onComponentTag">onComponentTag()</a>, 
+			<a href="class-picon.web.ajax.AjaxEventBehaviour.html#_onEventCallback">onEventCallback()</a>, 
+			<a href="class-picon.web.ajax.AjaxEventBehaviour.html#_successScript">successScript()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-picon.web.ajax.AbstractAjaxBehaviour.html#methods">picon\web\ajax\AbstractAjaxBehaviour</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.web.ajax.AbstractAjaxBehaviour.html#_generateCallbackScript">generateCallbackScript()</a>, 
+			<a href="class-picon.web.ajax.AbstractAjaxBehaviour.html#_getAjaxCallDecorator">getAjaxCallDecorator()</a>, 
+			<a href="class-picon.web.ajax.AbstractAjaxBehaviour.html#_isStateless">isStateless()</a>, 
+			<a href="class-picon.web.ajax.AbstractAjaxBehaviour.html#_onEvent">onEvent()</a>, 
+			<a href="class-picon.web.ajax.AbstractAjaxBehaviour.html#_renderHead">renderHead()</a>, 
+			<a href="class-picon.web.ajax.AbstractAjaxBehaviour.html#_setAjaxCallDecorator">setAjaxCallDecorator()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-picon.web.AbstractBehaviour.html#methods">picon\web\AbstractBehaviour</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.web.AbstractBehaviour.html#_afterRender">afterRender()</a>, 
+			<a href="class-picon.web.AbstractBehaviour.html#_beforeRender">beforeRender()</a>, 
+			<a href="class-picon.web.AbstractBehaviour.html#_getBehaviourId">getBehaviourId()</a>, 
+			<a href="class-picon.web.AbstractBehaviour.html#_getComponent">getComponent()</a>, 
+			<a href="class-picon.web.AbstractBehaviour.html#_getIdentifier">getIdentifier()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
