@@ -49,13 +49,14 @@ class RadioChoice extends AbstractSingleChoice implements ChoiceGroup
         $this->selection = $this->getModelObject();
         $this->group = new RadioGroup('choice', new PropertyModel($this, 'selection'));
         $this->add($this->group);
-        //@todo add the type hint b/ack into the closure when the serializer can handle them
-        $this->group->add(new ListView('choices', function(&$item)
+
+        $choices = $this->getChoices();
+        $this->group->add(new ListView('choices', function(ListItem &$item)
         {
             $radio = new Radio('radio', $item->getModel());
             $item->add($radio);
             $item->add(new FormComponentLabel('label', $radio));
-        }, new ArrayModel($this->getChoices())));
+        }, new ArrayModel($choices)));
     }
     
     protected function newMarkupSource()

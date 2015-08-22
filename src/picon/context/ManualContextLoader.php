@@ -34,6 +34,17 @@ class ManualContextLoader extends AbstractContextLoader
     {
        throw new \NotImplementedException();
     }
+
+    protected function loadResourceMap($classes)
+    {
+
+    }
+
+    protected function loadDataSources($sourceConfig)
+    {
+
+    }
+
 }
 
 ?>

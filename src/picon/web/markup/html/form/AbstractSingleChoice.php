@@ -37,7 +37,7 @@ abstract class AbstractSingleChoice extends AbstractChoice
      * and the choice render returns a 0
      * @param $choice
      * @param $index
-     * @return
+     * @return boolean
      */
     public function isSelected($choice, $index)
     {

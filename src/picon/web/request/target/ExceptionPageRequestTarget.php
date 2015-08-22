@@ -21,6 +21,8 @@
  * */
 
 namespace picon\web;
+use picon\Identifiable;
+use picon\Identifier;
 
 /**
  * Request target for the error page
@@ -28,7 +30,7 @@ namespace picon\web;
  * @author Martin Cassidy
  * @package web/request/target
  */
-class ExceptionPageRequestTarget implements RequestTarget
+class ExceptionPageRequestTarget implements RequestTarget, Identifiable
 {
     private $exception;
     
@@ -42,6 +44,11 @@ class ExceptionPageRequestTarget implements RequestTarget
         $page = new \ErrorPage($this->exception);
         $page->renderPage();
         $response->flush();
+    }
+
+    public static function getIdentifier()
+    {
+        return Identifier::forName(get_called_class());
     }
 }
 

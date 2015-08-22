@@ -38,7 +38,9 @@ class ErrorPage extends WebPage
     {
         $this->add(new Label('title', new BasicModel(get_class($ex))));
         $this->add(new Label('message', new BasicModel($ex->getMessage())));
-        
+
+        $trace = $ex->getTrace();
+
         $this->add(new ListView('stack', function(MarkupContainer $entry)
         {
             $object = $entry->getModel()->getModelObject();
@@ -46,6 +48,6 @@ class ErrorPage extends WebPage
             $entry->add(new Label('function', new BasicModel(array_key_exists('function', $object)?$object['function']:'')));
             $entry->add(new Label('file', new BasicModel(array_key_exists('file', $object)?$object['file']:'')));
             $entry->add(new Label('line', new BasicModel(array_key_exists('line', $object)?$object['line']:'')));
-        }, new ArrayModel($ex->getTrace())));
+        }, new ArrayModel($trace)));
     }
 }

@@ -20,6 +20,20 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+use picon\web\FeedbackPanel;
+use picon\web\Button;
+use picon\web\markup\html\form\Form;
+use picon\web\RequiredTextField;
+use picon\web\MaximumValidator;
+use picon\web\EmailAddressValidator;
+use picon\web\MinimumValidator;
+use picon\web\RangeValidator;
+use picon\web\MaximumLengthValidator;
+use picon\web\MinimumLengthValidator;
+use picon\web\RangeLengthValidator;
+use picon\web\TextArea;
+
+
 /**
  * Description of ValidationPage
  * 
@@ -30,14 +44,15 @@ class ValidationPage extends AbstractPage
     public function __construct()
     {
         parent::__construct();
+
+        $feedback = new FeedbackPanel('feedback');
+        $this->add($feedback);
         
-        $this->add(new \picon\FeedbackPanel('feedback'));
-        
-        $form = new picon\Form('form');
+        $form = new Form('form');
         $this->add($form);
         
         $self = $this;
-        $form->add(new picon\Button('button', function() use($self)
+        $form->add(new Button('button', function() use($self)
         {
             $self->info('The form validation passed');
         },
@@ -46,35 +61,35 @@ class ValidationPage extends AbstractPage
             $self->info('The form was invalid');
         }));
         
-        $email = new picon\RequiredTextField('email');
-        $email->add(new picon\EmailAddressValidator());
+        $email = new RequiredTextField('email');
+        $email->add(new EmailAddressValidator());
         $form->add($email);
         
-        $maxNumber = new picon\RequiredTextField('maxNumber');
-        $maxNumber->add(new \picon\MaximumValidator(14));
+        $maxNumber = new RequiredTextField('maxNumber');
+        $maxNumber->add(new MaximumValidator(14));
         $form->add($maxNumber);
         
-        $minNumber = new picon\RequiredTextField('minNumber');
-        $minNumber->add(new picon\MinimumValidator(34));
+        $minNumber = new RequiredTextField('minNumber');
+        $minNumber->add(new MinimumValidator(34));
         $form->add($minNumber);
         
-        $rangeNumber = new picon\RequiredTextField('rangeNumber');
-        $rangeNumber->add(new \picon\RangeValidator(4, 45));
+        $rangeNumber = new RequiredTextField('rangeNumber');
+        $rangeNumber->add(new RangeValidator(4, 45));
         $form->add($rangeNumber);
         
-        $maxString = new picon\RequiredTextField('maxString');
-        $maxString->add(new \picon\MaximumLengthValidator(10));
+        $maxString = new RequiredTextField('maxString');
+        $maxString->add(new MaximumLengthValidator(10));
         $form->add($maxString);
         
-        $minString = new picon\RequiredTextField('minString');
-        $minString->add(new picon\MinimumLengthValidator(4));
+        $minString = new RequiredTextField('minString');
+        $minString->add(new MinimumLengthValidator(4));
         $form->add($minString);
         
-        $rangeString = new picon\RequiredTextField('rangeString');
-        $rangeString->add(new \picon\RangeLengthValidator(4, 10));
+        $rangeString = new RequiredTextField('rangeString');
+        $rangeString->add(new RangeLengthValidator(4, 10));
         $form->add($rangeString);
         
-        $textArea = new picon\TextArea('textArea');
+        $textArea = new TextArea('textArea');
         $textArea->setRequired(true);
         $form->add($textArea);
         

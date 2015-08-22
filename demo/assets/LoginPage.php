@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\Link;
+use picon\web\Link;
 
 /**
  * Description of LoginPage

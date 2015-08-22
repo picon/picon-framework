@@ -49,7 +49,7 @@ class DropDown extends AbstractSingleChoice
         $value = $this->getValue();
         if($this->isRequired() && empty($value) || !$this->isRequired())
         {
-            $this->renderOption($this->getDefaultValue(), null, empty($value));
+            $this->renderOption($this->getDefaultValue(), null, empty($value), false);
         }
         
         $this->renderOptions();

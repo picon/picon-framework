@@ -43,6 +43,7 @@ use \Closure;
  * used later when it is needed and would otherwise be un-obtainable with SplFileObject.
  * 
  * @todo test in PHP 5.4.x
+ * @todo refactor the code analysis into a separate class so it can be reused
  * @author Martin Cassidy
  * @package utilities
  */

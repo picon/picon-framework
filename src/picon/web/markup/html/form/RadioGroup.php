@@ -31,7 +31,7 @@ use picon\Identifier;
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
-class RadioGroup extends FormComponent
+class   RadioGroup extends FormComponent
 {
     public function getChoiceGroup()
     {
@@ -41,7 +41,8 @@ class RadioGroup extends FormComponent
              $choice = $component;
              return Component::VISITOR_STOP_TRAVERSAL;
         };
-        $this->visitParents(Identifier::forName('picon\ChoiceGroup'), $callback);
+        //@todo find a non stringy way of doing this as it is not refactor proof
+        $this->visitParents(Identifier::forName('picon\web\ChoiceGroup'), $callback);
         return $choice;
     }
     

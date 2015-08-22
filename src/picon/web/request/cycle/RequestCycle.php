@@ -45,6 +45,7 @@ class RequestCycle
     private $resolver;
     private $targetStack;
     private $maxStackSize = 10; //@todo put this somewhere else
+    private $maxTargets = 10; //@todo put this somewhere else too
     
     public function __construct()
     {
@@ -71,9 +72,16 @@ class RequestCycle
         
 
         $iterator = $this->targetStack->getIterator();
-
+        $targets = 0;
         while($iterator->valid()) 
         {
+            $targets++;
+
+            if($targets>$this->maxTargets)
+            {
+                throw new \IllegalStateException("Maximum number of requests targets have been processed");
+            }
+
             try
             {
                 if(PiconApplication::get()->getProfile()->isCleanBeforeOutput())
@@ -85,15 +93,24 @@ class RequestCycle
             }
             catch(RestartRequestOnPageException $restartEx)
             {
+                $this->response->clean();
                 $this->targetStack->exchangeArray(array());
                 $this->addTarget(new PageRequestTarget($restartEx->getPageIdentifier()));
-                $iterator->rewind();
+                $iterator = $this->targetStack->getIterator();
+                continue;
             }
             catch(\Exception $ex)
             {
+                $this->response->clean();
+                if($this->containsTarget(ExceptionPageRequestTarget::getIdentifier()))
+                {
+                    //Rethrow if the exception was caused by the exception page target
+                    throw $ex;
+                }
                 $this->targetStack->exchangeArray(array());
                 $this->addTarget(new ExceptionPageRequestTarget($ex));
-                $iterator->rewind();
+                $iterator = $this->targetStack->getIterator();
+                continue;
             }
             $iterator->next();
         }

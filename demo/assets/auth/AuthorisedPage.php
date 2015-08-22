@@ -20,6 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+use picon\web\Link;
+
 /**
  * Description of AuthorisedPage
  * 
@@ -31,7 +33,7 @@ class AuthorisedPage extends AbstractAuthorisedPage
     {
         parent::__construct();
         $self = $this;
-        $this->add(new picon\Link('link', function() use ($self)
+        $this->add(new Link('link', function() use ($self)
         {
             $_SESSION['auth'] = false;
             $self->setPage(HomePage::getIdentifier());

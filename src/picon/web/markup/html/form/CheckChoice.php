@@ -52,13 +52,13 @@ class CheckChoice extends AbstractMultipleChoice implements ChoiceGroup
         $this->group = new CheckBoxGroup('choice', $this->getModel());
         $this->add($this->group);
         
-        //@todo add the type hint back into the closure when the serializer can handle them
-        $this->group->add(new ListView('choices', function(&$item)
+        $choices = $this->getChoices();
+        $this->group->add(new ListView('choices', function(ListItem &$item)
         {
             $check = new Check('checkbox', $item->getModel());
             $item->add($check);
             $item->add(new FormComponentLabel('label', $check));
-        }, new ArrayModel($this->getChoices())));
+        }, new ArrayModel($choices)));
     }
     
     protected function newMarkupSource()
