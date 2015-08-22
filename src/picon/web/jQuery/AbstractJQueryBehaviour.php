@@ -43,7 +43,6 @@ abstract class AbstractJQueryBehaviour extends AbstractBehaviour implements Beha
      */
     public function __wakeup()
     {
-        parent::__wakeup();
         PiconApplication::get()->addComponentRenderHeadListener(new JQueryRenderHeadListener());
     }
     

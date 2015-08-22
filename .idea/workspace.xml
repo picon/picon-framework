@@ -5,26 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a72f99cd-66b9-4e3c-82a3-0972bffa1da6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classfix.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/cache/application_data/auto_loader.pcx" afterPath="$PROJECT_DIR$/demo/cache/application_data/auto_loader.pcx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/AbstractSingleChoice.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/AbstractSingleChoice.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/assets/auth/AuthorisedPage.php" afterPath="$PROJECT_DIR$/demo/assets/auth/AuthorisedPage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/CheckBoxGroup.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/CheckBoxGroup.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/CheckChoice.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/CheckChoice.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/DropDown.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/DropDown.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/pages/ErrorPage.php" afterPath="$PROJECT_DIR$/src/picon/web/pages/ErrorPage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/assets/forms/ExampleDomain.php" afterPath="$PROJECT_DIR$/demo/assets/forms/ExampleDomain.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/request/target/ExceptionPageRequestTarget.php" afterPath="$PROJECT_DIR$/src/picon/web/request/target/ExceptionPageRequestTarget.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/assets/forms/FormPage.php" afterPath="$PROJECT_DIR$/demo/assets/forms/FormPage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/assets/LoginPage.php" afterPath="$PROJECT_DIR$/demo/assets/LoginPage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/context/ManualContextLoader.php" afterPath="$PROJECT_DIR$/src/picon/context/ManualContextLoader.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/RadioChoice.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/RadioChoice.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/RadioGroup.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/RadioGroup.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/AbstractJQueryBehaviour.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/AbstractJQueryBehaviour.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/request/target/AjaxRequestTarget.php" afterPath="$PROJECT_DIR$/src/picon/web/request/target/AjaxRequestTarget.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/request/cycle/RequestCycle.php" afterPath="$PROJECT_DIR$/src/picon/web/request/cycle/RequestCycle.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/utilities/SerializableClosure.php" afterPath="$PROJECT_DIR$/src/picon/utilities/SerializableClosure.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/assets/forms/SpecialFields.php" afterPath="$PROJECT_DIR$/demo/assets/forms/SpecialFields.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/assets/forms/ValidationPage.php" afterPath="$PROJECT_DIR$/demo/assets/forms/ValidationPage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/assets/SourcePage.php" afterPath="$PROJECT_DIR$/demo/assets/SourcePage.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PiconFramework.iws" />
@@ -54,14 +39,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SpecialFields.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/demo/assets/forms/SpecialFields.php">
+      <file leaf-file-name="SourcePage.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/demo/assets/SourcePage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2639296" vertical-offset="315" max-vertical-offset="915">
-              <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
-              <folding>
-                <element signature="e#805#847#0#PHP" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.48387095" vertical-offset="180" max-vertical-offset="870">
+              <caret line="49" column="35" selection-start-line="49" selection-start-column="35" selection-end-line="49" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -74,21 +57,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/picon/web/MarkupContainer.php" />
         <option value="$PROJECT_DIR$/demo/assets/forms/FormPage.php" />
         <option value="$PROJECT_DIR$/demo/assets/ajax/AjaxButtonPage.php" />
         <option value="$PROJECT_DIR$/src/picon/web/ajax/markup/html/AjaxButton.php" />
         <option value="$PROJECT_DIR$/src/picon/core/PiconApplication.php" />
         <option value="$PROJECT_DIR$/src/picon/web/markup/html/panel/FeedbackPanel.php" />
         <option value="$PROJECT_DIR$/demo/resource.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/request/target/AjaxRequestTarget.php" />
         <option value="$PROJECT_DIR$/demo/assets/ajax/AjaxLinkPage.php" />
         <option value="$PROJECT_DIR$/src/picon/web/request/resolver/PageInstanceRequestResolver.php" />
         <option value="$PROJECT_DIR$/src/picon/web/PageMap.php" />
         <option value="$PROJECT_DIR$/src/picon/web/Component.php" />
-        <option value="$PROJECT_DIR$/demo/assets/SourcePage.php" />
         <option value="$PROJECT_DIR$/src/picon/web/ajax/markup/html/AjaxLink.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/request/target/RedirectRequestTarget.php" />
         <option value="$PROJECT_DIR$/src/picon/core/PiconErrorHandler.php" />
         <option value="$PROJECT_DIR$/src/picon/utilities/Equalable.php" />
         <option value="$PROJECT_DIR$/src/picon/utilities/Objects.php" />
@@ -106,7 +85,6 @@
         <option value="$PROJECT_DIR$/src/picon/web/markup/html/form/AbstractChoice.php" />
         <option value="$PROJECT_DIR$/src/picon/core/AutoLoader.php" />
         <option value="$PROJECT_DIR$/src/picon/context/ManualContextLoader.php" />
-        <option value="$PROJECT_DIR$/src/picon/utilities/SerializableClosure.php" />
         <option value="$PROJECT_DIR$/src/classfix.php" />
         <option value="$PROJECT_DIR$/demo/assets/auth/AuthorisedPage.php" />
         <option value="$PROJECT_DIR$/demo/assets/SamplePageClassAuthorisationStrategy.php" />
@@ -118,13 +96,18 @@
         <option value="$PROJECT_DIR$/src/picon/web/pages/ErrorPage.php" />
         <option value="$PROJECT_DIR$/src/picon/web/markup/html/form/RadioChoice.php" />
         <option value="$PROJECT_DIR$/src/picon/web/markup/html/form/CheckChoice.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/request/cycle/RequestCycle.php" />
         <option value="$PROJECT_DIR$/src/picon/web/markup/html/form/AbstractSingleChoice.php" />
         <option value="$PROJECT_DIR$/src/picon/web/markup/html/form/DropDown.php" />
         <option value="$PROJECT_DIR$/src/picon/web/markup/html/form/RadioGroup.php" />
         <option value="$PROJECT_DIR$/src/picon/web/markup/html/form/CheckBoxGroup.php" />
         <option value="$PROJECT_DIR$/demo/assets/forms/ValidationPage.php" />
         <option value="$PROJECT_DIR$/demo/assets/forms/SpecialFields.php" />
+        <option value="$PROJECT_DIR$/src/picon/web/jQuery/AbstractJQueryBehaviour.php" />
+        <option value="$PROJECT_DIR$/src/picon/web/request/cycle/RequestCycle.php" />
+        <option value="$PROJECT_DIR$/src/picon/web/request/target/AjaxRequestTarget.php" />
+        <option value="$PROJECT_DIR$/src/picon/utilities/SerializableClosure.php" />
+        <option value="$PROJECT_DIR$/src/picon/web/request/target/RedirectRequestTarget.php" />
+        <option value="$PROJECT_DIR$/demo/assets/SourcePage.php" />
       </list>
     </option>
   </component>
@@ -378,28 +361,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PiconFramework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PiconFramework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="forms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -539,18 +500,18 @@
     <editor active="true" />
     <layout>
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329602" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298611" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298611" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39925373" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329602" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.51119405" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39925373" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -591,74 +552,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/picon/web/jQuery/BooleanOption.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="825">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="e#7#803#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/jQuery/ui/DatePickerBehaviour.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="660">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="e#7#803#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/jQuery/ui/DialogBehavior.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="1140">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="e#7#803#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/jQuery/ui/DraggableBehaviour.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="975">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="e#7#803#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/jQuery/ui/SortableBehavior.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="1005">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="e#7#803#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/markup/html/form/DateField.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="675">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="e#7#803#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/markup/html/form/validation/IdenticalValueValidator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46201232" vertical-offset="0" max-vertical-offset="900">
-          <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/picon/beans/BeanFactory.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="511">
@@ -777,14 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/utilities/SerializableClosure.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08797654" vertical-offset="2775" max-vertical-offset="6825">
-          <caret line="205" column="14" selection-start-line="205" selection-start-column="14" selection-end-line="205" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo/assets/AbstractAuthorisedPage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35190615" vertical-offset="0" max-vertical-offset="341">
@@ -838,7 +723,7 @@
         <state vertical-scroll-proportion="-5.625" vertical-offset="315" max-vertical-offset="780">
           <caret line="48" column="99" selection-start-line="48" selection-start-column="99" selection-end-line="48" selection-end-column="99" />
           <folding>
-            <element signature="e#850#865#0#PHP" expanded="true" />
+            <element signature="e#850#865#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -903,16 +788,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/request/target/ExceptionPageRequestTarget.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.2916666" vertical-offset="74" max-vertical-offset="645">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#826#849#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/picon/web/pages/ErrorPage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7360704" vertical-offset="154" max-vertical-offset="525">
@@ -933,14 +808,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2639296" vertical-offset="390" max-vertical-offset="1095">
           <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/request/cycle/RequestCycle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48387095" vertical-offset="1095" max-vertical-offset="2370">
-          <caret line="103" column="41" selection-start-line="103" selection-start-column="41" selection-end-line="103" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -1014,18 +881,102 @@
         <state vertical-scroll-proportion="0.7038123" vertical-offset="0" max-vertical-offset="1380">
           <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
-            <element signature="e#805#833#0#PHP" expanded="true" />
+            <element signature="e#805#833#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/demo/assets/forms/SpecialFields.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2639296" vertical-offset="315" max-vertical-offset="915">
-          <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+        <state vertical-scroll-proportion="-5.0" vertical-offset="315" max-vertical-offset="915">
+          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
           <folding>
             <element signature="e#805#847#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/web/behaviour/AbstractBehaviour.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="32.041668" vertical-offset="889" max-vertical-offset="1230">
+          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/web/jQuery/AbstractJQueryBehaviour.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.8333335" vertical-offset="259" max-vertical-offset="810">
+          <caret line="44" column="5" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/web/request/cycle/RequestCycle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.9583333" vertical-offset="1264" max-vertical-offset="2400">
+          <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/web/request/target/AjaxRequestTarget.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47214076" vertical-offset="34" max-vertical-offset="1725">
+          <caret line="31" column="141" selection-start-line="31" selection-start-column="141" selection-end-line="31" selection-end-column="141" />
+          <folding>
+            <element signature="e#827#850#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/web/request/target/ExceptionPageRequestTarget.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.57478005" vertical-offset="164" max-vertical-offset="630">
+          <caret line="43" column="49" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/assets/HomePage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7917889" vertical-offset="555" max-vertical-offset="1215">
+          <caret line="60" column="59" selection-start-line="60" selection-start-column="59" selection-end-line="60" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/domain/config/DataSourceConfig.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3548387" vertical-offset="59" max-vertical-offset="750">
+          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/utilities/SerializableClosure.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.083334" vertical-offset="3349" max-vertical-offset="6990">
+          <caret line="267" column="78" selection-start-line="267" selection-start-column="78" selection-end-line="267" selection-end-column="78" />
+          <folding>
+            <element signature="e#822#835#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/web/request/target/RedirectRequestTarget.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75073314" vertical-offset="149" max-vertical-offset="585">
+          <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/assets/SourcePage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48387095" vertical-offset="180" max-vertical-offset="870">
+          <caret line="49" column="35" selection-start-line="49" selection-start-column="35" selection-end-line="49" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>

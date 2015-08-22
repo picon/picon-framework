@@ -22,15 +22,19 @@
 
 namespace picon\web;
 
+use picon\Identifiable;
+use picon\Identifier;
 use picon\PiconApplication;
 
 /**
  * Request target for ajax requests
  *
+ * @todo this needs to be able to handle redirect requests, the request resolve should resolve the redirect target differently to handle that
+ *
  * @author Martin Cassidy
  * @package web/request/target
  */
-class AjaxRequestTarget implements RequestTarget
+class AjaxRequestTarget implements RequestTarget, Identifiable
 {
     private $components = array();
     private $script = array();
@@ -112,6 +116,11 @@ class AjaxRequestTarget implements RequestTarget
         {
             $component->visitChildren(Component::getIdentifier(), $callback);
         }
+    }
+
+    public static function getIdentifier()
+    {
+        return Identifier::forName(get_called_class());
     }
 }
 

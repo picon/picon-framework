@@ -22,6 +22,7 @@
 namespace picon;
 
 use \Closure;
+use \ReflectionFunction;
 
 /**
  * A wrapper for closures enabling them to be serialized.
@@ -195,9 +196,8 @@ class SerializableClosure
     }
     
     /**
-     * Performs string analysis to determin if anything needs to be altered
+     * Performs string analysis to determine if anything needs to be altered
      * to allow the reconstructed closure to work correctly
-     * @todo replace type hints with fq names
      */
     private function prepareCode()
     {
@@ -208,7 +208,7 @@ class SerializableClosure
         $preparedClosure = "";
         $codeBlocks = token_get_all("<?php $this->code ?>");
         $i = 0;
-        
+
         foreach($codeBlocks as $c)
         {
             $value = '';
@@ -227,7 +227,7 @@ class SerializableClosure
                         $preparedClosure .= 'new picon\SerializableClosure(';
                     }
                 }
-                
+
                 if($c[0]==T_STRING && $this->isNonFullyQualifiedClassName($codeBlocks, $i))
                 {
                     $value = $this->resolveToFullyQualifiedClassName($c[1]);
@@ -269,14 +269,16 @@ class SerializableClosure
     } 
     
     /**
-     * Determins if the code block index provided is a class name that is not
+     * Determines if the code block index provided is a class name that is not
      * fully qualified. This is detected by looking back or forwards
-     * up to 2 indexes (to allow for whichspace) and looks for either new or ::
-     * @param array $codeBlcoks
+     * up to 2 indexes (to allow for whitespace) and looks for either new or ::
+     *
+     * In the declaration, this also detects type hints
+     * @param array $codeBlocks
      * @param int $currentIndex
      * @return boolean
      */
-    private function isNonFullyQualifiedClassName($codeBlcoks, $currentIndex)
+    private function isNonFullyQualifiedClassName($codeBlocks, $currentIndex)
     {
         $nonFullQualifiedName = false;
         /* Detects class names preceeded by new or succeded by ::
@@ -285,9 +287,9 @@ class SerializableClosure
          */
         for($i = $currentIndex-2; $i <= $currentIndex+2; $i++)
         {
-            if(is_array($codeBlcoks[$i]))
+            if(is_array($codeBlocks[$i]))
             {
-                $c = $codeBlcoks[$i];
+                $c = $codeBlocks[$i];
                 
                 if($c[0]==T_NS_SEPARATOR)
                 {
@@ -307,41 +309,50 @@ class SerializableClosure
         }
         
         /**
-         * Determin the index of the ( that starts the closure argument
+         * Determine the index of the ( that starts the closure argument
          * definition
          */
-        $workingIndex = 0;
+        $workingIndex = $currentIndex;
         $search = false;
         $paramOpenIndex = 0;
-        while($workingIndex<count($codeBlcoks))
+        while($workingIndex<count($codeBlocks))
         {
-            if(is_array($codeBlcoks[$workingIndex]) && $codeBlcoks[$workingIndex][0]==T_FUNCTION)
+            if(is_array($codeBlocks[$workingIndex]) && $codeBlocks[$workingIndex][0]==T_FUNCTION)
             {
                 $search = true;
             }
-            if(!is_array($codeBlcoks[$workingIndex]) && $search && $codeBlcoks[$workingIndex]=="(")
+            if(!is_array($codeBlocks[$workingIndex]) && $search && $codeBlocks[$workingIndex]=="(")
             {
                 $paramOpenIndex = $workingIndex;
                 break;
             }
-            $workingIndex++;
+
+            if($search)
+            {
+                $workingIndex++;
+            }
+            else
+            {
+                $workingIndex--;
+            }
         }
-        
+
         /**
-         * Determins if the first ( preceeding the string is the argument
-         * declartion, if so this must a type hint
+         * Determines if the first ( preceeding the string is the argument
+         * declaration, if so this must a type hint
          */
         $trackback = $currentIndex;
+
         while($trackback>=0)
         {
-            if(!is_array($codeBlcoks[$trackback]))
+            if(!is_array($codeBlocks[$trackback]))
             {
-                if($codeBlcoks[$trackback]=="(" 
+                if($codeBlocks[$trackback]=="("
                     && $trackback==$paramOpenIndex && $paramOpenIndex!=0)
                 {
                     return true;
                 }
-                else if($codeBlcoks[$trackback]==")")
+                else if($codeBlocks[$trackback]==")")
                 {
                     return false;
                 }
@@ -391,7 +402,7 @@ class SerializableClosure
      * @param String The string of code the closure runs
      * @return Array The variable within the use() 
      */
-    private function fetchUsedVariables(\ReflectionFunction $reflection, $code)
+    private function fetchUsedVariables(ReflectionFunction $reflection, $code)
     {
         $use_index = stripos($code, 'use');
         if (!$use_index)

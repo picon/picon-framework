@@ -107,6 +107,7 @@ class RequestCycle
                     //Rethrow if the exception was caused by the exception page target
                     throw $ex;
                 }
+
                 $this->targetStack->exchangeArray(array());
                 $this->addTarget(new ExceptionPageRequestTarget($ex));
                 $iterator = $this->targetStack->getIterator();
@@ -166,6 +167,7 @@ class RequestCycle
         }
         return false;
     }
+
 }
 
 ?>

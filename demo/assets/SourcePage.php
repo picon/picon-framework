@@ -46,7 +46,8 @@ class SourcePage extends WebPage
         {
             $link = new AjaxLink('link', function(AjaxRequestTarget $target) use ($item, $self)
             {
-                $target->add($self->getPanel());
+                $panel = $self->getPanel();
+                $target->add($panel);
                 $newPanel = new CodeOutputPanel('code', $item->getModelObject());
                 $newPanel->setOutputMarkupId(true);
                 $self->getPanel()->addOrReplace($newPanel);
@@ -58,7 +59,8 @@ class SourcePage extends WebPage
         $this->panel = new MarkupContainer('wrapper');
         $this->add($this->panel);
         $this->panel->setOutputMarkupId(true);
-        $this->panel->add(new CodeOutputPanel('code', $files[0]));
+        $codePanel = new CodeOutputPanel('code', $files[0]);
+        $this->panel->add($codePanel);
     }
     
     public function getPanel()
