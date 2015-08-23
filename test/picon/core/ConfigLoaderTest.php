@@ -21,7 +21,7 @@
  * */
 
 namespace picon;
-use picon\core\config\DataSourceType;
+use picon\core\domain\config\DataSourceType;
 use picon\core\ConfigLoader;
 
 require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');

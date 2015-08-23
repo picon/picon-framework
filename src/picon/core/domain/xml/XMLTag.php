@@ -20,10 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\xml;
+namespace picon\core\domain\xml;
 
 use picon\core\Args;
 use picon\core\domain\CommonDomainBase;
+use picon\core\domain\xml\XmlTagType;
 
 
 /**

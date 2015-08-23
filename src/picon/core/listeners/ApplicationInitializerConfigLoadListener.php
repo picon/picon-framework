@@ -21,7 +21,7 @@
  * */
 
 namespace picon\core\listeners;
-use picon\core\config\Config;
+use picon\core\domain\config\Config;
 
 /**
  * Listener to provide a callback for when the config has been loaded

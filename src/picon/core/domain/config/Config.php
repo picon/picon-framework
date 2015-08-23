@@ -20,10 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\config;
+namespace picon\core\domain\config;
 
+use picon\core\domain\config\DataSourceConfig;
 use picon\core\domain\CommonDomainBase;
-use picon\core\profile\ApplicationProfile;
+use picon\core\domain\profile\ApplicationProfile;
 
 /**
  * Configuration domain object

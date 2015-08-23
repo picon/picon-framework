@@ -22,11 +22,11 @@
 
 namespace picon\core;
 
-use picon\core\config\Config;
-use picon\core\config\DataSourceConfig;
-use picon\core\config\DataSourceType;
+use picon\core\domain\config\Config;
+use picon\core\domain\config\DataSourceConfig;
+use picon\core\domain\config\DataSourceType;
 use picon\core\exceptions\ConfigException;
-use picon\core\profile\ApplicationProfile;
+use picon\core\domain\profile\ApplicationProfile;
 
 /**
  * A helper class for loading config xml

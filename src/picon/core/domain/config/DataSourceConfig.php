@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\config;
+namespace picon\core\domain\config;
+use picon\core\domain\config\DataSourceType;
 use picon\core\domain\CommonDomainBase;
 
 /**

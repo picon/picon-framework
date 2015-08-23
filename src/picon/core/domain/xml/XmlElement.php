@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\xml;
+namespace picon\core\domain\xml;
 
 /**
  * Taging interface for an element that makes up an xml document

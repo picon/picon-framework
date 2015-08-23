@@ -21,8 +21,8 @@
  * */
 
 namespace picon\database\source;
-use picon\core\config\DataSourceConfig;
-use picon\core\config\DataSourceType;
+use picon\core\domain\config\DataSourceConfig;
+use picon\core\domain\config\DataSourceType;
 
 /**
  * Factory for creating data sources from configurations

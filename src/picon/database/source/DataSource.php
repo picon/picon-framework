@@ -22,7 +22,7 @@
 
 namespace picon\database\source;
 
-use picon\core\config\DataSourceConfig;
+use picon\core\domain\config\DataSourceConfig;
 use picon\database\driver\DatabaseDriver;
 
 /**

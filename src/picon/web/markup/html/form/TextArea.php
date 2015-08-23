@@ -23,7 +23,7 @@
 namespace picon\web\markup\html\form;
 
 use picon\core\Types;
-use picon\core\xml\XmlTagType;
+use picon\core\domain\xml\XmlTagType;
 use picon\web\domain\ComponentTag;
 
 /**

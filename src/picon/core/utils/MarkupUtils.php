@@ -22,7 +22,7 @@
 
 namespace picon\core\utils;
 
-use picon\core\xml\XmlElement;
+use picon\core\domain\xml\XmlElement;
 use picon\web\Component;
 use picon\web\domain\ComponentTag;
 use picon\web\domain\MarkupElement;

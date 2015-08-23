@@ -24,9 +24,9 @@ namespace picon\core\utils;
 
 use picon\core\exceptions\FileException;
 use picon\core\exceptions\XMLException;
-use picon\core\xml\TextElement;
-use picon\core\xml\XMLTag;
-use picon\core\xml\XmlTagType;
+use picon\core\domain\xml\TextElement;
+use picon\core\domain\xml\XMLTag;
+use picon\core\domain\xml\XmlTagType;
 
 /**
  * An xml file parser

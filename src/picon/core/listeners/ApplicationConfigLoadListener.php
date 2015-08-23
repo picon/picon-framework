@@ -21,7 +21,7 @@
  * */
 
 namespace picon\core\listeners;
-use picon\core\config\Config;
+use picon\core\domain\config\Config;
 
 /**
  * An application config loaded listener used by the picon application to

@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\profile;
+namespace picon\core\domain\profile;
 
 use picon\core\domain\CommonDomainBase;
 

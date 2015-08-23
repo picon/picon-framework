@@ -23,8 +23,8 @@
 namespace picon\core\utils;
 
 use picon\core;
-use picon\core\xml\TextElement;
-use picon\core\xml\XMLTag;
+use picon\core\domain\xml\TextElement;
+use picon\core\domain\xml\XMLTag;
 use picon\web\domain\ComponentTag;
 use picon\web\domain\MarkupElement;
 use picon\web\domain\PiconTag;

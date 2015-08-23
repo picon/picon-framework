@@ -21,7 +21,7 @@
  * */
 
 namespace picon\core\listeners;
-use picon\core\config\Config;
+use picon\core\domain\config\Config;
 
 /**
  * Collection of application config listeners that can be invoked as a single listener
