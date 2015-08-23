@@ -22,8 +22,6 @@
 
 namespace picon\web;
 use picon\web\markup\html\form\AbstractSingleChoice;
-use picon\web\markup\html\form\AbstractSingleChoice;
-use picon\web\markup\html\form\AbstractSingleChoice;
 use picon\web\markup\html\form\ChoiceGroup;
 use picon\web\markup\html\form\FormComponentLabel;
 use picon\web\markup\html\form\Radio;
