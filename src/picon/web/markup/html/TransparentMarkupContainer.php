@@ -20,11 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html;
 
 use picon\core\domain\xml\XmlTagType;
 use picon\web\domain\ComponentTag;
 use picon\web\markup\resolver\ComponentResolver;
+use picon\web\MarkupContainer;
 
 /**
  * A markup contain which has mark-up but does not have child added to it. Instead

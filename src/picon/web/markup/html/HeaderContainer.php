@@ -28,7 +28,6 @@ use picon\web\Component;
 use picon\web\domain\ComponentTag;
 use picon\web\model\Model;
 use picon\web\request\HeaderResponse;
-use picon\web\TransparentMarkupContainer;
 
 /**
  * Represents the &lt;head&gt; element

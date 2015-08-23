@@ -24,7 +24,7 @@ namespace picon\web\markup\resolver;
 use picon\web\domain\ComponentTag;
 use picon\web\domain\PiconTag;
 use picon\web\MarkupContainer;
-use picon\web\TransparentMarkupContainer;
+use picon\web\markup\html\TransparentMarkupContainer;
 
 /**
  * Resolver for picon:child and picon:extend

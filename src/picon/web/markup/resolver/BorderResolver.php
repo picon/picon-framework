@@ -23,7 +23,7 @@
 namespace picon\web\markup\resolver;
 use picon\web\domain\ComponentTag;
 use picon\web\MarkupContainer;
-use picon\web\TransparentMarkupContainer;
+use picon\web\markup\html\TransparentMarkupContainer;
 
 /**
  * Resolves a component for the picon:border element

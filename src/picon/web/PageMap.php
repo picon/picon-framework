@@ -30,6 +30,7 @@ use picon\core\scanner\AnnotationRule;
 use picon\core\scanner\ClassScanner;
 use picon\core\scanner\SubClassRule;
 use picon\web\pages\WebPage;
+use picon\core\exceptions\DuplicatePageDefinitionException;
 
 /**
  * Holder for the map to all statfull and statless web pages
@@ -82,7 +83,7 @@ class PageMap
     {
         ApplicationInitializer::loadAssets(ASSETS_DIRECTORY);
         $this->pages = array();
-        $scanner = new ClassScanner(array(new SubClassRule('\picon\web\WebPage')));
+        $scanner = new ClassScanner(array(new SubClassRule('\picon\web\pages\WebPage')));
 
         $pages = $scanner->scanForName();
         foreach($pages as $pageName)
@@ -111,7 +112,7 @@ class PageMap
     {
         if(array_key_exists($path, $this->pages))
         {
-            throw new \picon\core\exceptions\DuplicatePageDefinitionException(sprintf("A page with path %s already exists and cannot be used again.", $path));
+            throw new DuplicatePageDefinitionException(sprintf("A page with path %s already exists and cannot be used again.", $path));
         }
         $this->pages[$path] = $pageName;
     }

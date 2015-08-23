@@ -26,7 +26,7 @@ use picon\web\domain\PiconTag;
 use picon\web\markup\html\HeaderContainer;
 use picon\web\MarkupContainer;
 use picon\web\pages\WebPage;
-use picon\web\TransparentMarkupContainer;
+use picon\web\markup\html\TransparentMarkupContainer;
 
 /**
  * Resolver for picon:hid and also the normal html head

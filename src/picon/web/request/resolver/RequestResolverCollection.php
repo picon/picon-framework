@@ -23,7 +23,6 @@
 namespace picon\web\request\resolver;
 use picon\web\request\Request;
 use picon\web\request\target\RequestTarget;
-use picon\web\RequestResolver;
 
 /**
  * Collection of resolvers that work as one
