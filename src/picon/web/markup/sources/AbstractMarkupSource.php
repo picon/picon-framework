@@ -21,6 +21,7 @@
  * */
 
 namespace picon\web;
+use picon\web\request\HeaderResponse;
 
 /**
  * Super class for mark-up sourcing

@@ -22,10 +22,10 @@
 
 namespace picon\context;
 
+use Annotation;
 use picon\ApplicationInitializer;
 use picon\CacheManager;
 use picon\Config;
-use \Annotation;
 
 /**
  * Context loader super class

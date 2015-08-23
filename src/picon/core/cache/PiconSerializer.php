@@ -23,8 +23,8 @@
 namespace picon;
 
 //@todo remove this coupling to web
-use picon\web\Detachable;
 use picon\context\Injector;
+use picon\web\Detachable;
 
 /**
  * A serialization helper that extends the standard PHP serialization 

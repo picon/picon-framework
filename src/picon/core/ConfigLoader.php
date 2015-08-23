@@ -22,8 +22,7 @@
 
 namespace picon;
 
-//todo remove this dependency
-use picon\web\Component;
+use picon\core\Types;
 
 /**
  * A helper class for loading config xml
@@ -85,7 +84,7 @@ class ConfigLoader
             if($profile->getAttribute('name')==$profileName)
             {
                 $aprofile = new ApplicationProfile();
-                $values = array("showPiconTags" => Component::TYPE_BOOL, "cacheMarkup" => Component::TYPE_BOOL, "cleanBeforeOutput" => Component::TYPE_BOOL);
+                $values = array("showPiconTags" => Types::TYPE_BOOL, "cacheMarkup" => Types::TYPE_BOOL, "cleanBeforeOutput" => Types::TYPE_BOOL);
                 foreach($values as $property => $type)
                 {
                     $value = $profile->getElementsByTagName($property)->item(0)->nodeValue;

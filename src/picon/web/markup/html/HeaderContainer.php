@@ -22,8 +22,9 @@
 
 namespace picon\web;
 
-use picon\PiconApplication;
 use picon\MarkupUtils;
+use picon\PiconApplication;
+use picon\web\request\HeaderResponse;
 
 /**
  * Represents the &lt;head&gt; element

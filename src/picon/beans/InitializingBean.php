@@ -1,9 +1,10 @@
 <?php
+
 /**
  * Picon Framework
- * http://piconframework.com
+ * http://code.google.com/p/picon-framework/
  *
- * Copyright (C) 2011-2015 Martin Cassidy <martin.cassidy@webquub.com>
+ * Copyright (C) 2011-2012 Martin Cassidy <martin.cassidy@webquub.com>
 
  * Picon Framework is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +20,19 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\serializer;
+namespace picon\beans;
 
-
-class PiconSerializer {
-
+/**
+ * A bean class that requires a method to be invoked after its injection is completed.
+ * @author Martin Cassidy
+ * @package context
+ */
+interface InitializingBean
+{
+    /**
+     * Called when all resources have had their properties set
+     */
+    function afterPropertiesSet();
 }
+
+?>

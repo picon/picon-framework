@@ -21,6 +21,7 @@
  * */
 
 namespace picon\web;
+use picon\core\Types;
 
 /**
  * A text field component
@@ -36,7 +37,7 @@ class TextField extends AbstractTextComponent
         parent::__construct($id, $model);
         if($type==null)
         {
-            $type = self::TYPE_STRING;;
+            $type = Types::TYPE_STRING;;
         }
         $this->type = $type;
     }

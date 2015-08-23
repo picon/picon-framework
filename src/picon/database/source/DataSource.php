@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\database\source;
+
+use picon\database\driver\DatabaseDriver;
+use picon\DataSourceConfig;
 
 /**
  * Holder for all objects required to access a databse, config inforamtion

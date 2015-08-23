@@ -22,10 +22,10 @@
 
 namespace picon\web;
 
+use picon\CacheManager;
 use picon\MarkupParser;
 use picon\MarkupUtils;
 use picon\PiconApplication;
-use picon\CacheManager;
 
 /**
  * The mark-up loads finds, loads and parses the mark-up for a component class.

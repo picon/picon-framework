@@ -1,8 +1,8 @@
 {
-  "name": "picon/web",
+  "name": "picon/core",
   "type": "library",
   "version":"0.2",
-  "description": "Picon web component",
+  "description": "Picon core component",
   "keywords": [],
   "homepage": "http://piconframework.com",
   "minimum-stability": "dev",
@@ -14,6 +14,7 @@
     }
   ],
   "require": {
-    "picon/core": "0.2"
+    "psr/log": "1.0.0",
+    "mindplay/annotations": "1.2.0"
   }
 }

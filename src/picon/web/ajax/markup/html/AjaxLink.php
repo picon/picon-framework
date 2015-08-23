@@ -22,12 +22,12 @@
 
 namespace picon\web\ajax\markup\html;
 
-use picon\web\ajax\AjaxEventBehaviour;
-use picon\web\ajax\AjaxCallDecorator;
-use picon\web\ajax\CallDecoratorWrapper;
 use picon\Args;
-use picon\web\ComponentTag;
 use picon\web\AbstractLink;
+use picon\web\ajax\AjaxCallDecorator;
+use picon\web\ajax\AjaxEventBehaviour;
+use picon\web\ajax\CallDecoratorWrapper;
+use picon\web\ComponentTag;
 
 /**
  * A link which will not direct to a page but submit an ajax request.

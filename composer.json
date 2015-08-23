@@ -1,7 +1,7 @@
 {
   "name": "picon/picon-framework",
   "type": "library",
-  "version":"1.0.0",
+  "version":"0.2",
   "description": "The Picon Framework",
   "keywords": ["framework"],
   "homepage": "http://piconframework.com",
@@ -10,7 +10,12 @@
   "authors": [
     {
       "name": "Martin Cassidy",
-      "email": "email@example.com"
+      "email": "martin.cassidy@webquub.com"
     }
-  ]
+  ],
+  "require": {
+    "php": ">=5.3.9",
+    "psr/log": "1.0.0",
+    "mindplay/annotations": "1.2.0"
+  }
 }

@@ -21,8 +21,8 @@
  * */
 namespace picon;
 
-use \Closure;
-use \ReflectionFunction;
+use Closure;
+use ReflectionFunction;
 
 /**
  * A wrapper for closures enabling them to be serialized.

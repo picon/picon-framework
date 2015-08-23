@@ -22,9 +22,8 @@
 
 namespace picon\web;
 
-use picon\ComonDomainBase;
-
 use picon\Args;
+use picon\ComonDomainBase;
 
 /**
  * An array of tabs which are added to a tab panel

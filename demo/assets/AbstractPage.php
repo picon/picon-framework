@@ -21,7 +21,7 @@
  * */
 
 use picon\web\WebPage;
-use picon\web\HeaderResponse;
+use picon\web\request\HeaderResponse;
 use picon\web\Link;
 use picon\web\PopupSettings;
 

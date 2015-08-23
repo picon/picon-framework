@@ -22,8 +22,8 @@
 
 namespace picon\web;
 
-use picon\InjectOnWakeup;
 use picon\context\Injector;
+use picon\InjectOnWakeup;
 
 /**
  * A data provider which supports injection

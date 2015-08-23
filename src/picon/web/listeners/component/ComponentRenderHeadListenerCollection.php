@@ -23,6 +23,7 @@
 namespace picon\web;
 
 use picon\ListenerCollection;
+use picon\web\request\HeaderResponse;
 
 /**
  * A collection of render head listeners which work as one

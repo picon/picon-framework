@@ -22,7 +22,7 @@
 
 namespace picon\context;
 
-use picon\DataSourceFactory;
+use picon\database\source\DataSourceFactory;
 
 /**
  * Automatic loader for context resources

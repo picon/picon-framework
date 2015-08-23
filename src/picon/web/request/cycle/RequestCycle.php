@@ -22,8 +22,8 @@
 
 namespace picon\web;
 
-use picon\PiconApplication;
 use picon\Identifier;
+use picon\PiconApplication;
 
 /**
  * Front controller for incoming requests.

@@ -21,6 +21,7 @@
  * */
 
 namespace picon\web;
+use picon\core\Types;
 
 /**
  * Text field with a JQuery UI date picker attached
@@ -31,7 +32,7 @@ class DateField extends TextField
 {
     public function __construct($id, Model $model = null)
     {
-        parent::__construct($id, $model, Component::TYPE_STRING);
+        parent::__construct($id, $model, Types::TYPE_STRING);
         $this->add(new DatePickerBehaviour());
     }
 }

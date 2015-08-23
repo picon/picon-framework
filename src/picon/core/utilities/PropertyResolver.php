@@ -22,7 +22,7 @@
 
 namespace picon;
 
-use \Exception;
+use Exception;
 
 /**
  * Utility class for working with properties of objects

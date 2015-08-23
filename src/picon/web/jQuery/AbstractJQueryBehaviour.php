@@ -24,6 +24,7 @@ namespace picon\web;
 
 use picon\PiconApplication;
 use picon\web\ajax\AbstractAjaxBehaviour;
+use picon\web\request\HeaderResponse;
 
 /**
  * Adds on the jquery js resource through a listener

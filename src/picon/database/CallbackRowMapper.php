@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\database;
+use picon\Args;
 
 /**
  * A row mapper that will run the provided callback for each record in a result set

@@ -23,15 +23,15 @@
 namespace picon\web\markup\html\form;
 
 use picon\Args;
-use picon\web\MarkupContainer;
-use picon\web\FormSubmitListener;
-use picon\web\BasicModel;
 use picon\web\AttributeModifier;
-use picon\web\FormComponent;
-use picon\web\Component;
-use picon\web\FormSubmitter;
+use picon\web\BasicModel;
 use picon\web\Button;
+use picon\web\Component;
 use picon\web\ComponentTag;
+use picon\web\FormComponent;
+use picon\web\FormSubmitListener;
+use picon\web\FormSubmitter;
+use picon\web\MarkupContainer;
 
 /**
  * A form which will contain form component.

@@ -20,10 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request;
+
+use picon\web\ResourceReference;
+use picon\web\ResourceRequestTarget;
+use picon\web\Response;
 
 /**
- * A fragment of a web response for writting the header contributor to
+ * A fragment of a web response for writing the header contributor to
  *
  * @author Martin Cassidy
  * @package web/request

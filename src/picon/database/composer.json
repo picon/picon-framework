@@ -1,8 +1,8 @@
 {
-  "name": "picon/web",
+  "name": "picon/database",
   "type": "library",
   "version":"0.2",
-  "description": "Picon web component",
+  "description": "Picon database component",
   "keywords": [],
   "homepage": "http://piconframework.com",
   "minimum-stability": "dev",

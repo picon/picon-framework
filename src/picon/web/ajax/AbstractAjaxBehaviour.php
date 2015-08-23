@@ -22,15 +22,15 @@
 
 namespace picon\web\ajax;
 
-use picon\web\Component;
 use picon\PiconApplication;
-use picon\web\BehaviourListener;
 use picon\web\AbstractBehaviour;
-use picon\web\JQueryRenderHeadListener;
-use picon\web\HeaderContainer;
-use picon\web\HeaderResponse;
-use picon\web\ResourceReference;
 use picon\web\AjaxRequestTarget;
+use picon\web\BehaviourListener;
+use picon\web\Component;
+use picon\web\HeaderContainer;
+use picon\web\JQueryRenderHeadListener;
+use picon\web\request\HeaderResponse;
+use picon\web\ResourceReference;
 
 /**
  * Super class for ajax behavours

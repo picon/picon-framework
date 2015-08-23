@@ -21,6 +21,7 @@
  * */
 
 namespace picon\web;
+use picon\web\request\HeaderResponse;
 
 /**
  * A mark-up source is required to load mark-up for a component and also

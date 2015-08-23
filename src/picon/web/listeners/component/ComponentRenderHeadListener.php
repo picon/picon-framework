@@ -21,6 +21,7 @@
  * */
 
 namespace picon\web;
+use picon\web\request\HeaderResponse;
 
 /**
  * A listener fired when the head of a page is about to be rendered

@@ -20,10 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespacepicon\database\support;
 
-use picon\context\InitializingBean;
-use \IllegalStateException;
+use picon\beans\InitializingBean;
+use picon\database\source\DataSource;
+use picon\database\template\DataBaseTemplate;
 
 /**
  * Super class for any user defined DAO

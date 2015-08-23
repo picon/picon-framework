@@ -21,6 +21,7 @@
  * */
 
 namespace picon\web;
+use picon\web\request\HeaderResponse;
 
 /**
  * A component behavour to modify its default functionality at several steps of its

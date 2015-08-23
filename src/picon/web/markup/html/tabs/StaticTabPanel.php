@@ -23,6 +23,7 @@
 namespace picon\web;
 
 use picon\PiconApplication;
+use picon\web\request\HeaderResponse;
 
 /**
  * A tab panel whos links do not change page but simple swap 

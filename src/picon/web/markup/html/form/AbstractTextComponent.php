@@ -21,6 +21,11 @@
  * */
 
 namespace picon\web;
+use picon\core\Types;
+use picon\core\Types;
+use picon\core\Types;
+use picon\core\Types;
+use picon\core\Types;
 
 /**
  * A form component which can accept text based input
@@ -32,10 +37,10 @@ abstract class AbstractTextComponent extends FormComponent
 {
     protected function convertInput()
     {
-        $primatives = array(self::TYPE_BOOL, self::TYPE_DOUBLE, self::TYPE_FLOAT, self::TYPE_INT);
+        $primatives = array(Types::TYPE_BOOL, Types::TYPE_DOUBLE, Types::TYPE_FLOAT, Types::TYPE_INT);
         $type = $this->getType();
         
-        if($type==self::TYPE_STRING)
+        if($type== Types::TYPE_STRING)
         {
             $this->setConvertedInput($this->getRawInput());
         }

@@ -1,8 +1,8 @@
 {
-  "name": "picon/web",
+  "name": "picon/context",
   "type": "library",
   "version":"0.2",
-  "description": "Picon web component",
+  "description": "Picon context component",
   "keywords": [],
   "homepage": "http://piconframework.com",
   "minimum-stability": "dev",
@@ -14,6 +14,7 @@
     }
   ],
   "require": {
+    "picon/beans": "0.2",
     "picon/core": "0.2"
   }
 }

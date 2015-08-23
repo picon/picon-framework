@@ -22,6 +22,7 @@
 
 namespace picon\web;
 
+use picon\core\Types;
 use picon\XmlTagType;
 
 /**
@@ -49,7 +50,7 @@ class TextArea extends AbstractTextComponent
      */
     protected function getType()
     {
-        return self::TYPE_STRING;
+        return Types::TYPE_STRING;
     }
 }
 

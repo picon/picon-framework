@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\web\HeaderResponse;
+use picon\web\request\HeaderResponse;
 use picon\web\WebPage;
 use picon\web\ListItem;
 use picon\web\ListView;

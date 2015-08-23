@@ -1,10 +1,9 @@
 <?php
-
 /**
  * Picon Framework
- * http://code.google.com/p/picon-framework/
+ * http://piconframework.com
  *
- * Copyright (C) 2011-2012 Martin Cassidy <martin.cassidy@webquub.com>
+ * Copyright (C) 2011-2015 Martin Cassidy <martin.cassidy@webquub.com>
 
  * Picon Framework is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,19 +19,19 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\context;
+namespace picon\core;
 
 /**
- * A bean class that requires a method to be invoked after its injection is completed.
+ *
  * @author Martin Cassidy
- * @package context
+ * @package picon\core
  */
-interface InitializingBean
+class Types
 {
-    /**
-     * Called when all resources have had their properties set
-     */
-    function afterPropertiesSet();
+    const TYPE_STRING = 'string';
+    const TYPE_FLOAT = 'float';
+    const TYPE_BOOL = 'boolean';
+    const TYPE_DOUBLE = 'double';
+    const TYPE_INT = 'integer';
+    const TYPE_ARRAY = 'array';
 }
-
-?>

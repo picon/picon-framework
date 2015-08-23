@@ -26,9 +26,9 @@ use picon\AnnotationRule;
 use picon\ApplicationInitializer;
 use picon\CacheManager;
 use picon\ClassScanner;
+use picon\Identifier;
 use picon\PiconApplication;
 use picon\SubClassRule;
-use picon\Identifier;
 
 /**
  * Holder for the map to all statfull and statless web pages

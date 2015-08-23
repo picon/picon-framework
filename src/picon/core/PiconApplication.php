@@ -36,8 +36,8 @@ require_once(dirname(__FILE__) . "/addendum/annotation_parser.php");
 require_once(dirname(__FILE__) . "/addendum/annotations.php");
 require_once(dirname(__FILE__) . "/addendum/doc_comment.php");
 
-require_once(dirname(__FILE__)."/../cache/CacheManager.php");
-require_once(dirname(__FILE__)."/../cache/PiconSerializer.php");
+require_once(dirname(__FILE__) . "/../cache/CacheManager.php");
+require_once(dirname(__FILE__) . "/../cache/PiconSerializer.php");
 
 /**
  * This is the main class for a Picon Application.
@@ -117,6 +117,7 @@ abstract class PiconApplication
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/exceptions");
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/pages");
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web", "picon\\web");
+        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/request", "picon\\web\\request");
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/security", "picon\\web\\security");
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/security/authorisation", "picon\\web\\security\\authorisation");
         $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/context", "picon\\context");

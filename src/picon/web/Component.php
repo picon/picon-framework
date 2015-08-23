@@ -22,14 +22,15 @@
 
 namespace picon\web;
 
+use Exception;
 use picon\Args;
 use picon\Identifiable;
 use picon\Identifier;
 use picon\InjectOnWakeup;
 use picon\PiconApplication;
 use picon\TextElement;
+use picon\web\request\HeaderResponse;
 use picon\XmlTagType;
-use \Exception;
 
 /**
  * Component sersvices as the hightest and most abstract super class for all
@@ -53,14 +54,6 @@ use \Exception;
  */
 abstract class Component implements InjectOnWakeup, Identifiable, Detachable
 {
-    const TYPE_STRING = 'string';
-    const TYPE_FLOAT = 'float';
-    const TYPE_BOOL = 'boolean';
-    const TYPE_DOUBLE = 'double';
-    const TYPE_INT = 'integer';
-    const TYPE_ARRAY = 'array';
-    
-    
     const VISITOR_CONTINUE_TRAVERSAL = 1;
     const VISITOR_STOP_TRAVERSAL = 2;
     const VISITOR_CONTINUE_TRAVERSAL_NO_DEEPER = 3;

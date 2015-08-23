@@ -22,12 +22,12 @@
 
 namespace picon\web\ajax\markup\html;
 
-use picon\web\Button;
-use picon\web\ajax\CallDecoratorWrapper;
-use picon\web\ajax\AjaxFormSubmitBehavior;
-use picon\web\markup\html\form\Form;
-use picon\web\ComponentTag;
 use picon\web\ajax\AjaxCallDecorator;
+use picon\web\ajax\AjaxFormSubmitBehavior;
+use picon\web\ajax\CallDecoratorWrapper;
+use picon\web\Button;
+use picon\web\ComponentTag;
+use picon\web\markup\html\form\Form;
 
 /**
  * A form button which, when clicked will submit the form by ajax

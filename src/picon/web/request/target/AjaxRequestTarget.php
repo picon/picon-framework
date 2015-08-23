@@ -24,7 +24,7 @@ namespace picon\web;
 
 use picon\Identifiable;
 use picon\Identifier;
-use picon\PiconApplication;
+use picon\web\request\HeaderResponse;
 
 /**
  * Request target for ajax requests

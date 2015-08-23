@@ -24,6 +24,7 @@ namespace picon\web;
 
 use picon\Identifiable;
 use picon\Identifier;
+use picon\web\request\HeaderResponse;
 
 /**
  * Abstract behaviour provideds default implementation for each behaviour method

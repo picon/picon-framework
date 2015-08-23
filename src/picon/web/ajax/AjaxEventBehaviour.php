@@ -23,9 +23,9 @@
 namespace picon\web\ajax;
 
 use picon\Args;
+use picon\web\AjaxRequestTarget;
 use picon\web\Component;
 use picon\web\ComponentTag;
-use picon\web\AjaxRequestTarget;
 
 /**
  * Ajax implementation to add an ajax callback to a component when a javascript

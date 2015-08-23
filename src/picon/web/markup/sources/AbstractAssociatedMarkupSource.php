@@ -23,6 +23,7 @@
 namespace picon\web;
 
 use picon\MarkupUtils;
+use picon\web\request\HeaderResponse;
 
 /**
  * Mark-up source for components which hav associated mark-up

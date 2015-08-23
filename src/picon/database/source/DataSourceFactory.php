@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\database\source;
+use picon\DataSourceConfig;
+use picon\DataSourceType;
 
 /**
  * Factory for creating data sources from configurations
@@ -52,7 +54,7 @@ class DataSourceFactory
         {
             return self::$drivers[$driverName];
         }
-        $className = "\\picon\\".$driverName.'Driver';
+        $className = "\\picon\\database\\driver\\".$driverName.'Driver';
         if(class_exists($className))
         {
             self::$drivers[$driverName] = new $className();

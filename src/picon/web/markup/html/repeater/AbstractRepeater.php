@@ -23,6 +23,7 @@
 namespace picon\web;
 
 use picon\Args;
+use picon\core\Types;
 
 /**
  * A component whose mark-up is rendered multiple times based on some form
@@ -35,7 +36,7 @@ abstract class AbstractRepeater extends MarkupContainer
 {
     public function __construct($id, $model = null)
     {
-        if($model!=null && !($model instanceof ArrayModel) && gettype($model->getModelObject())!=Component::TYPE_ARRAY)
+        if($model!=null && !($model instanceof ArrayModel) && gettype($model->getModelObject())!= Types::TYPE_ARRAY)
         {
             throw new \InvalidArgumentException('List View must have an Array Model or a model of an array');
         }
