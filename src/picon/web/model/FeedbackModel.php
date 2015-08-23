@@ -23,6 +23,7 @@
 namespace picon\web\model;
 
 use picon\web\Component;
+use picon\web\domain\FeedbackMessage;
 
 /**
  * Session persisted singleton model for feedback messages
@@ -60,9 +61,9 @@ class FeedbackModel implements Model
     
     /**
      * @todo sort of referencing here to avoid getting then setting
-     * @param \picon\web\FeedbackMessage $message
+     * @param FeedbackMessage $message
      */
-    public function addMessage(\picon\web\FeedbackMessage $message)
+    public function addMessage(FeedbackMessage $message)
     {
         array_push($this->feedbackMessages, $message);
     }
