@@ -22,7 +22,6 @@
 
 namespace picon\core\xml;
 
-use picon\core\xml\XmlElement;
 use picon\core\domain\CommonDomainBase;
 
 /**

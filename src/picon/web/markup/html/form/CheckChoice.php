@@ -20,7 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\form;
+
+use picon\web\AbstractMultipleChoice;
+use picon\web\markup\html\repeater\ListItem;
+use picon\web\markup\html\repeater\ListView;
+use picon\web\markup\sources\PanelMarkupSource;
+use picon\web\model\ArrayModel;
+use picon\web\model\Model;
 
 /**
  * An automatically populated list of check boxes to choose from. The options

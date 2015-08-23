@@ -24,13 +24,30 @@ namespace picon\web;
 
 use Exception;
 use picon\core\Args;
-use picon\core\Identifiable;
 use picon\core\domain\Identifier;
+use picon\core\Identifiable;
 use picon\core\InjectOnWakeup;
 use picon\core\PiconApplication;
 use picon\core\xml\TextElement;
-use picon\web\request\HeaderResponse;
 use picon\core\xml\XmlTagType;
+use picon\web\behaviour\Behaviour;
+use picon\web\domain\ComponentTag;
+use picon\web\domain\FeedbackMessage;
+use picon\web\domain\MarkupElement;
+use picon\web\listeners\Listener;
+use picon\web\markup\html\HeaderContainer;
+use picon\web\markup\resolver\ComponentResolverHelper;
+use picon\web\markup\sources\DefaultMarkupSource;
+use picon\web\model\ComponentInheritedModel;
+use picon\web\model\FeedbackModel;
+use picon\web\model\Model;
+use picon\web\pages\WebPage;
+use picon\web\request\HeaderResponse;
+use picon\web\request\target\ListenerRequestTarget;
+use picon\web\request\target\PageInstanceRequestTarget;
+use picon\web\request\target\PageRequestTarget;
+use picon\web\request\target\PageRequestWithListenerTarget;
+use picon\web\request\target\RedirectRequestTarget;
 
 /**
  * Component sersvices as the hightest and most abstract super class for all
@@ -994,27 +1011,27 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     
     public function fatel($message)
     {
-        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_FATEL, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MESSAGE_FATAL, $message, $this));
     }
     
     public function error($message)
     {
-        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_ERROR, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MESSAGE_ERROR, $message, $this));
     }
     
     public function warning($message)
     {
-        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_WARNING, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MESSAGE_WARNING, $message, $this));
     }
     
     public function info($message)
     {
-        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_INFO, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MESSAGE_INFO, $message, $this));
     }
     
     public function success($message)
     {
-        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_SUCCESS, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MESSAGE_SUCCESS, $message, $this));
     }
     
     public function hasMessage($level = null)
@@ -1024,7 +1041,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     
     public function hasErrorMessage()
     {
-        return FeedbackModel::get()->hasMessages($this, FeedbackMessage::FEEDBACK_MEESAGE_ERROR);
+        return FeedbackModel::get()->hasMessages($this, FeedbackMessage::FEEDBACK_MESSAGE_ERROR);
     }
     
     private function notifyBehavioursBeforeRender()

@@ -20,10 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery;
 
 use picon\core\Args;
 use picon\core\utils\SerializableClosure;
+use picon\web\request\target\AjaxRequestTarget;
 
 /**
  * Allows a user specified function to be rendered but wraps with a callback in the following way
@@ -39,7 +40,7 @@ use picon\core\utils\SerializableClosure;
  * it is sent
  * 
  * @author Martin Cassidy
- * @package web/jQuery
+ * @package web/jquery
  */
 class CallbackFunctionOption extends AbstractCallableOption
 {

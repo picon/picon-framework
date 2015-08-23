@@ -20,34 +20,24 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
-
-use picon\core\Args;
+namespace picon\jquery\ui;
+use picon\web\listeners\component\ComponentRenderHeadListener;
+use picon\web\markup\html\HeaderContainer;
+use picon\web\request\HeaderResponse;
+use picon\web\ResourceReference;
 
 /**
- * Description of PropertyOption
+ * Render head listener for render jquery ui js and css
  *
  * @author Martin Cassidy
+ * @package web/jquery/ui
  */
-class NumbericOption extends AbstractOption
-{
-    private $value;
-    
-    public function __construct($name, $value)
+class JQueryUIRenderHeadListener implements ComponentRenderHeadListener
+{   
+    public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
     {
-        parent::__construct($name, $value);
-        Args::isNumeric($value, 'value');
-        $this->value = $value;
-    }
-    
-    protected function getValue()
-    {
-        return $this->value;
-    }
-    
-    public function render(AbstractJQueryBehaviour $behaviour)
-    {
-        return sprintf("%s : %s", $this->getName(), $this->getValue());
+        $response->renderJavaScriptResourceReference(new ResourceReference('jquery-ui.js', AbstractJQueryUIBehaviour::getIdentifier()));
+        $response->renderCSSResourceReference(new ResourceReference('jquery-ui.css', AbstractJQueryUIBehaviour::getIdentifier()));
     }
 }
 

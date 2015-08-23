@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request\target;
+use picon\web\request\Response;
+use picon\web\ResourceReference;
 
 /**
  * Locates and renders a resource e.g. css or js

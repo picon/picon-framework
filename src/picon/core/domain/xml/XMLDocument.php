@@ -23,7 +23,6 @@
 namespace picon\core\xml;
 
 use picon\core\domain\CommonDomainBase;
-use picon\core\xml\XMLTag;
 
 /**
  * Domain object for repesenting an xml document

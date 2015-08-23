@@ -21,7 +21,6 @@
  * */
 
 namespace picon\core\scanner;
-use picon\core\scanner\ClassScannerRule;
 
 /**
  * Rule for the class scanner in which the class must be a sub class of the

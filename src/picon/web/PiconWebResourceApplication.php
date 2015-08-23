@@ -29,6 +29,11 @@
 namespace picon\web;
 
 use picon\core\PiconApplication;
+use picon\web\application\WebResourceApplicationInitializer;
+use picon\web\request\resolver\ResourceRequestResolver;
+use picon\web\request\target\ExceptionPageRequestTarget;
+use picon\web\request\WebRequest;
+use picon\web\request\WebResponse;
 
 
 /**

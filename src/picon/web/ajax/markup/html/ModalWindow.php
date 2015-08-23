@@ -23,15 +23,15 @@
 namespace picon\web\ajax\markup\html;
 
 use picon\core\Args;
-use picon\web\AjaxRequestTarget;
-use picon\web\ComponentTag;
-use picon\web\DialogBehavior;
-use picon\web\EmptyPanel;
+use picon\jquery\ui\DialogBehavior;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\html\panel\EmptyPanel;
+use picon\web\markup\html\panel\Panel;
 use picon\web\MarkupContainer;
-use picon\web\Panel;
+use picon\web\request\target\AjaxRequestTarget;
 
 /**
- * Panel which implements the jQuery UI dialog
+ * Panel which implements the jquery UI dialog
  * 
  * @todo problems arise when adding the entire panel to the ajax request target
  * @author Martin Cassidy

@@ -21,7 +21,6 @@
  * */
 
 namespace picon\core\scanner;
-use picon\core\scanner\ClassScannerRule;
 
 /**
  * Scanner to find classes that match a given set of rules. 

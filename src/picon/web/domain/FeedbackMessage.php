@@ -20,9 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\domain;
 
 use picon\core\domain\CommonDomainBase;
+use picon\web\Component;
 
 /**
  * A feedback message for use by the feedback message model and feedback panel
@@ -32,11 +33,11 @@ use picon\core\domain\CommonDomainBase;
  */
 class FeedbackMessage extends CommonDomainBase
 {
-    const FEEDBACK_MEESAGE_FATEL = '1';
-    const FEEDBACK_MEESAGE_ERROR = '2';
-    const FEEDBACK_MEESAGE_WARNING = '3';
-    const FEEDBACK_MEESAGE_INFO = '4';
-    const FEEDBACK_MEESAGE_SUCCESS = '5';
+    const FEEDBACK_MESSAGE_FATAL = '1';
+    const FEEDBACK_MESSAGE_ERROR = '2';
+    const FEEDBACK_MESSAGE_WARNING = '3';
+    const FEEDBACK_MESSAGE_INFO = '4';
+    const FEEDBACK_MESSAGE_SUCCESS = '5';
     
     private $level;
     private $message;

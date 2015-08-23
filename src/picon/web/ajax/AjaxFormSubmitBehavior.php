@@ -25,11 +25,11 @@ namespace picon\web\ajax;
 use Closure;
 use picon\core\Args;
 use picon\web\ajax\markup\html\ModalWindow;
-use picon\web\AjaxRequestTarget;
 use picon\web\Component;
-use picon\web\FormComponent;
-use picon\web\FormSubmitter;
 use picon\web\markup\html\form\Form;
+use picon\web\markup\html\form\FormComponent;
+use picon\web\markup\html\form\FormSubmitter;
+use picon\web\request\target\AjaxRequestTarget;
 
 /**
  * Ajax implementation that will submit a form on a javascript event

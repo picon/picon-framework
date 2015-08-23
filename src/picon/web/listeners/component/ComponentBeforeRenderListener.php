@@ -20,10 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\listeners\component;
+use picon\web\Component;
 
 /**
- * A listener fired immediatly before a component is rendered
+ * A listener fired immediately before a component is rendered
  * @author Martin Cassidy
  * @package web/listeners/component
  */

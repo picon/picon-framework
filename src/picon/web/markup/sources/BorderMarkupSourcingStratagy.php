@@ -20,9 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\sources;
 
 use picon\core\utils\MarkupUtils;
+use picon\web\Component;
+use picon\web\domain\ComponentTag;
+use picon\web\domain\MarkupElement;
 
 /**
  * Source for border components

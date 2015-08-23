@@ -20,17 +20,19 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery\ui;
 
 use picon\core\Args;
+use picon\jquery\BooleanOption;
+use picon\jquery\CallbackFunctionOption;
 
 /**
- * Behavior to add on jQuery UI sortable functionality
+ * Behavior to add on jquery UI sortable functionality
  * 
  * @todo finish off remaining options
  * @todo create a better callback procedure for js code
  * @author Martin Cassidy
- * @package web/jQuery/ui
+ * @package web/jquery/ui
  */
 class SortableBehavior extends DefaultJQueryUIBehaviour
 {

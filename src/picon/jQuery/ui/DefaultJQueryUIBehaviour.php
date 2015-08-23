@@ -20,18 +20,24 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery\ui;
+use picon\jquery\AbstractCallableOption;
+use picon\jquery\Options;
+use picon\web\Component;
+use picon\web\markup\html\HeaderContainer;
+use picon\web\request\cycle\RequestCycle;
 use picon\web\request\HeaderResponse;
+use picon\web\request\target\AjaxRequestTarget;
 
 /**
- * Default jQuery ui implementation applying a given plugin to the bound
+ * Default jquery ui implementation applying a given plugin to the bound
  * component and specifing options
  *
- * @todo There should be a seperate implementation of this for each jQuery ui
+ * @todo There should be a seperate implementation of this for each jquery ui
  * plguin
  * @todo The options should be up in jQueryBehaviour not here
  * @author Martin Cassidy
- * @package web/jQuery/ui
+ * @package web/jquery/ui
  */
 class DefaultJQueryUIBehaviour extends AbstractJQueryUIBehaviour
 {

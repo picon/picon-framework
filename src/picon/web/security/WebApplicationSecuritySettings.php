@@ -22,8 +22,8 @@
 
 namespace picon\web\security;
 
-use picon\web\ComponentNotAuthorisedListener;
-use picon\web\DefaultNotAuthorisedListener;
+use picon\web\listeners\component\authorisation\ComponentNotAuthorisedListener;
+use picon\web\listeners\component\authorisation\DefaultNotAuthorisedListener;
 use picon\web\security\authorisation\AllowAllAuthorisationStrategy;
 use picon\web\security\authorisation\AuthorisationStrategy;
 

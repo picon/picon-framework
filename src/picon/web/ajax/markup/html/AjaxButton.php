@@ -25,8 +25,8 @@ namespace picon\web\ajax\markup\html;
 use picon\web\ajax\AjaxCallDecorator;
 use picon\web\ajax\AjaxFormSubmitBehavior;
 use picon\web\ajax\CallDecoratorWrapper;
-use picon\web\Button;
-use picon\web\ComponentTag;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\html\form\Button;
 use picon\web\markup\html\form\Form;
 
 /**

@@ -22,7 +22,6 @@
 
 namespace picon\core\listeners;
 
-use picon\core\listeners\ApplicationInitializerContextLoadListener;
 use picon\context\ApplicationContext;
 
 /**

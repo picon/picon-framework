@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\domain;
+
 
 /**
  * A markup element which has a picon:id and will expect a component associated with it

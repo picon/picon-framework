@@ -24,6 +24,8 @@ namespace picon\web;
 
 use picon\core\Args;
 use picon\core\domain\Identifier;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\MarkupLoader;
 
 /**
  * A component which may contain child components, allowing for a composition 

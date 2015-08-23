@@ -20,7 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\table\toolbars;
+
+use picon\web\markup\html\basic\Label;
+use picon\web\markup\html\repeater\RepeatingView;
+use picon\web\markup\html\table\DataTable;
+use picon\web\MarkupContainer;
+use picon\web\model\BasicModel;
 
 /**
  * A toolbar that shows column headings

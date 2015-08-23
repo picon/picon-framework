@@ -20,7 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request\resolver;
+use picon\web\PageMap;
+use picon\web\pages;
+use picon\web\request\Request;
+use picon\web\request\target\ListenerRequestTarget;
+use picon\web\request\target\PageRequestTarget;
+use picon\web\request\target\RequestTarget;
 
 /**
  * Resolves requests for listener callbacks
@@ -51,7 +57,7 @@ class ListenerRequestResolver implements RequestResolver
             {
                 return new ListenerRequestTarget($page, $request->getParameter('listener'), $behaviour);
             }
-            return new PageRequestTarget(\SessionExpiredPage::getIdentifier());
+            return new PageRequestTarget(pages\SessionExpiredPage::getIdentifier());
         }
         else
         {

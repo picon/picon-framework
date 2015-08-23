@@ -20,13 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery;
 
 /**
- * A set of jQuery options for use with a jQuery behaviour
+ * A set of jquery options for use with a jquery behaviour
  *
  * @author Martin Cassidy
- * @package web/jQuery
+ * @package web/jquery
  */
 class Options
 {

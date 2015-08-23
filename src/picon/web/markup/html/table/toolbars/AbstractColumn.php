@@ -20,32 +20,28 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
-
-use picon\core\Args;
+namespace picon\web\markup\html\table\toolbars;
+use picon\web\markup\html\table\Column;
 
 /**
- * A jquery option
- *
+ * A column for use in a data table
+ * 
  * @author Martin Cassidy
- * @package web/jQuery
+ * @package web/markup/html/table
  */
-abstract class AbstractOption
+abstract class AbstractColumn implements Column
 {
-    private $name;
+    private $heading;
     
-    public function __construct($name)
+    public function __construct($heading)
     {
-        Args::isString($name, 'name');
-        $this->name = $name;
+        $this->heading = $heading;
     }
     
-    public function getName()
+    public function getHeading()
     {
-        return $this->name;
+        return $this->heading;
     }
-    
-    public abstract function render(AbstractJQueryBehaviour $behaviour);
 }
 
 ?>

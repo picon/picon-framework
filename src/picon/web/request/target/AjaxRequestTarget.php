@@ -20,11 +20,19 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request\target;
 
-use picon\core\Identifiable;
 use picon\core\domain\Identifier;
+use picon\core\Identifiable;
+use picon\web\Component;
+use picon\web\markup\html\HeaderContainer;
+use picon\web\markup\html\repeater\AbstractRepeater;
+use picon\web\markup\resolver\HeaderResolver;
+use picon\web\MarkupContainer;
+use picon\web\model\FeedbackModel;
+use picon\web\pages\WebPage;
 use picon\web\request\HeaderResponse;
+use picon\web\request\Response;
 
 /**
  * Request target for ajax requests

@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\behaviour;
+
+use picon\web\Component;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\html\HeaderContainer;
 use picon\web\request\HeaderResponse;
 
 /**

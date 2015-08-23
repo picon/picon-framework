@@ -20,11 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request;
 
 /**
  * Helper class for building URLs
- *
+ * @todo can this use the psr one?
  * @author Martin Cassidy
  * @package web/request
  */

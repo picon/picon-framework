@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\table;
+use picon\web\DataTable;
 
 /**
  * A data table which by default adds on a header toolbar and a navigation toolbar

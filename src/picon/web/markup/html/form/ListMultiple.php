@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\form;
+use picon\web\model\Model;
 
 /**
  * A select multiple box where multiple choices can be chosen
@@ -45,7 +46,7 @@ class ListMultiple extends AbstractMultipleChoice
         }
     }
     
-    protected function onComponentTag(ComponentTag $tag)
+    protected function onComponentTag(\picon\web\ComponentTag $tag)
     {
         $this->checkComponentTag($tag, 'select');
         $this->checkComponentTagAttribute($tag, "multiple", "multiple");
@@ -53,7 +54,7 @@ class ListMultiple extends AbstractMultipleChoice
         parent::onComponentTag($tag);
     }
     
-    protected function onComponentTagBody(ComponentTag $tag)
+    protected function onComponentTagBody(\picon\web\ComponentTag $tag)
     {
         $this->renderOptions();
     }

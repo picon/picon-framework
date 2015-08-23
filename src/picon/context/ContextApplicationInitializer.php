@@ -28,8 +28,8 @@
 
 namespace picon\context;
 
-use picon\core\BaseApplicationInitializer;
 use picon\beans\InitializingBean;
+use picon\core\BaseApplicationInitializer;
 use picon\core\PiconApplication;
 
 /**

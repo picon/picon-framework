@@ -20,9 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
-use picon\core\Identifiable;
+namespace picon\web\request\target;
 use picon\core\domain\Identifier;
+use picon\core\Identifiable;
+use picon\web\pages;
+use picon\web\request\Response;
 
 /**
  * Request target for the error page
@@ -41,7 +43,7 @@ class ExceptionPageRequestTarget implements RequestTarget, Identifiable
     
     public function respond(Response $response)
     {
-        $page = new \ErrorPage($this->exception);
+        $page = new pages\ErrorPage($this->exception);
         $page->renderPage();
         $response->flush();
     }

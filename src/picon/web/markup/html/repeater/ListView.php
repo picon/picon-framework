@@ -20,10 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\repeater;
 
 use closure;
 use picon\core\Args;
+use picon\web\model\BasicModel;
+use picon\web\model\Model;
 
 /**
  * A repeating component which works from an array. A ListItem is added

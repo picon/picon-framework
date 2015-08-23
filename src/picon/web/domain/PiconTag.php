@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\domain;
+
 
 /**
  * A component tag which is not a component but instead a special picon

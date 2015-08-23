@@ -23,7 +23,6 @@
 namespace picon\core\xml;
 
 use picon\core\domain\CommonDomainBase;
-use picon\core\xml\XmlElement;
 
 /**
  * A text element or character data of an xml document

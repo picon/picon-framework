@@ -20,10 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\link;
 
 use closure;
 use picon\core\Args;
+use picon\web\domain\ComponentTag;
+use picon\web\domain\PopupSettings;
 
 /**
  * Basic implementation of link

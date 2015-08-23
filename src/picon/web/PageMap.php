@@ -22,13 +22,14 @@
 
 namespace picon\web;
 
-use picon\core\scanner\AnnotationRule;
 use picon\core\ApplicationInitializer;
 use picon\core\cache\CacheManager;
-use picon\core\scanner\ClassScanner;
 use picon\core\domain\Identifier;
 use picon\core\PiconApplication;
+use picon\core\scanner\AnnotationRule;
+use picon\core\scanner\ClassScanner;
 use picon\core\scanner\SubClassRule;
+use picon\web\pages\WebPage;
 
 /**
  * Holder for the map to all statfull and statless web pages

@@ -1,8 +1,8 @@
 {
-  "name": "picon/context",
+  "name": "picon/jquery",
   "type": "library",
   "version":"0.2",
-  "description": "Picon context component",
+  "description": "Picon jQuery component",
   "keywords": [],
   "homepage": "http://piconframework.com",
   "minimum-stability": "dev",
@@ -14,12 +14,11 @@
     }
   ],
   "require": {
-    "picon/beans": "0.2",
-    "picon/core": "0.2"
+    "picon/web": "0.2"
   },
   "autoload": {
     "psr-4": {
-      "picon\\context\\": ""
+      "picon\\jquery\\": ""
     }
   }
 }

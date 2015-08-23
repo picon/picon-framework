@@ -23,13 +23,13 @@
 namespace picon\web\ajax;
 
 use picon\core\PiconApplication;
-use picon\web\AbstractBehaviour;
-use picon\web\AjaxRequestTarget;
-use picon\web\BehaviourListener;
+use picon\jquery\JQueryRenderHeadListener;
+use picon\web\behaviour\AbstractBehaviour;
 use picon\web\Component;
-use picon\web\HeaderContainer;
-use picon\web\JQueryRenderHeadListener;
+use picon\web\listeners\BehaviourListener;
+use picon\web\markup\html\HeaderContainer;
 use picon\web\request\HeaderResponse;
+use picon\web\request\target\AjaxRequestTarget;
 use picon\web\ResourceReference;
 
 /**

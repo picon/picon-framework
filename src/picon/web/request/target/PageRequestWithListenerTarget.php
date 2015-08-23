@@ -20,9 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request\target;
 
 use picon\core\domain\Identifier;
+use picon\web\Component;
+use picon\web\request\Response;
 
 /**
  * Stateless page request that will retrieve and invoke a listener on the page

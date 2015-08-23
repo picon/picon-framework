@@ -20,8 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\form;
 use picon\core\Types;
+use picon\jquery\ui\DatePickerBehaviour;
+use picon\web\model\Model;
 
 /**
  * Text field with a JQuery UI date picker attached

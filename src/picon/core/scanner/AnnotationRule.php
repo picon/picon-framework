@@ -22,8 +22,6 @@
 
 namespace picon\core\scanner;
 
-use picon\core\scanner\ClassScannerRule;
-
 /**
  * Class scanner rule to match classes with a given annotation
  * @author Martin Cassidy

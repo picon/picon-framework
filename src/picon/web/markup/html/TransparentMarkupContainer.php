@@ -23,6 +23,8 @@
 namespace picon\web;
 
 use picon\core\xml\XmlTagType;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\resolver\ComponentResolver;
 
 /**
  * A markup contain which has mark-up but does not have child added to it. Instead

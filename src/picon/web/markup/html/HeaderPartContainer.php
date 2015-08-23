@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html;
+use picon\web\domain\ComponentTag;
+use picon\web\domain\MarkupElement;
+use picon\web\markup\resolver\ComponentResolver;
+use picon\web\MarkupContainer;
 
 /**
  * Represents a &lt;picon:head&gt; element

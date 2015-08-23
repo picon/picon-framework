@@ -20,9 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\listeners\component\authorisation;
 
 use picon\core\PiconApplication;
+use picon\web\Component;
+use picon\web\listeners\component\ComponentInstantiationListener;
 
 /**
  * A component instantiation listener that detects the users authorisation

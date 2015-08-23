@@ -20,9 +20,15 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\table;
 
 use picon\core\Args;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\html\paging\Pageable;
+use picon\web\markup\html\panel\Panel;
+use picon\web\markup\html\repeater\DataGridView;
+use picon\web\markup\html\repeater\RepeatingView;
+use picon\web\markup\html\table\toolbars\AbstractToolbar;
 
 /**
  * A data table, showing information from a data provider, specified by

@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\panel;
+use picon\web\markup\sources\PanelMarkupSource;
+use picon\web\MarkupContainer;
 
 /**
  * A panel allows for a block of mark-up to be encapsulated into reusable 

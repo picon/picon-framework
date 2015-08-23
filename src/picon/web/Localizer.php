@@ -23,6 +23,9 @@
 namespace picon\web;
 
 use picon\core\cache\CacheManager;
+use picon\web\model\ArrayModel;
+use picon\web\model\Model;
+use picon\web\pages\WebPage;
 
 /**
  * Localizer for a specific component

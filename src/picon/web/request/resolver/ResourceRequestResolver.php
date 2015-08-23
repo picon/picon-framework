@@ -20,9 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request\resolver;
 
 use picon\core\domain\Identifier;
+use picon\web\request\cycle\RequestCycle;
+use picon\web\request\Request;
+use picon\web\request\target\RequestTarget;
+use picon\web\request\target\ResourceRequestTarget;
+use picon\web\ResourceReference;
 
 /**
  * Resolver for resource requests such as css and js

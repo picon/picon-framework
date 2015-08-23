@@ -20,10 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\repeater;
 
 use picon\core\Args;
 use picon\core\Types;
+use picon\web\Component;
+use picon\web\MarkupContainer;
+use picon\web\model\ArrayModel;
 
 /**
  * A component whose mark-up is rendered multiple times based on some form

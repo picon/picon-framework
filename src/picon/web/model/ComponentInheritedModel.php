@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\model;
+use picon\web\Component;
 
 /**
  * Interface marking models that require a callback when a component inherits it

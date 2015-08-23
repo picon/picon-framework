@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\resolver;
+use picon\web\domain\ComponentTag;
+use picon\web\MarkupContainer;
+use picon\web\TransparentMarkupContainer;
 
 /**
  * Resolves a component for the picon:border element

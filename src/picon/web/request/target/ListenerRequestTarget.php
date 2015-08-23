@@ -20,10 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request\target;
 
-use picon\core\Identifiable;
 use picon\core\domain\Identifier;
+use picon\core\Identifiable;
+use picon\web\Component;
+use picon\web\listeners\Listener;
+use picon\web\PageMap;
+use picon\web\request\Response;
 
 /**
  * Request target for invoking listeners

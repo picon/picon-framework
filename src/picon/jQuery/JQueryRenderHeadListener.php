@@ -20,31 +20,24 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery;
 
-use picon\core\PiconApplication;
+use picon\web\listeners\component\ComponentRenderHeadListener;
+use picon\web\markup\html\HeaderContainer;
+use picon\web\request\HeaderResponse;
+use picon\web\ResourceReference;
 
 /**
- * Adds on the jQuery ui resources through a render head listener
- * @todo add support fo the jquery ui css
+ * Renders the jquery js resource
+ *
  * @author Martin Cassidy
- * @package web/jQuery/ui
+ * @package web/jquery
  */
-abstract class AbstractJQueryUIBehaviour extends AbstractJQueryBehaviour
+class JQueryRenderHeadListener implements ComponentRenderHeadListener
 {
-    public function __construct()
+    public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
     {
-        parent::__construct();
-        PiconApplication::get()->addComponentRenderHeadListener(new JQueryUIRenderHeadListener());
-    }
-    
-    /**
-     * @todo This is a bad way of forcing listeners to re register
-     */
-    public function __wakeup()
-    {
-        parent::__wakeup();
-        PiconApplication::get()->addComponentRenderHeadListener(new JQueryUIRenderHeadListener());
+        $response->renderJavaScriptResourceReference(new ResourceReference('jquery.js', AbstractJQueryBehaviour::getIdentifier()));
     }
 }
 

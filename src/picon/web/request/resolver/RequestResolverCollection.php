@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request\resolver;
+use picon\web\request\Request;
+use picon\web\request\target\RequestTarget;
+use picon\web\RequestResolver;
 
 /**
  * Collection of resolvers that work as one

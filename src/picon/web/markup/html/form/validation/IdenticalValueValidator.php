@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\form\validation;
+use picon\web\markup\html\form\FormComponent;
+use picon\web\markup\html\form\ValidatableFormComponentWrapper;
 
 /**
  * Validator that works on two form components and requires that they both

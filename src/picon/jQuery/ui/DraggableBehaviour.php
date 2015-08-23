@@ -20,18 +20,42 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery\ui;
+
+use picon\core\Args;
+use picon\jquery\BooleanOption;
+use picon\jquery\PropertyOption;
+use picon\web\Component;
 
 /**
- * Behavior to add on jQuery UI date picker functionality
+ * Behavior to add on jquery UI dragable functionality
  * 
+ * @todo finish off remaining options
  * @author Martin Cassidy
+ * @package web/jquery/ui
  */
-class DatePickerBehaviour extends DefaultJQueryUIBehaviour
+class DraggableBehaviour extends DefaultJQueryUIBehaviour
 {
     public function __construct()
     {
-        parent::__construct('datepicker');
+        parent::__construct('draggable');
+    }
+    
+    public function setHelper($helper)
+    {
+        $this->getOptions()->add(new PropertyOption('helper', $helper));
+    }
+    
+    public function setRevert($revert)
+    {
+        Args::isBoolean($revert, 'revert');
+        $this->getOptions()->add(new BooleanOption('revert', $revert));
+    }
+    
+    public function setConnectToSortable(Component $sortable)
+    {
+        $sortable->setOutputMarkupId(true);
+        $this->getOptions()->add(new PropertyOption('connectToSortable', '#'.$sortable->getMarkupId()));
     }
 }
 

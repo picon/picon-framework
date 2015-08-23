@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\resolver;
+use picon\web\domain\ComponentTag;
+use picon\web\MarkupContainer;
 
 /**
  * Stores all of the available component resolvers for use during rendering

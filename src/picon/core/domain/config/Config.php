@@ -23,7 +23,6 @@
 namespace picon\core\config;
 
 use picon\core\domain\CommonDomainBase;
-use picon\core\config\DataSourceConfig;
 use picon\core\profile\ApplicationProfile;
 
 /**

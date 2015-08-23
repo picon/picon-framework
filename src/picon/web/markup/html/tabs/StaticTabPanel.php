@@ -20,9 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\tabs;
 
 use picon\core\PiconApplication;
+use picon\jquery\JQueryRenderHeadListener;
+use picon\web\behaviour\AttributeModifier;
+use picon\web\markup\html\repeater\RepeatingView;
+use picon\web\MarkupContainer;
+use picon\web\model\BasicModel;
 use picon\web\request\HeaderResponse;
 
 /**

@@ -20,9 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\sources;
 
 use picon\core\utils\MarkupUtils;
+use picon\web\Component;
+use picon\web\markup\resolver\ComponentResolver;
+use picon\web\MarkupContainer;
 
 /**
  * Default source for mark-up

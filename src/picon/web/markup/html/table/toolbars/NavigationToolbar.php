@@ -20,7 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\table\toolbars;
+
+use picon\web\behaviour\AttributeModifier;
+use picon\web\markup\html\paging\Navigator;
+use picon\web\markup\html\table\DataTable;
+use picon\web\MarkupContainer;
+use picon\web\model\BasicModel;
 
 /**
  * A toolbar that shows pagination navigation tools

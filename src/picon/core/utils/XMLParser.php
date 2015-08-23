@@ -23,10 +23,10 @@
 namespace picon\core\utils;
 
 use picon\core\exceptions\FileException;
+use picon\core\exceptions\XMLException;
 use picon\core\xml\TextElement;
 use picon\core\xml\XMLTag;
 use picon\core\xml\XmlTagType;
-use picon\core\exceptions\XMLException;
 
 /**
  * An xml file parser

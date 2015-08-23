@@ -21,7 +21,6 @@
  * */
 
 namespace picon\core\scanner;
-use picon\core\scanner\ClassScannerRule;
 
 /**
  * Class scanner rule for which matching classes will have a name which matches

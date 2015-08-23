@@ -20,7 +20,6 @@
  * */
 
 namespace picon\core\scanner;
-use picon\core\scanner\ClassScannerRule;
 
 /**
  * Class scanner rule in which a class must be declared in the given namespace

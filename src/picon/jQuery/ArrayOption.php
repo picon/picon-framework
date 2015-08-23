@@ -20,44 +20,31 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery;
 
-use picon\core\Args;
+use picon\core\exceptions\NotImplementedException;
 
 /**
- * Produces an option which is a function
+ * An option containing an array
  *
  * @author Martin Cassidy
- * @package web/jQuery
+ * @package web/jquery
  */
-class FunctionOption extends AbstractOption
+class ArrayOption extends AbstractOption
 {
-    private $function;
-    private $args = array();
-    
-    /**
-     *
-     * @param string $name
-     * @param string $function
-     * @param ... args the names of the arguments the javascript function should take
-     */
-    public function __construct($name, $function)
+    public function __construct($name)
     {
-        parent::__construct($name);
-        Args::isString($function, 'function');
-        $this->function = $function;
-        
-        $args = func_get_args();
-        
-        for($i=2;$i<count($args);$i++)
-        {
-            array_push($this->args, $args[$i]);
-        }
+        throw new NotImplementedException();
+    }
+    
+    public function getName()
+    {
+        throw new NotImplementedException();
     }
     
     public function render(AbstractJQueryBehaviour $behaviour)
     {
-        return sprintf("%s : function(%s) {%s}", $this->getName(), implode(', ', $this->args), $this->function);
+        throw new NotImplementedException();
     }
 }
 

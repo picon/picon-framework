@@ -20,10 +20,18 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request\cycle;
 
 use picon\core\domain\Identifier;
 use picon\core\PiconApplication;
+use picon\web\exceptions\RestartRequestOnPageException;
+use picon\web\request\resolver\RequestResolverCollection;
+use picon\web\request\target\ExceptionPageRequestTarget;
+use picon\web\request\target\PageNotFoundRequestTarget;
+use picon\web\request\target\PageRequestTarget;
+use picon\web\request\target\RequestTarget;
+use picon\web\request\WebRequest;
+use picon\web\request\WebResponse;
 
 /**
  * Front controller for incoming requests.

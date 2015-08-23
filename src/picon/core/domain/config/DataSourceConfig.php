@@ -22,7 +22,6 @@
 
 namespace picon\core\config;
 use picon\core\domain\CommonDomainBase;
-use picon\core\config\DataSourceType;
 
 /**
  * Description of DataSourceConfig

@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "picon\\core\\": "src/picon/core/"
+      "picon\\core\\": ""
     }
   }
 }

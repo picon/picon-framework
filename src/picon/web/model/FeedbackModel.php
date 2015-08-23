@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\model;
+
+use picon\web\Component;
 
 /**
  * Session persisted singleton model for feedback messages
@@ -58,9 +60,9 @@ class FeedbackModel implements Model
     
     /**
      * @todo sort of referencing here to avoid getting then setting
-     * @param FeedbackMessage $message 
+     * @param \picon\web\FeedbackMessage $message
      */
-    public function addMessage(FeedbackMessage $message)
+    public function addMessage(\picon\web\FeedbackMessage $message)
     {
         array_push($this->feedbackMessages, $message);
     }

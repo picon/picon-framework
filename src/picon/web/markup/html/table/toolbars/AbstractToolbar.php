@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\table\toolbars;
+use picon\web\markup\html\table\DataTable;
+use picon\web\Panel;
 
 /**
  * Super class for upper or lower header and footer bars on a data table

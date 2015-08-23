@@ -20,29 +20,18 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
-
-use picon\core\Args;
+namespace picon\jquery\ui;
 
 /**
- * Description of BooleanOption
+ * Behavior to add on jquery UI date picker functionality
  * 
  * @author Martin Cassidy
  */
-class BooleanOption extends AbstractOption
+class DatePickerBehaviour extends DefaultJQueryUIBehaviour
 {
-    private $value;
-    
-    public function __construct($name, $value)
+    public function __construct()
     {
-        parent::__construct($name);
-        Args::isBoolean($value, 'value');
-        $this->value = $value;
-    }
-    
-    public function render(AbstractJQueryBehaviour $behaviour)
-    {
-        return sprintf("%s : %s", $this->getName(), $this->value?'true':'false');
+        parent::__construct('datepicker');
     }
 }
 

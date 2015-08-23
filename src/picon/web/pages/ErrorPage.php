@@ -5,27 +5,25 @@
  * http://code.google.com/p/picon-framework/
  *
  * Copyright (C) 2011-2012 Martin Cassidy <martin.cassidy@webquub.com>
-
  * Picon Framework is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
  * Picon Framework is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  General Public License for more details.
-
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\web\ArrayModel;
-use picon\web\BasicModel;
-use picon\web\Label;
-use picon\web\ListView;
+namespace picon\web\pages;
+
+use picon\web\markup\html\basic\Label;
+use picon\web\markup\html\repeater\ListView;
 use picon\web\MarkupContainer;
-use picon\web\WebPage;
+use picon\web\model\ArrayModel;
+use picon\web\model\BasicModel;
 
 /**
  * Generic page for showing an exception
@@ -41,13 +39,12 @@ class ErrorPage extends WebPage
 
         $trace = $ex->getTrace();
 
-        $this->add(new ListView('stack', function(MarkupContainer $entry)
-        {
+        $this->add(new ListView('stack', function (MarkupContainer $entry) {
             $object = $entry->getModel()->getModelObject();
-            $entry->add(new Label('class', new BasicModel(array_key_exists('class', $object)?$object['class']:'')));
-            $entry->add(new Label('function', new BasicModel(array_key_exists('function', $object)?$object['function']:'')));
-            $entry->add(new Label('file', new BasicModel(array_key_exists('file', $object)?$object['file']:'')));
-            $entry->add(new Label('line', new BasicModel(array_key_exists('line', $object)?$object['line']:'')));
+            $entry->add(new Label('class', new BasicModel(array_key_exists('class', $object) ? $object['class'] : '')));
+            $entry->add(new Label('function', new BasicModel(array_key_exists('function', $object) ? $object['function'] : '')));
+            $entry->add(new Label('file', new BasicModel(array_key_exists('file', $object) ? $object['file'] : '')));
+            $entry->add(new Label('line', new BasicModel(array_key_exists('line', $object) ? $object['line'] : '')));
         }, new ArrayModel($trace)));
     }
 }

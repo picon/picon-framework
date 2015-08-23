@@ -20,15 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\model;
 
 use picon\core\utils\PropertyResolver;
 
 /**
  * A model which runs from a property of an object
  * @todo this should use a property resolver helper to extract properties from object
- * @todo this should be able to support a model as the target
- * @todo this should be able to handle property name recursion e.g. person.name.first
  * @author Martin Cassidy
  * @package web/model
  */

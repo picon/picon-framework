@@ -20,9 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\form;
 
 use picon\core\domain\Identifier;
+use picon\web\Component;
+use picon\web\domain\ComponentTag;
 
 /**
  * A container for radio buttons

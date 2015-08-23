@@ -20,21 +20,24 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
-use picon\web\request\HeaderResponse;
+namespace picon\jquery;
+use picon\web\request\target\AjaxRequestTarget;
 
 /**
- * Renders the jQuery js resource
+ * An options which contains a callback url. When requested the url will
+ * invoke the callback method
  *
  * @author Martin Cassidy
- * @package web/jQuery
+ * @package web/jquery
  */
-class JQueryRenderHeadListener implements ComponentRenderHeadListener
+abstract class AbstractCallableOption extends AbstractOption
 {
-    public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
+    protected function getUrl(AbstractJQueryBehaviour $behaviour)
     {
-        $response->renderJavaScriptResourceReference(new ResourceReference('jquery.js', AbstractJQueryBehaviour::getIdentifier()));
+        return sprintf('%s&ajax=ajax&property=%s', $behaviour->getComponent()->generateUrlFor($behaviour), $this->getName());
     }
+    
+    public abstract function call(AjaxRequestTarget $target);
 }
 
 ?>

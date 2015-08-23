@@ -20,9 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\behaviour;
 
 use picon\core\Args;
+use picon\web\model\Model;
 
 /**
  * Description of AttributeAppender

@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\panel;
+use picon\web\markup\sources\BorderMarkupSourcingStratagy;
+use picon\web\MarkupContainer;
+use picon\web\TransparentMarkupContainer;
 
 /**
  * A border works in the same way as a panel but does ont replace the origonal 

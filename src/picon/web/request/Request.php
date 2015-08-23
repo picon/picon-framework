@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
-namespace picon\web;
+namespace picon\web\request;
 
 /**
  * Convience class for accessing information about a requests

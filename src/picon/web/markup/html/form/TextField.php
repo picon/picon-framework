@@ -20,8 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\form;
 use picon\core\Types;
+use picon\web\domain\ComponentTag;
+use picon\web\model\Model;
 
 /**
  * A text field component

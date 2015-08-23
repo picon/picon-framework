@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\panel;
 
 /**
  * A panel with default and empty mark-up. Useful as a placeholder.

@@ -20,11 +20,15 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html;
 
-use picon\core\utils\MarkupUtils;
 use picon\core\PiconApplication;
+use picon\core\utils\MarkupUtils;
+use picon\web\Component;
+use picon\web\domain\ComponentTag;
+use picon\web\model\Model;
 use picon\web\request\HeaderResponse;
+use picon\web\TransparentMarkupContainer;
 
 /**
  * Represents the &lt;head&gt; element

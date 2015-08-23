@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespacepicon\database\support;
+namespace picon\database\support;
 
 use picon\beans\InitializingBean;
 use picon\core\exceptions\IllegalStateException;

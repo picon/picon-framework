@@ -20,9 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\basic;
 
 use picon\core\xml\XmlTagType;
+use picon\web\domain\ComponentTag;
+use picon\web\model\Model;
+use picon\web\WebComponent;
 
 /**
  * A label is a very simple text based component that can work with almost 

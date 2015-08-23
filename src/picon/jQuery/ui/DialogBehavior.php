@@ -20,9 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery\ui;
 
 use picon\core\Args;
+use picon\jquery\BooleanOption;
+use picon\jquery\CallbackFunctionOption;
+use picon\jquery\NumbericOption;
 
 /**
  * Description of DialogBehavior

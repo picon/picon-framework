@@ -20,26 +20,44 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery;
+
+use picon\core\Args;
 
 /**
- * A column for use in a data table
- * 
+ * Produces an option which is a function
+ *
  * @author Martin Cassidy
- * @package web/markup/html/table
+ * @package web/jquery
  */
-abstract class AbstractColumn implements Column
+class FunctionOption extends AbstractOption
 {
-    private $heading;
+    private $function;
+    private $args = array();
     
-    public function __construct($heading)
+    /**
+     *
+     * @param string $name
+     * @param string $function
+     * @param ... args the names of the arguments the javascript function should take
+     */
+    public function __construct($name, $function)
     {
-        $this->heading = $heading;
+        parent::__construct($name);
+        Args::isString($function, 'function');
+        $this->function = $function;
+        
+        $args = func_get_args();
+        
+        for($i=2;$i<count($args);$i++)
+        {
+            array_push($this->args, $args[$i]);
+        }
     }
     
-    public function getHeading()
+    public function render(AbstractJQueryBehaviour $behaviour)
     {
-        return $this->heading;
+        return sprintf("%s : function(%s) {%s}", $this->getName(), implode(', ', $this->args), $this->function);
     }
 }
 

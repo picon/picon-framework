@@ -20,7 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request\resolver;
+use picon\web\PageMap;
+use picon\web\request\Request;
+use picon\web\request\target\PageInstanceRequestTarget;
+use picon\web\request\target\PageNotFoundRequestTarget;
+use picon\web\request\target\RequestTarget;
 
 /**
  * Resolver for a page instance that has already been created

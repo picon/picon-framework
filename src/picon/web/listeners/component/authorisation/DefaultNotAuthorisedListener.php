@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\listeners\component\authorisation;
+use picon\web\Component;
+use picon\web\exceptions\UnAuthorisdeException;
 
 /**
  * The default unauthorised listener which throws an exception if not authorised

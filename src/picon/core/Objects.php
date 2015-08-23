@@ -22,8 +22,6 @@
 
 namespace picon\core;
 
-use picon\core\Equalable;
-
 /**
  * Helper class for working with objects
  * 

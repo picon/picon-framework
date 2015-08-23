@@ -20,9 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\table;
 
 use picon\core\Args;
+use picon\web\Component;
+use picon\web\markup\html\repeater\GridItem;
+use picon\web\markup\html\table\toolbars\AbstractColumn;
+use picon\web\model\Model;
 
 /**
  * A column which will invoke a callback to populate each cell

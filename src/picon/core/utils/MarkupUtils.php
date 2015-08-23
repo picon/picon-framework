@@ -24,9 +24,9 @@ namespace picon\core\utils;
 
 use picon\core\xml\XmlElement;
 use picon\web\Component;
-use picon\web\ComponentTag;
-use picon\web\MarkupElement;
-use picon\web\PiconTag;
+use picon\web\domain\ComponentTag;
+use picon\web\domain\MarkupElement;
+use picon\web\domain\PiconTag;
 
 /**
  * Helper class for finding specific tags in markup

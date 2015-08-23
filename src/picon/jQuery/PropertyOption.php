@@ -20,39 +20,36 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery;
 
 use picon\core\Args;
 
 /**
- * Behavior to add on jQuery UI dragable functionality
- * 
- * @todo finish off remaining options
+ * A simple property option for a string
+ *
  * @author Martin Cassidy
- * @package web/jQuery/ui
+ * @package web/jquery
+ * @todo add type analisis to detected numbers and remove the quote marks
  */
-class DraggableBehaviour extends DefaultJQueryUIBehaviour
+class PropertyOption extends AbstractOption
 {
-    public function __construct()
+    private $value;
+    
+    public function __construct($name, $value)
     {
-        parent::__construct('draggable');
+        parent::__construct($name, $value);
+        Args::isString($value, 'value');
+        $this->value = $value;
     }
     
-    public function setHelper($helper)
+    protected function getValue()
     {
-        $this->getOptions()->add(new PropertyOption('helper', $helper));
+        return $this->value;
     }
     
-    public function setRevert($revert)
+    public function render(AbstractJQueryBehaviour $behaviour)
     {
-        Args::isBoolean($revert, 'revert');
-        $this->getOptions()->add(new BooleanOption('revert', $revert));
-    }
-    
-    public function setConnectToSortable(Component $sortable)
-    {
-        $sortable->setOutputMarkupId(true);
-        $this->getOptions()->add(new PropertyOption('connectToSortable', '#'.$sortable->getMarkupId()));
+        return sprintf("%s : '%s'", $this->getName(), $this->getValue());
     }
 }
 

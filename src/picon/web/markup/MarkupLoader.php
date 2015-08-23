@@ -20,12 +20,15 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup;
 
 use picon\core\cache\CacheManager;
+use picon\core\PiconApplication;
 use picon\core\utils\MarkupParser;
 use picon\core\utils\MarkupUtils;
-use picon\core\PiconApplication;
+use picon\web\Component;
+use picon\web\domain\MarkupElement;
+use picon\web\domain\PiconTag;
 
 /**
  * The mark-up loads finds, loads and parses the mark-up for a component class.

@@ -20,25 +20,23 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery;
 
 use picon\core\Args;
 
 /**
- * A simple property option for a string
+ * Description of PropertyOption
  *
  * @author Martin Cassidy
- * @package web/jQuery
- * @todo add type analisis to detected numbers and remove the quote marks
  */
-class PropertyOption extends AbstractOption
+class NumbericOption extends AbstractOption
 {
     private $value;
     
     public function __construct($name, $value)
     {
         parent::__construct($name, $value);
-        Args::isString($value, 'value');
+        Args::isNumeric($value, 'value');
         $this->value = $value;
     }
     
@@ -49,7 +47,7 @@ class PropertyOption extends AbstractOption
     
     public function render(AbstractJQueryBehaviour $behaviour)
     {
-        return sprintf("%s : '%s'", $this->getName(), $this->getValue());
+        return sprintf("%s : %s", $this->getName(), $this->getValue());
     }
 }
 

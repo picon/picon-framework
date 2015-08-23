@@ -25,11 +25,10 @@ namespace picon\core\utils;
 use picon\core;
 use picon\core\xml\TextElement;
 use picon\core\xml\XMLTag;
-use picon\web\ComponentTag;
-use picon\web\HeaderResolver;
-use picon\web\MarkupElement;
-use picon\web\PiconTag;
-use picon\core\utils\XMLParser;
+use picon\web\domain\ComponentTag;
+use picon\web\domain\MarkupElement;
+use picon\web\domain\PiconTag;
+use picon\web\markup\resolver\HeaderResolver;
 
 /**
  * Parser for picon XML. This works like the XMLParser but will produce

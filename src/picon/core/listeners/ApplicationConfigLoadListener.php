@@ -21,7 +21,6 @@
  * */
 
 namespace picon\core\listeners;
-use picon\core\listeners\ApplicationInitializerConfigLoadListener;
 use picon\core\config\Config;
 
 /**

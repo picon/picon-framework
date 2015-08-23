@@ -20,9 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\repeater;
 
 use picon\core\Args;
+use picon\web\model\BasicModel;
+use picon\web\model\Model;
 
 /**
  * Literally a repeating view of repeating views. Allows for work with both

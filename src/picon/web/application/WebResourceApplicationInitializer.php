@@ -26,7 +26,7 @@
  * $Id$
  */
 
-namespace picon\web;
+namespace picon\web\application;
 
 use picon\core\ApplicationInitializer;
 

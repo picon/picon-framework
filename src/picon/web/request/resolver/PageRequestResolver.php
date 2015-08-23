@@ -20,9 +20,15 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request\resolver;
 
 use picon\core\PiconApplication;
+use picon\web\PageMap;
+use picon\web\request\Request;
+use picon\web\request\target\ListenerRequestTarget;
+use picon\web\request\target\PageRequestTarget;
+use picon\web\request\target\PageRequestWithListenerTarget;
+use picon\web\request\target\RequestTarget;
 
 /**
  * Basic stateless page request resolver

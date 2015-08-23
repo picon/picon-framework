@@ -25,8 +25,8 @@ namespace picon\web\ajax;
 use picon\core\Args;
 use picon\web\ajax\markup\html\ModalWindow;
 use picon\web\Component;
-use picon\web\FormComponent;
 use picon\web\markup\html\Form;
+use picon\web\markup\html\form\FormComponent;
 
 /**
  * Description of AjaxFormComponentUpdateBehavior

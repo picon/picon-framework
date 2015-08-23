@@ -20,9 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request\target;
 
 use picon\core\Args;
+use picon\web\request\Response;
 
 /**
  * A request target which performs a 301 redirect to a page instance

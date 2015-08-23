@@ -20,22 +20,32 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
-use picon\web\request\HeaderResponse;
+namespace picon\jquery;
+
+use picon\core\Args;
 
 /**
- * Render head listener for render jquery ui js and css
+ * A jquery option
  *
  * @author Martin Cassidy
- * @package web/jQuery/ui
+ * @package web/jquery
  */
-class JQueryUIRenderHeadListener implements ComponentRenderHeadListener
-{   
-    public function onHeadRendering(HeaderContainer &$container, HeaderResponse &$response)
+abstract class AbstractOption
+{
+    private $name;
+    
+    public function __construct($name)
     {
-        $response->renderJavaScriptResourceReference(new ResourceReference('jquery-ui.js', AbstractJQueryUIBehaviour::getIdentifier()));
-        $response->renderCSSResourceReference(new ResourceReference('jquery-ui.css', AbstractJQueryUIBehaviour::getIdentifier()));
+        Args::isString($name, 'name');
+        $this->name = $name;
     }
+    
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    public abstract function render(AbstractJQueryBehaviour $behaviour);
 }
 
 ?>

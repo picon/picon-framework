@@ -20,7 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\paging;
+
+use picon\web\markup\html\basic\Label;
+use picon\web\markup\html\panel\Panel;
+use picon\web\markup\html\repeater\RepeatingView;
+use picon\web\MarkupContainer;
+use picon\web\model\BasicModel;
 
 /**
  * A list of navigation links to allow the choice of all pages of a

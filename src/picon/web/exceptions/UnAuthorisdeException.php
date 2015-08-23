@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\exceptions;
 
 /**
  * Thrown when a user is not authorised to access a particular component

@@ -22,8 +22,8 @@
 
 namespace picon\core\domain;
 
-use picon\core\Identifiable;
 use picon\core\Equalable;
+use picon\core\Identifiable;
 
 /**
  * Based on SplEnum, this class allows enumerated types to be created.

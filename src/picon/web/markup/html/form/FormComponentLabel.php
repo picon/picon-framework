@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\form;
+use picon\web\markup\html\basic\Label;
 
 /**
  * A label which can be associated with a form component so that 
@@ -40,12 +41,12 @@ class FormComponentLabel extends Label
         $this->source->setOutputMarkupId(true);
     }
     
-    protected function onComponentTagBody(ComponentTag $tag)
+    protected function onComponentTagBody(\picon\web\ComponentTag $tag)
     {
         $this->getResponse()->write($this->source->getLabel());
     }
     
-    protected function onComponentTag(ComponentTag $tag)
+    protected function onComponentTag(\picon\web\ComponentTag $tag)
     {
         parent::onComponentTag($tag);
         $tag->put('for', $this->source->getMarkupId());

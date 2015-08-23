@@ -20,17 +20,22 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery;
 
 use picon\core\PiconApplication;
 use picon\web\ajax\AbstractAjaxBehaviour;
+use picon\web\behaviour\AbstractBehaviour;
+use picon\web\Component;
+use picon\web\listeners\BehaviourListener;
+use picon\web\markup\html\HeaderContainer;
 use picon\web\request\HeaderResponse;
+use picon\web\ResourceReference;
 
 /**
  * Adds on the jquery js resource through a listener
  *
  * @author Martin Cassidy
- * @package web/jQuery
+ * @package web/jquery
  */
 abstract class AbstractJQueryBehaviour extends AbstractBehaviour implements BehaviourListener
 {

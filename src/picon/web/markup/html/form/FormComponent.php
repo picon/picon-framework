@@ -20,10 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\form;
 
 use picon\core\Args;
-use picon\web\markup\html\form\Form;
+use picon\web\Component;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\html\form\validation\Validator;
+use picon\web\model\ArrayModel;
 
 /**
  * Superclass for all form components

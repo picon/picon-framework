@@ -22,9 +22,8 @@
 
 namespace picon\web\request;
 
+use picon\web\request\target\ResourceRequestTarget;
 use picon\web\ResourceReference;
-use picon\web\ResourceRequestTarget;
-use picon\web\Response;
 
 /**
  * A fragment of a web response for writing the header contributor to

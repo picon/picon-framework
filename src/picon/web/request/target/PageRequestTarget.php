@@ -20,9 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\request\target;
 
 use picon\core\domain\Identifier;
+use picon\web\request\Response;
 
 /**
  * Request target for rendering a new stateless page

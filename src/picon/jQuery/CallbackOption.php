@@ -20,17 +20,18 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery;
 
 use picon\core\Args;
 use picon\core\utils\SerializableClosure;
+use picon\web\request\target\AjaxRequestTarget;
 
 /**
  * Produces a callback url as the value for the option, the url will resolve
  * to the supplied callback.
  *
  * @author Martin Cassidy
- * @package web/jQuery
+ * @package web/jquery
  */
 class CallbackOption extends AbstractCallableOption
 {
@@ -54,7 +55,7 @@ class CallbackOption extends AbstractCallableOption
     
     /**
      * Despite acception the ajax request target, this option is for passing only 
-     * the url, thus the ajax request will be internally within a jQuery plugin
+     * the url, thus the ajax request will be internally within a jquery plugin
      * and will bypass the picon ajax javascript. This means the response is
      * not needed.
      * @param AjaxRequestTarget $target

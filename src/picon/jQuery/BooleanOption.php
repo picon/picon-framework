@@ -20,29 +20,29 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery;
+
+use picon\core\Args;
 
 /**
- * An option containing an array
- *
+ * Description of BooleanOption
+ * 
  * @author Martin Cassidy
- * @package web/jQuery
  */
-class ArrayOption extends AbstractOption
+class BooleanOption extends AbstractOption
 {
-    public function __construct($name)
-    {
-        throw new \picon\core\exceptions\NotImplementedException();
-    }
+    private $value;
     
-    public function getName()
+    public function __construct($name, $value)
     {
-        throw new \picon\core\exceptions\NotImplementedException();
+        parent::__construct($name);
+        Args::isBoolean($value, 'value');
+        $this->value = $value;
     }
     
     public function render(AbstractJQueryBehaviour $behaviour)
     {
-        throw new \picon\core\exceptions\NotImplementedException();
+        return sprintf("%s : %s", $this->getName(), $this->value?'true':'false');
     }
 }
 

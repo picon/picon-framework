@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\model;
 
 /**
  * A model which must be a boolean

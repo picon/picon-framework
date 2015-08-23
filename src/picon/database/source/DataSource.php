@@ -22,8 +22,8 @@
 
 namespace picon\database\source;
 
-use picon\database\driver\DatabaseDriver;
 use picon\core\config\DataSourceConfig;
+use picon\database\driver\DatabaseDriver;
 
 /**
  * Holder for all objects required to access a databse, config inforamtion

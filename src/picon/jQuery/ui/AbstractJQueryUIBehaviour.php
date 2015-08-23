@@ -20,23 +20,33 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\jquery\ui;
+
+use picon\core\PiconApplication;
+use picon\jquery\AbstractJQueryBehaviour;
 
 /**
- * An options which contains a callback url. When requested the url will
- * invoke the callback method
- *
+ * Adds on the jquery ui resources through a render head listener
+ * @todo add support fo the jquery ui css
  * @author Martin Cassidy
- * @package web/jQuery
+ * @package web/jquery/ui
  */
-abstract class AbstractCallableOption extends AbstractOption
+abstract class AbstractJQueryUIBehaviour extends AbstractJQueryBehaviour
 {
-    protected function getUrl(AbstractJQueryBehaviour $behaviour)
+    public function __construct()
     {
-        return sprintf('%s&ajax=ajax&property=%s', $behaviour->getComponent()->generateUrlFor($behaviour), $this->getName());
+        parent::__construct();
+        PiconApplication::get()->addComponentRenderHeadListener(new JQueryUIRenderHeadListener());
     }
     
-    public abstract function call(AjaxRequestTarget $target);
+    /**
+     * @todo This is a bad way of forcing listeners to re register
+     */
+    public function __wakeup()
+    {
+        parent::__wakeup();
+        PiconApplication::get()->addComponentRenderHeadListener(new JQueryUIRenderHeadListener());
+    }
 }
 
 ?>

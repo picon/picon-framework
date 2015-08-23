@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\converters;
 
 /**
  * Thrown when a converter fails or a convert for a given type does not

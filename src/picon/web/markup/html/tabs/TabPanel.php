@@ -20,7 +20,15 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\tabs;
+use picon\web\behaviour\AttributeAppender;
+use picon\web\markup\html\basic\Label;
+use picon\web\markup\html\link\Link;
+use picon\web\markup\html\panel\EmptyPanel;
+use picon\web\markup\html\panel\Panel;
+use picon\web\markup\html\repeater\ListView;
+use picon\web\model\ArrayModel;
+use picon\web\model\BasicModel;
 
 /**
  * A panel topped by a list of links. The panel changes when each link is clicked

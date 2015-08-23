@@ -22,8 +22,6 @@
 
 namespace picon\core\listeners;
 use picon\core\config\Config;
-use picon\core\listeners\ApplicationInitializerConfigLoadListener;
-use picon\core\listeners\ListenerCollection;
 
 /**
  * Collection of application config listeners that can be invoked as a single listener
