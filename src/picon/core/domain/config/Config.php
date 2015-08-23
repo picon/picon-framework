@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\config;
+
+use picon\core\domain\CommonDomainBase;
+use picon\core\config\DataSourceConfig;
+use picon\core\profile\ApplicationProfile;
 
 /**
  * Configuration domain object
@@ -28,7 +32,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package domain/config
  */
-class Config extends ComonDomainBase
+class Config extends CommonDomainBase
 {
     private $homePage;
     private $startup;
@@ -75,5 +79,3 @@ class Config extends ComonDomainBase
         return $this->startup;
     }
 }
-
-?>

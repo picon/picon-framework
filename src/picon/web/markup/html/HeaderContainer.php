@@ -22,8 +22,8 @@
 
 namespace picon\web;
 
-use picon\MarkupUtils;
-use picon\PiconApplication;
+use picon\core\utils\MarkupUtils;
+use picon\core\PiconApplication;
 use picon\web\request\HeaderResponse;
 
 /**

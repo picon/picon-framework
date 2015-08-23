@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\PiconApplication;
+use picon\core\PiconApplication;
 
 /**
  * A component instantiation listener that detects the users authorisation

@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use picon\Identifier;
+use picon\core\domain\Identifier;
 use picon\web\Link;
 use picon\web\WebPage;
 

@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\ListenerCollection;
+use picon\core\listeners\ListenerCollection;
 
 /**
  * A collection of component initialization listeners which work as one

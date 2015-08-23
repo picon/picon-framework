@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\MarkupUtils;
+use picon\core\utils\MarkupUtils;
 
 /**
  * Source for border components
@@ -39,7 +39,7 @@ class BorderMarkupSourcingStratagy extends AbstractAssociatedMarkupSource
         
         if($border==null)
         {
-            throw new \MarkupNotFoundException(sprintf("Found markup for border %s however there is no picon:border tag.", $component->getId(0)));
+            throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Found markup for border %s however there is no picon:border tag.", $component->getId(0)));
         }
         
         $body = MarkupUtils::findPiconTag('body', $borderMarkup);

@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\XmlTagType;
+use picon\core\xml\XmlTagType;
 
 /**
  * A markup contain which has mark-up but does not have child added to it. Instead

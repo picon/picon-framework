@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\Args;
+use picon\core\Args;
 
 /**
  * A data table, showing information from a data provider, specified by

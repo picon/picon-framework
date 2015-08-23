@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\domain;
+
 
 /**
  * Represents the identity of a class, the class name and the namespace
@@ -28,7 +29,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package domain
  */
-class Identifier extends ComonDomainBase
+class Identifier extends CommonDomainBase
 {
     private $namespace;
     private $className;

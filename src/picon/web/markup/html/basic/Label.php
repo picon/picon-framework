@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\XmlTagType;
+use picon\core\xml\XmlTagType;
 
 /**
  * A label is a very simple text based component that can work with almost 

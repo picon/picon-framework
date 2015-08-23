@@ -20,9 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\listeners;
 
 use picon\context\ApplicationContext;
+use picon\core\listeners\ApplicationInitializerContextLoadListener;
+use picon\core\listeners\ListenerCollection;
 
 /**
  * A collection of context listeners which are treated as one listener

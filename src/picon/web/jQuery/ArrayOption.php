@@ -32,17 +32,17 @@ class ArrayOption extends AbstractOption
 {
     public function __construct($name)
     {
-        throw new \NotImplementedException();
+        throw new \picon\core\exceptions\NotImplementedException();
     }
     
     public function getName()
     {
-        throw new \NotImplementedException();
+        throw new \picon\core\exceptions\NotImplementedException();
     }
     
     public function render(AbstractJQueryBehaviour $behaviour)
     {
-        throw new \NotImplementedException();
+        throw new \picon\core\exceptions\NotImplementedException();
     }
 }
 

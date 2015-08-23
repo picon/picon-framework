@@ -27,9 +27,16 @@
  * 
  */
 
-namespace picon;
+namespace picon\core;
 
 //Andendum must bypass the auto loader
+use picon\core\listeners\ApplicationConfigLoadListener;
+use picon\core\listeners\ApplicationContextLoadListener;
+use picon\core\listeners\ApplicationInitializerConfigLoadListener;
+use picon\core\listeners\ApplicationInitializerConfigLoadListenerCollection;
+use picon\core\listeners\ApplicationInitializerContextLoadListener;
+use picon\core\listeners\ApplicationInitializerContextLoadListenerCollection;
+
 require_once(dirname(__FILE__) . "/addendum/annotation_parser.php");
 require_once(dirname(__FILE__) . "/addendum/annotations.php");
 require_once(dirname(__FILE__) . "/addendum/doc_comment.php");
@@ -100,7 +107,7 @@ abstract class PiconApplication
     {
         if (isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
         {
-            throw new \IllegalStateException("An instance of picon application already exists");
+            throw new exceptions\IllegalStateException("An instance of picon application already exists");
         }
         $GLOBALS[self::GLOBAL_APPLICATION_KEY] = $this;
 
@@ -155,7 +162,7 @@ abstract class PiconApplication
     {
         if (!isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
         {
-            throw new \IllegalStateException("Failed to get picon application. The application has not been instantiated.");
+            throw new exceptions\IllegalStateException("Failed to get picon application. The application has not been instantiated.");
         }
         return $GLOBALS[self::GLOBAL_APPLICATION_KEY];
     }

@@ -22,7 +22,7 @@
 
 namespace picon\web\ajax;
 
-use picon\Args;
+use picon\core\Args;
 use picon\web\AjaxRequestTarget;
 use picon\web\Component;
 use picon\web\ComponentTag;

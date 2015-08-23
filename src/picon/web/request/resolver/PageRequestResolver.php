@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\PiconApplication;
+use picon\core\PiconApplication;
 
 /**
  * Basic stateless page request resolver

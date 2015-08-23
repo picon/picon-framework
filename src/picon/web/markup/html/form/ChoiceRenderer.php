@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\Args;
+use picon\core\Args;
 
 /**
  * For use with abstract choice, allows for any object to be used in the choice

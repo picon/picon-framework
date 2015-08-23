@@ -22,7 +22,7 @@
 
 namespace picon\web\ajax\markup\html;
 
-use picon\Args;
+use picon\core\Args;
 use picon\web\AjaxRequestTarget;
 use picon\web\ComponentTag;
 use picon\web\DialogBehavior;

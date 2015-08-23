@@ -26,7 +26,13 @@
  * $Id$
  */
 
-namespace picon;
+namespace picon\core;
+
+use picon\core\cache\CacheManager;
+use picon\core\config\Config;
+use picon\core\ConfigLoader;
+use picon\core\ApplicationInitializer;
+use picon\core\PiconApplication;
 
 /**
  * The base Application Initializer which loads only the config

@@ -22,7 +22,7 @@
 
 namespace picon\web\ajax;
 
-use picon\PiconApplication;
+use picon\core\PiconApplication;
 use picon\web\AbstractBehaviour;
 use picon\web\AjaxRequestTarget;
 use picon\web\BehaviourListener;

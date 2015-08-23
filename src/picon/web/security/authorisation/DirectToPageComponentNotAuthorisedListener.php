@@ -22,8 +22,8 @@
 
 namespace picon\web\security\authorisation;
 
-use picon\Args;
-use picon\Identifier;
+use picon\core\Args;
+use picon\core\domain\Identifier;
 use picon\web\Component;
 use picon\web\ComponentNotAuthorisedListener;
 use picon\web\RestartRequestOnPageException;

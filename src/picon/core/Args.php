@@ -20,15 +20,17 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core;
 
 use Closure;
+use picon\core\domain\Identifier;
+use picon\core\utils\SerializableClosure;
 
 /**
  * Generic helper class for validating method arguments
  *
  * @author Martin Cassidy
- * @package utilities
+ * @package picon/core
  */
 class Args
 {

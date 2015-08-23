@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-class InjectOnWakeupObject implements picon\InjectOnWakeup
+class InjectOnWakeupObject implements \picon\core\InjectOnWakeup
 {
     /** @Resource */
     private $testService;

@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\Args;
+use picon\core\Args;
 
 /**
  * A form component which contains a pre-defined list of

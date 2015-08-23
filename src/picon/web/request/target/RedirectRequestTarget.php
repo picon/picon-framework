@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\Args;
+use picon\core\Args;
 
 /**
  * A request target which performs a 301 redirect to a page instance

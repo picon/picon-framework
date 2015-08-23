@@ -22,9 +22,9 @@
 
 namespace picon\web;
 
-use picon\Args;
-use picon\ComonDomainBase;
-use picon\SerializableClosure;
+use picon\core\Args;
+use picon\core\domain\CommonDomainBase;
+use picon\core\utils\SerializableClosure;
 
 /**
  * A tab domain for use with Tab Panel
@@ -34,7 +34,7 @@ use picon\SerializableClosure;
  * @author Martin Cassidy
  * @package web/markup/html/tabs
  */
-class Tab extends ComonDomainBase
+class Tab extends CommonDomainBase
 {
     private $name;
     private $newMethod;

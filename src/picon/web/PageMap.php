@@ -22,13 +22,13 @@
 
 namespace picon\web;
 
-use picon\AnnotationRule;
-use picon\ApplicationInitializer;
-use picon\CacheManager;
-use picon\ClassScanner;
-use picon\Identifier;
-use picon\PiconApplication;
-use picon\SubClassRule;
+use picon\core\scanner\AnnotationRule;
+use picon\core\ApplicationInitializer;
+use picon\core\cache\CacheManager;
+use picon\core\scanner\ClassScanner;
+use picon\core\domain\Identifier;
+use picon\core\PiconApplication;
+use picon\core\scanner\SubClassRule;
 
 /**
  * Holder for the map to all statfull and statless web pages
@@ -110,7 +110,7 @@ class PageMap
     {
         if(array_key_exists($path, $this->pages))
         {
-            throw new \DuplicatePageDefinitionException(sprintf("A page with path %s already exists and cannot be used again.", $path));
+            throw new \picon\core\exceptions\DuplicatePageDefinitionException(sprintf("A page with path %s already exists and cannot be used again.", $path));
         }
         $this->pages[$path] = $pageName;
     }

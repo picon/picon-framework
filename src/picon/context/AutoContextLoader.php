@@ -26,7 +26,7 @@ use picon\database\source\DataSourceFactory;
 
 /**
  * Automatic loader for context resources
- * Loads resources bassed on pre defined annotations (Service, Repository)
+ * Loads resources bassed on pre defined annotations (picon\core\annotations\Service, Repository)
  * 
  * @author Martin Cassidy
  * @package context
@@ -40,9 +40,9 @@ class AutoContextLoader extends AbstractContextLoader
        {
              $reflection = new \ReflectionAnnotatedClass($class);
              $name = "";
-             if($reflection->hasAnnotation("Service"))
+             if($reflection->hasAnnotation("picon\core\annotations\Service"))
              {
-                 $annotation = $reflection->getAnnotation('Service');
+                 $annotation = $reflection->getAnnotation('picon\core\annotations\Service');
                  $resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
              }
              if($reflection->hasAnnotation("Repository"))

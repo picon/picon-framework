@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\Identifier;
+use picon\core\domain\Identifier;
 
 /**
  * Resolver for resource requests such as css and js

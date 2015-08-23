@@ -22,8 +22,8 @@
 
 namespace picon\web;
 
-use picon\Args;
-use picon\Identifier;
+use picon\core\Args;
+use picon\core\domain\Identifier;
 
 /**
  * A pointer to a file which is located in the same directory as the class
@@ -66,7 +66,7 @@ class ResourceReference
         
         if($resouce==false)
         {
-            throw new \FileException(sprintf("Failed to open file %s", $fileName));
+            throw new \picon\core\exceptions\FileException(sprintf("Failed to open file %s", $fileName));
         }
         return $resouce;
     }

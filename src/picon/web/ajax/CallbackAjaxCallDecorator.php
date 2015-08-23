@@ -22,7 +22,7 @@
 
 namespace picon\web\ajax;
 
-use picon\Args;
+use picon\core\Args;
 
 /**
  * An ajax decorator that invokeds a callback function for each of the decorator

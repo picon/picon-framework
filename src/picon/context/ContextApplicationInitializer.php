@@ -28,9 +28,9 @@
 
 namespace picon\context;
 
-use picon\BaseApplicationInitializer;
+use picon\core\BaseApplicationInitializer;
 use picon\beans\InitializingBean;
-use picon\PiconApplication;
+use picon\core\PiconApplication;
 
 /**
  * An Application Initialiser which load context

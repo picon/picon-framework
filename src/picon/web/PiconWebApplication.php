@@ -28,8 +28,8 @@
 
 namespace picon\web;
 
-use picon\ApplicationContextLoadListener;
-use picon\PiconApplication;
+use picon\core\listeners\ApplicationContextLoadListener;
+use picon\core\PiconApplication;
 use picon\web\security\WebApplicationSecuritySettings;
 
 /**

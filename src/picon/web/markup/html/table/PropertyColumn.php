@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\PropertyResolver;
+use picon\core\utils\PropertyResolver;
 
 /**
  * A column which shows a simple property of an object

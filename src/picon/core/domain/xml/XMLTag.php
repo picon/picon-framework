@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\xml;
+
+use picon\core\Args;
+use picon\core\domain\CommonDomainBase;
+
 
 /**
  * Class representing an XML tag
@@ -28,7 +32,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package domain/xml
  */
-class XMLTag extends ComonDomainBase implements XmlElement
+class XMLTag extends CommonDomainBase implements XmlElement
 {
     private $name;
     private $tagType;

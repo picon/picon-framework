@@ -23,7 +23,7 @@
 namespace picon\web;
 
 use closure;
-use picon\Args;
+use picon\core\Args;
 
 /**
  * Basic implementation of link

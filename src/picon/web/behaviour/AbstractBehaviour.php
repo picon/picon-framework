@@ -22,8 +22,8 @@
 
 namespace picon\web;
 
-use picon\Identifiable;
-use picon\Identifier;
+use picon\core\Identifiable;
+use picon\core\domain\Identifier;
 use picon\web\request\HeaderResponse;
 
 /**
@@ -84,7 +84,7 @@ abstract class AbstractBehaviour implements Behaviour, Identifiable
                 return $index;
             }
         }
-        throw new \IllegalStateException('This behaviour was not found in the component it was bound to.');
+        throw new \picon\core\exceptions\IllegalStateException('This behaviour was not found in the component it was bound to.');
     }
     
     public function getComponent()

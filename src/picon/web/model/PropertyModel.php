@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\PropertyResolver;
+use picon\core\utils\PropertyResolver;
 
 /**
  * A model which runs from a property of an object

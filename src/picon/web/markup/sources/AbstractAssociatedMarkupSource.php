@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\MarkupUtils;
+use picon\core\utils\MarkupUtils;
 use picon\web\request\HeaderResponse;
 
 /**

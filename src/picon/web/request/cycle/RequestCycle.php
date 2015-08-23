@@ -22,8 +22,8 @@
 
 namespace picon\web;
 
-use picon\Identifier;
-use picon\PiconApplication;
+use picon\core\domain\Identifier;
+use picon\core\PiconApplication;
 
 /**
  * Front controller for incoming requests.
@@ -79,7 +79,7 @@ class RequestCycle
 
             if($targets>$this->maxTargets)
             {
-                throw new \IllegalStateException("Maximum number of requests targets have been processed");
+                throw new \picon\core\exceptions\IllegalStateException("Maximum number of requests targets have been processed");
             }
 
             try

@@ -82,7 +82,7 @@ class ListenerRequestResolver implements RequestResolver
     
     public function generateUrl(RequestTarget $target)
     {
-        throw new \NotImplementedException();
+        throw new \picon\core\exceptions\NotImplementedException();
     }
     
     public function handles(RequestTarget $target)

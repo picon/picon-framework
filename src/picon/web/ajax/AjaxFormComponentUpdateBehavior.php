@@ -22,7 +22,7 @@
 
 namespace picon\web\ajax;
 
-use picon\Args;
+use picon\core\Args;
 use picon\web\ajax\markup\html\ModalWindow;
 use picon\web\Component;
 use picon\web\FormComponent;

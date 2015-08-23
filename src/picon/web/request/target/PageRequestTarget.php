@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\Identifier;
+use picon\core\domain\Identifier;
 
 /**
  * Request target for rendering a new stateless page

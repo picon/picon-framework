@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\Identifier;
+use picon\core\domain\Identifier;
 
 /**
  * A container for radio buttons

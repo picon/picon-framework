@@ -32,7 +32,7 @@ class ManualContextLoader extends AbstractContextLoader
 {
     public function loadResources($classes)
     {
-       throw new \NotImplementedException();
+       throw new \picon\core\exceptions\NotImplementedException();
     }
 
     protected function loadResourceMap($classes)

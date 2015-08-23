@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\config;
+use picon\core\domain\CommonDomainBase;
+use picon\core\config\DataSourceType;
 
 /**
  * Description of DataSourceConfig
@@ -28,7 +30,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package domain/config
  */
-class DataSourceConfig extends ComonDomainBase
+class DataSourceConfig extends CommonDomainBase
 {
     private $name;
     private $type;
@@ -58,5 +60,3 @@ class DataSourceConfig extends ComonDomainBase
         $this->database = $database;
     }
 }
-
-?>

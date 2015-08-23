@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\scanner;
+use picon\core\scanner\ClassScannerRule;
 
 /**
  * Rule for the class scanner in which the class must be a sub class of the

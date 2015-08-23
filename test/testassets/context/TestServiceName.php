@@ -22,7 +22,7 @@
 
 /**
  * @author Martin Cassidy
- * @Service(name = 'serv')
+ * @picon\core\annotations\Service(name = 'serv')
  */
 class TestServiceName extends AbstractContext
 {

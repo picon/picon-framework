@@ -23,9 +23,9 @@
 namespace picon\context;
 
 use Annotation;
-use picon\ApplicationInitializer;
-use picon\CacheManager;
-use picon\Config;
+use picon\core\ApplicationInitializer;
+use picon\core\cache\CacheManager;
+use picon\core\config\Config;
 
 /**
  * Context loader super class
@@ -78,7 +78,7 @@ abstract class AbstractContextLoader
     {
         if(array_key_exists($resourceName, $this->resources))
         {
-            throw new \DuplicateResourceException(sprintf("The resource %s already exists.", $resourceName));
+            throw new \picon\core\exceptions\DuplicateResourceException(sprintf("The resource %s already exists.", $resourceName));
         }
         $this->resources[$resourceName] = $resource;
     }

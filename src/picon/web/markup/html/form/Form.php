@@ -22,7 +22,7 @@
 
 namespace picon\web\markup\html\form;
 
-use picon\Args;
+use picon\core\Args;
 use picon\web\AttributeModifier;
 use picon\web\BasicModel;
 use picon\web\Button;

@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\PropertyResolver;
+use picon\core\utils\PropertyResolver;
 
 /**
  * A proxy model for the compound model

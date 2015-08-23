@@ -34,7 +34,7 @@ class CheckBox extends FormComponent
     {
         if($this->getModel()!=null && !($this->getModel() instanceof BooleanModel) && $this->getModelObject()!=null && !is_bool($this->getModelObject()))
         {
-            throw new \IllegalStateException(sprintf("A check box must have a boolean model, actual %s", gettype($this->getModelObject())));
+            throw new \picon\core\exceptions\IllegalStateException(sprintf("A check box must have a boolean model, actual %s", gettype($this->getModelObject())));
         }
     }
     

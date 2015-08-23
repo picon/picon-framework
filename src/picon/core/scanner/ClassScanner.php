@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\scanner;
+use picon\core\scanner\ClassScannerRule;
 
 /**
  * Scanner to find classes that match a given set of rules. 

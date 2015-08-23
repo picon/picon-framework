@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\Identifier;
+use picon\core\domain\Identifier;
 
 /**
  * A wrapping component for checks
@@ -44,7 +44,7 @@ class CheckBoxGroup extends FormComponent
         $object = $this->getModelObject();
         if($object!=null && !is_array($object))
         {
-            throw new \IllegalStateException('Check box group must have an array model');
+            throw new \picon\core\exceptions\IllegalStateException('Check box group must have an array model');
         }
     }
     

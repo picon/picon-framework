@@ -20,9 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\cache;
 
-use picon\exceptions\CacheException;
+use picon\core\Args;
+use picon\core\exceptions\CacheException;
+use picon\core\cache\PiconSerializer;
 
 /**
  * Helper class for saving and loading resources from the cache.

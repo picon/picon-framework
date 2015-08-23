@@ -25,6 +25,8 @@ require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 require_once(dirname(__FILE__).'/../../testassets/cache/ExternalNamespaceClass.php');
 
 use other\ExternalNamespaceClass;
+use picon\core\cache\PiconSerializer;
+use picon\core\utils\SerializableClosure;
 
 /**
  *

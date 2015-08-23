@@ -22,7 +22,7 @@
 
 namespace picon\database\template;
 
-use picon\Args;
+use picon\core\Args;
 use picon\core\Types;
 use picon\database\exception\SQLException;
 use picon\database\RowMapper;

@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\XmlTagType;
+use picon\core\xml\XmlTagType;
 
 /**
  * A drop down choice HTML select element

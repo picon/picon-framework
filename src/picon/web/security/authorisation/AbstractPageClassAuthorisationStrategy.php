@@ -22,9 +22,9 @@
 
 namespace picon\web\security\authorisation;
 
-use picon\Args;
-use picon\Identifier;
-use picon\PiconApplication;
+use picon\core\Args;
+use picon\core\domain\Identifier;
+use picon\core\PiconApplication;
 use picon\web\Component;
 use picon\web\WebPage;
 

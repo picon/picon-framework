@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
-namespace picon;
+namespace picon\core\utils;
 
 use Closure;
 use ReflectionFunction;
@@ -46,7 +46,7 @@ use ReflectionFunction;
  * @todo test in PHP 5.4.x
  * @todo refactor the code analysis into a separate class so it can be reused
  * @author Martin Cassidy
- * @package utilities
+ * @package utils
  */
 class SerializableClosure
 {
@@ -389,7 +389,7 @@ class SerializableClosure
                         }
                     }
                 }
-                throw new \IllegalStateException(sprintf("Unable to locate fully qualified class name for class declared within closure. Offending class %s. Closure: %s", $className, $this->code));
+                throw new core\exceptions\IllegalStateException(sprintf("Unable to locate fully qualified class name for class declared within closure. Offending class %s. Closure: %s", $className, $this->code));
 
             }
         }   

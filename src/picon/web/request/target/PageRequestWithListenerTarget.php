@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\Identifier;
+use picon\core\domain\Identifier;
 
 /**
  * Stateless page request that will retrieve and invoke a listener on the page

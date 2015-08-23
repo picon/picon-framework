@@ -31,13 +31,13 @@ class ComplexSerialize extends ParentComplexObject
     
     /**
      *
-     * @Transient
+     * @picon\core\annotations\Transient
      */
     private $transient = "defaultValue";
     
     /**
      *
-     * @Service
+     * @picon\core\annotations\Service
      */
     private $service = "defaultValue";
     

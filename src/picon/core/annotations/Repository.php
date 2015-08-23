@@ -20,6 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon\core\annotations;
+
 /**
  * Indicates that a class is a repository, such as a DAO
  * 
@@ -30,5 +32,3 @@ class Repository extends Transient
 {
     public $name = "";
 }
-
-?>

@@ -82,7 +82,7 @@ class FileModel implements Model
     {
         if($this->file==null)
         {
-            throw new \IllegalStateException('No file upload has been registered with this model');
+            throw new \picon\core\exceptions\IllegalStateException('No file upload has been registered with this model');
         }
     }
 }

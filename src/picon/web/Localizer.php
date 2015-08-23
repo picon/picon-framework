@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\CacheManager;
+use picon\core\cache\CacheManager;
 
 /**
  * Localizer for a specific component
@@ -185,7 +185,7 @@ class Localizer
                 }
                 else if(is_object($value))
                 {
-                    throw new \UnsupportedOperationException('Recursive interpolation not supported');
+                    throw new \picon\core\exceptions\UnsupportedOperationException('Recursive interpolation not supported');
                 }
                 else
                 {

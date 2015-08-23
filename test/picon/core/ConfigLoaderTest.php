@@ -21,6 +21,9 @@
  * */
 
 namespace picon;
+use picon\core\config\DataSourceType;
+use picon\core\ConfigLoader;
+
 require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 
 class ConfigLoaderTest extends AbstractPiconTest
@@ -53,7 +56,7 @@ class ConfigLoaderTest extends AbstractPiconTest
     }
     
     /**
-     * @expectedException \picon\ConfigException
+     * @expectedException \picon\core\exceptions\ConfigException
      */
     public function testSchemaValidation()
     {
@@ -61,7 +64,7 @@ class ConfigLoaderTest extends AbstractPiconTest
     }
     
     /**
-     * @expectedException \picon\ConfigException
+     * @expectedException \picon\core\exceptions\ConfigException
      */
     public function testMissingProfile()
     {

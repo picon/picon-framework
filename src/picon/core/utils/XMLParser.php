@@ -20,7 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\utils;
+
+use picon\core\exceptions\FileException;
+use picon\core\xml\TextElement;
+use picon\core\xml\XMLTag;
+use picon\core\xml\XmlTagType;
+use picon\core\exceptions\XMLException;
 
 /**
  * An xml file parser
@@ -29,7 +35,7 @@ namespace picon;
  * Parses an XML into an array of XMLTag's
  * 
  * @author Martin Cassidy
- * @package utilities
+ * @package utils
  */
 class XMLParser
 {
@@ -58,15 +64,16 @@ class XMLParser
     
     /**
      * Process the XML file into an array of XMLTag objects
-     * @param String $xmlFile Path to the XML file
+     * @param string $xmlFile Path to the XML file
      * @return array An array of XMLTag objects
+     * @throws FileException
      */
     public function parse($xmlFile)
     {
         $this->xmlFile = $xmlFile;
         if (!($fp = @fopen($xmlFile, "r")))
         {
-            throw new \FileException("Could not open XML input");
+            throw new FileException("Could not open XML input");
         }
         while ($data = fread($fp, 4096))
         {
@@ -122,7 +129,7 @@ class XMLParser
     
     protected function onXmlError($errorCode, $errorMessage)
     {
-        throw new \XMLException(sprintf("XML error: %s at line %d of file %s", $errorCode,$errorMessage, $this->xmlFile));
+        throw new XMLException(sprintf("XML error: %s at line %d of file %s", $errorCode,$errorMessage, $this->xmlFile));
     }
     
     /**

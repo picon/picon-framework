@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\PiconApplication;
+use picon\core\PiconApplication;
 use picon\web\request\HeaderResponse;
 
 /**

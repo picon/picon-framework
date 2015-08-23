@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\MarkupUtils;
+use picon\core\utils\MarkupUtils;
 
 /**
  * Default source for mark-up
@@ -38,7 +38,7 @@ class DefaultMarkupSource extends AbstractMarkupSource
 
         if($markup==null)
         {
-            throw new \MarkupNotFoundException(sprintf("Markup for %s could not be found.", $child->getId()));
+            throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Markup for %s could not be found.", $child->getId()));
         }
         
         if($child==null)

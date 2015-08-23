@@ -22,6 +22,10 @@
 
 
 namespace picon;
+use picon\core\scanner\ClassNameRule;
+use picon\core\scanner\ClassScanner;
+use picon\core\scanner\SubClassRule;
+
 require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 
 /**
@@ -46,13 +50,13 @@ class ClassScannerTest extends AbstractPiconTest
     
     public function testByAnnotation()
     {
-        $scanner = new \picon\ClassScanner(new \picon\AnnotationRule('Service'));
+        $scanner = new core\scanner\ClassScanner(new core\scanner\AnnotationRule('picon\core\annotations\Service'));
         $this->performAsserts($scanner, array('TestService', 'TestServiceName'));
     }
     
     public function testByNamespace()
     {
-        $scanner = new \picon\ClassScanner(new \picon\ClassNamespaceRule('testnamespace'));
+        $scanner = new core\scanner\ClassScanner(new core\scanner\ClassNamespaceRule('testnamespace'));
         $this->performAsserts($scanner, array('testnamespace\TestNameSpaceClassOne', 'testnamespace\TestNameSpaceClassTwo'));
     }
     
@@ -78,7 +82,7 @@ class ClassScannerTest extends AbstractPiconTest
     
     public function testRuleArray()
     {
-        $scanner = new \picon\ClassScanner(array(new SubClassRule('testnamespace\TestNameSpaceClassOne'), new \picon\ClassNamespaceRule('testnamespace')));
+        $scanner = new core\scanner\ClassScanner(array(new SubClassRule('testnamespace\TestNameSpaceClassOne'), new core\scanner\ClassNamespaceRule('testnamespace')));
         $this->performAsserts($scanner, array('testnamespace\TestNameSpaceClassOne', 'testnamespace\TestNameSpaceClassTwo'));
     }
     
@@ -87,10 +91,10 @@ class ClassScannerTest extends AbstractPiconTest
      */
     public function testInvalidRuleArray()
     {
-        $scanner = new \picon\ClassScanner(array(new SubClassRule('testnamespace\TestNameSpaceClassOne'), new \stdClass()));
+        $scanner = new core\scanner\ClassScanner(array(new SubClassRule('testnamespace\TestNameSpaceClassOne'), new \stdClass()));
     }
     
-    private function performAsserts(\picon\ClassScanner $scanner, $expectedClasses)
+    private function performAsserts(core\scanner\ClassScanner $scanner, $expectedClasses)
     {
         $results = $scanner->scanForName();
         $this->assertEquals($expectedClasses, $results);

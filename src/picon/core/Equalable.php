@@ -20,27 +20,15 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core;
 
 /**
- * Helper class for working with objects
- * 
+ *
  * @author Martin Cassidy
- * @package utilities
  */
-class Objects
+interface Equalable
 {
-    public static function equals($object1, $object2)
-    {
-        if($object1 instanceof Equalable && $object2 instanceof Equalable)
-        {
-            return $object1->equals($object2);
-        }
-        else
-        {
-            return $object1==$object2;
-        }
-    }
+    function equals($object);
 }
 
 ?>

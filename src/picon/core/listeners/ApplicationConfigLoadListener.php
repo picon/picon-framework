@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\listeners;
+use picon\core\listeners\ApplicationInitializerConfigLoadListener;
+use picon\core\config\Config;
 
 /**
  * An application config loaded listener used by the picon application to

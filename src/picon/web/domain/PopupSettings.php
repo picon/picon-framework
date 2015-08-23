@@ -22,14 +22,14 @@
 
 namespace picon\web;
 
-use picon\ComonDomainBase;
+use picon\core\domain\CommonDomainBase;
 
 /**
  * Options for the javascript new window function
  * 
  * @author Martin Cassidy
  */
-class PopupSettings extends ComonDomainBase
+class PopupSettings extends CommonDomainBase
 {
     private $name;
     private $height;

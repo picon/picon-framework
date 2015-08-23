@@ -22,8 +22,8 @@
 
 namespace picon\web;
 
-use picon\Args;
-use picon\SerializableClosure;
+use picon\core\Args;
+use picon\core\utils\SerializableClosure;
 
 /**
  * Allows a user specified function to be rendered but wraps with a callback in the following way

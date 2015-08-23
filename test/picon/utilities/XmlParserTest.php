@@ -31,7 +31,7 @@ class XmlParserTest extends AbstractPiconTest
 {
     public function testValidXML()
     {
-        $parser = new \picon\XMLParser();
+        $parser = new core\utils\XMLParser();
         $output = $parser->parse('resources/validxml.xml');
         
         $this->assertTrue(count($output)==1);
@@ -57,7 +57,7 @@ class XmlParserTest extends AbstractPiconTest
     */
     public function testBadXml()
     {
-        $parser = new \picon\XMLParser();
+        $parser = new core\utils\XMLParser();
         $parser->parse('resources/badxml.xml');
     }
     
@@ -66,7 +66,7 @@ class XmlParserTest extends AbstractPiconTest
     */
     public function testNoFile()
     {
-        $parser = new \picon\XMLParser();
+        $parser = new core\utils\XMLParser();
         $parser->parse('doesnotexist.xml');
     }
 }

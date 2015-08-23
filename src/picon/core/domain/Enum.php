@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\domain;
+
+use picon\core\Identifiable;
+use picon\core\Equalable;
 
 /**
  * Based on SplEnum, this class allows enumerated types to be created.

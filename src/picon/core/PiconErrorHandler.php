@@ -19,7 +19,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core;
 
 /**
  * Handles all PHP errors and uncaught exceptions, registers handles
@@ -61,7 +61,7 @@ class PiconErrorHandler
 
         foreach($exception->getTrace() as $trace)
         {
-            if(array_key_exists('function', $trace) && $trace['function']=="onError" && array_key_exists('class', $trace) && $trace['class']=="picon\\PiconErrorHandler")
+            if(array_key_exists('function', $trace) && $trace['function']=="onError" && array_key_exists('class', $trace) && $trace['class']=="picon\\core\\PiconErrorHandler")
             {
                 continue;
             }

@@ -20,8 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\utils;
 
+use picon\core\xml\XmlElement;
 use picon\web\Component;
 use picon\web\ComponentTag;
 use picon\web\MarkupElement;
@@ -32,8 +33,9 @@ use picon\web\PiconTag;
  * 
  * @todo refactor to remove duplicate code
  * @todo alter to return an array if multiple matching tags exist
+ * @todo this should be more generic or moved to the web module
  * @author Martin Cassidy
- * @package utilities
+ * @package utils
  */
 class MarkupUtils
 {

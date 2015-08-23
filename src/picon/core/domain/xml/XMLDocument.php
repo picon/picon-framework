@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\xml;
+
+use picon\core\domain\CommonDomainBase;
+use picon\core\xml\XMLTag;
 
 /**
  * Domain object for repesenting an xml document
@@ -28,7 +31,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package domain/xml
  */
-class XMLDocument extends ComonDomainBase
+class XMLDocument extends CommonDomainBase
 {
     private $doctype;
     private $root;

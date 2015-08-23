@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\ListenerCollection;
+use picon\core\listeners\ListenerCollection;
 
 /**
  * Description of PageMapInitializationListenerCollection

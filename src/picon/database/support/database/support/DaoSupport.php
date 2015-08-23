@@ -23,6 +23,7 @@
 namespacepicon\database\support;
 
 use picon\beans\InitializingBean;
+use picon\core\exceptions\IllegalStateException;
 use picon\database\source\DataSource;
 use picon\database\template\DataBaseTemplate;
 

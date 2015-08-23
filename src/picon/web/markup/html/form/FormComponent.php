@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\Args;
+use picon\core\Args;
 use picon\web\markup\html\form\Form;
 
 /**
@@ -50,7 +50,7 @@ abstract class FormComponent extends LabeledMarkupContainer
     /**
      *
      * @var mixed the processed and converted input for the form component
-     * @Transient
+     * @picon\core\annotations\Transient
      */
     private $convertedInput;
     

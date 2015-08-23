@@ -20,14 +20,16 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\profile;
+
+use picon\core\domain\CommonDomainBase;
 
 /**
  * Domain class for storing application settings
  *
  * @author Martin Cassidy
  */
-class ApplicationProfile extends ComonDomainBase
+class ApplicationProfile extends CommonDomainBase
 {
     private $showPiconTags = false;
     private $cacheMarkup = true;

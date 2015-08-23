@@ -21,7 +21,7 @@
  * */
 
 namespace picon\database;
-use picon\Args;
+use picon\core\Args;
 
 /**
  * A row mapper that will run the provided callback for each record in a result set

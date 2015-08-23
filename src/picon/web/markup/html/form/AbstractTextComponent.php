@@ -84,11 +84,11 @@ abstract class AbstractTextComponent extends FormComponent
         {
             if(is_object($modelObject) && get_class($modelObject)!=$this->getType())
             {
-                throw new \IllegalStateException(sprintf("This text component needs a %s model, actual %s", $this->getType(), gettype($this->getModelObject())));
+                throw new \picon\core\exceptions\IllegalStateException(sprintf("This text component needs a %s model, actual %s", $this->getType(), gettype($this->getModelObject())));
             }
             else if(!is_object($modelObject) && gettype($modelObject)!=$this->getType())
             {
-                throw new \IllegalStateException(sprintf("This text component needs a %s model, actual %s", $this->getType(), gettype($this->getModelObject())));
+                throw new \picon\core\exceptions\IllegalStateException(sprintf("This text component needs a %s model, actual %s", $this->getType(), gettype($this->getModelObject())));
             }
         }
     }

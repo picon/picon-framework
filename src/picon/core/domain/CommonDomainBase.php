@@ -20,14 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\domain;
 /**
  * Super class for any and all domains
  *
  * @author Martin Cassidy
  * @package domain
  */
-class ComonDomainBase
+class CommonDomainBase
 {
     /**
      * Get the requested value

@@ -20,6 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+namespace picon\core\annotations;
+
 /**
  * Indicates that a property needs to have a resource from the application
  * context injected into it
@@ -31,5 +33,3 @@ class Resource extends Transient
 {
     public $name = "";
 }
-
-?>

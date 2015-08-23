@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\scanner;
+
+use picon\core\scanner\ClassScannerRule;
 
 /**
  * Class scanner rule to match classes with a given annotation

@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\xml;
+
+use picon\core\domain\Enum;
 
 /**
  * Enum for the 3 type of tag state: open, close, openclose

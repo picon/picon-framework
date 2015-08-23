@@ -22,10 +22,10 @@
 
 namespace picon\web;
 
-use picon\CacheManager;
-use picon\MarkupParser;
-use picon\MarkupUtils;
-use picon\PiconApplication;
+use picon\core\cache\CacheManager;
+use picon\core\utils\MarkupParser;
+use picon\core\utils\MarkupUtils;
+use picon\core\PiconApplication;
 
 /**
  * The mark-up loads finds, loads and parses the mark-up for a component class.
@@ -145,13 +145,13 @@ class MarkupLoader
             $parentMarkup = $this->internalLoadMarkup(get_parent_class($className));
             if($parentMarkup==null)
             {
-                throw new \MarkupNotFoundException(sprintf("Found picon:extend in markup for %s but there is no parent markup", $className));
+                throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Found picon:extend in markup for %s but there is no parent markup", $className));
             }
             
             $child = $this->getChildTag($parentMarkup);
             if($child==null)
             {
-                throw new \MarkupNotFoundException(sprintf("Component %s has inherited markup from %s but the inherited markup does not contain a picon:child tag", $className, get_parent_class($className)));
+                throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Component %s has inherited markup from %s but the inherited markup does not contain a picon:child tag", $className, get_parent_class($className)));
             }
 
             $childHead = $markup->getChildByName('picon:head');

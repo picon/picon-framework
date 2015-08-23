@@ -22,8 +22,8 @@
 
 namespace picon\web;
 
-use picon\Args;
-use picon\SerializableClosure;
+use picon\core\Args;
+use picon\core\utils\SerializableClosure;
 
 /**
  * Produces a callback url as the value for the option, the url will resolve

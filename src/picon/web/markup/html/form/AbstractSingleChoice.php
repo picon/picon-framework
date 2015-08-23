@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\Objects;
+use picon\core\Objects;
 
 /**
  * A form component with pre-defined choices of which 1 can be chosen

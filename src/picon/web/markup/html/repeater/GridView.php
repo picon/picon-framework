@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\Args;
+use picon\core\Args;
 
 /**
  * Literally a repeating view of repeating views. Allows for work with both
@@ -101,7 +101,7 @@ class GridView extends RepeatingView
     {
         if($this->callback==null)
         {
-            throw new \IllegalStateException('When not passing a callback to GridView it is expected that the populateItem() method will be overriden');
+            throw new \picon\core\exceptions\IllegalStateException('When not passing a callback to GridView it is expected that the populateItem() method will be overriden');
         }
         $callable = $this->callback;
         $callable($item);

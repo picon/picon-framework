@@ -25,7 +25,7 @@
  * 
  * @author Martin Cassidy
  */
-class TestEnum extends \picon\Enum
+class TestEnum extends \picon\core\domain\Enum
 {
     const ONE = 'one';
     const TWO = 'two';

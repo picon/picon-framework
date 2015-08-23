@@ -20,9 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core;
 
+use picon\core\profile\ApplicationProfile;
+use picon\core\config\Config;
+use picon\core\exceptions\ConfigException;
 use picon\core\Types;
+use picon\core\config\DataSourceConfig;
+use picon\core\config\DataSourceType;
 
 /**
  * A helper class for loading config xml

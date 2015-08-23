@@ -23,7 +23,7 @@
 namespace picon\web\ajax;
 
 use Closure;
-use picon\Args;
+use picon\core\Args;
 use picon\web\ajax\markup\html\ModalWindow;
 use picon\web\AjaxRequestTarget;
 use picon\web\Component;
@@ -101,7 +101,7 @@ class AjaxFormSubmitBehavior extends AjaxEventBehaviour implements FormSubmitter
         
         if($form==null)
         {
-            throw new \IllegalStateException(sprintf('Unable to locate form for ajax submit behaviour on component %s', $component->getId()));
+            throw new \picon\core\exceptions\IllegalStateException(sprintf('Unable to locate form for ajax submit behaviour on component %s', $component->getId()));
         }
         return $form;
     }

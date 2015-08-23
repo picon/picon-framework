@@ -20,12 +20,16 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\utils;
 
+use picon\core;
+use picon\core\xml\TextElement;
+use picon\core\xml\XMLTag;
 use picon\web\ComponentTag;
 use picon\web\HeaderResolver;
 use picon\web\MarkupElement;
 use picon\web\PiconTag;
+use picon\core\utils\XMLParser;
 
 /**
  * Parser for picon XML. This works like the XMLParser but will produce
@@ -38,7 +42,7 @@ use picon\web\PiconTag;
  * TextElement - Holds the character data as a child of the xml tag
  * 
  * @author Martin Cassidy
- * @package utilities
+ * @package utils
  * @todo add support for extracting the doctype
  * @todo this needs refactoring to handle different tags in a better way
  */
@@ -76,7 +80,7 @@ class MarkupParser extends XMLParser
 
     protected function onXmlError($errorCode, $errorMessage)
     {
-        throw new \InvalidMarkupException(sprintf("XML error: %s at line %d of file %s", $errorCode, $errorMessage, $this->xmlFile));
+        throw new core\exceptions\InvalidMarkupException(sprintf("XML error: %s at line %d of file %s", $errorCode, $errorMessage, $this->xmlFile));
     }
 
     protected function prepare($data)

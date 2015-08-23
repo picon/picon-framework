@@ -20,10 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\cache;
 
 //@todo remove this coupling to web
 use picon\context\Injector;
+use picon\core\InjectOnWakeup;
+use picon\core\utils\SerializableClosure;
 use picon\web\Detachable;
 
 /**
@@ -223,9 +225,7 @@ class PiconSerializer
         
         foreach($annotations as $annotation)
         {
-            return is_subclass_of($annotation, "Transient") || get_class($annotation)=="Transient";
+            return is_subclass_of($annotation, "picon\core\annotations\Transient") || get_class($annotation)=="picon\core\annotations\Transient";
         }
     }
 }
-
-?>

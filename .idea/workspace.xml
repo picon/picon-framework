@@ -5,89 +5,190 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a72f99cd-66b9-4e3c-82a3-0972bffa1da6" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/.htaccess" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/AbstractAuthorisedPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/AbstractPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/AbstractPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/CodeOutputPanel.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/CodeOutputPanel.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/Example.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/ExampleType.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/HomePage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/HomePage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/LoginPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/LoginPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/SamplePageClassAuthorisationStrategy.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/SourcePage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/SourcePage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/ajax/AjaxButtonPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/ajax/AjaxButtonPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/ajax/AjaxLinkPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/ajax/AjaxLinkPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/auth/AuthorisedPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/auth/AuthorisedPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/datatable/DataTablePage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/datatable/DataTablePage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/datatable/SampleDataProvider.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/datatable/TableEntryDomain.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/ExampleDomain.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/FormPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/FormPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/SpecialFields.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/SpecialFields.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/ValidationPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/ValidationPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/LabelPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/LabelPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/LinkPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/LinkPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/ListPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/ListPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/TabPanelPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/TabPanelPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/tabs/TabOnePanel.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/tabs/TabOnePanel.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/tabs/TabTwoPanel.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/tabs/TabTwoPanel.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/BorderPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/BorderPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/MarkupInheritancePage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/MarkupInheritancePage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/PanelPage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/PanelPage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/SampleBorder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/SampleBorder.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/SamplePanel.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/SamplePanel.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/cache/.htaccess" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/cache/application_data/application_context.pcx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/cache/application_data/auto_loader.pcx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/cache/application_data/map_mounted.pcx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/cache/application_data/pagemap.pcx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/cache/application_data/picon_config.pcx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/composer.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/config/.htaccess" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/config/picon.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/css/main.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/css/source.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/index.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/resource.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/picon/core/AutoLoader.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/TestAutoLoader.php" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/picon/core/domain/ComonDomainBase.php" afterPath="$PROJECT_DIR$/src/picon/core/domain/CommonDomainBase.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/picon/core/utilities/Args.php" afterPath="$PROJECT_DIR$/src/picon/core/Args.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/picon/core/utilities/Equalable.php" afterPath="$PROJECT_DIR$/src/picon/core/Equalable.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/picon/core/utilities/MarkupParser.php" afterPath="$PROJECT_DIR$/src/picon/core/utils/MarkupParser.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/picon/core/utilities/MarkupUtils.php" afterPath="$PROJECT_DIR$/src/picon/core/utils/MarkupUtils.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/picon/core/utilities/Objects.php" afterPath="$PROJECT_DIR$/src/picon/core/Objects.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/picon/core/utilities/PropertyResolver.php" afterPath="$PROJECT_DIR$/src/picon/core/utils/PropertyResolver.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/picon/core/utilities/SerializableClosure.php" afterPath="$PROJECT_DIR$/src/picon/core/utils/SerializableClosure.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/picon/core/utilities/XMLParser.php" afterPath="$PROJECT_DIR$/src/picon/core/utils/XMLParser.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/ajax/AbstractAjaxBehaviour.php" afterPath="$PROJECT_DIR$/src/picon/web/ajax/AbstractAjaxBehaviour.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/sources/AbstractAssociatedMarkupSource.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/sources/AbstractAssociatedMarkupSource.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/behaviour/AbstractBehaviour.php" afterPath="$PROJECT_DIR$/src/picon/web/behaviour/AbstractBehaviour.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/AbstractChoice.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/AbstractChoice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/context/AbstractContextLoader.php" afterPath="$PROJECT_DIR$/src/picon/context/AbstractContextLoader.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/table/AbstractInjectedDataProvider.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/table/AbstractInjectedDataProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/AbstractJQueryBehaviour.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/AbstractJQueryBehaviour.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/ui/AbstractJQueryUIBehaviour.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/ui/AbstractJQueryUIBehaviour.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/AbstractOption.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/AbstractOption.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/security/authorisation/AbstractPageClassAuthorisationStrategy.php" afterPath="$PROJECT_DIR$/src/picon/web/security/authorisation/AbstractPageClassAuthorisationStrategy.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/AbstractPiconTest.php" afterPath="$PROJECT_DIR$/test/AbstractPiconTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/repeater/AbstractRepeater.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/repeater/AbstractRepeater.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/AbstractSingleChoice.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/AbstractSingleChoice.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/AbstractTextComponent.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/AbstractTextComponent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/ajax/AjaxEventBehaviour.php" afterPath="$PROJECT_DIR$/src/picon/web/ajax/AjaxEventBehaviour.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/ajax/AjaxFormComponentUpdateBehavior.php" afterPath="$PROJECT_DIR$/src/picon/web/ajax/AjaxFormComponentUpdateBehavior.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/ajax/AjaxFormSubmitBehavior.php" afterPath="$PROJECT_DIR$/src/picon/web/ajax/AjaxFormSubmitBehavior.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/ajax/markup/html/AjaxLink.php" afterPath="$PROJECT_DIR$/src/picon/web/ajax/markup/html/AjaxLink.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/request/target/AjaxRequestTarget.php" afterPath="$PROJECT_DIR$/src/picon/web/request/target/AjaxRequestTarget.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/scanner/AnnotationRule.php" afterPath="$PROJECT_DIR$/src/picon/core/scanner/AnnotationRule.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/listeners/ApplicationConfigLoadListener.php" afterPath="$PROJECT_DIR$/src/picon/core/listeners/ApplicationConfigLoadListener.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/context/ApplicationContext.php" afterPath="$PROJECT_DIR$/src/picon/context/ApplicationContext.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/listeners/ApplicationContextLoadListener.php" afterPath="$PROJECT_DIR$/src/picon/core/listeners/ApplicationContextLoadListener.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/ApplicationInitializer.php" afterPath="$PROJECT_DIR$/src/picon/core/ApplicationInitializer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerConfigLoadListener.php" afterPath="$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerConfigLoadListener.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerConfigLoadListenerCollection.php" afterPath="$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerConfigLoadListenerCollection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerContextLoadListener.php" afterPath="$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerContextLoadListener.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerContextLoadListenerCollection.php" afterPath="$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerContextLoadListenerCollection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/domain/profile/ApplicationProfile.php" afterPath="$PROJECT_DIR$/src/picon/core/domain/profile/ApplicationProfile.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/model/ArrayModel.php" afterPath="$PROJECT_DIR$/src/picon/web/model/ArrayModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/ArrayOption.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/ArrayOption.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/behaviour/AttributeAppender.php" afterPath="$PROJECT_DIR$/src/picon/web/behaviour/AttributeAppender.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/context/AutoContextLoader.php" afterPath="$PROJECT_DIR$/src/picon/context/AutoContextLoader.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/BaseApplicationInitializer.php" afterPath="$PROJECT_DIR$/src/picon/core/BaseApplicationInitializer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/BooleanOption.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/BooleanOption.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/sources/BorderMarkupSourcingStratagy.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/sources/BorderMarkupSourcingStratagy.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/Button.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/Button.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/exceptions/CacheException.php" afterPath="$PROJECT_DIR$/src/picon/core/exceptions/CacheException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/cache/CacheManager.php" afterPath="$PROJECT_DIR$/src/picon/core/cache/CacheManager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/ajax/CallbackAjaxCallDecorator.php" afterPath="$PROJECT_DIR$/src/picon/web/ajax/CallbackAjaxCallDecorator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/table/CallbackColumn.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/table/CallbackColumn.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/CallbackFunctionOption.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/CallbackFunctionOption.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/CallbackOption.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/CallbackOption.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/database/CallbackRowMapper.php" afterPath="$PROJECT_DIR$/src/picon/database/CallbackRowMapper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/CheckBox.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/CheckBox.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/CheckBoxGroup.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/CheckBoxGroup.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/ChoiceRenderer.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/ChoiceRenderer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/scanner/ClassNameRule.php" afterPath="$PROJECT_DIR$/src/picon/core/scanner/ClassNameRule.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/scanner/ClassNamespaceRule.php" afterPath="$PROJECT_DIR$/src/picon/core/scanner/ClassNamespaceRule.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/scanner/ClassScanner.php" afterPath="$PROJECT_DIR$/src/picon/core/scanner/ClassScanner.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/scanner/ClassScannerRule.php" afterPath="$PROJECT_DIR$/src/picon/core/scanner/ClassScannerRule.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/picon/scanner/ClassScannerTest.php" afterPath="$PROJECT_DIR$/test/picon/scanner/ClassScannerTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/domain/xml/Comment.php" afterPath="$PROJECT_DIR$/src/picon/core/domain/xml/Comment.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/testassets/cache/ComplexSerialize.php" afterPath="$PROJECT_DIR$/test/testassets/cache/ComplexSerialize.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/Component.php" afterPath="$PROJECT_DIR$/src/picon/web/Component.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/listeners/component/ComponentAfterRenderListenerCollection.php" afterPath="$PROJECT_DIR$/src/picon/web/listeners/component/ComponentAfterRenderListenerCollection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/listeners/component/authorisation/ComponentAuthorisationListener.php" afterPath="$PROJECT_DIR$/src/picon/web/listeners/component/authorisation/ComponentAuthorisationListener.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/listeners/component/ComponentBeforeRenderListenerCollection.php" afterPath="$PROJECT_DIR$/src/picon/web/listeners/component/ComponentBeforeRenderListenerCollection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/listeners/component/ComponentInitializationListenerCollection.php" afterPath="$PROJECT_DIR$/src/picon/web/listeners/component/ComponentInitializationListenerCollection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/listeners/component/ComponentInstantiationListenerCollection.php" afterPath="$PROJECT_DIR$/src/picon/web/listeners/component/ComponentInstantiationListenerCollection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/listeners/component/ComponentRenderHeadListenerCollection.php" afterPath="$PROJECT_DIR$/src/picon/web/listeners/component/ComponentRenderHeadListenerCollection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/model/CompoundPropertyModel.php" afterPath="$PROJECT_DIR$/src/picon/web/model/CompoundPropertyModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/domain/config/Config.php" afterPath="$PROJECT_DIR$/src/picon/core/domain/config/Config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/exceptions/ConfigException.php" afterPath="$PROJECT_DIR$/src/picon/core/exceptions/ConfigException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/ConfigLoader.php" afterPath="$PROJECT_DIR$/src/picon/core/ConfigLoader.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/picon/core/ConfigLoaderTest.php" afterPath="$PROJECT_DIR$/test/picon/core/ConfigLoaderTest.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/context/ContextApplicationInitializer.php" afterPath="$PROJECT_DIR$/src/picon/context/ContextApplicationInitializer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/database/support/database/support/DaoSupport.php" afterPath="$PROJECT_DIR$/src/picon/database/support/database/support/DaoSupport.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/database/template/DataBaseTemplate.php" afterPath="$PROJECT_DIR$/src/picon/database/template/DataBaseTemplate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/database/source/DataSource.php" afterPath="$PROJECT_DIR$/src/picon/database/source/DataSource.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/domain/config/DataSourceConfig.php" afterPath="$PROJECT_DIR$/src/picon/core/domain/config/DataSourceConfig.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/database/source/DataSourceFactory.php" afterPath="$PROJECT_DIR$/src/picon/database/source/DataSourceFactory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/domain/config/DataSourceType.php" afterPath="$PROJECT_DIR$/src/picon/core/domain/config/DataSourceType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/table/DataTable.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/table/DataTable.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/sources/DefaultMarkupSource.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/sources/DefaultMarkupSource.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/testassets/domain/DefaultTestEnum.php" afterPath="$PROJECT_DIR$/test/testassets/domain/DefaultTestEnum.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/ui/DialogBehavior.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/ui/DialogBehavior.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/security/authorisation/DirectToPageComponentNotAuthorisedListener.php" afterPath="$PROJECT_DIR$/src/picon/web/security/authorisation/DirectToPageComponentNotAuthorisedListener.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/ui/DraggableBehaviour.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/ui/DraggableBehaviour.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/DropDown.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/DropDown.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/exceptions/DuplicatePageDefinitionException.php" afterPath="$PROJECT_DIR$/src/picon/core/exceptions/DuplicatePageDefinitionException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/exceptions/DuplicateResourceException.php" afterPath="$PROJECT_DIR$/src/picon/core/exceptions/DuplicateResourceException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/domain/Enum.php" afterPath="$PROJECT_DIR$/src/picon/core/domain/Enum.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/request/target/ExceptionPageRequestTarget.php" afterPath="$PROJECT_DIR$/src/picon/web/request/target/ExceptionPageRequestTarget.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/domain/FeedbackMessage.php" afterPath="$PROJECT_DIR$/src/picon/web/domain/FeedbackMessage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/exceptions/FileException.php" afterPath="$PROJECT_DIR$/src/picon/core/exceptions/FileException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/model/FileModel.php" afterPath="$PROJECT_DIR$/src/picon/web/model/FileModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/FileUploadField.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/FileUploadField.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/Form.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/Form.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/FormComponent.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/FormComponent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/FunctionOption.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/FunctionOption.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/repeater/GridView.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/repeater/GridView.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/HeaderContainer.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/HeaderContainer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/Identifiable.php" afterPath="$PROJECT_DIR$/src/picon/core/Identifiable.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/domain/Identifier.php" afterPath="$PROJECT_DIR$/src/picon/core/domain/Identifier.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/exceptions/IllegalStateException.php" afterPath="$PROJECT_DIR$/src/picon/core/exceptions/IllegalStateException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/InjectOnWakeup.php" afterPath="$PROJECT_DIR$/src/picon/core/InjectOnWakeup.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/testassets/cache/InjectOnWakeupObject.php" afterPath="$PROJECT_DIR$/test/testassets/cache/InjectOnWakeupObject.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/exceptions/InvalidMarkupException.php" afterPath="$PROJECT_DIR$/src/picon/core/exceptions/InvalidMarkupException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/basic/Label.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/basic/Label.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/link/Link.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/link/Link.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/ListMultiple.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/ListMultiple.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/repeater/ListView.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/repeater/ListView.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/listeners/ListenerCollection.php" afterPath="$PROJECT_DIR$/src/picon/core/listeners/ListenerCollection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/request/resolver/ListenerRequestResolver.php" afterPath="$PROJECT_DIR$/src/picon/web/request/resolver/ListenerRequestResolver.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/request/target/ListenerRequestTarget.php" afterPath="$PROJECT_DIR$/src/picon/web/request/target/ListenerRequestTarget.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/Localizer.php" afterPath="$PROJECT_DIR$/src/picon/web/Localizer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/context/ManualContextLoader.php" afterPath="$PROJECT_DIR$/src/picon/context/ManualContextLoader.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/MarkupContainer.php" afterPath="$PROJECT_DIR$/src/picon/web/MarkupContainer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/domain/MarkupElement.php" afterPath="$PROJECT_DIR$/src/picon/web/domain/MarkupElement.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/MarkupLoader.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/MarkupLoader.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/exceptions/MarkupNotFoundException.php" afterPath="$PROJECT_DIR$/src/picon/core/exceptions/MarkupNotFoundException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/MaximumLengthValidator.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/MaximumLengthValidator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/MaximumValidator.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/MaximumValidator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/MinimumLengthValidator.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/MinimumLengthValidator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/MinimumValidator.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/MinimumValidator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/ajax/markup/html/ModalWindow.php" afterPath="$PROJECT_DIR$/src/picon/web/ajax/markup/html/ModalWindow.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/paging/NavigationLink.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/paging/NavigationLink.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/exceptions/NotImplementedException.php" afterPath="$PROJECT_DIR$/src/picon/core/exceptions/NotImplementedException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/NumbericOption.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/NumbericOption.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/PageMap.php" afterPath="$PROJECT_DIR$/src/picon/web/PageMap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/listeners/PageMapInitializationListenerCollection.php" afterPath="$PROJECT_DIR$/src/picon/web/listeners/PageMapInitializationListenerCollection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/request/resolver/PageRequestResolver.php" afterPath="$PROJECT_DIR$/src/picon/web/request/resolver/PageRequestResolver.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/request/target/PageRequestTarget.php" afterPath="$PROJECT_DIR$/src/picon/web/request/target/PageRequestTarget.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/request/target/PageRequestWithListenerTarget.php" afterPath="$PROJECT_DIR$/src/picon/web/request/target/PageRequestWithListenerTarget.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/repeater/PaginatingGridView.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/repeater/PaginatingGridView.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/sources/PanelMarkupSource.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/sources/PanelMarkupSource.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/PatternValidator.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/PatternValidator.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/PiconApplication.php" afterPath="$PROJECT_DIR$/src/picon/core/PiconApplication.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/PiconErrorHandler.php" afterPath="$PROJECT_DIR$/src/picon/core/PiconErrorHandler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/cache/PiconSerializer.php" afterPath="$PROJECT_DIR$/src/picon/core/cache/PiconSerializer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/picon/cache/PiconSerializerTest.php" afterPath="$PROJECT_DIR$/test/picon/cache/PiconSerializerTest.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/PiconWebApplication.php" afterPath="$PROJECT_DIR$/src/picon/web/PiconWebApplication.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/PiconWebResourceApplication.php" afterPath="$PROJECT_DIR$/src/picon/web/PiconWebResourceApplication.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/domain/PopupSettings.php" afterPath="$PROJECT_DIR$/src/picon/web/domain/PopupSettings.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/table/PropertyColumn.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/table/PropertyColumn.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/model/PropertyModel.php" afterPath="$PROJECT_DIR$/src/picon/web/model/PropertyModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/PropertyOption.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/PropertyOption.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/RadioGroup.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/RadioGroup.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/RangeLengthValidator.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/RangeLengthValidator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/RangeValidator.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/validation/RangeValidator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/request/target/RedirectRequestTarget.php" afterPath="$PROJECT_DIR$/src/picon/web/request/target/RedirectRequestTarget.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/annotations/Repository.php" afterPath="$PROJECT_DIR$/src/picon/core/annotations/Repository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/request/cycle/RequestCycle.php" afterPath="$PROJECT_DIR$/src/picon/web/request/cycle/RequestCycle.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/annotations/Resource.php" afterPath="$PROJECT_DIR$/src/picon/core/annotations/Resource.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/ResourceReference.php" afterPath="$PROJECT_DIR$/src/picon/web/ResourceReference.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/request/resolver/ResourceRequestResolver.php" afterPath="$PROJECT_DIR$/src/picon/web/request/resolver/ResourceRequestResolver.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/exceptions/RestartRequestOnPageException.php" afterPath="$PROJECT_DIR$/src/picon/web/exceptions/RestartRequestOnPageException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/picon/utilities/SerializableClosureTest.php" afterPath="$PROJECT_DIR$/test/picon/utilities/SerializableClosureTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/annotations/Service.php" afterPath="$PROJECT_DIR$/src/picon/core/annotations/Service.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/pages/SessionExpiredPage.php" afterPath="$PROJECT_DIR$/src/picon/web/pages/SessionExpiredPage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/jQuery/ui/SortableBehavior.php" afterPath="$PROJECT_DIR$/src/picon/web/jQuery/ui/SortableBehavior.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/tabs/StaticTabPanel.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/tabs/StaticTabPanel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/scanner/SubClassRule.php" afterPath="$PROJECT_DIR$/src/picon/core/scanner/SubClassRule.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/tabs/Tab.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/tabs/Tab.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/tabs/TabCollection.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/tabs/TabCollection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/testassets/domain/TestEnum.php" afterPath="$PROJECT_DIR$/test/testassets/domain/TestEnum.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/testassets/context/TestService.php" afterPath="$PROJECT_DIR$/test/testassets/context/TestService.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/testassets/context/TestServiceName.php" afterPath="$PROJECT_DIR$/test/testassets/context/TestServiceName.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/form/TextArea.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/form/TextArea.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/domain/xml/TextElement.php" afterPath="$PROJECT_DIR$/src/picon/core/domain/xml/TextElement.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/annotations/Transient.php" afterPath="$PROJECT_DIR$/src/picon/core/annotations/Transient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/markup/html/TransparentMarkupContainer.php" afterPath="$PROJECT_DIR$/src/picon/web/markup/html/TransparentMarkupContainer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/exceptions/UndefinedResourceException.php" afterPath="$PROJECT_DIR$/src/picon/core/exceptions/UndefinedResourceException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/exceptions/UnsupportedOperationException.php" afterPath="$PROJECT_DIR$/src/picon/core/exceptions/UnsupportedOperationException.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/application/WebResourceApplicationInitializer.php" afterPath="$PROJECT_DIR$/src/picon/web/application/WebResourceApplicationInitializer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/beans/composer.json" afterPath="$PROJECT_DIR$/src/picon/beans/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/context/composer.json" afterPath="$PROJECT_DIR$/src/picon/context/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/composer.json" afterPath="$PROJECT_DIR$/src/picon/core/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/database/composer.json" afterPath="$PROJECT_DIR$/src/picon/database/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/composer.json" afterPath="$PROJECT_DIR$/src/picon/web/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/model/WrappedCompoundModel.php" afterPath="$PROJECT_DIR$/src/picon/web/model/WrappedCompoundModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/domain/xml/XMLDocument.php" afterPath="$PROJECT_DIR$/src/picon/core/domain/xml/XMLDocument.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/exceptions/XMLException.php" afterPath="$PROJECT_DIR$/src/picon/core/exceptions/XMLException.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/domain/xml/XMLTag.php" afterPath="$PROJECT_DIR$/src/picon/core/domain/xml/XMLTag.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/domain/xml/XmlElement.php" afterPath="$PROJECT_DIR$/src/picon/core/domain/xml/XmlElement.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/picon/utilities/XmlParserTest.php" afterPath="$PROJECT_DIR$/test/picon/utilities/XmlParserTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/domain/xml/XmlTagType.php" afterPath="$PROJECT_DIR$/src/picon/core/domain/xml/XmlTagType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/elementlist.js" afterPath="$PROJECT_DIR$/docs/elementlist.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PiconFramework.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -126,57 +227,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/picon/web/request/target/PageRequestTarget.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/request/target/ExceptionPageRequestTarget.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/pages/ErrorPage.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/markup/html/form/RadioChoice.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/markup/html/form/CheckChoice.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/markup/html/form/AbstractSingleChoice.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/markup/html/form/DropDown.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/markup/html/form/RadioGroup.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/markup/html/form/CheckBoxGroup.php" />
-        <option value="$PROJECT_DIR$/demo/assets/forms/ValidationPage.php" />
-        <option value="$PROJECT_DIR$/demo/assets/forms/SpecialFields.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/jQuery/AbstractJQueryBehaviour.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/request/cycle/RequestCycle.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/request/target/AjaxRequestTarget.php" />
-        <option value="$PROJECT_DIR$/src/picon/utilities/SerializableClosure.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/request/target/RedirectRequestTarget.php" />
-        <option value="$PROJECT_DIR$/demo/assets/SourcePage.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/request/HeaderResponse.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/request/request/HeaderResponse.php" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/picon/beans/InitializingBean.php" />
-        <option value="$PROJECT_DIR$/src/picon/database/driver/database/driver/DatabaseDriver.php" />
-        <option value="$PROJECT_DIR$/src/picon/database/driver/DatabaseDriver.php" />
-        <option value="$PROJECT_DIR$/src/picon/database/exception/database/exception/SQLException.php" />
-        <option value="$PROJECT_DIR$/src/picon/database/driver/AbstractDatabaseDriver.php" />
-        <option value="$PROJECT_DIR$/src/picon/database/driver/MySqlDriver.php" />
-        <option value="$PROJECT_DIR$/src/picon/database/driver/MySqliDriver.php" />
-        <option value="$PROJECT_DIR$/src/picon/database/source/DataSource.php" />
-        <option value="$PROJECT_DIR$/src/picon/database/source/DataSourceFactory.php" />
-        <option value="$PROJECT_DIR$/src/picon/database/support/database/support/DaoSupport.php" />
-        <option value="$PROJECT_DIR$/src/picon/database/database/RowMapper.php" />
-        <option value="$PROJECT_DIR$/src/picon/database/CallbackRowMapper.php" />
-        <option value="$PROJECT_DIR$/src/picon/database/template/database/template/DataBaseOperations.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/Component.php" />
-        <option value="$PROJECT_DIR$/src/picon/database/template/DataBaseTemplate.php" />
-        <option value="$PROJECT_DIR$/src/picon/core/Types.php" />
-        <option value="$PROJECT_DIR$/src/picon/core/ConfigLoader.php" />
-        <option value="$PROJECT_DIR$/LICENCE" />
-        <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/src/picon/database/composer.json" />
-        <option value="$PROJECT_DIR$/src/picon/beans/composer.json" />
-        <option value="$PROJECT_DIR$/src/picon/context/composer.json" />
-        <option value="$PROJECT_DIR$/src/picon/core/composer.json" />
-        <option value="$PROJECT_DIR$/src/picon/web/composer.json" />
-        <option value="$PROJECT_DIR$/src/picon/context/ContextApplicationInitializer.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/application/WebResourceApplicationInitializer.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/PiconWebResourceApplication.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/PiconWebApplication.php" />
-        <option value="$PROJECT_DIR$/src/picon/core/BaseApplicationInitializer.php" />
-        <option value="$PROJECT_DIR$/src/picon/core/PiconApplication.php" />
-        <option value="$PROJECT_DIR$/src/picon/core/ApplicationInitializer.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/annotations/Repository.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/annotations/Resource.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/annotations/Service.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/cache/core/cache/CacheManager.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/cache/PiconSerializer.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/domain/CommonDomainBase.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/domain/Identifier.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/domain/Enum.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/domain/config/Config.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/domain/config/DataSourceConfig.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/domain/config/DataSourceType.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/domain/profile/ApplicationProfile.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/domain/xml/Comment.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/domain/xml/TextElement.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/domain/xml/XMLDocument.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/domain/xml/XmlElement.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/domain/xml/XMLTag.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/domain/xml/XmlTagType.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/exceptions/CacheException.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/exceptions/ConfigException.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/exceptions/DuplicatePageDefinitionException.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/exceptions/DuplicateResourceException.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/exceptions/IllegalStateException.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/exceptions/InvalidMarkupException.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/exceptions/MarkupNotFoundException.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/exceptions/NotImplementedException.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/exceptions/UndefinedResourceException.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/exceptions/UnsupportedOperationException.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/exceptions/XMLException.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/listeners/ApplicationConfigLoadListener.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/listeners/ApplicationContextLoadListener.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerConfigLoadListener.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerConfigLoadListenerCollection.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerContextLoadListener.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerContextLoadListenerCollection.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/listeners/ListenerCollection.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/scanner/AnnotationRule.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/scanner/ClassNameRule.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/scanner/ClassNamespaceRule.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/scanner/ClassScanner.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/scanner/ClassScannerRule.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/scanner/SubClassRule.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/Equalable.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/Args.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/utils/MarkupParser.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/Objects.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/utils/PropertyResolver.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/exceptions/FileException.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/utils/XMLParser.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/utils/SerializableClosure.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/utils/MarkupUtils.php" />
       </list>
     </option>
   </component>
@@ -254,7 +355,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="picon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PiconFramework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PiconFramework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="picon" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -264,7 +391,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PiconSample" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/picon/core/utils" />
     <property name="options.lastSelected" value="web-ide.project.structure" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -306,11 +433,11 @@
       <recent name="$PROJECT_DIR$/src/picon/core" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/picon/core" />
+      <recent name="$PROJECT_DIR$/src/picon/core/cache" />
+      <recent name="$PROJECT_DIR$/src/picon/core/annotations" />
       <recent name="$PROJECT_DIR$/src/picon/database/template" />
       <recent name="$PROJECT_DIR$/src/picon/database" />
-      <recent name="$PROJECT_DIR$/src/picon/database/exception" />
-      <recent name="$PROJECT_DIR$/src/picon/database/driver" />
-      <recent name="$PROJECT_DIR$/src/picon/core" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.PiconFramework">
@@ -500,180 +627,93 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/picon/web/request/WebResponse.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/annotations/Service.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36960986" vertical-offset="0" max-vertical-offset="825">
-          <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.04411765" vertical-offset="0" max-vertical-offset="340">
-          <caret line="1" column="59" selection-start-line="1" selection-start-column="59" selection-end-line="1" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/context/AbstractContextLoader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.0" vertical-offset="0" max-vertical-offset="1575">
-          <caret line="53" column="33" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.092402466" vertical-offset="0" max-vertical-offset="487">
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/context/ApplicationContext.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/annotations/Resource.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="750">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
+          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/context/AutoContextLoader.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/annotations/Repository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="825">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/context/ContextLoaderFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="511">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/context/Injector.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1080">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/context/ManualContextLoader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/core/cache/PiconSerializer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.523614" vertical-offset="0" max-vertical-offset="3270">
-          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
+          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/picon/core/cache/CacheManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4312115" vertical-offset="30" max-vertical-offset="2415">
-          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/beans/BeanFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="511">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/elementlist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.058708414" vertical-offset="0" max-vertical-offset="511">
-          <caret line="2" column="2422" selection-start-line="2" selection-start-column="2422" selection-end-line="2" selection-end-column="2422" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/beans/InitializingBean.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
+        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="2445">
           <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding>
+            <element signature="e#834#854#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/cache/PiconSerializer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.78439426" vertical-offset="2753" max-vertical-offset="3240">
+          <caret line="230" column="1" selection-start-line="230" selection-start-column="1" selection-end-line="230" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/mysqli.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/domain/Identifier.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1026694" vertical-offset="550" max-vertical-offset="48420">
-          <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/driver/AbstractDatabaseDriver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
-          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/driver/DatabaseDriver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="960">
-          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/driver/MySqlDriver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18480493" vertical-offset="0" max-vertical-offset="1335">
-          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/driver/MySqliDriver.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.123203285" vertical-offset="45" max-vertical-offset="1185">
-          <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/exception/SQLException.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
-          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/source/DataSource.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15400411" vertical-offset="0" max-vertical-offset="705">
+        <state vertical-scroll-proportion="0.0862423" vertical-offset="33" max-vertical-offset="1575">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/source/DataSourceFactory.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/domain/CommonDomainBase.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="840">
-          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.11704312" vertical-offset="3" max-vertical-offset="1440">
+          <caret line="22" column="27" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/support/database/support/DaoSupport.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/domain/Enum.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.75" vertical-offset="78" max-vertical-offset="975">
-          <caret line="37" column="15" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.21560575" vertical-offset="0" max-vertical-offset="2310">
+          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+          <folding>
+            <element signature="e#835#863#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/domain/config/Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21560575" vertical-offset="0" max-vertical-offset="1020">
+          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/RowMapper.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/domain/config/DataSourceConfig.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8151951" vertical-offset="263" max-vertical-offset="750">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding>
+            <element signature="e#834#873#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/domain/config/DataSourceType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
           <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
@@ -681,221 +721,343 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/CallbackRowMapper.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/domain/profile/ApplicationProfile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="615">
-          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/template/DataBaseOperations.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7864476" vertical-offset="0" max-vertical-offset="1050">
-          <caret line="76" column="30" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/Component.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28747433" vertical-offset="295" max-vertical-offset="17520">
-          <caret line="55" column="1" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/template/DataBaseTemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26078027" vertical-offset="1088" max-vertical-offset="1740">
-          <caret line="99" column="22" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/core/Types.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33880904" vertical-offset="0" max-vertical-offset="487">
-          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/core/ConfigLoader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3408624" vertical-offset="728" max-vertical-offset="1605">
+        <state vertical-scroll-proportion="0.0862423" vertical-offset="33" max-vertical-offset="630">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE.md">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/domain/xml/Comment.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029354207" vertical-offset="0" max-vertical-offset="10200">
-          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding>
+            <element signature="e#832#862#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/domain/xml/TextElement.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21560575" vertical-offset="0" max-vertical-offset="555">
+          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+          <folding>
+            <element signature="e#832#871#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/domain/xml/XmlElement.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/404.html">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/domain/xml/XMLDocument.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7845">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.15400411" vertical-offset="0" max-vertical-offset="585">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="e#832#871#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/.htaccess">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/domain/xml/XmlTagType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029354207" vertical-offset="0" max-vertical-offset="511">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.15400411" vertical-offset="0" max-vertical-offset="487">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_psr4.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/domain/xml/XMLTag.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21560575" vertical-offset="0" max-vertical-offset="487">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state vertical-scroll-proportion="57.208332" vertical-offset="2318" max-vertical-offset="2805">
+          <caret line="81" column="30" selection-start-line="81" selection-start-column="30" selection-end-line="81" selection-end-column="30" />
+          <folding>
+            <element signature="e#832#852#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/exceptions/CacheException.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="225">
+          <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/autoload.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/exceptions/ConfigException.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18480493" vertical-offset="0" max-vertical-offset="487">
-          <caret line="6" column="69" selection-start-line="6" selection-start-column="69" selection-end-line="6" selection-end-column="69" />
+        <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="360">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/composer/ClassLoader.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/exceptions/DuplicatePageDefinitionException.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6165">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.46201232" vertical-offset="0" max-vertical-offset="487">
+          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.lock">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/exceptions/DuplicateResourceException.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4927235" vertical-offset="1199" max-vertical-offset="1680">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="345">
+          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_real.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/exceptions/IllegalStateException.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55852157" vertical-offset="88" max-vertical-offset="840">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state vertical-scroll-proportion="-8.75" vertical-offset="0" max-vertical-offset="375">
+          <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/exceptions/InvalidMarkupException.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61601645" vertical-offset="0" max-vertical-offset="540">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="28" selection-end-column="3" />
+        <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="375">
+          <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/composer.json">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/exceptions/MarkupNotFoundException.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5852156" vertical-offset="0" max-vertical-offset="487">
-          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        <state vertical-scroll-proportion="-11.875" vertical-offset="0" max-vertical-offset="375">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/context/composer.json">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/exceptions/NotImplementedException.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64681727" vertical-offset="0" max-vertical-offset="487">
-          <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+        <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="360">
+          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/beans/composer.json">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/exceptions/UndefinedResourceException.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61601645" vertical-offset="0" max-vertical-offset="487">
-          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5852156" vertical-offset="0" max-vertical-offset="487">
-          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/core/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64681727" vertical-offset="0" max-vertical-offset="487">
-          <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/context/ContextApplicationInitializer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="840">
-          <caret line="32" column="27" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/application/WebResourceApplicationInitializer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="450">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/PiconWebResourceApplication.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="825">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/PiconWebApplication.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="2340">
+        <state vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="360">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/core/BaseApplicationInitializer.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/exceptions/UnsupportedOperationException.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="705">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="360">
+          <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/core/PiconApplication.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/exceptions/XMLException.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.625" vertical-offset="1278" max-vertical-offset="2610">
-          <caret line="106" column="64" selection-start-line="106" selection-start-column="64" selection-end-line="106" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.24640657" vertical-offset="0" max-vertical-offset="487">
+          <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/core/ApplicationInitializer.php">
+    <entry file="file://$PROJECT_DIR$/src/picon/core/listeners/ApplicationConfigLoadListener.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5174538" vertical-offset="183" max-vertical-offset="1080">
-          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="555">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding>
+            <element signature="e#837#903#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/listeners/ApplicationContextLoadListener.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="570">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding>
+            <element signature="e#838#905#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerConfigLoadListener.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerConfigLoadListenerCollection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.125" vertical-offset="33" max-vertical-offset="540">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerContextLoadListener.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/listeners/ApplicationInitializerContextLoadListenerCollection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.030800821" vertical-offset="45" max-vertical-offset="555">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/listeners/ListenerCollection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22997947" vertical-offset="623" max-vertical-offset="1110">
+          <caret line="67" column="7" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/scanner/AnnotationRule.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11704312" vertical-offset="18" max-vertical-offset="630">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/scanner/ClassNameRule.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.030800821" vertical-offset="45" max-vertical-offset="645">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/scanner/ClassNamespaceRule.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.05544148" vertical-offset="18" max-vertical-offset="555">
+          <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/scanner/ClassScanner.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="1710">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/scanner/ClassScannerRule.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/scanner/SubClassRule.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.030800821" vertical-offset="45" max-vertical-offset="645">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/Equalable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/Args.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4312115" vertical-offset="0" max-vertical-offset="2370">
+          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+          <folding>
+            <element signature="e#828#840#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/Objects.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.030800821" vertical-offset="45" max-vertical-offset="540">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/utils/MarkupParser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="1530">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding>
+            <element signature="e#834#849#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/exceptions/FileException.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40041068" vertical-offset="0" max-vertical-offset="487">
+          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/utils/SerializableClosure.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15400411" vertical-offset="0" max-vertical-offset="6990">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/utils/PropertyResolver.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.030800821" vertical-offset="45" max-vertical-offset="2025">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/utils/MarkupUtils.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43737167" vertical-offset="42" max-vertical-offset="2160">
+          <caret line="35" column="63" selection-start-line="35" selection-start-column="63" selection-end-line="35" selection-end-column="63" />
+          <folding>
+            <element signature="e#834#864#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/utils/XMLParser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.1088295" vertical-offset="2249" max-vertical-offset="2760">
+          <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
+          <folding>
+            <element signature="e#834#874#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -20,9 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\listeners;
 
-use closure;
+use picon\core\Args;
 
 /**
  * Represents a collection of listeners that are treated as one listener
@@ -64,9 +64,9 @@ abstract class ListenerCollection
     
     /**
      *
-     * @param closure $callback
+     * @param callable $callback
      */
-    public function notify(closure $callback)
+    public function notify(callable $callback)
     {
         Args::callBackArgs($callback, 1, 'callback');
         

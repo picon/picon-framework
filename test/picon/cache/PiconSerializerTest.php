@@ -22,6 +22,8 @@
 
 namespace picon;
 
+use picon\core\cache\PiconSerializer;
+
 require_once(dirname(__FILE__).'/../../AbstractPiconTest.php');
 
 class PiconSerializerTest extends AbstractPiconTest

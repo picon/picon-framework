@@ -28,7 +28,7 @@
 
 namespace picon\web;
 
-use picon\ApplicationInitializer;
+use picon\core\ApplicationInitializer;
 
 /**
  * An empty Application Initialiser which does nothing. This skimmed down

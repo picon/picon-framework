@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\MarkupUtils;
+use picon\core\utils\MarkupUtils;
 
 /**
  * A mark-up source for panels
@@ -39,7 +39,7 @@ class PanelMarkupSource extends AbstractAssociatedMarkupSource
         
         if($panel==null)
         {
-            throw new \MarkupNotFoundException(sprintf("Found markup for panel %s however there is no picon:panel tag.", $component->getId(0)));
+            throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Found markup for panel %s however there is no picon:panel tag.", $component->getId(0)));
         }
         
         $tag->setChildren(array($panel));

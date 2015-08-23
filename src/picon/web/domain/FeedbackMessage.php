@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\ComonDomainBase;
+use picon\core\domain\CommonDomainBase;
 
 /**
  * A feedback message for use by the feedback message model and feedback panel
@@ -30,7 +30,7 @@ use picon\ComonDomainBase;
  * @author Martin Cassidy
  * @package web/domain
  */
-class FeedbackMessage extends ComonDomainBase
+class FeedbackMessage extends CommonDomainBase
 {
     const FEEDBACK_MEESAGE_FATEL = '1';
     const FEEDBACK_MEESAGE_ERROR = '2';

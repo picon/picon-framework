@@ -41,7 +41,7 @@ class ListMultiple extends AbstractMultipleChoice
         $object = $this->getModelObject();
         if($object!=null && !is_array($object))
         {
-            throw new \IllegalStateException('ListMultiple must have an array model');
+            throw new \picon\core\exceptions\IllegalStateException('ListMultiple must have an array model');
         }
     }
     

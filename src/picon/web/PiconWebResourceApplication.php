@@ -28,7 +28,7 @@
 
 namespace picon\web;
 
-use picon\PiconApplication;
+use picon\core\PiconApplication;
 
 
 /**
@@ -59,7 +59,7 @@ class PiconWebResourceApplication extends PiconApplication
         }
         else
         {
-            $target = new ExceptionPageRequestTarget(new \UnsupportedOperationException("Resource application can only handle a resource request"));
+            $target = new ExceptionPageRequestTarget(new \picon\core\exceptions\UnsupportedOperationException("Resource application can only handle a resource request"));
         }
         $target->respond($response);
     }

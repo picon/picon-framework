@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\XMLTag;
+use picon\core\xml\XMLTag;
 
 /**
  * An xml tag that is a markup element

@@ -23,7 +23,7 @@
 namespace picon\web;
 
 use picon\core\Types;
-use picon\XmlTagType;
+use picon\core\xml\XmlTagType;
 
 /**
  * A text area form component

@@ -25,6 +25,8 @@ namespace picon;
 /**
  * Same constants as defined normally by index.php
  */
+use picon\core\ConfigLoader;
+
 define("PICON_DIRECTORY", __DIR__.'\\..\\src\\picon');
 define("ASSETS_DIRECTORY", __DIR__.'\\testassets');
 define("CONFIG_FILE", __DIR__.'\\config\\picon.xml');

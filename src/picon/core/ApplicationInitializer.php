@@ -27,7 +27,8 @@
  * 
  */
 
-namespace picon;
+namespace picon\core;
+use picon\core\PiconErrorHandler;
 
 /**
  * ApplicationInitialiser works like a bootstrap. This is the first step

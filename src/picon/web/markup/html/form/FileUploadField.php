@@ -50,7 +50,7 @@ class FileUploadField extends FormComponent
     {
         if(!($this->getModel() instanceof FileModel))
         {
-            throw new \IllegalStateException(sprintf("A file upload field must have a file model, actual %s", gettype($this->getModelObject())));
+            throw new \picon\core\exceptions\IllegalStateException(sprintf("A file upload field must have a file model, actual %s", gettype($this->getModelObject())));
         }
     }
     

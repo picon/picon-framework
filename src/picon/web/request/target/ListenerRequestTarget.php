@@ -22,8 +22,8 @@
 
 namespace picon\web;
 
-use picon\Identifiable;
-use picon\Identifier;
+use picon\core\Identifiable;
+use picon\core\domain\Identifier;
 
 /**
  * Request target for invoking listeners

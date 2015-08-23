@@ -22,8 +22,8 @@
 
 namespace picon\web;
 
-use picon\Args;
-use picon\ComonDomainBase;
+use picon\core\Args;
+use picon\core\domain\CommonDomainBase;
 
 /**
  * An array of tabs which are added to a tab panel
@@ -31,7 +31,7 @@ use picon\ComonDomainBase;
  * @author Martin Cassidy
  * @package web/markup/html/tabs
  */
-class TabCollection extends ComonDomainBase
+class TabCollection extends CommonDomainBase
 {
     private $tabs = array();
     

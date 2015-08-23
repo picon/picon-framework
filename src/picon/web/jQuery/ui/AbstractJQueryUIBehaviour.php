@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\PiconApplication;
+use picon\core\PiconApplication;
 
 /**
  * Adds on the jQuery ui resources through a render head listener

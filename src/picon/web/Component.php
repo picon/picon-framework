@@ -23,14 +23,14 @@
 namespace picon\web;
 
 use Exception;
-use picon\Args;
-use picon\Identifiable;
-use picon\Identifier;
-use picon\InjectOnWakeup;
-use picon\PiconApplication;
-use picon\TextElement;
+use picon\core\Args;
+use picon\core\Identifiable;
+use picon\core\domain\Identifier;
+use picon\core\InjectOnWakeup;
+use picon\core\PiconApplication;
+use picon\core\xml\TextElement;
 use picon\web\request\HeaderResponse;
-use picon\XmlTagType;
+use picon\core\xml\XmlTagType;
 
 /**
  * Component sersvices as the hightest and most abstract super class for all
@@ -174,7 +174,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
         $this->onInitialize();
         if(!$this->flagInitializeParentCall)
         {
-            throw new \IllegalStateException(sprintf("Parent implementation of onInitialize for component %s was not called", $this->id));
+            throw new \picon\core\exceptions\IllegalStateException(sprintf("Parent implementation of onInitialize for component %s was not called", $this->id));
         }
     }
     
@@ -224,7 +224,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
                 }
                 else
                 {
-                    throw new \MarkupNotFoundException(sprintf("Component %s has no associated markup and no parent to get markup from", $this->id));
+                    throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Component %s has no associated markup and no parent to get markup from", $this->id));
                 }
                 
             }
@@ -362,7 +362,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
 
         if($markup==null)
         {
-            throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
+            throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
         }
         $this->onRender();
     }
@@ -376,7 +376,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
 
         if($markup==null)
         {
-            throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
+            throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
         }
         /* @todo this cloning is a quick fix, markup should be imutable until 
          * this point were a mutable version is created for use by the component 
@@ -464,7 +464,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
 
             if($markup==null)
             {
-                throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
+                throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
             }
         }
         
@@ -503,7 +503,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
                 }
                 else
                 {
-                    throw new \InvalidMarkupException(sprintf("Markup element %s may not contain a child with a picon:id as the component %s cannot not have any child components", $element->getName(), $this->id));
+                    throw new \picon\core\exceptions\InvalidMarkupException(sprintf("Markup element %s may not contain a child with a picon:id as the component %s cannot not have any child components", $element->getName(), $this->id));
                 }
             }
             elseif($element instanceof TextElement)
@@ -604,7 +604,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     {
         if($tag->getName()!=$tagName)
         {
-            throw new \IllegalStateException(sprintf("An %s component can only be added to the HTML element %s", get_called_class(), $tagName));
+            throw new \picon\core\exceptions\IllegalStateException(sprintf("An %s component can only be added to the HTML element %s", get_called_class(), $tagName));
         }
     }
     
@@ -621,7 +621,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
         
         if(!array_key_exists($attribute, $attributes) || $attributes[$attribute] != $value)
         {
-            throw new \IllegalStateException(sprintf("An %s component can only be added to a tag with a %s of %s", get_called_class(), $attribute, $value));
+            throw new \picon\core\exceptions\IllegalStateException(sprintf("An %s component can only be added to a tag with a %s of %s", get_called_class(), $attribute, $value));
         }
     }
     
@@ -809,7 +809,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
         $page = $this->getPage();
         if($page==null)
         {
-            throw new \IllegalStateException(sprintf("Unable to generate a path for component %s as it has an incomplete hierarchy.", $this->id));
+            throw new \picon\core\exceptions\IllegalStateException(sprintf("Unable to generate a path for component %s as it has an incomplete hierarchy.", $this->id));
         }
         
         $path = $this->getId();

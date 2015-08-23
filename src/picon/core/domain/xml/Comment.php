@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core\xml;
+
+use picon\core\xml\XmlElement;
+use picon\core\domain\CommonDomainBase;
 
 /**
  * A comment element of an xml document
@@ -28,7 +31,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package domain/xml
  */
-class Comment extends ComonDomainBase implements XmlElement
+class Comment extends CommonDomainBase implements XmlElement
 {
     private $comment;
     

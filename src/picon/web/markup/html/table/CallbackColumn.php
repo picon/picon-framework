@@ -22,7 +22,7 @@
 
 namespace picon\web;
 
-use picon\Args;
+use picon\core\Args;
 
 /**
  * A column which will invoke a callback to populate each cell
@@ -46,7 +46,7 @@ class CallbackColumn extends AbstractColumn
         $component = $callable($componentId, $model);
         if($component==null || !($component instanceof Component) || $component->getId()!=$componentId)
         {
-            throw new \IllegalStateException('Callback for CallbackColumn is expected to return a componet with the given id');
+            throw new \picon\core\exceptions\IllegalStateException('Callback for CallbackColumn is expected to return a componet with the given id');
         }
         $item->add($component);
     }
