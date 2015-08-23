@@ -5,7 +5,89 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a72f99cd-66b9-4e3c-82a3-0972bffa1da6" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/.htaccess" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/AbstractAuthorisedPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/AbstractPage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/AbstractPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/CodeOutputPanel.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/CodeOutputPanel.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/Example.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/ExampleType.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/HomePage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/HomePage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/LoginPage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/LoginPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/SamplePageClassAuthorisationStrategy.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/SourcePage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/SourcePage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/ajax/AjaxButtonPage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/ajax/AjaxButtonPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/ajax/AjaxLinkPage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/ajax/AjaxLinkPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/auth/AuthorisedPage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/auth/AuthorisedPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/datatable/DataTablePage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/datatable/DataTablePage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/datatable/SampleDataProvider.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/datatable/TableEntryDomain.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/ExampleDomain.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/FormPage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/FormPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/SpecialFields.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/SpecialFields.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/ValidationPage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/forms/ValidationPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/LabelPage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/LabelPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/LinkPage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/LinkPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/ListPage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/ListPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/TabPanelPage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/TabPanelPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/tabs/TabOnePanel.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/tabs/TabOnePanel.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/tabs/TabTwoPanel.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/general/tabs/TabTwoPanel.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/BorderPage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/BorderPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/MarkupInheritancePage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/MarkupInheritancePage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/PanelPage.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/PanelPage.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/SampleBorder.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/SampleBorder.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/SamplePanel.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/assets/layout/SamplePanel.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/cache/.htaccess" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/cache/application_data/application_context.pcx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/cache/application_data/auto_loader.pcx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/cache/application_data/map_mounted.pcx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/cache/application_data/pagemap.pcx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/cache/application_data/picon_config.pcx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/composer.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/config/.htaccess" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/config/picon.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/css/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/css/source.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/resource.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/picon/core/AutoLoader.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/TestAutoLoader.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/ApplicationInitializer.php" afterPath="$PROJECT_DIR$/src/picon/core/ApplicationInitializer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/BaseApplicationInitializer.php" afterPath="$PROJECT_DIR$/src/picon/core/BaseApplicationInitializer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/context/ContextApplicationInitializer.php" afterPath="$PROJECT_DIR$/src/picon/context/ContextApplicationInitializer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/PiconApplication.php" afterPath="$PROJECT_DIR$/src/picon/core/PiconApplication.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/PiconWebApplication.php" afterPath="$PROJECT_DIR$/src/picon/web/PiconWebApplication.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/PiconWebResourceApplication.php" afterPath="$PROJECT_DIR$/src/picon/web/PiconWebResourceApplication.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/application/WebResourceApplicationInitializer.php" afterPath="$PROJECT_DIR$/src/picon/web/application/WebResourceApplicationInitializer.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/beans/composer.json" afterPath="$PROJECT_DIR$/src/picon/beans/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/context/composer.json" afterPath="$PROJECT_DIR$/src/picon/context/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/core/composer.json" afterPath="$PROJECT_DIR$/src/picon/core/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/database/composer.json" afterPath="$PROJECT_DIR$/src/picon/database/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/picon/web/composer.json" afterPath="$PROJECT_DIR$/src/picon/web/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
     </list>
     <ignored path="PiconFramework.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,18 +118,7 @@
     <favorites_list name="PiconFramework" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/composer.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.80082136" vertical-offset="0" max-vertical-offset="540">
-              <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,12 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/classfix.php" />
-        <option value="$PROJECT_DIR$/demo/assets/auth/AuthorisedPage.php" />
-        <option value="$PROJECT_DIR$/demo/assets/SamplePageClassAuthorisationStrategy.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/security/authorisation/AbstractPageClassAuthorisationStrategy.php" />
-        <option value="$PROJECT_DIR$/src/picon/web/security/authorisation/DirectToPageComponentNotAuthorisedListener.php" />
-        <option value="$PROJECT_DIR$/demo/assets/LoginPage.php" />
         <option value="$PROJECT_DIR$/src/picon/web/request/target/PageRequestTarget.php" />
         <option value="$PROJECT_DIR$/src/picon/web/request/target/ExceptionPageRequestTarget.php" />
         <option value="$PROJECT_DIR$/src/picon/web/pages/ErrorPage.php" />
@@ -80,7 +145,6 @@
         <option value="$PROJECT_DIR$/demo/assets/SourcePage.php" />
         <option value="$PROJECT_DIR$/src/picon/web/request/HeaderResponse.php" />
         <option value="$PROJECT_DIR$/src/picon/web/request/request/HeaderResponse.php" />
-        <option value="$PROJECT_DIR$/src/picon/core/PiconApplication.php" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/picon/beans/InitializingBean.php" />
         <option value="$PROJECT_DIR$/src/picon/database/driver/database/driver/DatabaseDriver.php" />
@@ -99,13 +163,20 @@
         <option value="$PROJECT_DIR$/src/picon/database/template/DataBaseTemplate.php" />
         <option value="$PROJECT_DIR$/src/picon/core/Types.php" />
         <option value="$PROJECT_DIR$/src/picon/core/ConfigLoader.php" />
-        <option value="$PROJECT_DIR$/src/picon/core/composer.json" />
-        <option value="$PROJECT_DIR$/src/picon/web/composer.json" />
+        <option value="$PROJECT_DIR$/LICENCE" />
+        <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/src/picon/database/composer.json" />
         <option value="$PROJECT_DIR$/src/picon/beans/composer.json" />
         <option value="$PROJECT_DIR$/src/picon/context/composer.json" />
-        <option value="$PROJECT_DIR$/LICENCE" />
-        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/src/picon/core/composer.json" />
+        <option value="$PROJECT_DIR$/src/picon/web/composer.json" />
+        <option value="$PROJECT_DIR$/src/picon/context/ContextApplicationInitializer.php" />
+        <option value="$PROJECT_DIR$/src/picon/web/application/WebResourceApplicationInitializer.php" />
+        <option value="$PROJECT_DIR$/src/picon/web/PiconWebResourceApplication.php" />
+        <option value="$PROJECT_DIR$/src/picon/web/PiconWebApplication.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/BaseApplicationInitializer.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/PiconApplication.php" />
+        <option value="$PROJECT_DIR$/src/picon/core/ApplicationInitializer.php" />
       </list>
     </option>
   </component>
@@ -183,11 +254,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="picon" />
+              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -377,19 +444,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298611" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.329602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329602" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298611" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.329602" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -398,7 +466,6 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.51119405" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.329602" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39925373" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -433,59 +500,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/picon/web/ajax/AbstractAjaxBehaviour.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2012321" vertical-offset="0" max-vertical-offset="1935">
-          <caret line="57" column="88" selection-start-line="57" selection-start-column="88" selection-end-line="57" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/request/request/HeaderResponse.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="1620">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/request/Response.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5544148" vertical-offset="0" max-vertical-offset="487">
-          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/request/Request.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.137577" vertical-offset="338" max-vertical-offset="825">
-          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/request/UrlBuilder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="1470">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/request/WebRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="1695">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/picon/web/request/WebResponse.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36960986" vertical-offset="0" max-vertical-offset="825">
           <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/core/PiconApplication.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46201232" vertical-offset="1185" max-vertical-offset="2910">
-          <caret line="119" column="79" selection-start-line="119" selection-start-column="79" selection-end-line="119" selection-end-column="79" />
         </state>
       </provider>
     </entry>
@@ -500,6 +518,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-20.0" vertical-offset="0" max-vertical-offset="1575">
           <caret line="53" column="33" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -507,6 +526,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="750">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -514,13 +534,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="825">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/context/ContextApplicationInitializer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -528,6 +542,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="511">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -535,6 +550,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1080">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -542,6 +558,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -549,6 +566,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.523614" vertical-offset="0" max-vertical-offset="3270">
           <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -556,6 +574,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4312115" vertical-offset="30" max-vertical-offset="2415">
           <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -563,6 +582,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="511">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -578,6 +598,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
           <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -600,6 +621,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="960">
           <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -607,6 +629,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18480493" vertical-offset="0" max-vertical-offset="1335">
           <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -614,6 +637,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.123203285" vertical-offset="45" max-vertical-offset="1185">
           <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -621,6 +645,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="487">
           <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -628,6 +653,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15400411" vertical-offset="0" max-vertical-offset="705">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -635,6 +661,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.123203285" vertical-offset="0" max-vertical-offset="840">
           <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -642,6 +669,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.75" vertical-offset="78" max-vertical-offset="975">
           <caret line="37" column="15" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -665,6 +693,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.7864476" vertical-offset="0" max-vertical-offset="1050">
           <caret line="76" column="30" selection-start-line="76" selection-start-column="30" selection-end-line="76" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -688,6 +717,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33880904" vertical-offset="0" max-vertical-offset="487">
           <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -695,42 +725,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.3408624" vertical-offset="728" max-vertical-offset="1605">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/web/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49281314" vertical-offset="0" max-vertical-offset="487">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/database/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49281314" vertical-offset="0" max-vertical-offset="487">
-          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/beans/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49281314" vertical-offset="0" max-vertical-offset="487">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/core/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40041068" vertical-offset="0" max-vertical-offset="487">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/picon/context/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61601645" vertical-offset="0" max-vertical-offset="487">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -802,8 +797,104 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.80082136" vertical-offset="0" max-vertical-offset="540">
-          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.61601645" vertical-offset="0" max-vertical-offset="540">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="28" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/database/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5852156" vertical-offset="0" max-vertical-offset="487">
+          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/context/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64681727" vertical-offset="0" max-vertical-offset="487">
+          <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/beans/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61601645" vertical-offset="0" max-vertical-offset="487">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/web/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5852156" vertical-offset="0" max-vertical-offset="487">
+          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64681727" vertical-offset="0" max-vertical-offset="487">
+          <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/context/ContextApplicationInitializer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="840">
+          <caret line="32" column="27" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/web/application/WebResourceApplicationInitializer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="450">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/web/PiconWebResourceApplication.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="825">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/web/PiconWebApplication.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="2340">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/BaseApplicationInitializer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="705">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/PiconApplication.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.625" vertical-offset="1278" max-vertical-offset="2610">
+          <caret line="106" column="64" selection-start-line="106" selection-start-column="64" selection-end-line="106" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/picon/core/ApplicationInitializer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5174538" vertical-offset="183" max-vertical-offset="1080">
+          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
           <folding />
         </state>
       </provider>

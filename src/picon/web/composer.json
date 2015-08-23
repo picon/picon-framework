@@ -15,5 +15,10 @@
   ],
   "require": {
     "picon/core": "0.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "picon\\web\\": "src/picon/web/"
+    }
   }
 }

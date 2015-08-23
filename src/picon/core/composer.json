@@ -16,5 +16,10 @@
   "require": {
     "psr/log": "1.0.0",
     "mindplay/annotations": "1.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "picon\\core\\": "src/picon/core/"
+    }
   }
 }

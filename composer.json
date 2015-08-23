@@ -20,11 +20,11 @@
   },
   "autoload": {
     "psr-4": {
-      "picon\\beans\\": "src/picon/beans",
-      "picon\\core\\": "src/picon/core",
-      "picon\\context\\": "src/picon/context",
-      "picon\\database\\": "src/picon/database",
-      "picon\\web\\": "src/picon/web"
+      "picon\\beans\\": "src/picon/beans/",
+      "picon\\core\\": "src/picon/core/",
+      "picon\\context\\": "src/picon/context/",
+      "picon\\database\\": "src/picon/database/",
+      "picon\\web\\": "src/picon/web/"
     }
   }
 }

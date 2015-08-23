@@ -32,8 +32,6 @@ use picon\BaseApplicationInitializer;
 use picon\beans\InitializingBean;
 use picon\PiconApplication;
 
-require_once(dirname(__FILE__)."/../core/BaseApplicationInitializer.php");
-
 /**
  * An Application Initialiser which load context
  *

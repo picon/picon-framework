@@ -5,11 +5,8 @@
       <paths name="Local">
         <serverdata>
           <mappings>
-            <mapping deploy="picon" local="$PROJECT_DIR$" web="/picon/demo" />
+            <mapping deploy="" local="" web="" />
           </mappings>
-          <excludedPaths>
-            <excludedPath local="true" path="/Library/WebServer/Documents/picon/demo/cache" />
-          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>

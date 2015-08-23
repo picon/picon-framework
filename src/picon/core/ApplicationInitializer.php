@@ -28,8 +28,6 @@
  */
 
 namespace picon;
-require_once("AutoLoader.php");
-require_once('PiconErrorHandler.php');
 
 /**
  * ApplicationInitialiser works like a bootstrap. This is the first step
@@ -46,27 +44,14 @@ require_once('PiconErrorHandler.php');
 abstract class ApplicationInitializer
 {
     const CONFIG_RESOURCE_NAME = 'picon_config';
-    
-    private $autoLoader;
+
     private $errorHandler;
     
     private static $dirs = array();
     
     public function __construct()
     {
-        $this->autoLoader = new AutoLoader();
         $this->errorHandler = new PiconErrorHandler;
-    }
-    
-    /**
-     * Add a directory to the class auto load scanner for a particular namespace
-     * @param String $directory The directory to scan
-     * @param String $namespace The namespace (optional, if your class is in
-     * the default namespace leave this blank)
-     */
-    public function addScannedDirectory($directory, $namespace = 'default')
-    {
-        $this->autoLoader->addScannedDirectory($directory, $namespace);
     }
     
     /**

@@ -29,15 +29,11 @@
 
 namespace picon;
 
-require_once(dirname(__FILE__)."/../core/ApplicationInitializer.php");
-
 //Andendum must bypass the auto loader
 require_once(dirname(__FILE__) . "/addendum/annotation_parser.php");
 require_once(dirname(__FILE__) . "/addendum/annotations.php");
 require_once(dirname(__FILE__) . "/addendum/doc_comment.php");
 
-require_once(dirname(__FILE__) . "/../cache/CacheManager.php");
-require_once(dirname(__FILE__) . "/../cache/PiconSerializer.php");
 
 /**
  * This is the main class for a Picon Application.
@@ -109,22 +105,6 @@ abstract class PiconApplication
         $GLOBALS[self::GLOBAL_APPLICATION_KEY] = $this;
 
         $this->initialiser = $this->getApplicationInitializer();
-
-        //@todo sort this out once the namespaces are all correct and get this working with composer
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY, 'picon');
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/annotations");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/annotations");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/exceptions");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/pages");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web", "picon\\web");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/request", "picon\\web\\request");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/security", "picon\\web\\security");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/security/authorisation", "picon\\web\\security\\authorisation");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/context", "picon\\context");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/markup/html/form", "picon\\web\\markup\\html\\form");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/ajax/markup/html", "picon\\web\\ajax\\markup\\html");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/ajax", "picon\\web\\ajax");
-        $this->initialiser->addScannedDirectory(ASSETS_DIRECTORY);
 
         $this->internalInit();
 

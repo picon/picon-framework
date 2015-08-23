@@ -30,8 +30,6 @@ namespace picon\web;
 
 use picon\PiconApplication;
 
-require_once(dirname(__FILE__)."/..//core/PiconApplication.php");
-require_once(dirname(__FILE__)."/application/WebResourceApplicationInitializer.php");
 
 /**
  * A Picon Application for generating resources used within a web pages.

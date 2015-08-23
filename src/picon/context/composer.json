@@ -16,5 +16,10 @@
   "require": {
     "picon/beans": "0.2",
     "picon/core": "0.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "picon\\context\\": "src/picon/context/"
+    }
   }
 }

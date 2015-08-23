@@ -28,8 +28,6 @@
 
 namespace picon;
 
-require_once(dirname(__FILE__)."/ApplicationInitializer.php");
-
 /**
  * The base Application Initializer which loads only the config
  *

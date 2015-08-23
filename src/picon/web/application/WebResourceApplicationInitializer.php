@@ -30,8 +30,6 @@ namespace picon\web;
 
 use picon\ApplicationInitializer;
 
-require_once(dirname(__FILE__)."/../../core/ApplicationInitializer.php");
-
 /**
  * An empty Application Initialiser which does nothing. This skimmed down
  * version is used for web resources

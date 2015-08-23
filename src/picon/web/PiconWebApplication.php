@@ -32,10 +32,6 @@ use picon\ApplicationContextLoadListener;
 use picon\PiconApplication;
 use picon\web\security\WebApplicationSecuritySettings;
 
-require_once(dirname(__FILE__)."/../core/PiconApplication.php");
-require_once(dirname(__FILE__)."/application/WebApplicationInitializer.php");
-
-
 /**
  * A Picon Application for producing web pages
  *
