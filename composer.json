@@ -26,5 +26,8 @@
       "picon\\database\\": "src/picon/database/",
       "picon\\web\\": "src/picon/web/"
     }
+  },
+  "archive": {
+    "exclude": ["/test", "/docs"]
   }
 }
