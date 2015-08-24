@@ -22,7 +22,7 @@
 
 namespace picon\web\behaviour;
 
-use picon\web\AbstractBehaviour;
+use picon\web\behaviour\AbstractBehaviour;
 use picon\web\Component;
 use picon\web\domain\ComponentTag;
 use picon\web\model\Model;

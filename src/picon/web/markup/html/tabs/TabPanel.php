@@ -26,6 +26,7 @@ use picon\web\markup\html\basic\Label;
 use picon\web\markup\html\link\Link;
 use picon\web\markup\html\panel\EmptyPanel;
 use picon\web\markup\html\panel\Panel;
+use picon\web\markup\html\repeater\ListItem;
 use picon\web\markup\html\repeater\ListView;
 use picon\web\model\ArrayModel;
 use picon\web\model\BasicModel;
@@ -63,8 +64,8 @@ class TabPanel extends Panel
     {
         parent::onInitialize();
         $me = $this;
-        //@todo add the type hint back into the closure when the serializer can handle them
-        $this->add(new ListView("tab", function($item) use ($me)
+        $tabs = $this->collection->tabs;
+        $this->add(new ListView("tab", function(ListItem $item) use ($me)
         {
             $tab = $item->getModelObject();
             $link = $me->newLink('link', $item->getIndex());
@@ -75,7 +76,7 @@ class TabPanel extends Panel
             
             $item->add($link);
             $link->add(new Label('name', new BasicModel($tab->name)));
-        }, new ArrayModel($this->collection->tabs)));
+        }, new ArrayModel($tabs)));
     }
     
     public function newLink($id, $index)
