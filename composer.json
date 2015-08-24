@@ -24,7 +24,8 @@
       "picon\\core\\": "src/picon/core/",
       "picon\\context\\": "src/picon/context/",
       "picon\\database\\": "src/picon/database/",
-      "picon\\web\\": "src/picon/web/"
+      "picon\\web\\": "src/picon/web/",
+      "picon\\jquery\\": "src/picon/jquery/"
     }
   },
   "archive": {

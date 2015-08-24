@@ -224,7 +224,7 @@ class SerializableClosure
                     {
                         $delcaration = true;
                         $index = array_push($nested, array('depth' => $depth, 'content' => ''));
-                        $preparedClosure .= 'new picon\SerializableClosure(';
+                        $preparedClosure .= sprintf('new %s(', get_class($this));
                     }
                 }
 
