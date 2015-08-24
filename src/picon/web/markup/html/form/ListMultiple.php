@@ -21,6 +21,7 @@
  * */
 
 namespace picon\web\markup\html\form;
+use picon\web\domain\ComponentTag;
 use picon\web\model\Model;
 
 /**
@@ -36,7 +37,7 @@ class ListMultiple extends AbstractMultipleChoice
         parent::__construct($id, $choices, $choiceRenderer, $model);
         $this->rows = $rows;
     }
-    
+
     protected function validateModel()
     {
         $object = $this->getModelObject();
@@ -45,20 +46,20 @@ class ListMultiple extends AbstractMultipleChoice
             throw new \picon\core\exceptions\IllegalStateException('ListMultiple must have an array model');
         }
     }
-    
-    protected function onComponentTag(\picon\web\ComponentTag $tag)
+
+    protected function onComponentTag(ComponentTag $tag)
     {
         $this->checkComponentTag($tag, 'select');
         $this->checkComponentTagAttribute($tag, "multiple", "multiple");
         $tag->put('size', $this->rows);
         parent::onComponentTag($tag);
     }
-    
-    protected function onComponentTagBody(\picon\web\ComponentTag $tag)
+
+    protected function onComponentTagBody(ComponentTag $tag)
     {
         $this->renderOptions();
     }
-    
+
     protected function convertInput()
     {
         $selection = array();

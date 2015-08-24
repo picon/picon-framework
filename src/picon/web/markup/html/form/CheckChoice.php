@@ -22,7 +22,7 @@
 
 namespace picon\web\markup\html\form;
 
-use picon\web\AbstractMultipleChoice;
+use picon\web\markup\html\form\AbstractMultipleChoice;
 use picon\web\markup\html\repeater\ListItem;
 use picon\web\markup\html\repeater\ListView;
 use picon\web\markup\sources\PanelMarkupSource;
@@ -32,7 +32,7 @@ use picon\web\model\Model;
 /**
  * An automatically populated list of check boxes to choose from. The options
  * are defined as an array.
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
@@ -40,25 +40,25 @@ class CheckChoice extends AbstractMultipleChoice implements ChoiceGroup
 {
     private $group;
     private $selection;
-    
+
     /**
      *
      * @param string $id
      * @param array $choices The available choices
-     * @param Model $model 
+     * @param Model $model
      */
     public function __construct($id, $choices, Model $model = null)
     {
         parent::__construct($id, $choices, $model);
     }
-    
+
     protected function onInitialize()
     {
         parent::onInitialize();
         $this->selection = $this->getModelObject();
         $this->group = new CheckBoxGroup('choice', $this->getModel());
         $this->add($this->group);
-        
+
         $choices = $this->getChoices();
         $this->group->add(new ListView('choices', function(ListItem &$item)
         {
@@ -67,17 +67,17 @@ class CheckChoice extends AbstractMultipleChoice implements ChoiceGroup
             $item->add(new FormComponentLabel('label', $check));
         }, new ArrayModel($choices)));
     }
-    
+
     protected function newMarkupSource()
     {
         return new PanelMarkupSource();
     }
-    
+
     public function __get($name)
     {
         return $this->$name;
     }
-    
+
     public function __set($name, $value)
     {
         $this->$name = $value;

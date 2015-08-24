@@ -23,45 +23,46 @@
 namespace picon\web\markup\html\form;
 
 use picon\core\domain\Identifier;
+use picon\core\exceptions\IllegalStateException;
 use picon\web\Component;
 
 /**
  * A wrapping component for checks
- * 
+ *
  * @see Check
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 class CheckBoxGroup extends FormComponent
-{    
+{
     protected function onInitialize()
     {
         parent::onInitialize();
         $this->validateModel();
     }
-    
+
     protected function validateModel()
     {
         $object = $this->getModelObject();
         if($object!=null && !is_array($object))
         {
-            throw new \picon\core\exceptions\IllegalStateException('Check box group must have an array model');
+            throw new IllegalStateException('Check box group must have an array model');
         }
     }
-    
+
     public function getChoiceGroup()
     {
         $choice = null;
         $callback = function(&$component) use (&$choice)
         {
-             $choice = $component;
-             return Component::VISITOR_STOP_TRAVERSAL;
+            $choice = $component;
+            return Component::VISITOR_STOP_TRAVERSAL;
         };
         //@todo find a non stringy way of doing this as it is not refactor proof
-        $this->visitParents(Identifier::forName('picon\web\ChoiceGroup'), $callback);
+        $this->visitParents(Identifier::forName(__NAMESPACE__.'\ChoiceGroup'), $callback);
         return $choice;
     }
-    
+
     public function getName()
     {
         $choice = $this->getChoiceGroup();
@@ -74,9 +75,9 @@ class CheckBoxGroup extends FormComponent
             return str_replace('.', '_', $choice->getComponentPath());
         }
     }
-    
+
     protected function convertInput()
-    { 
+    {
         $checks = array();
         $callback = function(&$component) use(&$checks)
         {
@@ -85,17 +86,17 @@ class CheckBoxGroup extends FormComponent
         };
         $this->visitChildren(Check::getIdentifier(), $callback);
         $values = array();
-        
+
         foreach($checks as $check)
         {
             if(in_array($check->getValue(), $this->getRawInputArray()))
-            { 
+            {
                 array_push($values, $check->getModelObject());
             }
         }
         $this->setConvertedInput($values);
     }
-    
+
     public function isRequired()
     {
         $choice = $this->getChoiceGroup();

@@ -21,7 +21,10 @@
  * */
 
 namespace picon\web\markup\html\table;
-use picon\web\DataTable;
+
+use picon\web\markup\html\table\DataTable;
+use picon\web\markup\html\table\toolbars\NavigationToolbar;
+use picon\web\markup\html\table\toolbars\HeaderToolbar;
 
 /**
  * A data table which by default adds on a header toolbar and a navigation toolbar
