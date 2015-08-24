@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\web;
+namespace picon\web\markup\html\form;
+
 use picon\web\markup\html\form\AbstractSingleChoice;
 use picon\web\markup\html\form\ChoiceGroup;
 use picon\web\markup\html\form\FormComponentLabel;
