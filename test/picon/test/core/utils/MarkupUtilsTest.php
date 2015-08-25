@@ -20,35 +20,16 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\scanner;
+namespace picon\test\core\utils;
 
 /**
- * Rule for the class scanner in which the class must be a sub class of the
- * specified class name
- * 
+ * Description of MarkupUtilsTest
+ * @todo this
  * @author Martin Cassidy
- * @package scanner
  */
-class SubClassRule implements ClassScannerRule
+class MarkupUtilsTest
 {
-    private $superClass;
-
-    /**
-     *
-     * @param String $superClass The name of the super class to test against
-     */
-    public function __construct($superClass)
-    {
-        $this->superClass = $superClass;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function matches($className, \ReflectionClass $reflection)
-    {
-        return $reflection->isSubclassOf($this->superClass);
-    }
+    
 }
 
 ?>

@@ -20,34 +20,24 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\scanner;
+namespace picon\test\web;
+
+
 
 /**
- * Rule for the class scanner in which the class must be a sub class of the
- * specified class name
+ * Description of PageMapTest
  * 
  * @author Martin Cassidy
- * @package scanner
  */
-class SubClassRule implements ClassScannerRule
+class PageMapTest extends \PHPUnit_Framework_TestCase
 {
-    private $superClass;
-
     /**
-     *
-     * @param String $superClass The name of the super class to test against
+     * @todo fix this
      */
-    public function __construct($superClass)
+    public function testMap()
     {
-        $this->superClass = $superClass;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function matches($className, \ReflectionClass $reflection)
-    {
-        return $reflection->isSubclassOf($this->superClass);
+        //\picon\PageMap::get()->initialise();
+        //$this->assertEquals(array('TestPageOne' => 'TestPageOne', 'TestPageTwo' => 'TestPageTwo', 'somepath' => '\TestPageOne'), \picon\PageMap::getPageMap());
     }
 }
 

@@ -1,10 +1,9 @@
 <?php
-
 /**
  * Picon Framework
- * http://code.google.com/p/picon-framework/
+ * http://piconframework.com
  *
- * Copyright (C) 2011-2012 Martin Cassidy <martin.cassidy@webquub.com>
+ * Copyright (C) 2011-2015 Martin Cassidy <martin.cassidy@webquub.com>
 
  * Picon Framework is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,22 +19,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\scanner;
+define("PICON_DIRECTORY", dirname(__FILE__) . "/../src/picon");
+define("CACHE_DIRECTORY", dirname(__FILE__) . "/cache");
+define("ASSETS_DIRECTORY", dirname(__FILE__) . "/picon/test/app");
 
-/**
- * Interface for all class scanner rules
- * @author Martin Cassidy
- * @package scanner
- */
-interface ClassScannerRule
-{
-    /**
-     * Does the given class match the criteria of the rule
-     * @param String $className the name of the class
-     * @param \ReflectionAnnotatedClass $reflection The reflection of the class
-     * @return true if the class matches the criteria
-     */
-    function matches($className, \ReflectionClass $reflection);
-}
-
-?>
+require_once(dirname(__FILE__)."/../vendor/autoload.php");

@@ -20,35 +20,18 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\scanner;
+namespace picon\core\annotations;
+use mindplay\annotations\Annotation;
 
 /**
- * Rule for the class scanner in which the class must be a sub class of the
- * specified class name
- * 
+ * Indicates that a class is a repository, such as a DAO
+ *
  * @author Martin Cassidy
- * @package scanner
+ * @package picon/core/annotations
+ *
+ * @usage('class'=>true, 'inherited'=>true)
  */
-class SubClassRule implements ClassScannerRule
+class RepositoryAnnotation extends Annotation
 {
-    private $superClass;
-
-    /**
-     *
-     * @param String $superClass The name of the super class to test against
-     */
-    public function __construct($superClass)
-    {
-        $this->superClass = $superClass;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function matches($className, \ReflectionClass $reflection)
-    {
-        return $reflection->isSubclassOf($this->superClass);
-    }
+    public $name = "";
 }
-
-?>

@@ -21,6 +21,7 @@
  * */
 
 namespace picon\context;
+use mindplay\annotations\Annotations;
 
 /**
  * Dependency injector for resources. All resources are inject after instantiation.
@@ -42,20 +43,22 @@ class Injector
     
     /**
      * @param $object
+     * @param \ReflectionClass $reflection
      */
-    public function inject(&$object, $reflection = null)
+    public function inject(&$object, \ReflectionClass $reflection = null)
     {
         if($reflection==null)
         {
-            $reflection = new \ReflectionAnnotatedClass($object);
+            $reflection = new \ReflectionClass($object);
         }
         $properties = $reflection->getProperties();
                 
         foreach($properties as $property)
-        { 
-            if($property->hasAnnotation("Resource"))
+        {
+            $resources = Annotations::ofProperty($property, null, "@Resource");
+            if(count($resources)==1)
             {
-                $annotation = $property->getAnnotation("Resource");
+                $annotation = $resources[0];
                 $resource = $property->getName();
                 
                 if(!empty($annotation->name))

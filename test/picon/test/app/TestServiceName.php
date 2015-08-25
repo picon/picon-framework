@@ -5,49 +5,38 @@
  * http://code.google.com/p/picon-framework/
  *
  * Copyright (C) 2011-2012 Martin Cassidy <martin.cassidy@webquub.com>
-
  * Picon Framework is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
  * Picon Framework is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  General Public License for more details.
-
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
-
-namespace picon\core\scanner;
+namespace picon\test\app;
+use picon\test\app\AbstractContext;
 
 /**
- * Rule for the class scanner in which the class must be a sub class of the
- * specified class name
- * 
  * @author Martin Cassidy
- * @package scanner
+ * @Service('name' => 'serv')
  */
-class SubClassRule implements ClassScannerRule
+class TestServiceName extends AbstractContext
 {
-    private $superClass;
+    /** @Resource() */
+    protected $testRepository;
 
-    /**
-     *
-     * @param String $superClass The name of the super class to test against
-     */
-    public function __construct($superClass)
-    {
-        $this->superClass = $superClass;
-    }
+    /** @Resource() */
+    protected $repo;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function matches($className, \ReflectionClass $reflection)
+    /** @Resource() */
+    protected $testService;
+
+    public function getTestServ()
     {
-        return $reflection->isSubclassOf($this->superClass);
+        return $this;
     }
 }
 

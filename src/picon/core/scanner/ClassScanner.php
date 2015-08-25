@@ -35,7 +35,7 @@ class ClassScanner
     
     /**
      *
-     * @param mixed $rule Array of ClassScannerRule or a single ClassScannerRule
+     * @param mixed $rules Array of ClassScannerRule or a single ClassScannerRule
      */
     public function __construct($rules = array())
     {
@@ -105,7 +105,7 @@ class ClassScanner
         foreach($classesToScan as $className)
         {
             $match = false;
-            $reflection = new \ReflectionAnnotatedClass($className);
+            $reflection = new \ReflectionClass($className);
             foreach($this->rules as $rule)
             {
                 $match = $rule->matches($className, $reflection);

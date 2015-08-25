@@ -18,37 +18,25 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * */
+ * 
+ * $HeadURL$
+ * $Revision$
+ * $Author$
+ * $Date$
+ * $Id$
+ */
 
-namespace picon\core\scanner;
+namespace picon\test\web;
+
 
 /**
- * Rule for the class scanner in which the class must be a sub class of the
- * specified class name
- * 
- * @author Martin Cassidy
- * @package scanner
+ * Description of PiconWebResourceApplication
+ *
+ * @author Martin
  */
-class SubClassRule implements ClassScannerRule
+class PiconWebResourceApplication extends \PHPUnit_Framework_TestCase
 {
-    private $superClass;
-
-    /**
-     *
-     * @param String $superClass The name of the super class to test against
-     */
-    public function __construct($superClass)
-    {
-        $this->superClass = $superClass;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function matches($className, \ReflectionClass $reflection)
-    {
-        return $reflection->isSubclassOf($this->superClass);
-    }
+    //put your code here
 }
 
 ?>

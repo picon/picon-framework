@@ -40,7 +40,7 @@ class ClassNamespaceRule implements ClassScannerRule
         $this->namespace = $namespace;
     }
 
-    public function matches($className, \ReflectionAnnotatedClass $reflection)
+    public function matches($className, \ReflectionClass $reflection)
     {
         return $reflection->getNamespaceName()==$this->namespace;
     }

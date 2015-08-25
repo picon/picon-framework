@@ -57,6 +57,7 @@ class ConfigLoader
         $xml->load($file);
         libxml_use_internal_errors(true);
         //@todo remove this and any other references to picon directory, they need to be self contained
+
         if (!$xml->schemaValidate(PICON_DIRECTORY.'/core/config.xsd')) 
         {
             throw new ConfigException("Config XML does not match schema");

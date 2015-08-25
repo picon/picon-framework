@@ -23,6 +23,7 @@
 namespace picon\core\cache;
 
 //@todo remove this coupling to web
+use mindplay\annotations\Annotations;
 use picon\context\Injector;
 use picon\core\InjectOnWakeup;
 use picon\core\utils\SerializableClosure;
@@ -65,7 +66,7 @@ class PiconSerializer
         
         self::$prepared = array();
         self::$restore = array();
-        self::prepareForSerize(new \ReflectionAnnotatedClass($object), $object);
+        self::prepareForSerize(new \ReflectionClass($object), $object);
         
         $serialized = serialize($object);
         self::restore();
@@ -92,7 +93,7 @@ class PiconSerializer
         return $unserialzed;
     }
     
-    private static function prepareForSerize(\ReflectionAnnotatedClass $reflection, $object, $parent = false)
+    private static function prepareForSerize(\ReflectionClass $reflection, $object, $parent = false)
     {
         $hash = spl_object_hash($object);
         if(in_array($hash, self::$prepared) && $parent==false)
@@ -122,7 +123,7 @@ class PiconSerializer
             }
             else if(is_object($value) && !($value instanceof SerializableClosure) && spl_object_hash($value)!=$hash)
             {
-                $valueReflection = new \ReflectionAnnotatedClass($value);
+                $valueReflection = new \ReflectionClass($value);
                 $altered = self::prepareForSerize($valueReflection, $value);
             }
             else if(is_array($value))
@@ -185,7 +186,7 @@ class PiconSerializer
             }
             else if(is_object($value) && !($value instanceof SerializableClosure) && !in_array(spl_object_hash($value), self::$prepared))
             {
-                $ia = self::prepareForSerize(new \ReflectionAnnotatedClass($value), $value);
+                $ia = self::prepareForSerize(new \ReflectionClass($value), $value);
                 $altered = $altered?true:$ia;
                 $newEntry[$key] = $value;
             }
@@ -202,7 +203,7 @@ class PiconSerializer
         return false;
     }
     
-    private static function addRestore(\ReflectionAnnotatedProperty $property, $object, $value)
+    private static function addRestore(\ReflectionProperty $property, $object, $value)
     {
         $restore = new \stdClass();
         $restore->property = $property;
@@ -219,13 +220,8 @@ class PiconSerializer
         }
     }
     
-    private static function isTransient(\ReflectionAnnotatedProperty $property)
+    private static function isTransient(\ReflectionProperty $property)
     {
-        $annotations = $property->getAllAnnotations();
-        
-        foreach($annotations as $annotation)
-        {
-            return is_subclass_of($annotation, "picon\core\annotations\Transient") || get_class($annotation)=="picon\core\annotations\Transient";
-        }
+        return count(Annotations::ofProperty($property, null, "@Transient"))==1;
     }
 }

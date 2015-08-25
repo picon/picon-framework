@@ -5,50 +5,33 @@
  * http://code.google.com/p/picon-framework/
  *
  * Copyright (C) 2011-2012 Martin Cassidy <martin.cassidy@webquub.com>
-
  * Picon Framework is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
-
  * Picon Framework is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  General Public License for more details.
-
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\scanner;
+namespace picon\core\annotations;
+
+use mindplay\annotations\Annotation;
 
 /**
- * Rule for the class scanner in which the class must be a sub class of the
- * specified class name
- * 
+ * Annotation to declare a class property not be serialised and bet
+ * set back to its default value after deserialisation. This will only
+ * work for classes which are sub classes of PiconSerializer
+ *
  * @author Martin Cassidy
- * @package scanner
+ * @package picon/core/annotations
+ *
+ * @usage('property'=>true)
  */
-class SubClassRule implements ClassScannerRule
+class TransientAnnotation extends Annotation
 {
-    private $superClass;
 
-    /**
-     *
-     * @param String $superClass The name of the super class to test against
-     */
-    public function __construct($superClass)
-    {
-        $this->superClass = $superClass;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function matches($className, \ReflectionClass $reflection)
-    {
-        return $reflection->isSubclassOf($this->superClass);
-    }
 }
-
-?>

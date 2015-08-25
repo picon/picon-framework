@@ -22,6 +22,7 @@
 
 namespace picon\context;
 
+use mindplay\annotations\Annotations;
 use picon\database\source\DataSourceFactory;
 
 /**
@@ -38,18 +39,21 @@ class AutoContextLoader extends AbstractContextLoader
        $resources = array();
        foreach($classes as $class)
        {
-             $reflection = new \ReflectionAnnotatedClass($class);
-             $name = "";
-             if($reflection->hasAnnotation("picon\core\annotations\Service"))
-             {
-                 $annotation = $reflection->getAnnotation('picon\core\annotations\Service');
-                 $resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
-             }
-             if($reflection->hasAnnotation("Repository"))
-             {
-                 $annotation = $reflection->getAnnotation('Repository');
-                 $resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
-             }
+            $reflection = new \ReflectionClass($class);
+            $name = "";
+
+           $services = Annotations::ofClass($reflection, "@Service");
+            if(count($services)==1)
+            {
+                $annotation = $services[0];
+                $resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
+            }
+           $repositories = Annotations::ofClass($reflection, "@Repository");
+            if(count($repositories)==1)
+            {
+                $annotation = $repositories[0];
+                $resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
+            }
         }
         return $resources;
     }

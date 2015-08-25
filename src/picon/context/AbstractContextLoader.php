@@ -26,6 +26,7 @@ use Annotation;
 use picon\core\ApplicationInitializer;
 use picon\core\cache\CacheManager;
 use picon\core\domain\config\Config;
+use picon\core\exceptions\DuplicateResourceException;
 
 /**
  * Context loader super class
@@ -78,7 +79,7 @@ abstract class AbstractContextLoader
     {
         if(array_key_exists($resourceName, $this->resources))
         {
-            throw new \picon\core\exceptions\DuplicateResourceException(sprintf("The resource %s already exists.", $resourceName));
+            throw new DuplicateResourceException(sprintf("The resource %s already exists.", $resourceName));
         }
         $this->resources[$resourceName] = $resource;
     }
@@ -88,16 +89,18 @@ abstract class AbstractContextLoader
      * name (with a lowercase first letter e.g. class MyResource is named
      * myResource) If name has been specified in the annotation then
      * the name is extracted from there instead.
-     * @param Annotation $annotation
+     * @param mixed $annotation
      * @param String $className
      * @return string
      */
-    protected function getResourceName(Annotation $annotation, $className)
+    protected function getResourceName($annotation, $className)
     {
         $name = $annotation->name;
         
         if($name=="")
         {
+            $elements = explode("\\", $className);
+            $className = $elements[count($elements)-1];
             return strtolower(substr($className, 0, 1)).substr($className,1,strlen($className));
         }
         else

@@ -21,6 +21,7 @@
  * */
 
 namespace picon\core\scanner;
+use mindplay\annotations\Annotations;
 
 /**
  * Class scanner rule to match classes with a given annotation
@@ -43,9 +44,9 @@ class AnnotationRule implements ClassScannerRule
     /**
      * {@inheritdoc}
      */
-    public function matches($className, \ReflectionAnnotatedClass $reflection)
+    public function matches($className, \ReflectionClass $reflection)
     {
-        return $reflection->hasAnnotation($this->annotation);
+        return count(Annotations::ofClass($reflection, $this->annotation))==1;
     }
 }
 

@@ -21,6 +21,7 @@
  * */
 
 namespace picon\context;
+use picon\core\exceptions\UndefinedResourceException;
 
 /**
  * Holds any and all resources instantiated by the application initialiser
@@ -54,7 +55,7 @@ class ApplicationContext
         }
         else
         {
-            throw new \picon\core\exceptions\UndefinedResourceException(sprintf("The requested resource %s could not be found or the initialisation process is not complete", $name));
+            throw new UndefinedResourceException(sprintf("The requested resource %s could not be found or the initialisation process is not complete", $name));
         }
     }
 }

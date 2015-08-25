@@ -45,7 +45,7 @@ class ClassNameRule implements ClassScannerRule
     /**
      * {@inheritdoc}
      */
-    public function matches($className, \ReflectionAnnotatedClass $reflection)
+    public function matches($className, \ReflectionClass $reflection)
     {
         return preg_match('/'.$this->expression.'/', $reflection->getName());
     }

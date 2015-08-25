@@ -20,34 +20,27 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\scanner;
+
+namespace picon\test\web\request\resolver;
+
+use picon\web\request\Request;
+use picon\web\request\resolver\ListenerRequestResolver;
 
 /**
- * Rule for the class scanner in which the class must be a sub class of the
- * specified class name
- * 
- * @author Martin Cassidy
- * @package scanner
+ * Description of ListenerRequestResolverTest
+ *
+ * @author Martin
  */
-class SubClassRule implements ClassScannerRule
+class ListenerRequestResolverTest extends AbstractRequestResolverTest
 {
-    private $superClass;
-
-    /**
-     *
-     * @param String $superClass The name of the super class to test against
-     */
-    public function __construct($superClass)
+    protected function matchesHomePage(Request $request)
     {
-        $this->superClass = $superClass;
+        return $request->getParameter('listener')!=null;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function matches($className, \ReflectionClass $reflection)
+    
+    protected function newResolver()
     {
-        return $reflection->isSubclassOf($this->superClass);
+        return new ListenerRequestResolver();
     }
 }
 

@@ -29,18 +29,14 @@
 
 namespace picon\core;
 
-//Andendum must bypass the auto loader
+use mindplay\annotations\Annotations;
+use picon\core\exceptions\IllegalStateException;
 use picon\core\listeners\ApplicationConfigLoadListener;
 use picon\core\listeners\ApplicationContextLoadListener;
 use picon\core\listeners\ApplicationInitializerConfigLoadListener;
 use picon\core\listeners\ApplicationInitializerConfigLoadListenerCollection;
 use picon\core\listeners\ApplicationInitializerContextLoadListener;
 use picon\core\listeners\ApplicationInitializerContextLoadListenerCollection;
-
-require_once(dirname(__FILE__) . "/addendum/annotation_parser.php");
-require_once(dirname(__FILE__) . "/addendum/annotations.php");
-require_once(dirname(__FILE__) . "/addendum/doc_comment.php");
-
 
 /**
  * This is the main class for a Picon Application.
@@ -105,9 +101,16 @@ abstract class PiconApplication
      */
     public function __construct()
     {
+        Annotations::$config['cache'] = new AnnotationCache(CACHE_DIRECTORY.'/annotations');
+        $annotationManager = Annotations::getManager();
+        $annotationManager->registry['resource'] = 'picon\core\annotations\Resource';
+        $annotationManager->registry['service'] = 'picon\core\annotations\Service';
+        $annotationManager->registry['repository'] = 'picon\core\annotations\Repository';
+        $annotationManager->registry['transient'] = 'picon\core\annotations\Transient';
+
         if (isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
         {
-            throw new exceptions\IllegalStateException("An instance of picon application already exists");
+            throw new IllegalStateException("An instance of picon application already exists");
         }
         $GLOBALS[self::GLOBAL_APPLICATION_KEY] = $this;
 

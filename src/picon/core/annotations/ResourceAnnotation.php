@@ -20,35 +20,21 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\scanner;
+namespace picon\core\annotations;
 
 /**
- * Rule for the class scanner in which the class must be a sub class of the
- * specified class name
- * 
+ * Indicates that a property needs to have a resource from the application
+ * context injected into it
+ *
  * @author Martin Cassidy
- * @package scanner
+ * @package picon/core/annotations
+ *
+ * @usage('property'=>true)
  */
-class SubClassRule implements ClassScannerRule
+class ResourceAnnotation extends TransientAnnotation
 {
-    private $superClass;
-
     /**
-     *
-     * @param String $superClass The name of the super class to test against
+     * @var string the name of the resource
      */
-    public function __construct($superClass)
-    {
-        $this->superClass = $superClass;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function matches($className, \ReflectionClass $reflection)
-    {
-        return $reflection->isSubclassOf($this->superClass);
-    }
+    public $name = "";
 }
-
-?>
