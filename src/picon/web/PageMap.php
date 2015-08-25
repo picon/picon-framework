@@ -22,6 +22,7 @@
 
 namespace picon\web;
 
+use mindplay\annotations\Annotations;
 use picon\core\ApplicationInitializer;
 use picon\core\cache\CacheManager;
 use picon\core\domain\Identifier;
@@ -40,9 +41,9 @@ use picon\core\exceptions\DuplicatePageDefinitionException;
  *
  * The page map stores a map of all stateless pages by both their direct path
  * (the name of the class, including its namespace) and also all specified
- * paths (pages which have been given @Path) Pagges are expected to extend 
+ * paths (pages which have been given @Path) Pagges are expected to extend
  * WebPage @see WebPage
- * 
+ *
  * Additionally, actual instances of pages which have deemed statfull are stored
  * against an associated page id.
  *
@@ -88,14 +89,15 @@ class PageMap
         $pages = $scanner->scanForName();
         foreach($pages as $pageName)
         {
-            $this->addToPath($pageName, $pageName);
+            $this->addToPath(str_replace('\\', '.', $pageName), $pageName);
         }
 
-        $pathScanner = new ClassScanner(array(new AnnotationRule('Path')));
+        $pathScanner = new ClassScanner(array(new AnnotationRule('@Path')));
 
         foreach($pathScanner->scanForReflection($pages) as $reflection)
         {
-            $pathAnnoation = $reflection->getAnnotation('Path');
+            $pathAnnoations = Annotations::ofClass($reflection, "@Path");
+            $pathAnnoation = $pathAnnoations[0];
             $path = $pathAnnoation->path;
 
             if(empty($path))
@@ -127,14 +129,14 @@ class PageMap
     {
         return self::get()->pages;
     }
-    
+
     public static function getNextPageId()
     {
         $self = self::get();
         $self->pageId++;
         return 'page'.$self->pageId;
     }
-    
+
     public function getPageById($id)
     {
         if(array_key_exists($id, $this->pageInstances))
@@ -161,7 +163,7 @@ class PageMap
         {
             if (isset($_SESSION['page_map']))
             {
-                self::$self = unserialize($_SESSION['page_map']); 
+                self::$self = unserialize($_SESSION['page_map']);
             }
             else
             {
@@ -170,26 +172,26 @@ class PageMap
         }
         return self::$self;
     }
-    
+
     public function addOrUpdate(WebPage &$page)
     {
         $instances = &$this->pageInstances;
         $instances[$page->getId()] = $page;
     }
-    
+
     public function __sleep()
     {
         CacheManager::saveResource(self::PAGE_MAP_RESOURCE_NAME, $this->pages, CacheManager::APPLICATION_SCOPE);
         CacheManager::saveResource(self::PAGE_MAP_MOUNTED_RESOURCE_NAME, $this->mountedPages, CacheManager::APPLICATION_SCOPE);
         return array('pageId');
     }
-    
+
     public function __wakeup()
     {
         $this->pages = CacheManager::loadResource(self::PAGE_MAP_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE);
         $this->mountedPages = CacheManager::loadResource(self::PAGE_MAP_MOUNTED_RESOURCE_NAME, CacheManager::APPLICATION_SCOPE);
     }
-    
+
     public function __destruct()
     {
         foreach($this->pageInstances as $pageid => $page)
@@ -198,7 +200,7 @@ class PageMap
         }
         $_SESSION['page_map'] = serialize($this);
     }
-    
+
     public function mount($path, Identifier $page)
     {
         if(!$page->of(WebPage::getIdentifier()))
@@ -212,12 +214,12 @@ class PageMap
         $this->addToPath($path, $page->getFullyQualifiedName());
         $this->mountedPages[] = $path;
     }
-    
+
     public function isMounted($path)
     {
         return in_array($path, $this->mountedPages);
     }
-    
+
     public function unMount($path)
     {
         if($this->isMounted($path))
@@ -227,7 +229,7 @@ class PageMap
             unset($this->mountedPages[$key]);
         }
     }
-    
+
     public function getMounted()
     {
         return $this->mountedPages;

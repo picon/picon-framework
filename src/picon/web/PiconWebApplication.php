@@ -18,7 +18,7 @@
 
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * $HeadURL$
  * $Revision$
  * $Author$
@@ -28,6 +28,7 @@
 
 namespace picon\web;
 
+use mindplay\annotations\Annotations;
 use picon\core\listeners\ApplicationContextLoadListener;
 use picon\core\PiconApplication;
 use picon\web\application\WebApplicationInitializer;
@@ -55,23 +56,30 @@ use picon\web\security\WebApplicationSecuritySettings;
 class PiconWebApplication extends PiconApplication
 {
     private $requestProcessor;
-    
+
     //Component listeners
     private $componentInstantiationListeners;
     private $componentInitializationListeners;
     private $componentBeforeRenderListeners;
     private $componentAfterRenderListeners;
     private $componentRenderHeadListener;
-    
+
     private $pageMapInitializationListener;
-	
+
     private $securitySettings;
-    
+
+    public function __construct()
+    {
+        $annotationManager = Annotations::getManager();
+        $annotationManager->registry['path'] = 'picon\web\annotations\PathAnnotation';
+        parent::__construct();
+    }
+
     protected function getApplicationInitializer()
     {
         return new WebApplicationInitializer();
     }
-    
+
     protected final function internalInit()
     {
         parent::internalInit();
@@ -79,9 +87,9 @@ class PiconWebApplication extends PiconApplication
         {
             session_start();
         }));
-        
+
         $this->securitySettings = new WebApplicationSecuritySettings();
-        
+
         $this->pageMapInitializationListener = new PageMapInitializationListenerCollection();
 
         $this->componentInstantiationListeners = new ComponentInstantiationListenerCollection();
@@ -95,7 +103,7 @@ class PiconWebApplication extends PiconApplication
 
         $this->init();
     }
-    
+
 
     /**
      * Called once the application has been created but not run the application initializer
@@ -103,85 +111,85 @@ class PiconWebApplication extends PiconApplication
      */
     public function init()
     {
-        
+
     }
-    
+
     public final function run()
     {
         $this->requestProcessor = new RequestCycle();
         $this->requestProcessor->process();
     }
-    
+
     public function getHomePage()
     {
         return $this->getConfig()->getHomePage();
     }
-    
+
     public function getComponentInstantiationListener()
     {
         return $this->componentInstantiationListeners;
     }
-    
+
     public function getComponentInitializationListener()
     {
         return $this->componentInitializationListeners;
     }
-    
+
     public function getComponentBeforeRenderListener()
     {
         return $this->componentBeforeRenderListeners;
     }
-    
+
     public function getComponentAfterRenderListenersr()
     {
         return $this->componentAfterRenderListeners;
     }
-    
+
     public function getComponentRenderHeadListener()
     {
         return $this->componentRenderHeadListener;
     }
-    
+
     public function getPageMapInitializationListener()
     {
         return $this->pageMapInitializationListener;
     }
-    
+
     public function addComponentInstantiationListener(ComponentInstantiationListener $listener)
     {
         $this->componentInstantiationListeners->add($listener);
     }
-    
+
     public function addComponentInitializationListener(ComponentInitializationListener $listener)
     {
         $this->componentInitializationListener->add($listener);
     }
-    
+
     public function addComponentBeforeRenderListener(ComponentBeforeRenderListener $listener)
     {
         $this->componentBeforeRenderListeners->add($listener);
     }
-    
+
     public function addComponentAfterRenderListenersr(ComponentAfterRenderListener $listener)
     {
         $this->componentAfterRenderListeners->add($listener);
     }
-    
+
     public function addComponentRenderHeadListener(ComponentRenderHeadListener $listener)
     {
         $this->componentRenderHeadListener->add($listener);
     }
-    
+
     public function addPageMapInitializationListenerCollection(PageMapInitializationListenerCollection $listener)
     {
         $this->pageMapInitializationListener->add($listener);
     }
-    
+
     public function getSecuritySettings()
     {
         return $this->securitySettings;
     }
-    
+
     public function __destruct()
     {
         ob_end_flush();

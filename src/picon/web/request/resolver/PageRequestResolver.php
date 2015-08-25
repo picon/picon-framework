@@ -32,7 +32,7 @@ use picon\web\request\target\RequestTarget;
 
 /**
  * Basic stateless page request resolver
- * 
+ *
  * @author Martin Cassidy
  * @package web/request/resolver
  */
@@ -50,12 +50,12 @@ class PageRequestResolver implements RequestResolver
             return new PageRequestTarget($this->getPageClassForPath($request));
         }
     }
-    
+
     public function matches(Request $request)
     {
         return ($this->isHomePage($request) || $this->getPageClassForPath($request)!=false) && $request->getParameter('picon-resource')==null && $request->getParameter('listener')==null && $request->getParameter('pageid')==null;
     }
-    
+
     /**
      *
      * @param Request $request
@@ -75,7 +75,7 @@ class PageRequestResolver implements RequestResolver
     private function getPageClassForPath(Request $request)
     {
         $mapEntry = PageMap::getPageMap();
-        
+
         foreach($mapEntry as $path => $pageClass)
         {
             if(preg_match("/^".$this->prepare($request->getRootPath())."\/".str_replace("/", "\\/", $path)."{1}([?|&]{1}\\S+={1}\\S+)*$/", urldecode($request->getPath())))
@@ -85,7 +85,7 @@ class PageRequestResolver implements RequestResolver
         }
         return false;
     }
-    
+
     /**
      *
      * @param RequestTarget $target
@@ -100,15 +100,15 @@ class PageRequestResolver implements RequestResolver
             $trail = "";
             if($target->getPageClass()->namespace!=null)
             {
-                $trail = '/';
+                $trail = '.';
             }
             $behaviourApped = null;
             if($target->getBehaviour()!=null)
             {
                 $behaviourApped = '&behaviour='.$target->getBehaviour();
             }
-            
-            return $target->getPageClass()->namespace.$trail.$target->getPageClass()->className.'?listener='.$target->getComponentPath().$behaviourApped;
+
+            return str_replace('\\', '.', $target->getPageClass()->namespace).$trail.$target->getPageClass()->className.'?listener='.$target->getComponentPath().$behaviourApped;
         }
         else if($target instanceof ListenerRequestTarget)
         {
@@ -116,33 +116,33 @@ class PageRequestResolver implements RequestResolver
             $trail = "";
             if($ident->namespace!=null)
             {
-                $trail = '/';
+                $trail = '.';
             }
-            
+
             $behaviourApped = null;
             if($target->getBehaviour()!=null)
             {
                 $behaviourApped = '&behaviour='.$target->getBehaviour();
             }
-            
-            return $ident->namespace.$trail.$ident->className.'?pageid='.$target->getPage()->getId().'&listener='.$target->getComponentPath().$behaviourApped;
+
+            return str_replace('\\', '.', $ident->namespace).$trail.$ident->className.'?pageid='.$target->getPage()->getId().'&listener='.$target->getComponentPath().$behaviourApped;
         }
         else
         {
             $trail = "";
             if($target->getPageClass()->namespace!=null)
             {
-                $trail = '/';
+                $trail = '.';
             }
-            return $target->getPageClass()->namespace.$trail.$target->getPageClass()->className;
+            return str_replace('\\', '.', $target->getPageClass()->namespace).$trail.$target->getPageClass()->className;
         }
     }
-    
+
     public function handles(RequestTarget $target)
     {
         return $target instanceof PageRequestTarget || $target instanceof ListenerRequestTarget;
     }
-    
+
     private function prepare($value)
     {
         return str_replace('/', "\\/", $value);
