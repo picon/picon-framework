@@ -20,7 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\sources;
+
+use picon\core\utils\MarkupUtils;
+use picon\web\Component;
+use picon\web\markup\resolver\ComponentResolver;
+use picon\web\MarkupContainer;
 
 /**
  * Default source for mark-up
@@ -33,10 +38,10 @@ class DefaultMarkupSource extends AbstractMarkupSource
     public function getMarkup(MarkupContainer $container, Component $child)
     {
         $markup = $container->getMarkup();
-        
+
         if($markup==null)
         {
-            throw new \MarkupNotFoundException(sprintf("Markup for %s could not be found.", $child->getId()));
+            throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Markup for %s could not be found.", $child->getId()));
         }
         
         if($child==null)
@@ -44,7 +49,7 @@ class DefaultMarkupSource extends AbstractMarkupSource
             return $markup;
         }
         $m = MarkupUtils::findComponentTag($markup, $child->getId(), $container);
-        
+
         if($m==null)
         {
             foreach($container->getChildren() as $ch)
@@ -60,7 +65,7 @@ class DefaultMarkupSource extends AbstractMarkupSource
                 }
             }
         }
-        
+
         return $m;
     }
 }

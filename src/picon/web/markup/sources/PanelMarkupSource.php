@@ -20,7 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\sources;
+
+use picon\core\utils\MarkupUtils;
+use picon\web\Component;
+use picon\web\domain\ComponentTag;
+use picon\web\domain\MarkupElement;
 
 /**
  * A mark-up source for panels
@@ -37,7 +42,7 @@ class PanelMarkupSource extends AbstractAssociatedMarkupSource
         
         if($panel==null)
         {
-            throw new \MarkupNotFoundException(sprintf("Found markup for panel %s however there is no picon:panel tag.", $component->getId(0)));
+            throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Found markup for panel %s however there is no picon:panel tag.", $component->getId(0)));
         }
         
         $tag->setChildren(array($panel));

@@ -20,7 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\pages;
+
+use picon\web\Component;
+use picon\web\MarkupContainer;
+use picon\web\model\FeedbackModel;
+use picon\web\PageMap;
 
 /**
  * Super class for all web pages

@@ -27,17 +27,16 @@
  * 
  */
 
-namespace picon;
+namespace picon\core;
 
-require_once(dirname(__FILE__)."/../core/ApplicationInitializer.php");
-
-//Andendum must bypass the auto loader
-require_once(dirname(__FILE__)."/../addendum/annotation_parser.php");
-require_once(dirname(__FILE__)."/../addendum/annotations.php");
-require_once(dirname(__FILE__)."/../addendum/doc_comment.php");
-
-require_once(dirname(__FILE__)."/../cache/CacheManager.php");
-require_once(dirname(__FILE__)."/../cache/PiconSerializer.php");
+use mindplay\annotations\Annotations;
+use picon\core\exceptions\IllegalStateException;
+use picon\core\listeners\ApplicationConfigLoadListener;
+use picon\core\listeners\ApplicationContextLoadListener;
+use picon\core\listeners\ApplicationInitializerConfigLoadListener;
+use picon\core\listeners\ApplicationInitializerConfigLoadListenerCollection;
+use picon\core\listeners\ApplicationInitializerContextLoadListener;
+use picon\core\listeners\ApplicationInitializerContextLoadListenerCollection;
 
 /**
  * This is the main class for a Picon Application.
@@ -63,19 +62,16 @@ abstract class PiconApplication
 
     /**
      * Stores the application context
-     * @var ApplicationContext 
      */
     private $applicatoinContext;
 
     /**
      * Stores the configuration
-     * @var Config 
      */
     private $config;
 
     /**
      * Stores a class which helps with application initialisation
-     * @var ApplicationInitializer 
      */
     private $initialiser;
 
@@ -105,19 +101,20 @@ abstract class PiconApplication
      */
     public function __construct()
     {
+        Annotations::$config['cache'] = new AnnotationCache(CACHE_DIRECTORY.'/annotations');
+        $annotationManager = Annotations::getManager();
+        $annotationManager->registry['resource'] = 'picon\core\annotations\Resource';
+        $annotationManager->registry['service'] = 'picon\core\annotations\Service';
+        $annotationManager->registry['repository'] = 'picon\core\annotations\Repository';
+        $annotationManager->registry['transient'] = 'picon\core\annotations\Transient';
+
         if (isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
         {
-            throw new \IllegalStateException("An instance of picon application already exists");
+            throw new IllegalStateException("An instance of picon application already exists");
         }
         $GLOBALS[self::GLOBAL_APPLICATION_KEY] = $this;
 
         $this->initialiser = $this->getApplicationInitializer();
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY, 'picon');
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/annotations");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/annotations");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/exceptions");
-        $this->initialiser->addScannedDirectory(PICON_DIRECTORY . "/web/pages");
-        $this->initialiser->addScannedDirectory(ASSETS_DIRECTORY);
 
         $this->internalInit();
 
@@ -168,7 +165,7 @@ abstract class PiconApplication
     {
         if (!isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
         {
-            throw new \IllegalStateException("Failed to get picon application. The application has not been instantiated.");
+            throw new exceptions\IllegalStateException("Failed to get picon application. The application has not been instantiated.");
         }
         return $GLOBALS[self::GLOBAL_APPLICATION_KEY];
     }

@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form\validation;
 
 /**
  * Interface which must be used for classes that support validation 

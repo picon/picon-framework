@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\model;
 
 /**
  * A default model which can contain an object of any type

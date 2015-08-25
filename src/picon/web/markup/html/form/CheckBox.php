@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form;
+use picon\web\domain\ComponentTag;
+use picon\web\model\BooleanModel;
 
 /**
  * A checkbox which may be used independantly, it must have a boolean model
@@ -34,7 +36,7 @@ class CheckBox extends FormComponent
     {
         if($this->getModel()!=null && !($this->getModel() instanceof BooleanModel) && $this->getModelObject()!=null && !is_bool($this->getModelObject()))
         {
-            throw new \IllegalStateException(sprintf("A check box must have a boolean model, actual %s", gettype($this->getModelObject())));
+            throw new \picon\core\exceptions\IllegalStateException(sprintf("A check box must have a boolean model, actual %s", gettype($this->getModelObject())));
         }
     }
     

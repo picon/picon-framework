@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\listeners\component;
+use picon\web\markup\html\HeaderContainer;
+use picon\web\request\HeaderResponse;
 
 /**
  * A listener fired when the head of a page is about to be rendered

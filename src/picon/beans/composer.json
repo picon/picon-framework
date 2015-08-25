@@ -1,0 +1,24 @@
+{
+  "name": "picon/beans",
+  "type": "library",
+  "version":"0.2",
+  "description": "Picon beans component",
+  "keywords": [],
+  "homepage": "http://piconframework.com",
+  "minimum-stability": "dev",
+  "license": "GNU",
+  "authors": [
+    {
+      "name": "Martin Cassidy",
+      "email": "martin.cassidy@webquub.com"
+    }
+  ],
+  "require": {
+    "picon/core": "0.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "picon\\beans\\": ""
+    }
+  }
+}

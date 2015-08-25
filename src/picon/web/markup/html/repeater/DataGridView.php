@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\repeater;
+use picon\web\markup\html\table\DataProvider;
 
 /**
  * A GridView which is generated from a data provider.

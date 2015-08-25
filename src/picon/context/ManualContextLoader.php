@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\context;
 
 /**
  * TODO manual loading
@@ -32,8 +32,19 @@ class ManualContextLoader extends AbstractContextLoader
 {
     public function loadResources($classes)
     {
-       throw new \NotImplementedException();
+       throw new \picon\core\exceptions\NotImplementedException();
     }
+
+    protected function loadResourceMap($classes)
+    {
+
+    }
+
+    protected function loadDataSources($sourceConfig)
+    {
+
+    }
+
 }
 
 ?>

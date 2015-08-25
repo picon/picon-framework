@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form;
+
+use picon\core\Types;
+use picon\core\domain\xml\XmlTagType;
+use picon\web\domain\ComponentTag;
 
 /**
  * A text area form component
@@ -47,7 +51,7 @@ class TextArea extends AbstractTextComponent
      */
     protected function getType()
     {
-        return self::TYPE_STRING;
+        return Types::TYPE_STRING;
     }
 }
 

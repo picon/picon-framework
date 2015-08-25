@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
-namespace picon;
+namespace picon\web\request;
 
 /**
  * Convience class for accessing information about a requests
@@ -47,15 +47,15 @@ interface Request
     
     /**
      * Get a POST parameter
-     * @param type $name
-     * @return type 
+     * @param $name
+     * @return
      */
     public function getPostedParameter($name);
     
     /**
-     * Get a GET paramater
-     * @param type $name
-     * @return type 
+     * Get a GET parameter
+     * @param string $name
+     * @return string
      */
     public function getParameter($name);
     

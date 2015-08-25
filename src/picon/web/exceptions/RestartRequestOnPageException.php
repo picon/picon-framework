@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\exceptions;
+
+use picon\core\domain\Identifier;
+use picon\web\pages\WebPage;
+use RuntimeException;
 
 /**
  * Can be thrown at any time during the life cycle of a component or a request

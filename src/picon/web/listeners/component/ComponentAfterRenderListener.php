@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\listeners\component;
+use picon\web\Component;
 
 /**
  * Listener fired after a component has rendered

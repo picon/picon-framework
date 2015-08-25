@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\database\exception;
 
 /**
  * Thrown as a result of any SQL errors by a database template

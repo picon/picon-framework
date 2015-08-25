@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\request;
 
 /**
  * Basic implementation of request
@@ -77,8 +77,8 @@ class WebRequest implements Request
     
     /**
      * Get a POST parameter
-     * @param type $name
-     * @return type 
+     * @param $name
+     * @return
      */
     public function getPostedParameter($name)
     { 
@@ -95,8 +95,8 @@ class WebRequest implements Request
     
     /**
      * Get a GET paramater
-     * @param type $name
-     * @return type 
+     * @param $name
+     * @return
      */
     public function getParameter($name)
     {

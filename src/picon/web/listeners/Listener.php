@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\listeners;
 
 /**
  * Generic listener for components and behaviours for use with callbacks.

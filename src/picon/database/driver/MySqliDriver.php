@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\database\driver;
+
+use mysqli;
+use picon\database\exception\SQLException;
 
 /**
  * Database driver for mysqli
@@ -36,12 +39,12 @@ class MySqliDriver extends AbstractDatabaseDriver
         
         if ($connection->connect_error) 
         {
-            throw new SQLException($mysqli->connect_error,$mysqli->connect_errno);
+            throw new SQLException($connection->connect_error,$mysqli->connect_errno);
         }
         return $connection;
     }
     
-    public function dissconnect($connection)
+    public function disconnect($connection)
     {
         $connection->close();
     }

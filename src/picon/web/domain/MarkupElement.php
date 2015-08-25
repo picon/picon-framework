@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\domain;
+
+use picon\core\domain\xml\XMLTag;
 
 /**
  * An xml tag that is a markup element

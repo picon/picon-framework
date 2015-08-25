@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\ajax;
+
+use picon\core\Args;
 
 /**
  * An ajax decorator that invokeds a callback function for each of the decorator
@@ -37,9 +39,9 @@ class CallbackAjaxCallDecorator implements AjaxCallDecorator
     
     /**
      *
-     * @param closure $decorator
-     * @param closure $successDecorator
-     * @param closure $failDecorator 
+     * @param callable $decorator
+     * @param callable $successDecorator
+     * @param callable $failDecorator
      */
     public function __construct($decorator, $successDecorator = null, $failDecorator = null)
     {
@@ -69,8 +71,7 @@ class CallbackAjaxCallDecorator implements AjaxCallDecorator
     public function decorateSuccessScript($script)
     {
         $callable = $this->successDecorator;
-        if($callable==null)
-        {
+        if($callable==null) {
             return $script;
         }
         return $callable($script);

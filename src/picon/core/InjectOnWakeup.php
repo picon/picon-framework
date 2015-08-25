@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core;
 
 /**
  * Tagging interface for sub classes of PiconSerializer which need to 

@@ -20,7 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web;
+
+use picon\core\Args;
+use picon\core\domain\Identifier;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\MarkupLoader;
 
 /**
  * A component which may contain child components, allowing for a composition 
@@ -192,7 +197,7 @@ class MarkupContainer extends Component
      * Recursivly visit all child components matching the Identifier and execute
      * a callback on each
      * @param Identifier $identifier
-     * @param closure $callback 
+     * @param callback $callback
      */
     public function visitChildren(Identifier $identifier, $callback)
     {

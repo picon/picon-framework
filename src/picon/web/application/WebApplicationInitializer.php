@@ -26,7 +26,10 @@
  * $Id$
  */
 
-namespace picon;
+namespace picon\web\application;
+
+use picon\context\ContextApplicationInitializer;
+use picon\web\PageMap;
 
 require_once(dirname(__FILE__)."/../../context/ContextApplicationInitializer.php");
 

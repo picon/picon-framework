@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\tabs;
+
+use picon\core\Args;
+use picon\core\domain\CommonDomainBase;
+use picon\core\utils\SerializableClosure;
 
 /**
  * A tab domain for use with Tab Panel
@@ -30,7 +34,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package web/markup/html/tabs
  */
-class Tab extends ComonDomainBase
+class Tab extends CommonDomainBase
 {
     private $name;
     private $newMethod;
@@ -38,7 +42,7 @@ class Tab extends ComonDomainBase
     /**
      *
      * @param string $name
-     * @param closure $newMethod 
+     * @param callable $newMethod
      */
     public function __construct($name, $newMethod)
     {

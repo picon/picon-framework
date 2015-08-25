@@ -20,7 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core;
+
+use picon\core\domain\config\Config;
+use picon\core\domain\config\DataSourceConfig;
+use picon\core\domain\config\DataSourceType;
+use picon\core\exceptions\ConfigException;
+use picon\core\domain\profile\ApplicationProfile;
 
 /**
  * A helper class for loading config xml
@@ -50,6 +56,8 @@ class ConfigLoader
         $xml = new \DOMDocument(); 
         $xml->load($file);
         libxml_use_internal_errors(true);
+        //@todo remove this and any other references to picon directory, they need to be self contained
+
         if (!$xml->schemaValidate(PICON_DIRECTORY.'/core/config.xsd')) 
         {
             throw new ConfigException("Config XML does not match schema");
@@ -82,7 +90,7 @@ class ConfigLoader
             if($profile->getAttribute('name')==$profileName)
             {
                 $aprofile = new ApplicationProfile();
-                $values = array("showPiconTags" => Component::TYPE_BOOL, "cacheMarkup" => Component::TYPE_BOOL, "cleanBeforeOutput" => Component::TYPE_BOOL);
+                $values = array("showPiconTags" => Types::TYPE_BOOL, "cacheMarkup" => Types::TYPE_BOOL, "cleanBeforeOutput" => Types::TYPE_BOOL);
                 foreach($values as $property => $type)
                 {
                     $value = $profile->getElementsByTagName($property)->item(0)->nodeValue;

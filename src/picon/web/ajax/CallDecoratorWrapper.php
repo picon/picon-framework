@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\ajax;
 
 /**
  * Marks an object as allowing a call decorator to be set upon it

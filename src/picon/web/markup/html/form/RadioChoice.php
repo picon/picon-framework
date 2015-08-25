@@ -20,7 +20,19 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form;
+
+use picon\web\markup\html\form\AbstractSingleChoice;
+use picon\web\markup\html\form\ChoiceGroup;
+use picon\web\markup\html\form\FormComponentLabel;
+use picon\web\markup\html\form\Radio;
+use picon\web\markup\html\form\RadioGroup;
+use picon\web\markup\html\repeater\ListItem;
+use picon\web\markup\html\repeater\ListView;
+use picon\web\markup\sources\PanelMarkupSource;
+use picon\web\model\ArrayModel;
+use picon\web\model\Model;
+use picon\web\model\PropertyModel;
 
 /**
  * A list of radio buttons generated from an array of choices.
@@ -49,13 +61,14 @@ class RadioChoice extends AbstractSingleChoice implements ChoiceGroup
         $this->selection = $this->getModelObject();
         $this->group = new RadioGroup('choice', new PropertyModel($this, 'selection'));
         $this->add($this->group);
-        //@todo add the type hint b/ack into the closure when the serializer can handle them
-        $this->group->add(new ListView('choices', function(&$item)
+
+        $choices = $this->getChoices();
+        $this->group->add(new ListView('choices', function(ListItem &$item)
         {
-            $radio = new \picon\Radio('radio', $item->getModel());
+            $radio = new Radio('radio', $item->getModel());
             $item->add($radio);
-            $item->add(new \picon\FormComponentLabel('label', $radio));
-        }, new ArrayModel($this->getChoices())));
+            $item->add(new FormComponentLabel('label', $radio));
+        }, new ArrayModel($choices)));
     }
     
     protected function newMarkupSource()

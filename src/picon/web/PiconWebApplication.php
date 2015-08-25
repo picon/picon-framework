@@ -26,11 +26,26 @@
  * $Id$
  */
 
-namespace picon;
+namespace picon\web;
 
-require_once(dirname(__FILE__)."/../core/PiconApplication.php");
-require_once(dirname(__FILE__)."/application/WebApplicationInitializer.php");
-
+use picon\core\listeners\ApplicationContextLoadListener;
+use picon\core\PiconApplication;
+use picon\web\application\WebApplicationInitializer;
+use picon\web\listeners\component\authorisation\ComponentAuthorisationListener;
+use picon\web\listeners\component\ComponentAfterRenderListener;
+use picon\web\listeners\component\ComponentAfterRenderListenerCollection;
+use picon\web\listeners\component\ComponentBeforeRenderListener;
+use picon\web\listeners\component\ComponentBeforeRenderListenerCollection;
+use picon\web\listeners\component\ComponentInitializationListener;
+use picon\web\listeners\component\ComponentInitializationListenerCollection;
+use picon\web\listeners\component\ComponentInjector;
+use picon\web\listeners\component\ComponentInstantiationListener;
+use picon\web\listeners\component\ComponentInstantiationListenerCollection;
+use picon\web\listeners\component\ComponentRenderHeadListener;
+use picon\web\listeners\component\ComponentRenderHeadListenerCollection;
+use picon\web\listeners\PageMapInitializationListenerCollection;
+use picon\web\request\cycle\RequestCycle;
+use picon\web\security\WebApplicationSecuritySettings;
 
 /**
  * A Picon Application for producing web pages

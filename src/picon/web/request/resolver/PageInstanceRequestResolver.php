@@ -20,7 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\request\resolver;
+use picon\web\PageMap;
+use picon\web\request\Request;
+use picon\web\request\target\PageInstanceRequestTarget;
+use picon\web\request\target\PageNotFoundRequestTarget;
+use picon\web\request\target\RequestTarget;
 
 /**
  * Resolver for a page instance that has already been created
@@ -42,6 +47,12 @@ class PageInstanceRequestResolver implements RequestResolver
     public function resolve(Request $request)
     {
         $page = PageMap::get()->getPageById($request->getParameter('pageid'));
+
+        if($page==null)
+        {
+            return new PageNotFoundRequestTarget();
+        }
+
         return new PageInstanceRequestTarget($page);
     }
     

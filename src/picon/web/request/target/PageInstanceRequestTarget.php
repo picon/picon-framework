@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\request\target;
+use picon\web\pages\WebPage;
+use picon\web\request\Response;
 
 /**
  * Request target for rendering page instances

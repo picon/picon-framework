@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form;
+use picon\web\Component;
+use picon\web\domain\ComponentTag;
 
 /**
  * A radio button for use inside of a RadioGroup

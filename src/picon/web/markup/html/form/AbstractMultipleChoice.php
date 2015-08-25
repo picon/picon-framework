@@ -20,11 +20,13 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form;
+
+use picon\web\markup\html\form\AbstractChoice;
 
 /**
  * A form component with pre-defined choices of which more than 1
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
@@ -43,12 +45,12 @@ abstract class AbstractMultipleChoice extends AbstractChoice
         }
         return $input;
     }
-    
+
     public function getName()
     {
         return parent::getName().'[]';
     }
-    
+
     public function isSelected($choice, $index)
     {
         if($this->isEmptyInput())

@@ -20,7 +20,17 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\ajax;
+
+use picon\core\PiconApplication;
+use picon\jquery\JQueryRenderHeadListener;
+use picon\web\behaviour\AbstractBehaviour;
+use picon\web\Component;
+use picon\web\listeners\BehaviourListener;
+use picon\web\markup\html\HeaderContainer;
+use picon\web\request\HeaderResponse;
+use picon\web\request\target\AjaxRequestTarget;
+use picon\web\ResourceReference;
 
 /**
  * Super class for ajax behavours

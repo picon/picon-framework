@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\database;
 
 /**
  * Row mapper for mapping SQL rows in result sets to objects
@@ -31,5 +31,3 @@ interface RowMapper
 {
     function mapRow($row);
 }
-
-?>

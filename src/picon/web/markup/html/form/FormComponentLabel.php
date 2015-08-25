@@ -20,31 +20,33 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\html\basic\Label;
 
 /**
- * A label which can be associated with a form component so that 
+ * A label which can be associated with a form component so that
  * the <b>for</b> attribute can be added to the output
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/form
  */
 class FormComponentLabel extends Label
 {
     private $source;
-    
+
     public function __construct($id, LabeledMarkupContainer $source)
     {
         parent::__construct($id);
         $this->source = $source;
         $this->source->setOutputMarkupId(true);
     }
-    
+
     protected function onComponentTagBody(ComponentTag $tag)
     {
         $this->getResponse()->write($this->source->getLabel());
     }
-    
+
     protected function onComponentTag(ComponentTag $tag)
     {
         parent::onComponentTag($tag);

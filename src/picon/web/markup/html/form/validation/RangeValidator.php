@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form\validation;
+
+use picon\core\Args;
 
 /**
  * Validates that a number is between minimum and maximum values

@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\table;
+
+use picon\web\markup\html\table\DataTable;
+use picon\web\markup\html\table\toolbars\NavigationToolbar;
+use picon\web\markup\html\table\toolbars\HeaderToolbar;
 
 /**
  * A data table which by default adds on a header toolbar and a navigation toolbar

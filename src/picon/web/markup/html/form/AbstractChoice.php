@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form;
+
+use picon\core\Args;
+use picon\web\model\Model;
 
 /**
  * A form component which contains a pre-defined list of
@@ -43,7 +46,8 @@ abstract class AbstractChoice extends FormComponent
      *
      * @param string $id
      * @param array $choices
-     * @param Model $model 
+     * @param Model $model
+     * @param callable $isDisabled
      */
     public function __construct($id, $choices, ChoiceRenderer $choiceRenderer = null, Model $model = null, $isDisabled = null)
     {
@@ -75,12 +79,14 @@ abstract class AbstractChoice extends FormComponent
         return $this->choices;
     }
     
-    public abstract function isSelected($choice, $index);   
-    
-    
+    public abstract function isSelected($choice, $index);
+
     /**
      * Render an <option> element
-     * @param type $choice 
+     * @param $name
+     * @param $value
+     * @param $selected
+     * @param $disabled
      */
     protected function renderOption($name, $value, $selected, $disabled)
     {
@@ -126,14 +132,14 @@ abstract class AbstractChoice extends FormComponent
             else
             {
                 $selected = $this->isSelected($choice, $actualIndex);
-                $disabled = $this->isDisabled($choice, $actualIndex);
+                $disabled = $this->isOptionDisabled($choice, $actualIndex);
                 $this->renderOption($this->choiceRenderer->getDisplay($choice, $actualIndex), $this->choiceRenderer->getValue($choice, $actualIndex), $selected, $disabled);
             }
             $i++;
         }
     }
     
-    protected function isDisabled($choice, $index)
+    protected function isOptionDisabled($choice, $index)
     {
         if($this->isDisabled!=null)
         {
@@ -192,13 +198,13 @@ abstract class AbstractChoice extends FormComponent
     public function getValue()
     {
         $input = null;
-        if($this->disabled)
+        if($this->isDisabled())
         {
             $input = $this->getModelObject();
         }
-        if($this->rawInput==null)
+        if($this->getRawInput()==null)
         {
-            if($this->emptyInput==true)
+            if($this->getEmptyInput()==true)
             {
                 return null;
             }
@@ -209,7 +215,7 @@ abstract class AbstractChoice extends FormComponent
         }
         else
         {
-            $input = $this->rawInput;
+            $input = $this->getRawInput();
         }
         return $input;
     }

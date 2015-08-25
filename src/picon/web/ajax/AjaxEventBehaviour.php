@@ -20,7 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\ajax;
+
+use picon\core\Args;
+use picon\web\Component;
+use picon\web\domain\ComponentTag;
+use picon\web\request\target\AjaxRequestTarget;
 
 /**
  * Ajax implementation to add an ajax callback to a component when a javascript

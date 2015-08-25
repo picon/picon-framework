@@ -20,7 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\ajax\markup\html;
+
+use picon\core\Args;
+use picon\web\ajax\AjaxCallDecorator;
+use picon\web\ajax\AjaxEventBehaviour;
+use picon\web\ajax\CallDecoratorWrapper;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\html\link\AbstractLink;
 
 /**
  * A link which will not direct to a page but submit an ajax request.
@@ -34,7 +41,12 @@ class AjaxLink extends AbstractLink implements CallDecoratorWrapper
 {
     private $callback;
     private $eventBehaviour;
-    
+
+    /**
+     * @param string $id
+     * @param callable $callback
+     * @param null $callDecorator
+     */
     public function __construct($id, $callback, $callDecorator = null)
     {
         parent::__construct($id);

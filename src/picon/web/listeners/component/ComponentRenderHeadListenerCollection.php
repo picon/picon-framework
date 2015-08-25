@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\listeners\component;
+
+use picon\core\listeners\ListenerCollection;
+use picon\web\markup\html\HeaderContainer;
+use picon\web\request\HeaderResponse;
 
 /**
  * A collection of render head listeners which work as one

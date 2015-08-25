@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\link;
+use picon\web\listeners\LinkListener;
+use picon\web\MarkupContainer;
 
 /**
  * Super class for links

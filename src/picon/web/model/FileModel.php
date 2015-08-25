@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\model;
 
 /**
  * A model which represents a file upload
@@ -82,7 +82,7 @@ class FileModel implements Model
     {
         if($this->file==null)
         {
-            throw new \IllegalStateException('No file upload has been registered with this model');
+            throw new \picon\core\exceptions\IllegalStateException('No file upload has been registered with this model');
         }
     }
 }

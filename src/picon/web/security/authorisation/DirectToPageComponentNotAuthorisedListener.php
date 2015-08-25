@@ -20,7 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\security\authorisation;
+
+use picon\core\Args;
+use picon\core\domain\Identifier;
+use picon\web\Component;
+use picon\web\exceptions\RestartRequestOnPageException;
+use picon\web\listeners\component\authorisation\ComponentNotAuthorisedListener;
+use picon\web\pages\WebPage;
 
 /**
  * A not authorised listener for components which will redirect to a given

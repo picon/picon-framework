@@ -1,0 +1,54 @@
+{
+  "name": "picon/picon-framework",
+  "type": "library",
+  "version": "0.2",
+  "description": "The Picon Framework",
+  "keywords": ["framework"],
+  "homepage": "http://piconframework.com",
+  "minimum-stability": "dev",
+  "license": "GNU",
+  "authors": [
+    {
+      "name": "Martin Cassidy",
+      "email": "martin.cassidy@webquub.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.9",
+    "psr/log": "1.0.0",
+    "mindplay/annotations": "1.2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.8.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "picon\\beans\\": "src/picon/beans/",
+      "picon\\core\\": "src/picon/core/",
+      "picon\\context\\": "src/picon/context/",
+      "picon\\database\\": "src/picon/database/",
+      "picon\\web\\": "src/picon/web/",
+      "picon\\jquery\\": "src/picon/jquery/"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "picon\\beans\\": "src/picon/beans/",
+      "picon\\core\\": "src/picon/core/",
+      "picon\\context\\": "src/picon/context/",
+      "picon\\database\\": "src/picon/database/",
+      "picon\\web\\": "src/picon/web/",
+      "picon\\jquery\\": "src/picon/jquery/",
+      "picon\\test\\beans\\": "test/picon/test/beans/",
+      "picon\\test\\core\\": "test/picon/test/core/",
+      "picon\\test\\context\\": "test/picon/test/context/",
+      "picon\\test\\database\\": "test/picon/test/database/",
+      "picon\\test\\web\\": "test/picon/test/web/",
+      "picon\\test\\jquery\\": "test/picon/test/jquery/",
+      "picon\\test\\app\\": "test/picon/test/app/"
+    }
+  },
+  "archive": {
+    "exclude": ["/test", "/docs"]
+  }
+}

@@ -20,7 +20,16 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\sources;
+
+use picon\core\utils\MarkupUtils;
+use picon\web\Component;
+use picon\web\domain\MarkupElement;
+use picon\web\domain\PiconTag;
+use picon\web\markup\html\HeaderContainer;
+use picon\web\markup\html\HeaderPartContainer;
+use picon\web\MarkupContainer;
+use picon\web\request\HeaderResponse;
 
 /**
  * Mark-up source for components which hav associated mark-up

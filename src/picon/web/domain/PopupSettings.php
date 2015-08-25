@@ -20,14 +20,16 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\domain;
+
+use picon\core\domain\CommonDomainBase;
 
 /**
  * Options for the javascript new window function
  * 
  * @author Martin Cassidy
  */
-class PopupSettings extends ComonDomainBase
+class PopupSettings extends CommonDomainBase
 {
     private $name;
     private $height;

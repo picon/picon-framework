@@ -20,11 +20,15 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form;
+
+use picon\web\markup\html\form\validation\Validatable;
+use picon\web\markup\html\form\validation\ValidationResponse;
+use picon\web\model\BasicModel;
 
 /**
  * A wrapper for form components for usage by validators. This is a proxy/
- * adaptor whice enables a form validator to work indirectly with a form
+ * adaptor which enables a form validator to work indirectly with a form
  * component to report validation errors
  * 
  * @author Martin Cassidy
@@ -38,10 +42,9 @@ class ValidatableFormComponentWrapper implements Validatable
     {
         $this->wrappedComponet = $component;
     }
-    
+
     /**
-     * @param string $keyHierarchy the key locator for the message
-     * @param type $message 
+     * @param ValidationResponse $error
      */
     public function error(ValidationResponse $error)
     {

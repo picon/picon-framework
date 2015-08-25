@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form;
+
+use picon\core\Objects;
 
 /**
  * A form component with pre-defined choices of which 1 can be chosen
@@ -33,9 +35,9 @@ abstract class AbstractSingleChoice extends AbstractChoice
     /**
      * @todo this will incorrectly evaluate isSelected() as true if the model object is null 
      * and the choice render returns a 0
-     * @param type $choice
-     * @param type $index
-     * @return type 
+     * @param $choice
+     * @param $index
+     * @return boolean
      */
     public function isSelected($choice, $index)
     {

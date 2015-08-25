@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form;
+
+use picon\core\domain\xml\XmlTagType;
+use picon\web\domain\ComponentTag;
+use picon\web\model\Model;
 
 /**
  * A drop down choice HTML select element
@@ -47,7 +51,7 @@ class DropDown extends AbstractSingleChoice
         $value = $this->getValue();
         if($this->isRequired() && empty($value) || !$this->isRequired())
         {
-            $this->renderOption($this->getDefaultValue(), null, empty($value));
+            $this->renderOption($this->getDefaultValue(), null, empty($value), false);
         }
         
         $this->renderOptions();

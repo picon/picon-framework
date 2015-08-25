@@ -20,7 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\ajax\markup\html;
+
+use picon\web\ajax\AjaxCallDecorator;
+use picon\web\ajax\AjaxFormSubmitBehavior;
+use picon\web\ajax\CallDecoratorWrapper;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\html\form\Button;
+use picon\web\markup\html\form\Form;
 
 /**
  * A form button which, when clicked will submit the form by ajax
@@ -38,9 +45,9 @@ class AjaxButton extends Button implements CallDecoratorWrapper
     
     /**
      *
-     * @param type $id
-     * @param type $onSubmit
-     * @param type $onError
+     * @param $id
+     * @param $onSubmit
+     * @param $onError
      * @param Form $form 
      */
     public function __construct($id, $onSubmit = null, $onError = null, $form = null)

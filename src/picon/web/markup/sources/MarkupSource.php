@@ -20,7 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\sources;
+use picon\web\Component;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\html\HeaderContainer;
+use picon\web\MarkupContainer;
+use picon\web\request\HeaderResponse;
 
 /**
  * A mark-up source is required to load mark-up for a component and also

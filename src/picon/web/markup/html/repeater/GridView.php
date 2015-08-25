@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\repeater;
+
+use picon\core\Args;
+use picon\web\model\BasicModel;
+use picon\web\model\Model;
 
 /**
  * Literally a repeating view of repeating views. Allows for work with both
@@ -35,7 +39,14 @@ class GridView extends RepeatingView
     private $rows = array();
     private $columnId;
     private $callback;
-    
+
+    /**
+     * @param string $id
+     * @param null $columnId
+     * @param $columns
+     * @param callable $callback
+     * @param mixed $model
+     */
     public function __construct($id, $columnId, $columns, $callback = null, $model = null)
     {
         parent::__construct($id, $model);
@@ -92,10 +103,10 @@ class GridView extends RepeatingView
     {
         if($this->callback==null)
         {
-            throw new \IllegalStateException('When not passing a callback to GridView it is expected that the populateItem() method will be overriden');
+            throw new \picon\core\exceptions\IllegalStateException('When not passing a callback to GridView it is expected that the populateItem() method will be overriden');
         }
-        $callablel = $this->callback;
-        $callablel($item);
+        $callable = $this->callback;
+        $callable($item);
     }
     
     protected function getRecords()

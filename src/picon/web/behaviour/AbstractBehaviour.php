@@ -20,7 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\behaviour;
+
+use picon\core\domain\Identifier;
+use picon\core\Identifiable;
+use picon\web\Component;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\html\HeaderContainer;
+use picon\web\request\HeaderResponse;
 
 /**
  * Abstract behaviour provideds default implementation for each behaviour method
@@ -80,7 +87,7 @@ abstract class AbstractBehaviour implements Behaviour, Identifiable
                 return $index;
             }
         }
-        throw new \IllegalStateException('This behaviour was not found in the component it was bound to.');
+        throw new \picon\core\exceptions\IllegalStateException('This behaviour was not found in the component it was bound to.');
     }
     
     public function getComponent()

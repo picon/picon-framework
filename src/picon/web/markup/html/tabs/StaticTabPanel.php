@@ -20,7 +20,15 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\tabs;
+
+use picon\core\PiconApplication;
+use picon\jquery\JQueryRenderHeadListener;
+use picon\web\behaviour\AttributeModifier;
+use picon\web\markup\html\repeater\RepeatingView;
+use picon\web\MarkupContainer;
+use picon\web\model\BasicModel;
+use picon\web\request\HeaderResponse;
 
 /**
  * A tab panel whos links do not change page but simple swap 

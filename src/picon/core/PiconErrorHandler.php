@@ -19,7 +19,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core;
 
 /**
  * Handles all PHP errors and uncaught exceptions, registers handles
@@ -37,18 +37,20 @@ class PiconErrorHandler
     }
     
     /**
-     * @todo the error level should be setable, warnings and notices are currently ignored
-     * @param type $errno
-     * @param type $errstr
-     * @param type $errfile
-     * @param type $errline 
+     * @param $errno
+     * @param $errstr
+     * @param $errfile
+     * @param $errline
+     * @throws \ErrorException
      */
     public function onError($errno, $errstr, $errfile, $errline)
     {
-        if($errno==E_USER_ERROR||$errno==E_ERROR)
+        if (!(error_reporting() & $errno))
         {
-            throw new \ErrorException($errstr, 0, $errno, $errfile, $errline);
+            // This error code is not included in error_reporting
+            return;
         }
+        throw new \ErrorException($errstr, 0, $errno, $errfile, $errline);
     }
     
     public function onException(\Exception $exception)
@@ -56,9 +58,15 @@ class PiconErrorHandler
         print('<h1>Unhandled Exception</h1>');
         print('<h3>'.$exception->getMessage().' in '.$exception->getFile().' on line '.$exception->getLine().'</h3>');
         print('<h2>Trace</h2><ul>');
+
         foreach($exception->getTrace() as $trace)
         {
-            print('<li>'.$trace['class'].'::'.$trace['function'].'() in '.$trace['file'].' on line '.$trace['line'].'</li>');
+            if(array_key_exists('function', $trace) && $trace['function']=="onError" && array_key_exists('class', $trace) && $trace['class']=="picon\\core\\PiconErrorHandler")
+            {
+                continue;
+            }
+
+            print('<li>'.$trace['function'].'() in '.$trace['file'].' on line '.$trace['line'].'</li>');
         }
         print('</ul>');
 

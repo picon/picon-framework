@@ -20,15 +20,29 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\request\target;
+
+use picon\core\domain\Identifier;
+use picon\core\Identifiable;
+use picon\web\Component;
+use picon\web\markup\html\HeaderContainer;
+use picon\web\markup\html\repeater\AbstractRepeater;
+use picon\web\markup\resolver\HeaderResolver;
+use picon\web\MarkupContainer;
+use picon\web\model\FeedbackModel;
+use picon\web\pages\WebPage;
+use picon\web\request\HeaderResponse;
+use picon\web\request\Response;
 
 /**
  * Request target for ajax requests
  *
+ * @todo this needs to be able to handle redirect requests, the request resolve should resolve the redirect target differently to handle that
+ *
  * @author Martin Cassidy
  * @package web/request/target
  */
-class AjaxRequestTarget implements RequestTarget
+class AjaxRequestTarget implements RequestTarget, Identifiable
 {
     private $components = array();
     private $script = array();
@@ -95,8 +109,9 @@ class AjaxRequestTarget implements RequestTarget
         
         $page = $component->getPage();
         $page->addOrReplace($header);
-        
-        PiconApplication::get()->getComponentRenderHeadListener()->onHeadRendering($component, $headerResponse);
+
+        //@todo commented out because it doesn't work, do need to call this but on the container instead
+        //PiconApplication::get()->getComponentRenderHeadListener()->onHeadRendering($component, $headerResponse);
         $page->renderHead($headerResponse);
         
         $component->renderHeadContainer($header, $headerResponse);
@@ -109,6 +124,11 @@ class AjaxRequestTarget implements RequestTarget
         {
             $component->visitChildren(Component::getIdentifier(), $callback);
         }
+    }
+
+    public static function getIdentifier()
+    {
+        return Identifier::forName(get_called_class());
     }
 }
 

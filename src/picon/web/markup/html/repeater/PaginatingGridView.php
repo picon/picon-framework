@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\repeater;
+
+use picon\core\Args;
+use picon\web\markup\html\paging\Pageable;
 
 /**
  * A grid view which is paginatable

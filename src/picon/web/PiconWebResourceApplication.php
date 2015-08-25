@@ -26,10 +26,15 @@
  * $Id$
  */
 
-namespace picon;
+namespace picon\web;
 
-require_once(dirname(__FILE__)."/..//core/PiconApplication.php");
-require_once(dirname(__FILE__)."/application/WebResourceApplicationInitializer.php");
+use picon\core\PiconApplication;
+use picon\web\application\WebResourceApplicationInitializer;
+use picon\web\request\resolver\ResourceRequestResolver;
+use picon\web\request\target\ExceptionPageRequestTarget;
+use picon\web\request\WebRequest;
+use picon\web\request\WebResponse;
+
 
 /**
  * A Picon Application for generating resources used within a web pages.
@@ -59,7 +64,7 @@ class PiconWebResourceApplication extends PiconApplication
         }
         else
         {
-            $target = new ExceptionPageRequestTarget(new \UnsupportedOperationException("Resource application can only handle a resource request"));
+            $target = new ExceptionPageRequestTarget(new \picon\core\exceptions\UnsupportedOperationException("Resource application can only handle a resource request"));
         }
         $target->respond($response);
     }

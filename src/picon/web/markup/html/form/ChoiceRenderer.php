@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form;
+
+use picon\core\Args;
 
 /**
  * For use with abstract choice, allows for any object to be used in the choice
@@ -36,8 +38,8 @@ class ChoiceRenderer
     
     /**
      *
-     * @param closure $valueCallable
-     * @param closure $displayCallable 
+     * @param callable $valueCallable
+     * @param callable $displayCallable
      */
     public function __construct($valueCallable = null, $displayCallable = null)
     {

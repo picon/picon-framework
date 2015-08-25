@@ -20,11 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\context;
+
+use mindplay\annotations\Annotations;
+use picon\database\source\DataSourceFactory;
 
 /**
  * Automatic loader for context resources
- * Loads resources bassed on pre defined annotations (Service, Repository)
+ * Loads resources bassed on pre defined annotations (picon\core\annotations\Service, Repository)
  * 
  * @author Martin Cassidy
  * @package context
@@ -36,18 +39,21 @@ class AutoContextLoader extends AbstractContextLoader
        $resources = array();
        foreach($classes as $class)
        {
-             $reflection = new \ReflectionAnnotatedClass($class);
-             $name = "";
-             if($reflection->hasAnnotation("Service"))
-             {
-                 $annotation = $reflection->getAnnotation('Service');
-                 $resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
-             }
-             if($reflection->hasAnnotation("Repository"))
-             {
-                 $annotation = $reflection->getAnnotation('Repository');
-                 $resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
-             }
+            $reflection = new \ReflectionClass($class);
+            $name = "";
+
+           $services = Annotations::ofClass($reflection, "@Service");
+            if(count($services)==1)
+            {
+                $annotation = $services[0];
+                $resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
+            }
+           $repositories = Annotations::ofClass($reflection, "@Repository");
+            if(count($repositories)==1)
+            {
+                $annotation = $repositories[0];
+                $resources[$this->getResourceName($annotation, $class)] = $reflection->getName();
+            }
         }
         return $resources;
     }

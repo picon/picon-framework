@@ -20,7 +20,18 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\request\cycle;
+
+use picon\core\domain\Identifier;
+use picon\core\PiconApplication;
+use picon\web\exceptions\RestartRequestOnPageException;
+use picon\web\request\resolver\RequestResolverCollection;
+use picon\web\request\target\ExceptionPageRequestTarget;
+use picon\web\request\target\PageNotFoundRequestTarget;
+use picon\web\request\target\PageRequestTarget;
+use picon\web\request\target\RequestTarget;
+use picon\web\request\WebRequest;
+use picon\web\request\WebResponse;
 
 /**
  * Front controller for incoming requests.
@@ -42,6 +53,7 @@ class RequestCycle
     private $resolver;
     private $targetStack;
     private $maxStackSize = 10; //@todo put this somewhere else
+    private $maxTargets = 10; //@todo put this somewhere else too
     
     public function __construct()
     {
@@ -68,9 +80,16 @@ class RequestCycle
         
 
         $iterator = $this->targetStack->getIterator();
-
+        $targets = 0;
         while($iterator->valid()) 
         {
+            $targets++;
+
+            if($targets>$this->maxTargets)
+            {
+                throw new \picon\core\exceptions\IllegalStateException("Maximum number of requests targets have been processed");
+            }
+
             try
             {
                 if(PiconApplication::get()->getProfile()->isCleanBeforeOutput())
@@ -82,15 +101,25 @@ class RequestCycle
             }
             catch(RestartRequestOnPageException $restartEx)
             {
-                $iterator->rewind();
+                $this->response->clean();
                 $this->targetStack->exchangeArray(array());
                 $this->addTarget(new PageRequestTarget($restartEx->getPageIdentifier()));
+                $iterator = $this->targetStack->getIterator();
+                continue;
             }
             catch(\Exception $ex)
             {
-                $iterator->rewind();
+                $this->response->clean();
+                if($this->containsTarget(ExceptionPageRequestTarget::getIdentifier()))
+                {
+                    //Rethrow if the exception was caused by the exception page target
+                    throw $ex;
+                }
+
                 $this->targetStack->exchangeArray(array());
                 $this->addTarget(new ExceptionPageRequestTarget($ex));
+                $iterator = $this->targetStack->getIterator();
+                continue;
             }
             $iterator->next();
         }
@@ -146,6 +175,7 @@ class RequestCycle
         }
         return false;
     }
+
 }
 
 ?>

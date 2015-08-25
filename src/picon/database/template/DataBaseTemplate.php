@@ -20,11 +20,17 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\database\template;
+
+use picon\core\Args;
+use picon\core\Types;
+use picon\database\exception\SQLException;
+use picon\database\RowMapper;
+use picon\database\source\DataSource;
 
 /**
  * Default implementation of DataBaseOperations
- * Provideds access to functionality through the source
+ * provides access to functionality through the source
  * 
  * @author Martin Cassidy
  * @package database/template
@@ -52,7 +58,7 @@ class DataBaseTemplate implements DataBaseOperations
     
     public function __destruct()
     {
-        $this->driver->dissconnect($this->getConnection());
+        $this->driver->disconnect($this->getConnection());
     }
     
     public function execute($sql)
@@ -114,7 +120,7 @@ class DataBaseTemplate implements DataBaseOperations
         {
             $int = $row[0];
         }
-        settype($int, Component::TYPE_INT);
+        settype($int, Types::TYPE_INT);
         return $int;
     }
 }

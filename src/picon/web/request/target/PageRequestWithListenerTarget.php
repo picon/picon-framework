@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\request\target;
+
+use picon\core\domain\Identifier;
+use picon\web\Component;
+use picon\web\request\Response;
 
 /**
  * Stateless page request that will retrieve and invoke a listener on the page
@@ -32,11 +36,11 @@ class PageRequestWithListenerTarget extends PageRequestTarget
 {
     private $componentPath;
     private $behaviour;
-    
+
     /**
-     *
-     * @param string $page The name of the page 
-     * @param type $componentPath The path to the listener component
+     * @param Identifier $pageClass
+     * @param $componentPath
+     * @param null $behaviour
      */
     public function __construct(Identifier $pageClass, $componentPath, $behaviour = null)
     {

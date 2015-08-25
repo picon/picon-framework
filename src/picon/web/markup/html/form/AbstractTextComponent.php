@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form;
+
+use picon\core\Types;
+use picon\web\converters\ConversionException;
 
 /**
  * A form component which can accept text based input
@@ -32,10 +35,10 @@ abstract class AbstractTextComponent extends FormComponent
 {
     protected function convertInput()
     {
-        $primatives = array(self::TYPE_BOOL, self::TYPE_DOUBLE, self::TYPE_FLOAT, self::TYPE_INT);
+        $primatives = array(Types::TYPE_BOOL, Types::TYPE_DOUBLE, Types::TYPE_FLOAT, Types::TYPE_INT);
         $type = $this->getType();
         
-        if($type==self::TYPE_STRING)
+        if($type== Types::TYPE_STRING)
         {
             $this->setConvertedInput($this->getRawInput());
         }
@@ -79,11 +82,11 @@ abstract class AbstractTextComponent extends FormComponent
         {
             if(is_object($modelObject) && get_class($modelObject)!=$this->getType())
             {
-                throw new \IllegalStateException(sprintf("This text component needs a %s model, actual %s", $this->getType(), gettype($this->getModelObject())));
+                throw new \picon\core\exceptions\IllegalStateException(sprintf("This text component needs a %s model, actual %s", $this->getType(), gettype($this->getModelObject())));
             }
             else if(!is_object($modelObject) && gettype($modelObject)!=$this->getType())
             {
-                throw new \IllegalStateException(sprintf("This text component needs a %s model, actual %s", $this->getType(), gettype($this->getModelObject())));
+                throw new \picon\core\exceptions\IllegalStateException(sprintf("This text component needs a %s model, actual %s", $this->getType(), gettype($this->getModelObject())));
             }
         }
     }

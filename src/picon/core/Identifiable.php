@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\core;
 
 /**
  * Marks a class as identifiable. This is a way around PHP not having a class class

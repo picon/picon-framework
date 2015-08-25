@@ -20,7 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web;
+
+use picon\core\cache\CacheManager;
+use picon\web\model\ArrayModel;
+use picon\web\model\Model;
+use picon\web\pages\WebPage;
 
 /**
  * Localizer for a specific component
@@ -161,7 +166,7 @@ class Localizer
     
     /**
      * @todo extract this out to a helper
-     * @param type $string
+     * @param $string
      * @param Model $model 
      */
     private function interpolate($string, Model $model)
@@ -183,7 +188,7 @@ class Localizer
                 }
                 else if(is_object($value))
                 {
-                    throw new \UnsupportedOperationException('Recursive interpolation not supported');
+                    throw new \picon\core\exceptions\UnsupportedOperationException('Recursive interpolation not supported');
                 }
                 else
                 {

@@ -20,7 +20,9 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\form;
+use picon\web\domain\ComponentTag;
+use picon\web\model\Model;
 
 /**
  * A select multiple box where multiple choices can be chosen
@@ -35,16 +37,16 @@ class ListMultiple extends AbstractMultipleChoice
         parent::__construct($id, $choices, $choiceRenderer, $model);
         $this->rows = $rows;
     }
-    
+
     protected function validateModel()
     {
         $object = $this->getModelObject();
         if($object!=null && !is_array($object))
         {
-            throw new \IllegalStateException('ListMultiple must have an array model');
+            throw new \picon\core\exceptions\IllegalStateException('ListMultiple must have an array model');
         }
     }
-    
+
     protected function onComponentTag(ComponentTag $tag)
     {
         $this->checkComponentTag($tag, 'select');
@@ -52,12 +54,12 @@ class ListMultiple extends AbstractMultipleChoice
         $tag->put('size', $this->rows);
         parent::onComponentTag($tag);
     }
-    
+
     protected function onComponentTagBody(ComponentTag $tag)
     {
         $this->renderOptions();
     }
-    
+
     protected function convertInput()
     {
         $selection = array();

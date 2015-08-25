@@ -26,9 +26,9 @@
  * $Id$
  */
 
-namespace picon;
+namespace picon\web\application;
 
-require_once(dirname(__FILE__)."/../../core/ApplicationInitializer.php");
+use picon\core\ApplicationInitializer;
 
 /**
  * An empty Application Initialiser which does nothing. This skimmed down

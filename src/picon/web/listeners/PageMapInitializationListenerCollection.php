@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\listeners;
+
+use picon\core\listeners\ListenerCollection;
+use picon\web\PageMap;
 
 /**
  * Description of PageMapInitializationListenerCollection

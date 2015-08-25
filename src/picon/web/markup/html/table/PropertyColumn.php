@@ -20,7 +20,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\table;
+
+use picon\core\utils\PropertyResolver;
+use picon\web\markup\html\basic\Label;
+use picon\web\markup\html\repeater\GridItem;
+use picon\web\markup\html\table\toolbars\AbstractColumn;
+use picon\web\model\BasicModel;
+use picon\web\model\Model;
 
 /**
  * A column which shows a simple property of an object
@@ -41,7 +48,7 @@ class PropertyColumn extends AbstractColumn
     /**
      * @todo this should get the property via a resolver helper
      * @param GridItem $item
-     * @param type $componentId
+     * @param $componentId
      * @param Model $model 
      */
     public function populateCell(GridItem $item, $componentId, Model $model)

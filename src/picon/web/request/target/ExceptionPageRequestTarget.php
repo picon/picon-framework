@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\request\target;
+use picon\core\domain\Identifier;
+use picon\core\Identifiable;
+use picon\web\pages;
+use picon\web\request\Response;
 
 /**
  * Request target for the error page
@@ -28,7 +32,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package web/request/target
  */
-class ExceptionPageRequestTarget implements RequestTarget
+class ExceptionPageRequestTarget implements RequestTarget, Identifiable
 {
     private $exception;
     
@@ -39,9 +43,14 @@ class ExceptionPageRequestTarget implements RequestTarget
     
     public function respond(Response $response)
     {
-        $page = new \ErrorPage($this->exception);
+        $page = new pages\ErrorPage($this->exception);
         $page->renderPage();
         $response->flush();
+    }
+
+    public static function getIdentifier()
+    {
+        return Identifier::forName(get_called_class());
     }
 }
 

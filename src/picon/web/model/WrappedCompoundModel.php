@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\model;
+
+use picon\core\utils\PropertyResolver;
+use picon\web\Component;
 
 /**
  * A proxy model for the compound model

@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\table;
+
+use picon\context\Injector;
+use picon\core\InjectOnWakeup;
 
 /**
  * A data provider which supports injection

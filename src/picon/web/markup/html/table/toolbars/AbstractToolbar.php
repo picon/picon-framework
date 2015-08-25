@@ -20,18 +20,20 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\table\toolbars;
+use picon\web\markup\html\table\DataTable;
+use picon\web\markup\html\panel\Panel;
 
 /**
  * Super class for upper or lower header and footer bars on a data table
- * 
+ *
  * @author Martin Cassidy
  * @package web/markup/html/table/toolbar
  */
 abstract class AbstractToolbar extends Panel
 {
     private $dataTable;
-    
+
     public function __construct(DataTable $dataTable)
     {
         parent::__construct($dataTable->getNextToolbarId());

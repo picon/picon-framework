@@ -20,7 +20,15 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\request\resolver;
+
+use picon\core\PiconApplication;
+use picon\web\PageMap;
+use picon\web\request\Request;
+use picon\web\request\target\ListenerRequestTarget;
+use picon\web\request\target\PageRequestTarget;
+use picon\web\request\target\PageRequestWithListenerTarget;
+use picon\web\request\target\RequestTarget;
 
 /**
  * Basic stateless page request resolver
@@ -52,7 +60,7 @@ class PageRequestResolver implements RequestResolver
      *
      * @param Request $request
      * @todo alter expression to handle page params
-     * @return type 
+     * @return
      */
     private function isHomePage(Request $request)
     {
@@ -62,7 +70,7 @@ class PageRequestResolver implements RequestResolver
     /**
      * @param Request $request
      * @todo alter expression to handle page params
-     * @return type 
+     * @return
      */
     private function getPageClassForPath(Request $request)
     {

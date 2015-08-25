@@ -20,7 +20,16 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\tabs;
+use picon\web\behaviour\AttributeAppender;
+use picon\web\markup\html\basic\Label;
+use picon\web\markup\html\link\Link;
+use picon\web\markup\html\panel\EmptyPanel;
+use picon\web\markup\html\panel\Panel;
+use picon\web\markup\html\repeater\ListItem;
+use picon\web\markup\html\repeater\ListView;
+use picon\web\model\ArrayModel;
+use picon\web\model\BasicModel;
 
 /**
  * A panel topped by a list of links. The panel changes when each link is clicked
@@ -37,7 +46,7 @@ class TabPanel extends Panel
     public function __construct($id, TabCollection $collection)
     {
         parent::__construct($id);
-        $this->collection = $collection;   
+        $this->collection = $collection;
         $this->setup();
     }
     
@@ -55,25 +64,25 @@ class TabPanel extends Panel
     {
         parent::onInitialize();
         $me = $this;
-        //@todo add the type hint back into the closure when the serializer can handle them
-        $this->add(new ListView("tab", function($item) use ($me)
+        $tabs = $this->collection->tabs;
+        $this->add(new ListView("tab", function(ListItem $item) use ($me)
         {
             $tab = $item->getModelObject();
             $link = $me->newLink('link', $item->getIndex());
             if($me->getSelectedTab()==$item->getIndex())
             {
-                $item->add(new \picon\AttributeAppender('class', new \picon\BasicModel('selected'), ' '));
+                $item->add(new AttributeAppender('class', new BasicModel('selected'), ' '));
             }
             
             $item->add($link);
-            $link->add(new \picon\Label('name', new \picon\BasicModel($tab->name)));
-        }, new ArrayModel($this->collection->tabs)));
+            $link->add(new Label('name', new BasicModel($tab->name)));
+        }, new ArrayModel($tabs)));
     }
     
     public function newLink($id, $index)
     {
         $me = $this;
-        return new \picon\Link($id, function() use ($me, $item, $index)
+        return new Link($id, function() use ($me, $index)
         {
             $me->setSelectedTab($index);
         });
@@ -96,7 +105,8 @@ class TabPanel extends Panel
     public function setSelectedTab($tabIndex)
     {
         $this->selctedTab = $tabIndex;
-        $this->addOrReplace($this->getPanelForSelected()); 
+        $panel = $this->getPanelForSelected();
+        $this->addOrReplace($panel);
     }
     
     public function getSelectedTab()

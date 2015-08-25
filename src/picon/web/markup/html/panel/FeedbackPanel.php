@@ -20,7 +20,11 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\panel;
+use picon\web\markup\html\basic\Label;
+use picon\web\markup\html\repeater\ListView;
+use picon\web\model\BasicModel;
+use picon\web\model\FeedbackModel;
 
 /**
  * Panel to display feedback messages
@@ -40,7 +44,7 @@ class FeedbackPanel extends Panel
         
         $this->messages = new ListView('messages', function($item)
         {
-            $item->add(new \picon\Label('message', new \picon\BasicModel($item->getModelObject()->message)));
+            $item->add(new Label('message', new BasicModel($item->getModelObject()->message)));
         }, FeedbackModel::get());
         
         
@@ -49,7 +53,8 @@ class FeedbackPanel extends Panel
     
     public function beforePageRender()
     {
-        $this->messages->setModel(FeedbackModel::get());
+        $model = FeedbackModel::get();
+        $this->messages->setModel($model);
         parent::beforePageRender();
     }
 }

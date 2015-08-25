@@ -20,7 +20,7 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\database\driver;
 
 /**
  * A database driver implements internally the PHP functions and methods
@@ -43,7 +43,7 @@ interface DatabaseDriver
     /**
      * Disconnect the given connection
      */
-    function dissconnect($connection);
+    function disconnect($connection);
     
     /**
      * Run a query on the connection

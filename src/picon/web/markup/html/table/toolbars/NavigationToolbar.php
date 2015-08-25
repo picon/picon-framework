@@ -20,11 +20,17 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\table\toolbars;
+
+use picon\web\behaviour\AttributeModifier;
+use picon\web\markup\html\paging\Navigator;
+use picon\web\markup\html\table\DataTable;
+use picon\web\MarkupContainer;
+use picon\web\model\BasicModel;
 
 /**
  * A toolbar that shows pagination navigation tools
- * 
+ *
  * @todo this currently only shows 1.2.3.4. should also have previous, newxt, first and last options
  * @author Martin Cassidy
  * @package web/markup/html/table/toolbar
@@ -36,9 +42,11 @@ class NavigationToolbar extends AbstractToolbar
         parent::__construct($dataTable);
         $cell = new MarkupContainer('cell');
         $this->add($cell);
-        $cell->add(new AttributeModifier('colspan', new BasicModel(count($dataTable->getColumns()))));
-        
-        $cell->add(new Navigator('nav', $dataTable));
+        $modifer = new AttributeModifier('colspan', new BasicModel(count($dataTable->getColumns())));
+        $cell->add($modifer);
+
+        $navigator = new Navigator('nav', $dataTable);
+        $cell->add($navigator);
     }
 }
 

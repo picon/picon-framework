@@ -1,29 +1,37 @@
 <?php
 
 /**
- * Podium CMS
- * http://code.google.com/p/podium/
+ * Picon Framework
+ * http://code.google.com/p/picon-framework/
  *
  * Copyright (C) 2011-2012 Martin Cassidy <martin.cassidy@webquub.com>
 
- * Podium CMS is free software: you can redistribute it and/or modify
+ * Picon Framework is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
 
- * Podium CMS is distributed in the hope that it will be useful,
+ * Picon Framework is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  General Public License for more details.
 
  * You should have received a copy of the GNU General Public License
- * along with Podium CMS.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\ajax\markup\html;
+
+use picon\core\Args;
+use picon\jquery\ui\DialogBehavior;
+use picon\web\domain\ComponentTag;
+use picon\web\markup\html\panel\EmptyPanel;
+use picon\web\markup\html\panel\Panel;
+use picon\web\MarkupContainer;
+use picon\web\request\target\AjaxRequestTarget;
 
 /**
- * Panel which implements the jQuery UI dialog
+ * Panel which implements the jquery UI dialog
  * 
  * @todo problems arise when adding the entire panel to the ajax request target
  * @author Martin Cassidy

@@ -20,7 +20,10 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\tabs;
+
+use picon\core\Args;
+use picon\core\domain\CommonDomainBase;
 
 /**
  * An array of tabs which are added to a tab panel
@@ -28,7 +31,7 @@ namespace picon;
  * @author Martin Cassidy
  * @package web/markup/html/tabs
  */
-class TabCollection extends ComonDomainBase
+class TabCollection extends CommonDomainBase
 {
     private $tabs = array();
     
@@ -39,8 +42,8 @@ class TabCollection extends ComonDomainBase
     
     /**
      *
-     * @param Tab $tab
-     * @param closure $newMethod 
+     * @param mixed $tab
+     * @param callable $newMethod
      */
     public function addTab($tab, $newMethod = null)
     {

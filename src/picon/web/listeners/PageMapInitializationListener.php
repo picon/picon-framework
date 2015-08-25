@@ -20,7 +20,8 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\listeners;
+use picon\web\PageMap;
 
 /**
  * A listener which is called when the page map is being initialized. This is

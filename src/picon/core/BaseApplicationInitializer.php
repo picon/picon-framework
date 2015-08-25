@@ -26,8 +26,10 @@
  * $Id$
  */
 
-namespace picon;
-require_once(dirname(__FILE__)."/ApplicationInitializer.php");
+namespace picon\core;
+
+use picon\core\cache\CacheManager;
+use picon\core\domain\config\Config;
 
 /**
  * The base Application Initializer which loads only the config

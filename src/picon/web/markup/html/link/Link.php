@@ -20,7 +20,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web\markup\html\link;
+
+use closure;
+use picon\core\Args;
+use picon\web\domain\ComponentTag;
+use picon\web\domain\PopupSettings;
 
 /**
  * Basic implementation of link
@@ -33,7 +38,7 @@ class Link extends AbstractLink
     private $callback;
     private $popupSettings;
     
-    public function __construct($id, $callback)
+    public function __construct($id, closure $callback)
     {
         parent::__construct($id);
         Args::callBack($callback, 'callback');
@@ -56,7 +61,7 @@ class Link extends AbstractLink
         parent::onComponentTag($tag);
         $url = $this->urlForListener($this);
         $tag->put('href', $this->popupSettings==null?$url:'javascript:;');
-        
+
         if($this->popupSettings!=null)
         {
             $properties = $this->popupSettings;

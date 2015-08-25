@@ -20,7 +20,34 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon;
+namespace picon\web;
+
+use Exception;
+use picon\core\Args;
+use picon\core\domain\Identifier;
+use picon\core\Identifiable;
+use picon\core\InjectOnWakeup;
+use picon\core\PiconApplication;
+use picon\core\domain\xml\TextElement;
+use picon\core\domain\xml\XmlTagType;
+use picon\web\behaviour\Behaviour;
+use picon\web\domain\ComponentTag;
+use picon\web\domain\FeedbackMessage;
+use picon\web\domain\MarkupElement;
+use picon\web\listeners\Listener;
+use picon\web\markup\html\HeaderContainer;
+use picon\web\markup\resolver\ComponentResolverHelper;
+use picon\web\markup\sources\DefaultMarkupSource;
+use picon\web\model\ComponentInheritedModel;
+use picon\web\model\FeedbackModel;
+use picon\web\model\Model;
+use picon\web\pages\WebPage;
+use picon\web\request\HeaderResponse;
+use picon\web\request\target\ListenerRequestTarget;
+use picon\web\request\target\PageInstanceRequestTarget;
+use picon\web\request\target\PageRequestTarget;
+use picon\web\request\target\PageRequestWithListenerTarget;
+use picon\web\request\target\RedirectRequestTarget;
 
 /**
  * Component sersvices as the hightest and most abstract super class for all
@@ -44,14 +71,6 @@ namespace picon;
  */
 abstract class Component implements InjectOnWakeup, Identifiable, Detachable
 {
-    const TYPE_STRING = 'string';
-    const TYPE_FLOAT = 'float';
-    const TYPE_BOOL = 'boolean';
-    const TYPE_DOUBLE = 'double';
-    const TYPE_INT = 'integer';
-    const TYPE_ARRAY = 'array';
-    
-    
     const VISITOR_CONTINUE_TRAVERSAL = 1;
     const VISITOR_STOP_TRAVERSAL = 2;
     const VISITOR_CONTINUE_TRAVERSAL_NO_DEEPER = 3;
@@ -135,6 +154,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     /**
      * Create a new component. Any overrides of the constructor must call the super.
      * @param string $id the ID of this component
+     * @param Model $model
      */
     public function __construct($id, Model $model = null)
     {
@@ -171,7 +191,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
         $this->onInitialize();
         if(!$this->flagInitializeParentCall)
         {
-            throw new \IllegalStateException(sprintf("Parent implementation of onInitialize for component %s was not called", $this->id));
+            throw new \picon\core\exceptions\IllegalStateException(sprintf("Parent implementation of onInitialize for component %s was not called", $this->id));
         }
     }
     
@@ -221,7 +241,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
                 }
                 else
                 {
-                    throw new \MarkupNotFoundException(sprintf("Component %s has no associated markup and no parent to get markup from", $this->id));
+                    throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Component %s has no associated markup and no parent to get markup from", $this->id));
                 }
                 
             }
@@ -356,10 +376,10 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     private function internalRender()
     {
         $markup = $this->getMarkup();
-        
+
         if($markup==null)
         {
-            throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
+            throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
         }
         $this->onRender();
     }
@@ -370,10 +390,10 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     protected final function internalRenderComponent()
     {
         $markup = $this->getMarkup();
-        
+
         if($markup==null)
         {
-            throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
+            throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
         }
         /* @todo this cloning is a quick fix, markup should be imutable until 
          * this point were a mutable version is created for use by the component 
@@ -451,7 +471,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     
     /**
      * Render all of the markup elements in the array
-     * @param Array An array of markup elements
+     * @param array An array of markup elements
      */
     protected function renderAll($markup = null)
     {
@@ -461,7 +481,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
 
             if($markup==null)
             {
-                throw new \MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
+                throw new \picon\core\exceptions\MarkupNotFoundException(sprintf("Markup not found for component %s.", $this->id));
             }
         }
         
@@ -500,7 +520,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
                 }
                 else
                 {
-                    throw new \InvalidMarkupException(sprintf("Markup element %s may not contain a child with a picon:id as the component %s cannot not have any child components", $element->getName(), $this->id));
+                    throw new \picon\core\exceptions\InvalidMarkupException(sprintf("Markup element %s may not contain a child with a picon:id as the component %s cannot not have any child components", $element->getName(), $this->id));
                 }
             }
             elseif($element instanceof TextElement)
@@ -546,7 +566,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     
     /**
      * Generates and returns a markup id for this component
-     * @param type $generate 
+     * @param $generate
      */
     public function getMarkupId()
     {
@@ -601,7 +621,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     {
         if($tag->getName()!=$tagName)
         {
-            throw new \IllegalStateException(sprintf("An %s component can only be added to the HTML element %s", get_called_class(), $tagName));
+            throw new \picon\core\exceptions\IllegalStateException(sprintf("An %s component can only be added to the HTML element %s", get_called_class(), $tagName));
         }
     }
     
@@ -618,7 +638,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
         
         if(!array_key_exists($attribute, $attributes) || $attributes[$attribute] != $value)
         {
-            throw new \IllegalStateException(sprintf("An %s component can only be added to a tag with a %s of %s", get_called_class(), $attribute, $value));
+            throw new \picon\core\exceptions\IllegalStateException(sprintf("An %s component can only be added to a tag with a %s of %s", get_called_class(), $attribute, $value));
         }
     }
     
@@ -626,7 +646,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
      * Visit all the parent components of this components and execute
      * a callback on each
      * @param Identifier $identifier The identifier of the parent to look for
-     * @param closure $callback The callback to run
+     * @param callable $callback The callback to run
      */
     public function visitParents(Identifier $identifier, $callback)
     {
@@ -732,7 +752,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
      * WebPage Instance - Generate a URL for the page instance
      * 
      * @param mixed $for
-     * @return type 
+     * @return
      */
     public function generateUrlFor($for)
     {
@@ -742,7 +762,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
         }
         else if($for instanceof Identifier)
         {
-            return $this->urlForPage($page);
+            return $this->urlForPage($for);
         }
         else if($for instanceof WebPage)
         {
@@ -757,7 +777,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     /**
      * @todo this should use a request target
      * @param Identifier $page
-     * @return type 
+     * @return
      */
     public function urlForPage(Identifier $page)
     {
@@ -776,12 +796,11 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     
     /**
      * @todo this should use a request target
-     * @param Identifier $page
-     * @return type 
+     * @param Listener $listener
+     * @return string
      */
     public function urlForListener(Listener $listener)
     {
-        $target;
         $page = $this->getPage();
         
         $behaviour = null;
@@ -807,7 +826,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
         $page = $this->getPage();
         if($page==null)
         {
-            throw new \IllegalStateException(sprintf("Unable to generate a path for component %s as it has an incomplete hierarchy.", $this->id));
+            throw new \picon\core\exceptions\IllegalStateException(sprintf("Unable to generate a path for component %s as it has an incomplete hierarchy.", $this->id));
         }
         
         $path = $this->getId();
@@ -859,7 +878,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
         {
             throw new \InvalidArgumentException(sprintf("setPage expects an identifier for a web page or an instance of a web page and not a %s", get_class($page)));
         }
-        
+
         if($this->getRequestCycle()->containsTarget(ListenerRequestTarget::getIdentifier()))
         {
             $url = $this->getRequestCycle()->generateUrl($target);
@@ -992,27 +1011,27 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     
     public function fatel($message)
     {
-        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_FATEL, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MESSAGE_FATAL, $message, $this));
     }
     
     public function error($message)
     {
-        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_ERROR, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MESSAGE_ERROR, $message, $this));
     }
     
     public function warning($message)
     {
-        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_WARNING, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MESSAGE_WARNING, $message, $this));
     }
     
     public function info($message)
     {
-        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_INFO, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MESSAGE_INFO, $message, $this));
     }
     
     public function success($message)
     {
-        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MEESAGE_SUCCESS, $message, $this));
+        FeedbackModel::get()->addMessage(new FeedbackMessage(FeedbackMessage::FEEDBACK_MESSAGE_SUCCESS, $message, $this));
     }
     
     public function hasMessage($level = null)
@@ -1022,7 +1041,7 @@ abstract class Component implements InjectOnWakeup, Identifiable, Detachable
     
     public function hasErrorMessage()
     {
-        return FeedbackModel::get()->hasMessages($this, FeedbackMessage::FEEDBACK_MEESAGE_ERROR);
+        return FeedbackModel::get()->hasMessages($this, FeedbackMessage::FEEDBACK_MESSAGE_ERROR);
     }
     
     private function notifyBehavioursBeforeRender()
