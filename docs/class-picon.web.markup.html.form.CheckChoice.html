@@ -18,11 +18,6 @@
 		<div id="groups">
 				<h3>Namespaces</h3>
 			<ul>
-				<li>
-					<a href="namespace-None.html">
-						None					</a>
-
-						</li>
 				<li class="active">
 					<a href="namespace-picon.html">
 						picon<span></span>
@@ -366,6 +361,7 @@
 				<li><a href="class-picon.web.markup.html.form.ListMultiple.html">ListMultiple</a></li>
 				<li><a href="class-picon.web.markup.html.form.PasswordField.html">PasswordField</a></li>
 				<li><a href="class-picon.web.markup.html.form.Radio.html">Radio</a></li>
+				<li><a href="class-picon.web.markup.html.form.RadioChoice.html">RadioChoice</a></li>
 				<li><a href="class-picon.web.markup.html.form.RadioGroup.html">RadioGroup</a></li>
 				<li><a href="class-picon.web.markup.html.form.RequiredTextField.html">RequiredTextField</a></li>
 				<li><a href="class-picon.web.markup.html.form.TextArea.html">TextArea</a></li>
@@ -424,11 +420,53 @@ are defined as an array.</p>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-picon\web\AbstractMultipleChoice
+			<a href="class-picon.web.Component.html"><span>picon\web\Component</span></a>
+			
+			 implements 
+				<a href="class-picon.core.InjectOnWakeup.html"><span>picon\core\InjectOnWakeup</span></a>, 
+			
+				<a href="class-picon.core.Identifiable.html"><span>picon\core\Identifiable</span></a>, 
+			
+				<a href="class-picon.web.Detachable.html"><span>picon\web\Detachable</span></a>
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-picon.web.MarkupContainer.html"><span>picon\web\MarkupContainer</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-picon.web.markup.html.form.LabeledMarkupContainer.html"><span>picon\web\markup\html\form\LabeledMarkupContainer</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:90px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-picon.web.markup.html.form.FormComponent.html"><span>picon\web\markup\html\form\FormComponent</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:120px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-picon.web.markup.html.form.AbstractChoice.html"><span>picon\web\markup\html\form\AbstractChoice</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:150px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-picon.web.markup.html.form.AbstractMultipleChoice.html"><span>picon\web\markup\html\form\AbstractMultipleChoice</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:180px">
 			<img src="resources/inherit.png" alt="Extended by">
 <b><span>picon\web\markup\html\form\CheckChoice</span></b>			
 			 implements 
@@ -496,6 +534,8 @@ picon\web\AbstractMultipleChoice
 
 
 
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-picon.web.markup.html.form.AbstractChoice.html#___construct">picon\web\markup\html\form\AbstractChoice::__construct()</a></code></div>
 
 		</div>
 		</div></td>
@@ -515,17 +555,21 @@ picon\web\AbstractMultipleChoice
 		<code><a href="source-class-picon.web.markup.html.form.CheckChoice.html#55-69" title="Go to source code">onInitialize</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Called when the component hierarchy above this compoent is complete
+If overriding this method you MUST call parent::onInitialize()</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Called when the component hierarchy above this compoent is complete
+If overriding this method you MUST call parent::onInitialize()</p>
 
 
 
 
 
 
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-picon.web.Component.html#_onInitialize">picon\web\Component::onInitialize()</a></code></div>
 
 		</div>
 		</div></td>
@@ -556,6 +600,8 @@ picon\web\AbstractMultipleChoice
 
 
 
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-picon.web.Component.html#_newMarkupSource">picon\web\Component::newMarkupSource()</a></code></div>
 
 		</div>
 		</div></td>
@@ -635,11 +681,15 @@ picon\web\AbstractMultipleChoice
 		<code><a href="source-class-picon.web.markup.html.form.CheckChoice.html#86-90" title="Go to source code">convertInput</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Convert the input from its raw format the that which is expected
+Sub classes which need to handle this themselves should override this method
+and have getType() throw UnsupportedOperationException</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Convert the input from its raw format the that which is expected
+Sub classes which need to handle this themselves should override this method
+and have getType() throw UnsupportedOperationException</p>
 
 
 
@@ -652,6 +702,158 @@ picon\web\AbstractMultipleChoice
 	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-picon.web.markup.html.form.AbstractMultipleChoice.html#methods">picon\web\markup\html\form\AbstractMultipleChoice</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.web.markup.html.form.AbstractMultipleChoice.html#_getName">getName()</a>, 
+			<a href="class-picon.web.markup.html.form.AbstractMultipleChoice.html#_getRawInputArray">getRawInputArray()</a>, 
+			<a href="class-picon.web.markup.html.form.AbstractMultipleChoice.html#_isSelected">isSelected()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-picon.web.markup.html.form.AbstractChoice.html#methods">picon\web\markup\html\form\AbstractChoice</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.web.markup.html.form.AbstractChoice.html#_getChoiceRenderer">getChoiceRenderer()</a>, 
+			<a href="class-picon.web.markup.html.form.AbstractChoice.html#_getChoices">getChoices()</a>, 
+			<a href="class-picon.web.markup.html.form.AbstractChoice.html#_getValue">getValue()</a>, 
+			<a href="class-picon.web.markup.html.form.AbstractChoice.html#_isOptionDisabled">isOptionDisabled()</a>, 
+			<a href="class-picon.web.markup.html.form.AbstractChoice.html#_renderOptGroup">renderOptGroup()</a>, 
+			<a href="class-picon.web.markup.html.form.AbstractChoice.html#_renderOption">renderOption()</a>, 
+			<a href="class-picon.web.markup.html.form.AbstractChoice.html#_renderOptions">renderOptions()</a>, 
+			<a href="class-picon.web.markup.html.form.AbstractChoice.html#_supportNestedArray">supportNestedArray()</a>, 
+			<a href="class-picon.web.markup.html.form.AbstractChoice.html#_validateModel">validateModel()</a>, 
+			<a href="class-picon.web.markup.html.form.AbstractChoice.html#_valueForChoice">valueForChoice()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-picon.web.markup.html.form.FormComponent.html#methods">picon\web\markup\html\form\FormComponent</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_add">add()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_addValidator">addValidator()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_beforeComponentRender">beforeComponentRender()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_getConvertedInput">getConvertedInput()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_getEmptyInput">getEmptyInput()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_getForm">getForm()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_getLabel">getLabel()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_getRawInput">getRawInput()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_inputChanged">inputChanged()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_invalid">invalid()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_isDisabled">isDisabled()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_isEmptyInput">isEmptyInput()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_isMultiPart">isMultiPart()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_isRequired">isRequired()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_isValid">isValid()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_onComponentTag">onComponentTag()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_processInput">processInput()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_setConvertedInput">setConvertedInput()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_setDisabled">setDisabled()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_setRequired">setRequired()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_updateModel">updateModel()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_valid">valid()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_validate">validate()</a>, 
+			<a href="class-picon.web.markup.html.form.FormComponent.html#_validateRequired">validateRequired()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-picon.web.MarkupContainer.html#methods">picon\web\MarkupContainer</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.web.MarkupContainer.html#_addComponent">addComponent()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_addOrReplace">addOrReplace()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_afterPageRender">afterPageRender()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_beforePageRender">beforePageRender()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_childExists">childExists()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_detach">detach()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_get">get()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_getChildren">getChildren()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_getMarkupForChild">getMarkupForChild()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_hasChildren">hasChildren()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_internalInitialize">internalInitialize()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_loadAssociatedMarkup">loadAssociatedMarkup()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_onComponentAdded">onComponentAdded()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_onComponentTagBody">onComponentTagBody()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_onRender">onRender()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_remove">remove()</a>, 
+			<a href="class-picon.web.MarkupContainer.html#_visitChildren">visitChildren()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-picon.web.Component.html#methods">picon\web\Component</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.web.Component.html#_addBehaviour">addBehaviour()</a>, 
+			<a href="class-picon.web.Component.html#_afterComponentRender">afterComponentRender()</a>, 
+			<a href="class-picon.web.Component.html#_checkComponentTag">checkComponentTag()</a>, 
+			<a href="class-picon.web.Component.html#_checkComponentTagAttribute">checkComponentTagAttribute()</a>, 
+			<a href="class-picon.web.Component.html#_error">error()</a>, 
+			<a href="class-picon.web.Component.html#_fatel">fatel()</a>, 
+			<a href="class-picon.web.Component.html#_fireInitialize">fireInitialize()</a>, 
+			<a href="class-picon.web.Component.html#_generateUrlFor">generateUrlFor()</a>, 
+			<a href="class-picon.web.Component.html#_getApplication">getApplication()</a>, 
+			<a href="class-picon.web.Component.html#_getBehaviourById">getBehaviourById()</a>, 
+			<a href="class-picon.web.Component.html#_getBehaviours">getBehaviours()</a>, 
+			<a href="class-picon.web.Component.html#_getComponentKey">getComponentKey()</a>, 
+			<a href="class-picon.web.Component.html#_getComponentPath">getComponentPath()</a>, 
+			<a href="class-picon.web.Component.html#_getId">getId()</a>, 
+			<a href="class-picon.web.Component.html#_getIdentifier">getIdentifier()</a>, 
+			<a href="class-picon.web.Component.html#_getLocalizer">getLocalizer()</a>, 
+			<a href="class-picon.web.Component.html#_getMarkUpSource">getMarkUpSource()</a>, 
+			<a href="class-picon.web.Component.html#_getMarkup">getMarkup()</a>, 
+			<a href="class-picon.web.Component.html#_getMarkupId">getMarkupId()</a>, 
+			<a href="class-picon.web.Component.html#_getModel">getModel()</a>, 
+			<a href="class-picon.web.Component.html#_getModelObject">getModelObject()</a>, 
+			<a href="class-picon.web.Component.html#_getModelObjectAsString">getModelObjectAsString()</a>, 
+			<a href="class-picon.web.Component.html#_getPage">getPage()</a>, 
+			<a href="class-picon.web.Component.html#_getParent">getParent()</a>, 
+			<a href="class-picon.web.Component.html#_getRequest">getRequest()</a>, 
+			<a href="class-picon.web.Component.html#_getRequestCycle">getRequestCycle()</a>, 
+			<a href="class-picon.web.Component.html#_getResponse">getResponse()</a>, 
+			<a href="class-picon.web.Component.html#_hasErrorMessage">hasErrorMessage()</a>, 
+			<a href="class-picon.web.Component.html#_hasMessage">hasMessage()</a>, 
+			<a href="class-picon.web.Component.html#_info">info()</a>, 
+			<a href="class-picon.web.Component.html#_internalRenderComponent">internalRenderComponent()</a>, 
+			<a href="class-picon.web.Component.html#_isAuto">isAuto()</a>, 
+			<a href="class-picon.web.Component.html#_isBeforePageRender">isBeforePageRender()</a>, 
+			<a href="class-picon.web.Component.html#_isInitialized">isInitialized()</a>, 
+			<a href="class-picon.web.Component.html#_isRendered">isRendered()</a>, 
+			<a href="class-picon.web.Component.html#_isStateless">isStateless()</a>, 
+			<a href="class-picon.web.Component.html#_render">render()</a>, 
+			<a href="class-picon.web.Component.html#_renderAll">renderAll()</a>, 
+			<a href="class-picon.web.Component.html#_renderElement">renderElement()</a>, 
+			<a href="class-picon.web.Component.html#_renderHead">renderHead()</a>, 
+			<a href="class-picon.web.Component.html#_renderHeadContainer">renderHeadContainer()</a>, 
+			<a href="class-picon.web.Component.html#_setAfterComponentRenderCallback">setAfterComponentRenderCallback()</a>, 
+			<a href="class-picon.web.Component.html#_setAfterPageRenderCallback">setAfterPageRenderCallback()</a>, 
+			<a href="class-picon.web.Component.html#_setBeforeComponentRenderCallback">setBeforeComponentRenderCallback()</a>, 
+			<a href="class-picon.web.Component.html#_setBeforePageRenderCallback">setBeforePageRenderCallback()</a>, 
+			<a href="class-picon.web.Component.html#_setMarkup">setMarkup()</a>, 
+			<a href="class-picon.web.Component.html#_setMarkupId">setMarkupId()</a>, 
+			<a href="class-picon.web.Component.html#_setModel">setModel()</a>, 
+			<a href="class-picon.web.Component.html#_setModelObject">setModelObject()</a>, 
+			<a href="class-picon.web.Component.html#_setOnComponentTagBodyCallback">setOnComponentTagBodyCallback()</a>, 
+			<a href="class-picon.web.Component.html#_setOnComponentTagCallback">setOnComponentTagCallback()</a>, 
+			<a href="class-picon.web.Component.html#_setOutputMarkupId">setOutputMarkupId()</a>, 
+			<a href="class-picon.web.Component.html#_setPage">setPage()</a>, 
+			<a href="class-picon.web.Component.html#_setParent">setParent()</a>, 
+			<a href="class-picon.web.Component.html#_setRenderBodyOnly">setRenderBodyOnly()</a>, 
+			<a href="class-picon.web.Component.html#_setRenderHeadCallback">setRenderHeadCallback()</a>, 
+			<a href="class-picon.web.Component.html#_setVisible">setVisible()</a>, 
+			<a href="class-picon.web.Component.html#_success">success()</a>, 
+			<a href="class-picon.web.Component.html#_urlForListener">urlForListener()</a>, 
+			<a href="class-picon.web.Component.html#_urlForPage">urlForPage()</a>, 
+			<a href="class-picon.web.Component.html#_urlForPageInstance">urlForPageInstance()</a>, 
+			<a href="class-picon.web.Component.html#_visitParents">visitParents()</a>, 
+			<a href="class-picon.web.Component.html#_warning">warning()</a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
@@ -660,10 +862,29 @@ picon\web\AbstractMultipleChoice
 
 
 
+	<table class="summary inherited">
+	<caption>Constants inherited from <a href="class-picon.web.Component.html#constants">picon\web\Component</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.web.Component.html#PATH_SEPERATOR"><b>PATH_SEPERATOR</b></a>, 
+			<a href="class-picon.web.Component.html#VISITOR_CONTINUE_TRAVERSAL"><b>VISITOR_CONTINUE_TRAVERSAL</b></a>, 
+			<a href="class-picon.web.Component.html#VISITOR_CONTINUE_TRAVERSAL_NO_DEEPER"><b>VISITOR_CONTINUE_TRAVERSAL_NO_DEEPER</b></a>, 
+			<a href="class-picon.web.Component.html#VISITOR_STOP_TRAVERSAL"><b>VISITOR_STOP_TRAVERSAL</b></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
 
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-picon.web.Component.html#properties">picon\web\Component</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-picon.web.Component.html#$added"><var>$added</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
