@@ -1,2 +1,5 @@
 # Picon Framework
-Picon is a statefull, component orientated framework for PHP application development. Picon is conceptually based on Apahe Wicket and Spring Framework.
+Picon is a modular, component orientated, stateful framework for PHP. 
+[Visit the Picon Framework website](http://piconframework.com/)
+
+[![Build Status](https://travis-ci.org/picon/picon-framework.png?branch=develop)](https://travis-ci.org/picon/picon-framework)
