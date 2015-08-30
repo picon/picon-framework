@@ -21,23 +21,26 @@
 
 namespace picon\test\core;
 
-use mindplay\annotations\AnnotationCache;
 use mindplay\annotations\Annotations;
-use picon\context\AutoContextLoader;
-use picon\core\ApplicationInitializer;
-use picon\core\ConfigLoader;
-use picon\core\Picon;
 
-abstract class AbstractPiconUnitTest extends \PHPUnit_Framework_TestCase
+/**
+ * Class PiconTest
+ * @package picon\test\core
+ */
+class PiconTest extends AbstractPiconUnitTest
 {
-    protected function getConfig()
+    public function testAnnotations()
     {
-        return ConfigLoader::load(__DIR__.'/../../../config/picon.xml');
+        $this->assertTrue(array_key_exists("resource", Annotations::getManager()->registry));
+        $this->assertTrue(array_key_exists("service", Annotations::getManager()->registry));
+        $this->assertTrue(array_key_exists("repository", Annotations::getManager()->registry));
+        $this->assertTrue(array_key_exists("path", Annotations::getManager()->registry));
     }
 
-    protected function getContext()
+    public function testSourcesLoaded()
     {
-        $loader = new AutoContextLoader();
-        return $loader->load($this->getConfig());
+        $this->assertTrue(class_exists("picon\\test\\app\\TestService", false));
+        $this->assertTrue(class_exists("picon\\test\\app\\TestRepository", false));
+        $this->assertTrue(class_exists("picon\\test\\app\\scanner\\TestNameSpaceClassOne", false));
     }
 }

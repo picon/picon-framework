@@ -102,13 +102,6 @@ abstract class PiconApplication
      */
     public function __construct()
     {
-        Annotations::$config['cache'] = new AnnotationCache(CACHE_DIRECTORY.'/annotations');
-        $annotationManager = Annotations::getManager();
-        $annotationManager->registry['resource'] = 'picon\core\annotations\Resource';
-        $annotationManager->registry['service'] = 'picon\core\annotations\Service';
-        $annotationManager->registry['repository'] = 'picon\core\annotations\Repository';
-        $annotationManager->registry['transient'] = 'picon\core\annotations\Transient';
-
         if (isset($GLOBALS[self::GLOBAL_APPLICATION_KEY]))
         {
             throw new IllegalStateException("An instance of picon application already exists");

@@ -16,27 +16,22 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
-namespace picon\test\app;
+
+namespace picon\web\annotations;
+use mindplay\annotations\Annotation;
+
 
 /**
+ * Annotation to specify an alternative url path for a page
+ *
  * @author Martin Cassidy
- * @Service
+ * @package picon/web/annotations
+ *
+ * @usage('class'=>true, 'inherited'=>true)
  */
-class TestService extends AbstractContext
+class Path extends Annotation
 {
-    /** @Resource() */
-    protected $testRepository;
-
-    /** @Resource() */
-    protected $repo;
-
-    /** @Resource() */
-    protected $serv;
-
-    public function getTestService()
-    {
-        return $this;
-    }
+    public $path = "";
 }
 
 ?>

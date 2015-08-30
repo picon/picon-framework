@@ -68,13 +68,6 @@ class PiconWebApplication extends PiconApplication
 
     private $securitySettings;
 
-    public function __construct()
-    {
-        $annotationManager = Annotations::getManager();
-        $annotationManager->registry['path'] = 'picon\web\annotations\PathAnnotation';
-        parent::__construct();
-    }
-
     protected function getApplicationInitializer()
     {
         return new WebApplicationInitializer();

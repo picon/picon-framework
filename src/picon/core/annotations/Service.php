@@ -16,27 +16,19 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
-namespace picon\test\app;
+namespace picon\core\annotations;
+
+use mindplay\annotations\Annotation;
 
 /**
+ * Indicates that the class is a service component
+ *
  * @author Martin Cassidy
- * @Service
+ * @package picon/core/annotations
+ *
+ * @usage('class'=>true, 'inherited'=>true)
  */
-class TestService extends AbstractContext
+class Service extends Annotation
 {
-    /** @Resource() */
-    protected $testRepository;
-
-    /** @Resource() */
-    protected $repo;
-
-    /** @Resource() */
-    protected $serv;
-
-    public function getTestService()
-    {
-        return $this;
-    }
+    public $name = "";
 }
-
-?>

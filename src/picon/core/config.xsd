@@ -1,69 +1,52 @@
-<?xml version="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
-	<xs:element name="piconApplication" type="piconApplication">
-	</xs:element>
-
-	<xs:complexType name="piconApplication">
-		<xs:all>
-			<xs:element name="settings" minOccurs="1" type="settings">
-			</xs:element>
-			<xs:element name="profiles" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="profile" minOccurs="0" maxOccurs="unbounded" type="profile" />
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="dataSources" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="dataSource" minOccurs="0" maxOccurs="unbounded" type="dataSource" />
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-		</xs:all>
-	</xs:complexType>
-
-	<xs:simpleType name="startUpType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="auto" />
-		</xs:restriction>
-	</xs:simpleType> 
-
-    <xs:complexType name="profile">
-    	<xs:all>
-    		<xs:element name="showPiconTags" type="xs:boolean"></xs:element>
-    		<xs:element name="cacheMarkup" type="xs:boolean"></xs:element>
-                <xs:element name="cleanBeforeOutput" type="xs:boolean"></xs:element>
-    	</xs:all>
-    	<xs:attribute name="name" type="xs:string"></xs:attribute>
-    </xs:complexType>
-
-    <xs:complexType name="settings">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://piconframework.com/schemas/config" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="piconApplication">
+        <xs:complexType>
             <xs:all>
-            	<xs:element name="homePage" type="xs:string" />
-            	<xs:element name="startUp" type="startUpType" />
-            	<xs:element name="profile" type="xs:string" minOccurs="0"></xs:element>
+                <xs:element name="settings" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="homePage" minOccurs="0"/>
+                            <xs:element type="xs:string" name="startUp" minOccurs="0"/>
+                            <xs:element type="xs:string" name="profile" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="profiles" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="profile" minOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:byte" name="showPiconTags" minOccurs="0"/>
+                                        <xs:element type="xs:byte" name="cacheMarkup" minOccurs="0"/>
+                                        <xs:element type="xs:byte" name="cleanBeforeOutput" minOccurs="0"/>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="name"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="dataSources" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="dataSource" minOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:string" name="host" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="username" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="password" minOccurs="0"/>
+                                        <xs:element type="xs:short" name="port" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="database" minOccurs="0"/>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="name"/>
+                                    <xs:attribute type="xs:string" name="type"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
             </xs:all>
-    </xs:complexType>
-    
-    <xs:complexType name="dataSource">
-            <xs:all>
-            	<xs:element name="host" type="xs:string" minOccurs="1" maxOccurs="1" />
-                <xs:element name="port" type="xs:positiveInteger" minOccurs="0" maxOccurs="1" />
-                <xs:element name="username" type="xs:string" minOccurs="1" maxOccurs="1" />
-                <xs:element name="password" type="xs:string" minOccurs="1" maxOccurs="1" />
-                <xs:element name="database" type="xs:string" minOccurs="1" maxOccurs="1" />
-            </xs:all>
-            <xs:attribute name="name" type="xs:string"></xs:attribute>
-            <xs:attribute name="type" type="dataSourceType"></xs:attribute>
-    </xs:complexType>
-
-	<xs:simpleType name="dataSourceType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="MySQL" />
-                        <xs:enumeration value="MySQLi" />
-		</xs:restriction>
-	</xs:simpleType> 
+        </xs:complexType>
+    </xs:element>
 </xs:schema>

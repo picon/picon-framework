@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<piconApplication xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="http://piconframework.com/schemas/config.xsd">
+<piconApplication xmlns="http://piconframework.com/schemas/config"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://piconframework.com/schemas/config http://piconframework.com/schemas/config.xsd">
+
     <settings>
-    <homePage>HomePage</homePage>
-    <startUp>auto</startUp>
-    <profile>test</profile>
+        <homePage>HomePage</homePage>
+        <startUp>auto</startUp>
+        <profile>test</profile>
     </settings>
-    
+
     <profiles>
         <profile name="test">
             <showPiconTags>0</showPiconTags>
             <cacheMarkup>1</cacheMarkup>
             <cleanBeforeOutput>0</cleanBeforeOutput>
-            </profile>
-        </profiles>
-        
-        <dataSources>
+        </profile>
+    </profiles>
+
+    <dataSources>
         <dataSource name="testSource" type="MySQL">
             <host>localhost</host>
             <username>someuser</username>
             <password>somepassword</password>
             <port>3306</port>
             <database>somedb</database>
-        </dataSource>    
-        </dataSources>
+        </dataSource>
+    </dataSources>
 </piconApplication>

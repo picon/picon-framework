@@ -45,47 +45,14 @@ abstract class ApplicationInitializer
 {
     const CONFIG_RESOURCE_NAME = 'picon_config';
 
-    private $errorHandler;
-    
-    private static $dirs = array();
-    
     public function __construct()
     {
-        $this->errorHandler = new PiconErrorHandler;
     }
     
     /**
      * Initialise the application
      */
     public abstract function initialise();
-    
-    /**
-     * Runs a require_once() on all the php files in the given directory
-     * and invokes itself on any sub directories
-     * @param String $directory the working directory
-     */
-    public static function loadAssets($directory)
-    {
-        if(in_array($directory, self::$dirs))
-        {
-            return;
-        }
-        $d = dir($directory);
-        while (false !== ($entry = $d->read()))
-        {
-            if(preg_match("/\s*.php{1}$/", $entry))
-            {
-                require_once($directory."/".$entry);
-            }
-            if(is_dir($directory."/".$entry) && !preg_match("/^.{1}.?$/", $entry))
-            {
-               self::loadAssets($directory."/".$entry);
-            }
-        }
-        $d->close();
-        array_push(self::$dirs, $directory);
-    }
-
 }
 
 ?>

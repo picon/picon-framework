@@ -16,27 +16,22 @@
  * You should have received a copy of the GNU General Public License
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
-namespace picon\test\app;
+
+namespace picon\core\annotations;
+
+use mindplay\annotations\Annotation;
 
 /**
+ * Annotation to declare a class property not be serialised and bet
+ * set back to its default value after deserialisation. This will only
+ * work for classes which are sub classes of PiconSerializer
+ *
  * @author Martin Cassidy
- * @Service
+ * @package picon/core/annotations
+ *
+ * @usage('property'=>true)
  */
-class TestService extends AbstractContext
+class Transient extends Annotation
 {
-    /** @Resource() */
-    protected $testRepository;
 
-    /** @Resource() */
-    protected $repo;
-
-    /** @Resource() */
-    protected $serv;
-
-    public function getTestService()
-    {
-        return $this;
-    }
 }
-
-?>

@@ -19,8 +19,18 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-define("PICON_DIRECTORY", dirname(__FILE__) . "/../src/picon");
-define("CACHE_DIRECTORY", dirname(__FILE__) . "/cache");
-define("ASSETS_DIRECTORY", dirname(__FILE__) . "/picon/test/app");
+use mindplay\annotations\Annotations;
+use picon\core\cache\CacheManager;
+use picon\core\Picon;
 
 require_once(dirname(__FILE__)."/../vendor/autoload.php");
+
+Picon::$sources = array(dirname(__FILE__) . "/picon/test/app");
+CacheManager::$cacheDirectory = dirname(__FILE__)."/cache";
+Picon::initialise();
+
+$annotationManager = Annotations::getManager();
+$annotationManager->registry['codeCoverageIgnore'] = false;
+$annotationManager->registry['scenario'] = false;
+$annotationManager->registry['test'] = false;
+$annotationManager->registry['expectedException'] = false;

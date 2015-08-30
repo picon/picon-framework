@@ -1,10 +1,9 @@
 <?php
-
 /**
  * Picon Framework
- * http://code.google.com/p/picon-framework/
+ * http://piconframework.com
  *
- * Copyright (C) 2011-2012 Martin Cassidy <martin.cassidy@webquub.com>
+ * Copyright (C) 2011-2015 Martin Cassidy <martin.cassidy@webquub.com>
 
  * Picon Framework is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,18 +19,17 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-namespace picon\core\annotations;
-use mindplay\annotations\Annotation;
+namespace picon\web;
 
-/**
- * Indicates that a class is a repository, such as a DAO
- *
- * @author Martin Cassidy
- * @package picon/core/annotations
- *
- * @usage('class'=>true, 'inherited'=>true)
- */
-class RepositoryAnnotation extends Annotation
+use mindplay\annotations\Annotations;
+use picon\core\ModuleInitialiser;
+
+class WebInitialiser implements ModuleInitialiser
 {
-    public $name = "";
+    function initialise()
+    {
+        $annotationManager = Annotations::getManager();
+        $annotationManager->registry['path'] = 'picon\web\annotations\Path';
+    }
+
 }

@@ -31,7 +31,7 @@ namespace picon\core\annotations;
  *
  * @usage('property'=>true)
  */
-class ResourceAnnotation extends TransientAnnotation
+class Resource extends Transient
 {
     /**
      * @var string the name of the resource

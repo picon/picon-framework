@@ -38,15 +38,27 @@ class CacheManager
     const EXTENSION = '.pcx';
     const SESSION_PATH = 'session_data';
     const APPLICATION_PATH = 'application_data';
+    const ANNOTATION_PATH = 'annotations';
     
     const APPLICATION_SCOPE = '1';
     const SESSION_SCOPE = '2';
     
     private static $self;
+
+    public static $cacheDirectory;
     
     private function __construct()
     {
         //singleton
+    }
+
+    public static function getCacheDirectory()
+    {
+        if(!isset(self::$cacheDirectory))
+        {
+            self::$cacheDirectory = sys_get_temp_dir();
+        }
+        return self::$cacheDirectory;
     }
     
     /**
@@ -66,9 +78,9 @@ class CacheManager
     /**
      * Load a previously saved resource. If the resource was not
      * found this will return null
-     * @param $name
+     * @param string $name
      * @param $scope
-     * @return
+     * @return mixed
      */
     public static function loadResource($name, $scope)
     {
@@ -103,15 +115,20 @@ class CacheManager
         }
         return $dir;
     }
-    
-    private function getSessionCacheDirectory()
+
+    public static function getSessionCacheDirectory()
     {
-        return CACHE_DIRECTORY.'/'.self::SESSION_PATH.'/'.session_id().'/';
+        return self::getCacheDirectory().'/'.self::SESSION_PATH.'/'.session_id().'/';
     }
     
-    private function getApplicationCacheDirectory()
+    public static function getApplicationCacheDirectory()
     {
-        return CACHE_DIRECTORY.'/'.self::APPLICATION_PATH.'/';
+        return self::getCacheDirectory().'/'.self::APPLICATION_PATH.'/';
+    }
+
+    public static function getAnnotationCacheDirectory()
+    {
+        return self::getCacheDirectory().'/'.self::ANNOTATION_PATH.'/';
     }
     
     private function getFileName($directory, $name)

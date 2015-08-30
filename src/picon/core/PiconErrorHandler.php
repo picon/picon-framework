@@ -22,37 +22,41 @@
 namespace picon\core;
 
 /**
- * Handles all PHP errors and uncaught exceptions, registers handles
- * upon instantiation.
- * 
+ * Handles all PHP errors and uncaught exceptions.
+ *
  * @author Martin Cassidy
- * @package core
+ * @package picon\core
  */
 class PiconErrorHandler
 {
-    public function __construct()
+    public static function initialise()
     {
-        set_error_handler(array($this, 'onError'));
-        set_exception_handler(array($this, 'onException'));
+        $errorHandler = new PiconErrorHandler();
+        set_error_handler(array($errorHandler, 'onError'));
+        set_exception_handler(array($errorHandler, 'onException'));
     }
-    
+
+
     /**
-     * @param $errno
-     * @param $errstr
-     * @param $errfile
-     * @param $errline
+     * @param $errorNumber
+     * @param $errorMessage
+     * @param $errorFile
+     * @param $errorLine
      * @throws \ErrorException
      */
-    public function onError($errno, $errstr, $errfile, $errline)
+    public function onError($errorNumber, $errorMessage, $errorFile, $errorLine)
     {
-        if (!(error_reporting() & $errno))
+        if (!(error_reporting() & $errorNumber))
         {
             // This error code is not included in error_reporting
             return;
         }
-        throw new \ErrorException($errstr, 0, $errno, $errfile, $errline);
+        throw new \ErrorException($errorMessage, 0, $errorNumber, $errorFile, $errorLine);
     }
-    
+
+    /**
+     * @param \Exception $exception
+     */
     public function onException(\Exception $exception)
     {
         print('<h1>Unhandled Exception</h1>');

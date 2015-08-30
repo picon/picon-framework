@@ -47,7 +47,6 @@ abstract class AbstractContextLoader
         
         if($this->resourceMap==null)
         {
-            ApplicationInitializer::loadAssets(ASSETS_DIRECTORY);
             $this->resourceMap = $this->loadResourceMap($this->getClasses());
             CacheManager::saveResource(self::CONTEXT_RESOURCE_NAME, $this->resourceMap, CacheManager::APPLICATION_SCOPE);
         }

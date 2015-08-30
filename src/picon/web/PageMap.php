@@ -82,7 +82,6 @@ class PageMap
 
     private function scanPages()
     {
-        ApplicationInitializer::loadAssets(ASSETS_DIRECTORY);
         $this->pages = array();
         $scanner = new ClassScanner(array(new SubClassRule('\picon\web\pages\WebPage')));
 
