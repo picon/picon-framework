@@ -18,10 +18,12 @@
  * */
 
 namespace picon\test\app;
+use picon\core\annotations\Repository;
 use picon\core\annotations\Resource;
 
 /**
  * @author Martin Cassidy
+ * @Repository()
  */
 class TestRepository extends AbstractContext
 {
