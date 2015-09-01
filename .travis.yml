@@ -15,3 +15,5 @@ php:
   
 before_script:
   - composer install -n
+
+script: phpunit --configuration phpunit.xml.dist test
