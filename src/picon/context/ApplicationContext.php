@@ -55,6 +55,7 @@ class ApplicationContext
         }
         else
         {
+            print_r(array_keys($this->resources));
             throw new UndefinedResourceException(sprintf("The requested resource %s could not be found or the initialisation process is not complete", $name));
         }
     }

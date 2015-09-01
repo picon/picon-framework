@@ -19,11 +19,14 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-use mindplay\annotations\Annotations;
+use Doctrine\Common\Annotations\AnnotationReader;
 use picon\core\cache\CacheManager;
 use picon\core\Picon;
 
 require_once(dirname(__FILE__)."/../vendor/autoload.php");
+
+AnnotationReader::addGlobalIgnoredName("covers");
+AnnotationReader::addGlobalIgnoredName("group");
 
 Picon::$sources = array(dirname(__FILE__) . "/picon/test/app");
 CacheManager::$cacheDirectory = dirname(__FILE__)."/cache";
