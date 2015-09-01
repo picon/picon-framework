@@ -21,7 +21,7 @@
 
 namespace picon\test\core;
 
-use mindplay\annotations\Annotations;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 
 /**
  * Class PiconTest
@@ -29,14 +29,6 @@ use mindplay\annotations\Annotations;
  */
 class PiconTest extends AbstractPiconUnitTest
 {
-    public function testAnnotations()
-    {
-        $this->assertTrue(array_key_exists("resource", Annotations::getManager()->registry));
-        $this->assertTrue(array_key_exists("service", Annotations::getManager()->registry));
-        $this->assertTrue(array_key_exists("repository", Annotations::getManager()->registry));
-        $this->assertTrue(array_key_exists("path", Annotations::getManager()->registry));
-    }
-
     public function testSourcesLoaded()
     {
         $this->assertTrue(class_exists("picon\\test\\app\\TestService", false));

@@ -52,7 +52,7 @@ class ClassScannerTest extends AbstractPiconUnitTest
     
     public function testByAnnotation()
     {
-        $scanner = new ClassScanner(new AnnotationRule('@Service'));
+        $scanner = new ClassScanner(new AnnotationRule('picon\core\annotations\Service'));
         $this->performAsserts($scanner, array('picon\test\app\TestService', 'picon\test\app\TestServiceName'));
     }
     

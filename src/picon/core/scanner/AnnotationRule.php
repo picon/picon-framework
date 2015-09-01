@@ -21,7 +21,7 @@
  * */
 
 namespace picon\core\scanner;
-use mindplay\annotations\Annotations;
+use Doctrine\Common\Annotations\AnnotationReader;
 
 /**
  * Class scanner rule to match classes with a given annotation
@@ -31,6 +31,7 @@ use mindplay\annotations\Annotations;
 class AnnotationRule implements ClassScannerRule
 {
     private $annotation;
+    private $reader;
 
     /**
      *
@@ -39,6 +40,7 @@ class AnnotationRule implements ClassScannerRule
     public function __construct($annotation)
     {
         $this->annotation = $annotation;
+        $this->reader = new AnnotationReader();
     }
 
     /**
@@ -46,7 +48,8 @@ class AnnotationRule implements ClassScannerRule
      */
     public function matches($className, \ReflectionClass $reflection)
     {
-        return count(Annotations::ofClass($reflection, $this->annotation))==1;
+        $annotation = $this->reader->getClassAnnotation($reflection, $this->annotation);
+        return $annotation!=null;
     }
 }
 

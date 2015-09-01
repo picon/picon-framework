@@ -18,7 +18,6 @@
  * */
 
 namespace picon\web\annotations;
-use mindplay\annotations\Annotation;
 
 
 /**
@@ -27,7 +26,7 @@ use mindplay\annotations\Annotation;
  * @author Martin Cassidy
  * @package picon/web/annotations
  *
- * @usage('class'=>true, 'inherited'=>true)
+ * @Annotation
  */
 class Path extends Annotation
 {

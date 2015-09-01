@@ -18,22 +18,26 @@
  * */
 
 namespace picon\test\app;
-
-use picon\test\app\AbstractContext;
+use picon\core\annotations\Resource;
 
 /**
  * @author Martin Cassidy
- * @Repository
  */
 class TestRepository extends AbstractContext
 {
-    /** @Resource() */
+    /**
+     * @Resource()
+     */
     protected $testService;
 
-    /** @Resource() */
+    /**
+     * @Resource()
+     */
     protected $repo;
 
-    /** @Resource() */
+    /**
+     * @Resource()
+     */
     protected $serv;
 
     public function getTestRepository()

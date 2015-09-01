@@ -28,9 +28,3 @@ require_once(dirname(__FILE__)."/../vendor/autoload.php");
 Picon::$sources = array(dirname(__FILE__) . "/picon/test/app");
 CacheManager::$cacheDirectory = dirname(__FILE__)."/cache";
 Picon::initialise();
-
-$annotationManager = Annotations::getManager();
-$annotationManager->registry['codeCoverageIgnore'] = false;
-$annotationManager->registry['scenario'] = false;
-$annotationManager->registry['test'] = false;
-$annotationManager->registry['expectedException'] = false;

@@ -20,7 +20,21 @@
  * */
 namespace picon\beans;
 
+/**
+ *
+ * @package picon\beans
+ */
+interface BeanFactory
+{
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    function getBean($name);
 
-interface BeanFactory {
-
+    /**
+     * @param string $name
+     * @return boolean
+     */
+    function beanExists($name);
 }

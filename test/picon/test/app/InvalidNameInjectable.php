@@ -18,12 +18,15 @@
  * */
 
 namespace picon\test\app;
+
+use picon\core\annotations\Resource;
+
 /**
  * @author Martin Cassidy
  */
 class InvalidNameInjectable
 {
-    /** @Resource('name' => 'notexists') */
+    /** @Resource(name = "notexists") */
     private $testService;
 }
 

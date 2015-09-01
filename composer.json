@@ -16,7 +16,7 @@
   "require": {
     "php": ">=5.3.9",
     "psr/log": "1.0.0",
-    "mindplay/annotations": "1.2.0"
+    "doctrine/annotations": "1.2.0"
   },
   "require-dev": {
     "phpunit/phpunit": "4.8.6"

@@ -17,10 +17,12 @@
  * along with Picon Framework.  If not, see <http://www.gnu.org/licenses/>.
  * */
 namespace picon\test\app;
+use picon\core\annotations\Service;
+use picon\core\annotations\Resource;
 
 /**
  * @author Martin Cassidy
- * @Service
+ * @Service()
  */
 class TestService extends AbstractContext
 {

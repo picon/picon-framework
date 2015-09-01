@@ -38,7 +38,6 @@ class CacheManager
     const EXTENSION = '.pcx';
     const SESSION_PATH = 'session_data';
     const APPLICATION_PATH = 'application_data';
-    const ANNOTATION_PATH = 'annotations';
     
     const APPLICATION_SCOPE = '1';
     const SESSION_SCOPE = '2';
@@ -124,11 +123,6 @@ class CacheManager
     public static function getApplicationCacheDirectory()
     {
         return self::getCacheDirectory().'/'.self::APPLICATION_PATH.'/';
-    }
-
-    public static function getAnnotationCacheDirectory()
-    {
-        return self::getCacheDirectory().'/'.self::ANNOTATION_PATH.'/';
     }
     
     private function getFileName($directory, $name)

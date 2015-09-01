@@ -29,7 +29,7 @@ namespace picon\core\annotations;
  * @author Martin Cassidy
  * @package picon/core/annotations
  *
- * @usage('property'=>true)
+ * @Annotation
  */
 class Resource extends Transient
 {

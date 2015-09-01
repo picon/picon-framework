@@ -1,6 +1,7 @@
 <?php
 
 namespace picon\test\core\cache\serializables;
+use picon\core\annotations\Resource;
 
 /**
  * Picon Framework
@@ -21,7 +22,7 @@ namespace picon\test\core\cache\serializables;
 class InjectOnWakeup implements \picon\core\InjectOnWakeup
 {
     /**
-     * @Resource
+     * @Resource()
      */
     private $testService;
 

@@ -18,8 +18,9 @@
  * */
 
 namespace picon\test\core\cache\serializables;
-use picon\test\core\cache\serializables\SimpleSerialize;
-use picon\test\core\cache\serializables\ParentComplexObject;
+use picon\core\annotations\Resource;
+use picon\core\annotations\Transient;
+
 
 /**
  * Description of ComplexSerialize
@@ -32,13 +33,13 @@ class ComplexSerialize extends ParentComplexObject
 
     /**
      *
-     * @transient
+     * @Transient()
      */
     private $transient = "defaultValue";
 
     /**
      *
-     * @resource
+     * @Resource()
      */
     private $service = "defaultValue";
 

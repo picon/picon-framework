@@ -135,7 +135,7 @@ abstract class Enum implements Identifiable, Equalable
     
     /**
      * 
-     * @return A String representation of the enum
+     * @return string A String representation of the enum
      */
     public function __toString()
     {

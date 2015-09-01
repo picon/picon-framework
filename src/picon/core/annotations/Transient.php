@@ -19,8 +19,6 @@
 
 namespace picon\core\annotations;
 
-use mindplay\annotations\Annotation;
-
 /**
  * Annotation to declare a class property not be serialised and bet
  * set back to its default value after deserialisation. This will only
@@ -29,9 +27,9 @@ use mindplay\annotations\Annotation;
  * @author Martin Cassidy
  * @package picon/core/annotations
  *
- * @usage('property'=>true)
+ * @Annotation
  */
-class Transient extends Annotation
+class Transient
 {
 
 }

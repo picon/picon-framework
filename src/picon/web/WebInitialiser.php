@@ -21,15 +21,13 @@
 
 namespace picon\web;
 
-use mindplay\annotations\Annotations;
 use picon\core\ModuleInitialiser;
 
 class WebInitialiser implements ModuleInitialiser
 {
     function initialise()
     {
-        $annotationManager = Annotations::getManager();
-        $annotationManager->registry['path'] = 'picon\web\annotations\Path';
+
     }
 
 }

@@ -21,7 +21,8 @@
  * */
 
 namespace picon\context;
-use mindplay\annotations\Annotations;
+use Doctrine\Common\Annotations\Annotation;
+use Doctrine\Common\Annotations\AnnotationReader;
 
 /**
  * Dependency injector for resources. All resources are inject after instantiation.
@@ -52,13 +53,14 @@ class Injector
             $reflection = new \ReflectionClass($object);
         }
         $properties = $reflection->getProperties();
-                
+
+        $reader = new AnnotationReader();
+
         foreach($properties as $property)
         {
-            $resources = Annotations::ofProperty($property, null, "@Resource");
-            if(count($resources)==1)
+            $annotation = $reader->getPropertyAnnotation($property, "picon\\core\\annotations\\Resource");
+            if($annotation!=null)
             {
-                $annotation = $resources[0];
                 $resource = $property->getName();
                 
                 if(!empty($annotation->name))

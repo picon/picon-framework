@@ -18,6 +18,9 @@
  * */
 
 namespace picon\test\app;
+
+use picon\core\annotations\Resource;
+
 /**
  * @author Martin Cassidy
  */

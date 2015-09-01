@@ -22,7 +22,6 @@
 
 namespace picon\web;
 
-use mindplay\annotations\Annotations;
 use picon\core\ApplicationInitializer;
 use picon\core\cache\CacheManager;
 use picon\core\domain\Identifier;

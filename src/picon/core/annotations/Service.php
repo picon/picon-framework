@@ -18,17 +18,15 @@
  * */
 namespace picon\core\annotations;
 
-use mindplay\annotations\Annotation;
-
 /**
  * Indicates that the class is a service component
  *
  * @author Martin Cassidy
  * @package picon/core/annotations
  *
- * @usage('class'=>true, 'inherited'=>true)
+ * @Annotation
  */
-class Service extends Annotation
+class Service
 {
     public $name = "";
 }

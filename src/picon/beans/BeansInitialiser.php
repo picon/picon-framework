@@ -21,7 +21,6 @@
 
 namespace picon\beans;
 
-
 use picon\core\ModuleInitialiser;
 
 class BeansInitialiser implements ModuleInitialiser

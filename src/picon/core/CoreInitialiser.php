@@ -21,8 +21,7 @@
 
 namespace picon\core;
 
-use mindplay\annotations\AnnotationCache;
-use mindplay\annotations\Annotations;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use picon\core\cache\CacheManager;
 
 /**
@@ -36,15 +35,9 @@ class CoreInitialiser implements ModuleInitialiser
 
     public function initialise()
     {
-        Annotations::$config['cache'] = new AnnotationCache(CacheManager::getAnnotationCacheDirectory());
-
-        $annotationManager = Annotations::getManager();
-        $annotationManager->registry['resource'] = 'picon\core\annotations\Resource';
-        $annotationManager->registry['service'] = 'picon\core\annotations\Service';
-        $annotationManager->registry['repository'] = 'picon\core\annotations\Repository';
-        $annotationManager->registry['transient'] = 'picon\core\annotations\Transient';
-
         $sources = Picon::$sources;
+
+        AnnotationRegistry::registerAutoloadNamespace("picon\\core\\annotations", dirname(__FILE__)."/../..");
 
         if(!is_array($sources) || count($sources)<1)
         {

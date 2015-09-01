@@ -81,7 +81,8 @@ class Identifier extends CommonDomainBase
     
     /**
      *
-     * @param object $object 
+     * @param object $object
+     * @return boolean
      */
     public function equals($object)
     {

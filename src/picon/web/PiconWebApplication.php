@@ -28,7 +28,6 @@
 
 namespace picon\web;
 
-use mindplay\annotations\Annotations;
 use picon\core\listeners\ApplicationContextLoadListener;
 use picon\core\PiconApplication;
 use picon\web\application\WebApplicationInitializer;

@@ -21,7 +21,7 @@
  * */
 
 namespace picon\core\annotations;
-use mindplay\annotations\Annotation;
+
 
 /**
  * Indicates that a class is a repository, such as a DAO
@@ -29,9 +29,9 @@ use mindplay\annotations\Annotation;
  * @author Martin Cassidy
  * @package picon/core/annotations
  *
- * @usage('class'=>true, 'inherited'=>true)
+ * @Annotation
  */
-class Repository extends Annotation
+class Repository
 {
     public $name = "";
 }

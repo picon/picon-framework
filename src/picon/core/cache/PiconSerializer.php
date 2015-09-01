@@ -23,7 +23,7 @@
 namespace picon\core\cache;
 
 //@todo remove this coupling to web
-use mindplay\annotations\Annotations;
+use Doctrine\Common\Annotations\AnnotationReader;
 use picon\context\Injector;
 use picon\core\InjectOnWakeup;
 use picon\core\utils\SerializableClosure;
@@ -222,6 +222,8 @@ class PiconSerializer
     
     private static function isTransient(\ReflectionProperty $property)
     {
-        return count(Annotations::ofProperty($property, null, "@Transient"))==1;
+        $reader = new AnnotationReader();
+        $transient = $reader->getPropertyAnnotation($property, 'picon\core\annotations\Transient');
+        return $transient!=null;
     }
 }

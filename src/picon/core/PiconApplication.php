@@ -29,8 +29,6 @@
 
 namespace picon\core;
 
-use mindplay\annotations\AnnotationCache;
-use mindplay\annotations\Annotations;
 use picon\core\exceptions\IllegalStateException;
 use picon\core\listeners\ApplicationConfigLoadListener;
 use picon\core\listeners\ApplicationContextLoadListener;
