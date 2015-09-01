@@ -182,8 +182,13 @@ class PiconSerializerTest extends AbstractPiconUnitTest
         $serialized = PiconSerializer::serialize($object);
         return PiconSerializer::unserialize($serialized);
     }
-    
-    private function assertArray($origionalArray, $newArray, callable $eachCallback = null)
+
+    /**
+     * @param $origionalArray
+     * @param $newArray
+     * @param callable $eachCallback
+     */
+    private function assertArray($origionalArray, $newArray, $eachCallback = null)
     {
         $this->assertCount(count($origionalArray), $newArray);
         
