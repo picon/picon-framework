@@ -29,7 +29,7 @@
 namespace picon\context;
 
 use picon\beans\InitializingBean;
-use picon\core\BaseApplicationInitializer;
+use picon\core\CoreApplicationInitializer;
 use picon\core\PiconApplication;
 
 /**
@@ -38,7 +38,7 @@ use picon\core\PiconApplication;
  * @author Martin Cassidy
  * @package context
  */
-class ContextApplicationInitializer extends BaseApplicationInitializer
+class ContextApplicationInitializer implements ModuleInitialiser
 {
     /**
      * Load the application context

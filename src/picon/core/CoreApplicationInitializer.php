@@ -37,8 +37,10 @@ use picon\core\domain\config\Config;
  * @author Martin Cassidy
  * @package core
  */
-class BaseApplicationInitializer extends ApplicationInitializer
+class CoreApplicationInitializer implements ModuleInitialiser
 {
+    const CONFIG_RESOURCE_NAME = 'picon_config';
+    
     /**
      * Load the application config
      * @return Config

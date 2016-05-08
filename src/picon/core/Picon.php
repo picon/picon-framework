@@ -33,17 +33,12 @@ class Picon
     public static $sources = array();
 
     /**
-     * @var array The Picon Framework modules to search for
-     */
-    private static $modules = array("core", "web", "beans", "context", "jquery");
-
-    /**
      * Initialise the Picon Framework. Callable after the auto loader has been added and Picon::$sources has been set.
      */
     public static function initialise()
     {
         PiconErrorHandler::initialise();
-        foreach(Picon::$modules as $module)
+        foreach(scandir(__DIR__."/..") as $module)
         {
             $className = sprintf("picon\%s\%sInitialiser", $module, ucwords($module));
 
